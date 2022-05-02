@@ -1,2 +1,2 @@
-# Voxel-Lobster
-Yet another voxel engine written in C++
+# Voxel Lobster
+Yet another voxel engine written in C++. The details will be published soon...
