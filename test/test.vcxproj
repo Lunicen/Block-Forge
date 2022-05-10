@@ -32,9 +32,22 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <ItemGroup>
-    <ClCompile Include="test.cpp" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Voxel Lobster.vcxproj">
       <Project>{22048682-8831-45e5-9692-5b4f3032f9cb}</Project>
