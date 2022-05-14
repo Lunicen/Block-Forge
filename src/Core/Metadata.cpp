@@ -22,7 +22,7 @@ void Metadata::Load()
 	Load(this->GetFilename());
 }
 
-void Metadata::Load(std::string filename)
+void Metadata::Load(const std::string& filename)
 {
 	if (filename.empty())
 	{
