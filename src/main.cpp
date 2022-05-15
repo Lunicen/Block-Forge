@@ -4,7 +4,7 @@ int main()
 {
 	auto appConfig = std::make_unique<Metadata>("src/Core/Config.json");
 
-	Application application(std::move(appConfig));
+	Application application(appConfig);
 	application.Run();
 
 	return 0;

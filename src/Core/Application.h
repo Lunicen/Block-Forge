@@ -7,7 +7,7 @@ class Application
 
 public:
 	Application() = delete;
-	explicit Application(std::unique_ptr<Metadata> configFile);
+	explicit Application(std::unique_ptr<Metadata>& configFile);
 
 	void Run();
 };
