@@ -1,14 +1,16 @@
 #pragma once
 #include "Metadata.h"
 
-class Application
+namespace VoxelLobster
 {
-	std::unique_ptr<Metadata> metadata;
+	class Application
+	{
+		std::unique_ptr<Metadata> metadata;
 
-public:
-	Application() = delete;
-	explicit Application(std::unique_ptr<Metadata>& configFile);
+	public:
+		Application() = delete;
+		explicit Application(std::unique_ptr<Metadata>& configFile);
 
-	void Run();
-};
-
+		void Run();
+	};
+}

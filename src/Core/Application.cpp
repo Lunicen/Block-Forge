@@ -1,16 +1,20 @@
 #include "Application.h"
 
-Application::Application(std::unique_ptr<Metadata>& configFile) : metadata(std::move(configFile))
+namespace VoxelLobster
 {
-	
-}
-
-void Application::Run()
-{
-	metadata->Load();
-
-	while(true)
+	Application::Application(std::unique_ptr<Metadata>& configFile) : metadata(std::move(configFile))
 	{
 		
 	}
+
+	void Application::Run()
+	{
+		metadata->Load();
+
+		while(true)
+		{
+			
+		}
+	}
 }
+

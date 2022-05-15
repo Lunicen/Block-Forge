@@ -2,42 +2,45 @@
 #include <fstream>
 #include <sstream>
 
-Metadata::Metadata(const std::string& filename)
+namespace VoxelLobster
 {
-	this->SetFilename(filename);
-}
-
-void Metadata::SetFilename(const std::string& filename)
-{
-	this->filename = filename;
-}
-
-std::string Metadata::GetFilename()
-{
-	return this->filename;
-}
-
-void Metadata::Load()
-{
-	Load(this->GetFilename());
-}
-
-void Metadata::Load(const std::string& filename)
-{
-	if (filename.empty())
+	Metadata::Metadata(const std::string& filename)
 	{
-		throw std::invalid_argument("File is not specified!");
+		this->SetFilename(filename);
 	}
 
-	const std::ifstream file(filename);
-
-	if (!file.good())
+	void Metadata::SetFilename(const std::string& filename)
 	{
-		throw std::runtime_error("File doesn't exist!");
+		this->filename = filename;
 	}
 
-	std::stringstream buffer;
-	buffer << file.rdbuf();
+	std::string Metadata::GetFilename()
+	{
+		return this->filename;
+	}
 
-	this->document.Parse(buffer.str().c_str());
+	void Metadata::Load()
+	{
+		Load(this->GetFilename());
+	}
+
+	void Metadata::Load(const std::string& filename)
+	{
+		if (filename.empty())
+		{
+			throw std::invalid_argument("File is not specified!");
+		}
+
+		const std::ifstream file(filename);
+
+		if (!file.good())
+		{
+			throw std::runtime_error("File doesn't exist!");
+		}
+
+		std::stringstream buffer;
+		buffer << file.rdbuf();
+
+		this->document.Parse(buffer.str().c_str());
+	}
 }
