@@ -2,10 +2,9 @@
 
 int main()
 {
-	auto appConfig = Metadata("src/Data/Config.json");
-	appConfig.Load();
+	auto appConfig = std::make_unique<Metadata>("src/Core/Config.json");
 
-	Application application(&appConfig);
+	Application application(std::move(appConfig));
 	application.Run();
 
 	return 0;
