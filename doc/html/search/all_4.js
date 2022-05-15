@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setfilename_0',['SetFilename',['../class_metadata.html#ad84e37040e02575b907895212baa9bf6',1,'Metadata']]]
+  ['error_0',['Error',['../class_log.html#a860a6724a65c95001e3617ac6ae04e28',1,'Log']]]
 ];

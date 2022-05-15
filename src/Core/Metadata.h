@@ -4,8 +4,8 @@
 #include <stdexcept>
 #include "rapidjson/document.h"
 
-/// @brief Handles JSON files and manipulates them.  
 /// @class Metadata
+/// @brief Handles JSON files and manipulates them.
 /// @details This class is made for handling the metadata related to the objects like Blocks or Mobs.
 class Metadata
 {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metadata_0',['Metadata',['../class_metadata.html',1,'Metadata'],['../class_metadata.html#ae849560667461008cb72e83919c20be0',1,'Metadata::Metadata()=default'],['../class_metadata.html#aff2bd67112362d282c051514a5768214',1,'Metadata::Metadata(const std::string &amp;filename)']]]
+  ['debug_0',['Debug',['../class_log.html#aa26e0c8f0eef55da40ce13a0c32700ce',1,'Log']]]
 ];

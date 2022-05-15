@@ -1,0 +1,136 @@
+\hypertarget{class_log}{}\doxysection{Log Class Reference}
+\label{class_log}\index{Log@{Log}}
+
+
+Logs the occurred events with additional information and status.  
+
+
+
+
+{\ttfamily \#include $<$Log.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_log_adc2470e1e4de07f81462116f6fdf60fd}\label{class_log_adc2470e1e4de07f81462116f6fdf60fd}} 
+static void {\bfseries Init} ()
+\begin{DoxyCompactList}\small\item\em Initializes class and it\textquotesingle{}s settings. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_a6b9869cd3b6d9793f5a0cdc483ee2a0d}{Trace}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints tracing message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_aa26e0c8f0eef55da40ce13a0c32700ce}{Debug}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints debug message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_abc92ed5074f74feecedfac4f6dfa592c}{Info}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints info message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_aefee21b4cfebcf5d1ef6ccb31c53f71c}{Warn}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints warning message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_a860a6724a65c95001e3617ac6ae04e28}{Error}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints error message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_log_a2974e5364b673b056536c595fab42219}{Critical}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Prints critical message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logs the occurred events with additional information and status. 
+
+This static class is made for logging events where actions might contain important messages. Used for tracking control flow, errors, etc. If you need more information about the log levels and when to use them, check out \href{https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels}{\texttt{ this}} link. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_log_a6b9869cd3b6d9793f5a0cdc483ee2a0d}\label{class_log_a6b9869cd3b6d9793f5a0cdc483ee2a0d}} 
+\index{Log@{Log}!Trace@{Trace}}
+\index{Trace@{Trace}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Trace()}{Trace()}}
+{\footnotesize\ttfamily void Log\+::\+Trace (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints tracing message. 
+
+The trace is used to print EVERYTHING that is happening. \begin{DoxyWarning}{Warning}
+Never, ever use it in production! Only during the development process. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_log_aa26e0c8f0eef55da40ce13a0c32700ce}\label{class_log_aa26e0c8f0eef55da40ce13a0c32700ce}} 
+\index{Log@{Log}!Debug@{Debug}}
+\index{Debug@{Debug}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Debug()}{Debug()}}
+{\footnotesize\ttfamily void Log\+::\+Debug (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints debug message. 
+
+The debug is used to print the information for diagnostics. 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_log_abc92ed5074f74feecedfac4f6dfa592c}\label{class_log_abc92ed5074f74feecedfac4f6dfa592c}} 
+\index{Log@{Log}!Info@{Info}}
+\index{Info@{Info}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Info()}{Info()}}
+{\footnotesize\ttfamily void Log\+::\+Info (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints info message. 
+
+The info is used to print the general information about occurred events. 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_log_aefee21b4cfebcf5d1ef6ccb31c53f71c}\label{class_log_aefee21b4cfebcf5d1ef6ccb31c53f71c}} 
+\index{Log@{Log}!Warn@{Warn}}
+\index{Warn@{Warn}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Warn()}{Warn()}}
+{\footnotesize\ttfamily void Log\+::\+Warn (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints warning message. 
+
+The warning is used to warn that the occurred event might cause oddities in the future. 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_log_a860a6724a65c95001e3617ac6ae04e28}\label{class_log_a860a6724a65c95001e3617ac6ae04e28}} 
+\index{Log@{Log}!Error@{Error}}
+\index{Error@{Error}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily void Log\+::\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints error message. 
+
+The error is used to signalize incorrect behaviour that can be handled (for ex. missing data). 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_log_a2974e5364b673b056536c595fab42219}\label{class_log_a2974e5364b673b056536c595fab42219}} 
+\index{Log@{Log}!Critical@{Critical}}
+\index{Critical@{Critical}!Log@{Log}}
+\doxysubsubsection{\texorpdfstring{Critical()}{Critical()}}
+{\footnotesize\ttfamily void Log\+::\+Critical (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints critical message. 
+
+The critical is used to print the error that caused a force shutdown of the application. 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ Information about the event. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Core/Log.\+h\item 
+src/\+Core/Log.\+cpp\end{DoxyCompactItemize}
