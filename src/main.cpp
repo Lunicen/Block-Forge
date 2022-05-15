@@ -2,9 +2,9 @@
 
 int main()
 {
-	auto appConfig = std::make_unique<VoxelLobster::Metadata>("src/Core/Config.json");
+	auto appConfig = std::make_unique<Metadata>("src/Core/Config.json");
 
-	VoxelLobster::Application application(appConfig);
+	Application application(appConfig);
 	application.Run();
 
 	return 0;
