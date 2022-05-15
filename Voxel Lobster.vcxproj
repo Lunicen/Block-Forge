@@ -129,16 +129,19 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
     <ClCompile Include="src\Core\Block.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\Application.h" />
     <ClInclude Include="src\Core\Metadata.h" />
     <ClInclude Include="src\Core\Block.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Data\Blocks.json" />
+    <None Include="src\Data\Config.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

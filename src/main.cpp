@@ -1,7 +1,12 @@
-#include <iostream>
+#include "Core/Application.h"
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	auto appConfig = Metadata("src/Data/Config.json");
+	appConfig.Load();
+
+	Application application(&appConfig);
+	application.Run();
+
 	return 0;
 }
