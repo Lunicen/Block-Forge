@@ -3,11 +3,11 @@
 
 class Application
 {
-	std::unique_ptr<Metadata> metadata;
+	Metadata* metadata;
 
 public:
 	Application() = delete;
-	explicit Application(std::unique_ptr<Metadata> configFile);
+	explicit Application(Metadata* configFile);
 
 	void Run();
 };
