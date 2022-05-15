@@ -1,8 +1,10 @@
 #include "Core/Application.h"
+#include "Core/Log.h"
 
 int main()
 {
-	auto appConfig = std::make_unique<Metadata>("src/Core/Config.json");
+	Log::Init();
+	auto appConfig = std::make_unique<Metadata>("src/Data/Config.json");
 
 	Application application(appConfig);
 	application.Run();
