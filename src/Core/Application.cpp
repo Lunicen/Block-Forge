@@ -1,6 +1,6 @@
 #include "Application.h"
 
-Application::Application(Metadata* configFile) : metadata(configFile)
+Application::Application(std::unique_ptr<Metadata> configFile) : metadata(std::move(configFile))
 {
 	
 }
