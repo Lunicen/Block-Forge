@@ -24,6 +24,9 @@
     <ClCompile Include="src\Core\Metadata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Block.h">
@@ -32,8 +35,12 @@
     <ClInclude Include="src\Core\Metadata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Data\Blocks.json" />
+    <None Include="src\Data\Config.json" />
   </ItemGroup>
 </Project>

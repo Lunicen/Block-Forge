@@ -1,7 +1,11 @@
-#include <iostream>
+#include "Core/Application.h"
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	auto appConfig = std::make_unique<Metadata>("src/Core/Config.json");
+
+	Application application(appConfig);
+	application.Run();
+
 	return 0;
 }
