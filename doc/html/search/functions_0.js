@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getfilename_0',['GetFilename',['../class_metadata.html#a24211eba40e328ccaef8eff700e81722',1,'Metadata']]]
+  ['critical_0',['Critical',['../class_log.html#a2974e5364b673b056536c595fab42219',1,'Log']]]
 ];
