@@ -1,5 +1,9 @@
 {
-    "id": 1,
-    "name": "dirt",
-    "gravity": null
+    "dirt": {
+        
+    },
+    "stone" : {
+        
+    }
+
 }

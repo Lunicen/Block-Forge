@@ -3,12 +3,18 @@
 void Log::Init()
 {
 	spdlog::set_pattern("[%T] [%^%l%$] %v");
+	spdlog::set_level(spdlog::level::trace);
 	spdlog::info("Logging initialized!");
 }
 
 void Log::Trace(const std::string& message)
 {
 	spdlog::trace(message);
+}
+
+void Log::Debug(const std::string& message)
+{
+	spdlog::debug(message);
 }
 
 void Log::Info(const std::string& message)
