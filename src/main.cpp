@@ -1,7 +1,13 @@
-#include <iostream>
+#include "Core/Application.h"
+#include "Core/Log.h"
 
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
+	Log::Init();
+	auto appConfig = std::make_unique<Metadata>("src/Data/Config.json");
+
+	Application application(appConfig);
+	application.Run();
+
 	return 0;
 }

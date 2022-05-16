@@ -1,0 +1,119 @@
+\hypertarget{class_metadata}{}\doxysection{Metadata Class Reference}
+\label{class_metadata}\index{Metadata@{Metadata}}
+
+
+Handles JSON files and manipulates them.  
+
+
+
+
+{\ttfamily \#include $<$Metadata.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_metadata_ae849560667461008cb72e83919c20be0}\label{class_metadata_ae849560667461008cb72e83919c20be0}} 
+{\bfseries Metadata} ()=default
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_metadata}{Metadata}} object constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_metadata_aff2bd67112362d282c051514a5768214}{Metadata}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_metadata}{Metadata}} object constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_metadata_ad84e37040e02575b907895212baa9bf6}{Set\+Filename}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Set filename. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_metadata_a24211eba40e328ccaef8eff700e81722}{Get\+Filename}} ()
+\begin{DoxyCompactList}\small\item\em Get filename. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_metadata_acb03a8ff4693be4aba6557b91079e0ba}\label{class_metadata_acb03a8ff4693be4aba6557b91079e0ba}} 
+void {\bfseries Load} ()
+\begin{DoxyCompactList}\small\item\em Loads JSON data to the document variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_metadata_a79f3dde76dc233bb27642ffd9ef60ef1}{Load}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Loads JSON data to the document variable using the given filename. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_metadata_a3cf52b7653203aacea5a82e713f3e8da}{Load}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles JSON files and manipulates them. 
+
+This class is made for handling the metadata related to the objects like Blocks or Mobs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_metadata_aff2bd67112362d282c051514a5768214}\label{class_metadata_aff2bd67112362d282c051514a5768214}} 
+\index{Metadata@{Metadata}!Metadata@{Metadata}}
+\index{Metadata@{Metadata}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{Metadata()}{Metadata()}}
+{\footnotesize\ttfamily Metadata\+::\+Metadata (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_metadata}{Metadata}} object constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & -\/ Filename of the JSON file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_metadata_ad84e37040e02575b907895212baa9bf6}\label{class_metadata_ad84e37040e02575b907895212baa9bf6}} 
+\index{Metadata@{Metadata}!SetFilename@{SetFilename}}
+\index{SetFilename@{SetFilename}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{SetFilename()}{SetFilename()}}
+{\footnotesize\ttfamily void Metadata\+::\+Set\+Filename (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Set filename. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & -\/ Filename of the JSON file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_metadata_a24211eba40e328ccaef8eff700e81722}\label{class_metadata_a24211eba40e328ccaef8eff700e81722}} 
+\index{Metadata@{Metadata}!GetFilename@{GetFilename}}
+\index{GetFilename@{GetFilename}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{GetFilename()}{GetFilename()}}
+{\footnotesize\ttfamily std\+::string Metadata\+::\+Get\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get filename. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em String} & with a filename of the JSON file. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_metadata_a79f3dde76dc233bb27642ffd9ef60ef1}\label{class_metadata_a79f3dde76dc233bb27642ffd9ef60ef1}} 
+\index{Metadata@{Metadata}!Load@{Load}}
+\index{Load@{Load}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void Metadata\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Loads JSON data to the document variable using the given filename. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & -\/ Filename of the JSON file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_metadata_a3cf52b7653203aacea5a82e713f3e8da}\label{class_metadata_a3cf52b7653203aacea5a82e713f3e8da}} 
+\index{Metadata@{Metadata}!Load@{Load}}
+\index{Load@{Load}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void Load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Core/Metadata.\+h\item 
+src/\+Core/Metadata.\+cpp\end{DoxyCompactItemize}

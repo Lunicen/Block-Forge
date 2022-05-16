@@ -89,6 +89,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>E:\Projects\Voxel-Lobster\lib\rapidjson\include;E:\Projects\Voxel-Lobster\lib\glfw\include;E:\Projects\Voxel-Lobster\lib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -103,6 +104,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>E:\Projects\Voxel-Lobster\lib\rapidjson\include;E:\Projects\Voxel-Lobster\lib\glfw\include;E:\Projects\Voxel-Lobster\lib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -116,16 +118,32 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>E:\Projects\Voxel-Lobster\lib\rapidjson\include;E:\Projects\Voxel-Lobster\lib\glfw\include;E:\Projects\Voxel-Lobster\lib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>E:\Projects\Voxel-Lobster\lib\rapidjson\include;E:\Projects\Voxel-Lobster\lib\glfw\include;E:\Projects\Voxel-Lobster\lib\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Log.cpp" />
+    <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Core\Metadata.cpp" />
+    <ClCompile Include="src\Core\Block.cpp" />
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Core\Log.h" />
+    <ClInclude Include="src\Core\Application.h" />
+    <ClInclude Include="src\Core\Metadata.h" />
+    <ClInclude Include="src\Core\Block.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Data\Blocks.json" />
+    <None Include="src\Data\Config.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
