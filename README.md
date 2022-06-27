@@ -1,2 +1,2 @@
-# Voxel Lobster
+# Block Forge
 Yet another voxel engine written in C++. The details will be published soon...
