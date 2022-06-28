@@ -1,4 +1,5 @@
 #include "Metadata.h"
+#include "rapidjson/istreamwrapper.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/ostreamwrapper.h"
 #include <sys/stat.h>
@@ -9,11 +10,11 @@ bool Metadata::DoesFileExist(const std::string& filename)
 {
 	struct stat buffer{};
 
-	if (stat(filename.c_str(), &buffer) != -1)
+	if (stat(filename.c_str(), &buffer) == 0)
 	{
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 Metadata::Metadata(const std::string& filename)
@@ -43,17 +44,15 @@ void Metadata::Load(const std::string& filename)
 		throw std::invalid_argument("File is not specified!");
 	}
 
-	const std::ifstream file(filename);
+	std::ifstream file(filename);
 
 	if (!file.good())
 	{
 		throw std::runtime_error("File doesn't exist!");
 	}
 
-	std::stringstream buffer;
-	buffer << file.rdbuf();
-
-	this->document.Parse(buffer.str().c_str());
+	rapidjson::IStreamWrapper jsonInputStream(file);
+	this->document.ParseStream(jsonInputStream);
 }
 
 void Metadata::Save(const bool overrideFileIfExists) const
