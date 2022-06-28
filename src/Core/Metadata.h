@@ -12,6 +12,8 @@ class Metadata
 	std::string filename;
 	rapidjson::Document document;
 
+	static bool DoesFileExist(const std::string& filename);
+
 public:
 	/// @brief Metadata object constructor
 	Metadata() = default;
@@ -34,6 +36,8 @@ public:
 	/// @brief Loads JSON data to the document variable using the given filename.
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
+
+	void Save(bool overrideFileIfExists = false) const;
 };
 
 /// @overload void Load()

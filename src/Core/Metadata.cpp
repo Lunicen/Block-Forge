@@ -1,6 +1,20 @@
 #include "Metadata.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/ostreamwrapper.h"
+#include <sys/stat.h>
 #include <fstream>
 #include <sstream>
+
+bool Metadata::DoesFileExist(const std::string& filename)
+{
+	struct stat buffer{};
+
+	if (stat(filename.c_str(), &buffer) != -1)
+	{
+		return false;
+	}
+	return true;
+}
 
 Metadata::Metadata(const std::string& filename)
 {
@@ -40,4 +54,23 @@ void Metadata::Load(const std::string& filename)
 	buffer << file.rdbuf();
 
 	this->document.Parse(buffer.str().c_str());
+}
+
+void Metadata::Save(const bool overrideFileIfExists) const
+{
+	if (filename.empty())
+	{
+		throw std::invalid_argument("File is not specified!");
+	}
+
+	if (!overrideFileIfExists && this->DoesFileExist(filename))
+	{
+		throw std::runtime_error("An attempt of overriding protected file!");
+	}
+
+	std::ofstream rawInputStream(filename);
+	rapidjson::OStreamWrapper jsonInputStream(rawInputStream);
+
+	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonInputStream);
+	this->document.Accept(writer);
 }
