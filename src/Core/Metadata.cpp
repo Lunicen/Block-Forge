@@ -68,9 +68,9 @@ void Metadata::Save(const bool overrideFileIfExists) const
 		throw std::runtime_error("An attempt of overriding protected file!");
 	}
 
-	std::ofstream rawInputStream(filename);
-	rapidjson::OStreamWrapper jsonInputStream(rawInputStream);
+	std::ofstream file(filename);
+	rapidjson::OStreamWrapper jsonOutputStream(file);
 
-	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonInputStream);
+	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonOutputStream);
 	this->document.Accept(writer);
 }
