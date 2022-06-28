@@ -49,11 +49,6 @@
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Voxel Lobster.vcxproj">
-      <Project>{22048682-8831-45e5-9692-5b4f3032f9cb}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\Core\Block.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
   </ItemGroup>
