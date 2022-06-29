@@ -1,0 +1,10 @@
+﻿.vs
+*.sln
+bin/intermediates
+test/bin/intermediates
+test/bin/Win32/Debug
+bin/Win32/Debug
+bin/x64/Debug
+test/bin/x64/Debug
+Block Forge.sln.DotSettings.user
+docs
