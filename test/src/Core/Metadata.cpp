@@ -2,6 +2,8 @@
 #include "Core/Metadata.h"
 #include "Core/Metadata.cpp"
 
+const std::string root = "./../../../";
+
 TEST(Metadata, Load_FileIsNotSpecified_ThrowException)
 {
 	auto metadata = Metadata();
@@ -42,7 +44,7 @@ TEST(Metadata, Load_FileDoesNotExist_ThrowException)
 
 TEST(Metadata, Load_FileExist_Success)
 {
-	const std::string filename = "./mocks/example.json";
+	const std::string filename = root + "mocks/example.json";
 
 	Metadata metadata(filename);
 	try
@@ -75,8 +77,8 @@ TEST(Metadata, Save_FileIsNotSpecified_ThrowException)
 
 TEST(Metadata, Save_OverridingProtectedFile_ThrowException)
 {
-	const std::string filename = "./mocks/example.json";
-
+	const std::string filename = root + "mocks/example.json";
+	
 	const Metadata metadata(filename);
 	try
 	{
