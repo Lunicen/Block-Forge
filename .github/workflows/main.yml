@@ -7,8 +7,6 @@ name: Doxygen Action
 on:
   push:
     branches: [ main ]
-
-
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,7 +26,7 @@ jobs:
         # Path to Doxyfile
         doxyfile-path: "./Doxyfile" # default is ./Doxyfile
         # Working directory
-        working-directory: "../../." # default is .
+        working-directory: "." # default is .
     
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
