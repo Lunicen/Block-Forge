@@ -19,7 +19,12 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-        
+    
+    # Download doxygen styling
+    - name: Git Sumbodule Update
+      run: |
+        git submodule update --remote jothepro/doxygen-awesome-css
+    
     - name: Doxygen Action
       uses: mattnotmitt/doxygen-action@v1.9.4
       with:
