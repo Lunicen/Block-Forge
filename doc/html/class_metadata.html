@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Voxel Lobster: Metadata Class Reference</title>
+<title>Block Forge: Metadata Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Voxel Lobster<span id="projectnumber">&#160;v0.1</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -120,6 +120,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> ()</td></tr>
 <tr class="memitem:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1">Load</a> (const std::string &amp;filename)</td></tr>
 <tr class="memdesc:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads JSON data to the document variable using the given filename.  <a href="class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1">More...</a><br /></td></tr>
 <tr class="separator:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a769e7b5c919ebd15354303e10f6fe92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a769e7b5c919ebd15354303e10f6fe92c">Save</a> (bool overrideFileIfExists=false) const</td></tr>
+<tr class="memdesc:a769e7b5c919ebd15354303e10f6fe92c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves JSON data to the file specified in the filename.  <a href="class_metadata.html#a769e7b5c919ebd15354303e10f6fe92c">More...</a><br /></td></tr>
+<tr class="separator:a769e7b5c919ebd15354303e10f6fe92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="related" name="related"></a>
 Related Functions</h2></td></tr>
@@ -130,7 +133,7 @@ Related Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Handles JSON files and manipulates them. </p>
-<p >This class is made for handling the metadata related to the objects like Blocks or Mobs. </p>
+<p >This class is made for handling the metadata stored in JSON files. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aff2bd67112362d282c051514a5768214" name="aff2bd67112362d282c051514a5768214"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff2bd67112362d282c051514a5768214">&#9670;&nbsp;</a></span>Metadata()</h2>
@@ -238,6 +241,32 @@ Related Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>- Filename of the JSON file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a769e7b5c919ebd15354303e10f6fe92c" name="a769e7b5c919ebd15354303e10f6fe92c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a769e7b5c919ebd15354303e10f6fe92c">&#9670;&nbsp;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Metadata::Save </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>overrideFileIfExists</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saves JSON data to the file specified in the filename. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">overrideFileIfExists</td><td>- On true allows overriding existing file, otherwise throws exception (std::runtime_error). </td></tr>
   </table>
   </dd>
 </dl>

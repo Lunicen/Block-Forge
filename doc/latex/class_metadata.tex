@@ -25,7 +25,9 @@ std\+::string \mbox{\hyperlink{class_metadata_a24211eba40e328ccaef8eff700e81722}
 void {\bfseries Load} ()
 \begin{DoxyCompactList}\small\item\em Loads JSON data to the document variable. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_metadata_a79f3dde76dc233bb27642ffd9ef60ef1}{Load}} (const std\+::string \&filename)
-\begin{DoxyCompactList}\small\item\em Loads JSON data to the document variable using the given filename. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Loads JSON data to the document variable using the given filename. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_metadata_a769e7b5c919ebd15354303e10f6fe92c}{Save}} (bool override\+File\+If\+Exists=false) const
+\begin{DoxyCompactList}\small\item\em Saves JSON data to the file specified in the filename. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Related Functions}
 (Note that these are not member functions.) \begin{DoxyCompactItemize}
 \item 
@@ -36,7 +38,7 @@ void \mbox{\hyperlink{class_metadata_a3cf52b7653203aacea5a82e713f3e8da}{Load}}
 \doxysubsection{Detailed Description}
 Handles JSON files and manipulates them. 
 
-This class is made for handling the metadata related to the objects like Blocks or Mobs. 
+This class is made for handling the metadata stored in JSON files. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_metadata_aff2bd67112362d282c051514a5768214}\label{class_metadata_aff2bd67112362d282c051514a5768214}} 
@@ -100,6 +102,21 @@ Loads JSON data to the document variable using the given filename.
 
 \begin{DoxyParams}{Parameters}
 {\em filename} & -\/ Filename of the JSON file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_metadata_a769e7b5c919ebd15354303e10f6fe92c}\label{class_metadata_a769e7b5c919ebd15354303e10f6fe92c}} 
+\index{Metadata@{Metadata}!Save@{Save}}
+\index{Save@{Save}!Metadata@{Metadata}}
+\doxysubsubsection{\texorpdfstring{Save()}{Save()}}
+{\footnotesize\ttfamily void Metadata\+::\+Save (\begin{DoxyParamCaption}\item[{bool}]{override\+File\+If\+Exists = {\ttfamily false} }\end{DoxyParamCaption}) const}
+
+
+
+Saves JSON data to the file specified in the filename. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em override\+File\+If\+Exists} & -\/ On true allows overriding existing file, otherwise throws exception (std\+::runtime\+\_\+error). \\
 \hline
 \end{DoxyParams}
 
