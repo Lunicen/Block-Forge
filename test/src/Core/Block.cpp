@@ -1,1 +1,1 @@
-#include "gtest/gtest.h"
+#include "../UnitTestsConfig.h"
