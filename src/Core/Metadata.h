@@ -1,12 +1,11 @@
 #pragma once
 
 #include <string>
-#include <stdexcept>
 #include "rapidjson/document.h"
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
-/// @details This class is made for handling the metadata related to the objects like Blocks or Mobs.
+/// @details This class is made for handling the metadata stored in JSON files.
 class Metadata
 {
 	std::string filename;
@@ -15,10 +14,10 @@ class Metadata
 	static bool DoesFileExist(const std::string& filename);
 
 public:
-	/// @brief Metadata object constructor
+	/// @brief Metadata object constructor.
 	Metadata() = default;
 
-	/// @brief Metadata object constructor
+	/// @brief Metadata object constructor.
 	/// @param filename - Filename of the JSON file.
 	explicit Metadata(const std::string& filename);
 
@@ -37,6 +36,8 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
+	/// @brief Saves JSON data to the file specified in the filename.
+	/// @param overrideFileIfExists - On true allows overriding existing file, otherwise throws exception (std::runtime_error).
 	void Save(bool overrideFileIfExists = false) const;
 };
 
