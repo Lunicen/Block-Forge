@@ -4,7 +4,6 @@
 #include "rapidjson/ostreamwrapper.h"
 #include <sys/stat.h>
 #include <fstream>
-#include <sstream>
 
 bool Metadata::DoesFileExist(const std::string& filename)
 {
@@ -53,6 +52,8 @@ void Metadata::Load(const std::string& filename)
 
 	rapidjson::IStreamWrapper jsonInputStream(file);
 	this->document.ParseStream(jsonInputStream);
+
+	file.close();
 }
 
 void Metadata::Save(const bool overrideFileIfExists) const
@@ -72,4 +73,6 @@ void Metadata::Save(const bool overrideFileIfExists) const
 
 	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonOutputStream);
 	this->document.Accept(writer);
+
+	file.close();
 }
