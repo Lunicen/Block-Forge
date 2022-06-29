@@ -1,8 +1,6 @@
-#include "gtest/gtest.h"
+#include "../UnitTestsConfig.h"
 #include "Core/Metadata.h"
 #include "Core/Metadata.cpp"
-
-const std::string root = "./../../../";
 
 TEST(Metadata, Load_FileIsNotSpecified_ThrowException)
 {
