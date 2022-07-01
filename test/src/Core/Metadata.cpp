@@ -95,7 +95,7 @@ TEST(Metadata, Save_OverridingProtectedFile_ThrowException)
 
 TEST(Metadata, Save_OverridingOverridableFile_Success)
 {
-	const std::string filename = "./mocks/example.json";
+	const std::string filename = root + "mocks/example.json";
 
 	const Metadata metadata(filename);
 	try
