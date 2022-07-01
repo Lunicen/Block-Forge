@@ -42,7 +42,7 @@ TEST(Metadata, Load_FileDoesNotExist_ThrowException)
 
 TEST(Metadata, Load_FileExist_Success)
 {
-	const std::string filename = root + "mocks/example.json";
+	const std::string filename = root + "mocks/metadata/example.json";
 
 	Metadata metadata(filename);
 	try
@@ -51,7 +51,10 @@ TEST(Metadata, Load_FileExist_Success)
 	}
 	catch (...)
 	{
-		FAIL() << "Expected successful load!";
+		char buffer[256];
+		_getcwd(buffer, 256);
+
+		FAIL() << "Expected successful load!\nFrom directory: " << buffer << "\nUnable to locate: " << filename;
 	}
 }
 
@@ -75,7 +78,7 @@ TEST(Metadata, Save_FileIsNotSpecified_ThrowException)
 
 TEST(Metadata, Save_OverridingProtectedFile_ThrowException)
 {
-	const std::string filename = root + "mocks/example.json";
+	const std::string filename = root + "mocks/metadata/protected.json";
 	
 	const Metadata metadata(filename);
 	try
@@ -95,7 +98,7 @@ TEST(Metadata, Save_OverridingProtectedFile_ThrowException)
 
 TEST(Metadata, Save_OverridingOverridableFile_Success)
 {
-	const std::string filename = root + "mocks/example.json";
+	const std::string filename = root + "mocks/metadata/overridable.json";
 
 	const Metadata metadata(filename);
 	try
@@ -104,6 +107,9 @@ TEST(Metadata, Save_OverridingOverridableFile_Success)
 	}
 	catch (...)
 	{
-		FAIL() << "Expected successful save!";
+		char buffer[256];
+		_getcwd(buffer, 256);
+
+		FAIL() << "Expected successful save!\nFrom directory: " << buffer << "\nUnable to locate: " << filename;
 	}
 }
