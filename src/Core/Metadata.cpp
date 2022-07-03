@@ -16,6 +16,44 @@ bool Metadata::DoesFileExist(const std::string& filename)
 	return false;
 }
 
+void Metadata::CheckIfFilenameIsNotEmpty() const
+{
+	if (this->filename.empty())
+		throw std::runtime_error("File is not specified!");
+}
+
+void Metadata::ValidateIfDocumentIsLoaded() const
+{
+	if (!this->document.IsObject())
+		throw std::runtime_error("The data is not loaded!");
+}
+
+void Metadata::ValidateIfValueHasGivenType(const std::string& name, const HandledTypes& type)
+{
+	switch(type)
+	{
+	case HandledTypes::BOOL: 
+		if (!this->document[name.c_str()].IsBool())
+			throw std::runtime_error("The requested value is not a boolean!");
+		break;
+
+	case HandledTypes::INT:
+		if (!this->document[name.c_str()].IsInt())
+			throw std::runtime_error("The requested value is not an integer!");
+		break;
+	
+	case HandledTypes::DOUBLE:
+		if (!this->document[name.c_str()].IsDouble())
+			throw std::runtime_error("The requested value is not a double!");
+		break;
+
+	case HandledTypes::STRING:
+		if (!this->document[name.c_str()].IsString())
+			throw std::runtime_error("The requested value is not a string!");
+		break;
+	}
+}
+
 Metadata::Metadata(const std::string& filename)
 {
 	this->SetFilename(filename);
@@ -58,21 +96,185 @@ void Metadata::Load(const std::string& filename)
 
 void Metadata::Save(const bool overrideFileIfExists) const
 {
-	if (filename.empty())
+	if (this->filename.empty())
 	{
 		throw std::invalid_argument("File is not specified!");
 	}
 
-	if (!overrideFileIfExists && this->DoesFileExist(filename))
+	if (!overrideFileIfExists && this->DoesFileExist(this->filename))
 	{
 		throw std::runtime_error("An attempt of overriding protected file!");
 	}
 
-	std::ofstream file(filename);
+	std::ofstream file(this->filename);
 	rapidjson::OStreamWrapper jsonOutputStream(file);
 
 	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonOutputStream);
 	this->document.Accept(writer);
 
 	file.close();
+}
+
+bool Metadata::GetBool(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfValueHasGivenType(name, HandledTypes::BOOL);
+		return this->document[name.c_str()].GetBool();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return false;
+}
+
+void Metadata::SetBool(const std::string& name, const bool value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name.c_str()].SetBool(value);
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+}
+
+int Metadata::GetInt(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfValueHasGivenType(name, HandledTypes::INT);
+		return this->document[name.c_str()].GetInt();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return 0;
+}
+
+void Metadata::SetInt(const std::string& name, const int& value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name.c_str()].SetInt(value);
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+}
+
+double Metadata::GetDouble(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfValueHasGivenType(name, HandledTypes::DOUBLE);
+		return this->document[name.c_str()].GetDouble();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return 0.0;
+}
+
+void Metadata::SetDouble(const std::string& name, const double& value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name.c_str()].SetDouble(value);
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+}
+
+std::string Metadata::GetString(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfValueHasGivenType(name, HandledTypes::STRING);
+		return this->document[name.c_str()].GetString();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return "undefined";
+}
+
+void Metadata::SetString(const std::string& name, const std::string& value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name.c_str()].SetString(rapidjson::StringRef(value.c_str()));
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+}
+
+bool Metadata::IsNull(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		return this->document[name.c_str()].IsNull();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return false;
+}
+
+void Metadata::SetNull(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name.c_str()].SetNull();
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
 }
