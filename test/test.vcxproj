@@ -33,19 +33,19 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)test\</OutDir>
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)test\</OutDir>
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)test\</OutDir>
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)test\bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)test\</OutDir>
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemGroup>
