@@ -113,3 +113,32 @@ TEST(Metadata, Save_OverridingOverridableFile_Success)
 		FAIL() << "Expected successful save!\nFrom directory: " << buffer << "\nUnable to locate: " << filename;
 	}
 }
+
+TEST(Metadata, GetString_ExistingValueIsLoaded_Success)
+{
+	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+
+	Metadata metadata(filename);
+	metadata.Load();
+
+	const auto result = metadata.GetString("string");
+	EXPECT_EQ(result, "example");
+}
+
+TEST(Metadata, SetString_ExistingValueIsLoaded_Success)
+{
+	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+
+	Metadata metadata(filename);
+
+	metadata.Load();
+	metadata.SetString("string", "unit_test");
+	metadata.Save(true);
+
+	metadata.Load();
+	const auto result = metadata.GetString("string");
+	EXPECT_EQ(result, "unit_test");
+
+	metadata.SetString("string", "example");
+	metadata.Save(true);
+}
