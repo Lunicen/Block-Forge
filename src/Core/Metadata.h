@@ -8,12 +8,23 @@
 /// @details This class is made for handling the metadata stored in JSON files.
 class Metadata
 {
+	enum class HandledTypes
+	{
+		BOOL = 0, INT, DOUBLE, STRING
+	};
+
 	std::string filename;
 	rapidjson::Document document;
 
 	static bool DoesFileExist(const std::string& filename);
 
+	void CheckIfFilenameIsNotEmpty() const;
+	void ValidateIfDocumentIsLoaded() const;
+	void ValidateIfValueHasGivenType(const std::string& name, const HandledTypes& type);
+
 public:
+	typedef rapidjson::SizeType ArrayType;
+
 	/// @brief Metadata object constructor.
 	Metadata() = default;
 
@@ -39,6 +50,26 @@ public:
 	/// @brief Saves JSON data to the file specified in the filename.
 	/// @param overrideFileIfExists - On true allows overriding existing file, otherwise throws exception (std::runtime_error).
 	void Save(bool overrideFileIfExists = false) const;
+
+	bool GetBool(const std::string& name);
+
+	void SetBool(const std::string& name, bool value);
+
+	int GetInt(const std::string& name);
+
+	void SetInt(const std::string& name, const int& value);
+
+	double GetDouble(const std::string& name);
+
+	void SetDouble(const std::string& name, const double& value);
+
+	std::string GetString(const std::string& name);
+
+	void SetString(const std::string& name, const std::string& value);
+
+	bool IsNull(const std::string& name);
+
+	void SetNull(const std::string& name);
 };
 
 /// @overload void Load()

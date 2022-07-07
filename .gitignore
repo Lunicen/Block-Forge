@@ -8,3 +8,7 @@ bin/x64/Debug
 test/bin/x64/Debug
 Block Forge.sln.DotSettings.user
 docs
+test/*.pdb
+test/*.ilk
+test/*.testdurations
+test/*.exe
