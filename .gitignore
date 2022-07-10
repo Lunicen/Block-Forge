@@ -12,3 +12,4 @@ test/*.pdb
 test/*.ilk
 test/*.testdurations
 test/*.exe
+lib/glfw
