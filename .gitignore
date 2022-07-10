@@ -12,3 +12,5 @@ test/*.pdb
 test/*.ilk
 test/*.testdurations
 test/*.exe
+lib/glfw/build_Win32
+lib/glfw/build_x64
