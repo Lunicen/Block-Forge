@@ -9,5 +9,6 @@ int main()
 	Application application(appConfig);
 	application.Run();
 
+
 	return 0;
 }
