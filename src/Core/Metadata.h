@@ -8,20 +8,16 @@
 /// @details This class is made for handling the metadata stored in JSON files.
 class Metadata
 {
-	enum class HandledTypes
-	{
-		boolType = 0, intType, doubleType, stringType
-	};
-
 	std::string filename;
 	nlohmann::json document = nullptr;
 
+	static bool IsFileEmpty(std::ifstream& file);
 	static bool DoesFileExist(const std::string& filename);
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
 	void ValidateIfKeyExists(const std::string& name) const;
-	static void ValidateIfTypeIsMatched(const nlohmann::json& value, const HandledTypes& requestedType);
+	static void ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType);
 
 public:
 	/// @brief Metadata object constructor.
@@ -49,6 +45,10 @@ public:
 	/// @brief Saves JSON data to the file specified in the filename.
 	/// @param overrideFileIfExists - On true allows overriding existing file, otherwise throws exception (std::runtime_error).
 	void Save(bool overrideFileIfExists = false) const;
+
+	nlohmann::json GetObject(const std::string& name);
+
+	void SetObject(const std::string& name, const nlohmann::json& value);
 
 	bool GetBool(const std::string& name);
 
