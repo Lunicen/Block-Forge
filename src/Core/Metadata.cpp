@@ -79,9 +79,15 @@ void Metadata::Load(const std::string& filename)
 		throw std::runtime_error("File doesn't exist!");
 	}
 
-	rapidjson::IStreamWrapper jsonInputStream(file);
-	this->document.ParseStream(jsonInputStream);
-
+	if (IsFileEmpty(file))
+	{
+		this->document = nlohmann::json::parse("{}");
+	}
+	else
+	{
+		this->document = nlohmann::json::parse(file);
+	}
+	
 	file.close();
 }
 
@@ -98,12 +104,43 @@ void Metadata::Save(const bool overrideFileIfExists) const
 	}
 
 	std::ofstream file(this->filename);
-	rapidjson::OStreamWrapper jsonOutputStream(file);
-
-	rapidjson::Writer<rapidjson::OStreamWrapper> writer(jsonOutputStream);
-	this->document.Accept(writer);
-
+	file << this->document;
 	file.close();
+}
+
+nlohmann::json Metadata::GetObject(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(this->document[name], "object");
+
+		return this->document[name];
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
+
+	return false;
+}
+
+void Metadata::SetObject(const std::string& name, const nlohmann::json& value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		this->document[name] = value;
+	}
+	catch(.../*const std::exception& err*/)
+	{
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
+	}
 }
 
 bool Metadata::GetBool(const std::string& name)
@@ -111,8 +148,10 @@ bool Metadata::GetBool(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		ValidateIfValueHasGivenType(name, HandledTypes::BOOL);
-		return this->document[name.c_str()].GetBool();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(this->document[name], "boolean");
+
+		return this->document.value(name, false);
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -129,7 +168,7 @@ void Metadata::SetBool(const std::string& name, const bool value)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		this->document[name.c_str()].SetBool(value);
+		this->document[name] = value;
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -144,8 +183,10 @@ int Metadata::GetInt(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		ValidateIfValueHasGivenType(name, HandledTypes::INT);
-		return this->document[name.c_str()].GetInt();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(this->document[name], "number");
+		
+		return this->document.value(name, 0);
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -162,7 +203,7 @@ void Metadata::SetInt(const std::string& name, const int& value)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		this->document[name.c_str()].SetInt(value);
+		this->document[name] = value;
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -177,8 +218,10 @@ double Metadata::GetDouble(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		ValidateIfValueHasGivenType(name, HandledTypes::DOUBLE);
-		return this->document[name.c_str()].GetDouble();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(this->document[name], "number");
+		
+		return this->document.value(name, 0.0);
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -195,7 +238,7 @@ void Metadata::SetDouble(const std::string& name, const double& value)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		this->document[name.c_str()].SetDouble(value);
+		this->document[name] = value;
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -210,8 +253,10 @@ std::string Metadata::GetString(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		ValidateIfValueHasGivenType(name, HandledTypes::STRING);
-		return this->document[name.c_str()].GetString();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(this->document[name], "number");
+		
+		return this->document.value(name, "undefined");
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -228,7 +273,7 @@ void Metadata::SetString(const std::string& name, const std::string& value)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		this->document[name.c_str()].SetString(rapidjson::StringRef(value.c_str()));
+		this->document[name] = value;
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -243,7 +288,9 @@ bool Metadata::IsNull(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		return this->document[name.c_str()].IsNull();
+		ValidateIfKeyExists(name);
+
+		return this->document[name].is_null();
 	}
 	catch(.../*const std::exception& err*/)
 	{
@@ -260,7 +307,7 @@ void Metadata::SetNull(const std::string& name)
 	try
 	{
 		ValidateIfDocumentIsLoaded();
-		this->document[name.c_str()].SetNull();
+		this->document[name] = "null";
 	}
 	catch(.../*const std::exception& err*/)
 	{
