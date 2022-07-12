@@ -125,6 +125,24 @@ TEST(Metadata, GetString_ExistingValueIsLoaded_Success)
 	EXPECT_EQ(result, "example");
 }
 
+TEST(Metadata, SetBool_TheValueIsSetProperly_Success)
+{
+	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+
+	Metadata metadata(filename);
+
+	metadata.Load();
+	metadata.SetBool("bool", false);
+	metadata.Save(true);
+
+	metadata.Load();
+	const auto result = metadata.GetBool("bool");
+	EXPECT_EQ(result, true);
+
+	metadata.SetBool("bool", false);
+	metadata.Save(true);
+}
+
 TEST(Metadata, SetString_ExistingValueIsLoaded_Success)
 {
 	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
