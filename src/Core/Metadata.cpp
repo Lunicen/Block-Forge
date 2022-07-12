@@ -1,9 +1,12 @@
 #include "Metadata.h"
-#include "rapidjson/istreamwrapper.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/ostreamwrapper.h"
 #include <sys/stat.h>
 #include <fstream>
+#include <nlohmann/json.hpp>
+
+bool Metadata::IsFileEmpty(std::ifstream& file)
+{
+	return file.peek() == std::ifstream::traits_type::eof();
+}
 
 bool Metadata::DoesFileExist(const std::string& filename)
 {
@@ -24,34 +27,22 @@ void Metadata::CheckIfFilenameIsNotEmpty() const
 
 void Metadata::ValidateIfDocumentIsLoaded() const
 {
-	if (!this->document.IsObject())
+	if (this->document == nullptr)
 		throw std::runtime_error("The data is not loaded!");
 }
 
-void Metadata::ValidateIfValueHasGivenType(const std::string& name, const HandledTypes& type)
+void Metadata::ValidateIfKeyExists(const std::string& name) const
 {
-	switch(type)
-	{
-	case HandledTypes::BOOL: 
-		if (!this->document[name.c_str()].IsBool())
-			throw std::runtime_error("The requested value is not a boolean!");
-		break;
+	if (!this->document.contains(name))
+		throw std::runtime_error("The key " + name + "doesn't exist!");
+}
 
-	case HandledTypes::INT:
-		if (!this->document[name.c_str()].IsInt())
-			throw std::runtime_error("The requested value is not an integer!");
-		break;
-	
-	case HandledTypes::DOUBLE:
-		if (!this->document[name.c_str()].IsDouble())
-			throw std::runtime_error("The requested value is not a double!");
-		break;
+void Metadata::ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType)
+{
+	const std::string valueType = value.type_name();
 
-	case HandledTypes::STRING:
-		if (!this->document[name.c_str()].IsString())
-			throw std::runtime_error("The requested value is not a string!");
-		break;
-	}
+	if (valueType != requestedType)
+		throw std::runtime_error("The value type is " + valueType + "! Requested " + requestedType);
 }
 
 Metadata::Metadata(const std::string& filename)
