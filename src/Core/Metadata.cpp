@@ -45,6 +45,33 @@ void Metadata::ValidateIfTypeIsMatched(const nlohmann::json& value, const std::s
 		throw std::runtime_error("The value type is " + valueType + "! Requested " + requestedType);
 }
 
+void Metadata::TryToLoadFile(const std::string& filename)
+{
+	std::ifstream file(filename);
+	if (!file.good())
+	{
+		throw std::runtime_error("File doesn't exist!");
+	}
+
+	if (IsFileEmpty(file))
+	{
+		this->document = nlohmann::json::parse("{}");
+	}
+	else
+	{
+		this->document = nlohmann::json::parse(file);
+	}
+	
+	file.close();
+}
+
+void Metadata::TryToSaveFile() const
+{
+	std::ofstream file(this->filename);
+	file << this->document;
+	file.close();
+}
+
 Metadata::Metadata(const std::string& filename)
 {
 	this->SetFilename(filename);
@@ -67,45 +94,34 @@ void Metadata::Load()
 
 void Metadata::Load(const std::string& filename)
 {
-	if (filename.empty())
-	{
-		throw std::invalid_argument("File is not specified!");
-	}
+	SetFilename(filename);
 
-	std::ifstream file(filename);
-
-	if (!file.good())
+	try
 	{
-		throw std::runtime_error("File doesn't exist!");
+		CheckIfFilenameIsNotEmpty();
+		TryToLoadFile(filename);
 	}
-
-	if (IsFileEmpty(file))
+	catch(.../*const std::exception& err*/)
 	{
-		this->document = nlohmann::json::parse("{}");
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
 	}
-	else
-	{
-		this->document = nlohmann::json::parse(file);
-	}
-	
-	file.close();
 }
 
-void Metadata::Save(const bool overrideFileIfExists) const
+void Metadata::Save() const
 {
-	if (this->filename.empty())
+	try
 	{
-		throw std::invalid_argument("File is not specified!");
+		CheckIfFilenameIsNotEmpty();
+		TryToSaveFile();
 	}
-
-	if (!overrideFileIfExists && this->DoesFileExist(this->filename))
+	catch(.../*const std::exception& err*/)
 	{
-		throw std::runtime_error("An attempt of overriding protected file!");
+		///TODO
+		///Remove the dots and uncomment the code
+		///Add logging exceptions using Logger
 	}
-
-	std::ofstream file(this->filename);
-	file << this->document;
-	file.close();
 }
 
 nlohmann::json Metadata::GetObject(const std::string& name)

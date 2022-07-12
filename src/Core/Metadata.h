@@ -19,6 +19,9 @@ class Metadata
 	void ValidateIfKeyExists(const std::string& name) const;
 	static void ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType);
 
+	void TryToLoadFile(const std::string& filename);
+	void TryToSaveFile() const;
+
 public:
 	/// @brief Metadata object constructor.
 	Metadata() = default;
@@ -43,8 +46,7 @@ public:
 	void Load(const std::string& filename);
 
 	/// @brief Saves JSON data to the file specified in the filename.
-	/// @param overrideFileIfExists - On true allows overriding existing file, otherwise throws exception (std::runtime_error).
-	void Save(bool overrideFileIfExists = false) const;
+	void Save() const;
 
 	nlohmann::json GetObject(const std::string& name);
 
