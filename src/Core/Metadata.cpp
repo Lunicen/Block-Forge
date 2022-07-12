@@ -109,6 +109,11 @@ void Metadata::Load(const std::string& filename)
 	}
 }
 
+bool Metadata::IsLoaded() const
+{
+	return this->document != nullptr;
+}
+
 void Metadata::Save() const
 {
 	try
@@ -270,7 +275,7 @@ std::string Metadata::GetString(const std::string& name)
 	{
 		ValidateIfDocumentIsLoaded();
 		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "number");
+		ValidateIfTypeIsMatched(this->document[name], "string");
 		
 		return this->document.value(name, "undefined");
 	}
@@ -299,14 +304,18 @@ void Metadata::SetString(const std::string& name, const std::string& value)
 	}
 }
 
-bool Metadata::IsNull(const std::string& name)
+bool Metadata::IsNull(const std::string& name) const
 {
 	try
 	{
 		ValidateIfDocumentIsLoaded();
 		ValidateIfKeyExists(name);
 
-		return this->document[name].is_null();
+		if (this->document.value(name, "undefined") == "null" || this->document[name].is_null())
+		{
+			return true;
+		}
+		return false;
 	}
 	catch(.../*const std::exception& err*/)
 	{

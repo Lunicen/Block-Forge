@@ -45,6 +45,8 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
+	bool IsLoaded() const;
+
 	/// @brief Saves JSON data to the file specified in the filename.
 	void Save() const;
 
@@ -68,7 +70,7 @@ public:
 
 	void SetString(const std::string& name, const std::string& value);
 
-	bool IsNull(const std::string& name);
+	bool IsNull(const std::string& name) const;
 
 	void SetNull(const std::string& name);
 };
