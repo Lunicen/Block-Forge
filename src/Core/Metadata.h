@@ -1,30 +1,28 @@
 #pragma once
 
 #include <string>
-#include "rapidjson/document.h"
+#include "nlohmann/json.hpp"
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
 /// @details This class is made for handling the metadata stored in JSON files.
 class Metadata
 {
-	enum class HandledTypes
-	{
-		BOOL = 0, INT, DOUBLE, STRING
-	};
-
 	std::string filename;
-	rapidjson::Document document;
+	nlohmann::json document = nullptr;
 
+	static bool IsFileEmpty(std::ifstream& file);
 	static bool DoesFileExist(const std::string& filename);
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
-	void ValidateIfValueHasGivenType(const std::string& name, const HandledTypes& type);
+	void ValidateIfKeyExists(const std::string& name) const;
+	static void ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType);
+
+	void TryToLoadFile(const std::string& filename);
+	void TryToSaveFile() const;
 
 public:
-	typedef rapidjson::SizeType ArrayType;
-
 	/// @brief Metadata object constructor.
 	Metadata() = default;
 
@@ -47,9 +45,14 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
+	bool IsLoaded() const;
+
 	/// @brief Saves JSON data to the file specified in the filename.
-	/// @param overrideFileIfExists - On true allows overriding existing file, otherwise throws exception (std::runtime_error).
-	void Save(bool overrideFileIfExists = false) const;
+	void Save() const;
+
+	nlohmann::json GetObject(const std::string& name);
+
+	void SetObject(const std::string& name, const nlohmann::json& value);
 
 	bool GetBool(const std::string& name);
 
@@ -67,7 +70,7 @@ public:
 
 	void SetString(const std::string& name, const std::string& value);
 
-	bool IsNull(const std::string& name);
+	bool IsNull(const std::string& name) const;
 
 	void SetNull(const std::string& name);
 };
