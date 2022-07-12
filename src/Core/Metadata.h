@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "rapidjson/document.h"
+#include "nlohmann/json.hpp"
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
@@ -10,21 +10,20 @@ class Metadata
 {
 	enum class HandledTypes
 	{
-		BOOL = 0, INT, DOUBLE, STRING
+		boolType = 0, intType, doubleType, stringType
 	};
 
 	std::string filename;
-	rapidjson::Document document;
+	nlohmann::json document = nullptr;
 
 	static bool DoesFileExist(const std::string& filename);
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
-	void ValidateIfValueHasGivenType(const std::string& name, const HandledTypes& type);
+	void ValidateIfKeyExists(const std::string& name) const;
+	static void ValidateIfTypeIsMatched(const nlohmann::json& value, const HandledTypes& requestedType);
 
 public:
-	typedef rapidjson::SizeType ArrayType;
-
 	/// @brief Metadata object constructor.
 	Metadata() = default;
 
