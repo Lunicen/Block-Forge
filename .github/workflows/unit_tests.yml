@@ -16,7 +16,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
       
     - name: Build tests
-      run: msbuild test\test.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+      run: msbuild .\test\test.vcxproj -t:rebuild -verbosity:diag -property:Configuration=Release
 
     - name: Running tests
       run: .\test\test.exe
