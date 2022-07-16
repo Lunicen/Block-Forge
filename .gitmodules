@@ -13,6 +13,3 @@
 [submodule "lib/imgui"]
 	path = lib/imgui
 	url = https://github.com/ocornut/imgui
-[submodule "lib/glew"]
-	path = lib/glew
-	url = https://github.com/nigels-com/glew
