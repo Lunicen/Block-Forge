@@ -5,10 +5,10 @@ set output_dir=.\lib\glad\build
 
 :: Remove previous setup if exists
 echo Removing previous build if exists
-if exist %output_dir% del %output_dir%_Win32\*.* /s /q > nul 2>&1
-if exist %output_dir% rmdir %output_dir%_Win32 /s /q > nul 2>&1
-if exist %output_dir% del %output_dir%_x64\*.* /s /q > nul 2>&1
-if exist %output_dir% rmdir %output_dir%_x64 /s /q > nul 2>&1
+if exist %output_dir% del %output_dir%\Win32\*.* /s /q > nul 2>&1
+if exist %output_dir% rmdir %output_dir%\Win32 /s /q > nul 2>&1
+if exist %output_dir% del %output_dir%\x64\*.* /s /q > nul 2>&1
+if exist %output_dir% rmdir %output_dir%\x64 /s /q > nul 2>&1
 
 :: Check if the library is downloaded
 for /F %%i in ('dir /b /a "lib\glad"') do (
