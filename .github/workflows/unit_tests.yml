@@ -1,6 +1,9 @@
 name: Automated Unit Tests
 
 on:
+  push:
+    branches: [ develop ]
+
   pull_request:
     branches: [ develop ]
   
@@ -9,5 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Hello World
-      run: echo "Hello there! This is a test!"
+    - name: Install msbuild
+      uses: microsoft/setup-msbuild@v1.1
+      
+    - name: Build tests
+      run: msbuild test\test.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
+
+    - name: Running tests
+      run: .\test\test.exe
