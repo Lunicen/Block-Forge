@@ -30,7 +30,7 @@ jobs:
       shell: cmd
 
     - name: Build project
-      run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
+      run: msbuild "Block Forge.sln" -t:rebuild -property:Configuration=Release
 
     - name: Share the executable to the next job
       uses: actions/upload-artifact@v3.1.0
@@ -48,6 +48,7 @@ jobs:
       uses: actions/download-artifact@v3.0.0
       with:
         name: unit-tests
+        path: test
 
     - name: Running tests
       working-directory: test
