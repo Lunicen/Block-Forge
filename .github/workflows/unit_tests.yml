@@ -32,6 +32,10 @@ jobs:
     - name: Build project
       run: msbuild "Block Forge.vcxproj" -t:rebuild -verbosity:diag -property:Configuration=Release
 
+    - name: Debug
+      run: tree
+      shell: cmd
+
     - name: Share the executable to the next job
       uses: actions/upload-artifact@v3.1.0
       with:
