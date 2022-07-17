@@ -45,17 +45,17 @@ jobs:
 
     steps:
     - name: Checkout current branch
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
       with:
         ref: ${{ github.ref }}
 
-    - name: Downloading the build executable
+    - name: Download the executable
       uses: actions/download-artifact@v3.0.0
       with:
         name: unit-tests
         path: test
 
-    - name: Running tests
+    - name: Run tests
       working-directory: test
       run: test.exe
       shell: cmd
