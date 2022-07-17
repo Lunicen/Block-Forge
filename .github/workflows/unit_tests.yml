@@ -33,3 +33,4 @@ jobs:
     - name: Running tests
       working-directory: test
       run: test.exe
+      shell: cmd
