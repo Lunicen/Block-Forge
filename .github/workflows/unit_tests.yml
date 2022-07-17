@@ -14,10 +14,21 @@ jobs:
     steps:
     - name: Install msbuild
       uses: microsoft/setup-msbuild@v1.1
-      
+    
+    - name: Install cmake
+      uses: jwlawson/actions-setup-cmake@v1.12
+
+    - name: Install submodules
+      uses: actions/checkout@v3
+      with:
+       submodules: recursive
+
+    - name: Setup libraries
+      run: setup.bat
+
     - name: Build tests
       run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
 
     - name: Running tests
-      working-directory: "./test"
+      working-directory: test
       run: test.exe
