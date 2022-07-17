@@ -30,17 +30,13 @@ jobs:
       shell: cmd
 
     - name: Build project
-      run: msbuild "Block Forge.vcxproj" -t:rebuild -verbosity:diag -property:Configuration=Release
-
-    - name: Debug
-      run: dir test
-      shell: cmd
+      run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
 
     - name: Share the executable to the next job
       uses: actions/upload-artifact@v3.1.0
       with:
         name: unit-tests
-        path: ./test/test.exe
+        path: test/test.exe
 
   run:
     name: Run unit tests
