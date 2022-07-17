@@ -32,12 +32,23 @@ jobs:
     - name: Build project
       run: msbuild "Block Forge.vcxproj" -t:rebuild -verbosity:diag -property:Configuration=Release
 
+    - name: Share the executable to the next job
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: unit-tests
+        path: test/test.exe
+
   run:
-    name: Run Unit Tests
+    name: Run unit tests
     runs-on: windows-latest
     needs: build
 
     steps:
+    - name: Downloading the build executable
+      uses: actions/download-artifact@v3.0.0
+      with:
+        name: unit-tests
+
     - name: Running tests
       working-directory: test
       run: test.exe
