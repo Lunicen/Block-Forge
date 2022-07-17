@@ -8,8 +8,8 @@ on:
     branches: [ develop ]
   
 jobs:
-  install:
-    name: Installing tools
+  build:
+    name: Build project
     runs-on: windows-latest
 
     steps:
@@ -19,28 +19,23 @@ jobs:
     - name: Install cmake
       uses: jwlawson/actions-setup-cmake@v1.12
 
-  build:
-    name: Building project
-    runs-on: windows-latest
-    needs: install
-
-    steps:
     - name: Install submodules
       uses: actions/checkout@v3
       with:
        submodules: recursive
 
     - name: Setup libraries
-      run: setup.bat
+      working-directory: .github
+      run: setup_for_workflow.bat
       shell: cmd
 
-    - name: Build tests
-      run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
+    - name: Build project
+      run: msbuild "Block Forge.vcxproj" -t:rebuild -verbosity:diag -property:Configuration=Release
 
   run:
-    name: Running Unit Tests
+    name: Run Unit Tests
     runs-on: windows-latest
-    needs: [install, build]
+    needs: build
 
     steps:
     - name: Running tests

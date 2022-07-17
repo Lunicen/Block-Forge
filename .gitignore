@@ -1,4 +1,5 @@
 ﻿.vs
+*.sln
 bin/intermediates
 test/bin/intermediates
 test/bin/Win32/Debug
