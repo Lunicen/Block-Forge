@@ -29,6 +29,8 @@ jobs:
     - name: Only checkout current branch
       if: steps.cache-dep.outputs.cache-hit == 'true'
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
 
     - name: Install submodules
       if: steps.cache-dep.outputs.cache-hit != 'true'
