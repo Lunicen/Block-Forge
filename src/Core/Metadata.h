@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
@@ -50,28 +50,56 @@ public:
 	/// @brief Saves JSON data to the file specified in the filename.
 	void Save() const;
 
+	/// @brief 
+	/// @param name
 	nlohmann::json GetObject(const std::string& name);
 
+	/// @brief 
+	/// @param name
+	/// @param value
 	void SetObject(const std::string& name, const nlohmann::json& value);
 
+	/// @brief 
+	/// @param name
 	bool GetBool(const std::string& name);
 
+	/// @brief 
+	/// @param name
+	/// @param value
 	void SetBool(const std::string& name, bool value);
 
+	/// @brief 
+	/// @param name
 	int GetInt(const std::string& name);
 
+	/// @brief 
+	/// @param name
+	/// @param value
 	void SetInt(const std::string& name, const int& value);
 
+	/// @brief 
+	/// @param name
 	double GetDouble(const std::string& name);
 
+	/// @brief 
+	/// @param name
 	void SetDouble(const std::string& name, const double& value);
 
+	/// @brief 
+	/// @param name
 	std::string GetString(const std::string& name);
 
+	/// @brief 
+	/// @param name
+	/// @param value
 	void SetString(const std::string& name, const std::string& value);
 
+	/// @brief 
+	/// @param name
 	bool IsNull(const std::string& name) const;
 
+	/// @brief 
+	/// @param name
 	void SetNull(const std::string& name);
 };
 
