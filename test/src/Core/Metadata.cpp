@@ -1,6 +1,9 @@
 #include "../UnitTestsConfig.h"
+
 #include "Core/Metadata.h"
 #include "Core/Metadata.cpp"
+#include "Core/Log.h"
+#include "Core/Log.cpp"
 
 TEST(Metadata, Load_FileIsNotSpecified_FileIsNotLoaded)
 {
