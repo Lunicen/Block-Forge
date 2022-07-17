@@ -24,7 +24,7 @@ jobs:
        submodules: recursive
 
     - name: Setup libraries
-      run: setup.bat
+      run: Start-Process setup.bat
 
     - name: Build tests
       run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
