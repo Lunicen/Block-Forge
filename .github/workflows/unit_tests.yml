@@ -34,10 +34,9 @@ jobs:
 
     - name: Share the executable to the next job
       uses: actions/upload-artifact@v3.1.0
-      working-directory: test
       with:
         name: unit-tests
-        path: test.exe
+        path: ./test/test.exe
 
   run:
     name: Run unit tests
