@@ -8,7 +8,8 @@ on:
     branches: [ develop ]
   
 jobs:
-  build:
+  install:
+    name: Installing tools
     runs-on: windows-latest
 
     steps:
@@ -18,6 +19,12 @@ jobs:
     - name: Install cmake
       uses: jwlawson/actions-setup-cmake@v1.12
 
+  build:
+    name: Building project
+    runs-on: windows-latest
+    needs: install
+
+    steps:
     - name: Install submodules
       uses: actions/checkout@v3
       with:
@@ -30,6 +37,12 @@ jobs:
     - name: Build tests
       run: msbuild "Block Forge.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
 
+  run:
+    name: Running Unit Tests
+    runs-on: windows-latest
+    needs: [install, build]
+
+    steps:
     - name: Running tests
       working-directory: test
       run: test.exe
