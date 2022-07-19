@@ -3,7 +3,8 @@
 
 int main()
 {
-	Log::Init();
+	Log& instance = Log::Get();
+
 	auto appConfig = std::make_unique<Metadata>("src/Data/Config.json");
 
 	Application application(appConfig);
