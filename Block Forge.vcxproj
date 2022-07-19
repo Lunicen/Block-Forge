@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\MainMenu.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\MainMenu.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Core\Application.h" />
     <ClInclude Include="src\Core\Metadata.h" />
