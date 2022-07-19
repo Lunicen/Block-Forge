@@ -10,6 +10,9 @@ class Metadata
 {
 	std::string filename;
 	nlohmann::json document = nullptr;
+	bool isFileSaved = false;
+
+
 
 	static bool IsFileEmpty(std::ifstream& file);
 	static bool DoesFileExist(const std::string& filename);
@@ -48,16 +51,18 @@ public:
 	bool IsLoaded() const;
 
 	/// @brief Saves JSON data to the file specified in the filename.
-	void Save() const;
+	void Save();
+
+	bool IsSaved() const;
 
 	/// @brief 
 	/// @param name
-	nlohmann::json GetObject(const std::string& name);
+	nlohmann::json GetJsonObject(const std::string& name);
 
 	/// @brief 
 	/// @param name
 	/// @param value
-	void SetObject(const std::string& name, const nlohmann::json& value);
+	void SetJsonObject(const std::string& name, const nlohmann::json& value);
 
 	/// @brief 
 	/// @param name

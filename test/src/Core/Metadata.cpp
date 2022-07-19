@@ -33,16 +33,12 @@ TEST(Metadata, Load_FileExist_Success)
 
 TEST(Metadata, Save_FileIsNotSpecified_Error)
 {
-	/// TODO
-	/// Add missing unit test
-	FAIL() << "Unit test not implemented";
-}
+	const std::string filename = "";
 
-TEST(Metadata, Save_OverridingProtectedFile_ThrowException)
-{
-	/// TODO
-	/// Add missing unit test
-	FAIL() << "Unit test not implemented";
+	Metadata metadata(filename);
+	metadata.Save();
+
+	EXPECT_EQ(metadata.IsSaved(), false);
 }
 
 TEST(Metadata, IsNull_ExistingValueIsLoaded_Success)
@@ -197,7 +193,26 @@ TEST(Metadata, SetString_ExistingValueIsLoaded_Success)
 
 TEST(Metadata, SetObject_ExistingValueIsLoaded_Success)
 {
-	/// TODO
-	/// Add missing unit test
-	FAIL() << "Unit test not implemented";
+	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+	const std::string objectName = "set_object";
+
+	Metadata metadata(filename);
+
+	nlohmann::json myTestObject;
+	myTestObject["testBoolValue"] = true;
+	myTestObject["testIntValue"] = 99;
+	myTestObject["testNegativeIntValue"] = -1;
+	myTestObject["testDoubleValue"] = 10.0001;
+
+
+	metadata.Load();
+	metadata.SetJsonObject(objectName, myTestObject);
+	metadata.Save();
+
+	metadata.Load();
+	const auto result = metadata.GetJsonObject(objectName);
+	EXPECT_EQ(result, myTestObject);
+
+	metadata.SetNull(objectName);
+	metadata.Save();
 }

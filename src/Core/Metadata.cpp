@@ -112,20 +112,28 @@ bool Metadata::IsLoaded() const
 	return this->document != nullptr;
 }
 
-void Metadata::Save() const
+void Metadata::Save()
 {
 	try
 	{
 		CheckIfFilenameIsNotEmpty();
 		TryToSaveFile();
+		isFileSaved = true;
 	}
 	catch (const std::exception& err)
 	{
 		Log::Error(err.what());
+		isFileSaved = false;
 	}
 }
 
-nlohmann::json Metadata::GetObject(const std::string& name)
+bool Metadata::IsSaved() const
+{
+	return this->isFileSaved;
+}
+
+
+nlohmann::json Metadata::GetJsonObject(const std::string& name)
 {
 	try
 	{
@@ -143,7 +151,7 @@ nlohmann::json Metadata::GetObject(const std::string& name)
 	return false;
 }
 
-void Metadata::SetObject(const std::string& name, const nlohmann::json& value)
+void Metadata::SetJsonObject(const std::string& name, const nlohmann::json& value)
 {
 	try
 	{
