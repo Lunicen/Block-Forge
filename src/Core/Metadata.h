@@ -45,33 +45,62 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
+	/// @brief Checks if JSON data is loaded to the memory space
 	bool IsLoaded() const;
 
 	/// @brief Saves JSON data to the file specified in the filename.
 	void Save() const;
 
+	/// @brief Gets JSON Object  
+	/// @param name - JSON key value
 	nlohmann::json GetObject(const std::string& name);
 
+	/// @brief Sets JSON object
+	/// @param name - JSON key value
+	/// @param value - JSON new value
 	void SetObject(const std::string& name, const nlohmann::json& value);
 
+	/// @brief Gets Boolean 
+	/// @param name - JSON key value
 	bool GetBool(const std::string& name);
 
+	/// @brief Sets Boolean 
+	/// @param name - JSON key value
+	/// @param value - JSON new value
 	void SetBool(const std::string& name, bool value);
 
+	/// @brief Gets Integer Object
+	/// @param name - JSON key value
 	int GetInt(const std::string& name);
 
+	/// @brief Sets Integer 
+	/// @param name - JSON key value
+	/// @param value
 	void SetInt(const std::string& name, const int& value);
 
+	/// @brief Gets Double 
+	/// @param name - JSON key value
 	double GetDouble(const std::string& name);
 
+	/// @brief Sets Double 
+	/// @param name - JSON key value
 	void SetDouble(const std::string& name, const double& value);
 
+	/// @brief Gets String 
+	/// @param name - JSON key value
 	std::string GetString(const std::string& name);
 
+	/// @brief Sets String
+	/// @param name - JSON key value
+	/// @param value - JSON new value
 	void SetString(const std::string& name, const std::string& value);
 
+	/// @brief Checks if not Null
+	/// @param name - JSON key value
 	bool IsNull(const std::string& name) const;
 
+	/// @brief Sets as a Null
+	/// @param name - JSON key value
 	void SetNull(const std::string& name);
 };
 
