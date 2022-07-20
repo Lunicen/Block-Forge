@@ -1,5 +1,4 @@
 ﻿.vs
-*.sln
 bin/intermediates
 test/bin/intermediates
 test/bin/Win32/Debug
@@ -8,3 +7,9 @@ bin/x64/Debug
 test/bin/x64/Debug
 Block Forge.sln.DotSettings.user
 docs
+test/*.pdb
+test/*.ilk
+test/*.testdurations
+test/*.exe
+lib/glfw/build_Win32
+lib/glfw/build_x64

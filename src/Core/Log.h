@@ -9,9 +9,24 @@
 ///	check out [this](https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels) link.
 class Log
 {
+private:
+	Log::Log() {
+		spdlog::set_pattern("[%T] [%^%l%$] %v");
+		spdlog::set_level(spdlog::level::trace);
+		spdlog::info("Logging initialized!");
+	}
+
 public:
-	/// @brief Initializes class and it's settings
-	static void Init();
+
+	Log(const Log&) = delete;
+
+	/// @brief Returns Logger instance
+	static Log& Get()
+	{
+		static Log instance;
+		return instance;
+	}
+
 
 	/// @brief Prints tracing message.
 	///	@details The trace is used to print EVERYTHING that is happening.

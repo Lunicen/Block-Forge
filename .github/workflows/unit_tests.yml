@@ -1,0 +1,71 @@
+name: Automated Unit Tests
+
+on:
+  push:
+    branches: [ develop ]
+
+  pull_request:
+    branches: [ develop ]
+  
+jobs:
+  build:
+    name: Build project
+    runs-on: windows-latest
+
+    steps:
+    - name: Install msbuild
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Install cmake
+      uses: jwlawson/actions-setup-cmake@v1.12
+
+    - name: Checkout current branch
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Cache dependencies
+      id: cache-dep
+      uses: actions/cache@v3
+      with:
+        path: |
+          lib/glfw
+          lib/glad
+        key: opengl-dependencies
+
+    - name: Setup libraries
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      working-directory: .github
+      run: setup_for_workflow.bat
+      shell: cmd
+
+    - name: Build project
+      run: msbuild "Block Forge.sln" -t:rebuild -m:4 -property:Configuration=Release
+
+    - name: Share the executable to the next job
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: unit-tests
+        path: test/test.exe
+
+  run:
+    name: Run unit tests
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout current branch
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
+
+    - name: Download the executable
+      uses: actions/download-artifact@v3.0.0
+      with:
+        name: unit-tests
+        path: test
+
+    - name: Run tests
+      working-directory: test
+      run: test.exe
+      shell: cmd
