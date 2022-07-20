@@ -101,7 +101,7 @@ public:
 	/// @param value - JSON new value
 	void SetString(const std::string& name, const std::string& value);
 
-	/// @brief Checks if not Null
+	/// @brief Checks if the value is a Null
 	/// @param name - JSON key value
 	bool IsNull(const std::string& name) const;
 
