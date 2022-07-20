@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "nlohmann/json.hpp"
+#include <nlohmann/json.hpp>
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
@@ -10,6 +10,9 @@ class Metadata
 {
 	std::string filename;
 	nlohmann::json document = nullptr;
+	bool isFileSaved = false;
+
+
 
 	static bool IsFileEmpty(std::ifstream& file);
 	static bool DoesFileExist(const std::string& filename);
@@ -49,16 +52,19 @@ public:
 	bool IsLoaded() const;
 
 	/// @brief Saves JSON data to the file specified in the filename.
-	void Save() const;
+	void Save();
+
+	/// @brief Checks if file is succesfully saved
+	bool IsSaved() const;
 
 	/// @brief Gets JSON Object  
 	/// @param name - JSON key value
-	nlohmann::json GetObject(const std::string& name);
+	nlohmann::json GetJsonObject(const std::string& name);
 
 	/// @brief Sets JSON object
 	/// @param name - JSON key value
 	/// @param value - JSON new value
-	void SetObject(const std::string& name, const nlohmann::json& value);
+	void SetJsonObject(const std::string& name, const nlohmann::json& value);
 
 	/// @brief Gets Boolean 
 	/// @param name - JSON key value
@@ -69,7 +75,7 @@ public:
 	/// @param value - JSON new value
 	void SetBool(const std::string& name, bool value);
 
-	/// @brief Gets Integer Object
+	/// @brief Gets Integer
 	/// @param name - JSON key value
 	int GetInt(const std::string& name);
 

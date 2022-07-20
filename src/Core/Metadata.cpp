@@ -1,7 +1,7 @@
+#include "Log.h"
 #include "Metadata.h"
 #include <sys/stat.h>
 #include <fstream>
-#include <nlohmann/json.hpp>
 
 bool Metadata::IsFileEmpty(std::ifstream& file)
 {
@@ -101,11 +101,9 @@ void Metadata::Load(const std::string& filename)
 		CheckIfFilenameIsNotEmpty();
 		TryToLoadFile(filename);
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -114,22 +112,28 @@ bool Metadata::IsLoaded() const
 	return this->document != nullptr;
 }
 
-void Metadata::Save() const
+void Metadata::Save()
 {
 	try
 	{
 		CheckIfFilenameIsNotEmpty();
 		TryToSaveFile();
+		isFileSaved = true;
 	}
-	catch(.../*const std::exception& err*/)
+	catch (const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
+		isFileSaved = false;
 	}
 }
 
-nlohmann::json Metadata::GetObject(const std::string& name)
+bool Metadata::IsSaved() const
+{
+	return this->isFileSaved;
+}
+
+
+nlohmann::json Metadata::GetJsonObject(const std::string& name)
 {
 	try
 	{
@@ -139,28 +143,24 @@ nlohmann::json Metadata::GetObject(const std::string& name)
 
 		return this->document[name];
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return false;
 }
 
-void Metadata::SetObject(const std::string& name, const nlohmann::json& value)
+void Metadata::SetJsonObject(const std::string& name, const nlohmann::json& value)
 {
 	try
 	{
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = value;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -174,11 +174,9 @@ bool Metadata::GetBool(const std::string& name)
 
 		return this->document.value(name, false);
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return false;
@@ -191,11 +189,9 @@ void Metadata::SetBool(const std::string& name, const bool value)
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = value;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -209,11 +205,9 @@ int Metadata::GetInt(const std::string& name)
 		
 		return this->document.value(name, 0);
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return 0;
@@ -226,11 +220,9 @@ void Metadata::SetInt(const std::string& name, const int& value)
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = value;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -244,11 +236,9 @@ double Metadata::GetDouble(const std::string& name)
 		
 		return this->document.value(name, 0.0);
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return 0.0;
@@ -261,11 +251,9 @@ void Metadata::SetDouble(const std::string& name, const double& value)
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = value;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -279,11 +267,9 @@ std::string Metadata::GetString(const std::string& name)
 		
 		return this->document.value(name, "undefined");
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return "undefined";
@@ -296,11 +282,9 @@ void Metadata::SetString(const std::string& name, const std::string& value)
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = value;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
 
@@ -317,11 +301,9 @@ bool Metadata::IsNull(const std::string& name) const
 		}
 		return false;
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 
 	return false;
@@ -334,10 +316,8 @@ void Metadata::SetNull(const std::string& name)
 		ValidateIfDocumentIsLoaded();
 		this->document[name] = "null";
 	}
-	catch(.../*const std::exception& err*/)
+	catch(const std::exception& err)
 	{
-		///TODO
-		///Remove the dots and uncomment the code
-		///Add logging exceptions using Logger
+		Log::Error(err.what());
 	}
 }
