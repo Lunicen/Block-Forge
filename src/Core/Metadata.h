@@ -2,6 +2,7 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
+#include "Log.h"
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.

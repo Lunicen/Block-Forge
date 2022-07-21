@@ -1,4 +1,3 @@
-#include "Log.h"
 #include "Metadata.h"
 #include <sys/stat.h>
 #include <fstream>
