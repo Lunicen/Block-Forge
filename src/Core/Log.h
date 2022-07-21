@@ -59,5 +59,5 @@ public:
 	/// @param message - Information about the event.
 	void Critical(const std::string& message);
 
-	~Log() {}
+	~Log() = default;
 };
