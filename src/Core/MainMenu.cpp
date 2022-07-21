@@ -26,6 +26,28 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "}\n\0";
 ////////////////////////
 
+
+void MainMenu::DrawCenteredText(const std::string text)
+{
+	const auto windowWidth = ImGui::GetWindowSize().x;
+	const auto textWidth = ImGui::CalcTextSize(text.c_str()).x;
+
+	ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
+	ImGui::Text(text.c_str());
+}
+
+bool MainMenu::DrawWindowSizedButton(const std::string text)
+{
+
+	const auto windowWidth = ImGui::GetWindowSize().x;
+	if (ImGui::Button(text.c_str(), ImVec2(windowWidth -15, 50)))
+	{
+		return true;
+	}
+	return false;
+}
+
+
 void MainMenu::Draw()
 {
 	//initialize GLFW
@@ -100,33 +122,24 @@ void MainMenu::Draw()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	//background
-	//glClearColor(0.07f, 0.13f, 0.17f, 1.0f); //rgb, alpha
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glfwSwapBuffers(window);
 
-	//IMGUI
+	///////////////IMGUI/////////////////
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	//ImGui::StyleColorsDark(); //potestowaæ to tutaj inne style
-	ImGui::StyleColorsClassic();
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsClassic();
 	//ImGui::StyleColorsLight();
 
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
+	//////////////IMGUI///////////////////
 
 
-
-
-
-	bool drawTriangle = true;
 	bool quit = false; //sprawdzic czy da sie lepiej
-	float size = 1.0f;
-	float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
 	glUseProgram(shaderProgram);
-	glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
-	glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0], color[1], color[2], color[3]);
+
+
 
 	///MAIN WHILE LOOP///
 	while (!glfwWindowShouldClose(window) && !quit)
@@ -139,50 +152,61 @@ void MainMenu::Draw()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+		//ImGui::SetNextWindowSize(ImVec2(600, 500));
 		//end of IMGUI//
 
 
-		glUseProgram(shaderProgram);
-		glBindVertexArray(VAO);
-
-		if (drawTriangle == true)
-		{
-			glDrawArrays(GL_TRIANGLES, 0, 3);
-		}
+		//glUseProgram(shaderProgram);
+		//glBindVertexArray(VAO);
 
 
+		
 
+		//ImGui::Text("Welcome to the Block Forge!");
+		//ImGui::Checkbox("Draw Triangle", &drawTriangle);
+		//ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
+		//ImGui::ColorEdit4("Color", color);
 
-		ImGui::Begin("THIS IS THE WINDOW, IM GUI WINDOW");
-		ImGui::Text("Hello adventurer!");
-		ImGui::Checkbox("Draw Triangle", &drawTriangle);
-		ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
-		ImGui::ColorEdit4("Color", color);
-		if (ImGui::Button("PLAY"))
+		//ImGui::SetCursorPos(ImVec2(20, 20));
+
+		/*
+		if (ImGui::Button("PLAY", ImVec2(350, 50)))
 		{
 
 		}
-		if (ImGui::Button("OPTIONS"))
+		if (ImGui::Button("OPTIONS", ImVec2(350, 50)))
 		{
 
 		}
-		if (ImGui::Button("EXIT"))
+		if (ImGui::Button("EXIT", ImVec2(350, 50)))
 		{
 			quit = true;
 		}
+		*/
+
+		ImGui::Begin("Main Menu");
+		DrawCenteredText("Welcome to the Block Forge!");
+		DrawWindowSizedButton("PLAY");
+		DrawWindowSizedButton("OPTIONS");
+		quit = DrawWindowSizedButton("EXIT");
+
+		if(DrawWindowSizedButton("CREDITS"))
+		{
+			
+		}
+
 		ImGui::End();
 
 		glUseProgram(shaderProgram);
-		glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
-		glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0], color[1], color[2], color[3]);
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+
 		//swap the front buffer with the back buffer
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(window); 
 		//take care of all GLFW EVENTS
-		glfwPollEvents();//process windows event resize and so on... without this nothing will work
+		glfwPollEvents(); //process windows event resize and so on... without this nothing will work
 	}
 
 	ImGui_ImplOpenGL3_Shutdown();
