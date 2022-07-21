@@ -9,16 +9,17 @@
 ///	check out [this](https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels) link.
 class Log
 {
-private:
-	Log::Log() {
+	Log() {
 		spdlog::set_pattern("[%T] [%^%l%$] %v");
 		spdlog::set_level(spdlog::level::trace);
 		spdlog::info("Logging initialized!");
 	}
 
 public:
-
 	Log(const Log&) = delete;
+	Log(Log&&) = delete;
+	Log& operator=(Log) = delete;
+	Log& operator=(Log&&) = delete;
 
 	/// @brief Returns Logger instance
 	static Log& Get()
@@ -26,7 +27,6 @@ public:
 		static Log instance;
 		return instance;
 	}
-
 
 	/// @brief Prints tracing message.
 	///	@details The trace is used to print EVERYTHING that is happening.
@@ -58,4 +58,6 @@ public:
 	///	@details The critical is used to print the error that caused a force shutdown of the application.
 	/// @param message - Information about the event.
 	void Critical(const std::string& message);
+
+	~Log() {}
 };
