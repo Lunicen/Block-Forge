@@ -14,6 +14,12 @@ public:
 
 	void Create();
 	void Load();
+	bool IsLoaded();
 	void Save();
+
+	~World()
+	{
+		delete worldData;
+	}
 };
 
