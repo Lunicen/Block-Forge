@@ -87,6 +87,26 @@ std::string Metadata::GetFilename()
 	return this->filename;
 }
 
+void Metadata::Create()
+{
+	const auto filename = GetFilename();
+
+	if (this->DoesFileExist(filename))
+	{
+		log.Warn("Attempting to overwrite file at " + filename);
+	}
+
+	std::ofstream file(filename);
+	file << "{}";
+	file.close();
+}
+
+void Metadata::Create(const std::string& filename)
+{
+	SetFilename(filename);
+	Create();
+}
+
 void Metadata::Load()
 {
 	Load(this->GetFilename());
@@ -103,7 +123,7 @@ void Metadata::Load(const std::string& filename)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -122,7 +142,7 @@ void Metadata::Save()
 	}
 	catch (const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 		isFileSaved = false;
 	}
 }
@@ -145,7 +165,7 @@ nlohmann::json Metadata::GetJsonObject(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return false;
@@ -160,7 +180,7 @@ void Metadata::SetJsonObject(const std::string& name, const nlohmann::json& valu
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -176,7 +196,7 @@ bool Metadata::GetBool(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return false;
@@ -191,7 +211,7 @@ void Metadata::SetBool(const std::string& name, const bool value)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -207,7 +227,7 @@ int Metadata::GetInt(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return 0;
@@ -222,7 +242,7 @@ void Metadata::SetInt(const std::string& name, const int& value)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -238,7 +258,7 @@ double Metadata::GetDouble(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return 0.0;
@@ -253,7 +273,7 @@ void Metadata::SetDouble(const std::string& name, const double& value)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -269,7 +289,7 @@ std::string Metadata::GetString(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return "undefined";
@@ -284,7 +304,7 @@ void Metadata::SetString(const std::string& name, const std::string& value)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
 
@@ -303,7 +323,7 @@ bool Metadata::IsNull(const std::string& name) const
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 
 	return false;
@@ -318,6 +338,6 @@ void Metadata::SetNull(const std::string& name)
 	}
 	catch(const std::exception& err)
 	{
-		Log::Error(err.what());
+		log.Error(err.what());
 	}
 }
