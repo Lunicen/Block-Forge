@@ -13,3 +13,4 @@ test/*.testdurations
 test/*.exe
 lib/glfw/build_Win32
 lib/glfw/build_x64
+imgui.ini
