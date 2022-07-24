@@ -18,20 +18,20 @@ jobs:
     
     - name: Install cmake
       uses: jwlawson/actions-setup-cmake@v1.12
-
+    
     - name: Checkout current branch
       uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
+    
     - name: Cache dependencies
       id: cache-dep
       uses: actions/cache@v3
       with:
-        path: |
-          lib/glfw
-          lib/glad
-        key: opengl-dependencies
+        path: lib
+        key: project-dependencies
+
+    - name: Checkout submodules
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      run: git submodule update --init --recursive
 
     - name: Setup libraries
       if: steps.cache-dep.outputs.cache-hit != 'true'
@@ -40,7 +40,7 @@ jobs:
       shell: cmd
 
     - name: Build project
-      run: msbuild "Block Forge.sln" -t:rebuild -m:4 -property:Configuration=Release
+      run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4 -property:Configuration=Release
 
     - name: Share the executable to the next job
       uses: actions/upload-artifact@v3.1.0
