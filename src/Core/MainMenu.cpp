@@ -1,18 +1,16 @@
 #include "MainMenu.h"
 
-
-void MainMenu::DrawCenteredText(const std::string text)
+void MainMenu::DrawCenteredText(const std::string& text)
 {
 	const auto windowWidth = ImGui::GetWindowSize().x;
 	const auto textWidth = ImGui::CalcTextSize(text.c_str()).x;
 
 	ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
-	ImGui::Text(text.c_str());
+	ImGui::TextUnformatted(text.c_str());
 }
 
-bool MainMenu::DrawWindowSizedButton(const std::string text)
+bool MainMenu::DrawWindowSizedButton(const std::string& text)
 {
-
 	const auto windowWidth = ImGui::GetWindowSize().x;
 	if (ImGui::Button(text.c_str(), ImVec2(windowWidth -15, 50)))
 	{
@@ -23,8 +21,9 @@ bool MainMenu::DrawWindowSizedButton(const std::string text)
 
 void MainMenu::InitializeGlfw()
 {
-	//version 3.3
 	glfwInit();
+
+	// The target version is 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -34,12 +33,13 @@ void MainMenu::InitializeImgui(GLFWwindow* &window)
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	const ImGuiIO& io = ImGui::GetIO();
+	(void)io;
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 }
 
-void MainMenu::SetImguiBackgroundStyle(BackgroundStyle backgroundStyle)
+void MainMenu::SetImguiBackgroundStyle(const BackgroundStyle backgroundStyle)
 {
 	switch (backgroundStyle)
 	{
@@ -57,33 +57,29 @@ void MainMenu::SetImguiBackgroundStyle(BackgroundStyle backgroundStyle)
 	}
 }
 
-bool MainMenu::HasWindowFailedToCreate(GLFWwindow * &window)
+bool MainMenu::HasWindowFailedToCreate(GLFWwindow* &window)
 {
 	return window == nullptr;
 }
 
 
-void MainMenu::Draw()
+void MainMenu::Draw() const
 {
 	InitializeGlfw();
 
 	//In the future window should open in fullscreen OR/AND in window
-	//monitor: /*glfwGetPrimaryMonitor()*/
+	//monitor: glfwGetPrimaryMonitor()
 	GLFWwindow* window = glfwCreateWindow(1600, 800, "Main menu", nullptr, nullptr); 
 	
 	if (HasWindowFailedToCreate(window))
 	{
 		log.Critical("Main Menu failed to generate GLFW window!");
 		glfwTerminate();
-
 	}
 
 	glfwMakeContextCurrent(window);
-
 	InitializeImgui(window);
-
 	gladLoadGL();
-
 
 	bool quit = false;
 	while (!glfwWindowShouldClose(window) && !quit)
@@ -91,38 +87,37 @@ void MainMenu::Draw()
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-
-
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
-
 		ImGui::Begin("Main Menu");
 
-
 		SetImguiBackgroundStyle(BackgroundStyle::dark);
-
 		DrawCenteredText("Welcome to the Block Forge!");
 
 		if(DrawWindowSizedButton("PLAY"))
 		{
-			//TODO 
+			// TODO
+			// BF-102 Add missing functionality
 		}
 
 		if(DrawWindowSizedButton("OPTIONS"))
 		{
-			//TODO
+			// TODO
+			// BF-102 Add missing functionality
 		}
 
 		if(DrawWindowSizedButton("EXIT"))
 		{
-			//TODO ASK user whether to close
+			// TODO
+			// BF-102 Add missing functionality
 			quit = true;
 		}
 
 		if(DrawWindowSizedButton("CREDITS"))
 		{
-			//TODO
+			// TODO
+			// BF-102 Add missing functionality
 		}
 
 		ImGui::End();
@@ -130,16 +125,13 @@ void MainMenu::Draw()
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-
-
-		glfwSwapBuffers(window);  	//this swaps buffers without them them new frame will not be loaded
-		glfwPollEvents();			//process windows events: resize and so on... without this nothing will work
+		glfwSwapBuffers(window);  	// This swaps buffers without them them new frame will not be loaded
+		glfwPollEvents();			// Process windows events: resize and so on... without this nothing will work
 	}
 
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
