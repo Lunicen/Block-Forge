@@ -1,0 +1,19 @@
+name: Documentation coverage
+
+on:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout submodules
+      uses: actions/checkout@v3
+    
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.9.4
+      with:
+        doxyfile-path: "./Doxyfile"
+        working-directory: "."
