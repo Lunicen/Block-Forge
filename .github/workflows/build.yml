@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: project-dependencies
+          key: project-dependencies-sonar
 
       - name: Checkout submodules
         if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
