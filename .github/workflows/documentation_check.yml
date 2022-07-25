@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Coverage check
+    name: Documentation coverage
     runs-on: ubuntu-latest
 
     steps:
