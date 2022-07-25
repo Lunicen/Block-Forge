@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: lib
-        key: project-dependencies
+        key: lib-dependencies
 
     - name: Checkout submodules
       if: steps.cache-dep.outputs.cache-hit != 'true'
