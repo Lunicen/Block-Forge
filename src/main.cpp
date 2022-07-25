@@ -9,8 +9,8 @@ int main()
 	auto appConfig = std::make_unique<Metadata>("src/Data/Config.json");
 
 
-	MainMenu mainMenu = MainMenu();
-	mainMenu.Draw();
+	//MainMenu mainMenu = MainMenu();
+	//mainMenu.Draw();
 
 
 	Application application(appConfig);
