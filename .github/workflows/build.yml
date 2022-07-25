@@ -31,22 +31,22 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Cache dependencies
-        id: cache-dep-sonar
+        id: cache-dep
         uses: actions/cache@v3
         with:
           path: lib
-          key: project-dependencies-sonar
+          key: project-dependencies
 
       - name: Checkout submodules
-        if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
+        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: git submodule update --init --recursive
 
       - name: Install cmake
-        if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
+        if: steps.cache-dep.outputs.cache-hit != 'true'
         uses: jwlawson/actions-setup-cmake@v1.12
         
       - name: Setup libraries
-        if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
+        if: steps.cache-dep.outputs.cache-hit != 'true'
         working-directory: .github
         run: setup_for_workflow.bat
         shell: cmd
@@ -75,9 +75,12 @@ jobs:
           unzip -o $HOME\.sonar\build-wrapper.zip -d $HOME\.sonar\
           echo "$HOME\.sonar\build-wrapper-win-x86" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
 
+      - name: TEST
+        run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4 -property:Configuration=Release 
+
       - name: Run build-wrapper
         run: |
-          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild -nodeReuse:false -v:minimal
+          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild -nodeReuse:false
 
       - name: Run sonar-scanner
         env:
