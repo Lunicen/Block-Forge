@@ -76,11 +76,11 @@ jobs:
           echo "$HOME\.sonar\build-wrapper-win-x86" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
 
       - name: TEST
-        run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4 -property:Configuration=Release 
+        run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4
 
       - name: Run build-wrapper
         run: |
-          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild -nodeReuse:false
+          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild
 
       - name: Run sonar-scanner
         env:
