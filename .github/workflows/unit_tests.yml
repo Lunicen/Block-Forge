@@ -16,9 +16,6 @@ jobs:
     - name: Install msbuild
       uses: microsoft/setup-msbuild@v1.1
     
-    - name: Install cmake
-      uses: jwlawson/actions-setup-cmake@v1.12
-    
     - name: Checkout current branch
       uses: actions/checkout@v3
     
@@ -32,6 +29,10 @@ jobs:
     - name: Checkout submodules
       if: steps.cache-dep.outputs.cache-hit != 'true'
       run: git submodule update --init --recursive
+
+    - name: Install cmake
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      uses: jwlawson/actions-setup-cmake@v1.12
 
     - name: Setup libraries
       if: steps.cache-dep.outputs.cache-hit != 'true'

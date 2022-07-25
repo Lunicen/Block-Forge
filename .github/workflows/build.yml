@@ -41,6 +41,10 @@ jobs:
         if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
         run: git submodule update --init --recursive
 
+      - name: Install cmake
+        if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
+        uses: jwlawson/actions-setup-cmake@v1.12
+        
       - name: Setup libraries
         if: steps.cache-dep-sonar.outputs.cache-hit != 'true'
         working-directory: .github
