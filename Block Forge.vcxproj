@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\Utils\ElementBuffer.cpp" />
+    <ClCompile Include="src\Core\FileUtils.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="lib\imgui\imgui.cpp" />
@@ -148,6 +150,7 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Shader.cpp" />
     <ClCompile Include="src\Core\MainMenu.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
@@ -156,8 +159,13 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sandbox\Sandbox.cpp" />
     <ClCompile Include="src\Sandbox\World.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\VertexBuffer.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\Utils\BufferUtils.h" />
+    <ClInclude Include="src\Sandbox\Utils\ElementBuffer.h" />
+    <ClInclude Include="src\Core\FileUtils.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_glfw.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_opengl3_loader.h" />
@@ -167,6 +175,7 @@
     <ClInclude Include="lib\imgui\imstb_rectpack.h" />
     <ClInclude Include="lib\imgui\imstb_textedit.h" />
     <ClInclude Include="lib\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\Sandbox\Utils\Shader.h" />
     <ClInclude Include="src\Core\MainMenu.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Core\Application.h" />
@@ -174,10 +183,14 @@
     <ClInclude Include="src\Core\Block.h" />
     <ClInclude Include="src\Sandbox\Sandbox.h" />
     <ClInclude Include="src\Sandbox\World.h" />
+    <ClInclude Include="src\Sandbox\Utils\VertexBuffer.h" />
+    <ClInclude Include="src\Sandbox\Utils\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Data\Blocks.json" />
     <None Include="src\Data\Config.json" />
+    <None Include="src\Data\Shaders\Block.frag" />
+    <None Include="src\Data\Shaders\Block.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

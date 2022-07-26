@@ -1,5 +1,7 @@
 #include "../UnitTestsConfig.h"
 
+// ReSharper disable once CppUnusedIncludeDirective
+#include "Core/FileUtils.cpp"
 #include "Core/Metadata.cpp"
 #include "Core/Log.cpp"
 

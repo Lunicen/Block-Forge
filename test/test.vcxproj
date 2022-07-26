@@ -49,8 +49,8 @@
     <IntDir>$(SolutionDir)test\bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Block.cpp" />
-    <ClCompile Include="src\Core\Metadata.cpp" />
+    <ClCompile Include="src\Core\BlockTests.cpp" />
+    <ClCompile Include="src\Core\MetadataTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
