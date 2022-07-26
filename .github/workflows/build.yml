@@ -11,7 +11,7 @@ jobs:
   build:
     name: Build
     permissions:
-      checks: read|write
+      checks: write
     runs-on: windows-latest
     env:
       SONAR_SCANNER_VERSION: 4.7.0.2747 # Find the latest version in the "Windows" link on this page:
