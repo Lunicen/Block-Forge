@@ -6,13 +6,14 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-    
+
+permissions:
+  checks: write
+  pull-requests: read-all
+
 jobs:
   build:
     name: Build
-    permissions:
-      checks: write
-      pull-requests: read
     runs-on: windows-latest
     env:
       SONAR_SCANNER_VERSION: 4.7.0.2747 # Find the latest version in the "Windows" link on this page:
