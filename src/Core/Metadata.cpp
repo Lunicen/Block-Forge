@@ -1,22 +1,5 @@
 #include "Metadata.h"
-#include <sys/stat.h>
 #include <fstream>
-
-bool Metadata::IsFileEmpty(std::ifstream& file)
-{
-	return file.peek() == std::ifstream::traits_type::eof();
-}
-
-bool Metadata::DoesFileExist(const std::string& filename)
-{
-	struct stat buffer{};
-
-	if (stat(filename.c_str(), &buffer) == 0)
-	{
-		return true;
-	}
-	return false;
-}
 
 void Metadata::CheckIfFilenameIsNotEmpty() const
 {

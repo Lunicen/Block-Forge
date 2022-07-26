@@ -2,20 +2,18 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
+#include "FileUtils.h"
 #include "Log.h"
 
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
 /// @details This class is made for handling the metadata stored in JSON files.
-class Metadata
+class Metadata : protected FileUtils
 {
 	std::string filename;
 	nlohmann::json document = nullptr;
 	bool isFileSaved = false;
 	Log& log = Log::Get();
-
-	static bool IsFileEmpty(std::ifstream& file);
-	static bool DoesFileExist(const std::string& filename);
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
