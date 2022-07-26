@@ -7,9 +7,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-permissions:
-  checks: write
-
 jobs:
   build:
     name: Build
