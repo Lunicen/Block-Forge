@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: SonarCloud Build
     runs-on: windows-latest
     env:
       SONAR_SCANNER_VERSION: 4.7.0.2747 # Find the latest version in the "Windows" link on this page:
@@ -78,10 +78,19 @@ jobs:
       - name: Run build-wrapper
         run: |
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild
+          
+      - name: Run tests with coverage
+        working-directory: test
+        continue-on-error: true
+        run: test.exe --gtest_output=xml:result.xml
+        shell: cmd
 
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+          sonar-scanner
+          --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
+          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}
+          --define sonar.cfamily.vscoveragexml.reportsPath="test\result.xml"
