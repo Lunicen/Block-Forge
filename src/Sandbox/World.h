@@ -4,17 +4,11 @@
 
 class World
 {
-	Metadata* worldData = nullptr;
+	std::unique_ptr<Metadata> worldData = nullptr;
 	Log& log = Log::Get();
 
 public:
-	World() = delete;
-	World(const World&) = default;
-	World(World&&) = delete;
-	World& operator=(World) = delete;
-	World& operator=(World&&) = delete;
-
-	explicit World(const std::string& filename) : worldData(new Metadata(filename))
+	explicit World(const std::string& filename) : worldData(std::make_unique<Metadata>(filename))
 	{
 	}
 
@@ -22,10 +16,5 @@ public:
 	void Load();
 	bool IsLoaded();
 	void Save();
-
-	~World()
-	{
-		delete worldData;
-	}
 };
 
