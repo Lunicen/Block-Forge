@@ -1,11 +1,8 @@
 name: Building the project
 
 on:
-  push:
-    branches:
-      - develop
   pull_request:
-    types: [opened, reopened]
+    branches: [ develop ]
   
 jobs:
   build:
@@ -40,8 +37,33 @@ jobs:
       run: setup_for_workflow.bat
       shell: cmd
 
-    - name: Build with Debug configuration
-      run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4 -property:Configuration=Debug
-      
-    - name: Build with Release configuration
+    - name: Build project
       run: msbuild "Block Forge.sln" -warnAsError -t:rebuild -m:4 -property:Configuration=Release
+
+    - name: Share the executable to the next job
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: unit-tests
+        path: test/test.exe
+
+  run:
+    name: Run unit tests
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout current branch
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
+
+    - name: Download the executable
+      uses: actions/download-artifact@v3.0.0
+      with:
+        name: unit-tests
+        path: test
+
+    - name: Run tests
+      working-directory: test
+      run: test.exe
+      shell: cmd
