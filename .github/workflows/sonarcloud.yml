@@ -29,6 +29,9 @@ jobs:
 
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.1
+        
+      - name: Setup VSTest.console.exe
+        uses: darenm/Setup-VSTest@v1
 
       - name: Cache dependencies
         id: cache-dep
@@ -80,10 +83,11 @@ jobs:
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild
           
       - name: Run tests with coverage
-        working-directory: test
-        continue-on-error: true
-        run: test.exe --gtest_output=xml:result.xml
-        shell: cmd
+        run: >
+          vstest.console.exe "test\*\Block Forge Tests.dll"
+          /EnableCodeCoverage
+          /Collect:"Code Coverage;Format=Xml" 
+          /ResultsDirectory:test/raports
 
       - name: Run sonar-scanner
         env:
@@ -93,4 +97,4 @@ jobs:
           sonar-scanner
           --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-          --define sonar.cfamily.vscoveragexml.reportsPath="test\result.xml"
+          --define sonar.cfamily.vscoveragexml.reportsPath="test/raports/*/*.xml"
