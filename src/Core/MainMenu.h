@@ -10,10 +10,10 @@
 // Warning, glfw library MUST be defined at the end!
 #include <GLFW/glfw3.h>
 
-
+/// @class MainMenu
+/// @brief Displays the GUI that is a Main Menu.
 class MainMenu
 {
-private:
 	enum class BackgroundStyle
 	{
 		dark = 0,
@@ -30,6 +30,8 @@ private:
 	static bool HasWindowFailedToCreate(GLFWwindow*& window);
 
 public:
+
+	/// @brief Creates the window and draws the interactive Main Menu.
 	void Draw() const;
 };
 
