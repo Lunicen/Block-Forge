@@ -153,9 +153,7 @@
     <ClCompile Include="src\Sandbox\Utils\Shader.cpp" />
     <ClCompile Include="src\Core\MainMenu.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
-    <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
-    <ClCompile Include="src\Core\Block.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sandbox\Sandbox.cpp" />
     <ClCompile Include="src\Sandbox\World.cpp" />
@@ -178,9 +176,7 @@
     <ClInclude Include="src\Sandbox\Utils\Shader.h" />
     <ClInclude Include="src\Core\MainMenu.h" />
     <ClInclude Include="src\Core\Log.h" />
-    <ClInclude Include="src\Core\Application.h" />
     <ClInclude Include="src\Core\Metadata.h" />
-    <ClInclude Include="src\Core\Block.h" />
     <ClInclude Include="src\Sandbox\Sandbox.h" />
     <ClInclude Include="src\Sandbox\World.h" />
     <ClInclude Include="src\Sandbox\Utils\VertexBuffer.h" />

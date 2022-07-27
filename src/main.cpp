@@ -1,20 +1,14 @@
-#include "Core/Application.h"
 #include "Core/Log.h"
-#include "Core/MainMenu.h"
+#include "Sandbox/Sandbox.h"
 
 int main()
 {
-	Log& instance = Log::Get();
+	// TODO integrate the Main Menu with Sandbox class 
+	// MainMenu mainMenu = MainMenu();
+	// mainMenu.Draw();
 
-	auto appConfig = std::make_unique<Metadata>("src/Data/Config.json");
-
-
-	//MainMenu mainMenu = MainMenu();
-	//mainMenu.Draw();
-
-
-	Application application(appConfig);
-	application.Run();
+	const auto sandbox = new Sandbox("test.json");
+	sandbox->Run();
 
 	return 0;
 }
