@@ -12,6 +12,7 @@ class Metadata : protected FileUtils
 {
 	std::string filename;
 	nlohmann::json document = nullptr;
+	bool isFileLoaded = false;
 	bool isFileSaved = false;
 	Log& log = Log::Get();
 
@@ -41,7 +42,7 @@ public:
 
 	/// @brief Creates new JSON file.
 	///	@note If file already exists, it get overwritten.
-	void Create();
+	void Create() const;
 
 	/// @brief Creates new JSON file using the given filename.
 	///	@note If file already exists, it get overwritten.

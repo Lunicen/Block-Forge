@@ -69,11 +69,11 @@ std::string Metadata::GetFilename()
 	return this->filename;
 }
 
-void Metadata::Create()
+void Metadata::Create() const
 {
-	const auto filename = GetFilename();
+	const auto filename = this->filename;
 
-	if (this->DoesFileExist(filename))
+	if (DoesFileExist(filename))
 	{
 		log.Warn("Attempting to overwrite file at " + filename);
 	}
@@ -91,7 +91,7 @@ void Metadata::Create(const std::string& filename)
 
 void Metadata::Load()
 {
-	Load(this->GetFilename());
+	Load(this->filename);
 }
 
 void Metadata::Load(const std::string& filename)
@@ -102,6 +102,8 @@ void Metadata::Load(const std::string& filename)
 	{
 		CheckIfFilenameIsNotEmpty();
 		TryToLoadFile(filename);
+
+		this->isFileLoaded = true;
 	}
 	catch(const std::exception& err)
 	{
@@ -111,7 +113,7 @@ void Metadata::Load(const std::string& filename)
 
 bool Metadata::IsLoaded() const
 {
-	return this->document != nullptr;
+	return this->isFileLoaded;
 }
 
 void Metadata::Save()
