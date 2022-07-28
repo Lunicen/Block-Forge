@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Block Forge", "Block Forge.vcxproj", "{22048682-8831-45E5-9692-5B4F3032F9CB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Block Forge Tests", "test\Block Forge Tests\Block Forge Tests.vcxproj", "{7A217CA1-510B-4718-B592-C2DD4C4D7405}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Block Forge Tests", "test\Block Forge Tests.vcxproj", "{7A217CA1-510B-4718-B592-C2DD4C4D7405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
