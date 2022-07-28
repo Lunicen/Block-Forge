@@ -85,8 +85,9 @@ jobs:
       - name: Run tests with coverage
         run: >
           vstest.console.exe "test\Block Forge Tests.exe"
+          /TestAdapterPath:"packages\GoogleTestAdapter.0.18.0"
           /EnableCodeCoverage
-          /Collect:"Code Coverage;Format=Xml" 
+          /Collect:"Code Coverage;Format=Xml"
           /ResultsDirectory:test/raports
 
       - name: Run sonar-scanner
