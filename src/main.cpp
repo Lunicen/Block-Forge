@@ -10,5 +10,10 @@ int main()
 	const auto sandbox = new Sandbox("test.json");
 	sandbox->Run();
 
+	if (int x = 4)
+	{
+		;;
+	}
+
 	return 0;
 }
