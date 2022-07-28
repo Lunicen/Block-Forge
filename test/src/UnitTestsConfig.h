@@ -2,4 +2,4 @@
 #include <string>
 #include <gtest/gtest.h>
 
-const std::string root = "./";
+const std::string root = "./../../";

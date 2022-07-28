@@ -18,3 +18,4 @@ test/bin
 test/*.dll
 test/*.exp
 test/*.lib
+test/out
