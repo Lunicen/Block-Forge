@@ -84,9 +84,10 @@ jobs:
           
       - name: Run tests with coverage
         run: >
-          vstest.console.exe "test\Block Forge Tests.dll"
+          vstest.console.exe "test\Block Forge Tests.exe"
+          /TestAdapterPath:"packages\GoogleTestAdapter.0.18.0"
           /EnableCodeCoverage
-          /Collect:"Code Coverage;Format=Xml" 
+          /Collect:"Code Coverage;Format=Xml"
           /ResultsDirectory:test/raports
 
       - name: Run sonar-scanner
@@ -94,7 +95,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >
-          sonar-scanner
-          --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
-          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+          sonar-scanner 
+          --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" 
+          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" 
           --define sonar.cfamily.vscoveragexml.reportsPath="test/raports/*/*.xml"
