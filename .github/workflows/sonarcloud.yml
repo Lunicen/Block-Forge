@@ -81,20 +81,6 @@ jobs:
       - name: Run build-wrapper
         run: |
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild "Block Forge.sln" -m:4 -t:rebuild
-          
-      - name: Run tests with coverage
-        run: >
-          vstest.console.exe "test\Block Forge Tests.exe"
-          /TestAdapterPath:"packages\GoogleTestAdapter.0.18.0"
-          /EnableCodeCoverage
-          /Collect:"Code Coverage;Format=Xml"
-          /ResultsDirectory:test/raports
-
-      - name: Display XML result
-        run: |
-          cd .github
-          test.bat
-        shell: cmd
 
       - name: Run sonar-scanner
         env:
@@ -104,4 +90,3 @@ jobs:
           sonar-scanner
           --define sonar.host.url="${{ env.SONAR_SERVER_URL }}"
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-          --define sonar.cfamily.vscoveragexml.reportsPath="test/raports/*/*.xml"
