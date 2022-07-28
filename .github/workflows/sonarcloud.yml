@@ -84,7 +84,7 @@ jobs:
           
       - name: Run tests with coverage
         run: >
-          vstest.console.exe "test\Block Forge Tests.dll"
+          vstest.console.exe "test\out\Win32\Block Forge Tests.exe"
           /EnableCodeCoverage
           /Collect:"Code Coverage;Format=Xml" 
           /ResultsDirectory:test/raports
