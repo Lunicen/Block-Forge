@@ -91,7 +91,7 @@ jobs:
           /ResultsDirectory:test/raports
 
       - name: Display XML result
-        run: >
+        run: |
           cd .github
           test.bat
         shell: cmd
