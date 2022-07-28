@@ -90,6 +90,12 @@ jobs:
           /Collect:"Code Coverage;Format=Xml"
           /ResultsDirectory:test/raports
 
+      - name: Display XML result
+        run: >
+          cd .github
+          test.bat
+        shell: cmd
+
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
