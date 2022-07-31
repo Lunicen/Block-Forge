@@ -1,1 +1,1 @@
-{"bool":true,"double":0.123,"int":123,"null":"null","object":{"test":"null"},"set_bool":"null","set_double":"null","set_int":"null","set_null":0,"set_object":{"testBoolValue":true,"testDoubleValue":10.0001,"testIntValue":99,"testNegativeIntValue":-1},"set_string":"null","string":"example"}
+{"bool":true,"double":0.123,"int":123,"null":"null","object":{"test":"null"},"set_bool":"null","set_double":"null","set_int":"null","set_null":0,"set_object":"null","set_string":"null","string":"example"}

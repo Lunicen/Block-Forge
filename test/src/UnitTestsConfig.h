@@ -1,5 +1,5 @@
 #pragma once
 #include <string>
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 const std::string root = "./";

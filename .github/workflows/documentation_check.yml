@@ -1,0 +1,23 @@
+name: Documentation coverage
+
+on:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    name: Documentation coverage
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout submodules
+      uses: actions/checkout@v3
+
+    - name: Install doxygen styles
+      run: git submodule update --init lib/doxygen-awesome-css
+    
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.9.4
+      with:
+        doxyfile-path: "./Doxyfile"
+        working-directory: "."
