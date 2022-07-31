@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Sandbox\Utils\ElementBuffer.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_glfw.cpp" />
@@ -162,7 +161,6 @@
     <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Sandbox\Camera.h" />
     <ClInclude Include="src\Sandbox\Utils\BufferUtils.h" />
     <ClInclude Include="src\Sandbox\Utils\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />
