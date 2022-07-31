@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Core/Block.h Source File</title>
+<title>Block Forge: Sandbox Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('_block_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_sandbox.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -85,32 +85,76 @@ $(document).ready(function(){initNavTree('_block_8h_source.html',''); initResiza
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Block.h</div></div>
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_sandbox-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Sandbox Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="class_block.html">    4</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block.html">Block</a></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    std::string name;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="class_block.html">Block</a>(std::string name);</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_block.html">Block</a>() = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">void</span> SetName(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::string GetName() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>};</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="ttc" id="aclass_block_html"><div class="ttname"><a href="class_block.html">Block</a></div><div class="ttdef"><b>Definition:</b> Block.h:5</div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>Class where the world is projected.  
+ <a href="class_sandbox.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_sandbox_8h_source.html">Sandbox.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a705c789888637f39e6788c17d8f1725a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a705c789888637f39e6788c17d8f1725a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor, loads the world data.  <a href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">More...</a><br /></td></tr>
+<tr class="separator:a705c789888637f39e6788c17d8f1725a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="memItemLeft" align="right" valign="top"><a id="ac103b1df25988cc7b31e3a8c3cee88bd" name="ac103b1df25988cc7b31e3a8c3cee88bd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> () const</td></tr>
+<tr class="memdesc:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the simulation. <br /></td></tr>
+<tr class="separator:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Class where the world is projected. </p>
+<p >This class handles displaying the world or so to say the actual simulation. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a705c789888637f39e6788c17d8f1725a" name="a705c789888637f39e6788c17d8f1725a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a705c789888637f39e6788c17d8f1725a">&#9670;&nbsp;</a></span>Sandbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Sandbox::Sandbox </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The constructor, loads the world data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>- The filename of the file containing the world data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Sandbox/<a class="el" href="_sandbox_8h_source.html">Sandbox.h</a></li>
+<li>src/Sandbox/Sandbox.cpp</li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li><li class="navelem"><b>Block.h</b></li>
+    <li class="navelem"><a class="el" href="class_sandbox.html">Sandbox</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

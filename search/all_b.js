@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['warn_0',['Warn',['../class_log.html#aefee21b4cfebcf5d1ef6ccb31c53f71c',1,'Log']]]
+  ['todo_20list_0',['Todo List',['../todo.html',1,'']]],
+  ['trace_1',['Trace',['../class_log.html#a6b9869cd3b6d9793f5a0cdc483ee2a0d',1,'Log']]]
 ];

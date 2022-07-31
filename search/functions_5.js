@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['load_0',['Load',['../class_metadata.html#acb03a8ff4693be4aba6557b91079e0ba',1,'Metadata::Load()'],['../class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1',1,'Metadata::Load(const std::string &amp;filename)'],['../class_metadata.html#a3cf52b7653203aacea5a82e713f3e8da',1,'Metadata::Load']]]
+  ['info_0',['Info',['../class_log.html#abc92ed5074f74feecedfac4f6dfa592c',1,'Log']]],
+  ['isfileempty_1',['IsFileEmpty',['../class_file_utils.html#aa922d2befc7702900dfa1cef39cc0c8a',1,'FileUtils']]],
+  ['isloaded_2',['IsLoaded',['../class_metadata.html#a9efe9ca5aac6b06192ff54370ecbd348',1,'Metadata::IsLoaded()'],['../class_world.html#a0aad4fb9baba51670741746dc993f3fa',1,'World::IsLoaded()']]],
+  ['isnull_3',['IsNull',['../class_metadata.html#aff85bfd7270d0fac9fc3f2a036d43b54',1,'Metadata']]],
+  ['issaved_4',['IsSaved',['../class_metadata.html#af5d619efd7c6df8f3feb6761a6d037e7',1,'Metadata']]]
 ];

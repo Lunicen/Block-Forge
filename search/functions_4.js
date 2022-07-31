@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['info_0',['Info',['../class_log.html#abc92ed5074f74feecedfac4f6dfa592c',1,'Log']]],
-  ['isloaded_1',['IsLoaded',['../class_metadata.html#a9efe9ca5aac6b06192ff54370ecbd348',1,'Metadata']]],
-  ['isnull_2',['IsNull',['../class_metadata.html#aff85bfd7270d0fac9fc3f2a036d43b54',1,'Metadata']]],
-  ['issaved_3',['IsSaved',['../class_metadata.html#af5d619efd7c6df8f3feb6761a6d037e7',1,'Metadata']]]
+  ['get_0',['Get',['../class_log.html#ae83c4fbe516247d0006cb35636469e71',1,'Log']]],
+  ['getbool_1',['GetBool',['../class_metadata.html#af80faf643bd2c70948a75be521da3a92',1,'Metadata']]],
+  ['getdouble_2',['GetDouble',['../class_metadata.html#ab3fda9c5dcdc5c60677955e30f484f4d',1,'Metadata']]],
+  ['getfilename_3',['GetFilename',['../class_metadata.html#a24211eba40e328ccaef8eff700e81722',1,'Metadata']]],
+  ['getint_4',['GetInt',['../class_metadata.html#a600eff3a4673d47704d64fdefad5e115',1,'Metadata']]],
+  ['getjsonobject_5',['GetJsonObject',['../class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45',1,'Metadata']]],
+  ['getstring_6',['GetString',['../class_metadata.html#af352c207c72fb67dd3d46495a8286e1a',1,'Metadata']]]
 ];

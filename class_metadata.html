@@ -87,7 +87,6 @@ $(document).ready(function(){initNavTree('class_metadata.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#related">Related Functions</a> &#124;
 <a href="class_metadata-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Metadata Class Reference</div></div>
 </div><!--header-->
@@ -97,6 +96,15 @@ $(document).ready(function(){initNavTree('class_metadata.html',''); initResizabl
  <a href="class_metadata.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_metadata_8h_source.html">Metadata.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Metadata:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_metadata.png" usemap="#Metadata_map" alt=""/>
+  <map id="Metadata_map" name="Metadata_map">
+<area href="class_file_utils.html" title="This is a file utilities class that contains functions that could be mostly used by classes that are ..." alt="FileUtils" shape="rect" coords="0,0,64,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -113,6 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24211eba40e328ccaef8eff700e81722"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a24211eba40e328ccaef8eff700e81722">GetFilename</a> ()</td></tr>
 <tr class="memdesc:a24211eba40e328ccaef8eff700e81722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get filename.  <a href="class_metadata.html#a24211eba40e328ccaef8eff700e81722">More...</a><br /></td></tr>
 <tr class="separator:a24211eba40e328ccaef8eff700e81722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e006c6c1552a3ee22b98525dfa8946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#af2e006c6c1552a3ee22b98525dfa8946">Create</a> () const</td></tr>
+<tr class="memdesc:af2e006c6c1552a3ee22b98525dfa8946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates new JSON file.  <a href="class_metadata.html#af2e006c6c1552a3ee22b98525dfa8946">More...</a><br /></td></tr>
+<tr class="separator:af2e006c6c1552a3ee22b98525dfa8946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442be2c8c11c221fc6344205c538337e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a442be2c8c11c221fc6344205c538337e">Create</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a442be2c8c11c221fc6344205c538337e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates new JSON file using the given filename.  <a href="class_metadata.html#a442be2c8c11c221fc6344205c538337e">More...</a><br /></td></tr>
+<tr class="separator:a442be2c8c11c221fc6344205c538337e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb03a8ff4693be4aba6557b91079e0ba"><td class="memItemLeft" align="right" valign="top"><a id="acb03a8ff4693be4aba6557b91079e0ba" name="acb03a8ff4693be4aba6557b91079e0ba"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> ()</td></tr>
 <tr class="memdesc:acb03a8ff4693be4aba6557b91079e0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads JSON data to the document variable. <br /></td></tr>
@@ -130,11 +144,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Save</b> ()</td></tr>
 <tr class="separator:aaa0dcf0d919e873395538fae0b26b1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5d619efd7c6df8f3feb6761a6d037e7"><td class="memItemLeft" align="right" valign="top"><a id="af5d619efd7c6df8f3feb6761a6d037e7" name="af5d619efd7c6df8f3feb6761a6d037e7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsSaved</b> () const</td></tr>
-<tr class="memdesc:af5d619efd7c6df8f3feb6761a6d037e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if file is succesfully saved. <br /></td></tr>
+<tr class="memdesc:af5d619efd7c6df8f3feb6761a6d037e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if file is successfully saved. <br /></td></tr>
 <tr class="separator:af5d619efd7c6df8f3feb6761a6d037e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1977e8e479ac4425e9cc9538f0054c45"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45">GetJsonObject</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a1977e8e479ac4425e9cc9538f0054c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets JSON Object <br  />
-  <a href="class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45">More...</a><br /></td></tr>
+<tr class="memdesc:a1977e8e479ac4425e9cc9538f0054c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets JSON Object.  <a href="class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45">More...</a><br /></td></tr>
 <tr class="separator:a1977e8e479ac4425e9cc9538f0054c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c5559751c2701467289c997bed4e791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a8c5559751c2701467289c997bed4e791">SetJsonObject</a> (const std::string &amp;name, const nlohmann::json &amp;value)</td></tr>
 <tr class="memdesc:a8c5559751c2701467289c997bed4e791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets JSON object.  <a href="class_metadata.html#a8c5559751c2701467289c997bed4e791">More...</a><br /></td></tr>
@@ -170,12 +183,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsSaved</b> () const<
 <tr class="memdesc:aefd89080abb7532d82b748575094b25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets as a Null.  <a href="class_metadata.html#aefd89080abb7532d82b748575094b25f">More...</a><br /></td></tr>
 <tr class="separator:aefd89080abb7532d82b748575094b25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="related" name="related"></a>
-Related Functions</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p >(Note that these are not member functions.) </p>
-</td></tr>
-<tr class="memitem:a3cf52b7653203aacea5a82e713f3e8da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a3cf52b7653203aacea5a82e713f3e8da">Load</a></td></tr>
-<tr class="separator:a3cf52b7653203aacea5a82e713f3e8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_static_methods_class_file_utils"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_class_file_utils')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="class_file_utils.html">FileUtils</a></td></tr>
+<tr class="memitem:aa922d2befc7702900dfa1cef39cc0c8a inherit pro_static_methods_class_file_utils"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_utils.html#aa922d2befc7702900dfa1cef39cc0c8a">IsFileEmpty</a> (std::ifstream &amp;file)</td></tr>
+<tr class="memdesc:aa922d2befc7702900dfa1cef39cc0c8a inherit pro_static_methods_class_file_utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if file is empty.  <a href="class_file_utils.html#aa922d2befc7702900dfa1cef39cc0c8a">More...</a><br /></td></tr>
+<tr class="separator:aa922d2befc7702900dfa1cef39cc0c8a inherit pro_static_methods_class_file_utils"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3391e8c5c9a0101d1b973e1d0d3c35e9 inherit pro_static_methods_class_file_utils"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_file_utils.html#a3391e8c5c9a0101d1b973e1d0d3c35e9">DoesFileExist</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a3391e8c5c9a0101d1b973e1d0d3c35e9 inherit pro_static_methods_class_file_utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if file exists.  <a href="class_file_utils.html#a3391e8c5c9a0101d1b973e1d0d3c35e9">More...</a><br /></td></tr>
+<tr class="separator:a3391e8c5c9a0101d1b973e1d0d3c35e9 inherit pro_static_methods_class_file_utils"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Handles JSON files and manipulates them. </p>
@@ -267,6 +283,47 @@ Related Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af2e006c6c1552a3ee22b98525dfa8946" name="af2e006c6c1552a3ee22b98525dfa8946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e006c6c1552a3ee22b98525dfa8946">&#9670;&nbsp;</a></span>Create() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Metadata::Create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates new JSON file. </p>
+<dl class="section note"><dt>Note</dt><dd>If file already exists, it get overwritten. </dd></dl>
+
+</div>
+</div>
+<a id="a442be2c8c11c221fc6344205c538337e" name="a442be2c8c11c221fc6344205c538337e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a442be2c8c11c221fc6344205c538337e">&#9670;&nbsp;</a></span>Create() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Metadata::Create </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates new JSON file using the given filename. </p>
+<dl class="section note"><dt>Note</dt><dd>If file already exists, it get overwritten. </dd></dl>
+
+</div>
+</div>
 <a id="a79f3dde76dc233bb27642ffd9ef60ef1" name="a79f3dde76dc233bb27642ffd9ef60ef1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79f3dde76dc233bb27642ffd9ef60ef1">&#9670;&nbsp;</a></span>Load()</h2>
 
@@ -309,11 +366,10 @@ Related Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets JSON Object <br  />
- </p>
+<p>Gets JSON Object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -349,8 +405,8 @@ Related Functions</h2></td></tr>
 <p>Sets JSON object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
-    <tr><td class="paramname">value</td><td>- JSON new value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
+    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -376,7 +432,7 @@ Related Functions</h2></td></tr>
 <p>Gets Boolean. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -412,8 +468,8 @@ Related Functions</h2></td></tr>
 <p>Sets Boolean. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
-    <tr><td class="paramname">value</td><td>- JSON new value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
+    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -439,7 +495,7 @@ Related Functions</h2></td></tr>
 <p>Gets Integer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -475,8 +531,8 @@ Related Functions</h2></td></tr>
 <p>Sets Integer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
+    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -502,7 +558,7 @@ Related Functions</h2></td></tr>
 <p>Gets Double. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -538,7 +594,8 @@ Related Functions</h2></td></tr>
 <p>Sets Double. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
+    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -564,7 +621,7 @@ Related Functions</h2></td></tr>
 <p>Gets String. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -600,8 +657,8 @@ Related Functions</h2></td></tr>
 <p>Sets String. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
-    <tr><td class="paramname">value</td><td>- JSON new value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
+    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -627,7 +684,7 @@ Related Functions</h2></td></tr>
 <p>Checks if the value is a Null. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
@@ -653,37 +710,10 @@ Related Functions</h2></td></tr>
 <p>Sets as a Null. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key value </td></tr>
+    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a3cf52b7653203aacea5a82e713f3e8da" name="a3cf52b7653203aacea5a82e713f3e8da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cf52b7653203aacea5a82e713f3e8da">&#9670;&nbsp;</a></span>Load()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Load </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">related</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
 
 </div>
 </div>

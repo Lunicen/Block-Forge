@@ -4,6 +4,8 @@ var class_metadata =
     [ "Metadata", "class_metadata.html#aff2bd67112362d282c051514a5768214", null ],
     [ "SetFilename", "class_metadata.html#ad84e37040e02575b907895212baa9bf6", null ],
     [ "GetFilename", "class_metadata.html#a24211eba40e328ccaef8eff700e81722", null ],
+    [ "Create", "class_metadata.html#af2e006c6c1552a3ee22b98525dfa8946", null ],
+    [ "Create", "class_metadata.html#a442be2c8c11c221fc6344205c538337e", null ],
     [ "Load", "class_metadata.html#acb03a8ff4693be4aba6557b91079e0ba", null ],
     [ "Load", "class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1", null ],
     [ "IsLoaded", "class_metadata.html#a9efe9ca5aac6b06192ff54370ecbd348", null ],
@@ -20,6 +22,5 @@ var class_metadata =
     [ "GetString", "class_metadata.html#af352c207c72fb67dd3d46495a8286e1a", null ],
     [ "SetString", "class_metadata.html#a988d7a62d4642bf6e7cdbfd56e832703", null ],
     [ "IsNull", "class_metadata.html#aff85bfd7270d0fac9fc3f2a036d43b54", null ],
-    [ "SetNull", "class_metadata.html#aefd89080abb7532d82b748575094b25f", null ],
-    [ "Load", "class_metadata.html#a3cf52b7653203aacea5a82e713f3e8da", null ]
+    [ "SetNull", "class_metadata.html#aefd89080abb7532d82b748575094b25f", null ]
 ];
