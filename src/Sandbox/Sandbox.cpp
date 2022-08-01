@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Camera.h"
 #include "Utils/Shader.h"
 #include "Utils/BufferUtils.h"
 
@@ -19,7 +20,10 @@ void Sandbox::Run() const
 		return;
 	}
 
-	GLFWwindow* window = glfwCreateWindow(800, 800, "test", nullptr, nullptr);
+	constexpr int width = 800;
+	constexpr int height = 800;
+
+	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
 	{
 		log.Error("Failed to create window.");
@@ -29,7 +33,7 @@ void Sandbox::Run() const
 
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
-	glViewport(0, 0, 800, 800);
+	glViewport(0, 0, width, height);
 
 	//    6-------5  
 	//   /|      /|   
@@ -37,13 +41,14 @@ void Sandbox::Run() const
 	//  | |     | |   
 	//  | 7-----|-4  
 	//  |/      |/    
-	//  0-------3 
+	//  0-------3
+	constexpr float edge = 0.4f;
 	constexpr GLfloat vertices[12] =
 	{
-		-1.0f, -1.0f, 1.0f,
-		-1.0f,  1.0f, 1.0f,
-		 1.0f,  1.0f, 1.0f,
-		 1.0f, -1.0f, 1.0f
+		-edge, -edge, edge,
+		-edge,  edge, edge,
+		 edge,  edge, edge,
+		 edge, -edge, edge
 	};
 
 	constexpr GLuint indices[6]
@@ -65,12 +70,15 @@ void Sandbox::Run() const
 	vbo.Unbind();
 	ebo.Unbind();
 
+	const Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+
 	while(!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		shader.Load();
+		camera.UpdateMatrix(shader, "camera");
 		vao.Bind();
 
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
