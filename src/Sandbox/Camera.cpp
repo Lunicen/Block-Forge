@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(const int width, const int height, const glm::vec3 position) : _position(position), _width(width), _height(height)
+Camera::Camera(const int width, const int height, const glm::vec3 position, HumanInterfaceDevice& hid) : _position(position), _width(width), _height(height), _hid(hid)
 {
 	if (width <= 0 || height <= 0)
 	{
@@ -13,6 +13,7 @@ Camera::Camera(const int width, const int height, const glm::vec3 position) : _p
 	_up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	_speed = 0.1f;
+	_defaultSpeed = _speed;
 	_sensitivity = 100.0f;
 
 	_fieldOfView = 45.0f;
@@ -32,7 +33,45 @@ void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
 	auto projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
 
-	glUniform4fv(glGetUniformLocation(shader.GetProgram(), uniformName), 1, value_ptr(projection * view));
+	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), uniformName), 1, GL_FALSE, value_ptr(projection * view));
+}
+
+void Camera::HandleInput()
+{
+	if (_hid.IsKeyPressed(KeyboardKey::w))
+	{
+		_position += _speed * _orientation;
+	}
+	if (_hid.IsKeyPressed(KeyboardKey::a))
+	{
+		_position += _speed * -normalize(cross(_orientation, _up));
+	}
+	if (_hid.IsKeyPressed(KeyboardKey::s))
+	{
+		_position += _speed * -_orientation;
+	}
+	if (_hid.IsKeyPressed(KeyboardKey::d))
+	{
+		_position += _speed * normalize(cross(_orientation, _up));
+	}
+
+	if (_hid.IsKeyPressed(KeyboardKey::space))
+	{
+		_position += _speed * _up;
+	}
+	if (_hid.IsKeyPressed(KeyboardKey::leftShift))
+	{
+		_position += _speed * -_up;
+	}
+
+	if (_hid.IsKeyPressed(KeyboardKey::leftCtrl))
+	{
+		_speed = 0.4f;
+	}
+	else if (_hid.IsKeyReleased(KeyboardKey::leftCtrl))
+	{
+		_speed = _defaultSpeed;
+	}
 }
 
 inline int Camera::GetWidth() const
@@ -53,6 +92,16 @@ inline int Camera::GetHeight() const
 inline void Camera::SetHeight(const int height)
 {
 	_height = height;
+}
+
+inline float Camera::GetDefaultSpeed() const
+{
+	return _defaultSpeed;
+}
+
+inline void Camera::SetDefaultSpeed(const float defaultSpeed)
+{
+	_defaultSpeed = defaultSpeed;
 }
 
 inline float Camera::GetSpeed() const

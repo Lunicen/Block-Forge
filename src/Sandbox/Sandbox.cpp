@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Camera.h"
+#include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
 #include "Utils/BufferUtils.h"
 
@@ -70,7 +71,8 @@ void Sandbox::Run() const
 	vbo.Unbind();
 	ebo.Unbind();
 
-	const Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+	HumanInterfaceDevice hid(window);
+	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
 
 	while(!glfwWindowShouldClose(window))
 	{
@@ -78,6 +80,7 @@ void Sandbox::Run() const
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		shader.Load();
+		camera.HandleInput();
 		camera.UpdateMatrix(shader, "camera");
 		vao.Bind();
 

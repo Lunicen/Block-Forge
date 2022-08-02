@@ -1,20 +1,9 @@
 #pragma once
 #include <GLFW/glfw3.h>
+#include "KeyCodes.h"
 
 class HumanInterfaceDevice
 {
-	enum class KeyboardKey
-	{
-		w = GLFW_KEY_W,
-		a = GLFW_KEY_A,
-		s = GLFW_KEY_S,
-		d = GLFW_KEY_D
-	};
-	enum class MouseButton
-	{
-		left = GLFW_MOUSE_BUTTON_LEFT,
-		right = GLFW_MOUSE_BUTTON_RIGHT
-	};
 	GLFWwindow*& _window;
 
 public:
