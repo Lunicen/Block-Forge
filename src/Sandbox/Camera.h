@@ -21,6 +21,7 @@ class Camera
 	      _fieldOfView, _nearPane, _farPane;
 
 	HumanInterfaceDevice& _hid;
+	bool _isPaused;
 
 public:
 	Camera(int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);

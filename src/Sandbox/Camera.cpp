@@ -19,6 +19,8 @@ Camera::Camera(const int width, const int height, const glm::vec3 position, Huma
 	_fieldOfView = 45.0f;
 	_nearPane = 0.1f;
 	_farPane = 100.0f;
+
+	_isPaused = false;
 }
 
 void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
@@ -38,37 +40,47 @@ void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
 
 void Camera::HandleInput()
 {
-	if (_hid.IsKeyPressed(KeyboardKey::w))
+	if (_hid.IsPressedOnce(KeyboardKey::escape))
+	{
+		_isPaused = !_isPaused;
+	}
+
+	if (_isPaused)
+	{
+		return;
+	}
+
+	if (_hid.IsPressed(KeyboardKey::w))
 	{
 		_position += _speed * _orientation;
 	}
-	if (_hid.IsKeyPressed(KeyboardKey::a))
+	if (_hid.IsPressed(KeyboardKey::a))
 	{
 		_position += _speed * -normalize(cross(_orientation, _up));
 	}
-	if (_hid.IsKeyPressed(KeyboardKey::s))
+	if (_hid.IsPressed(KeyboardKey::s))
 	{
 		_position += _speed * -_orientation;
 	}
-	if (_hid.IsKeyPressed(KeyboardKey::d))
+	if (_hid.IsPressed(KeyboardKey::d))
 	{
 		_position += _speed * normalize(cross(_orientation, _up));
 	}
 
-	if (_hid.IsKeyPressed(KeyboardKey::space))
+	if (_hid.IsPressed(KeyboardKey::space))
 	{
 		_position += _speed * _up;
 	}
-	if (_hid.IsKeyPressed(KeyboardKey::leftShift))
+	if (_hid.IsPressed(KeyboardKey::leftShift))
 	{
 		_position += _speed * -_up;
 	}
 
-	if (_hid.IsKeyPressed(KeyboardKey::leftCtrl))
+	if (_hid.IsPressed(KeyboardKey::leftCtrl))
 	{
 		_speed = 0.4f;
 	}
-	else if (_hid.IsKeyReleased(KeyboardKey::leftCtrl))
+	else
 	{
 		_speed = _defaultSpeed;
 	}

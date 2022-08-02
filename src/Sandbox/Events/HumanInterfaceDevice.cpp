@@ -33,36 +33,86 @@ std::string HumanInterfaceDevice::ButtonDescription(const MouseButton& button) c
 	return std::to_string(static_cast<int>(button));
 }
 
+int HumanInterfaceDevice::GetState(const KeyboardKey& key) const
+{
+	return glfwGetKey(_window, static_cast<int>(key));
+}
+
+int HumanInterfaceDevice::GetState(const MouseButton& button) const
+{
+	return glfwGetMouseButton(_window, static_cast<int>(button));
+}
+
+void HumanInterfaceDevice::ResetOnceHandledInputStates()
+{
+	_onceHandledKeyboardKeys.clear();
+	_onceHandledMouseButtons.clear();
+}
+
 HumanInterfaceDevice::HumanInterfaceDevice(GLFWwindow*& window) : _window(window)
 {
 }
 
-bool HumanInterfaceDevice::IsKeyPressed(const KeyboardKey& key) const
+bool HumanInterfaceDevice::IsPressed(const KeyboardKey& key) const
 {
-	if (glfwGetKey(_window, static_cast<int>(key)) == GLFW_PRESS)
+	if (GetState(key) == GLFW_PRESS)
 	{
 		_log.Trace("Key pressed: " + KeyDescription(key));
 		return true;
 	}
+	
 	return false;
 }
 
-bool HumanInterfaceDevice::IsKeyReleased(const KeyboardKey& key) const
+bool HumanInterfaceDevice::IsPressedOnce(const KeyboardKey& key)
 {
-	return glfwGetKey(_window, static_cast<int>(key)) == GLFW_RELEASE;
+	if (GetState(key) == GLFW_PRESS && _onceHandledKeyboardKeys.find(key) == _onceHandledKeyboardKeys.end())
+	{
+		_onceHandledKeyboardKeys.insert(key);
+		return IsPressed(key);
+	}
+
+	if (IsReleased(key))
+	{
+		ResetOnceHandledInputStates();
+	}
+
+	return false;
 }
 
-bool HumanInterfaceDevice::IsButtonPressed(const MouseButton& button) const
+bool HumanInterfaceDevice::IsReleased(const KeyboardKey& key) const
 {
-	if (glfwGetMouseButton(_window, static_cast<int>(button)) == GLFW_PRESS)
+	return GetState(key) == GLFW_RELEASE;
+}
+
+bool HumanInterfaceDevice::IsPressed(const MouseButton& button) const
+{
+	if (GetState(button) == GLFW_PRESS)
 	{
 		_log.Trace("Button pressed: " + ButtonDescription(button));
 		return true;
 	}
+
 	return false;
 }
 
-bool HumanInterfaceDevice::IsButtonReleased(const MouseButton& button) const
+bool HumanInterfaceDevice::IsPressedOnce(const MouseButton& button)
 {
-	return glfwGetMouseButton(_window, static_cast<int>(button)) == GLFW_RELEASE;
+	if (GetState(button) == GLFW_PRESS && _onceHandledMouseButtons.find(button) == _onceHandledMouseButtons.end())
+	{
+		_onceHandledMouseButtons.insert(button);
+		return IsPressed(button);
+	}
+
+	if (IsReleased(button))
+	{
+		ResetOnceHandledInputStates();
+	}
+
+	return false;
+}
+
+bool HumanInterfaceDevice::IsReleased(const MouseButton& button) const
+{
+	return GetState(button) == GLFW_RELEASE;
 }
