@@ -15,9 +15,9 @@ void Sandbox::Run() const
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	if (!world->IsLoaded())
+	if (!_world->IsLoaded())
 	{
-		log.Error("Cannot start the simulation! The world is not loaded!");
+		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
 
@@ -27,7 +27,7 @@ void Sandbox::Run() const
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
 	{
-		log.Error("Failed to create window.");
+		_log.Error("Failed to create window.");
 		glfwTerminate();
 		return;
 	}
@@ -81,7 +81,7 @@ void Sandbox::Run() const
 
 		shader.Load();
 		camera.HandleInput();
-		camera.UpdateMatrix(shader, "camera");
+		camera.AddToShader(shader, "camera");
 		vao.Bind();
 
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);

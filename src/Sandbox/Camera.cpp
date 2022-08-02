@@ -86,7 +86,7 @@ void Camera::HandleCursorMovement()
 	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
 }
 
-void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
+void Camera::AddToShader(const Shader& shader, const char* uniformName) const
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto view = glm::mat4(1.0f);
