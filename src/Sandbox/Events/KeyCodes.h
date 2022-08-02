@@ -8,7 +8,8 @@ enum class KeyboardKey
 	s = GLFW_KEY_S,
 	d = GLFW_KEY_D,
 
-	space = GLFW_KEY_SPACE,
+	escape	= GLFW_KEY_ESCAPE,
+	space	= GLFW_KEY_SPACE,
 
 	leftShift	= GLFW_KEY_LEFT_SHIFT,
 	rightShift	= GLFW_KEY_RIGHT_SHIFT,
