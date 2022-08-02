@@ -21,6 +21,7 @@ class Camera
 	      _fieldOfView, _nearPane, _farPane;
 
 	HumanInterfaceDevice& _hid;
+	GLFWwindow*& _window;
 	bool _isPaused;
 
 	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
@@ -28,7 +29,7 @@ class Camera
 	void HandleSpeed(const KeyboardKey& boost, float boostSpeed);
 
 public:
-	Camera(int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	void UpdateMatrix(const Shader& shader, const char* uniformName) const;
 	void HandleInput();

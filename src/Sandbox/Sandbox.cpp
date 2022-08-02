@@ -72,7 +72,7 @@ void Sandbox::Run() const
 	ebo.Unbind();
 
 	HumanInterfaceDevice hid(window);
-	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
+	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
 
 	while(!glfwWindowShouldClose(window))
 	{
