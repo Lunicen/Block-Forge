@@ -23,6 +23,44 @@ Camera::Camera(const int width, const int height, const glm::vec3 position, Huma
 	_isPaused = false;
 }
 
+void Camera::HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward,
+	const KeyboardKey& backward)
+{
+	if (_hid.IsPressed(left))
+	{
+		_position += _speed * -normalize(cross(_orientation, _up));
+	}
+	if (_hid.IsPressed(right))
+	{
+		_position += _speed * normalize(cross(_orientation, _up));
+	}
+	if (_hid.IsPressed(forward))
+	{
+		_position += _speed * _orientation;
+	}
+	if (_hid.IsPressed(backward))
+	{
+		_position += _speed * -_orientation;
+	}
+}
+
+void Camera::HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down)
+{
+	if (_hid.IsPressed(up))
+	{
+		_position += _speed * _up;
+	}
+	if (_hid.IsPressed(down))
+	{
+		_position += _speed * -_up;
+	}
+}
+
+void Camera::HandleSpeed(const KeyboardKey& boost, const float boostSpeed)
+{
+	_speed = _hid.IsPressed(boost) ? _defaultSpeed : boostSpeed;
+}
+
 void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
@@ -50,40 +88,12 @@ void Camera::HandleInput()
 		return;
 	}
 
-	if (_hid.IsPressed(KeyboardKey::w))
-	{
-		_position += _speed * _orientation;
-	}
-	if (_hid.IsPressed(KeyboardKey::a))
-	{
-		_position += _speed * -normalize(cross(_orientation, _up));
-	}
-	if (_hid.IsPressed(KeyboardKey::s))
-	{
-		_position += _speed * -_orientation;
-	}
-	if (_hid.IsPressed(KeyboardKey::d))
-	{
-		_position += _speed * normalize(cross(_orientation, _up));
-	}
+	HandleHorizontalMovement(KeyboardKey::a, KeyboardKey::d, KeyboardKey::w, KeyboardKey::s);
+	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftShift);
+	HandleSpeed(KeyboardKey::leftCtrl, 0.4f);
+	
 
-	if (_hid.IsPressed(KeyboardKey::space))
-	{
-		_position += _speed * _up;
-	}
-	if (_hid.IsPressed(KeyboardKey::leftShift))
-	{
-		_position += _speed * -_up;
-	}
 
-	if (_hid.IsPressed(KeyboardKey::leftCtrl))
-	{
-		_speed = 0.4f;
-	}
-	else
-	{
-		_speed = _defaultSpeed;
-	}
 }
 
 inline int Camera::GetWidth() const

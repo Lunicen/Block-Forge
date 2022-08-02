@@ -23,6 +23,10 @@ class Camera
 	HumanInterfaceDevice& _hid;
 	bool _isPaused;
 
+	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
+	void HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down);
+	void HandleSpeed(const KeyboardKey& boost, float boostSpeed);
+
 public:
 	Camera(int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
 
