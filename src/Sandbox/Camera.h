@@ -27,6 +27,7 @@ class Camera
 	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
 	void HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down);
 	void HandleSpeed(const KeyboardKey& boost, float boostSpeed);
+	void HandleCursorMovement();
 
 public:
 	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);

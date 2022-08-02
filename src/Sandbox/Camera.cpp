@@ -63,6 +63,29 @@ void Camera::HandleSpeed(const KeyboardKey& boost, const float boostSpeed)
 	_speed = _hid.IsPressed(boost) ? boostSpeed : _defaultSpeed;
 }
 
+void Camera::HandleCursorMovement()
+{
+	double mouseX, mouseY;
+	glfwGetCursorPos(_window, &mouseX, &mouseY);
+
+	const double middleAxisX = static_cast<double>(_width) / 2.0;
+	const double middleAxisY = static_cast<double>(_height) / 2.0;
+	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_height));
+	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_width));
+
+	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _up)));
+	const auto angleWithXAxis = abs(angle(orientation, _up) - glm::radians(90.0f));
+
+	// This prevents the barrel roll situation when looking up
+	if (angleWithXAxis < glm::radians(88.0f))
+	{
+		_orientation = orientation;
+	}
+
+	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _up);
+	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
+}
+
 void Camera::UpdateMatrix(const Shader& shader, const char* uniformName) const
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
@@ -101,25 +124,7 @@ void Camera::HandleInput()
 	HandleHorizontalMovement(KeyboardKey::a, KeyboardKey::d, KeyboardKey::w, KeyboardKey::s);
 	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftShift);
 	HandleSpeed(KeyboardKey::leftCtrl, 0.4f);
-
-	double mouseX, mouseY;
-	glfwGetCursorPos(_window, &mouseX, &mouseY);
-
-	const float middleAxisX = static_cast<float>(_width) / 2.0f;
-	const float middleAxisY = static_cast<float>(_height) / 2.0f;
-	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY) - middleAxisY) / static_cast<float>(_height);
-	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX) - middleAxisX) / static_cast<float>(_width);
-
-	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _up);
-
-	// This prevents the barrel roll situation on looking at the top
-	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _up)));
-	if (abs(angle(orientation, _up) - glm::radians(90.0f)) <= glm::radians(85.0f))
-	{
-		_orientation = orientation;
-	}
-
-	glfwSetCursorPos(_window, static_cast<double>(_width) / 2, static_cast<double>(_height) / 2);
+	HandleCursorMovement();
 }
 
 inline int Camera::GetWidth() const
