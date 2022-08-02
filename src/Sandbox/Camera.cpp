@@ -65,7 +65,8 @@ void Camera::HandleSpeed(const KeyboardKey& boost, const float boostSpeed)
 
 void Camera::HandleCursorMovement()
 {
-	double mouseX, mouseY;
+	double mouseX;
+	double mouseY;
 	glfwGetCursorPos(_window, &mouseX, &mouseY);
 
 	const double middleAxisX = static_cast<double>(_width) / 2.0;

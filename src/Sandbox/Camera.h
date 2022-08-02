@@ -19,9 +19,15 @@ class Camera
 	glm::vec3 _orientation{};
 	glm::vec3 _up{};
 
-	int _width, _height;
-	float _defaultSpeed, _speed, _sensitivity,
-	      _fieldOfView, _nearPane, _farPane;
+	int _width;
+	int _height;
+
+	float _defaultSpeed;
+	float _speed;
+	float _sensitivity;
+	float _fieldOfView;
+	float _nearPane;
+	float _farPane;
 
 	HumanInterfaceDevice& _hid;
 	GLFWwindow*& _window;
