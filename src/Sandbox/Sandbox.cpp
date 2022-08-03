@@ -46,14 +46,14 @@ void Sandbox::Run() const
 	constexpr GLfloat vertices[24] =
 	{
 		-0.5f, -0.5f, 0.5f,
-		-0.5f, 0.5f, 0.5f,
+		-0.5f,  0.5f, 0.5f,
 		 0.5f,  0.5f, 0.5f,
 		 0.5f, -0.5f, 0.5f,
 		 
 		 -0.5f, -0.5f, 1.5f,
-		 -0.5f, 0.5f, 1.5f,
-		 0.5f,  0.5f, 1.5f,
-		 0.5f, -0.5f, 1.5f,
+		 -0.5f,  0.5f, 1.5f,
+		  0.5f,  0.5f, 1.5f,
+		  0.5f, -0.5f, 1.5f,
 	};
 
 	constexpr GLuint indices[36]
@@ -76,9 +76,6 @@ void Sandbox::Run() const
 
 		4, 7, 5,
 		5, 6, 7
-		
-
-
 	};
 
 	const Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
