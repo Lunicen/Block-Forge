@@ -12,8 +12,8 @@
 ///	and `.frag` for the fragment shader files.
 class Shader : protected FileUtils
 {
-	GLuint program{};
-	Log& log = Log::Get();
+	GLuint _program{};
+	Log& _log = Log::Get();
 
 	std::string GetFileContents(const std::string& filename) const;
 	void InitializeProgram(const GLuint& vertexShader, const GLuint& fragmentShader);
@@ -34,6 +34,9 @@ public:
 
 	/// @brief Tells OpenGL to stop using this shader program.
 	void Unload() const;
+
+	/// @brief Returns the shader program.
+	GLuint GetProgram() const;
 
 	~Shader();
 };
