@@ -31,26 +31,49 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, 800, 800);
 
-	//    6-------5  
+	//    5-------6  
 	//   /|      /|   
 	//  1-------2 | 
 	//  | |     | |   
-	//  | 7-----|-4  
+	//  | 4-----|-7  
 	//  |/      |/    
 	//  0-------3 
-	constexpr GLfloat vertices[12] =
+	constexpr GLfloat vertices[24] =
 	{
-		-1.0f, -1.0f, 1.0f,
-		-1.0f,  1.0f, 1.0f,
-		 1.0f,  1.0f, 1.0f,
-		 1.0f, -1.0f, 1.0f
+		-0.5f, -0.5f, 0.5f,
+		-0.5f, 0.5f, 0.5f,
+		 0.5f,  0.5f, 0.5f,
+		 0.5f, -0.5f, 0.5f,
+		 
+		 -0.5f, -0.5f, 1.0f,
+		 -0.5f, 0.5f, 1.0f,
+		 0.5f,  0.5f, 1.0f,
+		 0.5f, -0.5f, 1.0f,
 	};
 
-	constexpr GLuint indices[6]
+	constexpr GLuint indices[36]
 	{
 		// front
 		0, 1, 2,
-		2, 3, 0
+		2, 3, 0,
+
+		2, 3, 7,
+		7, 6, 2,
+
+		1, 2, 5,
+		5, 6, 2,
+
+		0, 4, 1,
+		1, 5, 4,
+
+		0, 3, 4,
+		4, 7, 3,
+
+		4, 7, 5,
+		5, 6, 7
+		
+
+
 	};
 
 	const Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
