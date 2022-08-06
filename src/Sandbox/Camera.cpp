@@ -123,8 +123,8 @@ void Camera::HandleInput()
 	}
 
 	HandleHorizontalMovement(KeyboardKey::a, KeyboardKey::d, KeyboardKey::w, KeyboardKey::s);
-	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftShift);
-	HandleSpeed(KeyboardKey::leftCtrl, 0.4f);
+	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftCtrl);
+	HandleSpeed(KeyboardKey::leftShift, 0.4f);
 	HandleCursorMovement();
 }
 

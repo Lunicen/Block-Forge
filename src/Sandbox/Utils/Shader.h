@@ -19,9 +19,9 @@ class Shader : protected FileUtils
 	void InitializeProgram(const GLuint& vertexShader, const GLuint& fragmentShader);
 
 public:
-	Shader(const Shader&) = delete;
+	Shader(const Shader&) = default;
 	Shader(Shader&&) = delete;
-	Shader& operator=(Shader) = delete;
+	Shader& operator=(const Shader&) { return *this; }
 	Shader& operator=(Shader&&) = delete;
 
 	/// @brief Shader constructor.

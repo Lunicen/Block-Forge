@@ -1,19 +1,81 @@
 #include "Sandbox.h"
 #include "World.h"
+
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Block.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
 #include "Utils/BufferUtils.h"
 
-void Sandbox::Run() const
+constexpr int width = 800;
+constexpr int height = 800;
+
+void Sandbox::InitializeGlfw()
 {
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+	// The target version is 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+}
+
+/*
+	//    5-------6  
+	//   /|      /|   
+	//  1-------2 | 
+	//  | |     | |   
+	//  | 4-----|-7  
+	//  |/      |/    
+	//  0-------3 
+constexpr GLfloat vertices[24] =
+{
+	-0.5f, -0.5f, 0.5f,
+	-0.5f, 0.5f, 0.5f,
+	 0.5f,  0.5f, 0.5f,
+	 0.5f, -0.5f, 0.5f,
+
+	 -0.5f, -0.5f, 1.5f,
+	 -0.5f, 0.5f, 1.5f,
+	 0.5f,  0.5f, 1.5f,
+	 0.5f, -0.5f, 1.5f,
+};
+
+constexpr GLuint indices[36]
+{
+	// front
+	0, 1, 2,
+	2, 3, 0,
+
+	2, 3, 7,
+	7, 6, 2,
+
+	1, 2, 5,
+	5, 6, 2,
+
+	0, 4, 1,
+	1, 5, 4,
+
+	0, 3, 4,
+	4, 7, 3,
+
+	4, 7, 5,
+	5, 6, 7
+};
+*/
+
+
+void Sandbox::Run() const
+{
+	constexpr int width = 800;
+	constexpr int height = 800;
+
+
+	InitializeGlfw();
 
 	if (!_world->IsLoaded())
 	{
@@ -21,8 +83,6 @@ void Sandbox::Run() const
 		return;
 	}
 
-	constexpr int width = 800;
-	constexpr int height = 800;
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -36,31 +96,17 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	//    6-------5  
-	//   /|      /|   
-	//  1-------2 | 
-	//  | |     | |   
-	//  | 7-----|-4  
-	//  |/      |/    
-	//  0-------3
-	constexpr float edge = 0.4f;
-	constexpr GLfloat vertices[12] =
-	{
-		-edge, -edge, edge,
-		-edge,  edge, edge,
-		 edge,  edge, edge,
-		 edge, -edge, edge
-	};
 
-	constexpr GLuint indices[6]
-	{
-		// front
-		0, 1, 2,
-		2, 3, 0
-	};
+	Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	const Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	//test area//////////////////////
+	Block * testBlock;
+	testBlock = new Block(0, 0, 0, shader);
+	//end of test area//////////////
 
+
+
+	/*
 	VertexArray vao;
 	VertexBuffer vbo(vertices, sizeof(vertices));
 	ElementBuffer ebo(indices, sizeof(indices));
@@ -70,22 +116,27 @@ void Sandbox::Run() const
 	vao.Unbind();
 	vbo.Unbind();
 	ebo.Unbind();
+	*/
+
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
+
+
 
 	while(!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		shader.Load();
+		//shader.Load();
 		camera.HandleInput();
 		camera.AddToShader(shader, "camera");
-		vao.Bind();
+		//vao.Bind();
 
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
-		
+		//glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
+		testBlock->Draw();
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
