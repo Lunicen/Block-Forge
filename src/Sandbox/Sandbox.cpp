@@ -54,13 +54,8 @@ void Sandbox::Run() const
 
 	Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	//test area//////////////////////
-	Block* testBlock1;
-	Blocktest* testBlock2;
-	testBlock1 = new Block(0, 0, 0);
-	testBlock2 = new Blocktest(2, 2, 0);
-	//end of test area//////////////
-
+	auto block1 = new Block(1, 1, 1);
+	auto block2 = new Block(2, 2, 2);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
@@ -71,21 +66,16 @@ void Sandbox::Run() const
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		shader.Load(); //w teori shader mo¿e byæ tu i byæ w ogóle nie podany do bloku
+		shader.Load();
 		camera.HandleInput();
 		camera.AddToShader(shader, "camera");
 
-		//vao.Bind();
-
-		testBlock1->Draw();
-		testBlock2->Draw();
-
+		block1->Draw();
+		block2->Draw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	//TODO delete testblocks here and unbind everything and so on...
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

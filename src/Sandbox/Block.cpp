@@ -1,5 +1,6 @@
 #include "Block.h"
 
+#include <glm/gtx/transform.hpp>
 
 
 Block::Block(float x, float y, float z) //there must be initialization list otherwise memory will be used more, and also because reference demands initialization lits
@@ -16,14 +17,20 @@ Block::Block(float x, float y, float z) //there must be initialization list othe
 	vao.Unbind();
 	vbo.Unbind();
 	ebo.Unbind();
+
+	Move(x, y, z);
+}
+
+void Block::Move(float x, float y, float z)
+{
+	const auto origin = glm::mat4(1.0f);
+	const auto moveTo = glm::vec3(x, y, z);
+
+	translate(origin, moveTo);
 }
 
 void Block::Draw()
 {
 	vao.Bind();
-	glPushMatrix();
-	glTranslatef(x, y, z); //TODO sprawdziæ czy nie lepiej +x, +y, +z
 	glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
-	//glTranslatef(-x, -y, -z);
-	glPopMatrix();
 }

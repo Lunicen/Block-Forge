@@ -58,7 +58,8 @@ class Block
 
 
 public:
-		Block(float x, float y, float z);
-		void Draw();
+	Block(float x, float y, float z);
+	void Move(float x, float y, float z);
+	void Draw();
 };
 
