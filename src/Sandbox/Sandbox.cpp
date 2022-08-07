@@ -1,11 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
 
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Block.h"
+#include "Blocktest.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
@@ -23,51 +23,6 @@ void Sandbox::InitializeGlfw()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
-
-/*
-	//    5-------6  
-	//   /|      /|   
-	//  1-------2 | 
-	//  | |     | |   
-	//  | 4-----|-7  
-	//  |/      |/    
-	//  0-------3 
-constexpr GLfloat vertices[24] =
-{
-	-0.5f, -0.5f, 0.5f,
-	-0.5f, 0.5f, 0.5f,
-	 0.5f,  0.5f, 0.5f,
-	 0.5f, -0.5f, 0.5f,
-
-	 -0.5f, -0.5f, 1.5f,
-	 -0.5f, 0.5f, 1.5f,
-	 0.5f,  0.5f, 1.5f,
-	 0.5f, -0.5f, 1.5f,
-};
-
-constexpr GLuint indices[36]
-{
-	// front
-	0, 1, 2,
-	2, 3, 0,
-
-	2, 3, 7,
-	7, 6, 2,
-
-	1, 2, 5,
-	5, 6, 2,
-
-	0, 4, 1,
-	1, 5, 4,
-
-	0, 3, 4,
-	4, 7, 3,
-
-	4, 7, 5,
-	5, 6, 7
-};
-*/
-
 
 void Sandbox::Run() const
 {
@@ -100,28 +55,15 @@ void Sandbox::Run() const
 	Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
 	//test area//////////////////////
-	Block * testBlock;
-	testBlock = new Block(0, 0, 0, shader);
+	Block* testBlock1;
+	Blocktest* testBlock2;
+	testBlock1 = new Block(0, 0, 0);
+	testBlock2 = new Blocktest(2, 2, 0);
 	//end of test area//////////////
-
-
-
-	/*
-	VertexArray vao;
-	VertexBuffer vbo(vertices, sizeof(vertices));
-	ElementBuffer ebo(indices, sizeof(indices));
-
-	vao.Link(vbo, 0);
-
-	vao.Unbind();
-	vbo.Unbind();
-	ebo.Unbind();
-	*/
 
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
-
 
 
 	while(!glfwWindowShouldClose(window))
@@ -129,17 +71,21 @@ void Sandbox::Run() const
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//shader.Load();
+		shader.Load(); //w teori shader mo¿e byæ tu i byæ w ogóle nie podany do bloku
 		camera.HandleInput();
 		camera.AddToShader(shader, "camera");
+
 		//vao.Bind();
 
-		//glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
-		testBlock->Draw();
+		testBlock1->Draw();
+		testBlock2->Draw();
+
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	//TODO delete testblocks here and unbind everything and so on...
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

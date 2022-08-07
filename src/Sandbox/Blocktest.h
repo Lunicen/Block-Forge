@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 
-class Block
+class Blocktest
 {
 	private:
 
@@ -18,15 +18,15 @@ class Block
 		//  0-------3 
 		GLfloat vertices[24] =
 		{
-			-0.5f, -0.5f, 0.5f,
-			-0.5f, 0.5f, 0.5f,
-			 0.5f,  0.5f, 0.5f,
-			 0.5f, -0.5f, 0.5f,
+			-1.0f, -1.0f, 1.0f,
+			-1.0f, 1.0f, 1.0f,
+			 1.0f,  1.0f, 1.0f,
+			 1.0f, -1.0f, 1.0f,
 
-			 -0.5f, -0.5f, 1.5f,
-			 -0.5f, 0.5f, 1.5f,
-			 0.5f,  0.5f, 1.5f,
-			 0.5f, -0.5f, 1.5f,
+			 -1.0f, -1.0f, 1.5f,
+			 -1.0f, 1.0f, 1.5f,
+			 1.0f,  1.0f, 1.5f,
+			 1.0f, -1.0f, 1.5f,
 		};
 
 		GLuint indices[36]
@@ -58,7 +58,7 @@ class Block
 
 
 public:
-		Block(float x, float y, float z);
+		Blocktest(float x, float y, float z);
 		void Draw();
 };
 

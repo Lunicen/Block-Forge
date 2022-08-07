@@ -1,8 +1,8 @@
-#include "Block.h"
+#include "Blocktest.h"
 
 
 
-Block::Block(float x, float y, float z) //there must be initialization list otherwise memory will be used more, and also because reference demands initialization lits
+Blocktest::Blocktest(float x, float y, float z) //there must be initialization list otherwise memory will be used more, and also because reference demands initialization lits
 {
 	this->x = x;
 	this->y = y;
@@ -18,7 +18,7 @@ Block::Block(float x, float y, float z) //there must be initialization list othe
 	ebo.Unbind();
 }
 
-void Block::Draw()
+void Blocktest::Draw()
 {
 	vao.Bind();
 	glPushMatrix();
