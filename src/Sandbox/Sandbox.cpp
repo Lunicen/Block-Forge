@@ -5,14 +5,10 @@
 #include <GLFW/glfw3.h>
 
 #include "Block.h"
-#include "Blocktest.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
 #include "Utils/BufferUtils.h"
-
-constexpr int width = 800;
-constexpr int height = 800;
 
 void Sandbox::InitializeGlfw()
 {
@@ -29,7 +25,6 @@ void Sandbox::Run() const
 	constexpr int width = 800;
 	constexpr int height = 800;
 
-
 	InitializeGlfw();
 
 	if (!_world->IsLoaded())
@@ -37,7 +32,6 @@ void Sandbox::Run() const
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
-
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -51,26 +45,25 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-
-	Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
-
-	auto block1 = new Block(1, 1, 1);
-	auto block2 = new Block(2, 2, 2);
+	auto block1 = new Block(0, 0, 0);
+	auto block2 = new Block(0, 1, 0);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
-
 
 	while(!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		shader.Load();
 		camera.HandleInput();
-		camera.AddToShader(shader, "camera");
 
+		block1->GetShader().Load();
+		camera.Add(*block1);
 		block1->Draw();
+
+		block2->GetShader().Load();
+		camera.Add(*block2);
 		block2->Draw();
 
 		glfwSwapBuffers(window);

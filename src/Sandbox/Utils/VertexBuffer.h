@@ -13,7 +13,7 @@ public:
 	explicit VertexBuffer(const GLfloat* vertices, GLsizeiptr size);
 
 	VertexBuffer(const VertexBuffer&) = delete;
-	VertexBuffer(VertexBuffer&&) = delete;
+	VertexBuffer(VertexBuffer&&) = default;
 	VertexBuffer& operator=(const VertexBuffer&) = delete;
 	VertexBuffer& operator=(VertexBuffer&&) = delete;
 

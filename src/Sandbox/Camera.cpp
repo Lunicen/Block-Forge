@@ -87,7 +87,7 @@ void Camera::HandleCursorMovement()
 	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
 }
 
-void Camera::AddToShader(const Shader& shader, const char* uniformName) const
+void Camera::Add(const Block& block) const
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto view = glm::mat4(1.0f);
@@ -99,7 +99,7 @@ void Camera::AddToShader(const Shader& shader, const char* uniformName) const
 	auto projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
 
-	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), uniformName), 1, GL_FALSE, value_ptr(projection * view));
+	glUniformMatrix4fv(glGetUniformLocation(block.GetShader().GetProgram(), "camera"), 1, GL_FALSE, value_ptr(projection * view));
 }
 
 void Camera::HandleInput()
@@ -126,6 +126,11 @@ void Camera::HandleInput()
 	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftCtrl);
 	HandleSpeed(KeyboardKey::leftShift, 0.4f);
 	HandleCursorMovement();
+}
+
+glm::vec3 Camera::GetPosition() const
+{
+	return _position;	
 }
 
 inline int Camera::GetWidth() const

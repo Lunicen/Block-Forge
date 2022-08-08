@@ -20,7 +20,7 @@ class Shader : protected FileUtils
 
 public:
 	Shader(const Shader&) = default;
-	Shader(Shader&&) = delete;
+	Shader(Shader&&) = default;
 	Shader& operator=(const Shader&) { return *this; }
 	Shader& operator=(Shader&&) = delete;
 

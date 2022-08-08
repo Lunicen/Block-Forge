@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
+#include "Block.h"
 #include "Utils/Shader.h"
 #include "Events/HumanInterfaceDevice.h"
 
@@ -48,13 +49,16 @@ public:
 	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	/// @brief Adds the camera handling to the shader.
-	///	@param shader - the requested shader.
-	///	@param uniformName - the name of the uniform that is specified in the shader `.vert` file.
+	///	@param block - the block instance name.
 	///	@attention This method should be called **before** the #HandleInput method
-	void AddToShader(const Shader& shader, const char* uniformName) const;
+	void Add(const Block& block) const;
 
 	/// @brief Captures input and moves the camera accordingly.
 	void HandleInput();
+
+	/// @brief Get camera position.
+	///	@return Returns 3D vector representation.
+	glm::vec3 GetPosition() const;
 
 	/// @brief Get width.
 	int GetWidth() const;
