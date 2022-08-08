@@ -57,8 +57,8 @@ class Block
 	ElementBuffer _ebo = ElementBuffer(_indices, sizeof(_indices));
 
 public:
-	Block(float x, float y, float z, Shader& shader);
-	void Move(float x, float y, float z);
+	Block(int x, int y, int z, Shader& shader);
+	void Move(int x, int y, int z);
 	void Draw() const;
 
 	Shader GetShader() const;

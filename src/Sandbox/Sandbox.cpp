@@ -4,10 +4,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Block.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
+#include "World/Chunk.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -46,11 +46,11 @@ void Sandbox::Run() const
 
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	auto block1 = new Block(0, 0, 0, blockShader);
-	auto block2 = new Block(0, 1, 1, blockShader);
-
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
+
+	auto chunk = Chunk(glm::vec3(0, 0, 0), blockShader, camera);
+	chunk.Load();
 
 	while(!glfwWindowShouldClose(window))
 	{
@@ -60,18 +60,13 @@ void Sandbox::Run() const
 		camera.Update();
 		camera.HandleInput();
 
-		camera.Add(block1);
-		block1->Draw();
-
-		camera.Add(block2);
-		block2->Draw();
+		chunk.Draw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	delete block2;
-	delete block1;
+	chunk.Unload();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

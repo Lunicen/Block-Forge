@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Chunk.cpp" />
     <ClCompile Include="src\Sandbox\Block.cpp" />
     <ClCompile Include="src\Sandbox\Events\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Sandbox\Camera.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Chunk.h" />
     <ClInclude Include="src\Sandbox\Block.h" />
     <ClInclude Include="src\Sandbox\Events\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Sandbox\Camera.h" />
