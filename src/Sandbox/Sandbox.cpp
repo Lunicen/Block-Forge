@@ -8,7 +8,6 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
-#include "Utils/BufferUtils.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -70,6 +69,9 @@ void Sandbox::Run() const
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	delete block2;
+	delete block1;
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

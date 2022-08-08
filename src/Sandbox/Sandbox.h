@@ -9,9 +9,8 @@ class Sandbox
 {
 	std::unique_ptr<World> _world = nullptr;
 	Log& _log = Log::Get();
-private:
-	static void InitializeGlfw(); //TODO uwaga ta funkcja jest te¿ w main menu, mo¿e przenieœæ gdzieœ indziej j¹ w takim wypadku?
 
+	static void InitializeGlfw();
 
 public:
 
