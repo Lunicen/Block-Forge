@@ -45,8 +45,10 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	auto block1 = new Block(0, 0, 0);
-	auto block2 = new Block(0, 1, 0);
+	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+
+	auto block1 = new Block(0, 0, 0, blockShader);
+	auto block2 = new Block(0, 1, 0, blockShader);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);

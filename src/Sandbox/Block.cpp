@@ -4,7 +4,7 @@
 #include <glm/gtx/transform.hpp>
 
 
-Block::Block(const float x, const float y, const float z)
+Block::Block(const float x, const float y, const float z, Shader& shader) : _shader(shader)
 {
 	_vao.Link(_vbo, 0);
 

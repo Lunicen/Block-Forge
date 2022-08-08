@@ -49,7 +49,7 @@ class Block
 		5, 6, 7
 	};
 
-	Shader _shader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	Shader& _shader;
 	glm::mat4 _position{};
 
 	VertexArray _vao;
@@ -57,7 +57,7 @@ class Block
 	ElementBuffer _ebo = ElementBuffer(_indices, sizeof(_indices));
 
 public:
-	Block(float x, float y, float z);
+	Block(float x, float y, float z, Shader& shader);
 	void Move(float x, float y, float z);
 	void Draw() const;
 
