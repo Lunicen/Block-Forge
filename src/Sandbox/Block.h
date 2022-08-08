@@ -5,6 +5,8 @@
 #include <glm/gtx/transform.hpp>
 
 
+/// @class Block
+/// @brief Handles Block existence
 class Block
 {
 	//    5-------6  
@@ -57,10 +59,23 @@ class Block
 	ElementBuffer _ebo = ElementBuffer(_indices, sizeof(_indices));
 
 public:
+	/// @brief This is a Constructor that allows to create a block.
+	/// @param x - X coordinate.
+	///	@param y - Y coordinate.
+	///	@param z - Z coordinate.
+	///	@param shader - Shader that block will use.
 	Block(float x, float y, float z, Shader& shader);
+
+	/// @brief This moves block to the x, y, z coordinates.
+	/// @param x - X coordinate.
+	///	@param y - Y coordinate.
+	///	@param z - Z coordinate.
 	void Move(float x, float y, float z);
+
+	/// @brief This draws block.
 	void Draw() const;
 
+	/// @brief This returns shader that block is using.
 	Shader GetShader() const;
 };
 
