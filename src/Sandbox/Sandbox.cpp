@@ -48,7 +48,7 @@ void Sandbox::Run() const
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
 	auto block1 = new Block(0, 0, 0, blockShader);
-	auto block2 = new Block(0, 1, 0, blockShader);
+	auto block2 = new Block(0, 1, 1, blockShader);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
@@ -58,14 +58,13 @@ void Sandbox::Run() const
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		camera.Update();
 		camera.HandleInput();
 
-		block1->GetShader().Load();
-		camera.Add(*block1);
+		camera.Add(block1);
 		block1->Draw();
 
-		block2->GetShader().Load();
-		camera.Add(*block2);
+		camera.Add(block2);
 		block2->Draw();
 
 		glfwSwapBuffers(window);

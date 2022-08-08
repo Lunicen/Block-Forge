@@ -6,7 +6,6 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Block.h"
-#include "Utils/Shader.h"
 #include "Events/HumanInterfaceDevice.h"
 
 /// @class Camera
@@ -19,6 +18,7 @@ class Camera
 	glm::vec3 _position{};
 	glm::vec3 _orientation{};
 	glm::vec3 _up{};
+	glm::mat4 _orthographicProjection = glm::mat4(1.0f);;
 
 	int _width;
 	int _height;
@@ -48,10 +48,12 @@ public:
 	/// @param hid - Pointer to the HID handler.
 	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
 
+	/// @brief Update the camera orthographic projection settings.
+	void Update();
+
 	/// @brief Adds the camera handling to the shader.
 	///	@param block - the block instance name.
-	///	@attention This method should be called **before** the #HandleInput method
-	void Add(const Block& block) const;
+	void Add(Block*& block) const;
 
 	/// @brief Captures input and moves the camera accordingly.
 	void HandleInput();
