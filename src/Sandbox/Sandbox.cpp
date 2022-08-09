@@ -44,6 +44,12 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
+	glEnable(GL_DEPTH_TEST);
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CCW);
+
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
 	HumanInterfaceDevice hid(window);
@@ -55,7 +61,7 @@ void Sandbox::Run() const
 	while(!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		camera.Update();
 		camera.HandleInput();

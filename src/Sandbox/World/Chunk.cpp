@@ -1,6 +1,6 @@
 #include "Chunk.h"
 
-void Chunk::IterateThroughChunkAnd(Action actionToDo)
+void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 {
 	const auto xStart = static_cast<int>(_origin.x);
 	const auto yStart = static_cast<int>(_origin.y);
@@ -34,6 +34,7 @@ void Chunk::IterateThroughChunkAnd(Action actionToDo)
 
 Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _origin(origin), _blockShader(blockShader), _camera(camera)
 {
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void Chunk::Load()
