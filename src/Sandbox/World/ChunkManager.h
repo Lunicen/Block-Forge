@@ -8,7 +8,8 @@ class ChunkManager
 	Log& _log = Log::Get();
 
 	Camera& _camera;
-	unsigned _distance;
+	unsigned _renderDistance;
+	unsigned _chunksToRender;
 
 	std::vector<Chunk*> _loadedChunks = {};
 	static unsigned CountChunksRecursive(unsigned level);

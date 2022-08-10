@@ -8,9 +8,10 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 	return result + CountChunksRecursive(level - 1);
 }
 
-ChunkManager::ChunkManager(const unsigned renderDistance, Camera& camera) : _camera(camera), _distance(renderDistance)
+ChunkManager::ChunkManager(const unsigned renderDistance, Camera& camera) : _camera(camera), _renderDistance(renderDistance)
 {
-	_log.Debug("Chunks to render: " + std::to_string(GetChunksToRenderCount()));
+	_chunksToRender = GetChunksToRenderCount();
+	_loadedChunks.reserve(_chunksToRender);
 }
 
 void ChunkManager::Update()
@@ -21,10 +22,10 @@ void ChunkManager::Update()
 unsigned ChunkManager::GetChunksToRenderCount() const
 {
 	unsigned result = 0;
-	for (size_t i = 0; i < _distance; ++i)
+	for (size_t i = 0; i < _renderDistance; ++i)
 	{
 		result += 2 * CountChunksRecursive(i);
 	}
 
-	return CountChunksRecursive(_distance) + result; 
+	return CountChunksRecursive(_renderDistance) + result; 
 }
