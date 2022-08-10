@@ -5,7 +5,7 @@
 #include "Sandbox/Block.h"
 #include "Sandbox/Camera.h"
 
-constexpr int chunk_size = 8;
+constexpr int chunk_size = 3;
 
 class Chunk
 {

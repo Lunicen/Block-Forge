@@ -8,14 +8,18 @@ class ChunkManager
 	Log& _log = Log::Get();
 
 	Camera& _camera;
-	unsigned _renderDistance;
+	int _renderDistance;
 	unsigned _chunksToRender;
+	glm::vec3 _lastPosition{};
 
 	std::vector<Chunk*> _loadedChunks = {};
 	static unsigned CountChunksRecursive(unsigned level);
+	void UpdateChunksContainer(glm::vec3 position);
+
+	Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
 public:
-	ChunkManager(unsigned renderDistance, Camera& camera);
+	ChunkManager(int renderDistance, Camera& camera);
 	void Update();
 
 	unsigned GetChunksToRenderCount() const;

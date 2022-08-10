@@ -2,20 +2,20 @@
 
 void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 {
-	const auto xStart = static_cast<int>(_origin.x);
-	const auto yStart = static_cast<int>(_origin.y);
-	const auto zStart = static_cast<int>(_origin.z);
+	const auto xBlock = static_cast<int>(_origin.x);
+	const auto yBlock = static_cast<int>(_origin.y);
+	const auto zBlock = static_cast<int>(_origin.z);
 
-	for (int x = xStart; x < chunk_size; ++x)
+	for (int x = 0; x < chunk_size; ++x)
 	{
-		for (auto y = yStart; y < chunk_size; ++y)
+		for (auto y = 0; y < chunk_size; ++y)
 		{
-			for (auto z = zStart; z < chunk_size; ++z)
+			for (auto z = 0; z < chunk_size; ++z)
 			{
 				switch (actionToDo)
 				{
 					case Action::allocateBlocks: 
-						_blocks[x][y][z] = new Block(x, y, z, _blockShader);
+						_blocks[x][y][z] = new Block(x + xBlock, y + yBlock, z + zBlock, _blockShader);
 						break;
 
 					case Action::drawChunk: 
@@ -32,9 +32,9 @@ void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 	}
 }
 
-Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _origin(origin), _blockShader(blockShader), _camera(camera)
+Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blockShader(blockShader), _camera(camera)
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	_origin = origin * static_cast<float>(chunk_size);
 }
 
 void Chunk::Load()

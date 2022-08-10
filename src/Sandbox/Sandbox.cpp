@@ -6,8 +6,6 @@
 
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
-#include "Utils/Shader.h"
-#include "World/Chunk.h"
 #include "World/ChunkManager.h"
 
 void Sandbox::InitializeGlfw()
@@ -22,8 +20,8 @@ void Sandbox::InitializeGlfw()
 
 void Sandbox::Run() const
 {
-	constexpr int width = 800;
-	constexpr int height = 800;
+	constexpr int width = 1600;
+	constexpr int height = 1600;
 
 	InitializeGlfw();
 
@@ -51,15 +49,12 @@ void Sandbox::Run() const
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CCW);
 
-	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
 
-	ChunkManager chunkManager(1, camera);
-
-	auto chunk = Chunk(glm::vec3(0, 0, 0), blockShader, camera);
-	chunk.Load();
+	ChunkManager chunkManager(2, camera);
 
 	while(!glfwWindowShouldClose(window))
 	{
@@ -68,15 +63,11 @@ void Sandbox::Run() const
 
 		camera.Update();
 		camera.HandleInput();
-
-		
-		chunk.Draw();
+		chunkManager.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	chunk.Unload();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
