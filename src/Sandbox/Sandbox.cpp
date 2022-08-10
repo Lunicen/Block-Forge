@@ -8,6 +8,7 @@
 #include "Events/HumanInterfaceDevice.h"
 #include "Utils/Shader.h"
 #include "World/Chunk.h"
+#include "World/ChunkManager.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -55,6 +56,8 @@ void Sandbox::Run() const
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
 
+	ChunkManager chunkManager(1, camera);
+
 	auto chunk = Chunk(glm::vec3(0, 0, 0), blockShader, camera);
 	chunk.Load();
 
@@ -66,6 +69,7 @@ void Sandbox::Run() const
 		camera.Update();
 		camera.HandleInput();
 
+		
 		chunk.Draw();
 
 		glfwSwapBuffers(window);
