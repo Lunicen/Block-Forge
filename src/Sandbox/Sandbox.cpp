@@ -69,9 +69,6 @@ void Sandbox::Run() const
 		glfwPollEvents();
 	}
 
-	delete block2;
-	delete block1;
-
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
