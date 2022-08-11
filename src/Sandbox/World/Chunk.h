@@ -23,6 +23,7 @@ class Chunk
 	glm::vec3 _origin{};
 	Shader& _blockShader;
 	Camera& _camera;
+	float _midPoint, _zMidPoint;
 
 	std::array<
 		std::array<

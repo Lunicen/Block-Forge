@@ -4,7 +4,7 @@
 #include <glm/gtx/transform.hpp>
 
 
-Block::Block(const int x, const int y, const int z, Shader& shader) : _shader(shader)
+Block::Block(const float x, const float y, const float z, Shader& shader) : _shader(shader)
 {
 	_vao.Link(_vbo, 0);
 
@@ -15,7 +15,7 @@ Block::Block(const int x, const int y, const int z, Shader& shader) : _shader(sh
 	Move(x, y, z);
 }
 
-void Block::Move(const int x, const int y, const int z)
+void Block::Move(const float x, const float y, const float z)
 {
 	const auto origin = glm::mat4(1.0f);
 	const auto moveTo = glm::vec3(x, y, z);

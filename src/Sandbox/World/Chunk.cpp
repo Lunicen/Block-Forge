@@ -2,9 +2,9 @@
 
 void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 {
-	const auto xBlock = static_cast<int>(_origin.x);
-	const auto yBlock = static_cast<int>(_origin.y);
-	const auto zBlock = static_cast<int>(_origin.z);
+	const auto xBlock = _origin.x - _midPoint;
+	const auto yBlock = _origin.y - _midPoint;
+	const auto zBlock = _origin.z + _zMidPoint;
 
 	for (int x = 0; x < chunk_size; ++x)
 	{
@@ -15,7 +15,9 @@ void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 				switch (actionToDo)
 				{
 					case Action::allocateBlocks: 
-						_blocks[x][y][z] = new Block(x + xBlock, y + yBlock, z + zBlock, _blockShader);
+						_blocks[x][y][z] = new Block(static_cast<float>(x) + xBlock, 
+													 static_cast<float>(y) + yBlock,
+						                             static_cast<float>(z) + zBlock, _blockShader);
 						break;
 
 					case Action::drawChunk: 
@@ -34,6 +36,11 @@ void Chunk::IterateThroughChunkAnd(const Action actionToDo)
 
 Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blockShader(blockShader), _camera(camera)
 {
+	_midPoint = static_cast<float>(chunk_size) / 2.0f;
+	_midPoint += (chunk_size % 2 == 0) ? 0.5f : 0.0f;
+
+	_zMidPoint = 1.5f - floorf((chunk_size - 1) / 2.0f);
+
 	_origin = origin * static_cast<float>(chunk_size);
 }
 

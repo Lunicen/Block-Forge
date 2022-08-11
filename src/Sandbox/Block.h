@@ -65,13 +65,13 @@ public:
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
 	///	@param shader - Shader that block will use.
-	Block(int x, int y, int z, Shader& shader);
+	Block(float x, float y, float z, Shader& shader);
 
 	/// @brief This moves block to the x, y, z coordinates.
 	/// @param x - X coordinate.
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
-	void Move(int x, int y, int z);
+	void Move(float x, float y, float z);
 
 	/// @brief This draws block.
 	void Draw() const;
