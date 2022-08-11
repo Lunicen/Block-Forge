@@ -52,7 +52,7 @@ void Sandbox::Run() const
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	HumanInterfaceDevice hid(window);
-	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
+	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
 	ChunkManager chunkManager(1, camera);
 

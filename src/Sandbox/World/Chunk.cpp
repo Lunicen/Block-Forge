@@ -5,8 +5,6 @@ Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blo
 	_midPoint = static_cast<float>(chunk_size) / 2.0f;
 	_midPoint += (chunk_size % 2 == 0) ? 0.5f : 0.0f;
 
-	_zMidPoint = 1.5f - floorf((chunk_size - 1) / 2.0f);
-
 	_origin = origin * static_cast<float>(chunk_size);
 }
 
@@ -14,7 +12,7 @@ void Chunk::Load()
 {
 	const auto xBlock = _origin.x - _midPoint;
 	const auto yBlock = _origin.y - _midPoint;
-	const auto zBlock = _origin.z + _zMidPoint;
+	const auto zBlock = _origin.z - _midPoint;
 
 	for (int x = 0; x < chunk_size; ++x)
 	{
@@ -54,7 +52,6 @@ void Chunk::Unload() const
 			for (auto z = 0; z < chunk_size; ++z)
 			{
 				delete _blocks[x][y][z];
-				break;
 			}
 		}
 	}
