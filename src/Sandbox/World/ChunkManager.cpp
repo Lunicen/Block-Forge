@@ -37,7 +37,7 @@ ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(c
 	UpdateChunksContainer(_lastPosition);
 }
 
-void ChunkManager::Update()
+void ChunkManager::Update() const
 {
 	for (const auto& chunk : _loadedChunks)
 	{

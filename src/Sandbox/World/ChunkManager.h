@@ -20,7 +20,7 @@ class ChunkManager
 
 public:
 	ChunkManager(int renderDistance, Camera& camera);
-	void Update();
+	void Update() const;
 
 	unsigned GetChunksToRenderCount() const;
 };
