@@ -29,6 +29,7 @@ public:
 	ChunkManager(int renderDistance, Camera& camera);
 
 	/// @brief Updates the chunk manager to adapt to the current frame.
+	///	@todo This function is not finished yet.
 	void Update() const;
 
 	/// @brief Returns the amount of chunks that could be generated on the current render distance settings.

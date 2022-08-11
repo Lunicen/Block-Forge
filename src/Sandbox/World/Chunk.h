@@ -13,13 +13,6 @@ constexpr int chunk_size = 3;
 ///	@note You should **not** instantiate this class manually. This mechanism is supported by the @see ChunkManager class.
 class Chunk
 {
-	enum class Action
-	{
-		allocateBlocks = 0,
-		drawChunk,
-		deallocateBlocks
-	};
-
 	glm::vec3 _origin{};
 	Shader& _blockShader;
 	Camera& _camera;
@@ -28,8 +21,6 @@ class Chunk
 	std::array<
 		std::array<
 			std::array<Block*, chunk_size>,chunk_size>,chunk_size> _blocks = {{}};
-
-	void IterateThroughChunkAnd(Action actionToDo);
 
 public:
 	/// @brief The constructor.
@@ -51,6 +42,6 @@ public:
 	void Draw();
 
 	/// @brief Free memory from the blocks inside the chunk.
-	void Unload();
+	void Unload() const;
 };
 
