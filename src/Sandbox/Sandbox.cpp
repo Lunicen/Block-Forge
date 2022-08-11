@@ -20,8 +20,8 @@ void Sandbox::InitializeGlfw()
 
 void Sandbox::Run() const
 {
-	constexpr int width = 1600;
-	constexpr int height = 1600;
+	constexpr int width = 1280;
+	constexpr int height = 720;
 
 	InitializeGlfw();
 
@@ -54,7 +54,7 @@ void Sandbox::Run() const
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 2.0f), hid);
 
-	ChunkManager chunkManager(2, camera);
+	ChunkManager chunkManager(1, camera);
 
 	while(!glfwWindowShouldClose(window))
 	{
