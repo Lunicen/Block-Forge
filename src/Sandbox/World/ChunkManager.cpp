@@ -31,7 +31,7 @@ void ChunkManager::UpdateChunksContainer(glm::vec3 position)
 
 ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(camera),
                                                                        _renderDistance(renderDistance),
-                                                                       _lastPosition(glm::vec3(0, 0, 0))
+                                                                       _lastPosition(_camera.GetPosition())
 {
 	_chunksToRender = GetChunksToRenderCount();
 	UpdateChunksContainer(_lastPosition);
