@@ -102,7 +102,7 @@ void Camera::HandleCursorMovement()
 	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
 }
 
-void Camera::Add(const std::unique_ptr<Block>& block) const
+void Camera::Add(std::unique_ptr<Block> const& block) const
 {
 	block->GetShader().Load();
 	glUniformMatrix4fv(glGetUniformLocation(block->GetShader().GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
