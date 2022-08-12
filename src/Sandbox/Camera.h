@@ -53,7 +53,7 @@ public:
 
 	/// @brief Adds the camera handling to the shader.
 	///	@param block - the block instance name.
-	void Add(Block*& block) const;
+	void Add(Block const& block) const;
 
 	/// @brief Captures input and moves the camera accordingly.
 	void HandleInput();
