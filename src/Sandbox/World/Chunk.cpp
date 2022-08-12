@@ -36,7 +36,7 @@ void Chunk::Draw() const
 		{
 			for (auto z = 0; z < chunk_size; ++z)
 			{
-				_camera.Add(_blocks[x][y][z]);
+				_camera.Add(*_blocks[x][y][z]);
 				_blocks[x][y][z]->Draw();
 			}
 		}
