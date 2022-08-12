@@ -21,7 +21,7 @@ class Chunk
 
 	std::array<
 		std::array<
-			std::array<Block*, chunk_size>,chunk_size>,chunk_size> _blocks = {{}};
+			std::array<std::unique_ptr<Block>, chunk_size>,chunk_size>,chunk_size> _blocks = {{}};
 
 public:
 	/// @brief The constructor.
@@ -35,14 +35,11 @@ public:
 	///	If the defined chunk size is 16 and the origin is (1, 1, 1) the real chunk origin will be (16, 16, 16).
 	explicit Chunk(glm::vec3 origin, Shader& blockShader, Camera& camera);
 
-	/// @brief Allocates memory for the blocks inside the chunk.
-	void Load();
+	/// @brief Initializes chunk by allocating the memory.
+	void Init();
 
 	/// @brief Draws the chunk in the world.
-	///	@note Remember to call @see Load() beforehand.
-	void Draw();
-
-	/// @brief Free memory from the blocks inside the chunk.
-	void Unload() const;
+	///	@note Remember to call @see Init() beforehand.
+	void Draw() const;
 };
 

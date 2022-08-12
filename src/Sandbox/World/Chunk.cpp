@@ -8,7 +8,7 @@ Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blo
 	_origin = origin * static_cast<float>(chunk_size);
 }
 
-void Chunk::Load()
+void Chunk::Init()
 {
 	const auto xBlock = _origin.x - _midPoint;
 	const auto yBlock = _origin.y - _midPoint;
@@ -20,15 +20,15 @@ void Chunk::Load()
 		{
 			for (auto z = 0; z < chunk_size; ++z)
 			{
-				_blocks[x][y][z] = new Block(static_cast<float>(x) + xBlock, 
-											 static_cast<float>(y) + yBlock,
-				                             static_cast<float>(z) + zBlock, _blockShader);
+				_blocks[x][y][z] = std::make_unique<Block>(static_cast<float>(x) + xBlock, 
+														   static_cast<float>(y) + yBlock,
+								                           static_cast<float>(z) + zBlock, _blockShader);
 			}
 		}
 	}
 }
 
-void Chunk::Draw()
+void Chunk::Draw() const
 {
 	for (int x = 0; x < chunk_size; ++x)
 	{
@@ -38,20 +38,6 @@ void Chunk::Draw()
 			{
 				_camera.Add(_blocks[x][y][z]);
 				_blocks[x][y][z]->Draw();
-			}
-		}
-	}
-}
-
-void Chunk::Unload() const
-{
-	for (int x = 0; x < chunk_size; ++x)
-	{
-		for (auto y = 0; y < chunk_size; ++y)
-		{
-			for (auto z = 0; z < chunk_size; ++z)
-			{
-				delete _blocks[x][y][z];
 			}
 		}
 	}

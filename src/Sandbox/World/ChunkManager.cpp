@@ -1,5 +1,17 @@
 #include "ChunkManager.h"
 
+glm::vec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
+{
+	position /= chunk_size;
+	position -= 0.5f;
+
+	return {
+		ceil(position.x),
+		ceil(position.y),
+		ceil(position.z)
+	};
+}
+
 unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 {
 	const auto result = 4 * level;
@@ -10,6 +22,8 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 
 void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 {
+	_loadedChunks.clear();
+
 	for (auto y = -_renderDistance; y <= _renderDistance; ++y)
 	{
 		const auto xLimiter = _renderDistance - abs(y);
@@ -18,31 +32,39 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 			const auto zLimiter = abs(abs(x) + abs(y) - _renderDistance);
 			for (auto z = -zLimiter; z <= zLimiter; ++z)
 			{
-				constexpr auto offset = chunk_size / 2;
-				const auto chunkPosition = glm::vec3(x + static_cast<int>((position.x + offset) / chunk_size),
-				                                     y + static_cast<int>((position.y + offset) / chunk_size),
-				                                     z + static_cast<int>((position.z + offset) / chunk_size));
-				_log.Trace("Added chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
+				const auto chunkPosition = glm::vec3(x + static_cast<int>(position.x),
+				                                     y + static_cast<int>(position.y),
+				                                     z + static_cast<int>(position.z));
 
-				auto chunk = new Chunk(chunkPosition, _blockShader, _camera);
-				chunk->Load();
+				_log.Trace("Updates chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
 
-				_loadedChunks.push_back(chunk);
+				auto chunk = std::make_unique<Chunk>(chunkPosition, _blockShader, _camera);
+				chunk->Init();
+
+				_loadedChunks.push_back(std::move(chunk));
 			}
 		}
 	}
 }
 
 ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(camera),
-                                                                       _renderDistance(renderDistance),
-                                                                       _lastPosition(_camera.GetPosition())
+                                                                       _renderDistance(renderDistance)
 {
 	_chunksToRender = GetChunksToRenderCount();
-	UpdateChunksContainer(_lastPosition);
+	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
+
+	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 
-void ChunkManager::Update() const
+void ChunkManager::Update()
 {
+	const auto currentChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
+	if (currentChunkWithPlayer != _lastChunkWithPlayer)
+	{
+		_lastChunkWithPlayer = currentChunkWithPlayer;
+		UpdateChunksContainer(_lastChunkWithPlayer);
+	}
+	
 	for (const auto& chunk : _loadedChunks)
 	{
 		chunk->Draw();
