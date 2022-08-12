@@ -20,7 +20,7 @@ class MainMenu
 		light = 1,
 		classic = 2
 	};
-	Log& log = Log::Get();
+	Log& _log = Log::Get();
 
 	static void DrawCenteredText(const std::string& text);
 	static bool DrawWindowSizedButton(const std::string& text);

@@ -28,7 +28,7 @@ public:
 	///	@param camera - the object around which the chunks are rendered.
 	ChunkManager(int renderDistance, Camera& camera);
 
-	/// @brief Updates the chunk manager to adapt to the current frame.
+	/// @brief Updates the chunk manager too adapt to the current frame.
 	void Update();
 
 	/// @brief Returns the amount of chunks that could be generated on the current render distance settings.

@@ -10,11 +10,11 @@
 /// @details This class is made for handling the metadata stored in JSON files.
 class Metadata : protected FileUtils
 {
-	std::string filename;
-	nlohmann::json document = nullptr;
-	bool isFileLoaded = false;
-	bool isFileSaved = false;
-	Log& log = Log::Get();
+	std::string _filename;
+	nlohmann::json _document = nullptr;
+	bool _isFileLoaded = false;
+	bool _isFileSaved = false;
+	Log& _log = Log::Get();
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
