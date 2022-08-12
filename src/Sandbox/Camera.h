@@ -18,7 +18,7 @@ class Camera
 	glm::vec3 _position{};
 	glm::vec3 _orientation{};
 	glm::vec3 _up{};
-	glm::mat4 _orthographicProjection = glm::mat4(1.0f);;
+	glm::mat4 _orthographicProjection = glm::mat4(1.0f);
 
 	int _width;
 	int _height;

@@ -28,7 +28,7 @@ void Block::Draw() const
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(_position));
 
 	_vao.Bind();
-	glDrawElements(GL_TRIANGLES, sizeof(_indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, sizeof _indices / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
 }
 
 Shader Block::GetShader() const

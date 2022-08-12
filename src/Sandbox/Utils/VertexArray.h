@@ -5,7 +5,7 @@
 /// @brief A Vertex Array Object handler - wrapper for the VAO functionality.
 class VertexArray
 {
-	GLuint arrayRef = 0;
+	GLuint _arrayRef = 0;
 
 public:
 

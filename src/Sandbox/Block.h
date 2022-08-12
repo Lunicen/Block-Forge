@@ -56,8 +56,8 @@ class Block
 	glm::mat4 _position{};
 
 	VertexArray _vao;
-	VertexBuffer _vbo = VertexBuffer(_vertices, sizeof(_vertices));
-	ElementBuffer _ebo = ElementBuffer(_indices, sizeof(_indices));
+	VertexBuffer _vbo = VertexBuffer(_vertices, sizeof _vertices);
+	ElementBuffer _ebo = ElementBuffer(_indices, sizeof _indices);
 
 public:
 	/// @brief This is a Constructor that allows to create a block.

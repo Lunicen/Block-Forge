@@ -5,7 +5,7 @@
 /// @brief A Vertex Buffer Object handler - wrapper for the VBO functionality.
 class VertexBuffer
 {
-	GLuint bufferRef = 0;
+	GLuint _bufferRef = 0;
 
 public:
 

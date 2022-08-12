@@ -5,7 +5,7 @@
 /// @brief A Vertex Array Object handler - wrapper for the VAO functionality.
 class ElementBuffer
 {
-	GLuint ebo = 0;
+	GLuint _ebo = 0;
 
 public:
 

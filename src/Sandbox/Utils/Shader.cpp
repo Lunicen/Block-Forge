@@ -16,10 +16,11 @@ std::string Shader::GetFileContents(const std::string& filename) const
 	std::string contents;
 
 	file.seekg(0, std::ios::end);
+	// ReSharper disable once CppRedundantCastExpression
 	contents.resize(static_cast<size_t>(file.tellg()));
 
 	file.seekg(0, std::ios::beg);
-	file.read(&contents[0], contents.size());
+	file.read(const_cast<char*>(contents.data()), contents.size());
 
 	file.close();
 	return contents;

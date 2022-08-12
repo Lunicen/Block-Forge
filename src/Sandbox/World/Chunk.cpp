@@ -3,7 +3,7 @@
 Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blockShader(blockShader), _camera(camera)
 {
 	_midPoint = static_cast<float>(chunk_size) / 2.0f;
-	_midPoint += (chunk_size % 2 == 0) ? 0.5f : 0.0f;
+	_midPoint += chunk_size % 2 == 0 ? 0.5f : 0.0f;
 
 	_origin = origin * static_cast<float>(chunk_size);
 }
