@@ -19,3 +19,6 @@
 [submodule "lib/glm"]
 	path = lib/glm
 	url = https://github.com/g-truc/glm
+[submodule "lib/FastNoise2"]
+	path = lib/FastNoise2
+	url = https://github.com/Auburn/FastNoise2
