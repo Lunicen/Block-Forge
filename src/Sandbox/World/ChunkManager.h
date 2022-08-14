@@ -1,11 +1,14 @@
 #pragma once
 #include <vector>
 
+#include "Sandbox/Block.h"
+#include "Sandbox/Camera.h"
 #include "Chunk.h"
+class Chunk; // Forward declaration
 
 /// @class ChunkManager
 /// @brief Handles managing the chunks around the camera.
-///	@details This class handles @see Chunk objects and manages them for optimal experience.
+///	@details This class handles @ref Chunk objects and manages them for optimal experience.
 class ChunkManager
 {
 	Log& _log = Log::Get();
@@ -33,5 +36,9 @@ public:
 
 	/// @brief Returns the amount of chunks that could be generated on the current render distance settings.
 	unsigned GetChunksToRenderCount() const;
+
+	Shader& GetBlockShader();
+
+	Camera& GetCamera() const;
 };
 
