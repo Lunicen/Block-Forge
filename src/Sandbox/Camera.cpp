@@ -25,8 +25,23 @@ Camera::Camera(GLFWwindow*& window, const int width, const int height, const glm
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
 
+void Camera::Update()
+{
+	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
+	auto view = glm::mat4(1.0f);
+	view = lookAt(_position, _position + _orientation, _up);
+
+	const float aspectRatio = static_cast<float>(_width) / static_cast<float>(_height);
+
+	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
+	auto projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
+
+	_orthographicProjection = projection * view;
+}
+
 void Camera::HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward,
-	const KeyboardKey& backward)
+                                      const KeyboardKey& backward)
 {
 	if (_hid.IsPressed(left))
 	{
@@ -87,19 +102,10 @@ void Camera::HandleCursorMovement()
 	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
 }
 
-void Camera::AddToShader(const Shader& shader, const char* uniformName) const
+void Camera::Add(Block const& block) const
 {
-	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
-	auto view = glm::mat4(1.0f);
-	view = lookAt(_position, _position + _orientation, _up);
-
-	const float aspectRatio = static_cast<float>(_width) / static_cast<float>(_height);
-
-	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
-	auto projection = glm::mat4(1.0f);
-	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
-
-	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), uniformName), 1, GL_FALSE, value_ptr(projection * view));
+	block.GetShader().Load();
+	glUniformMatrix4fv(glGetUniformLocation(block.GetShader().GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
 void Camera::HandleInput()
@@ -123,9 +129,14 @@ void Camera::HandleInput()
 	}
 
 	HandleHorizontalMovement(KeyboardKey::a, KeyboardKey::d, KeyboardKey::w, KeyboardKey::s);
-	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftShift);
-	HandleSpeed(KeyboardKey::leftCtrl, 0.4f);
+	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftCtrl);
+	HandleSpeed(KeyboardKey::leftShift, 0.4f);
 	HandleCursorMovement();
+}
+
+glm::vec3 Camera::GetPosition() const
+{
+	return _position;	
 }
 
 inline int Camera::GetWidth() const

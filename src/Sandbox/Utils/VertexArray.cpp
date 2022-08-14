@@ -3,7 +3,7 @@
 
 VertexArray::VertexArray()
 {
-	glGenVertexArrays(1, &arrayRef);
+	glGenVertexArrays(1, &_arrayRef);
 	Bind();
 }
 
@@ -18,7 +18,7 @@ void VertexArray::Link(VertexBuffer& vbo, const GLuint layout)
 
 void VertexArray::Bind() const
 {
-	glBindVertexArray(arrayRef);
+	glBindVertexArray(_arrayRef);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
@@ -29,5 +29,5 @@ void VertexArray::Unbind()
 
 VertexArray::~VertexArray()
 {
-	glDeleteVertexArrays(1, &arrayRef);
+	glDeleteVertexArrays(1, &_arrayRef);
 }

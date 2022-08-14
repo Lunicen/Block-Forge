@@ -19,9 +19,16 @@ class Shader : protected FileUtils
 	void InitializeProgram(const GLuint& vertexShader, const GLuint& fragmentShader);
 
 public:
-	Shader(const Shader&) = delete;
-	Shader(Shader&&) = delete;
-	Shader& operator=(Shader) = delete;
+
+	/// @brief Shader copy constructor
+	///	@details Used for transferring the existing instance.
+	Shader(const Shader&) = default;
+
+	/// @brief Shader move constructor.
+	///	@details Used for Shader initialization.
+	Shader(Shader&&) = default;
+
+	Shader& operator=(const Shader&) = delete;
 	Shader& operator=(Shader&&) = delete;
 
 	/// @brief Shader constructor.

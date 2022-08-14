@@ -5,7 +5,7 @@
 /// @brief A Vertex Array Object handler - wrapper for the VAO functionality.
 class ElementBuffer
 {
-	GLuint ebo = 0;
+	GLuint _ebo = 0;
 
 public:
 
@@ -13,7 +13,10 @@ public:
 	explicit ElementBuffer(const GLuint* indices, GLsizeiptr size);
 
 	ElementBuffer(const ElementBuffer& buffer) = delete;
-	ElementBuffer(ElementBuffer&& buffer) = delete;
+
+	/// @brief Move constructor.
+	ElementBuffer(ElementBuffer&& buffer) = default;
+
 	ElementBuffer& operator=(const ElementBuffer& buffer) = delete;
 	ElementBuffer& operator=(ElementBuffer&& buffer) = delete;
 

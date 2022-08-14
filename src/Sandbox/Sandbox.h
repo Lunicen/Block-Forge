@@ -10,6 +10,8 @@ class Sandbox
 	std::unique_ptr<World> _world = nullptr;
 	Log& _log = Log::Get();
 
+	static void InitializeGlfw();
+
 public:
 
 	/// @brief The constructor, loads the world data.

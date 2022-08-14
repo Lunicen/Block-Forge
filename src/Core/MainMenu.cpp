@@ -73,7 +73,7 @@ void MainMenu::Draw() const
 	
 	if (HasWindowFailedToCreate(window))
 	{
-		log.Critical("Main Menu failed to generate GLFW window!");
+		_log.Critical("Main Menu failed to generate GLFW window!");
 		glfwTerminate();
 	}
 
