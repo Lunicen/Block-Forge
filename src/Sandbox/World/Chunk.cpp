@@ -14,7 +14,7 @@ void Chunk::Init()
 	const auto yBlock = _origin.y - _midPoint;
 	const auto zBlock = _origin.z - _midPoint;
 
-	for (int x = 0; x < chunk_size; ++x)
+	for (auto x = 0; x < chunk_size; ++x)
 	{
 		for (auto y = 0; y < chunk_size; ++y)
 		{
@@ -31,7 +31,7 @@ void Chunk::Init()
 
 void Chunk::Draw() const
 {
-	for (int x = 0; x < chunk_size; ++x)
+	for (auto x = 0; x < chunk_size; ++x)
 	{
 		for (auto y = 0; y < chunk_size; ++y)
 		{
