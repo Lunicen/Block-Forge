@@ -19,9 +19,14 @@ class Chunk
 
 	std::array<
 		std::array<
-			std::array<std::unique_ptr<Block>, chunk_size>,chunk_size>,chunk_size> _blocks = {{}};
+			std::array<
+				std::unique_ptr<Block>,
+			chunk_size>,
+		chunk_size>,
+	chunk_size> _blocks = {{}};
 
-	//bool IsBlockVisibleAt(int x, int y, int z);
+	// TODO: Implement this feature
+	// bool IsBlockVisibleAt(int x, int y, int z);
 
 public:
 	/// @brief The constructor.
