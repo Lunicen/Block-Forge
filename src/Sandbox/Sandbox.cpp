@@ -7,7 +7,6 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
-#include "World/WorldGenerator.h"
 
 void Sandbox::InitializeGlfw()
 {
