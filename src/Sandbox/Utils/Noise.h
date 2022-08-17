@@ -1,4 +1,6 @@
 #pragma once
+#define FASTNOISE_STATIC_LIB 1
+
 #include <vector>
 #include <FastNoise/FastNoise.h>
 #include <glm/vec3.hpp>
