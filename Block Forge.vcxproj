@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Biomes\BiomeProvider.cpp" />
     <ClCompile Include="src\Sandbox\Utils\Noise.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\Biome.cpp" />
     <ClCompile Include="src\Sandbox\World\ChunkManager.cpp" />
@@ -166,8 +167,10 @@
     <ClCompile Include="src\Sandbox\World.cpp" />
     <ClCompile Include="src\Sandbox\Utils\VertexBuffer.cpp" />
     <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
+    <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Biomes\BiomeProvider.h" />
     <ClInclude Include="src\Sandbox\Utils\Noise.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
     <ClInclude Include="src\Sandbox\World\ChunkManager.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="src\Sandbox\World.h" />
     <ClInclude Include="src\Sandbox\Utils\VertexBuffer.h" />
     <ClInclude Include="src\Sandbox\Utils\VertexArray.h" />
+    <ClInclude Include="src\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Data\Biomes.json" />

@@ -1,17 +1,18 @@
 #pragma once
-#include <vector>
-
+#include "Sandbox/Utils/Noise.h"
 #include "Sandbox/World/Chunk.h"
 
 class Biome
 {
-protected:
-	std::string _name = "Undefined chunk";
+	std::string _name;
+	Noise _noise;
 
 public:
-	explicit Biome();
+	explicit Biome(std::string name, Noise noise);
 
-	void FillChunk(Chunk& chunk);
+	void PaintColumn();
+	void PaintChunk(Chunk& chunk);
+
 	void GetName();
 };
 

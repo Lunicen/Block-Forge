@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
+#include "World/WorldGenerator.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -55,6 +56,7 @@ void Sandbox::Run()
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
 	ChunkManager chunkManager(1, camera);
+	auto worldGenerator = WorldGenerator(69);
 
 	while(!glfwWindowShouldClose(window))
 	{
