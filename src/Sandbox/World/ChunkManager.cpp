@@ -62,7 +62,7 @@ void ChunkManager::Update()
 	if (currentChunkWithPlayer != _lastChunkWithPlayer)
 	{
 		_lastChunkWithPlayer = currentChunkWithPlayer;
-		UpdateChunksContainer(_lastChunkWithPlayer);
+		//UpdateChunksContainer(_lastChunkWithPlayer);
 	}
 	
 	for (const auto& chunk : _loadedChunks)

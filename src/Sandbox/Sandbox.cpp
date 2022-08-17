@@ -1,10 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
 
+//#define STB_IMAGE_IMPLEMENTATION
+//#include <stb_image.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+
 
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
@@ -51,7 +52,7 @@ void Sandbox::Run() const
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CCW);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);

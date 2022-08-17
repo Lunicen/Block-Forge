@@ -3,6 +3,8 @@
 #include "Utils/ElementBuffer.h"
 #include "Utils/VertexArray.h"
 #include <glm/gtx/transform.hpp>
+#include <stb_image.h>
+
 
 
 /// @class Block
@@ -15,9 +17,28 @@ class Block
 	//  | |     | |   
 	//  | 4-----|-7  
 	//  |/      |/    
-	//  0-------3 
+	//  0-------3
+
+
+#pragma region Wersja z teksturami
+	GLfloat _vertices[48] =
+	{
+		// Coordinates			//texture coordinates
+		0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,		0.0f, 1.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,		1.0f, 1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,
+
+		0.0f, 0.0f, 1.0f,		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		1.0f, 1.0f, 1.0f,
+		1.0f, 0.0f, 1.0f,		1.0f, 0.0f, 1.0f,
+	};
+#pragma endregion
+	/*
 	GLfloat _vertices[24] =
 	{
+		// Coordinates			//texture coordinates
 		0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f,
 		1.0f, 1.0f, 0.0f,
@@ -28,6 +49,7 @@ class Block
 		1.0f, 1.0f, 1.0f,
 		1.0f, 0.0f, 1.0f,
 	};
+	*/
 
 	GLuint _indices[36]
 	{
@@ -58,6 +80,17 @@ class Block
 	VertexArray _vao;
 	VertexBuffer _vbo = VertexBuffer(_vertices, sizeof _vertices);
 	ElementBuffer _ebo = ElementBuffer(_indices, sizeof _indices);
+	//TODO tutaj chyba trzeba bedzie dodac dodatkowe zlinkowanie vbo... link/LinkAttrib
+
+#pragma region Texture
+	
+	int widthImage;
+	int heightImage;
+	int numColCh; //TODO ??? sprawdzic co to jest
+	unsigned char* bytes = stbi_load("./src/Data/Textures/Dirt.png", &widthImage, &heightImage, &numColCh, 0);
+	GLuint texture;
+	
+#pragma endregion
 
 public:
 	/// @brief This is a Constructor that allows to create a block.

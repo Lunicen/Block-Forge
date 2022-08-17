@@ -20,7 +20,10 @@ public:
 	/// @brief Links the VAO to the VBO.
 	///	@param vbo - Vertex Buffer Object to which the VAO should be linked.
 	///	@param layout - index of the attribute in the buffer.
-	void Link(VertexBuffer& vbo, GLuint layout);
+	///	@param size - number of components //TODO napisac co to wedlug czerno
+	///	@param stride //TODO
+	///	@param offset //TODO
+	void Link(VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, GLint offset);
 
 	/// @brief Tells OpenGL to bind the VAO.
 	void Bind() const;
