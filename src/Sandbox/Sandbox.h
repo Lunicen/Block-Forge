@@ -7,7 +7,7 @@
 ///	@details This class handles displaying the world or so to say the actual simulation.
 class Sandbox
 {
-	std::unique_ptr<World> _world = nullptr;
+	World _world;
 	Log& _log = Log::Get();
 
 	static void InitializeGlfw();
@@ -16,12 +16,12 @@ public:
 
 	/// @brief The constructor, loads the world data.
 	///	@param filename - The filename of the file containing the world data.
-	explicit Sandbox(const std::string& filename) : _world(std::make_unique<World>(filename))
+	explicit Sandbox(const std::string& filename) : _world(World(filename))
 	{
-		_world->Load();
+		_world.Load();
 	}
 
 	/// @brief Initializes the simulation.
-	void Run() const;
+	void Run();
 };
 

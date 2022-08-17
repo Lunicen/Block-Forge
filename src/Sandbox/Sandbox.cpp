@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
+#include "World/WorldGenerator.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -18,14 +19,14 @@ void Sandbox::InitializeGlfw()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-void Sandbox::Run() const
+void Sandbox::Run()
 {
 	constexpr int width = 1280;
 	constexpr int height = 720;
 
 	InitializeGlfw();
 
-	if (!_world->IsLoaded())
+	if (!_world.IsLoaded())
 	{
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
