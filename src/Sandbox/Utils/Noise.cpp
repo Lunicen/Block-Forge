@@ -13,10 +13,11 @@ std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, unsigne
 	const auto xPosition = chunkPosition.x + static_cast<int>(offsetX);
 	const auto zPosition = chunkPosition.z + static_cast<int>(offsetZ);
 
+	const auto chunkSize = static_cast<int>(_chunkSize);
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
 		xPosition , chunkPosition.y, zPosition,
-		1, _chunkSize, 1,
+		1, chunkSize, 1,
 		1.0f, _seed);
 
 	return noise;
@@ -25,11 +26,12 @@ std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, unsigne
 std::vector<float> Noise::GetChunkNoise(const glm::ivec3 chunkPosition) const
 {
 	auto noise = std::vector<float>(_chunkSize * _chunkSize * _chunkSize);
-	
+
+	const auto chunkSize = static_cast<int>(_chunkSize);
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
 		chunkPosition.x, chunkPosition.y, chunkPosition.z,
-		_chunkSize, _chunkSize, _chunkSize,
+		chunkSize, chunkSize, chunkSize,
 		1.0f, _seed);
 
 	return noise;
