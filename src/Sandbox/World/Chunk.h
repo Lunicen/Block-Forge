@@ -1,5 +1,4 @@
 #pragma once
-#include <array>
 #include <glm/vec3.hpp>
 
 #include "ChunkManager.h"
@@ -17,13 +16,18 @@ class Chunk
 	float _midPoint;
 	ChunkManager& _chunkManager;
 
-	std::array<
-		std::array<
-			std::array<
-				std::unique_ptr<Block>,
-			chunk_size>,
-		chunk_size>,
-	chunk_size> _blocks = {{}};
+	std::vector<std::vector<std::vector<bool>>> _isDisabled = {{}};
+	std::vector<std::vector<std::vector<Block*>>> _blocks = {{}};
+
+	void DrawBlockIfExists(int x, int y, int z) const;
+	
+	void OptimizeCornersOnXY(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxX, const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY);
+	void OptimizeCornersOnYZ(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxY, const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ);
+	void OptimizeCornersOnXZ(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxX, const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ);
+
+	void OptimizeBordersOnX(const std::vector<float>& borderSurfaceMinX, const std::vector<float>& borderSurfaceMaxX);
+	void OptimizeBordersOnY(const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY);
+	void OptimizeBordersOnZ(const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ);
 
 	// TODO: Implement this feature
 	// bool IsBlockVisibleAt(int x, int y, int z);
@@ -40,10 +44,19 @@ public:
 	explicit Chunk(glm::vec3 origin, ChunkManager& chunkManager);
 
 	/// @brief Initializes chunk by allocating the memory.
-	void Init();
+	void Load(const std::vector<std::vector<std::vector<Block*>>>& blocks);
+
+	void Optimize(const std::vector<float>& borderSurfaceMinX, const std::vector<float>& borderSurfaceMaxX,
+	              const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY,
+	              const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ);
 
 	/// @brief Draws the chunk in the world.
 	///	@note Remember to call @ref Init() beforehand.
 	void Draw() const;
+
+	glm::vec3 GetOrigin() const;
+
+	float GetMidpoint() const;
+	
 };
 

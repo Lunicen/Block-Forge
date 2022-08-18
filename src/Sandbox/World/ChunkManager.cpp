@@ -39,7 +39,7 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 				_log.Trace("Updates chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
 
 				auto chunk = std::make_unique<Chunk>(chunkPosition, *this);
-				chunk->Init();
+				chunk->Load();
 
 				_loadedChunks.push_back(std::move(chunk));
 			}
