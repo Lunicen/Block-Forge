@@ -2,14 +2,14 @@
 
 void Chunk::DrawBlockIfExists(const int x, const int y, const int z) const
 {
-	if (_blocks[x][y][z] != nullptr && !_isDisabled[x][y][z])
+	if (_blocks[x][y][z] != nullptr && _isVisible[x][y][z])
 	{
 		_chunkManager.GetCamera().Add(*_blocks[x][y][z]);
 		_blocks[x][y][z]->Draw();
 	}
 }
 
-void Chunk::AddBlockToMatrixWithOptimization(const int x, const int y, const int z,
+/*void Chunk::AddBlockToMatrixWithOptimization(const int x, const int y, const int z,
 	const std::vector<std::vector<std::vector<Block*>>>& blocks)
 {
 	_blocks[x - 1][y - 1][z - 1] = blocks[x][y][z];
@@ -18,11 +18,11 @@ void Chunk::AddBlockToMatrixWithOptimization(const int x, const int y, const int
 		blocks[x][y - 1][z] == nullptr || blocks[x][y + 1][z] == nullptr ||
 		blocks[x][y][z - 1] == nullptr || blocks[x][y][z + 1] == nullptr)
 	{
-		_isDisabled[x - 1][y - 1][z - 1] = true;
+		_isVisible[x - 1][y - 1][z - 1] = false;
 	}
 	else
 	{
-		_isDisabled[x - 1][y - 1][z - 1] = false;
+		_isVisible[x - 1][y - 1][z - 1] = true;
 	}
 }
 
@@ -40,38 +40,19 @@ void Chunk::LoadAndOptimize(const std::vector<std::vector<std::vector<Block*>>>&
 			}
 		}
 	}
-}
+}*/
 
 Chunk::Chunk(const glm::ivec3 origin, ChunkManager& chunkManager) : _chunkManager(chunkManager)
 {
 	const auto chunkSize = static_cast<int>(_chunkManager.GetChunkSize());
 
 	_origin = origin * chunkSize;
-
-	_blocks.resize(chunkSize);
-	_isDisabled.resize(chunkSize);
-	for (auto x = 0; x < chunkSize; ++x)
-	{
-		_isDisabled[x].resize(chunkSize);
-		_blocks[x].resize(chunkSize);
-		for (auto y = 0; y < chunkSize; ++y)
-		{
-			_isDisabled[x][y].resize(chunkSize);
-			_blocks[x][y].resize(chunkSize);
-		}
-	}
 }
 
-void Chunk::Load(const std::vector<std::vector<std::vector<Block*>>>& blocks)
+void Chunk::Load(ChunkData& chunkData)
 {
-	if (blocks.size() == _chunkManager.GetChunkSize())
-	{
-		std::move(blocks.begin(), blocks.end(), std::back_inserter(_blocks));
-	}
-	else
-	{
-		LoadAndOptimize(blocks);	
-	}
+	_blocks = std::move(chunkData.blocks);
+	_isVisible = std::move(chunkData.visibilityFlag);
 }
 
 void Chunk::Draw() const
@@ -93,18 +74,4 @@ void Chunk::Draw() const
 glm::ivec3 Chunk::GetOrigin() const
 {
 	return _origin;
-}
-
-void Chunk::Destroy() const
-{
-	for (size_t x = 0; x < _blocks.size(); ++x)
-	{
-		for (size_t y = 0; y < _blocks[x].size(); ++y)
-		{
-			for (size_t z = 0; z < _blocks[x][y].size(); ++z)
-			{
-				delete _blocks[x][y][z];
-			}
-		}
-	}
 }

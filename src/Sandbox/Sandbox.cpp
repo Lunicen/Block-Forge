@@ -56,7 +56,7 @@ void Sandbox::Run()
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	auto worldGenerator = std::make_unique<WorldGenerator>(69);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 	worldGenerator->Initialize(blockShader);
 
 	ChunkManager chunkManager(3, 1, camera);

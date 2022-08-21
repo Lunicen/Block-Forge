@@ -20,12 +20,10 @@ class ChunkManager
 	int _renderDistance;
 	int _chunkSize;
 	unsigned _chunksToRender;
-	std::unique_ptr<WorldGenerator> _generator = nullptr;
+	std::shared_ptr<WorldGenerator> _generator{};
 
 	glm::vec3 GetNormalizedPosition(glm::vec3 position) const;
 	static unsigned CountChunksRecursive(unsigned level);
-	
-	void ClearChunksQueue();
 	void UpdateChunksContainer(glm::vec3 position);
 
 public:
@@ -39,7 +37,7 @@ public:
 	/// @brief Updates the chunk manager too adapt to the current frame.
 	void Update();
 
-	void Bind(std::unique_ptr<WorldGenerator>& worldGenerator);
+	void Bind(const std::shared_ptr<WorldGenerator>& worldGenerator);
 
 	/// @brief Returns the amount of chunks that could be generated on the current render distance settings.
 	unsigned GetChunksToRenderCount() const;

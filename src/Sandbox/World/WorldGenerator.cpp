@@ -1,14 +1,37 @@
 #include "WorldGenerator.h"
 
-void WorldGenerator::PrepareForPainting(std::vector<std::vector<std::vector<Block*>>>& blocks, const int vectorSize)
+#include "Sandbox/Utils/ChunkUtils.h"
+
+void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {
-	blocks.resize(vectorSize);
-	for (auto x = 0; x < vectorSize; ++x)
+	const auto& noise = surroundingNoise;
+
+	if (noise[x - 1][y][z] > 0 && noise[x + 1][y][z] > 0 && 
+		noise[x][y - 1][z] > 0 && noise[x][y + 1][z] > 0 && 
+		noise[x][y][z - 1] > 0 && noise[x][y][z + 1] > 0)
 	{
-		blocks[x].resize(vectorSize);
-		for (auto y = 0; y < vectorSize; ++y)
+		data.visibilityFlag[x - 1][y - 1][z - 1] = false;
+	}
+	else
+	{
+		data.visibilityFlag[x - 1][y - 1][z - 1] = true;
+	}
+}
+
+void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<float>& noiseOfChunkWithBorders)
+{
+	const auto& chunkSize = data.blocks.size();
+	const auto chunkifiedNoise = ChunkUtils::Chunkify(noiseOfChunkWithBorders, static_cast<int>(chunkSize));
+
+	for (size_t x = 0; x < chunkSize; ++x)
+	{
+		for (size_t y = 0; y < chunkSize; ++y)
 		{
-			blocks[x][y].resize(vectorSize);
+			for (size_t z = 0; z < chunkSize; ++z)
+			{
+				OptimizeChunkAt(static_cast<int>(x) + 1, static_cast<int>(y) + 1, static_cast<int>(z) + 1, 
+								data, chunkifiedNoise);
+			}
 		}
 	}
 }
@@ -23,17 +46,16 @@ void WorldGenerator::Initialize(Shader& blockShader)
 	_biomes = biomeProvider.GetBiomes(_seed);
 }
 
-std::vector<std::vector<std::vector<Block*>>> WorldGenerator::GetPaintedChunkWithBorders(const glm::ivec3 chunkOrigin, const int chunkSize) const
+void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const int size) const
 {
-	auto blocks = std::vector<std::vector<std::vector<Block*>>>();
-	const auto chunkSizeWithBorders = chunkSize + 2;
-	const auto origin = chunkOrigin - glm::ivec3(1, 1, 1);
+	const auto selectedBiome = _biomes.at(0);
+	selectedBiome.PaintChunk(origin, chunk, size);
 
-	PrepareForPainting(blocks, chunkSizeWithBorders);
+	const auto originOfOptimizationChunk = origin - glm::ivec3(1, 1, 1);
+	const auto chunkSizeWithBorders = size + 2;
+	const auto noiseOfChunkWithBorders = selectedBiome.GetChunkNoise(originOfOptimizationChunk, chunkSizeWithBorders);
 
-	_biomes.at(0).PaintChunk(blocks, origin, chunkSizeWithBorders);
-
-	return blocks;
+	OptimizeChunk(chunk, noiseOfChunkWithBorders);
 }
 
 bool WorldGenerator::IsInitialized() const

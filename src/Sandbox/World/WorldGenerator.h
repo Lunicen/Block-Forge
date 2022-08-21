@@ -6,12 +6,13 @@ class WorldGenerator
 	std::vector<Biome> _biomes;
 	int _seed;
 
-	static void PrepareForPainting(std::vector<std::vector<std::vector<Block*>>>& blocks, int vectorSize);
+	static void OptimizeChunkAt(int x, int y, int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
+	static void OptimizeChunk(ChunkData& data, const std::vector<float>& noiseOfChunkWithBorders);
 
 public:
 	explicit WorldGenerator(int seed);
 
 	void Initialize(Shader& blockShader);
-	std::vector<std::vector<std::vector<Block*>>> GetPaintedChunkWithBorders(glm::ivec3 chunkOrigin, int chunkSize) const;
+	void PaintChunk(ChunkData& chunk, glm::ivec3 origin, int size) const;
 	bool IsInitialized() const;
 };

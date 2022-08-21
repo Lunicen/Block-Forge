@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/vec3.hpp>
 
+#include "ChunkData.h"
 #include "ChunkManager.h"
 class ChunkManager; // Forward declaration
 
@@ -12,13 +13,10 @@ class Chunk
 {
 	glm::ivec3 _origin{};
 	ChunkManager& _chunkManager;
-
-	std::vector<std::vector<std::vector<bool>>> _isDisabled = {{}};
-	std::vector<std::vector<std::vector<Block*>>> _blocks = {{}};
+	std::vector<std::vector<std::vector<bool>>> _isVisible = {{}};
+	std::vector<std::vector<std::vector<std::unique_ptr<Block>>>> _blocks;
 
 	void DrawBlockIfExists(int x, int y, int z) const;
-	void AddBlockToMatrixWithOptimization(int x, int y, int z, const std::vector<std::vector<std::vector<Block*>>>& blocks);
-	void LoadAndOptimize(const std::vector<std::vector<std::vector<Block*>>>& blocks);
 
 public:
 	/// @brief The constructor.
@@ -32,14 +30,12 @@ public:
 	explicit Chunk(glm::ivec3 origin, ChunkManager& chunkManager);
 
 	/// @brief Initializes chunk by allocating the memory.
-	void Load(const std::vector<std::vector<std::vector<Block*>>>& blocks);
+	void Load(ChunkData& chunkData);
 
 	/// @brief Draws the chunk in the world.
 	///	@note Remember to call @ref Init() beforehand.
 	void Draw() const;
 
 	glm::ivec3 GetOrigin() const;
-	
-	void Destroy() const;
 };
 

@@ -1,5 +1,7 @@
 #include "ChunkManager.h"
 
+#include "Sandbox/Utils/ChunkUtils.h"
+
 glm::vec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
 	position /= _chunkSize;
@@ -20,18 +22,10 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 	return result + CountChunksRecursive(level - 1);
 }
 
-void ChunkManager::ClearChunksQueue()
-{
-	for (const auto& chunk : _loadedChunks)
-	{
-		chunk->Destroy();
-	}
-
-	_loadedChunks.clear();
-}
-
 void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 {
+	_loadedChunks.clear();
+
 	for (auto y = -_renderDistance; y <= _renderDistance; ++y)
 	{
 		const auto xLimiter = _renderDistance - abs(y);
@@ -40,9 +34,9 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 			const auto zLimiter = abs(abs(x) + abs(y) - _renderDistance);
 			for (auto z = -zLimiter; z <= zLimiter; ++z)
 			{
-				const auto origin = glm::vec3(x + static_cast<int>(position.x),
-				                                     y + static_cast<int>(position.y),
-				                                     z + static_cast<int>(position.z));
+				const auto origin = glm::ivec3(x + static_cast<int>(position.x),
+											   y + static_cast<int>(position.y),
+				                               z + static_cast<int>(position.z));
 
 				_log.Trace("Updates chunk: " + 
 						   std::to_string(origin.x) + ", " + 
@@ -50,9 +44,10 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 						   std::to_string(origin.z));
 
 				auto chunk = std::make_unique<Chunk>(origin, *this);
+				auto chunkData = ChunkUtils::InitializeData(_chunkSize);
 
-				auto chunkBlocks = _generator->GetPaintedChunkWithBorders(origin, _chunkSize);
-				chunk->Load(chunkBlocks);
+				_generator->PaintChunk(chunkData, origin, _chunkSize);
+				chunk->Load(chunkData);
 
 				_loadedChunks.push_back(std::move(chunk));
 			}
@@ -61,7 +56,7 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 }
 
 ChunkManager::ChunkManager(const int chunkSize, const int renderDistance, Camera& camera)
-	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize), _generator(nullptr)
+	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize)
 {
 	_chunksToRender = GetChunksToRenderCount();
 	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
@@ -73,8 +68,6 @@ void ChunkManager::Update()
 	if (currentChunkWithPlayer != _lastChunkWithPlayer)
 	{
 		_lastChunkWithPlayer = currentChunkWithPlayer;
-
-		ClearChunksQueue();
 		UpdateChunksContainer(_lastChunkWithPlayer);
 	}
 	
@@ -84,14 +77,14 @@ void ChunkManager::Update()
 	}
 }
 
-void ChunkManager::Bind(std::unique_ptr<WorldGenerator>& worldGenerator)
+void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
 	if (!worldGenerator->IsInitialized())
 	{
 		throw std::runtime_error("The world generator is not initialized!");
 	}
 
-	_generator = std::move(worldGenerator);
+	_generator = worldGenerator;
 	
 	UpdateChunksContainer(_lastChunkWithPlayer);
 }
