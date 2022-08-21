@@ -6,16 +6,17 @@ Noise::Noise(const std::string& encodedTree, const int seed, const float frequen
 	_noiseGenerator = FastNoise::NewFromEncodedNodeTree(encodedTree.c_str());
 }
 
-std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, const int chunkSize, const unsigned offsetX, const unsigned offsetZ) const
+std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, const int chunkSize, const int offsetX, const int offsetY, const int offsetZ) const
 {
 	auto noise = std::vector<float>(chunkSize);
 
-	const auto xPosition = chunkPosition.x + static_cast<int>(offsetX);
-	const auto zPosition = chunkPosition.z + static_cast<int>(offsetZ);
+	const auto xPosition = chunkPosition.x * chunkSize + offsetX;
+	const auto yPosition = chunkPosition.y * chunkSize + offsetY;
+	const auto zPosition = chunkPosition.z * chunkSize + offsetZ;
 
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
-		xPosition , chunkPosition.y, zPosition,
+		xPosition , yPosition, zPosition,
 		1, chunkSize, 1,
 		_frequency, _seed);
 

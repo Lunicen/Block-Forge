@@ -1,6 +1,6 @@
 #include "BiomeProvider.h"
 
-BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData)
+BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader) : _blockShader(blockShader) 
 {
 	_biomesMetadata.Load(filenameWithBiomeData);
 }
@@ -19,7 +19,7 @@ std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& b
 		const auto id = biome["noise"]["id"].get<std::string>();
 		const auto frequency = biome["noise"]["frequency"].get<float>();
 
-		biomes.emplace_back(name, Noise(id, seed, frequency));
+		biomes.emplace_back(name, Noise(id, seed, frequency), _blockShader);
 	}
 
 	return biomes;

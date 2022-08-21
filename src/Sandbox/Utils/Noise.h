@@ -18,7 +18,7 @@ class Noise
 public:
 	explicit Noise(const std::string& encodedTree, int seed, float frequency);
 
-	std::vector<float> GetColumnNoise(glm::ivec3 chunkPosition, int chunkSize, unsigned offsetX, unsigned offsetZ) const;
+	std::vector<float> GetColumnNoise(glm::ivec3 chunkPosition, int chunkSize, int offsetX, int offsetY, int offsetZ) const;
 	std::vector<float> GetChunkNoise(glm::ivec3 chunkPosition, int chunkSize) const;
 
 	std::vector<float> GetSurfaceNoiseXY(glm::ivec3 chunkPosition, int chunkSize, int yLevel) const;

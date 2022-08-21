@@ -64,7 +64,6 @@ public:
 	/// @param x - X coordinate.
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
-	///	@param shader - Shader that block will use.
 	Block(float x, float y, float z, Shader& shader);
 
 	/// @brief This moves block to the x, y, z coordinates.
@@ -77,6 +76,6 @@ public:
 	void Draw() const;
 
 	/// @brief This returns shader that block is using.
-	Shader GetShader() const;
+	Shader& GetShader() const;
 };
 

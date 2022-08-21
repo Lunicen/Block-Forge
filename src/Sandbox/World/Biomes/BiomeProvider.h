@@ -5,9 +5,10 @@
 class BiomeProvider
 {
 	Metadata _biomesMetadata;
+	Shader& _blockShader;
 
 public:
-	explicit BiomeProvider(const std::string& filenameWithBiomeData);
+	explicit BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader);
 
 	std::vector<Biome> GetBiomes(int seed, const std::string& biomesType = "default");
 };

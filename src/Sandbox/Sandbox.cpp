@@ -54,9 +54,13 @@ void Sandbox::Run()
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	ChunkManager chunkManager(1, camera);
-	auto worldGenerator = WorldGenerator(69);
+	auto worldGenerator = std::make_unique<WorldGenerator>(69);
+	worldGenerator->Initialize(blockShader);
+
+	ChunkManager chunkManager(3, 1, camera);
+	chunkManager.Bind(worldGenerator);
 
 	while(!glfwWindowShouldClose(window))
 	{

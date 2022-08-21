@@ -1,6 +1,6 @@
 #pragma once
 #include "Sandbox/Utils/Noise.h"
-#include "Sandbox/World/Chunk.h"
+#include "Sandbox/Block.h"
 
 class Biome
 {
@@ -9,11 +9,11 @@ class Biome
 	Shader& _blockShader;
 
 public:
-	explicit Biome(std::string name, Noise noise, Shader& block);
+	explicit Biome(std::string name, Noise noise, Shader& blockShader);
 
-	void PaintColumn();
-	void PaintChunk(Chunk& chunk, int chunkSize);
+	void PaintColumn(std::vector<std::vector<std::vector<Block*>>>& blocks, glm::vec3 origin, int chunkSize, int offsetX, int offsetY, int offsetZ) const;
+	void PaintChunk(std::vector<std::vector<std::vector<Block*>>>& blocks, glm::vec3 origin, int chunkSize) const;
 
-	void GetName();
+	std::string GetName() const;
 };
 

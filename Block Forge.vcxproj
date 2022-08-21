@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\Utils\ChunkUtils.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\BiomeProvider.cpp" />
     <ClCompile Include="src\Sandbox\Utils\Noise.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\Biome.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\Utils\ChunkUtils.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\BiomeProvider.h" />
     <ClInclude Include="src\Sandbox\Utils\Noise.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />

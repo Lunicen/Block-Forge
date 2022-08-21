@@ -1,16 +1,36 @@
 #include "Biome.h"
 
-Biome::Biome(std::string name, Noise noise, Shader& block) : _name(std::move(name)), _noise(std::move(noise)), _blockShader(block)
+#include "Sandbox/Utils/ChunkUtils.h"
+
+Biome::Biome(std::string name, Noise noise, Shader& blockShader) : _name(std::move(name)), _noise(std::move(noise)), _blockShader(blockShader)
 {
 }
 
-void Biome::PaintChunk(Chunk& chunk, const int chunkSize)
+void Biome::PaintColumn(std::vector<std::vector<std::vector<Block*>>>& blocks, const glm::vec3 origin, const int chunkSize, const int offsetX, const int offsetY, const int offsetZ) const
 {
-	const auto noise = _noise.GetChunkNoise(chunk.GetOrigin(), chunkSize);
-	const auto origin = chunk.GetOrigin();
-	const auto midPoint = chunk.GetMidpoint();
+	const auto noise = _noise.GetColumnNoise(origin, chunkSize, offsetX, offsetY, offsetZ);
+	const auto midPoint = ChunkUtils::CalculateMidPoint(chunkSize);
+	auto index = 0;
 
-	std::vector<std::vector<std::vector<Block*>>> blocks;
+	const auto xBlock = origin.x - midPoint;
+	const auto yBlock = origin.y - midPoint;
+	const auto zBlock = origin.z - midPoint;
+
+	blocks.reserve(chunkSize);
+	for (auto y = 0; y < chunkSize; ++y)
+	{
+		blocks[offsetX][y][offsetZ] = noise[index++] > 0 ? nullptr : new Block(static_cast<float>(offsetX) + xBlock, 
+																			   static_cast<float>(y)	   + yBlock,
+																			   static_cast<float>(offsetZ) + zBlock,
+																			   _blockShader);
+	}
+}
+
+void Biome::PaintChunk(std::vector<std::vector<std::vector<Block*>>>& blocks, const glm::vec3 origin, const int chunkSize) const
+{
+	const auto noise = _noise.GetChunkNoise(origin, chunkSize);
+	const auto midPoint = ChunkUtils::CalculateMidPoint(chunkSize);
+	
 	const auto xBlock = origin.x - midPoint;
 	const auto yBlock = origin.y - midPoint;
 	const auto zBlock = origin.z - midPoint;
@@ -29,11 +49,13 @@ void Biome::PaintChunk(Chunk& chunk, const int chunkSize)
 				blocks[x][y][z] = noise[index++] > 0 ? nullptr : new Block(static_cast<float>(x) + xBlock, 
 																		   static_cast<float>(y) + yBlock,
 												                           static_cast<float>(z) + zBlock,
-												                           _blockShader);
+																		   _blockShader);
 			}
 		}
 	}
+}
 
-	chunk.Load(blocks);
-	chunk.Optimize();
+std::string Biome::GetName() const
+{
+	return _name;
 }

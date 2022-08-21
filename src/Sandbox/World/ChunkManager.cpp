@@ -2,7 +2,7 @@
 
 glm::vec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
-	position /= chunk_size;
+	position /= _chunkSize;
 	position -= 0.5f;
 
 	return {
@@ -32,14 +32,19 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 			const auto zLimiter = abs(abs(x) + abs(y) - _renderDistance);
 			for (auto z = -zLimiter; z <= zLimiter; ++z)
 			{
-				const auto chunkPosition = glm::vec3(x + static_cast<int>(position.x),
+				const auto origin = glm::vec3(x + static_cast<int>(position.x),
 				                                     y + static_cast<int>(position.y),
 				                                     z + static_cast<int>(position.z));
 
-				_log.Trace("Updates chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
+				_log.Trace("Updates chunk: " + 
+						   std::to_string(origin.x) + ", " + 
+						   std::to_string(origin.y) + ", " + 
+						   std::to_string(origin.z));
 
-				auto chunk = std::make_unique<Chunk>(chunkPosition, *this);
-				chunk->Load();
+				auto chunk = std::make_unique<Chunk>(origin, *this);
+
+				auto chunkBlocks = _generator->GetPaintedChunkWithBorders(origin, _chunkSize);
+				chunk->Load(chunkBlocks);
 
 				_loadedChunks.push_back(std::move(chunk));
 			}
@@ -47,8 +52,8 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 	}
 }
 
-ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(camera),
-                                                                       _renderDistance(renderDistance)
+ChunkManager::ChunkManager(const int chunkSize, const int renderDistance, Camera& camera)
+	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize), _generator(nullptr)
 {
 	_chunksToRender = GetChunksToRenderCount();
 	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
@@ -71,6 +76,16 @@ void ChunkManager::Update()
 	}
 }
 
+void ChunkManager::Bind(std::unique_ptr<WorldGenerator>& worldGenerator)
+{
+	if (!worldGenerator->IsInitialized())
+	{
+		throw std::runtime_error("The world generator is not initialized!");
+	}
+
+	_generator = std::move(worldGenerator);
+}
+
 unsigned ChunkManager::GetChunksToRenderCount() const
 {
 	unsigned result = 0;
@@ -82,12 +97,12 @@ unsigned ChunkManager::GetChunksToRenderCount() const
 	return CountChunksRecursive(_renderDistance) + result; 
 }
 
-Shader& ChunkManager::GetBlockShader()
-{
-	return _blockShader;
-}
-
 Camera& ChunkManager::GetCamera() const
 {
 	return _camera;
+}
+
+unsigned ChunkManager::GetChunkSize() const
+{
+	return _chunkSize;
 }

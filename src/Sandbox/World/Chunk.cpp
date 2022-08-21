@@ -9,159 +9,68 @@ void Chunk::DrawBlockIfExists(const int x, const int y, const int z) const
 	}
 }
 
-void Chunk::OptimizeCornersOnXY(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxX,
-	const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY)
+void Chunk::AddBlockToMatrixWithOptimization(const int x, const int y, const int z,
+	const std::vector<std::vector<std::vector<Block*>>>& blocks)
 {
-}
-
-void Chunk::OptimizeCornersOnYZ(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxY,
-	const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ)
-{
-}
-
-void Chunk::OptimizeCornersOnXZ(const std::vector<float>& vector, const std::vector<float>& borderSurfaceMaxX,
-	const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ)
-{
-}
-
-void Chunk::ResetCornersVisibility()
-{
-	constexpr auto end = chunk_size - 1;
-	for (auto x = 0; x < chunk_size; ++x)
+	if (_blocks[x][y][z] != nullptr)
 	{
-		for (auto y = 0; y < chunk_size; ++y)
+		delete _blocks[x][y][z];
+	}
+	
+	if (blocks[x - 1][y][z] == nullptr || blocks[x + 1][y][z] == nullptr ||
+		blocks[x][y - 1][z] == nullptr || blocks[x][y + 1][z] == nullptr ||
+		blocks[x][y][z - 1] == nullptr || blocks[x][y][z + 1] == nullptr)
+	{
+		_blocks[x][y][z] = blocks[x][y][z];
+	}
+	else
+	{
+		_blocks[x][y][z] = nullptr;
+	}
+}
+
+void Chunk::LoadAndOptimize(const std::vector<std::vector<std::vector<Block*>>>& blocks)
+{
+	const auto chunkSize = static_cast<int>(_chunkManager.GetChunkSize());
+
+	for (auto x = 0; x < chunkSize; ++x)
+	{
+		for (auto y = 0; y < chunkSize; ++y)
 		{
-			for (auto z = 0; z < chunk_size; ++z)
+			for (auto z = 0; z < chunkSize; ++z)
 			{
-				_isDisabled[x][ 0 ][ 0 ] = false;
-				_isDisabled[x][end][ 0 ] = false;
-				_isDisabled[x][ 0 ][end] = false;
-				_isDisabled[x][end][end] = false;
-
-				_isDisabled[ 0 ][y][ 0 ] = false;
-				_isDisabled[end][y][ 0 ] = false;
-				_isDisabled[ 0 ][y][end] = false;
-				_isDisabled[end][y][end] = false;
-
-				_isDisabled[ 0 ][ 0 ][z] = false;
-				_isDisabled[end][ 0 ][z] = false;
-				_isDisabled[ 0 ][end][z] = false;
-				_isDisabled[end][end][z] = false;
+				AddBlockToMatrixWithOptimization(x, y, z, blocks);
 			}
 		}
 	}
 }
 
-void Chunk::OptimizeBordersOnX(const std::vector<float>& borderSurfaceMinX, const std::vector<float>& borderSurfaceMaxX)
+Chunk::Chunk(const glm::ivec3 origin, ChunkManager& chunkManager) : _chunkManager(chunkManager)
 {
-	auto index = 0;
-	for (auto y = 0; y < chunk_size; ++y)
-	{
-		for (auto z = 0; z < chunk_size; ++z)
-		{
-			if (borderSurfaceMinX[index] <= 0)
-			{
-				_isDisabled[0][y][z] = true;
-			}
-
-			if (borderSurfaceMaxX[index] <= 0)
-			{
-				_isDisabled[chunk_size - 1][y][z] = true;
-			}
-
-			++index;
-		}
-	}
-}
-
-void Chunk::OptimizeBordersOnY(const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY)
-{
-	auto index = 0;
-	for (auto x = 0; x < chunk_size; ++x)
-	{
-		for (auto z = 0; z < chunk_size; ++z)
-		{
-			if (borderSurfaceMinY[index] <= 0)
-			{
-				_isDisabled[x][0][z] = true;
-			}
-
-			if (borderSurfaceMaxY[index] <= 0)
-			{
-				_isDisabled[x][chunk_size - 1][z] = true;
-			}
-
-			++index;
-		}
-	}
-}
-
-void Chunk::OptimizeBordersOnZ(const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ)
-{
-	auto index = 0;
-	for (auto x = 0; x < chunk_size; ++x)
-	{
-		for (auto y = 0; y < chunk_size; ++y)
-		{
-			if (borderSurfaceMinZ[index] <= 0)
-			{
-				_isDisabled[x][y][0] = true;
-			}
-
-			if (borderSurfaceMaxZ[index] <= 0)
-			{
-				_isDisabled[x][y][chunk_size - 1] = true;
-			}
-
-			++index;
-		}
-	}
-}
-
-Chunk::Chunk(const glm::vec3 origin, ChunkManager& chunkManager) : _chunkManager(chunkManager)
-{
-	_midPoint = static_cast<float>(chunk_size) / 2.0f;
-	_midPoint += chunk_size % 2 == 0 ? 0.5f : 0.0f;
-
-	_origin = origin * static_cast<float>(chunk_size);
+	_origin = origin * static_cast<int>(_chunkManager.GetChunkSize());
 }
 
 void Chunk::Load(const std::vector<std::vector<std::vector<Block*>>>& blocks)
 {
-	std::move(blocks.begin(), blocks.end(), std::back_inserter(_blocks));
-}
-
-void Chunk::Optimize(const std::vector<float>& borderSurfaceMinX, const std::vector<float>& borderSurfaceMaxX,
-					 const std::vector<float>& borderSurfaceMinY, const std::vector<float>& borderSurfaceMaxY,
-					 const std::vector<float>& borderSurfaceMinZ, const std::vector<float>& borderSurfaceMaxZ)
-{
-	OptimizeBordersOnX(borderSurfaceMinX, borderSurfaceMaxX);
-	OptimizeBordersOnY(borderSurfaceMinY, borderSurfaceMaxY);
-	OptimizeBordersOnZ(borderSurfaceMinZ, borderSurfaceMaxZ);
-
-	OptimizeCornersOnXY(borderSurfaceMinX, borderSurfaceMaxX, borderSurfaceMinY, borderSurfaceMaxY);
-	OptimizeCornersOnYZ(borderSurfaceMinY, borderSurfaceMaxY, borderSurfaceMinZ, borderSurfaceMaxZ);
-	OptimizeCornersOnXZ(borderSurfaceMinX, borderSurfaceMaxX, borderSurfaceMinZ, borderSurfaceMaxZ);
-
-	for (auto x = 0; x < chunk_size; ++x)
+	if (blocks.size() == _chunkManager.GetChunkSize())
 	{
-		for (auto y = 0; y < chunk_size; ++y)
-		{
-			for (auto z = 0; z < chunk_size; ++z)
-			{
-				DrawBlockIfExists(x, y, z);
-			}
-		}
+		std::move(blocks.begin(), blocks.end(), std::back_inserter(_blocks));
+	}
+	else
+	{
+		LoadAndOptimize(blocks);	
 	}
 }
 
 void Chunk::Draw() const
 {
-	for (auto x = 0; x < chunk_size; ++x)
+	const auto chunkSize = static_cast<int>(_chunkManager.GetChunkSize());
+
+	for (auto x = 0; x < chunkSize; ++x)
 	{
-		for (auto y = 0; y < chunk_size; ++y)
+		for (auto y = 0; y < chunkSize; ++y)
 		{
-			for (auto z = 0; z < chunk_size; ++z)
+			for (auto z = 0; z < chunkSize; ++z)
 			{
 				DrawBlockIfExists(x, y, z);
 			}
@@ -169,12 +78,21 @@ void Chunk::Draw() const
 	}
 }
 
-glm::vec3 Chunk::GetOrigin() const
+glm::ivec3 Chunk::GetOrigin() const
 {
 	return _origin;
 }
 
-float Chunk::GetMidpoint() const
+Chunk::~Chunk()
 {
-	return _midPoint;
+	for (size_t x = 0; x < _blocks.size(); ++x)
+	{
+		for (size_t y = 0; y < _blocks[x].size(); ++y)
+		{
+			for (size_t z = 0; z < _blocks[x][y].size(); ++z)
+			{
+				delete _blocks[x][y][z];
+			}
+		}
+	}
 }
