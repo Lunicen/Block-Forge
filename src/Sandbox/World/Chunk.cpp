@@ -8,7 +8,7 @@ Chunk::Chunk(const glm::vec3 origin, Shader& blockShader, Camera& camera) : _blo
 	_origin = origin * static_cast<float>(chunk_size);
 }
 
-void Chunk::Init()
+void Chunk::Init(Texture& texture)
 {
 	const auto xBlock = _origin.x - _midPoint;
 	const auto yBlock = _origin.y - _midPoint;
@@ -22,7 +22,7 @@ void Chunk::Init()
 			{
 				_blocks[x][y][z] = std::make_unique<Block>(static_cast<float>(x) + xBlock, 
 														   static_cast<float>(y) + yBlock,
-								                           static_cast<float>(z) + zBlock, _blockShader);
+								                           static_cast<float>(z) + zBlock, _blockShader, texture);
 			}
 		}
 	}

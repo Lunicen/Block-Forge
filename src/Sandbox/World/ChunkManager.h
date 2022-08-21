@@ -9,7 +9,9 @@
 class ChunkManager
 {
 	Log& _log = Log::Get();
-	Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	//Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	Shader& _blockShader;
+	Texture& _texture;
 
 	Camera& _camera;
 	std::vector<std::unique_ptr<Chunk>> _loadedChunks = {};
@@ -26,7 +28,8 @@ public:
 	/// @brief The constructor.
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param camera - the object around which the chunks are rendered.
-	ChunkManager(int renderDistance, Camera& camera);
+	///	@param blockShader - shader that will be used for the blocks inside the chunk.
+	ChunkManager(int renderDistance, Camera& camera, Shader& blockShader, Texture& texture);
 
 	/// @brief Updates the chunk manager too adapt to the current frame.
 	void Update();

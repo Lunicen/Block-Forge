@@ -2,10 +2,9 @@
 #include "Utils/Shader.h"
 #include "Utils/ElementBuffer.h"
 #include "Utils/VertexArray.h"
+#include "Utils/Texture.h"
 #include <glm/gtx/transform.hpp>
 #include <stb_image.h>
-
-
 
 /// @class Block
 /// @brief Handles Block existence
@@ -21,7 +20,7 @@ class Block
 
 
 #pragma region Wersja z teksturami
-	GLfloat _vertices[48] =
+	GLfloat _vertices2[48] =
 	{
 		// Coordinates			//texture coordinates
 		0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f,
@@ -34,6 +33,22 @@ class Block
 		1.0f, 1.0f, 1.0f,		1.0f, 1.0f, 1.0f,
 		1.0f, 0.0f, 1.0f,		1.0f, 0.0f, 1.0f,
 	};
+
+	GLfloat _vertices[40] =
+	{
+		// Coordinates			//texture coordinates
+		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 0.0f,		1.0f, 1.0f,
+		1.0f, 0.0f, 0.0f,		1.0f, 0.0f,
+
+		0.0f, 0.0f, 1.0f,		0.0f, 0.0f,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 0.0f, 1.0f,		1.0f, 0.0f,
+	};
+
+
 #pragma endregion
 	/*
 	GLfloat _vertices[24] =
@@ -83,13 +98,15 @@ class Block
 	//TODO tutaj chyba trzeba bedzie dodac dodatkowe zlinkowanie vbo... link/LinkAttrib
 
 #pragma region Texture
-	
+
+	Texture& _texture;
+	/*
 	int widthImage;
 	int heightImage;
 	int numColCh; //TODO ??? sprawdzic co to jest
 	unsigned char* bytes = stbi_load("./src/Data/Textures/Dirt.png", &widthImage, &heightImage, &numColCh, 0);
 	GLuint texture;
-	
+	*/
 #pragma endregion
 
 public:
@@ -98,7 +115,8 @@ public:
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
 	///	@param shader - Shader that block will use.
-	Block(float x, float y, float z, Shader& shader);
+	///	@param texture
+	Block(float x, float y, float z, Shader& shader, Texture& texture);
 
 	/// @brief This moves block to the x, y, z coordinates.
 	/// @param x - X coordinate.

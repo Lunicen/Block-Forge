@@ -36,7 +36,7 @@ public:
 	explicit Chunk(glm::vec3 origin, Shader& blockShader, Camera& camera);
 
 	/// @brief Initializes chunk by allocating the memory.
-	void Init();
+	void Init(Texture& texture);
 
 	/// @brief Draws the chunk in the world.
 	///	@note Remember to call @see Init() beforehand.

@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\Utils\Texture.cpp" />
     <ClCompile Include="src\Sandbox\World\ChunkManager.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunk.cpp" />
     <ClCompile Include="src\Sandbox\Block.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\Utils\Texture.h" />
     <ClInclude Include="src\Sandbox\World\ChunkManager.h" />
     <ClInclude Include="src\Sandbox\World\Chunk.h" />
     <ClInclude Include="src\Sandbox\Block.h" />

@@ -39,7 +39,7 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 				_log.Trace("Updates chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
 
 				auto chunk = std::make_unique<Chunk>(chunkPosition, _blockShader, _camera);
-				chunk->Init();
+				chunk->Init(_texture);
 
 				_loadedChunks.push_back(std::move(chunk));
 			}
@@ -47,8 +47,8 @@ void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 	}
 }
 
-ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(camera),
-                                                                       _renderDistance(renderDistance)
+ChunkManager::ChunkManager(const int renderDistance, Camera& camera, Shader& shader, Texture &texture)
+: _texture(texture), _blockShader(shader), _camera(camera), _renderDistance(renderDistance)
 {
 	_chunksToRender = GetChunksToRenderCount();
 	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());

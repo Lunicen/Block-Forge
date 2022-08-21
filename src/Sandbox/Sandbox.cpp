@@ -48,16 +48,30 @@ void Sandbox::Run() const
 
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CCW);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
+	//glFrontFace(GL_CCW);
 
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); tu jest problem z tekstura
+
+	Shader blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
-	ChunkManager chunkManager(1, camera);
+	//texture
+	Texture dirt("./src/Data/Textures/Dirt.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	dirt.texUnit(blockShader, "tex0", 0); //TODO poprawic
+	ChunkManager chunkManager(1, camera, blockShader, dirt);
+
+	
+
+	//texture
+	//Texture cobblestone("./src/Data/Textures/Cobblestone.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	//cobblestone.texUnit(blockShader, "tex1", 0);
+
+
+	//end of texture
 
 	while(!glfwWindowShouldClose(window))
 	{
