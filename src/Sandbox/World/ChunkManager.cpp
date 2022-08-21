@@ -20,10 +20,18 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 	return result + CountChunksRecursive(level - 1);
 }
 
+void ChunkManager::ClearChunksQueue()
+{
+	for (const auto& chunk : _loadedChunks)
+	{
+		chunk->Destroy();
+	}
+
+	_loadedChunks.clear();
+}
+
 void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
 {
-	_loadedChunks.clear();
-
 	for (auto y = -_renderDistance; y <= _renderDistance; ++y)
 	{
 		const auto xLimiter = _renderDistance - abs(y);
@@ -57,8 +65,6 @@ ChunkManager::ChunkManager(const int chunkSize, const int renderDistance, Camera
 {
 	_chunksToRender = GetChunksToRenderCount();
 	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
-
-	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 
 void ChunkManager::Update()
@@ -67,6 +73,8 @@ void ChunkManager::Update()
 	if (currentChunkWithPlayer != _lastChunkWithPlayer)
 	{
 		_lastChunkWithPlayer = currentChunkWithPlayer;
+
+		ClearChunksQueue();
 		UpdateChunksContainer(_lastChunkWithPlayer);
 	}
 	
@@ -84,6 +92,8 @@ void ChunkManager::Bind(std::unique_ptr<WorldGenerator>& worldGenerator)
 	}
 
 	_generator = std::move(worldGenerator);
+	
+	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 
 unsigned ChunkManager::GetChunksToRenderCount() const

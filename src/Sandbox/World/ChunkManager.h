@@ -20,10 +20,12 @@ class ChunkManager
 	int _renderDistance;
 	int _chunkSize;
 	unsigned _chunksToRender;
-	std::unique_ptr<WorldGenerator> _generator;
+	std::unique_ptr<WorldGenerator> _generator = nullptr;
 
 	glm::vec3 GetNormalizedPosition(glm::vec3 position) const;
 	static unsigned CountChunksRecursive(unsigned level);
+	
+	void ClearChunksQueue();
 	void UpdateChunksContainer(glm::vec3 position);
 
 public:

@@ -31,11 +31,6 @@ public:
 	///	If the defined chunk size is 16 and the origin is (1, 1, 1) the real chunk origin will be (16, 16, 16).
 	explicit Chunk(glm::ivec3 origin, ChunkManager& chunkManager);
 
-	Chunk(const Chunk&) = delete;
-	Chunk(Chunk&&) = delete;
-	Chunk& operator=(const Chunk&) = delete;
-	Chunk& operator=(Chunk&&) = delete;
-
 	/// @brief Initializes chunk by allocating the memory.
 	void Load(const std::vector<std::vector<std::vector<Block*>>>& blocks);
 
@@ -44,7 +39,7 @@ public:
 	void Draw() const;
 
 	glm::ivec3 GetOrigin() const;
-
-	~Chunk();
+	
+	void Destroy() const;
 };
 

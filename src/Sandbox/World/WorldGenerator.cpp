@@ -8,7 +8,7 @@ void WorldGenerator::PrepareForPainting(std::vector<std::vector<std::vector<Bloc
 		blocks[x].resize(vectorSize);
 		for (auto y = 0; y < vectorSize; ++y)
 		{
-			blocks[x][y].reserve(vectorSize);
+			blocks[x][y].resize(vectorSize);
 		}
 	}
 }

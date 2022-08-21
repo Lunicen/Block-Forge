@@ -15,11 +15,10 @@ void Biome::PaintColumn(std::vector<std::vector<std::vector<Block*>>>& blocks, c
 	const auto xBlock = origin.x - midPoint;
 	const auto yBlock = origin.y - midPoint;
 	const auto zBlock = origin.z - midPoint;
-
-	blocks.reserve(chunkSize);
+	
 	for (auto y = 0; y < chunkSize; ++y)
 	{
-		blocks[offsetX][y][offsetZ] = noise[index++] > 0 ? nullptr : new Block(static_cast<float>(offsetX) + xBlock, 
+		blocks[offsetX][y][offsetZ] = noise[index++] <= 0 ? nullptr : new Block(static_cast<float>(offsetX) + xBlock, 
 																			   static_cast<float>(y)	   + yBlock,
 																			   static_cast<float>(offsetZ) + zBlock,
 																			   _blockShader);
@@ -36,17 +35,14 @@ void Biome::PaintChunk(std::vector<std::vector<std::vector<Block*>>>& blocks, co
 	const auto zBlock = origin.z - midPoint;
 
 	auto index = 0;
-
-	blocks.reserve(chunkSize);
+	
 	for (auto x = 0; x < chunkSize; ++x)
 	{
-		blocks[x].reserve(chunkSize);
 		for (auto y = 0; y < chunkSize; ++y)
 		{
-			blocks[x][y].reserve(chunkSize);
 			for (auto z = 0; z < chunkSize; ++z)
 			{
-				blocks[x][y][z] = noise[index++] > 0 ? nullptr : new Block(static_cast<float>(x) + xBlock, 
+				blocks[x][y][z] = noise[index++] <= 0 ? nullptr : new Block(static_cast<float>(x) + xBlock, 
 																		   static_cast<float>(y) + yBlock,
 												                           static_cast<float>(z) + zBlock,
 																		   _blockShader);
