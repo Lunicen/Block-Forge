@@ -9,39 +9,6 @@ void Chunk::DrawBlockIfExists(const int x, const int y, const int z) const
 	}
 }
 
-/*void Chunk::AddBlockToMatrixWithOptimization(const int x, const int y, const int z,
-	const std::vector<std::vector<std::vector<Block*>>>& blocks)
-{
-	_blocks[x - 1][y - 1][z - 1] = blocks[x][y][z];
-	
-	if (blocks[x - 1][y][z] == nullptr || blocks[x + 1][y][z] == nullptr ||
-		blocks[x][y - 1][z] == nullptr || blocks[x][y + 1][z] == nullptr ||
-		blocks[x][y][z - 1] == nullptr || blocks[x][y][z + 1] == nullptr)
-	{
-		_isVisible[x - 1][y - 1][z - 1] = false;
-	}
-	else
-	{
-		_isVisible[x - 1][y - 1][z - 1] = true;
-	}
-}
-
-void Chunk::LoadAndOptimize(const std::vector<std::vector<std::vector<Block*>>>& blocks)
-{
-	const auto chunkSize = static_cast<int>(_chunkManager.GetChunkSize());
-
-	for (auto x = 0; x < chunkSize; ++x)
-	{
-		for (auto y = 0; y < chunkSize; ++y)
-		{
-			for (auto z = 0; z < chunkSize; ++z)
-			{
-				AddBlockToMatrixWithOptimization(x + 1, y + 1, z + 1, blocks);
-			}
-		}
-	}
-}*/
-
 Chunk::Chunk(const glm::ivec3 origin, ChunkManager& chunkManager) : _chunkManager(chunkManager)
 {
 	const auto chunkSize = static_cast<int>(_chunkManager.GetChunkSize());
@@ -52,7 +19,7 @@ Chunk::Chunk(const glm::ivec3 origin, ChunkManager& chunkManager) : _chunkManage
 void Chunk::Load(ChunkData& chunkData)
 {
 	_blocks = std::move(chunkData.blocks);
-	_isVisible = std::move(chunkData.visibilityFlag);
+	_isVisible = std::move(chunkData.isBlockVisibleAt);
 }
 
 void Chunk::Draw() const

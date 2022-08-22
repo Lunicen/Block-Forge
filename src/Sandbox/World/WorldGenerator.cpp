@@ -10,11 +10,11 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 		noise[x][y - 1][z] > 0 && noise[x][y + 1][z] > 0 && 
 		noise[x][y][z - 1] > 0 && noise[x][y][z + 1] > 0)
 	{
-		data.visibilityFlag[x - 1][y - 1][z - 1] = false;
+		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
 	}
 	else
 	{
-		data.visibilityFlag[x - 1][y - 1][z - 1] = true;
+		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = true;
 	}
 }
 

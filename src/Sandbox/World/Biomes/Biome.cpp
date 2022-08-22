@@ -2,9 +2,18 @@
 
 #include "Sandbox/Utils/ChunkUtils.h"
 
-void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float x, float y, float z, const float noise) const
+void Biome::SetDataAccordingToNoise(ChunkData& data, const int x, const int y, const int z, float xBlock, float yBlock, float zBlock, const float noise) const
 {
-	block = noise > 0 ? std::make_unique<Block>(x, y, z, _blockShader) : nullptr;
+	if (noise > 0)
+	{
+		data.blocks[x][y][z] = std::make_unique<Block>(xBlock, yBlock, zBlock, _blockShader);
+		data.isBlockVisibleAt[x][y][z] = true;
+	}
+	else
+	{
+		data.blocks[x][y][z] = nullptr;
+		data.isBlockVisibleAt[x][y][z] = false;
+	}
 }
 
 Biome::Biome(std::string name, Noise noise, Shader& blockShader) : _name(std::move(name)), _noise(std::move(noise)), _blockShader(blockShader)
@@ -23,11 +32,7 @@ void Biome::PaintColumn(const glm::ivec3 origin, ChunkData& data, const int chun
 
 	for (auto y = 0; y < chunkSize; ++y)
 	{
-		SetBlockAccordingToNoise(data.blocks[offsetX][y][offsetZ], 
-									 static_cast<float>(offsetX) + xBlock, 
-									 static_cast<float>(y) + yBlock,
-									 static_cast<float>(offsetZ) + zBlock,
-									 noise[index++]);
+		SetDataAccordingToNoise(data, offsetX, y, offsetZ, xBlock, yBlock, zBlock, noise[index++]);
 	}
 }
 
@@ -48,11 +53,12 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 		{
 			for (auto z = 0; z < size; ++z)
 			{
-				SetBlockAccordingToNoise(data.blocks[x][y][z], 
-										 static_cast<float>(x) + xBlock, 
-										 static_cast<float>(y) + yBlock,
-										 static_cast<float>(z) + zBlock,
-										 noise[index++]);
+				SetDataAccordingToNoise(
+					data,
+					x, y, z,
+					static_cast<float>(x) + xBlock, static_cast<float>(y) + yBlock, static_cast<float>(z) + zBlock, 
+					noise[index++]
+				);
 			}
 		}
 	}

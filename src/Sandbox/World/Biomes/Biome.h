@@ -8,7 +8,8 @@ class Biome
 	Noise _noise;
 	Shader& _blockShader;
 
-	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float x, float y, float z, float noise) const;
+	void SetDataAccordingToNoise(ChunkData& data, int x, int y, int z, float xBlock, float yBlock, float zBlock,
+	                             float noise) const;
 
 public:
 	explicit Biome(std::string name, Noise noise, Shader& blockShader);
