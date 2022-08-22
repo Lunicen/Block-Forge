@@ -14,7 +14,7 @@ public:
 template <typename Type>
 std::vector<std::vector<std::vector<Type>>> ChunkUtils::Chunkify(std::vector<Type> vector, const int chunkSize)
 {
-	/*if (chunkSize * chunkSize * chunkSize != vector.size())
+	if (chunkSize * chunkSize * chunkSize != vector.size())
 	{
 		throw std::runtime_error("Cannot chunkify the given vector!");
 	}
@@ -28,8 +28,8 @@ std::vector<std::vector<std::vector<Type>>> ChunkUtils::Chunkify(std::vector<Typ
 		{
 			result[x][y].resize(chunkSize);
 		}
-	}*/
+	}
 
-	return std::vector<std::vector<std::vector<Type>>>();
+	return result;
 }
 

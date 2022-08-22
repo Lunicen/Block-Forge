@@ -21,7 +21,7 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<float>& noiseOfChunkWithBorders)
 {
 	const auto& chunkSize = data.blocks.size();
-	const auto chunkifiedNoise = ChunkUtils::Chunkify(noiseOfChunkWithBorders, static_cast<int>(chunkSize));
+	const auto chunkifiedNoise = ChunkUtils::Chunkify(noiseOfChunkWithBorders, static_cast<int>(chunkSize) + 2);
 
 	for (size_t x = 0; x < chunkSize; ++x)
 	{
