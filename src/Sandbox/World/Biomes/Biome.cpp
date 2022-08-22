@@ -6,13 +6,13 @@ void Biome::SetDataAccordingToNoise(ChunkData& data, const int x, const int y, c
 {
 	if (noise > 0)
 	{
-		data.blocks[x][y][z] = std::make_unique<Block>(xBlock, yBlock, zBlock, _blockShader);
-		data.isBlockVisibleAt[x][y][z] = true;
+		data.blocks[x][y][z] = nullptr;
+		data.isBlockVisibleAt[x][y][z] = false;
 	}
 	else
 	{
-		data.blocks[x][y][z] = nullptr;
-		data.isBlockVisibleAt[x][y][z] = false;
+		data.blocks[x][y][z] = std::make_unique<Block>(xBlock, yBlock, zBlock, _blockShader);
+		data.isBlockVisibleAt[x][y][z] = true;
 	}
 }
 
@@ -41,9 +41,9 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 	const auto noise = _noise.GetChunkNoise(origin, size);
 	const auto midPoint = ChunkUtils::CalculateMidPoint(size);
 
-	const auto xBlock = static_cast<float>(origin.x) - midPoint;
-	const auto yBlock = static_cast<float>(origin.y) - midPoint;
-	const auto zBlock = static_cast<float>(origin.z) - midPoint;
+	const auto xBlock = static_cast<float>(origin.x) * static_cast<float>(size) - midPoint;
+	const auto yBlock = static_cast<float>(origin.y) * static_cast<float>(size) - midPoint;
+	const auto zBlock = static_cast<float>(origin.z) * static_cast<float>(size) - midPoint;
 
 	auto index = 0;
 	
