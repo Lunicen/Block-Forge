@@ -78,3 +78,8 @@ std::vector<float> Biome::GetChunkNoise(const glm::ivec3 origin, const int chunk
 {
 	return _noise.GetChunkNoise(origin, chunkSize);
 }
+
+std::vector<float> Biome::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int chunkSize) const
+{
+	return _noise.GetChunkNoiseWithBorders(origin, chunkSize);
+}

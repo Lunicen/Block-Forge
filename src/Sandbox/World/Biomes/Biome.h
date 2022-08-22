@@ -20,5 +20,6 @@ public:
 	std::string GetName() const;
 	std::vector<float> GetColumnNoise(glm::ivec3 origin, int chunkSize, int offsetX, int offsetY, int offsetZ) const;
 	std::vector<float> GetChunkNoise(glm::ivec3 origin, int chunkSize) const;
+	std::vector<float> GetChunkNoiseWithBorders(glm::ivec3 origin, int chunkSize) const;
 };
 

@@ -20,6 +20,8 @@ std::vector<std::vector<std::vector<Type>>> ChunkUtils::Chunkify(std::vector<Typ
 	}
 
 	std::vector<std::vector<std::vector<Type>>> result;
+	size_t index = 0;
+
 	result.resize(chunkSize);
 	for (auto x = 0; x < chunkSize; ++x)
 	{
@@ -27,6 +29,10 @@ std::vector<std::vector<std::vector<Type>>> ChunkUtils::Chunkify(std::vector<Typ
 		for (auto y = 0; y < chunkSize; ++y)
 		{
 			result[x][y].resize(chunkSize);
+			for (auto z = 0; z < chunkSize; ++z)
+			{
+				result[x][y][z] = vector[index++];
+			}
 		}
 	}
 

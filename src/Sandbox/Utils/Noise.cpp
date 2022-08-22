@@ -39,3 +39,21 @@ std::vector<float> Noise::GetChunkNoise(const glm::ivec3 chunkPosition, const in
 
 	return noise;
 }
+
+std::vector<float> Noise::GetChunkNoiseWithBorders(const glm::ivec3 chunkPosition, const int chunkSize) const
+{
+	const auto chunkSizeWithBorders = chunkSize + 2;
+	auto noise = std::vector<float>(chunkSizeWithBorders * chunkSizeWithBorders * chunkSizeWithBorders);
+
+	const auto x = chunkPosition.x * chunkSize - 1;
+	const auto y = chunkPosition.y * chunkSize - 1;
+	const auto z = chunkPosition.z * chunkSize - 1;
+
+	_noiseGenerator->GenUniformGrid3D(
+		noise.data(),
+		x, y, z,
+		chunkSizeWithBorders, chunkSizeWithBorders, chunkSizeWithBorders,
+		_frequency, _seed);
+
+	return noise;
+}

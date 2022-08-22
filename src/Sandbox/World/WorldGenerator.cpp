@@ -6,15 +6,23 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 {
 	const auto& noise = surroundingNoise;
 
-	if (noise[x - 1][y][z] > 0 && noise[x + 1][y][z] > 0 && 
-		noise[x][y - 1][z] > 0 && noise[x][y + 1][z] > 0 && 
-		noise[x][y][z - 1] > 0 && noise[x][y][z + 1] > 0)
+	// If it's air
+	if (noise[x][y][z] > 0)
 	{
 		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
+		return;
+	}
+
+	// If it's not completely surrounded by blocks, it can be visible to the Camera
+	if (noise[x - 1][y][z] > 0 || noise[x + 1][y][z] > 0 || 
+		noise[x][y - 1][z] > 0 || noise[x][y + 1][z] > 0 || 
+		noise[x][y][z - 1] > 0 || noise[x][y][z + 1] > 0)
+	{
+		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = true;
 	}
 	else
 	{
-		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = true;
+		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
 	}
 }
 
@@ -51,9 +59,7 @@ void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const
 	const auto selectedBiome = _biomes.at(0);
 	selectedBiome.PaintChunk(origin, chunk, size);
 
-	const auto originOfOptimizationChunk = origin - glm::ivec3(1, 1, 1);
-	const auto chunkSizeWithBorders = size + 2;
-	const auto noiseOfChunkWithBorders = selectedBiome.GetChunkNoise(originOfOptimizationChunk, chunkSizeWithBorders);
+	const auto noiseOfChunkWithBorders = selectedBiome.GetChunkNoiseWithBorders(origin, size);
 
 	OptimizeChunk(chunk, noiseOfChunkWithBorders);
 }
