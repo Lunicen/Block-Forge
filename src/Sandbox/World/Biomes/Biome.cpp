@@ -45,8 +45,6 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 	const auto yBlock = static_cast<float>(origin.y) * static_cast<float>(size) - midPoint;
 	const auto zBlock = static_cast<float>(origin.z) * static_cast<float>(size) - midPoint;
 
-	auto index = 0;
-	
 	for (auto x = 0; x < size; ++x)
 	{
 		for (auto y = 0; y < size; ++y)
@@ -57,7 +55,7 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 					data,
 					x, y, z,
 					static_cast<float>(x) + xBlock, static_cast<float>(y) + yBlock, static_cast<float>(z) + zBlock, 
-					noise[index++]
+					noise[x][y][z]
 				);
 			}
 		}
@@ -74,12 +72,12 @@ std::vector<float> Biome::GetColumnNoise(const glm::ivec3 origin, const int chun
 	return _noise.GetColumnNoise(origin, chunkSize, offsetX, offsetY, offsetZ);
 }
 
-std::vector<float> Biome::GetChunkNoise(const glm::ivec3 origin, const int chunkSize) const
+std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoise(const glm::ivec3 origin, const int chunkSize) const
 {
 	return _noise.GetChunkNoise(origin, chunkSize);
 }
 
-std::vector<float> Biome::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int chunkSize) const
+std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int chunkSize) const
 {
 	return _noise.GetChunkNoiseWithBorders(origin, chunkSize);
 }

@@ -1,5 +1,36 @@
 #include "Noise.h"
 
+std::vector<std::vector<std::vector<float>>> Noise::ConvertNoiseFrom1DTo3D(const std::vector<float>& generatedNoise, const int chunkSize)
+{
+	const auto& size = static_cast<size_t>(chunkSize);
+	std::vector<std::vector<std::vector<float>>> result;
+	result.reserve(generatedNoise.size());
+	auto index = 0;
+
+	result.resize(size);
+	for (size_t x = 0; x < size; ++x)
+	{
+		result[x].resize(size);
+		for (size_t y = 0; y < size; ++y)
+		{
+			result[x][y].resize(size);
+		}
+	}
+
+	for (size_t z = 0; z < size; ++z)
+	{
+		for (size_t y = 0; y < size; ++y)
+		{
+			for (size_t x = 0; x < size; ++x)
+			{
+				result[x][y][z] = generatedNoise[index++];
+			}
+		}
+	}
+
+	return result;
+}
+
 Noise::Noise(const std::string& encodedTree, const int seed, const float frequency)
 	: _seed(seed), _frequency(frequency)
 {
@@ -23,7 +54,7 @@ std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, const i
 	return noise;
 }
 
-std::vector<float> Noise::GetChunkNoise(const glm::ivec3 chunkPosition, const int chunkSize) const
+std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoise(const glm::ivec3 chunkPosition, const int chunkSize) const
 {
 	auto noise = std::vector<float>(chunkSize * chunkSize * chunkSize);
 
@@ -37,10 +68,10 @@ std::vector<float> Noise::GetChunkNoise(const glm::ivec3 chunkPosition, const in
 		chunkSize, chunkSize, chunkSize,
 		_frequency, _seed);
 
-	return noise;
+	return ConvertNoiseFrom1DTo3D(noise, chunkSize);
 }
 
-std::vector<float> Noise::GetChunkNoiseWithBorders(const glm::ivec3 chunkPosition, const int chunkSize) const
+std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoiseWithBorders(const glm::ivec3 chunkPosition, const int chunkSize) const
 {
 	const auto chunkSizeWithBorders = chunkSize + 2;
 	auto noise = std::vector<float>(chunkSizeWithBorders * chunkSizeWithBorders * chunkSizeWithBorders);
@@ -55,5 +86,5 @@ std::vector<float> Noise::GetChunkNoiseWithBorders(const glm::ivec3 chunkPositio
 		chunkSizeWithBorders, chunkSizeWithBorders, chunkSizeWithBorders,
 		_frequency, _seed);
 
-	return noise;
+	return ConvertNoiseFrom1DTo3D(noise, chunkSizeWithBorders);
 }

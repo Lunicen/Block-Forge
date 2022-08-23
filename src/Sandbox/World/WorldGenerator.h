@@ -7,7 +7,7 @@ class WorldGenerator
 	int _seed;
 
 	static void OptimizeChunkAt(int x, int y, int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
-	static void OptimizeChunk(ChunkData& data, const std::vector<float>& noiseOfChunkWithBorders);
+	static void OptimizeChunk(ChunkData& data, const std::vector<std::vector<std::vector<float>>>& noiseOfChunkWithBorders);
 
 public:
 	explicit WorldGenerator(int seed);

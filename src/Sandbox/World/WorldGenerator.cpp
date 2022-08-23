@@ -26,11 +26,10 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 	}
 }
 
-void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<float>& noiseOfChunkWithBorders)
+void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<std::vector<std::vector<float>>>& noiseOfChunkWithBorders)
 {
 	const auto& chunkSize = data.blocks.size();
-	const auto chunkifiedNoise = ChunkUtils::Chunkify(noiseOfChunkWithBorders, static_cast<int>(chunkSize) + 2);
-
+	
 	for (size_t x = 0; x < chunkSize; ++x)
 	{
 		for (size_t y = 0; y < chunkSize; ++y)
@@ -38,7 +37,7 @@ void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<float>& no
 			for (size_t z = 0; z < chunkSize; ++z)
 			{
 				OptimizeChunkAt(static_cast<int>(x) + 1, static_cast<int>(y) + 1, static_cast<int>(z) + 1, 
-								data, chunkifiedNoise);
+								data, noiseOfChunkWithBorders);
 			}
 		}
 	}
@@ -60,7 +59,6 @@ void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const
 	selectedBiome.PaintChunk(origin, chunk, size);
 
 	const auto noiseOfChunkWithBorders = selectedBiome.GetChunkNoiseWithBorders(origin, size);
-
 	OptimizeChunk(chunk, noiseOfChunkWithBorders);
 }
 
