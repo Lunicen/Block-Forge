@@ -7,7 +7,7 @@ BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& b
 
 std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& biomesType)
 {
-	if (!_biomesMetadata.IsLoaded()) throw std::runtime_error("Biome data is not loaded!");
+	if (!_biomesMetadata.IsLoaded()) throw std::logic_error("Biome data is not loaded!");
 
 	auto biomesPool = _biomesMetadata.GetJsonArray(biomesType);
 	auto biomes = std::vector<Biome>();

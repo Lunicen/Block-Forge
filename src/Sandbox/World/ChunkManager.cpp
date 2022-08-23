@@ -59,6 +59,25 @@ void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigin
 	}
 }
 
+void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins)
+{
+	if (std::find(oldOrigins.begin(), oldOrigins.end(), currentOrigin) == oldOrigins.end())
+	{
+		_log.Trace("Added chunk: " + 
+			   std::to_string(currentOrigin.x) + ", " + 
+			   std::to_string(currentOrigin.y) + ", " + 
+			   std::to_string(currentOrigin.z));
+
+		auto chunk = std::make_unique<Chunk>(currentOrigin, *this);
+		auto chunkData = ChunkUtils::InitializeData(_chunkSize);
+
+		_generator->PaintChunk(chunkData, currentOrigin, _chunkSize);
+		chunk->Load(chunkData);
+
+		_loadedChunks.push_back(std::move(chunk));
+	}
+}
+
 void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
 {
 	auto oldOrigins = _loadedChunksOrigin;
@@ -78,27 +97,13 @@ void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
 			const auto zBound = abs(abs(x) + abs(y) - _renderDistance);
 			for (auto z = -zBound; z <= zBound; ++z)
 			{
-				const auto origin = glm::ivec3(x + static_cast<int>(normalizedPosition.x),
-											   y + static_cast<int>(normalizedPosition.y),
-				                               z + static_cast<int>(normalizedPosition.z));
+				const auto origin = glm::ivec3(x + normalizedPosition.x,
+											   y + normalizedPosition.y,
+				                               z + normalizedPosition.z);
 
 				_loadedChunksOrigin.emplace_back(origin);
 
-				if (std::find(oldOrigins.begin(), oldOrigins.end(), origin) == oldOrigins.end())
-				{
-					_log.Trace("Added chunk: " + 
-						   std::to_string(origin.x) + ", " + 
-						   std::to_string(origin.y) + ", " + 
-						   std::to_string(origin.z));
-
-					auto chunk = std::make_unique<Chunk>(origin, *this);
-					auto chunkData = ChunkUtils::InitializeData(_chunkSize);
-
-					_generator->PaintChunk(chunkData, origin, _chunkSize);
-					chunk->Load(chunkData);
-
-					_loadedChunks.push_back(std::move(chunk));
-				}
+				AddChunkToListIfIsNew(origin, oldOrigins);
 			}
 		}
 	}
@@ -132,7 +137,7 @@ void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
 	if (!worldGenerator->IsInitialized())
 	{
-		throw std::runtime_error("The world generator is not initialized!");
+		throw std::logic_error("The world generator is not initialized!");
 	}
 
 	_generator = worldGenerator;

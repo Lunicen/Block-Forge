@@ -11,11 +11,11 @@ class Biome
 	Noise _noise;
 	Shader& _blockShader;
 
-	void SetDataAccordingToNoise(ChunkData& data, int x, int y, int z, float xBlock, float yBlock, float zBlock,
-	                             float noise) const;
+	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock,
+	                              float noise) const;
 
 public:
-
+	
 	/// @brief The constructor.
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 

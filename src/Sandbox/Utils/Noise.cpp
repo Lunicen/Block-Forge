@@ -23,7 +23,8 @@ std::vector<std::vector<std::vector<float>>> Noise::ConvertNoiseFrom1DTo3D(const
 		{
 			for (size_t x = 0; x < size; ++x)
 			{
-				result[x][y][z] = generatedNoise[index++];
+				result[x][y][z] = generatedNoise[index];
+				++index;
 			}
 		}
 	}
