@@ -2,7 +2,7 @@
 
 #include "Sandbox/Utils/ChunkUtils.h"
 
-glm::vec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
+glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
 	position /= _chunkSize;
 	position -= 0.5f;
@@ -22,37 +22,88 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 	return result + CountChunksRecursive(level - 1);
 }
 
-void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
+void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins)
 {
-	_loadedChunks.clear();
+	
 
-	for (auto y = -_renderDistance; y <= _renderDistance; ++y)
+	for (const auto& oldOrigin : oldOrigins)
 	{
-		const auto xLimiter = _renderDistance - abs(y);
-		for (auto x = -xLimiter; x <= xLimiter; ++x)
+		if (std::find(_loadedChunksOrigin.begin(), _loadedChunksOrigin.end(), oldOrigin) != _loadedChunksOrigin.end())
 		{
-			const auto zLimiter = abs(abs(x) + abs(y) - _renderDistance);
-			for (auto z = -zLimiter; z <= zLimiter; ++z)
-			{
-				const auto origin = glm::ivec3(x + static_cast<int>(position.x),
-											   y + static_cast<int>(position.y),
-				                               z + static_cast<int>(position.z));
+			_log.Trace("Reusing chunk: " + 
+					   std::to_string(oldOrigin.x) + ", " + 
+					   std::to_string(oldOrigin.y) + ", " + 
+					   std::to_string(oldOrigin.z));
 
-				_log.Trace("Updates chunk: " + 
+			continue;
+		}
+
+		auto outdatedChunk = std::find_if(
+			_loadedChunks.begin(), 
+			_loadedChunks.end(),
+			[&](const std::unique_ptr<Chunk>& chunk)
+			{
+				return chunk->GetOrigin() == oldOrigin * _chunkSize;
+			}
+		);
+
+		if (outdatedChunk != _loadedChunks.end())
+		{
+			_log.Trace("Removed chunk: " + 
+					   std::to_string(oldOrigin.x) + ", " + 
+					   std::to_string(oldOrigin.y) + ", " + 
+					   std::to_string(oldOrigin.z));
+
+			_loadedChunks.erase(outdatedChunk);
+		}
+	}
+}
+
+void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
+{
+	auto oldOrigins = _loadedChunksOrigin;
+	_loadedChunksOrigin.clear();
+
+	_log.Trace("Current chunk origin: " + 
+			   std::to_string(normalizedPosition.x) + ", " + 
+			   std::to_string(normalizedPosition.y) + ", " + 
+			   std::to_string(normalizedPosition.z));
+
+	const auto yBound = normalizedPosition.y + _renderDistance;
+	for (auto y = -yBound; y <= yBound; ++y)
+	{
+		const auto xBound = _renderDistance - abs(y);
+		for (auto x = -xBound; x <= xBound; ++x)
+		{
+			const auto zBound = abs(abs(x) + abs(y) - _renderDistance);
+			for (auto z = -zBound; z <= zBound; ++z)
+			{
+				const auto origin = glm::ivec3(x + static_cast<int>(normalizedPosition.x),
+											   y + static_cast<int>(normalizedPosition.y),
+				                               z + static_cast<int>(normalizedPosition.z));
+
+				_loadedChunksOrigin.emplace_back(origin);
+
+				if (std::find(oldOrigins.begin(), oldOrigins.end(), origin) == oldOrigins.end())
+				{
+					_log.Trace("Added chunk: " + 
 						   std::to_string(origin.x) + ", " + 
 						   std::to_string(origin.y) + ", " + 
 						   std::to_string(origin.z));
 
-				auto chunk = std::make_unique<Chunk>(origin, *this);
-				auto chunkData = ChunkUtils::InitializeData(_chunkSize);
+					auto chunk = std::make_unique<Chunk>(origin, *this);
+					auto chunkData = ChunkUtils::InitializeData(_chunkSize);
 
-				_generator->PaintChunk(chunkData, origin, _chunkSize);
-				chunk->Load(chunkData);
+					_generator->PaintChunk(chunkData, origin, _chunkSize);
+					chunk->Load(chunkData);
 
-				_loadedChunks.push_back(std::move(chunk));
+					_loadedChunks.push_back(std::move(chunk));
+				}
 			}
 		}
 	}
+
+	RemoveExcludedChunks(oldOrigins);
 }
 
 ChunkManager::ChunkManager(const int chunkSize, const int renderDistance, Camera& camera)

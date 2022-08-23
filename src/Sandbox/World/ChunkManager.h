@@ -15,16 +15,18 @@ class ChunkManager
 	
 	Camera& _camera;
 	std::vector<std::unique_ptr<Chunk>> _loadedChunks = {};
-	glm::vec3 _lastChunkWithPlayer{};
+	std::vector<glm::ivec3> _loadedChunksOrigin = {};
+	glm::ivec3 _lastChunkWithPlayer{};
 
 	int _renderDistance;
 	int _chunkSize;
 	unsigned _chunksToRender;
 	std::shared_ptr<WorldGenerator> _generator{};
 
-	glm::vec3 GetNormalizedPosition(glm::vec3 position) const;
+	glm::ivec3 GetNormalizedPosition(glm::vec3 position) const;
 	static unsigned CountChunksRecursive(unsigned level);
-	void UpdateChunksContainer(glm::vec3 position);
+	void RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins);
+	void UpdateChunksContainer(glm::ivec3 normalizedPosition);
 
 public:
 
