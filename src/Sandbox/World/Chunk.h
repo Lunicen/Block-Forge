@@ -34,7 +34,6 @@ public:
 	void Load(ChunkData& chunkData);
 
 	/// @brief Draws the chunk in the world.
-	///	@note Remember to call @ref Init() beforehand.
 	void Draw() const;
 
 	/// @brief Get the **actual** origin of the chunk.
