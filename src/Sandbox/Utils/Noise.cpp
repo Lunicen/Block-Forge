@@ -37,54 +37,37 @@ Noise::Noise(const std::string& encodedTree, const int seed, const float frequen
 	_noiseGenerator = FastNoise::NewFromEncodedNodeTree(encodedTree.c_str());
 }
 
-std::vector<float> Noise::GetColumnNoise(const glm::ivec3 chunkPosition, const int chunkSize, const int offsetX, const int offsetY, const int offsetZ) const
+std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoise(const glm::ivec3 origin, const int size) const
 {
-	auto noise = std::vector<float>(chunkSize);
+	auto noise = std::vector<float>(size * size * size);
 
-	const auto xPosition = chunkPosition.x * chunkSize + offsetX;
-	const auto yPosition = chunkPosition.y * chunkSize + offsetY;
-	const auto zPosition = chunkPosition.z * chunkSize + offsetZ;
-
-	_noiseGenerator->GenUniformGrid3D(
-		noise.data(),
-		xPosition , yPosition, zPosition,
-		1, chunkSize, 1,
-		_frequency, _seed);
-
-	return noise;
-}
-
-std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoise(const glm::ivec3 chunkPosition, const int chunkSize) const
-{
-	auto noise = std::vector<float>(chunkSize * chunkSize * chunkSize);
-
-	const auto x = chunkPosition.x * chunkSize;
-	const auto y = chunkPosition.y * chunkSize;
-	const auto z = chunkPosition.z * chunkSize;
+	const auto x = origin.x * size;
+	const auto y = origin.y * size;
+	const auto z = origin.z * size;
 
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
 		x, y, z,
-		chunkSize, chunkSize, chunkSize,
+		size, size, size,
 		_frequency, _seed);
 
-	return ConvertNoiseFrom1DTo3D(noise, chunkSize);
+	return ConvertNoiseFrom1DTo3D(noise, size);
 }
 
-std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoiseWithBorders(const glm::ivec3 chunkPosition, const int chunkSize) const
+std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int size) const
 {
-	const auto chunkSizeWithBorders = chunkSize + 2;
-	auto noise = std::vector<float>(chunkSizeWithBorders * chunkSizeWithBorders * chunkSizeWithBorders);
+	const auto sizeWithBorders = size + 2;
+	auto noise = std::vector<float>(sizeWithBorders * sizeWithBorders * sizeWithBorders);
 
-	const auto x = chunkPosition.x * chunkSize - 1;
-	const auto y = chunkPosition.y * chunkSize - 1;
-	const auto z = chunkPosition.z * chunkSize - 1;
+	const auto x = origin.x * size - 1;
+	const auto y = origin.y * size - 1;
+	const auto z = origin.z * size - 1;
 
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
 		x, y, z,
-		chunkSizeWithBorders, chunkSizeWithBorders, chunkSizeWithBorders,
+		sizeWithBorders, sizeWithBorders, sizeWithBorders,
 		_frequency, _seed);
 
-	return ConvertNoiseFrom1DTo3D(noise, chunkSizeWithBorders);
+	return ConvertNoiseFrom1DTo3D(noise, sizeWithBorders);
 }

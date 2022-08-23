@@ -1,9 +1,9 @@
 #include "ChunkUtils.h"
 
-float ChunkUtils::CalculateMidPoint(const int chunkSize)
+float ChunkUtils::CalculateMidPoint(const int size)
 {
-	auto result = static_cast<float>(chunkSize) / 2.0f;
-	if (chunkSize % 2 == 0)
+	auto result = static_cast<float>(size) / 2.0f;
+	if (size % 2 == 0)
 	{
 		result += 0.5f;
 	}
@@ -11,20 +11,20 @@ float ChunkUtils::CalculateMidPoint(const int chunkSize)
 	return result;
 }
 
-ChunkData ChunkUtils::InitializeData(const int chunkSize)
+ChunkData ChunkUtils::InitializeData(const int size)
 {
 	ChunkData chunk;
 	
-	chunk.blocks.resize(chunkSize);
-	chunk.isBlockVisibleAt.resize(chunkSize);
-	for (auto x = 0; x < chunkSize; ++x)
+	chunk.blocks.resize(size);
+	chunk.isBlockVisibleAt.resize(size);
+	for (auto x = 0; x < size; ++x)
 	{
-		chunk.blocks[x].resize(chunkSize);
-		chunk.isBlockVisibleAt[x].resize(chunkSize);
-		for (auto y = 0; y < chunkSize; ++y)
+		chunk.blocks[x].resize(size);
+		chunk.isBlockVisibleAt[x].resize(size);
+		for (auto y = 0; y < size; ++y)
 		{
-			chunk.blocks[x][y].resize(chunkSize);
-			chunk.isBlockVisibleAt[x][y].resize(chunkSize);
+			chunk.blocks[x][y].resize(size);
+			chunk.isBlockVisibleAt[x][y].resize(size);
 		}
 	}
 

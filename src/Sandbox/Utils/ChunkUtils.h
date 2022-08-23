@@ -1,41 +1,17 @@
 #pragma once
 #include "Sandbox/World/ChunkData.h"
 
+/// @class ChunkUtils
+/// @brief Set of functions that could be used in other classes.
 class ChunkUtils
 {
 public:
-	static float CalculateMidPoint(int chunkSize);
-	static ChunkData InitializeData(int chunkSize);
 
-	template <typename Type>
-	static std::vector<std::vector<std::vector<Type>>> Chunkify(std::vector<Type> vector, int chunkSize);
+	/// @brief Calculated the midpoint of the chunk.
+	///	@param size - size of the chunk.
+	static float CalculateMidPoint(int size);
+
+	/// @brief Initializes chunk data.
+	///	@param size - size of the chunk.
+	static ChunkData InitializeData(int size);
 };
-
-template <typename Type>
-std::vector<std::vector<std::vector<Type>>> ChunkUtils::Chunkify(std::vector<Type> vector, const int chunkSize)
-{
-	if (chunkSize * chunkSize * chunkSize != vector.size())
-	{
-		throw std::runtime_error("Cannot chunkify the given vector!");
-	}
-
-	std::vector<std::vector<std::vector<Type>>> result;
-	size_t index = 0;
-
-	result.resize(chunkSize);
-	for (auto x = 0; x < chunkSize; ++x)
-	{
-		result[x].resize(chunkSize);
-		for (auto y = 0; y < chunkSize; ++y)
-		{
-			result[x][y].resize(chunkSize);
-			for (auto z = 0; z < chunkSize; ++z)
-			{
-				result[x][y][z] = vector[index++];
-			}
-		}
-	}
-
-	return result;
-}
-

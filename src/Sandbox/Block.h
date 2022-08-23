@@ -64,6 +64,7 @@ public:
 	/// @param x - X coordinate.
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
+	///	@param shader - Shader of the block.
 	Block(float x, float y, float z, Shader& shader);
 
 	/// @brief This moves block to the x, y, z coordinates.

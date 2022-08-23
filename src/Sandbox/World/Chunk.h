@@ -30,12 +30,14 @@ public:
 	explicit Chunk(glm::ivec3 origin, ChunkManager& chunkManager);
 
 	/// @brief Initializes chunk by allocating the memory.
+	///	@param chunkData - reference to the block structure of the chunk.
 	void Load(ChunkData& chunkData);
 
 	/// @brief Draws the chunk in the world.
 	///	@note Remember to call @ref Init() beforehand.
 	void Draw() const;
 
+	/// @brief Get the **actual** origin of the chunk.
 	glm::ivec3 GetOrigin() const;
 };
 

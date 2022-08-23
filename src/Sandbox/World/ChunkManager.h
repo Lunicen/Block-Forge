@@ -39,13 +39,19 @@ public:
 	/// @brief Updates the chunk manager too adapt to the current frame.
 	void Update();
 
+	/// @brief Binds world generator to the chunk manager.
+	///	@details The world generator is used to define how the world is generated, when
+	///	this class handles only displaying it in an optimal way.
+	///	@param worldGenerator - reference to the world generator.
 	void Bind(const std::shared_ptr<WorldGenerator>& worldGenerator);
 
-	/// @brief Returns the amount of chunks that could be generated on the current render distance settings.
+	/// @brief Get the amount of chunks that could be generated on the current render distance settings.
 	unsigned GetChunksToRenderCount() const;
 
+	/// @brief Get the camera object attached to this class.
 	Camera& GetCamera() const;
 
+	/// @brief Get the size of chunks that are generated.
 	unsigned GetChunkSize() const;
 };
 
