@@ -24,7 +24,7 @@ public:
 	void Bind() const;
 
 	/// @brief Tells OpenGL to unbind the EBO.
-	void Unbind();
+	void Unbind() const;
 
 	~ElementBuffer();
 };
