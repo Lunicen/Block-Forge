@@ -168,6 +168,37 @@ void Metadata::SetJsonObject(const std::string& name, const nlohmann::json& valu
 	}
 }
 
+nlohmann::json Metadata::GetJsonArray(const std::string& name)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		ValidateIfKeyExists(name);
+		ValidateIfTypeIsMatched(_document[name], "array");
+
+		return _document[name];
+	}
+	catch(const std::exception& err)
+	{
+		_log.Error(err.what());
+	}
+
+	return false;
+}
+
+void Metadata::SetJsonArray(const std::string& name, const nlohmann::json& value)
+{
+	try
+	{
+		ValidateIfDocumentIsLoaded();
+		_document[name] = value;
+	}
+	catch(const std::exception& err)
+	{
+		_log.Error(err.what());
+	}
+}
+
 bool Metadata::GetBool(const std::string& name)
 {
 	try

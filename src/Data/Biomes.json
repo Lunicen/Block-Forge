@@ -1,0 +1,12 @@
+{
+    "default" : [
+        {
+            "name": "Meadow",
+            "noise": 
+            {
+                "id" : "GQAHAAEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "frequency" : 0.1
+            }
+        }
+    ]
+}

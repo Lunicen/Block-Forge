@@ -31,7 +31,7 @@ void Block::Draw() const
 	glDrawElements(GL_TRIANGLES, sizeof _indices / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
 }
 
-Shader Block::GetShader() const
+Shader& Block::GetShader() const
 {
 	return _shader;
 }

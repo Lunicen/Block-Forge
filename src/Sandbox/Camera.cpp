@@ -93,7 +93,7 @@ void Camera::HandleCursorMovement()
 	const auto angleWithXAxis = abs(angle(orientation, _up) - glm::radians(90.0f));
 
 	// This prevents the barrel roll situation when looking up
-	if (angleWithXAxis < glm::radians(88.0f))
+	if (angleWithXAxis < glm::radians(85.0f))
 	{
 		_orientation = orientation;
 	}
@@ -110,6 +110,7 @@ void Camera::Add(Block const& block) const
 
 void Camera::HandleInput()
 {
+
 	if (_hid.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;

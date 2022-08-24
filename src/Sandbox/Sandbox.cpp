@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
+#include "World/WorldGenerator.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -18,14 +19,14 @@ void Sandbox::InitializeGlfw()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-void Sandbox::Run() const
+void Sandbox::Run()
 {
 	constexpr int width = 1280;
 	constexpr int height = 720;
 
 	InitializeGlfw();
 
-	if (!_world->IsLoaded())
+	if (!_world.IsLoaded())
 	{
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
@@ -53,8 +54,13 @@ void Sandbox::Run() const
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	ChunkManager chunkManager(1, camera);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69);
+	worldGenerator->Initialize(blockShader);
+
+	ChunkManager chunkManager(5, 5, camera);
+	chunkManager.Bind(worldGenerator);
 
 	while(!glfwWindowShouldClose(window))
 	{
