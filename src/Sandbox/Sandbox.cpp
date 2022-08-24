@@ -15,6 +15,7 @@
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
 #include "World/WorldGenerator.h"
+#include <Sandbox/FPSCounter.h>
 
 void Sandbox::InitializeGlfw()
 {
@@ -53,11 +54,7 @@ void Sandbox::Run()
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	glEnable(GL_DEPTH_TEST);
-
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CCW);
+	
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -84,8 +81,8 @@ void Sandbox::Run()
 
 	int viewportWidth =100, viewportHeight =50;
 	double time =1.0;
-	//char str[30];
-
+	char str[30];
+	FPSCounter counter;
 	
 	
 	while(!glfwWindowShouldClose(window))
@@ -95,8 +92,42 @@ void Sandbox::Run()
 		
 		
 		
+		time = glfwGetTime();
+
+		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
+
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE))
+			glfwSetWindowShouldClose(window, GLFW_TRUE);
+
+		glViewport(0, 0, viewportWidth, viewportHeight);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		gltBeginDraw();
 
+		gltColor(1.0f, 1.0f, 1.0f, 1.0f);
+		gltDrawText2D(text1, 0.0f, 0.0f, 1.0f); // x=0.0, y=0.0, scale=1.0
+
+		gltDrawText2DAligned(text1,
+			(GLfloat)(viewportWidth / 2),
+			(GLfloat)(viewportHeight / 2),
+			3.0f,
+			GLT_CENTER, GLT_CENTER);
+
+		sprintf_s(str, "Time: %.4f", time);
+		gltSetText(text2, str);
+
+		gltColor(
+			cosf((float)time) * 0.5f + 0.5f,
+			sinf((float)time) * 0.5f + 0.5f,
+			1.0f,
+			1.0f);
+
+		gltDrawText2DAligned(text2, 0.0f, (GLfloat)viewportHeight, 1.0f, GLT_LEFT, GLT_BOTTOM);
+
+		gltEndDraw();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		camera.Update();
 		camera.HandleInput();
@@ -104,11 +135,14 @@ void Sandbox::Run()
 
 		counter.CountFPS();
 
-		gltEndDraw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	gltDeleteText(text1);
+	gltDeleteText(text2);
+
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
