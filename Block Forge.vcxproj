@@ -181,8 +181,6 @@
     <ClInclude Include="src\Sandbox\World\Biomes\BiomeProvider.h" />
     <ClInclude Include="src\Sandbox\Utils\World\Noise.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
-    <ClCompile Include="src\Sandbox\Utils\VertexBuffer.cpp" />
-    <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
     <ClCompile Include="src\Sandbox\FPSCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
