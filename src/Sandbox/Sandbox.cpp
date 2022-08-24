@@ -1,12 +1,21 @@
+#pragma warning(disable : 4267)
+
+
 #include "Sandbox.h"
 #include "World.h"
+
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#define GLT_IMPLEMENTATION
+
+#include <gltext.h>
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
+#include "FPSCounter.h"
+
 
 void Sandbox::InitializeGlfw()
 {
@@ -30,6 +39,8 @@ void Sandbox::Run() const
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
+
+	
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -55,15 +66,42 @@ void Sandbox::Run() const
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
 	ChunkManager chunkManager(1, camera);
+	FPSCounter counter;
 
+	if (!gltInit())
+	{
+		fprintf(stderr, "Failed to initialize glText\n");
+		glfwTerminate();
+	}
+
+	GLTtext* text1 = gltCreateText();
+	gltSetText(text1, "Hello World!");
+
+	GLTtext* text2 = gltCreateText();
+
+	int viewportWidth =100, viewportHeight =50;
+	double time =1.0;
+	//char str[30];
+
+	
+	
 	while(!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
+		
+		
+		gltBeginDraw();
+
 
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
+
+		counter.CountFPS();
+
+		gltEndDraw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -71,4 +109,6 @@ void Sandbox::Run() const
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+
+	gltTerminate();
 }
