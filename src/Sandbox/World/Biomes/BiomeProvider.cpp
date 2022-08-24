@@ -1,5 +1,7 @@
 #include "BiomeProvider.h"
 
+#include "Sandbox/Utils/EngineExceptions.h"
+
 BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader) : _blockShader(blockShader) 
 {
 	_biomesMetadata.Load(filenameWithBiomeData);
@@ -7,7 +9,10 @@ BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& b
 
 std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& biomesType)
 {
-	if (!_biomesMetadata.IsLoaded()) throw std::logic_error("Biome data is not loaded!");
+	if (!_biomesMetadata.IsLoaded())
+	{
+		throw UninitializedPropertyAccessException("Biome data is not loaded!");
+	}
 
 	auto biomesPool = _biomesMetadata.GetJsonArray(biomesType);
 	auto biomes = std::vector<Biome>();

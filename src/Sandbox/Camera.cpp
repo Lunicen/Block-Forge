@@ -1,7 +1,5 @@
 #include "Camera.h"
 
-#include <iostream>
-
 Camera::Camera(GLFWwindow*& window, const int width, const int height, const glm::vec3 position, HumanInterfaceDevice& hid) : _position(position), _width(width), _height(height), _hid(hid), _window(window)
 {
 	if (width <= 0 || height <= 0)

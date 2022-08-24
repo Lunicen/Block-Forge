@@ -2,7 +2,6 @@
 #include <glm/vec3.hpp>
 
 #include "ChunkData.h"
-#include "ChunkManager.h"
 class ChunkManager; // Forward declaration
 
 /// @class Chunk

@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/Utils/Noise.h"
+#include "Sandbox/Utils/World/Noise.h"
 #include "Sandbox/World/ChunkData.h"
 
 /// @class Biome

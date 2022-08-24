@@ -1,6 +1,6 @@
 #include "WorldGenerator.h"
 
-#include "Sandbox/Utils/ChunkUtils.h"
+#include "Sandbox/Utils/World/ChunkUtils.h"
 
 void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {

@@ -1,5 +1,7 @@
 #include "Chunk.h"
 
+#include "ChunkManager.h"
+
 void Chunk::DrawBlockIfExists(const int x, const int y, const int z) const
 {
 	if (_blocks[x][y][z] != nullptr && _isVisible[x][y][z])

@@ -1,6 +1,7 @@
 #include "ChunkManager.h"
 
-#include "Sandbox/Utils/ChunkUtils.h"
+#include "Sandbox/Utils/EngineExceptions.h"
+#include "Sandbox/Utils/World/ChunkUtils.h"
 
 glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
@@ -80,7 +81,7 @@ void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const 
 
 void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
 {
-	auto oldOrigins = _loadedChunksOrigin;
+	const auto oldOrigins = _loadedChunksOrigin;
 	_loadedChunksOrigin.clear();
 
 	_log.Trace("Current chunk origin: " + 
@@ -137,7 +138,7 @@ void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
 	if (!worldGenerator->IsInitialized())
 	{
-		throw std::logic_error("The world generator is not initialized!");
+		throw UninitializedPropertyAccessException("The world generator is not initialized!");
 	}
 
 	_generator = worldGenerator;
