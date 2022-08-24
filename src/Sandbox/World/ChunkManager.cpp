@@ -1,8 +1,11 @@
 #include "ChunkManager.h"
 
-glm::vec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
+#include "Sandbox/Utils/EngineExceptions.h"
+#include "Sandbox/Utils/World/ChunkUtils.h"
+
+glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
-	position /= chunk_size;
+	position /= _chunkSize;
 	position -= 0.5f;
 
 	return {
@@ -20,40 +23,100 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 	return result + CountChunksRecursive(level - 1);
 }
 
-void ChunkManager::UpdateChunksContainer(const glm::vec3 position)
+void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins)
 {
-	_loadedChunks.clear();
+	
 
-	for (auto y = -_renderDistance; y <= _renderDistance; ++y)
+	for (const auto& oldOrigin : oldOrigins)
 	{
-		const auto xLimiter = _renderDistance - abs(y);
-		for (auto x = -xLimiter; x <= xLimiter; ++x)
+		if (std::find(_loadedChunksOrigin.begin(), _loadedChunksOrigin.end(), oldOrigin) != _loadedChunksOrigin.end())
 		{
-			const auto zLimiter = abs(abs(x) + abs(y) - _renderDistance);
-			for (auto z = -zLimiter; z <= zLimiter; ++z)
+			_log.Trace("Reusing chunk: " + 
+					   std::to_string(oldOrigin.x) + ", " + 
+					   std::to_string(oldOrigin.y) + ", " + 
+					   std::to_string(oldOrigin.z));
+
+			continue;
+		}
+
+		auto outdatedChunk = std::find_if(
+			_loadedChunks.begin(), 
+			_loadedChunks.end(),
+			[&](const std::unique_ptr<Chunk>& chunk)
 			{
-				const auto chunkPosition = glm::vec3(x + static_cast<int>(position.x),
-				                                     y + static_cast<int>(position.y),
-				                                     z + static_cast<int>(position.z));
-
-				_log.Trace("Updates chunk: " + std::to_string(chunkPosition.x) + ", " + std::to_string(chunkPosition.y) + ", " + std::to_string(chunkPosition.z));
-
-				auto chunk = std::make_unique<Chunk>(chunkPosition, _blockShader, _camera);
-				chunk->Init();
-
-				_loadedChunks.push_back(std::move(chunk));
+				return chunk->GetOrigin() == oldOrigin * _chunkSize;
 			}
+		);
+
+		if (outdatedChunk != _loadedChunks.end())
+		{
+			_log.Trace("Removed chunk: " + 
+					   std::to_string(oldOrigin.x) + ", " + 
+					   std::to_string(oldOrigin.y) + ", " + 
+					   std::to_string(oldOrigin.z));
+
+			_loadedChunks.erase(outdatedChunk);
 		}
 	}
 }
 
-ChunkManager::ChunkManager(const int renderDistance, Camera& camera) : _camera(camera),
-                                                                       _renderDistance(renderDistance)
+void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins)
+{
+	if (std::find(oldOrigins.begin(), oldOrigins.end(), currentOrigin) == oldOrigins.end())
+	{
+		_log.Trace("Added chunk: " + 
+			   std::to_string(currentOrigin.x) + ", " + 
+			   std::to_string(currentOrigin.y) + ", " + 
+			   std::to_string(currentOrigin.z));
+
+		auto chunk = std::make_unique<Chunk>(currentOrigin, *this);
+		auto chunkData = ChunkUtils::InitializeData(_chunkSize);
+
+		_generator->PaintChunk(chunkData, currentOrigin, _chunkSize);
+		chunk->Load(chunkData);
+
+		_loadedChunks.push_back(std::move(chunk));
+	}
+}
+
+void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
+{
+	const auto oldOrigins = _loadedChunksOrigin;
+	_loadedChunksOrigin.clear();
+
+	_log.Trace("Current chunk origin: " + 
+			   std::to_string(normalizedPosition.x) + ", " + 
+			   std::to_string(normalizedPosition.y) + ", " + 
+			   std::to_string(normalizedPosition.z));
+
+	const auto yBound = normalizedPosition.y + _renderDistance;
+	for (auto y = -yBound; y <= yBound; ++y)
+	{
+		const auto xBound = _renderDistance - abs(y);
+		for (auto x = -xBound; x <= xBound; ++x)
+		{
+			const auto zBound = abs(abs(x) + abs(y) - _renderDistance);
+			for (auto z = -zBound; z <= zBound; ++z)
+			{
+				const auto origin = glm::ivec3(x + normalizedPosition.x,
+											   y + normalizedPosition.y,
+				                               z + normalizedPosition.z);
+
+				_loadedChunksOrigin.emplace_back(origin);
+
+				AddChunkToListIfIsNew(origin, oldOrigins);
+			}
+		}
+	}
+
+	RemoveExcludedChunks(oldOrigins);
+}
+
+ChunkManager::ChunkManager(const int chunkSize, const int renderDistance, Camera& camera)
+	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize)
 {
 	_chunksToRender = GetChunksToRenderCount();
 	_lastChunkWithPlayer = GetNormalizedPosition(_camera.GetPosition());
-
-	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 
 void ChunkManager::Update()
@@ -71,6 +134,18 @@ void ChunkManager::Update()
 	}
 }
 
+void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
+{
+	if (!worldGenerator->IsInitialized())
+	{
+		throw UninitializedPropertyAccessException("The world generator is not initialized!");
+	}
+
+	_generator = worldGenerator;
+	
+	UpdateChunksContainer(_lastChunkWithPlayer);
+}
+
 unsigned ChunkManager::GetChunksToRenderCount() const
 {
 	unsigned result = 0;
@@ -80,4 +155,14 @@ unsigned ChunkManager::GetChunksToRenderCount() const
 	}
 
 	return CountChunksRecursive(_renderDistance) + result; 
+}
+
+Camera& ChunkManager::GetCamera() const
+{
+	return _camera;
+}
+
+unsigned ChunkManager::GetChunkSize() const
+{
+	return _chunkSize;
 }

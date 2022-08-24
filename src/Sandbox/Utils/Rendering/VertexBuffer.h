@@ -24,7 +24,7 @@ public:
 	void Bind() const;
 
 	/// @brief Tells OpenGL to unbind the VBO.
-	void Unbind();
+	void Unbind() const;
 
 	~VertexBuffer();
 };

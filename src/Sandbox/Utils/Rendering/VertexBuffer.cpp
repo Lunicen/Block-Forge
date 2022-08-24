@@ -13,7 +13,7 @@ void VertexBuffer::Bind() const
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void VertexBuffer::Unbind()
+void VertexBuffer::Unbind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

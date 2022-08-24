@@ -73,6 +73,15 @@ public:
 	/// @param value - value to set.
 	void SetJsonObject(const std::string& name, const nlohmann::json& value);
 
+	/// @brief Gets JSON Array.
+	/// @param name - JSON key.
+	nlohmann::json GetJsonArray(const std::string& name);
+
+	/// @brief Sets JSON Array.
+	/// @param name - JSON key.
+	/// @param value - value to set.
+	void SetJsonArray(const std::string& name, const nlohmann::json& value);
+
 	/// @brief Gets Boolean.
 	/// @param name - JSON key.
 	bool GetBool(const std::string& name);
