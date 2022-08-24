@@ -19,3 +19,6 @@
 [submodule "lib/glm"]
 	path = lib/glm
 	url = https://github.com/g-truc/glm
+[submodule "glText"]
+	path = lib/glText
+	url = https://github.com/vallentin/glText
