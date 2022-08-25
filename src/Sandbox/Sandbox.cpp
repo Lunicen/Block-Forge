@@ -74,13 +74,11 @@ void Sandbox::Run()
 		glfwTerminate();
 	}
 
-	GLTtext* text1 = gltCreateText();
-	gltSetText(text1, "Hello World!");
+	
 
-	GLTtext* text2 = gltCreateText();
+	GLTtext* fps = gltCreateText();
 
 	int viewportWidth =100, viewportHeight =50;
-	double time =1.0;
 	char str[30];
 	FPSCounter counter;
 	
@@ -92,8 +90,6 @@ void Sandbox::Run()
 		
 		
 		
-		time = glfwGetTime();
-
 		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
 
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE))
@@ -106,25 +102,11 @@ void Sandbox::Run()
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		gltBeginDraw();
 
-		gltColor(1.0f, 1.0f, 1.0f, 1.0f);
-		gltDrawText2D(text1, 0.0f, 0.0f, 1.0f); // x=0.0, y=0.0, scale=1.0
+		sprintf_s(str, "FPS: %i", counter.GetactualFps());
+		gltSetText(fps, str);
 
-		gltDrawText2DAligned(text1,
-			(GLfloat)(viewportWidth / 2),
-			(GLfloat)(viewportHeight / 2),
-			3.0f,
-			GLT_CENTER, GLT_CENTER);
 
-		sprintf_s(str, "Time: %.4f", time);
-		gltSetText(text2, str);
-
-		gltColor(
-			cosf((float)time) * 0.5f + 0.5f,
-			sinf((float)time) * 0.5f + 0.5f,
-			1.0f,
-			1.0f);
-
-		gltDrawText2DAligned(text2, 0.0f, (GLfloat)viewportHeight, 1.0f, GLT_LEFT, GLT_BOTTOM);
+		gltDrawText2DAligned(fps, 0.0f, (GLfloat)viewportHeight, 1.0f, GLT_LEFT, GLT_BOTTOM);
 
 		gltEndDraw();
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -135,13 +117,11 @@ void Sandbox::Run()
 
 		counter.CountFPS();
 
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	gltDeleteText(text1);
-	gltDeleteText(text2);
+	gltDeleteText(fps);
 
 
 	glfwDestroyWindow(window);

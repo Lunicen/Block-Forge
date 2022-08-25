@@ -6,6 +6,7 @@ using namespace std;
 FPSCounter::FPSCounter() {
     this->lastTime = CalculateLastTime();
     this->nbFrames = 0;
+    this->actualFps = 60;
 }
 
 inline double FPSCounter::GetlastTime() const
@@ -19,8 +20,12 @@ inline int FPSCounter::GetnbFrames() const
 }
 
 
-double FPSCounter::CalculateLastTime() {
+inline double FPSCounter::CalculateLastTime() {
      return glfwGetTime();
+}
+
+int FPSCounter::GetactualFps() const {
+    return actualFps;
 }
 
 void FPSCounter:: CountFPS() {
@@ -32,7 +37,7 @@ void FPSCounter:: CountFPS() {
 
         if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
             // printf and reset timer
-            cout << nbFrames << endl;
+            this->actualFps = nbFrames;
 
             nbFrames = 0;
             lastTime += 1.0;
