@@ -19,14 +19,27 @@ inline int FPSCounter::GetnbFrames() const
     return nbFrames;
 }
 
+int FPSCounter::GetactualFps()  {
+    return actualFps;
+}
 
-inline double FPSCounter::CalculateLastTime() {
+inline double FPSCounter::CalculateLastTime() const{
      return glfwGetTime();
 }
 
-int FPSCounter::GetactualFps() const {
-    return actualFps;
+
+inline int FPSCounter::GetviewportHeight()const {
+    return viewportHeight;
 }
+
+inline int FPSCounter::GetviewportWidth() const {
+    return viewportWidth;
+}
+
+const char*FPSCounter:: GetStr() const {
+    return str; 
+}
+
 
 void FPSCounter:: CountFPS() {
    
@@ -35,8 +48,7 @@ void FPSCounter:: CountFPS() {
         nbFrames++;
 
 
-        if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
-            // printf and reset timer
+        if (currentTime - lastTime >= 1.0) { 
             this->actualFps = nbFrames;
 
             nbFrames = 0;

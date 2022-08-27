@@ -79,7 +79,7 @@ void Sandbox::Run()
 	GLTtext* fps = gltCreateText();
 
 	int viewportWidth =100, viewportHeight =50;
-	char str[30];
+	char str[300];
 	FPSCounter counter;
 	
 	
@@ -101,6 +101,8 @@ void Sandbox::Run()
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		gltBeginDraw();
+
+
 
 		sprintf_s(str, "FPS: %i", counter.GetactualFps());
 		gltSetText(fps, str);
