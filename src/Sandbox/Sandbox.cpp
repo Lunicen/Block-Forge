@@ -1,6 +1,3 @@
-#pragma warning(disable : 4267)
-
-
 #include "Sandbox.h"
 #include "World.h"
 
@@ -10,7 +7,10 @@
 
 #define GLT_IMPLEMENTATION
 
+#pragma warning(push, 0)
 #include <gltext.h>
+#pragma warning(pop)
+
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
