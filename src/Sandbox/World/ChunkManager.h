@@ -37,7 +37,7 @@ public:
 	///	@param camera - the object around which the chunks are rendered.
 	ChunkManager(int chunkSize, int renderDistance, Camera& camera);
 
-	/// @brief Updates the chunk manager too adapt to the current frame.
+	/// @brief Updates the chunk manager to adapt to the current frame.
 	void Update();
 
 	/// @brief Binds world generator to the chunk manager.
