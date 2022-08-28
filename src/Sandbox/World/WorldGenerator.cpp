@@ -43,14 +43,14 @@ void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<std::vecto
 	}
 }
 
-WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
-{
-}
-
-void WorldGenerator::Initialize(Shader& blockShader)
+WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed)
 {
 	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", blockShader);
+
 	_biomes = biomeProvider.GetBiomes(_seed);
+	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
+
+	_placer = std::make_unique<BiomePlacer>(_seed, placerNoise, _biomes);
 }
 
 void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const int size) const

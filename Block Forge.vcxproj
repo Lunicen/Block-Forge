@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Biomes\BiomePlacer.cpp" />
     <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise2D.cpp" />
     <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise3D.cpp" />
     <ClCompile Include="src\Sandbox\Utils\World\ChunkUtils.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Biomes\BiomePlacer.h" />
     <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise2D.h" />
     <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise3D.h" />
     <ClInclude Include="src\Sandbox\Utils\EngineExceptions.h" />

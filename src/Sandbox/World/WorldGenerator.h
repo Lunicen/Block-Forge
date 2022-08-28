@@ -1,4 +1,5 @@
 #pragma once
+#include "Biomes/BiomePlacer.h"
 #include "Biomes/BiomeProvider.h"
 
 /// @class WorldGenerator
@@ -6,6 +7,7 @@
 ///	@details This class is made for transforming chunks according to the biomes that are specified in it.
 class WorldGenerator
 {
+	std::unique_ptr<BiomePlacer> _placer;
 	std::vector<Biome> _biomes;
 	int _seed;
 
@@ -16,11 +18,8 @@ public:
 
 	/// The constructor.
 	///	@param seed - the world seed.
-	explicit WorldGenerator(int seed);
-
-	/// @brief Initialize the world generator and load the data from the JSON file.
 	///	@param blockShader - a reference specified for the @ref Biome class.
-	void Initialize(Shader& blockShader);
+	explicit WorldGenerator(int seed, Shader& blockShader);
 
 	/// @brief Adapts chunk at the specified origin, according to the world terrain noise.
 	///	@details This class transforms chunks by using specified biomes that are incorporated
