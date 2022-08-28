@@ -5,7 +5,7 @@
 
 class Noise3D final : protected Noise
 {
-	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& generatedNoise, int chunkSize);
+	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, int size);
 
 public:
 

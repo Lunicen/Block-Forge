@@ -1,11 +1,11 @@
 #include "Noise3D.h"
 
-std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(const std::vector<float>& generatedNoise,
-                                                                             const int chunkSize)
+std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(const std::vector<float>& noise,
+                                                                             const int size)
 {
-	const auto& size = static_cast<size_t>(chunkSize);
+	const auto& size = static_cast<size_t>(size);
 	std::vector<std::vector<std::vector<float>>> result;
-	result.reserve(generatedNoise.size());
+	result.reserve(noise.size());
 	auto index = 0;
 
 	result.resize(size);
@@ -24,7 +24,7 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 		{
 			for (size_t x = 0; x < size; ++x)
 			{
-				result[x][y][z] = generatedNoise[index];
+				result[x][y][z] = noise[index];
 				++index;
 			}
 		}
