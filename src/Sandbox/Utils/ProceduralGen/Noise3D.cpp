@@ -1,6 +1,7 @@
-#include "Noise.h"
+#include "Noise3D.h"
 
-std::vector<std::vector<std::vector<float>>> Noise::ConvertNoiseFrom1DTo3D(const std::vector<float>& generatedNoise, const int chunkSize)
+std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(const std::vector<float>& generatedNoise,
+                                                                             const int chunkSize)
 {
 	const auto& size = static_cast<size_t>(chunkSize);
 	std::vector<std::vector<std::vector<float>>> result;
@@ -32,15 +33,9 @@ std::vector<std::vector<std::vector<float>>> Noise::ConvertNoiseFrom1DTo3D(const
 	return result;
 }
 
-Noise::Noise(const std::string& encodedTree, const int seed, const float frequency)
-	: _seed(seed), _frequency(frequency)
+std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 origin, const int size) const
 {
-	_noiseGenerator = FastNoise::NewFromEncodedNodeTree(encodedTree.c_str());
-}
-
-std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoise(const glm::ivec3 origin, const int size) const
-{
-	auto noise = std::vector<float>(size * size * size);
+	auto noise = std::vector<float>(static_cast<unsigned>(size * size * size));
 
 	const auto x = origin.x * size;
 	const auto y = origin.y * size;
@@ -55,10 +50,10 @@ std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoise(const glm::ive
 	return ConvertNoiseFrom1DTo3D(noise, size);
 }
 
-std::vector<std::vector<std::vector<float>>> Noise::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int size) const
+std::vector<std::vector<std::vector<float>>> Noise3D::GetNoiseWithBorders(const glm::ivec3 origin, const int size) const
 {
 	const auto sizeWithBorders = size + 2;
-	auto noise = std::vector<float>(sizeWithBorders * sizeWithBorders * sizeWithBorders);
+	auto noise = std::vector<float>(static_cast<unsigned>(sizeWithBorders * sizeWithBorders * sizeWithBorders));
 
 	const auto x = origin.x * size - 1;
 	const auto y = origin.y * size - 1;

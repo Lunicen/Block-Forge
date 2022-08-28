@@ -58,7 +58,7 @@ void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const
 	const auto selectedBiome = _biomes.at(0);
 	selectedBiome.PaintChunk(origin, chunk, size);
 
-	const auto noiseOfChunkWithBorders = selectedBiome.GetChunkNoiseWithBorders(origin, size);
+	const auto noiseOfChunkWithBorders = selectedBiome.GetNoiseWithBorders(origin, size);
 	OptimizeChunk(chunk, noiseOfChunkWithBorders);
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/Utils/World/Noise.h"
+#include "Sandbox/Utils/ProceduralGen/Noise3D.h"
 #include "Sandbox/World/ChunkData.h"
 
 /// @class Biome
@@ -8,7 +8,7 @@
 class Biome
 {
 	std::string _name;
-	Noise _noise;
+	Noise3D _noise;
 	Shader& _blockShader;
 
 	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock,
@@ -20,7 +20,7 @@ public:
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
 	/// @param blockShader - shader of the block, so the biome could be rendered.
-	explicit Biome(std::string name, Noise noise, Shader& blockShader);
+	explicit Biome(std::string name, Noise3D noise, Shader& blockShader);
 
 	/// @brief Adapts chunk to the biome algorithm.
 	///	@details The purpose of this method is to "paint" the chunk
@@ -33,11 +33,11 @@ public:
 	/// @brief Get chunk noise that is at certain position on the map.
 	/// @param origin - origin of the chunk.
 	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetChunkNoise(glm::ivec3 origin, int size) const;
+	std::vector<std::vector<std::vector<float>>> GetNoise(glm::ivec3 origin, int size) const;
 
 	/// @brief Get chunk noise that is at certain position on the map, including the noise around it.
 	/// @param origin - origin of the chunk.
 	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetChunkNoiseWithBorders(glm::ivec3 origin, int size) const;
+	std::vector<std::vector<std::vector<float>>> GetNoiseWithBorders(glm::ivec3 origin, int size) const;
 };
 

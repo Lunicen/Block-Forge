@@ -14,13 +14,15 @@ void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock
 	}
 }
 
-Biome::Biome(std::string name, Noise noise, Shader& blockShader) : _name(std::move(name)), _noise(std::move(noise)), _blockShader(blockShader)
+Biome::Biome(std::string name, Noise3D noise, Shader& blockShader) : _name(std::move(name)),
+                                                                     _noise(std::move(noise)),
+                                                                     _blockShader(blockShader)
 {
 }
 
 void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size) const
 {
-	const auto noise = _noise.GetChunkNoise(origin, size);
+	const auto noise = _noise.GetNoise(origin, size);
 	const auto midPoint = ChunkUtils::CalculateMidPoint(size);
 
 	const auto xBlock = static_cast<float>(origin.x) * static_cast<float>(size) - midPoint;
@@ -45,12 +47,12 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 	}
 }
 
-std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoise(const glm::ivec3 origin, const int size) const
+std::vector<std::vector<std::vector<float>>> Biome::GetNoise(const glm::ivec3 origin, const int size) const
 {
-	return _noise.GetChunkNoise(origin, size);
+	return _noise.GetNoise(origin, size);
 }
 
-std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int size) const
+std::vector<std::vector<std::vector<float>>> Biome::GetNoiseWithBorders(const glm::ivec3 origin, const int size) const
 {
-	return _noise.GetChunkNoiseWithBorders(origin, size);
+	return _noise.GetNoiseWithBorders(origin, size);
 }
