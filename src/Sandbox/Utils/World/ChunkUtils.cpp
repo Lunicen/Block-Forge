@@ -14,19 +14,9 @@ float ChunkUtils::CalculateMidPoint(const int size)
 ChunkData ChunkUtils::InitializeData(const int size)
 {
 	ChunkData chunk;
-	
-	chunk.blocks.resize(size);
-	chunk.isBlockVisibleAt.resize(size);
-	for (auto x = 0; x < size; ++x)
-	{
-		chunk.blocks[x].resize(size);
-		chunk.isBlockVisibleAt[x].resize(size);
-		for (auto y = 0; y < size; ++y)
-		{
-			chunk.blocks[x][y].resize(size);
-			chunk.isBlockVisibleAt[x][y].resize(size);
-		}
-	}
+
+	InitializeVector3D(chunk.blocks, size);
+	InitializeVector3D(chunk.isBlockVisibleAt, size);
 
 	return chunk;
 }

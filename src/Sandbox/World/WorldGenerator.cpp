@@ -55,10 +55,9 @@ WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed
 
 void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const int size) const
 {
-	const auto selectedBiome = _biomes.at(0);
-	selectedBiome.PaintChunk(origin, chunk, size);
-
-	const auto noiseOfChunkWithBorders = selectedBiome.GetNoiseWithBorders(origin, size);
+	_placer->PaintChunk(origin, chunk, size);
+	const auto noiseOfChunkWithBorders = _placer->GetChunkNoiseWithBorders(origin, size);
+	
 	OptimizeChunk(chunk, noiseOfChunkWithBorders);
 }
 

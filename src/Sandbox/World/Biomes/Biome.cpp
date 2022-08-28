@@ -71,6 +71,12 @@ void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size)
 	}
 }
 
+std::vector<float> Biome::GetColumnNoise(
+	const glm::ivec3 origin, const int size, const int xOffset, const int yOffset, const int zOffset) const
+{
+	return _noise.GetColumnNoise(origin, size, xOffset, yOffset, zOffset);
+}
+
 std::vector<std::vector<std::vector<float>>> Biome::GetNoiseWithBorders(const glm::ivec3 origin, const int size) const
 {
 	return _noise.GetNoiseWithBorders(origin, size);
