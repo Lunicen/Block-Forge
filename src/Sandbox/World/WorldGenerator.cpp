@@ -50,7 +50,7 @@ WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed
 	_biomes = biomeProvider.GetBiomes(_seed);
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
 
-	_placer = std::make_unique<BiomePlacer>(_seed, placerNoise, _biomes);
+	_placer = std::make_unique<BiomePlacer>(placerNoise, _biomes);
 }
 
 void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const int size) const

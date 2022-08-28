@@ -33,6 +33,24 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 	return result;
 }
 
+std::vector<float> Noise3D::GetColumnNoise(
+	const glm::ivec3 origin, const int size, const int xOffset, const int yOffset, const int zOffset) const
+{
+	auto noise = std::vector<float>(static_cast<unsigned>(size));
+
+	const auto x = origin.x * size + xOffset;
+	const auto y = origin.y * size + yOffset;
+	const auto z = origin.z * size + zOffset;
+
+	_noiseGenerator->GenUniformGrid3D(
+		noise.data(),
+		x, y, z,
+		1, size, 1,
+		_frequency, _seed);
+
+	return noise;
+}
+
 std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 origin, const int size) const
 {
 	auto noise = std::vector<float>(static_cast<unsigned>(size * size * size));

@@ -18,6 +18,8 @@ public:
 	{
 	}
 
+	std::vector<float> GetColumnNoise(glm::ivec3 origin, int size, int xOffset, int yOffset, int zOffset) const;
+
 	/// @brief Get noise that is at certain position on the map.
 	/// @param origin - origin of the chunk.
 	/// @param size - the size of the chunk (in one dimension).

@@ -40,3 +40,11 @@ std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const
 
 	return ConvertNoiseFrom1DTo2D(noise, size);
 }
+
+float Noise2D::GetNoiseAt(const glm::ivec2 origin, const int size, const int xOffset, const int yOffset) const
+{
+	const auto x = static_cast<float>(origin.x * size + xOffset);
+	const auto y = static_cast<float>(origin.y * size + yOffset);
+	
+	return _noiseGenerator->GenSingle2D(x, y, _seed);
+}

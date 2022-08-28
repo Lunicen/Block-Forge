@@ -6,12 +6,16 @@ class BiomePlacer
 {
 	Log& _log = Log::Get();
 
-	const int _seed;
 	Noise2D _noise;
 	std::vector<Biome>& _biomes;
 
+	bool HasChunkOnlySingleBiome(glm::ivec3 origin, int size) const;
+	static void PaintChunkWithBiome(glm::ivec3 origin, ChunkData& chunk, int size, const Biome& biome);
+	
 public:
 	
-	explicit BiomePlacer(int seed, const Noise2D& noise2D, std::vector<Biome>& biomes);
+	explicit BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes);
+
+	void PaintChunk(glm::ivec3 origin, ChunkData& chunk, int size);
 };
 
