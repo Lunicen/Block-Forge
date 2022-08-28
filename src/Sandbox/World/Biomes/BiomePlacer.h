@@ -10,7 +10,6 @@ class BiomePlacer
 	std::vector<Biome>& _biomes;
 
 	bool HasChunkOnlySingleBiome(glm::ivec3 origin, int size) const;
-	static void PaintChunkWithBiome(glm::ivec3 origin, ChunkData& chunk, int size, const Biome& biome);
 	
 public:
 	

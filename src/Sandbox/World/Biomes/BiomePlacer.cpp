@@ -15,11 +15,6 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const glm::ivec3 origin, const int siz
 			fabs(noiseUpperLeft - noiseUpperRight) < epsilon;
 }
 
-void BiomePlacer::PaintChunkWithBiome(const glm::ivec3 origin, ChunkData& chunk, const int size, const Biome& biome)
-{
-	biome.PaintChunk(origin, chunk, size);
-}
-
 BiomePlacer::BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes) : _noise(std::move(noise2D)), _biomes(biomes)
 {
 }
@@ -31,7 +26,8 @@ void BiomePlacer::PaintChunk(const glm::ivec3 origin, ChunkData& chunk, const in
 	if (HasChunkOnlySingleBiome(origin, size))
 	{
 		const auto singleBiomeIndex = static_cast<int>(_noise.GetNoiseAt(chunkArea, size, 0, 0)) % _biomes.size();
-		PaintChunkWithBiome(origin, chunk, size, _biomes.at(singleBiomeIndex));
+		_biomes.at(singleBiomeIndex).PaintChunk(origin, chunk, size);
+
 		return;
 	}
 
