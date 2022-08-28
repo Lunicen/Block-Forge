@@ -78,7 +78,8 @@ void Sandbox::Run()
 
 	GLTtext* fps = gltCreateText();
 
-	int viewportWidth =100, viewportHeight =50;
+	int viewportWidth = 100;
+	int viewportHeight = 50;
 	char str[300];
 	FPSCounter counter;
 	
@@ -87,8 +88,6 @@ void Sandbox::Run()
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		
 		
 		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
 
@@ -104,11 +103,11 @@ void Sandbox::Run()
 
 
 
-		sprintf_s(str, "FPS: %i", counter.GetactualFps());
+		sprintf_s(str, "FPS: %i", counter.GetActualFps());
 		gltSetText(fps, str);
 
 
-		gltDrawText2DAligned(fps, 0.0f, (GLfloat)viewportHeight, 1.0f, GLT_LEFT, GLT_BOTTOM);
+		gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(viewportHeight), 1.0f, GLT_LEFT, GLT_BOTTOM);
 
 		gltEndDraw();
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -117,7 +116,7 @@ void Sandbox::Run()
 		camera.HandleInput();
 		chunkManager.Update();
 
-		counter.CountFPS();
+		counter.CountFps();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

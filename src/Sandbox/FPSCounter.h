@@ -9,20 +9,20 @@ int nbFrames;
 int actualFps;
 const int viewportWidth = 50;
 const int viewportHeight = 100;
-char str[30];
+char str[30]{};
 
 public:
 
 	FPSCounter();
-	double GetlastTime() const;
+	double GetLastTime() const;
 	int GetnbFrames() const;
-	int GetactualFps();
+	int GetActualFps();
 	double CalculateLastTime() const;
-	int GetviewportHeight()const;
+	int GetViewportHeight()const;
 
-	int GetviewportWidth() const;
+	int GetViewportWidth() const;
 	const char* GetStr() const;
 
-	void CountFPS();
+	void CountFps();
 
 };

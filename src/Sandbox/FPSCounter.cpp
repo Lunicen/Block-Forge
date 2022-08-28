@@ -9,7 +9,7 @@ FPSCounter::FPSCounter() {
     this->actualFps = 60;
 }
 
-inline double FPSCounter::GetlastTime() const
+inline double FPSCounter::GetLastTime() const
 {
     return lastTime;
 }
@@ -19,7 +19,7 @@ inline int FPSCounter::GetnbFrames() const
     return nbFrames;
 }
 
-int FPSCounter::GetactualFps()  {
+int FPSCounter::GetActualFps()  {
     return actualFps;
 }
 
@@ -27,12 +27,11 @@ inline double FPSCounter::CalculateLastTime() const{
      return glfwGetTime();
 }
 
-
-inline int FPSCounter::GetviewportHeight()const {
+inline int FPSCounter::GetViewportHeight()const {
     return viewportHeight;
 }
 
-inline int FPSCounter::GetviewportWidth() const {
+inline int FPSCounter::GetViewportWidth() const {
     return viewportWidth;
 }
 
@@ -40,15 +39,14 @@ const char*FPSCounter:: GetStr() const {
     return str; 
 }
 
-
-void FPSCounter:: CountFPS() {
+void FPSCounter:: CountFps() {
    
         // Measure speed
-        double currentTime = glfwGetTime();
+        const double currentTime = glfwGetTime();
         nbFrames++;
 
 
-        if (currentTime - lastTime >= 1.0) { 
+        if (current_time - lastTime >= 1.0) { 
             this->actualFps = nbFrames;
 
             nbFrames = 0;
