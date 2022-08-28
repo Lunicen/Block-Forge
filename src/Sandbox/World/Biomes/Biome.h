@@ -22,6 +22,8 @@ public:
 	/// @param blockShader - shader of the block, so the biome could be rendered.
 	explicit Biome(std::string name, Noise3D noise, Shader& blockShader);
 
+	void PaintColumn(glm::ivec3 origin, ChunkData& data, int size, int xOffset, int yOffset, int zOffset) const;
+
 	/// @brief Adapts chunk to the biome algorithm.
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
@@ -29,14 +31,6 @@ public:
 	/// @param data - the metadata of the chunk (basically blocks).
 	/// @param size - the size of the chunk (in one dimension).
 	void PaintChunk(glm::ivec3 origin, ChunkData& data, int size) const;
-
-	
-	std::vector<float> GetColumnNoise(glm::ivec3 origin, int size, int xOffset, int yOffset, int zOffset) const;
-
-	/// @brief Get chunk noise that is at certain position on the map.
-	/// @param origin - origin of the chunk.
-	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetNoise(glm::ivec3 origin, int size) const;
 
 	/// @brief Get chunk noise that is at certain position on the map, including the noise around it.
 	/// @param origin - origin of the chunk.

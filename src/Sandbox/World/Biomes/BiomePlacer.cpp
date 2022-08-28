@@ -26,7 +26,7 @@ void BiomePlacer::PaintChunk(const glm::ivec3 origin, ChunkData& chunk, const in
 	if (HasChunkOnlySingleBiome(origin, size))
 	{
 		const auto singleBiomeIndex = static_cast<int>(_noise.GetNoiseAt(chunkArea, size, 0, 0)) % _biomes.size();
-		_biomes.at(singleBiomeIndex).PaintChunk(origin, chunk, size);
+		_biomes[singleBiomeIndex].PaintChunk(origin, chunk, size);
 
 		return;
 	}
@@ -35,8 +35,8 @@ void BiomePlacer::PaintChunk(const glm::ivec3 origin, ChunkData& chunk, const in
 	{
 		for (auto y = 0; y < size; ++y)
 		{
-			const auto selectedBiomeIndex = static_cast<int>(_noise.GetNoiseAt(chunkArea, size, x, y)) % _biomes.size();
-			const auto columnNoise = _biomes.at(selectedBiomeIndex).GetColumnNoise(origin, size, x, 0, y);
+			const auto biomeIndex = static_cast<int>(_noise.GetNoiseAt(chunkArea, size, x, y)) % _biomes.size();
+			_biomes[biomeIndex].PaintColumn(origin, chunk, size, x, 0, y);
 		}
 	}
 }
