@@ -3,26 +3,26 @@
 std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(const std::vector<float>& noise,
                                                                              const int size)
 {
-	const auto& size = static_cast<size_t>(size);
+	const auto& chunkSize = static_cast<size_t>(size);
 	std::vector<std::vector<std::vector<float>>> result;
 	result.reserve(noise.size());
 	auto index = 0;
 
-	result.resize(size);
-	for (size_t x = 0; x < size; ++x)
+	result.resize(chunkSize);
+	for (size_t x = 0; x < chunkSize; ++x)
 	{
-		result[x].resize(size);
-		for (size_t y = 0; y < size; ++y)
+		result[x].resize(chunkSize);
+		for (size_t y = 0; y < chunkSize; ++y)
 		{
-			result[x][y].resize(size);
+			result[x][y].resize(chunkSize);
 		}
 	}
 
-	for (size_t z = 0; z < size; ++z)
+	for (size_t z = 0; z < chunkSize; ++z)
 	{
-		for (size_t y = 0; y < size; ++y)
+		for (size_t y = 0; y < chunkSize; ++y)
 		{
-			for (size_t x = 0; x < size; ++x)
+			for (size_t x = 0; x < chunkSize; ++x)
 			{
 				result[x][y][z] = noise[index];
 				++index;
