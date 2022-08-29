@@ -58,7 +58,7 @@ void Sandbox::Run()
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69, blockShader);
 
-	ChunkManager chunkManager(5, 5, camera);
+	ChunkManager chunkManager(8, 5, camera);
 	chunkManager.Bind(worldGenerator);
 
 	while(!glfwWindowShouldClose(window))

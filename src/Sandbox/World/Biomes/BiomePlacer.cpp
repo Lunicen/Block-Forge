@@ -67,7 +67,7 @@ std::vector<std::vector<std::vector<float>>> BiomePlacer::GetChunkNoiseWithBorde
 		for (auto z = 0; z < sizeWithBorders; ++z)
 		{
 			const auto biome = GetBiomeAt(_noise.GetNoiseAt(chunkArea, size, x - 1, z - 1));
-			const auto column = biome.GetColumnNoise(origin, size, x, 0, z);
+			const auto column = biome.GetColumnNoise(origin, sizeWithBorders, x - 1, 0, z - 1);
 
 			for (auto y = 0; y < sizeWithBorders; ++y)
 			{

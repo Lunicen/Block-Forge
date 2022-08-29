@@ -1,5 +1,7 @@
 #include "Noise2D.h"
 
+#include "Sandbox/Utils/EngineExceptions.h"
+
 std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, int size)
 {
 	const auto& planeSize = static_cast<size_t>(size);
@@ -25,6 +27,14 @@ std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vecto
 	return result;
 }
 
+void Noise2D::ValidateSizeAsWorkaround(const int size)
+{
+	if (size < 8)
+	{
+		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than 8 for 2D noise generation. Bug: https://github.com/Auburn/FastNoise2/issues/89.");
+	}
+}
+
 std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size) const
 {
 	auto noise = std::vector<float>(static_cast<unsigned>(size * size));
@@ -43,6 +53,8 @@ std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const
 
 float Noise2D::GetNoiseAt(const glm::ivec2 origin, const int size, const int xOffset, const int yOffset) const
 {
+	ValidateSizeAsWorkaround(size);
+
 	const auto x = static_cast<float>(origin.x * size + xOffset);
 	const auto y = static_cast<float>(origin.y * size + yOffset);
 	

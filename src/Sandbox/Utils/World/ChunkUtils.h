@@ -25,6 +25,7 @@ public:
 template <class Value>
 void ChunkUtils::InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, int size)
 {
+	vector.resize(size);
 	for (auto x = 0; x < size; ++x)
 	{
 		vector[x].resize(size);
