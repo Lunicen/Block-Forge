@@ -91,9 +91,6 @@ void Sandbox::Run()
 		
 		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
 
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE))
-			glfwSetWindowShouldClose(window, GLFW_TRUE);
-
 		glViewport(0, 0, viewportWidth, viewportHeight);
 		glClear(GL_COLOR_BUFFER_BIT);
 
