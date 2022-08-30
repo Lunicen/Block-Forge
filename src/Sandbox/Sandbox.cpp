@@ -77,20 +77,18 @@ void Sandbox::Run()
 
 	GLTtext* fps = gltCreateText();
 
-	int viewportWidth = 100;
-	int viewportHeight = 50;
 	char str[300];
 	FPSCounter counter;
 	
 	
 	while(!glfwWindowShouldClose(window))
 	{
+		
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
-		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		gltBeginDraw();
@@ -100,8 +98,8 @@ void Sandbox::Run()
 
 		gltSetText(fps, str);
 
-
-		gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(viewportHeight), 1.0f, GLT_LEFT, GLT_BOTTOM);
+		constexpr auto yText = 20;
+		gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(yText), 1.0f, GLT_LEFT, GLT_BOTTOM);
 
 		gltEndDraw();
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
