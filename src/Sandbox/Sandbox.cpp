@@ -73,7 +73,6 @@ void Sandbox::Run()
 		fprintf(stderr, "Failed to initialize glText\n");
 		glfwTerminate();
 	}
-
 	
 
 	GLTtext* fps = gltCreateText();
@@ -88,22 +87,17 @@ void Sandbox::Run()
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+		camera.Update();
+		camera.HandleInput();
+		chunkManager.Update();
 		glfwGetFramebufferSize(window, &viewportWidth, &viewportHeight);
-
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE))
-			glfwSetWindowShouldClose(window, GLFW_TRUE);
-
-		glViewport(0, 0, viewportWidth, viewportHeight);
-		glClear(GL_COLOR_BUFFER_BIT);
-
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		gltBeginDraw();
 
-
-
+		counter.CountFps();
 		sprintf_s(str, "FPS: %i", counter.GetActualFps());
+
 		gltSetText(fps, str);
 
 
@@ -116,7 +110,6 @@ void Sandbox::Run()
 		camera.HandleInput();
 		chunkManager.Update();
 
-		counter.CountFps();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

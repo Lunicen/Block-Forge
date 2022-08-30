@@ -46,7 +46,7 @@ void FPSCounter:: CountFps() {
         nbFrames++;
 
 
-        if (current_time - lastTime >= 1.0) { 
+        if (currentTime - lastTime >= 1.0) { 
             this->actualFps = nbFrames;
 
             nbFrames = 0;
