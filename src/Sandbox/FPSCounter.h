@@ -1,15 +1,23 @@
 #pragma once
+// ReSharper disable once CppUnusedIncludeDirective
+#include <glad/glad.h>
+
+#define GLT_IMPLEMENTATION
+
+#pragma warning(push, 0)
+#include <gltext.h>
+#pragma warning(pop)
 
 class FPSCounter
 {
 private:
-
-double lastTime;
-int nbFrames;
-int actualFps;
-const int viewportWidth = 50;
-const int viewportHeight = 100;
-char str[30]{};
+	GLTtext* fps;
+	double lastTime;
+	int nbFrames;
+	int actualFps;
+	const int viewportWidth = 50;
+	const int viewportHeight = 100;
+	char str[30]{};
 
 public:
 
@@ -21,8 +29,8 @@ public:
 	int GetViewportHeight()const;
 
 	int GetViewportWidth() const;
-	const char* GetStr() const;
+	const char* GetStr();
 
 	void CountFps();
-
+	void Update();
 };

@@ -1,21 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
 
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#define GLT_IMPLEMENTATION
-
-#pragma warning(push, 0)
-#include <gltext.h>
-#pragma warning(pop)
-
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
 #include "World/WorldGenerator.h"
-#include <Sandbox/FPSCounter.h>
+#include "Sandbox/FPSCounter.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -39,8 +29,6 @@ void Sandbox::Run()
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
-
-	
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -68,19 +56,8 @@ void Sandbox::Run()
 	ChunkManager chunkManager(5, 5, camera);
 	chunkManager.Bind(worldGenerator);
 
-	if (!gltInit())
-	{
-		fprintf(stderr, "Failed to initialize glText\n");
-		glfwTerminate();
-	}
-	
-
-	GLTtext* fps = gltCreateText();
-
-	char str[300];
 	FPSCounter counter;
-	
-	
+
 	while(!glfwWindowShouldClose(window))
 	{
 		
@@ -90,31 +67,11 @@ void Sandbox::Run()
 		camera.HandleInput();
 		chunkManager.Update();
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		gltBeginDraw();
-
-		counter.CountFps();
-		sprintf_s(str, "FPS: %i", counter.GetActualFps());
-
-		gltSetText(fps, str);
-
-		constexpr auto yText = 20;
-		gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(yText), 1.0f, GLT_LEFT, GLT_BOTTOM);
-
-		gltEndDraw();
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		camera.Update();
-		camera.HandleInput();
-		chunkManager.Update();
-
+		counter.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	gltDeleteText(fps);
-
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
