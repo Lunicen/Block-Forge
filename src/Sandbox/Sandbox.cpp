@@ -40,7 +40,7 @@ void Sandbox::Run()
 		return;
 	}
 
-	
+
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -54,7 +54,7 @@ void Sandbox::Run()
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	
+
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -68,53 +68,23 @@ void Sandbox::Run()
 	ChunkManager chunkManager(5, 5, camera);
 	chunkManager.Bind(worldGenerator);
 
-	if (!gltInit())
-	{
-		fprintf(stderr, "Failed to initialize glText\n");
-		glfwTerminate();
-	}
-	
-
 	GLTtext* fps = gltCreateText();
 
-	char str[300];
 	FPSCounter counter;
-	
-	
-	while(!glfwWindowShouldClose(window))
+
+	while (!glfwWindowShouldClose(window))
 	{
-		
+
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		gltBeginDraw();
-
-		counter.CountFps();
-		sprintf_s(str, "FPS: %i", counter.GetActualFps());
-
-		gltSetText(fps, str);
-
-		constexpr auto yText = 20;
-		gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(yText), 1.0f, GLT_LEFT, GLT_BOTTOM);
-
-		gltEndDraw();
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		camera.Update();
-		camera.HandleInput();
-		chunkManager.Update();
-
+		counter.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	gltDeleteText(fps);
-
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

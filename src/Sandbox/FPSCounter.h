@@ -1,4 +1,10 @@
 #pragma once
+#include<glad/glad.h>
+#include<GLFW/glfw3.h>
+#define GLT_IMPLEMENTATION
+#pragma warning(push, 0)
+#include <gltext.h>
+#pragma warning(pop)
 
 class FPSCounter
 {
@@ -7,9 +13,8 @@ private:
 double lastTime;
 int nbFrames;
 int actualFps;
-const int viewportWidth = 50;
-const int viewportHeight = 100;
-char str[30]{};
+GLTtext* fps;
+
 
 public:
 
@@ -18,11 +23,8 @@ public:
 	int GetnbFrames() const;
 	int GetActualFps();
 	double CalculateLastTime() const;
-	int GetViewportHeight()const;
-
-	int GetViewportWidth() const;
-	const char* GetStr() const;
 
 	void CountFps();
-
+	void Update();
+	~FPSCounter();
 };

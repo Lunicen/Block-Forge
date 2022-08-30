@@ -1,12 +1,17 @@
 #include "FPSCounter.h"
+
+#include <string>
+
 #include "GLFW/glfw3.h"
-#include <iostream>
+
 using namespace std;
 
 FPSCounter::FPSCounter() {
     this->lastTime = CalculateLastTime();
     this->nbFrames = 0;
     this->actualFps = 60;
+    this->fps = gltCreateText();
+
 }
 
 inline double FPSCounter::GetLastTime() const
@@ -27,21 +32,9 @@ inline double FPSCounter::CalculateLastTime() const{
      return glfwGetTime();
 }
 
-inline int FPSCounter::GetViewportHeight()const {
-    return viewportHeight;
-}
-
-inline int FPSCounter::GetViewportWidth() const {
-    return viewportWidth;
-}
-
-const char*FPSCounter:: GetStr() const {
-    return str; 
-}
 
 void FPSCounter:: CountFps() {
-   
-        // Measure speed
+		
         const double currentTime = glfwGetTime();
         nbFrames++;
 
@@ -53,6 +46,27 @@ void FPSCounter:: CountFps() {
             lastTime += 1.0;
         }
 
+}
+
+void FPSCounter::Update()
+{
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    gltBeginDraw();
+
+
+    CountFps();
+    const auto fpsText = "FPS: " + std::to_string(actualFps);
+    gltSetText(fps, fpsText.c_str());
+
+
+    gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(100), 1.0f, GLT_LEFT, GLT_BOTTOM);
+
+    gltEndDraw();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+FPSCounter::~FPSCounter()
+{
+    gltDeleteText(fps);
 }
 
 
