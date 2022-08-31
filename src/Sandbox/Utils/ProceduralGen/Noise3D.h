@@ -20,14 +20,11 @@ public:
 
 	std::vector<float> GetColumnNoise(glm::ivec3 origin, int size, int xOffset, int yOffset, int zOffset) const;
 
+	std::vector<std::vector<std::vector<float>>> GetNoise(glm::ivec3 origin, int size, int xOffset, int yOffset, int zOffset) const;
+
 	/// @brief Get noise that is at certain position on the map.
 	/// @param origin - origin of the chunk.
 	/// @param size - the size of the chunk (in one dimension).
 	std::vector<std::vector<std::vector<float>>> GetNoise(glm::ivec3 origin, int size) const;
-
-	/// @brief Get chunk noise that is at certain position on the map, including the noise around it.
-	/// @param origin - origin of the chunk.
-	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetNoiseWithBorders(glm::ivec3 origin, int size) const;
 };
 

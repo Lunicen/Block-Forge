@@ -18,6 +18,8 @@ public:
 	{
 	}
 
+	std::vector<std::vector<float>> GetNoise(glm::ivec2 origin, int size, int xOffset, int yOffset) const;
+
 	/// @brief Get noise that is at certain position on the map.
 	/// @param origin - origin of the chunk.
 	/// @param size - the size of the chunk (in one dimension).

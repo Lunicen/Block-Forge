@@ -24,12 +24,12 @@ std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vecto
 	return result;
 }
 
-std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size) const
+std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size, const int xOffset, const int yOffset) const
 {
 	auto noise = std::vector<float>(static_cast<unsigned>(size * size));
 
-	const auto x = origin.x * size;
-	const auto y = origin.y * size;
+	const auto x = origin.x * size + xOffset;
+	const auto y = origin.y * size + yOffset;
 
 	_noiseGenerator->GenUniformGrid2D(
 		noise.data(),
@@ -38,6 +38,11 @@ std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const
 		_frequency, _seed);
 
 	return ConvertNoiseFrom1DTo2D(noise, size);
+}
+
+std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size) const
+{
+	return GetNoise(origin, size, 0, 0);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic

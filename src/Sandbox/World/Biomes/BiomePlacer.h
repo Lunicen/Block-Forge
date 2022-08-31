@@ -9,14 +9,13 @@ class BiomePlacer
 	Noise2D _noise;
 	std::vector<Biome>& _biomes;
 
-	bool HasChunkOnlySingleBiome(glm::ivec3 origin, int size) const;
+	static bool HasChunkOnlySingleBiome(const std::vector<std::vector<float>>& biomesMap);
 	Biome& GetBiomeAt(float noise) const;
 	
 public:
 	
 	explicit BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes);
 
-	
 	void PaintChunk(glm::ivec3 origin, ChunkData& chunk, int size) const;
 
 	std::vector<std::vector<std::vector<float>>> GetChunkNoiseWithBorders(glm::ivec3 origin, int size) const;

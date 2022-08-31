@@ -55,13 +55,15 @@ std::vector<float> Noise3D::GetColumnNoise(
 	return noise;
 }
 
-std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 origin, const int size) const
+std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 origin, const int size,
+                                                               const int xOffset, const int yOffset,
+                                                               const int zOffset) const
 {
 	auto noise = std::vector<float>(static_cast<unsigned>(size * size * size));
 
-	const auto x = origin.x * size;
-	const auto y = origin.y * size;
-	const auto z = origin.z * size;
+	const auto x = origin.x * size + xOffset;
+	const auto y = origin.y * size + yOffset;
+	const auto z = origin.z * size + zOffset;
 
 	_noiseGenerator->GenUniformGrid3D(
 		noise.data(),
@@ -72,20 +74,7 @@ std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 
 	return ConvertNoiseFrom1DTo3D(noise, size);
 }
 
-std::vector<std::vector<std::vector<float>>> Noise3D::GetNoiseWithBorders(const glm::ivec3 origin, const int size) const
+std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const glm::ivec3 origin, const int size) const
 {
-	const auto sizeWithBorders = size + 2;
-	auto noise = std::vector<float>(static_cast<unsigned>(sizeWithBorders * sizeWithBorders * sizeWithBorders));
-
-	const auto x = origin.x * size - 1;
-	const auto y = origin.y * size - 1;
-	const auto z = origin.z * size - 1;
-
-	_noiseGenerator->GenUniformGrid3D(
-		noise.data(),
-		x, y, z,
-		sizeWithBorders, sizeWithBorders, sizeWithBorders,
-		_frequency, _seed);
-
-	return ConvertNoiseFrom1DTo3D(noise, sizeWithBorders);
+	return GetNoise(origin, size, 0, 0, 0);
 }
