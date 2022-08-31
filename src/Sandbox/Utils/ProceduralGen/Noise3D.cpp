@@ -35,6 +35,11 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 std::vector<float> Noise3D::GetColumnNoise(
 	const glm::ivec3 origin, const int size, const int xOffset, const int yOffset, const int zOffset) const
 {
+	if (size < 8)
+	{
+		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than 8 for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
+	}
+
 	auto noise = std::vector<float>(static_cast<unsigned>(size));
 
 	const auto x = origin.x * size + xOffset;

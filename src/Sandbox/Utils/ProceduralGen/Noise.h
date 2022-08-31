@@ -4,6 +4,8 @@
 #include <FastNoise/FastNoise.h>
 
 #include "Core/Log.h"
+// ReSharper disable once CppUnusedIncludeDirective
+#include "Sandbox/Utils/EngineExceptions.h"
 
 /// @class Noise
 /// @brief Represents the base class for the classes dedicated to generate noise algorithm.

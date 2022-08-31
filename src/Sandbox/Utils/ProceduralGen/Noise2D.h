@@ -6,8 +6,7 @@
 class Noise2D final : protected Noise
 {
 	static std::vector<std::vector<float>> ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, int size);
-	static void ValidateSizeAsWorkaround(int size);
-
+	
 public:
 
 	/// @brief The constructor.
