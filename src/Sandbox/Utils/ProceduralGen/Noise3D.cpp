@@ -5,7 +5,6 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 {
 	const auto& chunkSize = static_cast<size_t>(size);
 	std::vector<std::vector<std::vector<float>>> result;
-	result.reserve(noise.size());
 	auto index = 0;
 
 	result.resize(chunkSize);

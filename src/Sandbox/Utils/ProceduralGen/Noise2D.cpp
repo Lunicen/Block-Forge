@@ -6,7 +6,6 @@ std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vecto
 {
 	const auto& planeSize = static_cast<size_t>(size);
 	std::vector<std::vector<float>> result;
-	result.reserve(noise.size());
 	auto index = 0;
 
 	result.resize(planeSize);
