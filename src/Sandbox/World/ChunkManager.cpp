@@ -25,8 +25,6 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 
 void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins)
 {
-	
-
 	for (const auto& oldOrigin : oldOrigins)
 	{
 		if (std::find(_loadedChunksOrigin.begin(), _loadedChunksOrigin.end(), oldOrigin) != _loadedChunksOrigin.end())
@@ -89,10 +87,12 @@ void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
 			   std::to_string(normalizedPosition.y) + ", " + 
 			   std::to_string(normalizedPosition.z));
 
-	const auto yBound = normalizedPosition.y + _renderDistance;
+	const auto yBound = _renderDistance;
+
 	for (auto y = -yBound; y <= yBound; ++y)
 	{
 		const auto xBound = _renderDistance - abs(y);
+
 		for (auto x = -xBound; x <= xBound; ++x)
 		{
 			const auto zBound = abs(abs(x) + abs(y) - _renderDistance);
