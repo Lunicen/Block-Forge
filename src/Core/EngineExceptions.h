@@ -16,7 +16,7 @@ protected:
 
 /// @class UninitializedPropertyAccessException
 /// @brief Exception made for handling uninitialized data situations.
-class UninitializedPropertyAccessException final : protected EngineException
+class UninitializedPropertyAccessException final : public EngineException
 {
 	using Base = EngineException;
 
@@ -30,7 +30,7 @@ public:
 
 /// @class BadInitializationException
 /// @brief Exception made for handling failures on class initialization.
-class BadInitializationException final : protected EngineException
+class BadInitializationException final : public EngineException
 {
 	using Base = EngineException;
 
@@ -44,7 +44,7 @@ public:
 
 /// @class LibraryBugException
 /// @brief Exception made for alerting bugs related to the 3rd libraries.
-class LibraryBugException final : protected EngineException
+class LibraryBugException final : public EngineException
 {
 	using Base = EngineException;
 
@@ -55,4 +55,32 @@ public:
     /// and it's related to the bugs with 3rd library.
     /// @param message - exception message.
     explicit LibraryBugException(const std::string& message) : Base(message) {}
+};
+
+/// @class NotFoundException
+/// @brief Exception made for alarming that the requested asset could not be located or is not loaded.
+class NotFoundException final : public EngineException
+{
+	using Base = EngineException;
+
+public:
+
+    /// @brief Alarms that the requested data does not exist in a memory.
+    /// @details This exception should be thrown, if the requested asset was not found.
+    /// @param message - exception message.
+    explicit NotFoundException(const std::string& message) : Base(message) {}
+};
+
+/// @class MismatchException
+/// @brief Exception made for handling mismatch situations between the expected and current value.
+class MismatchException final : public EngineException
+{
+	using Base = EngineException;
+
+public:
+
+    /// @brief Alerts that the given value does not match the correct pattern that supports it.
+    /// @details This exception should be thrown, if the given value mismatches the right data pattern.
+    /// @param message - exception message.
+    explicit MismatchException(const std::string& message) : Base(message) {}
 };

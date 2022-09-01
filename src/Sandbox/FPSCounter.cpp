@@ -3,7 +3,7 @@
 #include <string>
 #include <GLFW/glfw3.h>
 
-#include "Utils/EngineExceptions.h"
+#include "Core/EngineExceptions.h"
 
 FPSCounter::FPSCounter()
 {

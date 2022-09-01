@@ -55,14 +55,8 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
-	/// @brief Checks if JSON data is loaded to the memory space.
-	bool IsLoaded() const;
-
 	/// @brief Saves JSON data to the file specified in the filename.
-	void Save();
-
-	/// @brief Checks if file is successfully saved.
-	bool IsSaved() const;
+	void Save() const;
 
 	/// @brief Gets JSON Object.
 	/// @param name - JSON key.
