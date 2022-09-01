@@ -79,39 +79,5 @@ std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(
 
 std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const ChunkFrame& frame, const int expansionFactor) const
 {
-	const auto chunkSize = static_cast<int>(frame.size);
-	const auto areaSize = frame.size + static_cast<size_t>(2 * expansionFactor);
-
-	const auto x = frame.origin.x * chunkSize + expansionFactor;
-	const auto y = frame.origin.y * chunkSize + expansionFactor;
-	const auto z = frame.origin.z * chunkSize + expansionFactor;
-
-	auto noise = std::vector<float>(areaSize * areaSize * areaSize);
-
-	_noiseGenerator->GenUniformGrid3D(
-		noise.data(),
-		x, y, z,
-		static_cast<int>(areaSize), static_cast<int>(areaSize), static_cast<int>(areaSize),
-		_frequency, _seed);
-
-	return ConvertNoiseFrom1DTo3D(noise, areaSize);
+	return GetNoise(frame, 0, 0, 0);
 }
-
-std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const ChunkFrame& frame) const
-{
-	const auto& areaSize = static_cast<int>(frame.size);
-	auto noise = std::vector<float>(static_cast<unsigned>(areaSize * areaSize * areaSize));
-
-	const auto x = frame.origin.x * areaSize;
-	const auto y = frame.origin.y * areaSize;
-	const auto z = frame.origin.z * areaSize;
-
-	_noiseGenerator->GenUniformGrid3D(
-		noise.data(),
-		x, y, z,
-		areaSize, areaSize, areaSize,
-		_frequency, _seed);
-
-	return ConvertNoiseFrom1DTo3D(noise, areaSize);
-}
-

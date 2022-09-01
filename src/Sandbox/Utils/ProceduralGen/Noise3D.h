@@ -23,10 +23,9 @@ public:
 	
 	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor = 0) const;
 
-	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
-
-	/// @brief Get noise that is at certain position on the map.
+	/// @brief Get noise of the chunk at certain position on the map.
 	/// @param frame - frame of the chunk.
-	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame) const;
+	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
+	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
 };
 
