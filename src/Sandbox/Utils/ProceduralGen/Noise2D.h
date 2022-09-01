@@ -2,7 +2,7 @@
 #include "Noise.h"
 #include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
-class Noise2D final : protected Noise
+class Noise2D : protected Noise
 {
 	static std::vector<std::vector<float>> ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size);
 	

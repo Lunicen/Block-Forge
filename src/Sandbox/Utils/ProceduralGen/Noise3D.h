@@ -1,10 +1,8 @@
 #pragma once
-#include <glm/vec3.hpp>
-
 #include "Noise.h"
 #include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
-class Noise3D final : protected Noise
+class Noise3D : protected Noise
 {
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
 
