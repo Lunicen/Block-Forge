@@ -79,5 +79,5 @@ std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(
 
 std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(const ChunkFrame& frame, const int expansionFactor) const
 {
-	return GetNoise(frame, 0, 0, 0);
+	return GetNoise(frame, 0, 0, 0, expansionFactor);
 }
