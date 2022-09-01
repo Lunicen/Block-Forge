@@ -21,12 +21,11 @@ public:
 	///	@param blockShader - a reference specified for the @ref Biome class.
 	explicit WorldGenerator(int seed, Shader& blockShader);
 
-	/// @brief Adapts chunk at the specified origin, according to the world terrain noise.
+	/// @brief Adapts chunk at specified origin, according to the world terrain noise.
 	///	@details This class transforms chunks by using specified biomes that are incorporated
 	///	in the world generator.
-	///	@param chunk - the chunk data for blocks manipulation.
-	///	@param origin - the origin of the chunk.
-	///	@param size - the size of the chunk.
+	///	@param frame - the frame of the chunk.
+	///	@param blocks - the blocks inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 	/// @brief If the method @ref Initialize(Shader& blockShader) was used, returns true. Otherwise false.

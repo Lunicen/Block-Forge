@@ -2,6 +2,8 @@
 #include "Noise.h"
 #include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
+/// @class Noise2D
+/// @brief Used for gathering data from the defined 2D noise.
 class Noise2D : protected Noise
 {
 	static std::vector<std::vector<float>> ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size);
@@ -19,10 +21,15 @@ public:
 
 	/// @brief Get noise that is at certain point on the map.
 	/// @param frame - the frame of the chunk.
-	/// @param xOffset - offset from origin the X axis. 
-	///	@param yOffset - offset from origin the Y axis. 
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis. 
 	float GetNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset) const;
 
+	/// @brief Get noise of the chunk at certain position on the map.
+	/// @param frame - frame of the chunk.
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis.
+	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
 	std::vector<std::vector<float>> GetNoise(const ChunkFrame& frame, int xOffset, int yOffset, int expansionFactor = 0) const;
 
 	/// @brief Get noise of the chunk at certain position on the map.
@@ -30,4 +37,3 @@ public:
 	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
 	std::vector<std::vector<float>> GetNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
 };
-

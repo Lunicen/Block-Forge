@@ -29,6 +29,7 @@ protected:
 		_noiseGenerator = FastNoise::NewFromEncodedNodeTree(encodedTree.c_str());
 	}
 
+	/// @brief Get noise generator.
 	FastNoise::SmartNode<> GetGenerator() const
 	{
 		return _noiseGenerator;

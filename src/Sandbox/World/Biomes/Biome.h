@@ -21,9 +21,17 @@ public:
 	/// @param blockShader - shader of the block, so the biome could be rendered.
 	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader);
 
+	/// @brief Adapts chunk column according to the biome noise.
+	///	@details The purpose of this method is to "paint" the chunk
+	///	according to the biome noise with respect of the origin of that chunk.
+	/// @param frame - frame of the chunk.
+	/// @param blocks - the metadata of the chunk (basically blocks).
+	/// @param xOffset - X offset from the chunk origin.
+	/// @param yOffset - Y offset from the chunk origin.
+	/// @param zOffset - Z offset from the chunk origin.
 	void PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, int xOffset, int yOffset, int zOffset) const;
 
-	/// @brief Adapts chunk to the biome algorithm.
+	/// @brief Adapts chunk to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
 	/// @param frame - frame of the chunk.

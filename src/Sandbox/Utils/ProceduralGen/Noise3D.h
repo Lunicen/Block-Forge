@@ -2,6 +2,8 @@
 #include "Noise.h"
 #include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
+/// @class Noise3D
+/// @brief Used for gathering data from the defined 3D noise.
 class Noise3D : protected Noise
 {
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
@@ -16,9 +18,21 @@ public:
 		: Noise(encodedTree, seed, frequency)
 	{
 	}
-	
+
+	/// @brief Get noise of the chunk column.
+	/// @param frame - the frame of the chunk.
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis.
+	///	@param zOffset - offset from the origin Z axis. 
+	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
 	std::vector<float> GetColumnNoise(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor = 0) const;
-	
+
+	/// @brief Get noise of the chunk at certain position on the map.
+	/// @param frame - frame of the chunk.
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis.
+	///	@param zOffset - offset from the origin Z axis. 
+	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
 	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor = 0) const;
 
 	/// @brief Get noise of the chunk at certain position on the map.
@@ -26,4 +40,3 @@ public:
 	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
 	std::vector<std::vector<std::vector<float>>> GetNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
 };
-
