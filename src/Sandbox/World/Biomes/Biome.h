@@ -27,7 +27,7 @@ public:
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
 	/// @param frame - frame of the chunk.
-	/// @param data - the metadata of the chunk (basically blocks).
-	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& data) const;
+	/// @param blocks - the metadata of the chunk (basically blocks).
+	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 };
 

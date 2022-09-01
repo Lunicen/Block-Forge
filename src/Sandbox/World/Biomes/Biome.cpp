@@ -45,7 +45,7 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	}
 }
 
-void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& data) const
+void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	const auto noise = GetNoise(frame);
 	const auto midPoint = ChunkUtils::CalculateMidPoint(frame.size);
@@ -61,14 +61,14 @@ void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& data) const
 			for (size_t z = 0; z < frame.size; ++z)
 			{
 				SetBlockAccordingToNoise(
-					data.blocks[x][y][z],
+					blocks.blocks[x][y][z],
 					static_cast<float>(x) + xBlock, 
 					static_cast<float>(y) + yBlock, 
 					static_cast<float>(z) + zBlock, 
 					noise[x][y][z]
 				);
 
-				data.isBlockVisibleAt[x][y][z] = data.blocks[x][y][z] == nullptr ? false : true;
+				blocks.isBlockVisibleAt[x][y][z] = blocks.blocks[x][y][z] == nullptr ? false : true;
 			}
 		}
 	}
