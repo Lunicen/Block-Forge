@@ -19,6 +19,7 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>&
 
 Biome& BiomePlacer::GetBiomeAt(const float noise) const
 {
+	// TODO: Implement algorithm determining biome changing.
 	if (noise < 0)
 	{
 		return _biomes.at(0);
