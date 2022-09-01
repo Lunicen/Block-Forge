@@ -42,7 +42,9 @@ void Sandbox::Run()
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CCW);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 

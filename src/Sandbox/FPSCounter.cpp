@@ -35,6 +35,7 @@ void FPSCounter:: CountFps()
 
 void FPSCounter::Update()
 {
+	glDisable(GL_CULL_FACE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	gltBeginDraw();
 
@@ -46,6 +47,7 @@ void FPSCounter::Update()
 
 	gltEndDraw();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glEnable(GL_CULL_FACE);
 }
 
 FPSCounter::~FPSCounter()
