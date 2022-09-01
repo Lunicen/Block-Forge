@@ -30,7 +30,7 @@ void Sandbox::Run()
 		return;
 	}
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Block Forge", nullptr, nullptr);
 	if (window == nullptr)
 	{
 		_log.Error("Failed to create window.");
