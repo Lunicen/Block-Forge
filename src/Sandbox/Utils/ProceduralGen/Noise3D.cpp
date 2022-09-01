@@ -33,9 +33,10 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 std::vector<float> Noise3D::GetColumnNoise(
 	const ChunkFrame& frame, const int xOffset, const int yOffset, const int zOffset, const int expansionFactor) const
 {
-	if (frame.size < 8)
+	constexpr auto minimalSupportedNoiseSize = 8;
+	if (frame.size < minimalSupportedNoiseSize)
 	{
-		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than 8 for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
+		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
 	}
 
 	const auto chunkSize = static_cast<int>(frame.size);
