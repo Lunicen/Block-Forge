@@ -27,3 +27,17 @@ public:
     /// @param message - exception message.
     explicit UninitializedPropertyAccessException(const std::string& message) : Base(message) {}
 };
+
+/// @class BadInitializationException
+/// @brief Exception made for handling failures on class initialization.
+class BadInitializationException final : protected EngineException
+{
+	using Base = EngineException;
+
+public:
+
+    /// @brief Alarms that a class member field has failed to initialize.
+    /// @details Alarms that a class member field has not initialized properly.
+    /// @param message - exception message.
+    explicit BadInitializationException(const std::string& message) : Base(message) {}
+};

@@ -1,12 +1,18 @@
 #include "FPSCounter.h"
 
 #include <string>
+#include <GLFW/glfw3.h>
 
-#include "GLFW/glfw3.h"
-
+#include "Utils/EngineExceptions.h"
 using namespace std;
 
-FPSCounter::FPSCounter() {
+FPSCounter::FPSCounter()
+{
+    if (!gltInit())
+	{
+		throw BadInitializationException("Failed to initialize GLText library!");
+	}
+
     this->lastTime = CalculateLastTime();
     this->nbFrames = 0;
     this->actualFps = 60;
@@ -51,22 +57,16 @@ void FPSCounter:: CountFps() {
 void FPSCounter::Update()
 {
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    gltBeginDraw();
+	gltBeginDraw();
 
+	CountFps();
+    const auto text = "FPS: " + std::to_string(actualFps);
+	gltSetText(fps, text.c_str());
 
-    CountFps();
-    const auto fpsText = "FPS: " + std::to_string(actualFps);
-    gltSetText(fps, fpsText.c_str());
-
-
-    gltDrawText2DAligned(fps, 0.0f, static_cast<GLfloat>(100), 1.0f, GLT_LEFT, GLT_BOTTOM);
+    gltDrawText2DAligned(fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
 
     gltEndDraw();
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-}
-FPSCounter::~FPSCounter()
-{
-    gltDeleteText(fps);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 

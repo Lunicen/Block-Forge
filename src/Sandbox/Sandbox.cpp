@@ -1,21 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
 
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#define GLT_IMPLEMENTATION
-
-#pragma warning(push, 0)
-#include <gltext.h>
-#pragma warning(pop)
-
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/ChunkManager.h"
 #include "World/WorldGenerator.h"
-#include <Sandbox/FPSCounter.h>
+#include "Sandbox/FPSCounter.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -39,8 +29,6 @@ void Sandbox::Run()
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
-
-
 
 	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
 	if (window == nullptr)
@@ -68,11 +56,9 @@ void Sandbox::Run()
 	ChunkManager chunkManager(5, 5, camera);
 	chunkManager.Bind(worldGenerator);
 
-	GLTtext* fps = gltCreateText();
-
 	FPSCounter counter;
 
-	while (!glfwWindowShouldClose(window))
+	while(!glfwWindowShouldClose(window))
 	{
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
