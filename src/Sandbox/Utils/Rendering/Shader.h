@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 
 /// @class Shader
-/// @brief Handles shader programs
+/// @brief Handles shader programs.
 /// @details The shader programs that are handled by this class
 /// are required to be written in the GLSL language.
 ///	The recommended practice is to use `.vert` extension for the vertex shader file
