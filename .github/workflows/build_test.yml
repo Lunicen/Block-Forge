@@ -21,7 +21,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: lib
-        key: FastNoiseTwoAdded
+        key: glTextAdded
 
     - name: Checkout submodules
       if: steps.cache-dep.outputs.cache-hit != 'true'
