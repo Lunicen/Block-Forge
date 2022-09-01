@@ -47,7 +47,7 @@ std::vector<float> Noise3D::GetColumnNoise(
 	const auto areaSize = frame.size + static_cast<size_t>(2) * expansionFactor;
 	auto noise = std::vector<float>(areaSize);
 
-	_noiseGenerator->GenUniformGrid3D(
+	GetGenerator()->GenUniformGrid3D(
 		noise.data(),
 		x, y, z,
 		1, static_cast<int>(areaSize), 1,
@@ -68,7 +68,7 @@ std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(
 
 	auto noise = std::vector<float>(areaSize * areaSize * areaSize);
 
-	_noiseGenerator->GenUniformGrid3D(
+	GetGenerator()->GenUniformGrid3D(
 		noise.data(),
 		x, y, z,
 		static_cast<int>(areaSize), static_cast<int>(areaSize), static_cast<int>(areaSize),

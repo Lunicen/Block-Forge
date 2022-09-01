@@ -40,7 +40,7 @@ std::vector<std::vector<float>> Noise2D::GetNoise(
 
 	auto noise = std::vector<float>(areaSize * areaSize);
 
-	_noiseGenerator->GenUniformGrid2D(
+	GetGenerator()->GenUniformGrid2D(
 		noise.data(),
 		x, y,
 		static_cast<int>(areaSize), static_cast<int>(areaSize),
