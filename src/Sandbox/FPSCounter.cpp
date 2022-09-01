@@ -12,44 +12,25 @@ FPSCounter::FPSCounter()
 		throw BadInitializationException("Failed to initialize GLText library!");
 	}
 
-    this->lastTime = CalculateLastTime();
-    this->nbFrames = 0;
-    this->actualFps = 60;
-    this->fps = gltCreateText();
+    this->_lastTime = glfwGetTime();
+    this->_numberOfFrames = 0;
+    this->_actualFps = 60;
+    this->_fps = gltCreateText();
 
-}
-
-inline double FPSCounter::GetLastTime() const
-{
-    return lastTime;
-}
-
-inline int FPSCounter::GetnbFrames() const
-{
-    return nbFrames;
-}
-
-inline int FPSCounter::GetActualFps() const {
-    return actualFps;
-}
-
-inline double FPSCounter::CalculateLastTime()
-{
-     return glfwGetTime();
 }
 
 
 void FPSCounter:: CountFps() {
 		
         const double currentTime = glfwGetTime();
-        nbFrames++;
+        ++_numberOfFrames;
 
 
-        if (currentTime - lastTime >= 1.0) { 
-            this->actualFps = nbFrames;
+        if (currentTime - _lastTime >= 1.0) {
+            this->_actualFps = _numberOfFrames;
 
-            nbFrames = 0;
-            lastTime += 1.0;
+            _numberOfFrames = 0;
+            _lastTime += 1.0;
         }
 
 }
@@ -60,10 +41,10 @@ void FPSCounter::Update()
 	gltBeginDraw();
 
 	CountFps();
-    const auto text = "FPS: " + std::to_string(actualFps);
-	gltSetText(fps, text.c_str());
+    const auto text = "FPS: " + std::to_string(_actualFps);
+	gltSetText(_fps, text.c_str());
 
-    gltDrawText2DAligned(fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
+    gltDrawText2DAligned(_fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
 
     gltEndDraw();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -71,7 +52,7 @@ void FPSCounter::Update()
 
 FPSCounter::~FPSCounter()
 {
-    gltDeleteText(fps);
+    gltDeleteText(_fps);
 }
 
 

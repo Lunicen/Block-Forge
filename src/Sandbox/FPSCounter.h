@@ -11,19 +11,24 @@
 class FPSCounter
 {
 private:
-	GLTtext* fps;
-	double lastTime;
-	int nbFrames;
-	int actualFps;
+	GLTtext* _fps;
+	double _lastTime;
+	int _numberOfFrames;
+	int _actualFps;
+
+	void CountFps();
 
 public:
 
 	FPSCounter();
-	double GetLastTime() const;
-	int GetnbFrames() const;
-	int GetActualFps() const;
-	static double CalculateLastTime();
-	void CountFps();
+
+	FPSCounter(const FPSCounter&) = delete;
+	FPSCounter(FPSCounter&&) = delete;
+	FPSCounter& operator=(const FPSCounter&) = delete;
+	FPSCounter& operator=(FPSCounter&&) = delete;
+
 	void Update();
+
 	~FPSCounter();
+	
 };
