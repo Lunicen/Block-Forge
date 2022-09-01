@@ -12,41 +12,39 @@ FPSCounter::FPSCounter()
 		throw BadInitializationException("Failed to initialize GLText library!");
 	}
 
-    this->_lastTime = glfwGetTime();
-    this->_numberOfFrames = 0;
-    this->_actualFps = 0;
-    this->_fps = gltCreateText();
-
+    _lastTime = glfwGetTime();
+    _numberOfFrames = 0;
+    _actualFps = 0;
+    _fps = gltCreateText();
 }
 
 
-void FPSCounter:: CountFps() {
-		
-        const double currentTime = glfwGetTime();
-        ++_numberOfFrames;
+void FPSCounter:: CountFps()
+{
+	const double currentTime = glfwGetTime();
+	++_numberOfFrames;
 
 
-        if (currentTime - _lastTime >= 1.0) {
-            this->_actualFps = _numberOfFrames;
+	if (currentTime - _lastTime >= 1.0) {
+		_actualFps = _numberOfFrames;
 
-            _numberOfFrames = 0;
-            _lastTime += 1.0;
-        }
-
+		_numberOfFrames = 0;
+		_lastTime += 1.0;
+	}
 }
 
 void FPSCounter::Update()
 {
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	gltBeginDraw();
 
 	CountFps();
-    const auto text = "FPS: " + std::to_string(_actualFps);
+	const auto text = "FPS: " + std::to_string(_actualFps);
 	gltSetText(_fps, text.c_str());
 
-    gltDrawText2DAligned(_fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
+	gltDrawText2DAligned(_fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
 
-    gltEndDraw();
+	gltEndDraw();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
