@@ -1,7 +1,6 @@
 #include "ChunkManager.h"
 
-#include "Sandbox/Utils/EngineExceptions.h"
-#include "Sandbox/Utils/World/ChunkUtils.h"
+#include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
@@ -15,7 +14,7 @@ glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 	};
 }
 
-unsigned ChunkManager::CountChunksRecursive(const unsigned level)
+size_t ChunkManager::CountChunksRecursive(const size_t level)
 {
 	const auto result = 4 * level;
 
@@ -25,8 +24,6 @@ unsigned ChunkManager::CountChunksRecursive(const unsigned level)
 
 void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins)
 {
-	
-
 	for (const auto& oldOrigin : oldOrigins)
 	{
 		if (std::find(_loadedChunksOrigin.begin(), _loadedChunksOrigin.end(), oldOrigin) != _loadedChunksOrigin.end())
@@ -44,7 +41,7 @@ void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigin
 			_loadedChunks.end(),
 			[&](const std::unique_ptr<Chunk>& chunk)
 			{
-				return chunk->GetOrigin() == oldOrigin * _chunkSize;
+				return chunk->GetOrigin() == oldOrigin * static_cast<int>(_chunkSize);
 			}
 		);
 
@@ -60,6 +57,16 @@ void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigin
 	}
 }
 
+ChunkFrame ChunkManager::CreateChunkFrame(const glm::ivec3& origin) const
+{
+	return ChunkFrame{origin, _chunkSize};
+}
+
+ChunkBlocks ChunkManager::CreateChunkBlocks() const
+{
+	return ChunkUtils::InitializeData(_chunkSize);
+}
+
 void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins)
 {
 	if (std::find(oldOrigins.begin(), oldOrigins.end(), currentOrigin) == oldOrigins.end())
@@ -70,9 +77,11 @@ void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const 
 			   std::to_string(currentOrigin.z));
 
 		auto chunk = std::make_unique<Chunk>(currentOrigin, *this);
-		auto chunkData = ChunkUtils::InitializeData(_chunkSize);
 
-		_generator->PaintChunk(chunkData, currentOrigin, _chunkSize);
+		const auto chunkFrame = CreateChunkFrame(currentOrigin);
+		auto chunkData = CreateChunkBlocks();
+		
+		_generator->PaintChunk(chunkFrame, chunkData);
 		chunk->Load(chunkData);
 
 		_loadedChunks.push_back(std::move(chunk));
@@ -89,13 +98,15 @@ void ChunkManager::UpdateChunksContainer(const glm::ivec3 normalizedPosition)
 			   std::to_string(normalizedPosition.y) + ", " + 
 			   std::to_string(normalizedPosition.z));
 
-	const auto yBound = normalizedPosition.y + _renderDistance;
+	const auto yBound = static_cast<int>(_renderDistance);
+
 	for (auto y = -yBound; y <= yBound; ++y)
 	{
-		const auto xBound = _renderDistance - abs(y);
+		const auto xBound = yBound - abs(y);
+
 		for (auto x = -xBound; x <= xBound; ++x)
 		{
-			const auto zBound = abs(abs(x) + abs(y) - _renderDistance);
+			const auto zBound = abs(abs(x) + abs(y) - yBound);
 			for (auto z = -zBound; z <= zBound; ++z)
 			{
 				const auto origin = glm::ivec3(x + normalizedPosition.x,
@@ -136,20 +147,15 @@ void ChunkManager::Update()
 
 void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
-	if (!worldGenerator->IsInitialized())
-	{
-		throw UninitializedPropertyAccessException("The world generator is not initialized!");
-	}
-
 	_generator = worldGenerator;
-	
+
 	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 
-unsigned ChunkManager::GetChunksToRenderCount() const
+size_t ChunkManager::GetChunksToRenderCount() const
 {
-	unsigned result = 0;
-	for (auto i = 0; i < _renderDistance; ++i)
+	size_t result = 0;
+	for (size_t i = 0; i < _renderDistance; ++i)
 	{
 		result += 2 * CountChunksRecursive(i);
 	}
@@ -162,7 +168,7 @@ Camera& ChunkManager::GetCamera() const
 	return _camera;
 }
 
-unsigned ChunkManager::GetChunkSize() const
+size_t ChunkManager::GetChunkSize() const
 {
 	return _chunkSize;
 }

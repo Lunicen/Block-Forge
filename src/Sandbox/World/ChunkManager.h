@@ -18,14 +18,18 @@ class ChunkManager
 	std::vector<glm::ivec3> _loadedChunksOrigin = {};
 	glm::ivec3 _lastChunkWithPlayer{};
 
-	int _renderDistance;
-	int _chunkSize;
-	unsigned _chunksToRender;
+	size_t _renderDistance;
+	size_t _chunkSize;
+	size_t _chunksToRender;
 	std::shared_ptr<WorldGenerator> _generator{};
 
 	glm::ivec3 GetNormalizedPosition(glm::vec3 position) const;
-	static unsigned CountChunksRecursive(unsigned level);
+	static size_t CountChunksRecursive(size_t level);
 	void RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins);
+
+	ChunkFrame CreateChunkFrame(const glm::ivec3& origin) const;
+	ChunkBlocks CreateChunkBlocks() const;
+
 	void AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins);
 	void UpdateChunksContainer(glm::ivec3 normalizedPosition);
 
@@ -37,7 +41,7 @@ public:
 	///	@param camera - the object around which the chunks are rendered.
 	ChunkManager(int chunkSize, int renderDistance, Camera& camera);
 
-	/// @brief Updates the chunk manager too adapt to the current frame.
+	/// @brief Updates the chunk manager to adapt to the current frame.
 	void Update();
 
 	/// @brief Binds world generator to the chunk manager.
@@ -47,12 +51,12 @@ public:
 	void Bind(const std::shared_ptr<WorldGenerator>& worldGenerator);
 
 	/// @brief Get the amount of chunks that could be generated on the current render distance settings.
-	unsigned GetChunksToRenderCount() const;
+	size_t GetChunksToRenderCount() const;
 
 	/// @brief Get the camera object attached to this class.
 	Camera& GetCamera() const;
 
 	/// @brief Get the size of chunks that are generated.
-	unsigned GetChunkSize() const;
+	size_t GetChunkSize() const;
 };
 

@@ -1,6 +1,6 @@
 #include "Biome.h"
 
-#include "Sandbox/Utils/World/ChunkUtils.h"
+#include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock, const float noise) const
 {
@@ -14,43 +14,64 @@ void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock
 	}
 }
 
-Biome::Biome(std::string name, Noise noise, Shader& blockShader) : _name(std::move(name)), _noise(std::move(noise)), _blockShader(blockShader)
+Biome::Biome(std::string name, const Noise3D& noise, Shader& blockShader) : Noise3D(noise), _name(std::move(name)),
+                                                                            _blockShader(blockShader)
 {
 }
 
-void Biome::PaintChunk(const glm::ivec3 origin, ChunkData& data, const int size) const
+void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int xOffset, const int yOffset, const int zOffset) const
 {
-	const auto noise = _noise.GetChunkNoise(origin, size);
-	const auto midPoint = ChunkUtils::CalculateMidPoint(size);
+	const auto& x = xOffset;
+	const auto& z = zOffset;
 
-	const auto xBlock = static_cast<float>(origin.x) * static_cast<float>(size) - midPoint;
-	const auto yBlock = static_cast<float>(origin.y) * static_cast<float>(size) - midPoint;
-	const auto zBlock = static_cast<float>(origin.z) * static_cast<float>(size) - midPoint;
+	const auto noise = GetColumnNoise(frame, xOffset, yOffset, zOffset);
+	const auto midPoint = ChunkUtils::CalculateMidPoint(frame.size);
 
-	for (auto x = 0; x < size; ++x)
+	// Casting MUST be done explicitly due to the undefined behavior while performing calculations inside the cast.
+	const auto xBlock = static_cast<float>(frame.origin.x) * static_cast<float>(frame.size) - midPoint;
+	const auto yBlock = static_cast<float>(frame.origin.y) * static_cast<float>(frame.size) - midPoint;
+	const auto zBlock = static_cast<float>(frame.origin.z) * static_cast<float>(frame.size) - midPoint;
+
+	for (size_t y = 0; y < frame.size; ++y)
 	{
-		for (auto y = 0; y < size; ++y)
-		{
-			for (auto z = 0; z < size; ++z)
-			{
-				SetBlockAccordingToNoise(
-					data.blocks[x][y][z],
-					static_cast<float>(x) + xBlock, static_cast<float>(y) + yBlock, static_cast<float>(z) + zBlock, 
-					noise[x][y][z]
-				);
+		SetBlockAccordingToNoise(
+			blocks.blocks[x][y][z],
+			static_cast<float>(x) + xBlock, 
+			static_cast<float>(y) + yBlock, 
+			static_cast<float>(z) + zBlock, 
+			noise[y]
+		);
 
-				data.isBlockVisibleAt[x][y][z] = data.blocks[x][y][z] == nullptr ? false : true;
-			}
-		}
+		blocks.isBlockVisibleAt[x][y][z] = blocks.blocks[x][y][z] == nullptr ? false : true;
 	}
 }
 
-std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoise(const glm::ivec3 origin, const int size) const
+void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
-	return _noise.GetChunkNoise(origin, size);
-}
+	const auto noise = GetNoise(frame);
+	const auto midPoint = ChunkUtils::CalculateMidPoint(frame.size);
 
-std::vector<std::vector<std::vector<float>>> Biome::GetChunkNoiseWithBorders(const glm::ivec3 origin, const int size) const
-{
-	return _noise.GetChunkNoiseWithBorders(origin, size);
+	// Casting MUST be done explicitly due to the undefined behavior while performing calculations inside the cast.
+	const auto xBlock = static_cast<float>(frame.origin.x) * static_cast<float>(frame.size) - midPoint;
+	const auto yBlock = static_cast<float>(frame.origin.y) * static_cast<float>(frame.size) - midPoint;
+	const auto zBlock = static_cast<float>(frame.origin.z) * static_cast<float>(frame.size) - midPoint;
+
+	for (size_t x = 0; x < frame.size; ++x)
+	{
+		for (size_t y = 0; y < frame.size; ++y)
+		{
+			for (size_t z = 0; z < frame.size; ++z)
+			{
+				SetBlockAccordingToNoise(
+					blocks.blocks[x][y][z],
+					static_cast<float>(x) + xBlock, 
+					static_cast<float>(y) + yBlock, 
+					static_cast<float>(z) + zBlock, 
+					noise[x][y][z]
+				);
+
+				blocks.isBlockVisibleAt[x][y][z] = blocks.blocks[x][y][z] == nullptr ? false : true;
+			}
+		}
+	}
 }

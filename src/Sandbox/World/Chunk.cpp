@@ -18,7 +18,7 @@ Chunk::Chunk(const glm::ivec3 origin, ChunkManager& chunkManager) : _chunkManage
 	_origin = origin * chunkSize;
 }
 
-void Chunk::Load(ChunkData& chunkData)
+void Chunk::Load(ChunkBlocks& chunkData)
 {
 	_blocks = std::move(chunkData.blocks);
 	_isVisible = std::move(chunkData.isBlockVisibleAt);

@@ -1,14 +1,13 @@
 #pragma once
-#include "Sandbox/Utils/World/Noise.h"
-#include "Sandbox/World/ChunkData.h"
+#include "Sandbox/Utils/ProceduralGen/Noise3D.h"
+#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
 
 /// @class Biome
 /// @brief Represents biome that could be used for terrain generation.
 ///	@details This class brings to life the data specified in the JSON file that specifies the biome behavior.
-class Biome
+class Biome final : public Noise3D
 {
 	std::string _name;
-	Noise _noise;
 	Shader& _blockShader;
 
 	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock,
@@ -20,24 +19,23 @@ public:
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
 	/// @param blockShader - shader of the block, so the biome could be rendered.
-	explicit Biome(std::string name, Noise noise, Shader& blockShader);
+	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader);
 
-	/// @brief Adapts chunk to the biome algorithm.
+	/// @brief Adapts chunk column according to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
-	/// @param origin - origin of the chunk.
-	/// @param data - the metadata of the chunk (basically blocks).
-	/// @param size - the size of the chunk (in one dimension).
-	void PaintChunk(glm::ivec3 origin, ChunkData& data, int size) const;
+	/// @param frame - frame of the chunk.
+	/// @param blocks - the metadata of the chunk (basically blocks).
+	/// @param xOffset - X offset from the chunk origin.
+	/// @param yOffset - Y offset from the chunk origin.
+	/// @param zOffset - Z offset from the chunk origin.
+	void PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, int xOffset, int yOffset, int zOffset) const;
 
-	/// @brief Get chunk noise that is at certain position on the map.
-	/// @param origin - origin of the chunk.
-	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetChunkNoise(glm::ivec3 origin, int size) const;
-
-	/// @brief Get chunk noise that is at certain position on the map, including the noise around it.
-	/// @param origin - origin of the chunk.
-	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<std::vector<float>>> GetChunkNoiseWithBorders(glm::ivec3 origin, int size) const;
+	/// @brief Adapts chunk to the biome noise.
+	///	@details The purpose of this method is to "paint" the chunk
+	///	according to the biome noise with respect of the origin of that chunk.
+	/// @param frame - frame of the chunk.
+	/// @param blocks - the metadata of the chunk (basically blocks).
+	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 };
 

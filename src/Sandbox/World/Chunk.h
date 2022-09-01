@@ -1,7 +1,7 @@
 #pragma once
 #include <glm/vec3.hpp>
 
-#include "ChunkData.h"
+#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
 class ChunkManager; // Forward declaration
 
 /// @class Chunk
@@ -30,7 +30,7 @@ public:
 
 	/// @brief Initializes chunk by allocating the memory.
 	///	@param chunkData - reference to the block structure of the chunk.
-	void Load(ChunkData& chunkData);
+	void Load(ChunkBlocks& chunkData);
 
 	/// @brief Draws the chunk in the world.
 	void Draw() const;

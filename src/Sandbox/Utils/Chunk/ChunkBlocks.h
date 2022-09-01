@@ -3,9 +3,9 @@
 
 #include "Sandbox/Block.h"
 
-/// @class ChunkData
+/// @class ChunkBlocks
 /// @brief A structure that represents the body of typical chunk. Blocks and their visibility.
-class ChunkData
+class ChunkBlocks
 {
 public:
 

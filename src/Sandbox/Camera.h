@@ -48,7 +48,7 @@ public:
 	/// @param hid - Pointer to the HID handler.
 	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
 
-	/// @brief Update the camera orthographic projection settings.
+	/// @brief Update the camera orthogonal projection settings.
 	void Update();
 
 	/// @brief Adds the camera handling to the shader.

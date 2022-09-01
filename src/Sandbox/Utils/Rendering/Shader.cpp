@@ -20,7 +20,7 @@ std::string Shader::GetFileContents(const std::string& filename) const
 	contents.resize(static_cast<size_t>(file.tellg()));
 
 	file.seekg(0, std::ios::beg);
-	file.read(const_cast<char*>(contents.data()), contents.size());
+	file.read(const_cast<char*>(contents.data()), static_cast<std::streamsize>(contents.size()));
 
 	file.close();
 	return contents;

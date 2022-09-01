@@ -5,14 +5,13 @@
 #define GLT_IMPLEMENTATION
 
 #pragma warning(push, 0)
-#include <gltext.h>
+#include "gltext.h"
 #pragma warning(pop)
 
 /// @class FPSCounter
 /// @brief Calculates and shows actual value of FPS.
 class FPSCounter
 {
-private:
 	GLTtext* _fps;
 	double _lastTime;
 	int _numberOfFrames;
