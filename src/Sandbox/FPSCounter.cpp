@@ -69,4 +69,9 @@ void FPSCounter::Update()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
+FPSCounter::~FPSCounter()
+{
+    gltDeleteText(fps);
+}
+
 
