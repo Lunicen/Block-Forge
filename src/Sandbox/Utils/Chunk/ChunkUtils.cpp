@@ -1,6 +1,6 @@
 #include "ChunkUtils.h"
 
-float ChunkUtils::CalculateMidPoint(const int size)
+float ChunkUtils::CalculateMidPoint(const size_t& size)
 {
 	auto result = static_cast<float>(size) / 2.0f;
 	if (size % 2 == 0)
@@ -11,7 +11,7 @@ float ChunkUtils::CalculateMidPoint(const int size)
 	return result;
 }
 
-ChunkBlocks ChunkUtils::InitializeData(const int size)
+ChunkBlocks ChunkUtils::InitializeData(const size_t& size)
 {
 	ChunkBlocks chunk;
 

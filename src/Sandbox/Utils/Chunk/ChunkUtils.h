@@ -9,21 +9,21 @@ public:
 
 	/// @brief Calculated the midpoint of the chunk.
 	///	@param size - size of the chunk.
-	static float CalculateMidPoint(int size);
+	static float CalculateMidPoint(const size_t& size);
 	
 	/// @brief Creates 3d vector with a size of a chunk.
 	///	@param vector - vector to initialize.
 	///	@param size - size of the chunk.
 	template <class Value>
-	static void InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, int size);
+	static void InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, const size_t& size);
 
 	/// @brief Initializes chunk data.
 	///	@param size - size of the chunk.
-	static ChunkBlocks InitializeData(int size);
+	static ChunkBlocks InitializeData(const size_t& size);
 };
 
 template <class Value>
-void ChunkUtils::InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, int size)
+void ChunkUtils::InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, const size_t& size)
 {
 	vector.resize(size);
 	for (auto x = 0; x < size; ++x)
