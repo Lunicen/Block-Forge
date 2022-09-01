@@ -8,6 +8,8 @@
 #include <gltext.h>
 #pragma warning(pop)
 
+/// @class FPSCounter
+/// @brief Calculates and shows actual value of FPS.
 class FPSCounter
 {
 private:
@@ -20,6 +22,7 @@ private:
 
 public:
 
+	/// @brief The constructor.
 	FPSCounter();
 
 	FPSCounter(const FPSCounter&) = delete;
@@ -27,6 +30,7 @@ public:
 	FPSCounter& operator=(const FPSCounter&) = delete;
 	FPSCounter& operator=(FPSCounter&&) = delete;
 
+	/// @brief Updates actual value of FPS and shows it on the screen.
 	void Update();
 
 	~FPSCounter();
