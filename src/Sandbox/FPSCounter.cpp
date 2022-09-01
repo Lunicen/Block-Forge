@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h>
 
 #include "Utils/EngineExceptions.h"
-using namespace std;
 
 FPSCounter::FPSCounter()
 {
@@ -30,11 +29,12 @@ inline int FPSCounter::GetnbFrames() const
     return nbFrames;
 }
 
-int FPSCounter::GetActualFps()  {
+inline int FPSCounter::GetActualFps() const {
     return actualFps;
 }
 
-inline double FPSCounter::CalculateLastTime() const{
+inline double FPSCounter::CalculateLastTime()
+{
      return glfwGetTime();
 }
 

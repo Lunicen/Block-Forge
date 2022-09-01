@@ -15,18 +15,14 @@ private:
 	double lastTime;
 	int nbFrames;
 	int actualFps;
-	const int viewportWidth = 50;
-	const int viewportHeight = 100;
-	char str[30]{};
 
 public:
 
 	FPSCounter();
 	double GetLastTime() const;
 	int GetnbFrames() const;
-	int GetActualFps();
-	double CalculateLastTime() const;
-
+	int GetActualFps() const;
+	static double CalculateLastTime();
 	void CountFps();
 	void Update();
 	~FPSCounter();
