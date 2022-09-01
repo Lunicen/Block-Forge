@@ -27,9 +27,10 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	const auto noise = GetColumnNoise(frame, xOffset, yOffset, zOffset);
 	const auto midPoint = ChunkUtils::CalculateMidPoint(frame.size);
 
-	const auto xBlock = static_cast<float>(frame.origin.x * frame.size) - midPoint;
-	const auto yBlock = static_cast<float>(frame.origin.y * frame.size) - midPoint;
-	const auto zBlock = static_cast<float>(frame.origin.z * frame.size) - midPoint;
+	// Casting MUST be done explicitly due to the undefined behavior while performing calculations inside the cast.
+	const auto xBlock = static_cast<float>(frame.origin.x) * static_cast<float>(frame.size) - midPoint;
+	const auto yBlock = static_cast<float>(frame.origin.y) * static_cast<float>(frame.size) - midPoint;
+	const auto zBlock = static_cast<float>(frame.origin.z) * static_cast<float>(frame.size) - midPoint;
 
 	for (size_t y = 0; y < frame.size; ++y)
 	{
@@ -50,9 +51,10 @@ void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 	const auto noise = GetNoise(frame);
 	const auto midPoint = ChunkUtils::CalculateMidPoint(frame.size);
 
-	const auto xBlock = static_cast<float>(frame.origin.x * frame.size) - midPoint;
-	const auto yBlock = static_cast<float>(frame.origin.y * frame.size) - midPoint;
-	const auto zBlock = static_cast<float>(frame.origin.z * frame.size) - midPoint;
+	// Casting MUST be done explicitly due to the undefined behavior while performing calculations inside the cast.
+	const auto xBlock = static_cast<float>(frame.origin.x) * static_cast<float>(frame.size) - midPoint;
+	const auto yBlock = static_cast<float>(frame.origin.y) * static_cast<float>(frame.size) - midPoint;
+	const auto zBlock = static_cast<float>(frame.origin.z) * static_cast<float>(frame.size) - midPoint;
 
 	for (size_t x = 0; x < frame.size; ++x)
 	{

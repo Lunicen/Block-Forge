@@ -76,8 +76,8 @@ std::vector<std::vector<std::vector<float>>> BiomePlacer::GetChunkNoise(const Ch
 		for (size_t z = 0; z < sizeWithBorders; ++z)
 		{
 			const auto biome = GetBiomeAt(biomesMapNoise[x][z]);
-
 			const auto column = biome.GetColumnNoise(frame, static_cast<int>(x), 0, static_cast<int>(z), 1);
+
 			for (size_t y = 0; y < sizeWithBorders; ++y)
 			{
 				noise[x][y][z] = column[y];
