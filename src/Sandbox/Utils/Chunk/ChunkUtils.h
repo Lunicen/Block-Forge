@@ -26,10 +26,10 @@ template <class Value>
 void ChunkUtils::InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, const size_t& size)
 {
 	vector.resize(size);
-	for (auto x = 0; x < size; ++x)
+	for (size_t x = 0; x < size; ++x)
 	{
 		vector[x].resize(size);
-		for (auto y = 0; y < size; ++y)
+		for (size_t y = 0; y < size; ++y)
 		{
 			vector[x][y].resize(size);
 		}
