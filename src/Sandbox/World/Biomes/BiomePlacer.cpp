@@ -7,10 +7,10 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>&
 {
 	const auto& size = biomesMap.size() - 1; 
 
-	const int noiseLowerLeft  = static_cast<int>(biomesMap[0][0]);
-	const int noiseUpperLeft  = static_cast<int>(biomesMap[0][size]);
-	const int noiseLowerRight = static_cast<int>(biomesMap[size][0]);
-	const int noiseUpperRight = static_cast<int>(biomesMap[size][size]);
+	const auto noiseLowerLeft  = static_cast<int>(biomesMap[0][0]);
+	const auto noiseUpperLeft  = static_cast<int>(biomesMap[0][size]);
+	const auto noiseLowerRight = static_cast<int>(biomesMap[size][0]);
+	const auto noiseUpperRight = static_cast<int>(biomesMap[size][size]);
 
 	return	noiseLowerLeft == noiseLowerRight && 
 			noiseUpperRight == noiseLowerRight &&
@@ -19,7 +19,6 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>&
 
 Biome& BiomePlacer::GetBiomeAt(const float noise) const
 {
-	// TODO: Implement algorithm determining biome changing.
 	if (noise < 0)
 	{
 		return _biomes.at(0);

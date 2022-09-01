@@ -24,7 +24,7 @@ std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vecto
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-float Noise2D::GetNoiseAt(const ChunkFrame& frame, const int xOffset, const int yOffset) const
+float Noise2D::GetNoiseAt(const ChunkFrame&, const int, const int) const
 {
 	throw LibraryBugException("This feature uses FastNoise2 method (GenSingle2D) that is currently bugged. Please use a workaround (GetNoise function). Link: https://github.com/Auburn/FastNoise2/issues/99");
 }
