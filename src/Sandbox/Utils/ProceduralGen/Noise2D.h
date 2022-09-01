@@ -1,11 +1,10 @@
 #pragma once
-#include <glm/vec2.hpp>
-
 #include "Noise.h"
+#include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
 class Noise2D final : protected Noise
 {
-	static std::vector<std::vector<float>> ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, int size);
+	static std::vector<std::vector<float>> ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size);
 	
 public:
 
@@ -18,18 +17,17 @@ public:
 	{
 	}
 
-	std::vector<std::vector<float>> GetNoise(glm::ivec2 origin, int size, int xOffset, int yOffset) const;
-
-	/// @brief Get noise that is at certain position on the map.
-	/// @param origin - origin of the chunk.
-	/// @param size - the size of the chunk (in one dimension).
-	std::vector<std::vector<float>> GetNoise(glm::ivec2 origin, int size) const;
-
 	/// @brief Get noise that is at certain point on the map.
-	/// @param origin - origin of the chunk.
+	/// @param frame - the frame of the chunk.
 	/// @param xOffset - offset from origin the X axis. 
 	///	@param yOffset - offset from origin the Y axis. 
-	/// @param size - the size of the chunk (in one dimension).
-	float GetNoiseAt(glm::ivec2 origin, int size, int xOffset, int yOffset) const;
+	float GetNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset) const;
+
+	std::vector<std::vector<float>> GetNoise(const ChunkFrame& frame, int xOffset, int yOffset, int expansionFactor = 0) const;
+
+	/// @brief Get noise of the chunk at certain position on the map.
+	/// @param frame - frame of the chunk.
+	/// @param expansionFactor - the factor that expands or shrinks the dimensions of the chunk.
+	std::vector<std::vector<float>> GetNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
 };
 

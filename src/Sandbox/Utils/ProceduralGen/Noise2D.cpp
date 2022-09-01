@@ -1,20 +1,19 @@
 #include "Noise2D.h"
 
-std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, int size)
+std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size)
 {
-	const auto& planeSize = static_cast<size_t>(size);
 	std::vector<std::vector<float>> result;
 	auto index = 0;
 
-	result.resize(planeSize);
-	for (size_t x = 0; x < planeSize; ++x)
+	result.resize(size);
+	for (size_t x = 0; x < size; ++x)
 	{
-		result[x].resize(planeSize);
+		result[x].resize(size);
 	}
 
-	for (size_t y = 0; y < planeSize; ++y)
+	for (size_t y = 0; y < size; ++y)
 	{
-		for (size_t x = 0; x < planeSize; ++x)
+		for (size_t x = 0; x < size; ++x)
 		{
 			result[x][y] = noise[index];
 			++index;
@@ -24,29 +23,33 @@ std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vecto
 	return result;
 }
 
-std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size, const int xOffset, const int yOffset) const
+// ReSharper disable once CppMemberFunctionMayBeStatic
+float Noise2D::GetNoiseAt(const ChunkFrame& frame, const int xOffset, const int yOffset) const
 {
-	auto noise = std::vector<float>(static_cast<unsigned>(size * size));
+	throw LibraryBugException("This feature uses FastNoise2 method (GenSingle2D) that is currently bugged. Please use a workaround (GetNoise function). Link: https://github.com/Auburn/FastNoise2/issues/99");
+}
 
-	const auto x = origin.x * size + xOffset;
-	const auto y = origin.y * size + yOffset;
+std::vector<std::vector<float>> Noise2D::GetNoise(
+	const ChunkFrame& frame, const int xOffset, const int yOffset, const int expansionFactor) const
+{
+	const auto chunkSize = static_cast<int>(frame.size);
+	const auto areaSize = frame.size + static_cast<size_t>(2 * expansionFactor);
+
+	const auto x = frame.origin.x * chunkSize + expansionFactor + xOffset;
+	const auto y = frame.origin.y * chunkSize + expansionFactor + yOffset;
+
+	auto noise = std::vector<float>(areaSize * areaSize);
 
 	_noiseGenerator->GenUniformGrid2D(
 		noise.data(),
 		x, y,
-		size, size,
+		static_cast<int>(areaSize), static_cast<int>(areaSize),
 		_frequency, _seed);
 
-	return ConvertNoiseFrom1DTo2D(noise, size);
+	return ConvertNoiseFrom1DTo2D(noise, areaSize);
 }
 
-std::vector<std::vector<float>> Noise2D::GetNoise(const glm::ivec2 origin, const int size) const
+std::vector<std::vector<float>> Noise2D::GetNoise(const ChunkFrame& frame, const int expansionFactor) const
 {
-	return GetNoise(origin, size, 0, 0);
-}
-
-// ReSharper disable once CppMemberFunctionMayBeStatic
-float Noise2D::GetNoiseAt(const glm::ivec2 origin, const int size, const int xOffset, const int yOffset) const
-{
-	throw LibraryBugException("This feature uses FastNoise2 method (GenSingle2D) that is currently bugged. Please use a workaround (GetNoise function). Link: https://github.com/Auburn/FastNoise2/issues/99");
+	return GetNoise(frame, 0, 0, expansionFactor);
 }
