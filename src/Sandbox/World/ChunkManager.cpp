@@ -1,6 +1,5 @@
 #include "ChunkManager.h"
 
-#include "Sandbox/Utils/EngineExceptions.h"
 #include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
