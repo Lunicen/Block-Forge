@@ -1,5 +1,6 @@
 #pragma once
 #include "Biome.h"
+#include "Sandbox/Utils/Chunk/ChunkFrame.h"
 #include "Sandbox/Utils/ProceduralGen/Noise2D.h"
 
 class BiomePlacer
@@ -16,8 +17,8 @@ public:
 	
 	explicit BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes);
 
-	void PaintChunk(glm::ivec3 origin, ChunkData& chunk, int size) const;
+	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
-	std::vector<std::vector<std::vector<float>>> GetChunkNoiseWithBorders(glm::ivec3 origin, int size) const;
+	std::vector<std::vector<std::vector<float>>> GetChunkNoise(const ChunkFrame& frame, int expansionFactor = 0) const;
 };
 

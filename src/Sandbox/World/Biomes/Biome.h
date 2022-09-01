@@ -5,7 +5,7 @@
 /// @class Biome
 /// @brief Represents biome that could be used for terrain generation.
 ///	@details This class brings to life the data specified in the JSON file that specifies the biome behavior.
-class Biome final : protected Noise3D
+class Biome final : public Noise3D
 {
 	std::string _name;
 	Shader& _blockShader;
