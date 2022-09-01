@@ -28,6 +28,8 @@ public:
     explicit UninitializedPropertyAccessException(const std::string& message) : Base(message) {}
 };
 
+/// @class LibraryBugException
+/// @brief Exception made for alerting bugs related to the 3rd libraries.
 class LibraryBugException final : protected EngineException
 {
 	using Base = EngineException;

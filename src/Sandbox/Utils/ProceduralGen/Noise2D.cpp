@@ -44,7 +44,7 @@ std::vector<std::vector<float>> Noise2D::GetNoise(
 		noise.data(),
 		x, y,
 		static_cast<int>(areaSize), static_cast<int>(areaSize),
-		_frequency, _seed);
+		GetFrequency(), GetSeed());
 
 	return ConvertNoiseFrom1DTo2D(noise, areaSize);
 }

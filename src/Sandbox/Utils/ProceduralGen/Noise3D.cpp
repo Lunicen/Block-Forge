@@ -51,7 +51,7 @@ std::vector<float> Noise3D::GetColumnNoise(
 		noise.data(),
 		x, y, z,
 		1, static_cast<int>(areaSize), 1,
-		_frequency, _seed);
+		GetFrequency(), GetSeed());
 
 	return noise;
 }
@@ -72,7 +72,7 @@ std::vector<std::vector<std::vector<float>>> Noise3D::GetNoise(
 		noise.data(),
 		x, y, z,
 		static_cast<int>(areaSize), static_cast<int>(areaSize), static_cast<int>(areaSize),
-		_frequency, _seed);
+		GetFrequency(), GetSeed());
 
 	return ConvertNoiseFrom1DTo3D(noise, areaSize);
 }

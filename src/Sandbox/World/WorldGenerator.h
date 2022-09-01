@@ -27,7 +27,4 @@ public:
 	///	@param frame - the frame of the chunk.
 	///	@param blocks - the blocks inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
-
-	/// @brief If the method @ref Initialize(Shader& blockShader) was used, returns true. Otherwise false.
-	bool IsInitialized() const;
 };

@@ -148,13 +148,8 @@ void ChunkManager::Update()
 
 void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
-	if (!worldGenerator->IsInitialized())
-	{
-		throw UninitializedPropertyAccessException("The world generator is not initialized!");
-	}
-
 	_generator = worldGenerator;
-	
+
 	UpdateChunksContainer(_lastChunkWithPlayer);
 }
 

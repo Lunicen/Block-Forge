@@ -60,8 +60,3 @@ void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) co
 	_placer->PaintChunk(frame, blocks);
 	OptimizeChunk(frame, blocks);
 }
-
-bool WorldGenerator::IsInitialized() const
-{
-	return _biomes.empty() ? false : true;
-}

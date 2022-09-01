@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "Noise.h"
 #include "Sandbox/Utils/Chunk/ChunkFrame.h"
 
