@@ -14,7 +14,7 @@ FPSCounter::FPSCounter()
 
     this->_lastTime = glfwGetTime();
     this->_numberOfFrames = 0;
-    this->_actualFps = 60;
+    this->_actualFps = 0;
     this->_fps = gltCreateText();
 
 }
