@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/World/ChunkData.h"
+#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
 
 /// @class ChunkUtils
 /// @brief Set of functions that could be used in other classes.
@@ -19,7 +19,7 @@ public:
 
 	/// @brief Initializes chunk data.
 	///	@param size - size of the chunk.
-	static ChunkData InitializeData(int size);
+	static ChunkBlocks InitializeData(int size);
 };
 
 template <class Value>

@@ -11,9 +11,9 @@ float ChunkUtils::CalculateMidPoint(const int size)
 	return result;
 }
 
-ChunkData ChunkUtils::InitializeData(const int size)
+ChunkBlocks ChunkUtils::InitializeData(const int size)
 {
-	ChunkData chunk;
+	ChunkBlocks chunk;
 
 	InitializeVector3D(chunk.blocks, size);
 	InitializeVector3D(chunk.isBlockVisibleAt, size);
