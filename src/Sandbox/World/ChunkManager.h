@@ -26,6 +26,10 @@ class ChunkManager
 	glm::ivec3 GetNormalizedPosition(glm::vec3 position) const;
 	static unsigned CountChunksRecursive(unsigned level);
 	void RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins);
+
+	ChunkFrame CreateChunkFrame(const glm::ivec3& origin) const;
+	ChunkBlocks CreateChunkBlocks() const;
+
 	void AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins);
 	void UpdateChunksContainer(glm::ivec3 normalizedPosition);
 

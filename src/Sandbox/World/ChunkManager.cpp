@@ -1,7 +1,7 @@
 #include "ChunkManager.h"
 
 #include "Sandbox/Utils/EngineExceptions.h"
-#include "Sandbox/Utils/World/ChunkUtils.h"
+#include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
 {
@@ -58,6 +58,21 @@ void ChunkManager::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigin
 	}
 }
 
+ChunkFrame ChunkManager::CreateChunkFrame(const glm::ivec3& origin) const
+{
+	ChunkFrame frame;
+
+	frame.origin = origin;
+	frame.size = _chunkSize;
+
+	return frame;
+}
+
+ChunkBlocks ChunkManager::CreateChunkBlocks() const
+{
+	return ChunkUtils::InitializeData(_chunkSize);
+}
+
 void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const std::vector<glm::ivec3>& oldOrigins)
 {
 	if (std::find(oldOrigins.begin(), oldOrigins.end(), currentOrigin) == oldOrigins.end())
@@ -68,9 +83,11 @@ void ChunkManager::AddChunkToListIfIsNew(const glm::ivec3& currentOrigin, const 
 			   std::to_string(currentOrigin.z));
 
 		auto chunk = std::make_unique<Chunk>(currentOrigin, *this);
-		auto chunkData = ChunkUtils::InitializeData(_chunkSize);
 
-		_generator->PaintChunk(chunkData, currentOrigin, _chunkSize);
+		const auto chunkFrame = CreateChunkFrame(currentOrigin);
+		auto chunkData = CreateChunkBlocks();
+		
+		_generator->PaintChunk(chunkFrame, chunkData);
 		chunk->Load(chunkData);
 
 		_loadedChunks.push_back(std::move(chunk));
