@@ -1,15 +1,13 @@
 #include "WorldGenerator.h"
 
-#include "Sandbox/Utils/World/ChunkUtils.h"
-
-void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
+void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {
 	const auto& noise = surroundingNoise;
 
 	// If it's air
 	if (noise[x][y][z] > 0)
 	{
-		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
+		blocks.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
 		return;
 	}
 
@@ -18,17 +16,18 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 		noise[x][y - 1][z] > 0 || noise[x][y + 1][z] > 0 || 
 		noise[x][y][z - 1] > 0 || noise[x][y][z + 1] > 0)
 	{
-		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = true;
+		blocks.isBlockVisibleAt[x - 1][y - 1][z - 1] = true;
 	}
 	else
 	{
-		data.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
+		blocks.isBlockVisibleAt[x - 1][y - 1][z - 1] = false;
 	}
 }
 
-void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<std::vector<std::vector<float>>>& noiseOfChunkWithBorders)
+void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
-	const auto& chunkSize = data.blocks.size();
+	const auto noise = _placer->GetChunkNoise(frame, 1);
+	const auto& chunkSize = blocks.blocks.size();
 	
 	for (size_t x = 0; x < chunkSize; ++x)
 	{
@@ -36,8 +35,11 @@ void WorldGenerator::OptimizeChunk(ChunkData& data, const std::vector<std::vecto
 		{
 			for (size_t z = 0; z < chunkSize; ++z)
 			{
-				OptimizeChunkAt(static_cast<int>(x) + 1, static_cast<int>(y) + 1, static_cast<int>(z) + 1, 
-								data, noiseOfChunkWithBorders);
+				OptimizeChunkAt(
+					static_cast<int>(x) + 1, 
+					static_cast<int>(y) + 1, 
+					static_cast<int>(z) + 1, 
+					blocks, noise);
 			}
 		}
 	}
@@ -53,12 +55,10 @@ WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed
 	_placer = std::make_unique<BiomePlacer>(placerNoise, _biomes);
 }
 
-void WorldGenerator::PaintChunk(ChunkData& chunk, const glm::ivec3 origin, const int size) const
+void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
-	_placer->PaintChunk(origin, chunk, size);
-	//const auto noiseOfChunkWithBorders = _placer->GetChunkNoiseWithBorders(origin, size);
-	
-	//OptimizeChunk(chunk, noiseOfChunkWithBorders);
+	_placer->PaintChunk(frame, blocks);
+	OptimizeChunk(frame, blocks);
 }
 
 bool WorldGenerator::IsInitialized() const

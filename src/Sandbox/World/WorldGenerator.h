@@ -11,8 +11,8 @@ class WorldGenerator
 	std::vector<Biome> _biomes;
 	int _seed;
 
-	static void OptimizeChunkAt(int x, int y, int z, ChunkData& data, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
-	static void OptimizeChunk(ChunkData& data, const std::vector<std::vector<std::vector<float>>>& noiseOfChunkWithBorders);
+	static void OptimizeChunkAt(int x, int y, int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
+	void OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 public:
 
@@ -27,7 +27,7 @@ public:
 	///	@param chunk - the chunk data for blocks manipulation.
 	///	@param origin - the origin of the chunk.
 	///	@param size - the size of the chunk.
-	void PaintChunk(ChunkData& chunk, glm::ivec3 origin, int size) const;
+	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 	/// @brief If the method @ref Initialize(Shader& blockShader) was used, returns true. Otherwise false.
 	bool IsInitialized() const;
