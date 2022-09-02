@@ -83,6 +83,7 @@ void ChunkRenderer::RenderChunksAround(const glm::ivec3& normalizedOrigin)
 ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera)
 	: _camera(camera), _renderView(std::move(renderView)), _generator(generator), _previousNormalizedPosition(GetNormalizedPosition(camera.GetPosition()))
 {
+	RenderChunksAround(_previousNormalizedPosition);
 }
 
 void ChunkRenderer::Update()
