@@ -10,14 +10,14 @@ size_t DiamondView::CountChunksRecursive(const size_t level)
 
 size_t DiamondView::GetChunksAmount()
 {
-	return CountChunksRecursive(_renderDistance);
+	return CountChunksRecursive(GetRenderDistance());
 }
 
 std::vector<glm::ivec3> DiamondView::GetChunksAround(const glm::ivec3 normalizedOrigin)
 {
 	std::vector<glm::ivec3> chunksPositions;
 
-	const auto yBound = static_cast<int>(_renderDistance);
+	const auto yBound = static_cast<int>(GetRenderDistance());
 	for (auto y = -yBound; y <= yBound; ++y)
 	{
 		const auto xBound = yBound - abs(y);

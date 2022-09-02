@@ -2,7 +2,7 @@
 
 size_t TiltedCube::GetChunksAmount()
 {
-	const auto& r = _chunkSize;
+	const auto& r = GetChunkSize();
 	return (r + 1) * ((r + 1) * (r + 1) + r * r);
 }
 
@@ -10,7 +10,7 @@ std::vector<glm::ivec3> TiltedCube::GetChunksAround(const glm::ivec3 normalizedO
 {
 	std::vector<glm::ivec3> chunksPositions;
 
-	const auto bound = static_cast<int>(_renderDistance);
+	const auto bound = static_cast<int>(GetRenderDistance());
 	for (auto x = -bound; x <= bound; ++x)
 	{
 		for (auto y = -bound; y <= bound; ++y)

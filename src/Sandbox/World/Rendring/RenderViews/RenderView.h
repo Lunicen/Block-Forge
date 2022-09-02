@@ -8,12 +8,7 @@
 ///	the chunks are rendered.
 class RenderView  // NOLINT(cppcoreguidelines-special-member-functions)
 {
-protected:
-
-	///	@brief the maximum distance from the camera to render.
 	size_t _renderDistance;
-
-	///	@brief the size of the generated chunks.
 	size_t _chunkSize;
 
 public:
@@ -22,16 +17,20 @@ public:
 	///	@param renderDistance - the maximum distance from the camera to render.
 	///	@param chunkSize - the size of the generated chunks.
 	RenderView(const size_t& renderDistance, const size_t& chunkSize)
-	{
-		_renderDistance = renderDistance;
-		_chunkSize = chunkSize;
-	}
+		: _renderDistance(renderDistance), _chunkSize(chunkSize)
+	{}
 
 	/// @brief Sets render distance.
 	///	@param renderDistance - the maximum distance from the camera to render.
 	void SetRenderDistance(const size_t& renderDistance)
 	{
 		_renderDistance = renderDistance;
+	}
+
+	/// @brief Returns render distance.
+	size_t GetRenderDistance() const
+	{
+		return _renderDistance;
 	}
 
 	/// @brief Sets chunk size.

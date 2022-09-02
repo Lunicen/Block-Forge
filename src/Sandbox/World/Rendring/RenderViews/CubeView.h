@@ -7,14 +7,7 @@
 class CubeView final : public RenderView
 {
 public:
-
-	/// @brief The constructor.
-	///	@param renderDistance - the maximum distance from the camera to render.
-	///	@param chunkSize - the size of the generated chunks.
-	CubeView(const size_t& renderDistance, const size_t& chunkSize)
-		: RenderView(renderDistance, chunkSize)
-	{
-	}
+	using RenderView::RenderView;
 
 	size_t GetChunksAmount() override;
 	std::vector<glm::ivec3> GetChunksAround(glm::ivec3 normalizedOrigin) override;

@@ -2,14 +2,15 @@
 
 size_t CubeView::GetChunksAmount()
 {
-	return _chunkSize * _chunkSize * _chunkSize;
+	const auto& chunkSize = GetChunkSize();
+	return chunkSize * chunkSize * chunkSize;
 }
 
 std::vector<glm::ivec3> CubeView::GetChunksAround(const glm::ivec3 normalizedOrigin)
 {
 	std::vector<glm::ivec3> chunksPositions;
 
-	const auto bound = static_cast<int>(_renderDistance);
+	const auto bound = static_cast<int>(GetRenderDistance());
 	for (auto x = -bound; x <= bound; ++x)
 	{
 		for (auto y = -bound; y <= bound; ++y)
