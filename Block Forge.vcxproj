@@ -174,6 +174,7 @@
     <ClCompile Include="src\Sandbox\Utils\Rendering\VertexBuffer.cpp" />
     <ClCompile Include="src\Sandbox\Utils\Rendering\VertexArray.cpp" />
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
     <ClCompile Include="src\Sandbox\FPSCounter.cpp" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\FPSCounter.h" />

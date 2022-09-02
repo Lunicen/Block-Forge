@@ -7,8 +7,9 @@ std::unique_ptr<RenderView> ChunkManager::GetRenderView(const RenderViewType vie
 {
 	switch (viewType)
 	{
-		case RenderViewType::diamond:	return std::make_unique<DiamondView>(_renderDistance, _chunkSize);
-		case RenderViewType::cube:		return std::make_unique<CubeView>(_renderDistance, _chunkSize);
+		case RenderViewType::diamond:		return std::make_unique<DiamondView>(_renderDistance, _chunkSize);
+		case RenderViewType::cube:			return std::make_unique<CubeView>(_renderDistance, _chunkSize);
+		case RenderViewType::tiltedCube:	return std::make_unique<TiltedCube>(_renderDistance, _chunkSize);
 	}
 
 	throw UnknownValueException("The provided Render View type is not defined!");
