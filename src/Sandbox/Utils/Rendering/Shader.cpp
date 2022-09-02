@@ -9,17 +9,18 @@ std::string Shader::GetFileContents(const std::string& filename) const
 	std::ifstream file(filename, std::ios::binary);
 	if (!file.good())
 	{
-		log.Error("The file " + filename + " is corrupted.");
+		_log.Error("The file " + filename + " is corrupted.");
 		return "";
 	}
 
 	std::string contents;
 
 	file.seekg(0, std::ios::end);
+	// ReSharper disable once CppRedundantCastExpression
 	contents.resize(static_cast<size_t>(file.tellg()));
 
 	file.seekg(0, std::ios::beg);
-	file.read(&contents[0], contents.size());
+	file.read(const_cast<char*>(contents.data()), static_cast<std::streamsize>(contents.size()));
 
 	file.close();
 	return contents;
@@ -27,10 +28,10 @@ std::string Shader::GetFileContents(const std::string& filename) const
 
 void Shader::InitializeProgram(const GLuint& vertexShader, const GLuint& fragmentShader)
 {
-	program = glCreateProgram();
-	glAttachShader(program, vertexShader);
-	glAttachShader(program, fragmentShader);
-	glLinkProgram(program);
+	_program = glCreateProgram();
+	glAttachShader(_program, vertexShader);
+	glAttachShader(_program, fragmentShader);
+	glLinkProgram(_program);
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
@@ -40,13 +41,13 @@ Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile)
 {
 	if (!DoesFileExist(vertexFile))
 	{
-		log.Critical("Shader " + vertexFile + " file doesn't exist!");
+		_log.Critical("Shader " + vertexFile + " file doesn't exist!");
 		return;
 	}
 
 	if (!DoesFileExist(fragmentFile))
 	{
-		log.Critical("Shader " + fragmentFile + " file doesn't exist!");
+		_log.Critical("Shader " + fragmentFile + " file doesn't exist!");
 		return;
 	}
 
@@ -69,12 +70,17 @@ Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile)
 
 void Shader::Load() const
 {
-	glUseProgram(program);
+	glUseProgram(_program);
 }
 
 void Shader::Unload() const
 {
-	glDeleteProgram(program);
+	glDeleteProgram(_program);
+}
+
+GLuint Shader::GetProgram() const
+{
+	return _program;
 }
 
 Shader::~Shader()

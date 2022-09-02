@@ -5,216 +5,389 @@
 #include "Core/Metadata.cpp"
 #include "Core/Log.cpp"
 
-TEST(Metadata, Load_FileIsNotSpecified_FileIsNotLoaded)
+namespace MetadataTests
 {
-	auto metadata = Metadata();
-	metadata.Load();
+	TEST(Metadata, Load_FileIsNotSpecified_FileIsNotLoaded)
+	{
+		auto metadata = Metadata();
 
-	EXPECT_EQ(metadata.IsLoaded(), false);
-}
+		try
+		{
+	        metadata.Load();
+	        FAIL() << "Expected UninitializedPropertyAccessException";
+	    }
+	    catch(const UninitializedPropertyAccessException& err)
+		{
+	        EXPECT_EQ(err.what(), std::string("File is not specified!"));
+	    }
+	    catch(...)
+		{
+	        FAIL() << "Expected UninitializedPropertyAccessException";
+	    }
+	}
 
-TEST(Metadata, Load_FileDoesNotExist_FileIsNotLoaded)
-{
-	const std::string filename = "FileThatDefinitelyDoesNotExist.json";
+	TEST(Metadata, Load_FileDoesNotExist_FileIsNotLoaded)
+	{
+		const std::string filename = "FileThatDefinitelyDoesNotExist.json";
 
-	Metadata metadata(filename);
-	metadata.Load();
+		Metadata metadata(filename);
 
-	EXPECT_EQ(metadata.IsLoaded(), false);
-}
+		try
+		{
+	        metadata.Load();
+	        FAIL() << "Expected NotFoundException";
+	    }
+	    catch(const NotFoundException& err)
+		{
+	        EXPECT_EQ(err.what(), std::string("File doesn't exist!"));
+	    }
+	    catch(...)
+		{
+	        FAIL() << "Expected NotFoundException";
+	    }
+	}
 
-TEST(Metadata, Load_FileExist_Success)
-{
-	const std::string filename = root + "mocks/metadata/example.json";
+	TEST(Metadata, Load_FileExist_Success)
+	{
+		const std::string filename = root + "mocks/metadata/example.json";
 
-	Metadata metadata(filename);
-	metadata.Load();
+		Metadata metadata(filename);
+		metadata.Load();
 
-	EXPECT_EQ(metadata.IsLoaded(), true);
-}
+		try
+		{
+	        metadata.Load();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+	        FAIL() << "Unexpected error.";
+	    }
+	}
 
-TEST(Metadata, Save_FileIsNotSpecified_Error)
-{
-	const std::string filename = "";
+	TEST(Metadata, Save_FileIsNotSpecified_Error)
+	{
+		const std::string filename;
 
-	Metadata metadata(filename);
-	metadata.Save();
+		const Metadata metadata(filename);
 
-	EXPECT_EQ(metadata.IsSaved(), false);
-}
+		try
+		{
+	        metadata.Save();
+	        FAIL() << "Expected UninitializedPropertyAccessException";
+	    }
+	    catch(const UninitializedPropertyAccessException& err)
+		{
+	        EXPECT_EQ(err.what(), std::string("File is not specified!"));
+	    }
+	    catch(...)
+		{
+	        FAIL() << "Expected UninitializedPropertyAccessException";
+	    }
+	}
 
-TEST(Metadata, IsNull_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+	TEST(Metadata, IsNull_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
 
-	Metadata metadata(filename);
-	metadata.Load();
+		Metadata metadata(filename);
 
-	const auto result = metadata.IsNull("null");
-	EXPECT_EQ(result, true);
-}
+		try
+		{
+	        metadata.Load();
 
-TEST(Metadata, GetBool_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+			const auto result = metadata.IsNull("null");
+			EXPECT_EQ(result, true);
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+	        FAIL() << "Unexpected error.";
+	    }
+	}
 
-	Metadata metadata(filename);
-	metadata.Load();
+	TEST(Metadata, GetBool_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
 
-	const auto result = metadata.GetBool("bool");
-	EXPECT_EQ(result, true);
-}
+		Metadata metadata(filename);
 
-TEST(Metadata, GetInt_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		try
+		{
+	        metadata.Load();
 
-	Metadata metadata(filename);
-	metadata.Load();
+			const auto result = metadata.GetBool("bool");
+			EXPECT_EQ(result, true);
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+	        FAIL() << "Unexpected error.";
+	    }
+	}
 
-	const auto result = metadata.GetInt("int");
-	EXPECT_EQ(result, 123);
-}
+	TEST(Metadata, GetInt_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
 
-TEST(Metadata, GetDouble_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		Metadata metadata(filename);
+		
+		try
+		{
+	        metadata.Load();
+			
+			const auto result = metadata.GetInt("int");
+			EXPECT_EQ(result, 123);
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+	        FAIL() << "Unexpected error.";
+	    }
+	}
 
-	Metadata metadata(filename);
-	metadata.Load();
+	TEST(Metadata, GetDouble_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
 
-	const auto result = metadata.GetDouble("double");
-	EXPECT_EQ(result, 0.123);
-}
+		Metadata metadata(filename);
+		
+		try
+		{
+	        metadata.Load();
+			
+			const auto result = metadata.GetDouble("double");
+			EXPECT_EQ(result, 0.123);
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+	        FAIL() << "Unexpected error.";
+	    }
+	}
 
-TEST(Metadata, GetString_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+	TEST(Metadata, GetString_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
 
-	Metadata metadata(filename);
-	metadata.Load();
+		Metadata metadata(filename);
+		
+		try
+		{
+	        metadata.Load();
+			
+			const auto result = metadata.GetString("string");
+			EXPECT_EQ(result, "example");
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	const auto result = metadata.GetString("string");
-	EXPECT_EQ(result, "example");
-}
+	TEST(Metadata, SetNull_TheValueIsSetProperly_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string key = "set_null";
 
-TEST(Metadata, SetNull_TheValueIsSetProperly_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string key = "set_null";
+		Metadata metadata(filename);
 
-	Metadata metadata(filename);
+		try
+		{
+			metadata.Load();
+			metadata.SetNull(key);
+			metadata.Save();
 
-	metadata.Load();
-	metadata.SetNull(key);
-	metadata.Save();
+			metadata.Load();
+			const auto result = metadata.IsNull(key);
+			EXPECT_EQ(result, true);
 
-	metadata.Load();
-	const auto result = metadata.IsNull(key);
-	EXPECT_EQ(result, true);
+			metadata.SetInt(key, 0);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	metadata.SetInt(key, 0);
-	metadata.Save();
-}
+	TEST(Metadata, SetBool_TheValueIsSetProperly_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string key = "set_bool";
 
-TEST(Metadata, SetBool_TheValueIsSetProperly_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string key = "set_bool";
+		Metadata metadata(filename);
 
-	Metadata metadata(filename);
+		try
+		{
+			metadata.Load();
+			metadata.SetBool(key, true);
+			metadata.Save();
 
-	metadata.Load();
-	metadata.SetBool(key, true);
-	metadata.Save();
+			metadata.Load();
+			const auto result = metadata.GetBool(key);
+			EXPECT_EQ(result, true);
 
-	metadata.Load();
-	const auto result = metadata.GetBool(key);
-	EXPECT_EQ(result, true);
+			metadata.SetNull(key);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	metadata.SetNull(key);
-	metadata.Save();
-}
+	TEST(Metadata, SetInt_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string key = "set_int";
 
-TEST(Metadata, SetInt_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string key = "set_int";
+		Metadata metadata(filename);
+		
+		try
+		{
+			metadata.Load();
+			metadata.SetInt(key, 456);
+			metadata.Save();
 
-	Metadata metadata(filename);
+			metadata.Load();
+			const auto result = metadata.GetInt(key);
+			EXPECT_EQ(result, 456);
 
-	metadata.Load();
-	metadata.SetInt(key, 456);
-	metadata.Save();
+			metadata.SetNull(key);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	metadata.Load();
-	const auto result = metadata.GetInt(key);
-	EXPECT_EQ(result, 456);
+	TEST(Metadata, SetDouble_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string key = "set_double";
 
-	metadata.SetNull(key);
-	metadata.Save();
-}
+		Metadata metadata(filename);
+		
+		try
+		{
+			metadata.Load();
+			metadata.SetDouble(key, 1.23);
+			metadata.Save();
 
-TEST(Metadata, SetDouble_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string key = "set_double";
+			metadata.Load();
+			const auto result = metadata.GetDouble(key);
+			EXPECT_EQ(result, 1.23);
 
-	Metadata metadata(filename);
+			metadata.SetNull(key);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	metadata.Load();
-	metadata.SetDouble(key, 1.23);
-	metadata.Save();
+	TEST(Metadata, SetString_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string key = "set_string";
 
-	metadata.Load();
-	const auto result = metadata.GetDouble(key);
-	EXPECT_EQ(result, 1.23);
+		Metadata metadata(filename);
 
-	metadata.SetNull(key);
-	metadata.Save();
-}
+		try
+		{
+			metadata.Load();
+			metadata.SetString(key, "my test string");
+			metadata.Save();
 
-TEST(Metadata, SetString_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string key = "set_string";
+			metadata.Load();
+			const auto result = metadata.GetString(key);
+			EXPECT_EQ(result, "my test string");
 
-	Metadata metadata(filename);
+			metadata.SetNull(key);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+	}
 
-	metadata.Load();
-	metadata.SetString(key, "my test string");
-	metadata.Save();
+	TEST(Metadata, SetObject_ExistingValueIsLoaded_Success)
+	{
+		const std::string filename = root + "mocks/metadata/getters_and_setters.json";
+		const std::string objectName = "set_object";
 
-	metadata.Load();
-	const auto result = metadata.GetString(key);
-	EXPECT_EQ(result, "my test string");
+		nlohmann::json myTestObject;
+		myTestObject["testBoolValue"] = true;
+		myTestObject["testIntValue"] = 99;
+		myTestObject["testNegativeIntValue"] = -1;
+		myTestObject["testDoubleValue"] = 10.0001;
 
-	metadata.SetNull(key);
-	metadata.Save();
-}
+		Metadata metadata(filename);
+		
+		try
+		{
+			metadata.Load();
+			metadata.SetJsonObject(objectName, myTestObject);
+			metadata.Save();
 
-TEST(Metadata, SetObject_ExistingValueIsLoaded_Success)
-{
-	const std::string filename = root + "mocks/metadata/getters_and_setters.json";
-	const std::string objectName = "set_object";
+			metadata.Load();
+			const auto result = metadata.GetJsonObject(objectName);
+			EXPECT_EQ(result, myTestObject);
 
-	Metadata metadata(filename);
-
-	nlohmann::json myTestObject;
-	myTestObject["testBoolValue"] = true;
-	myTestObject["testIntValue"] = 99;
-	myTestObject["testNegativeIntValue"] = -1;
-	myTestObject["testDoubleValue"] = 10.0001;
-
-
-	metadata.Load();
-	metadata.SetJsonObject(objectName, myTestObject);
-	metadata.Save();
-
-	metadata.Load();
-	const auto result = metadata.GetJsonObject(objectName);
-	EXPECT_EQ(result, myTestObject);
-
-	metadata.SetNull(objectName);
-	metadata.Save();
+			metadata.SetNull(objectName);
+			metadata.Save();
+	    }
+	    catch(const EngineException& e)
+		{
+	        FAIL() << e.what();
+	    }
+		catch(...)
+		{
+			FAIL() << "Unexpected error.";
+		}
+		
+	}
 }

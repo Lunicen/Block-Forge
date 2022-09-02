@@ -5,7 +5,7 @@
 /// @brief A Vertex Buffer Object handler - wrapper for the VBO functionality.
 class VertexBuffer
 {
-	GLuint bufferRef = 0;
+	GLuint _bufferRef = 0;
 
 public:
 
@@ -13,7 +13,10 @@ public:
 	explicit VertexBuffer(const GLfloat* vertices, GLsizeiptr size);
 
 	VertexBuffer(const VertexBuffer&) = delete;
-	VertexBuffer(VertexBuffer&&) = delete;
+
+	/// @brief Move constructor.
+	VertexBuffer(VertexBuffer&&) = default;
+
 	VertexBuffer& operator=(const VertexBuffer&) = delete;
 	VertexBuffer& operator=(VertexBuffer&&) = delete;
 
@@ -21,7 +24,7 @@ public:
 	void Bind() const;
 
 	/// @brief Tells OpenGL to unbind the VBO.
-	void Unbind();
+	void Unbind() const;
 
 	~VertexBuffer();
 };

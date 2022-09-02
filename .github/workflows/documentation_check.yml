@@ -2,7 +2,7 @@ name: Documentation coverage
 
 on:
   pull_request:
-    branches: [ develop ]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:

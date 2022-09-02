@@ -1,84 +1,83 @@
 #include "Sandbox.h"
 #include "World.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include "Utils/Shader.h"
-#include "Utils/BufferUtils.h"
+#include "Camera.h"
+#include "Events/HumanInterfaceDevice.h"
+#include "World/ChunkManager.h"
+#include "World/WorldGenerator.h"
+#include "Sandbox/FPSCounter.h"
 
-void Sandbox::Run() const
+void Sandbox::InitializeGlfw()
 {
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	if (!world->IsLoaded())
+	constexpr auto versionMajor = 3;
+	constexpr auto versionMinor = 3;
+
+	// The target version is 3.3
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versionMajor);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versionMinor);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+}
+
+void Sandbox::Run()
+{
+	constexpr int width = 1280;
+	constexpr int height = 720;
+
+	InitializeGlfw();
+
+	if (!_world.IsLoaded())
 	{
-		log.Error("Cannot start the simulation! The world is not loaded!");
+		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
 
-	GLFWwindow* window = glfwCreateWindow(800, 800, "test", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Block Forge", nullptr, nullptr);
 	if (window == nullptr)
 	{
-		log.Error("Failed to create window.");
+		_log.Error("Failed to create window.");
 		glfwTerminate();
 		return;
 	}
 
 	glfwMakeContextCurrent(window);
 	gladLoadGL();
-	glViewport(0, 0, 800, 800);
+	glViewport(0, 0, width, height);
 
-	//    6-------5  
-	//   /|      /|   
-	//  1-------2 | 
-	//  | |     | |   
-	//  | 7-----|-4  
-	//  |/      |/    
-	//  0-------3 
-	constexpr GLfloat vertices[12] =
-	{
-		-1.0f, -1.0f, 1.0f,
-		-1.0f,  1.0f, 1.0f,
-		 1.0f,  1.0f, 1.0f,
-		 1.0f, -1.0f, 1.0f
-	};
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CCW);
 
-	constexpr GLuint indices[6]
-	{
-		// front
-		0, 1, 2,
-		2, 3, 0
-	};
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	const Shader shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	HumanInterfaceDevice hid(window);
+	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	VertexArray vao;
-	VertexBuffer vbo(vertices, sizeof(vertices));
-	ElementBuffer ebo(indices, sizeof(indices));
+	auto worldGenerator = std::make_shared<WorldGenerator>(69, blockShader);
 
-	vao.Link(vbo, 0);
+	ChunkManager chunkManager(8, 2, camera);
+	chunkManager.Bind(worldGenerator);
 
-	vao.Unbind();
-	vbo.Unbind();
-	ebo.Unbind();
+	FPSCounter counter;
 
 	while(!glfwWindowShouldClose(window))
 	{
+
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		camera.Update();
+		camera.HandleInput();
+		chunkManager.Update();
+		counter.Update();
 
-		shader.Load();
-		vao.Bind();
-
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
-		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+
+	gltTerminate();
 }

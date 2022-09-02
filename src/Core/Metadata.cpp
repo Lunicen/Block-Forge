@@ -1,22 +1,30 @@
 #include "Metadata.h"
 #include <fstream>
 
+#include "EngineExceptions.h"
+
 void Metadata::CheckIfFilenameIsNotEmpty() const
 {
-	if (this->filename.empty())
-		throw std::runtime_error("File is not specified!");
+	if (_filename.empty())
+	{
+		throw UninitializedPropertyAccessException("File is not specified!");
+	}
 }
 
 void Metadata::ValidateIfDocumentIsLoaded() const
 {
-	if (this->document == nullptr)
-		throw std::runtime_error("The data is not loaded!");
+	if (_document == nullptr)
+	{
+		throw UninitializedPropertyAccessException("The data is not loaded!");
+	}
 }
 
 void Metadata::ValidateIfKeyExists(const std::string& name) const
 {
-	if (!this->document.contains(name))
-		throw std::runtime_error("The key " + name + "doesn't exist!");
+	if (!_document.contains(name))
+	{
+		throw NotFoundException("The key " + name + "doesn't exist!");
+	}
 }
 
 void Metadata::ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType)
@@ -24,7 +32,9 @@ void Metadata::ValidateIfTypeIsMatched(const nlohmann::json& value, const std::s
 	const std::string valueType = value.type_name();
 
 	if (valueType != requestedType)
-		throw std::runtime_error("The value type is " + valueType + "! Requested " + requestedType);
+	{
+		throw MismatchException("The value type is " + valueType + "! Requested " + requestedType);
+	}
 }
 
 void Metadata::TryToLoadFile(const std::string& filename)
@@ -32,16 +42,16 @@ void Metadata::TryToLoadFile(const std::string& filename)
 	std::ifstream file(filename);
 	if (!file.good())
 	{
-		throw std::runtime_error("File doesn't exist!");
+		throw NotFoundException("File doesn't exist!");
 	}
 
 	if (IsFileEmpty(file))
 	{
-		this->document = nlohmann::json::parse("{}");
+		_document = nlohmann::json::parse("{}");
 	}
 	else
 	{
-		this->document = nlohmann::json::parse(file);
+		_document = nlohmann::json::parse(file);
 	}
 	
 	file.close();
@@ -49,8 +59,8 @@ void Metadata::TryToLoadFile(const std::string& filename)
 
 void Metadata::TryToSaveFile() const
 {
-	std::ofstream file(this->filename);
-	file << this->document;
+	std::ofstream file(_filename);
+	file << _document;
 	file.close();
 }
 
@@ -61,21 +71,21 @@ Metadata::Metadata(const std::string& filename)
 
 void Metadata::SetFilename(const std::string& filename)
 {
-	this->filename = filename;
+	_filename = filename;
 }
 
 std::string Metadata::GetFilename()
 {
-	return this->filename;
+	return _filename;
 }
 
 void Metadata::Create() const
 {
-	const auto filename = this->filename;
+	const auto filename = _filename;
 
 	if (DoesFileExist(filename))
 	{
-		log.Warn("Attempting to overwrite file at " + filename);
+		_log.Warn("Attempting to overwrite file at " + filename);
 	}
 
 	std::ofstream file(filename);
@@ -91,237 +101,126 @@ void Metadata::Create(const std::string& filename)
 
 void Metadata::Load()
 {
-	Load(this->filename);
+	Load(_filename);
 }
 
 void Metadata::Load(const std::string& filename)
 {
 	SetFilename(filename);
-
-	try
-	{
-		CheckIfFilenameIsNotEmpty();
-		TryToLoadFile(filename);
-
-		this->isFileLoaded = true;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	CheckIfFilenameIsNotEmpty();
+	TryToLoadFile(filename);
 }
 
-bool Metadata::IsLoaded() const
+void Metadata::Save() const
 {
-	return this->isFileLoaded;
+	CheckIfFilenameIsNotEmpty();
+	TryToSaveFile();
 }
-
-void Metadata::Save()
-{
-	try
-	{
-		CheckIfFilenameIsNotEmpty();
-		TryToSaveFile();
-		isFileSaved = true;
-	}
-	catch (const std::exception& err)
-	{
-		log.Error(err.what());
-		isFileSaved = false;
-	}
-}
-
-bool Metadata::IsSaved() const
-{
-	return this->isFileSaved;
-}
-
 
 nlohmann::json Metadata::GetJsonObject(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "object");
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "object");
 
-		return this->document[name];
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
-
-	return false;
+	return _document[name];
 }
 
 void Metadata::SetJsonObject(const std::string& name, const nlohmann::json& value)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = value;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
+}
+
+nlohmann::json Metadata::GetJsonArray(const std::string& name)
+{
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "array");
+
+	return _document[name];
+}
+
+void Metadata::SetJsonArray(const std::string& name, const nlohmann::json& value)
+{
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
 }
 
 bool Metadata::GetBool(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "boolean");
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "boolean");
 
-		return this->document.value(name, false);
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
-
-	return false;
+	return _document.value(name, false);
 }
 
 void Metadata::SetBool(const std::string& name, const bool value)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = value;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
 }
 
 int Metadata::GetInt(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "number");
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "number");
 		
-		return this->document.value(name, 0);
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
-
-	return 0;
+	return _document.value(name, 0);
 }
 
 void Metadata::SetInt(const std::string& name, const int& value)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = value;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
 }
 
 double Metadata::GetDouble(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "number");
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "number");
 		
-		return this->document.value(name, 0.0);
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
-
-	return 0.0;
+	return _document.value(name, 0.0);
 }
 
 void Metadata::SetDouble(const std::string& name, const double& value)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = value;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
 }
 
 std::string Metadata::GetString(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
-		ValidateIfTypeIsMatched(this->document[name], "string");
-		
-		return this->document.value(name, "undefined");
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
+	ValidateIfTypeIsMatched(_document[name], "string");
 
-	return "undefined";
+	return _document.value(name, "undefined");
 }
 
 void Metadata::SetString(const std::string& name, const std::string& value)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = value;
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = value;
 }
 
 bool Metadata::IsNull(const std::string& name) const
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		ValidateIfKeyExists(name);
+	ValidateIfDocumentIsLoaded();
+	ValidateIfKeyExists(name);
 
-		if (this->document.value(name, "undefined") == "null" || this->document[name].is_null())
-		{
-			return true;
-		}
-		return false;
-	}
-	catch(const std::exception& err)
+	if (_document.value(name, "undefined") == "null" || _document[name].is_null())
 	{
-		log.Error(err.what());
+		return true;
 	}
-
 	return false;
 }
 
 void Metadata::SetNull(const std::string& name)
 {
-	try
-	{
-		ValidateIfDocumentIsLoaded();
-		this->document[name] = "null";
-	}
-	catch(const std::exception& err)
-	{
-		log.Error(err.what());
-	}
+	ValidateIfDocumentIsLoaded();
+	_document[name] = "null";
 }

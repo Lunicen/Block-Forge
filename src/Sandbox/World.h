@@ -6,14 +6,14 @@
 ///	@brief Represents the world which contains the data about the generated world
 class World
 {
-	std::unique_ptr<Metadata> worldData = nullptr;
-	Log& log = Log::Get();
+	Metadata _worldData;
+	Log& _log = Log::Get();
 
 public:
 
 	///	@brief The constructor that takes the pointer to the metadata file.
 	///	@remark The metadata doesn't need to be initialized.
-	explicit World(const std::string& filename) : worldData(std::make_unique<Metadata>(filename))
+	explicit World(const std::string& filename) : _worldData(filename)
 	{
 	}
 

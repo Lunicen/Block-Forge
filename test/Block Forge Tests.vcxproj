@@ -90,7 +90,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)lib\glm;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,7 +109,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)lib\glm;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -127,7 +127,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)lib\glm;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -147,7 +147,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\$(Platform)\include;$(SolutionDir)lib\glm;$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

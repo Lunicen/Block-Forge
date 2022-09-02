@@ -10,11 +10,9 @@
 /// @details This class is made for handling the metadata stored in JSON files.
 class Metadata : protected FileUtils
 {
-	std::string filename;
-	nlohmann::json document = nullptr;
-	bool isFileLoaded = false;
-	bool isFileSaved = false;
-	Log& log = Log::Get();
+	std::string _filename;
+	nlohmann::json _document = nullptr;
+	Log& _log = Log::Get();
 
 	void CheckIfFilenameIsNotEmpty() const;
 	void ValidateIfDocumentIsLoaded() const;
@@ -55,14 +53,8 @@ public:
 	/// @param filename - Filename of the JSON file.
 	void Load(const std::string& filename);
 
-	/// @brief Checks if JSON data is loaded to the memory space.
-	bool IsLoaded() const;
-
 	/// @brief Saves JSON data to the file specified in the filename.
-	void Save();
-
-	/// @brief Checks if file is successfully saved.
-	bool IsSaved() const;
+	void Save() const;
 
 	/// @brief Gets JSON Object.
 	/// @param name - JSON key.
@@ -72,6 +64,15 @@ public:
 	/// @param name - JSON key.
 	/// @param value - value to set.
 	void SetJsonObject(const std::string& name, const nlohmann::json& value);
+
+	/// @brief Gets JSON Array.
+	/// @param name - JSON key.
+	nlohmann::json GetJsonArray(const std::string& name);
+
+	/// @brief Sets JSON Array.
+	/// @param name - JSON key.
+	/// @param value - value to set.
+	void SetJsonArray(const std::string& name, const nlohmann::json& value);
 
 	/// @brief Gets Boolean.
 	/// @param name - JSON key.
