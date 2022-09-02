@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['paintchunk_0',['PaintChunk',['../class_biome.html#a017789f9099adf9cdd698e505ac71c1d',1,'Biome::PaintChunk()'],['../class_biome_placer.html#a9b367028e9947f3e5d2850026a99bb11',1,'BiomePlacer::PaintChunk()'],['../class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23',1,'WorldGenerator::PaintChunk()']]],
-  ['paintcolumn_1',['PaintColumn',['../class_biome.html#ae10b1dee3ade5ae8f65f955311780aac',1,'Biome']]]
+  ['vertexarray_0',['VertexArray',['../class_vertex_array.html',1,'VertexArray'],['../class_vertex_array.html#ab8a2dcce9698f96dac5f9a19c6979d03',1,'VertexArray::VertexArray()']]],
+  ['vertexbuffer_1',['VertexBuffer',['../class_vertex_buffer.html',1,'VertexBuffer'],['../class_vertex_buffer.html#a9e61281e07d2e08a293fa3dac493ec19',1,'VertexBuffer::VertexBuffer()']]]
 ];

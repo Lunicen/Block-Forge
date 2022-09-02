@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Sandbox/Utils/Rendering/Shader.h Source File</title>
+<title>Block Forge: src/Sandbox/Utils/Shader.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -96,47 +96,39 @@ $(document).ready(function(){initNavTree('_shader_8h_source.html',''); initResiz
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_shader.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="class_shader.html">Shader</a> : <span class="keyword">protected</span> <a class="code hl_class" href="class_file_utils.html">FileUtils</a></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GLuint _program{};</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GLuint program{};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    std::string GetFileContents(<span class="keyword">const</span> std::string&amp; filename) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> InitializeProgram(<span class="keyword">const</span> GLuint&amp; vertexShader, <span class="keyword">const</span> GLuint&amp; fragmentShader);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_shader.html#a11126523f264f46c8b5b2959a0f82136">   25</a></span>    <a class="code hl_function" href="class_shader.html#a11126523f264f46c8b5b2959a0f82136">Shader</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_shader.html">Shader</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_shader.html">Shader</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_shader.html">Shader</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="class_shader.html">Shader</a>(<a class="code hl_class" href="class_shader.html">Shader</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; operator=(<a class="code hl_class" href="class_shader.html">Shader</a>) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; operator=(<a class="code hl_class" href="class_shader.html">Shader</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_shader.html#a82902dcffbfeab356a5a024c50095724">   29</a></span>    <a class="code hl_function" href="class_shader.html#a82902dcffbfeab356a5a024c50095724">Shader</a>(<a class="code hl_class" href="class_shader.html">Shader</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_shader.html">Shader</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; operator=(<a class="code hl_class" href="class_shader.html">Shader</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="class_shader.html#a11126523f264f46c8b5b2959a0f82136">Shader</a>(<span class="keyword">const</span> std::string&amp; vertexFile, <span class="keyword">const</span> std::string&amp; fragmentFile);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6">Load</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader.html#a76db451d730b870539971e87dd0ec328">Unload</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    GLuint <a class="code hl_function" href="class_shader.html#a41f3062ce0d589aeeb828fa82320b671">GetProgram</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="class_shader.html">~Shader</a>();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="class_shader.html">Shader</a>(<span class="keyword">const</span> std::string&amp; vertexFile, <span class="keyword">const</span> std::string&amp; fragmentFile);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6">Load</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_shader.html#a76db451d730b870539971e87dd0ec328">Unload</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_class" href="class_shader.html">~Shader</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="ttc" id="aclass_file_utils_html"><div class="ttname"><a href="class_file_utils.html">FileUtils</a></div><div class="ttdoc">This is a file utilities class that contains functions that could be mostly used by classes that are ...</div><div class="ttdef"><b>Definition:</b> FileUtils.h:8</div></div>
 <div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:11</div></div>
 <div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:25</div></div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
-<div class="ttc" id="aclass_shader_html_a11126523f264f46c8b5b2959a0f82136"><div class="ttname"><a href="class_shader.html#a11126523f264f46c8b5b2959a0f82136">Shader::Shader</a></div><div class="ttdeci">Shader(const Shader &amp;)=default</div><div class="ttdoc">Shader copy constructor.</div></div>
-<div class="ttc" id="aclass_shader_html_a26bf8bc1f57108b3c4662ad704df72c6"><div class="ttname"><a href="class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6">Shader::Load</a></div><div class="ttdeci">void Load() const</div><div class="ttdoc">Tells OpenGL to use the shader program.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:71</div></div>
-<div class="ttc" id="aclass_shader_html_a41f3062ce0d589aeeb828fa82320b671"><div class="ttname"><a href="class_shader.html#a41f3062ce0d589aeeb828fa82320b671">Shader::GetProgram</a></div><div class="ttdeci">GLuint GetProgram() const</div><div class="ttdoc">Returns the shader program.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:81</div></div>
-<div class="ttc" id="aclass_shader_html_a76db451d730b870539971e87dd0ec328"><div class="ttname"><a href="class_shader.html#a76db451d730b870539971e87dd0ec328">Shader::Unload</a></div><div class="ttdeci">void Unload() const</div><div class="ttdoc">Tells OpenGL to stop using this shader program.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:76</div></div>
-<div class="ttc" id="aclass_shader_html_a82902dcffbfeab356a5a024c50095724"><div class="ttname"><a href="class_shader.html#a82902dcffbfeab356a5a024c50095724">Shader::Shader</a></div><div class="ttdeci">Shader(Shader &amp;&amp;)=default</div><div class="ttdoc">Shader move constructor.</div></div>
+<div class="ttc" id="aclass_shader_html_a26bf8bc1f57108b3c4662ad704df72c6"><div class="ttname"><a href="class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6">Shader::Load</a></div><div class="ttdeci">void Load() const</div><div class="ttdoc">Tells OpenGL to use the shader program.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:70</div></div>
+<div class="ttc" id="aclass_shader_html_a76db451d730b870539971e87dd0ec328"><div class="ttname"><a href="class_shader.html#a76db451d730b870539971e87dd0ec328">Shader::Unload</a></div><div class="ttdeci">void Unload() const</div><div class="ttdoc">Tells OpenGL to stop using this shader program.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:75</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_60aec12b08ac97802aadfb3878769d57.html">Utils</a></li><li class="navelem"><a class="el" href="dir_1e869a6dccaa72387a9149f2f68caa0c.html">Rendering</a></li><li class="navelem"><b>Shader.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_60aec12b08ac97802aadfb3878769d57.html">Utils</a></li><li class="navelem"><b>Shader.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

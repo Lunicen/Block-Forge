@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -134,22 +134,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> ()</td></tr>
 <tr class="memitem:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1">Load</a> (const std::string &amp;filename)</td></tr>
 <tr class="memdesc:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads JSON data to the document variable using the given filename.  <a href="class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1">More...</a><br /></td></tr>
 <tr class="separator:a79f3dde76dc233bb27642ffd9ef60ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a347117de858546e8fd7ea3016e88323b"><td class="memItemLeft" align="right" valign="top"><a id="a347117de858546e8fd7ea3016e88323b" name="a347117de858546e8fd7ea3016e88323b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Save</b> () const</td></tr>
-<tr class="memdesc:a347117de858546e8fd7ea3016e88323b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves JSON data to the file specified in the filename. <br /></td></tr>
-<tr class="separator:a347117de858546e8fd7ea3016e88323b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9efe9ca5aac6b06192ff54370ecbd348"><td class="memItemLeft" align="right" valign="top"><a id="a9efe9ca5aac6b06192ff54370ecbd348" name="a9efe9ca5aac6b06192ff54370ecbd348"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsLoaded</b> () const</td></tr>
+<tr class="memdesc:a9efe9ca5aac6b06192ff54370ecbd348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if JSON data is loaded to the memory space. <br /></td></tr>
+<tr class="separator:a9efe9ca5aac6b06192ff54370ecbd348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa0dcf0d919e873395538fae0b26b1b6"><td class="memItemLeft" align="right" valign="top"><a id="aaa0dcf0d919e873395538fae0b26b1b6" name="aaa0dcf0d919e873395538fae0b26b1b6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Save</b> ()</td></tr>
+<tr class="memdesc:aaa0dcf0d919e873395538fae0b26b1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves JSON data to the file specified in the filename. <br /></td></tr>
+<tr class="separator:aaa0dcf0d919e873395538fae0b26b1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5d619efd7c6df8f3feb6761a6d037e7"><td class="memItemLeft" align="right" valign="top"><a id="af5d619efd7c6df8f3feb6761a6d037e7" name="af5d619efd7c6df8f3feb6761a6d037e7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsSaved</b> () const</td></tr>
+<tr class="memdesc:af5d619efd7c6df8f3feb6761a6d037e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if file is successfully saved. <br /></td></tr>
+<tr class="separator:af5d619efd7c6df8f3feb6761a6d037e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1977e8e479ac4425e9cc9538f0054c45"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45">GetJsonObject</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a1977e8e479ac4425e9cc9538f0054c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets JSON Object.  <a href="class_metadata.html#a1977e8e479ac4425e9cc9538f0054c45">More...</a><br /></td></tr>
 <tr class="separator:a1977e8e479ac4425e9cc9538f0054c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c5559751c2701467289c997bed4e791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a8c5559751c2701467289c997bed4e791">SetJsonObject</a> (const std::string &amp;name, const nlohmann::json &amp;value)</td></tr>
 <tr class="memdesc:a8c5559751c2701467289c997bed4e791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets JSON object.  <a href="class_metadata.html#a8c5559751c2701467289c997bed4e791">More...</a><br /></td></tr>
 <tr class="separator:a8c5559751c2701467289c997bed4e791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa82da6305418481efbe91b2ac572cd3f"><td class="memItemLeft" align="right" valign="top">nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#aa82da6305418481efbe91b2ac572cd3f">GetJsonArray</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:aa82da6305418481efbe91b2ac572cd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets JSON Array.  <a href="class_metadata.html#aa82da6305418481efbe91b2ac572cd3f">More...</a><br /></td></tr>
-<tr class="separator:aa82da6305418481efbe91b2ac572cd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572d6a084ecb61c0b27cfefaf0721f13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#a572d6a084ecb61c0b27cfefaf0721f13">SetJsonArray</a> (const std::string &amp;name, const nlohmann::json &amp;value)</td></tr>
-<tr class="memdesc:a572d6a084ecb61c0b27cfefaf0721f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets JSON Array.  <a href="class_metadata.html#a572d6a084ecb61c0b27cfefaf0721f13">More...</a><br /></td></tr>
-<tr class="separator:a572d6a084ecb61c0b27cfefaf0721f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af80faf643bd2c70948a75be521da3a92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_metadata.html#af80faf643bd2c70948a75be521da3a92">GetBool</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:af80faf643bd2c70948a75be521da3a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Boolean.  <a href="class_metadata.html#af80faf643bd2c70948a75be521da3a92">More...</a><br /></td></tr>
 <tr class="separator:af80faf643bd2c70948a75be521da3a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -401,69 +403,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets JSON object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
-    <tr><td class="paramname">value</td><td>- value to set. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aa82da6305418481efbe91b2ac572cd3f" name="aa82da6305418481efbe91b2ac572cd3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa82da6305418481efbe91b2ac572cd3f">&#9670;&nbsp;</a></span>GetJsonArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">nlohmann::json Metadata::GetJsonArray </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets JSON Array. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>- JSON key. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a572d6a084ecb61c0b27cfefaf0721f13" name="a572d6a084ecb61c0b27cfefaf0721f13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a572d6a084ecb61c0b27cfefaf0721f13">&#9670;&nbsp;</a></span>SetJsonArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Metadata::SetJsonArray </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets JSON Array. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>- JSON key. </td></tr>

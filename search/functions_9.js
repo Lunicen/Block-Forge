@@ -1,6 +1,13 @@
 var searchData=
 [
-  ['librarybugexception_0',['LibraryBugException',['../class_library_bug_exception.html#a2d5e4d520fb2035ecb202e617c1d7575',1,'LibraryBugException']]],
-  ['link_1',['Link',['../class_vertex_array.html#a05ebeefc6d9dfafe773a01bc1cb615f1',1,'VertexArray']]],
-  ['load_2',['Load',['../class_metadata.html#acb03a8ff4693be4aba6557b91079e0ba',1,'Metadata::Load()'],['../class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1',1,'Metadata::Load(const std::string &amp;filename)'],['../class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6',1,'Shader::Load()'],['../class_world.html#a0f570293be4fd6ab6b3d3cc986647971',1,'World::Load()'],['../class_chunk.html#a9a232a0f6e5c7cec43b88117a2cb94c8',1,'Chunk::Load()']]]
+  ['sandbox_0',['Sandbox',['../class_sandbox.html#a705c789888637f39e6788c17d8f1725a',1,'Sandbox']]],
+  ['save_1',['Save',['../class_metadata.html#aaa0dcf0d919e873395538fae0b26b1b6',1,'Metadata::Save()'],['../class_world.html#a32a6bacf092cf5219681e73e4144dcc1',1,'World::Save()']]],
+  ['setbool_2',['SetBool',['../class_metadata.html#a63bf33687ae931bb706cfdccd61e48d3',1,'Metadata']]],
+  ['setdouble_3',['SetDouble',['../class_metadata.html#a2069322f9e0695232740ad64bd8ff56a',1,'Metadata']]],
+  ['setfilename_4',['SetFilename',['../class_metadata.html#ad84e37040e02575b907895212baa9bf6',1,'Metadata']]],
+  ['setint_5',['SetInt',['../class_metadata.html#a307ee88b93f1f2a3909a1c736341f4b2',1,'Metadata']]],
+  ['setjsonobject_6',['SetJsonObject',['../class_metadata.html#a8c5559751c2701467289c997bed4e791',1,'Metadata']]],
+  ['setnull_7',['SetNull',['../class_metadata.html#aefd89080abb7532d82b748575094b25f',1,'Metadata']]],
+  ['setstring_8',['SetString',['../class_metadata.html#a988d7a62d4642bf6e7cdbfd56e832703',1,'Metadata']]],
+  ['shader_9',['Shader',['../class_shader.html#aa60afe8be2c497a1bd154bba57eedf9c',1,'Shader']]]
 ];
