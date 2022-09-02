@@ -19,12 +19,12 @@ class ChunkRenderer
 	std::vector<glm::ivec3> _loadedChunksOrigins = {};
 	std::vector<std::unique_ptr<Chunk>> _loadedChunks = {};
 
+	static std::vector<glm::ivec3> Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet);
 	glm::ivec3 GetNormalizedPosition(glm::vec3 position) const;
 	std::string PositionToString(const glm::ivec3& position) const;
 
-	void AddChunkToList(const glm::ivec3& origin);
-	void AddOnlyNewChunks(const std::vector<glm::ivec3>& currentOrigins, const std::vector<glm::ivec3>& previousOrigins);
-	void RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins);
+	void RemoveChunkAt(const glm::ivec3& origin);
+	void SpawnChunkAt(const glm::ivec3& origin);
 	void RenderChunksAround(const glm::ivec3& normalizedOrigin);
 
 public:

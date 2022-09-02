@@ -1,12 +1,21 @@
 #include "ChunkRenderer.h"
 
+#include "Core/EngineExceptions.h"
 #include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
-std::string ChunkRenderer::PositionToString(const glm::ivec3& position) const
+std::vector<glm::ivec3> ChunkRenderer::Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet)
 {
-	return std::to_string(position.x) + ", " + 
-		   std::to_string(position.y) + ", " + 
-		   std::to_string(position.z);
+	std::vector<glm::ivec3> result;
+
+	for (const auto& value : aSet)
+	{
+		if (std::find(bSet.begin(), bSet.end(), value) == bSet.end())
+		{
+			result.emplace_back(value);
+		}
+	}
+
+	return result;
 }
 
 glm::ivec3 ChunkRenderer::GetNormalizedPosition(glm::vec3 position) const
@@ -21,7 +30,35 @@ glm::ivec3 ChunkRenderer::GetNormalizedPosition(glm::vec3 position) const
 	};
 }
 
-void ChunkRenderer::AddChunkToList(const glm::ivec3& origin)
+std::string ChunkRenderer::PositionToString(const glm::ivec3& position) const
+{
+	return std::to_string(position.x) + ", " + 
+		   std::to_string(position.y) + ", " + 
+		   std::to_string(position.z);
+}
+
+void ChunkRenderer::RemoveChunkAt(const glm::ivec3& origin)
+{
+	const auto outdatedChunk = 
+		std::find_if(
+			_loadedChunks.begin(), 
+			_loadedChunks.end(),
+		    [&](const std::unique_ptr<Chunk>& chunk)
+		    {
+		        return chunk->GetOrigin() == origin;
+		    }
+	);
+
+	if (outdatedChunk == _loadedChunks.end())
+	{
+		throw NotFoundException("The chunk with given origin is not loaded!");
+	}
+
+	_log.Trace("Removed chunk: " + PositionToString(origin));
+	_loadedChunks.erase(outdatedChunk);
+}
+
+void ChunkRenderer::SpawnChunkAt(const glm::ivec3& origin)
 {
 	_log.Trace("Added chunk: " + PositionToString(origin));
 	
@@ -33,51 +70,25 @@ void ChunkRenderer::AddChunkToList(const glm::ivec3& origin)
 	_loadedChunks.emplace_back(std::move(chunk));
 }
 
-void ChunkRenderer::AddOnlyNewChunks(const std::vector<glm::ivec3>& currentOrigins, const std::vector<glm::ivec3>& previousOrigins)
-{
-	for (const auto& currentOrigin : currentOrigins)
-	{
-		if (std::find(previousOrigins.begin(), previousOrigins.end(), currentOrigin) == previousOrigins.end())
-		{
-			AddChunkToList(currentOrigin);
-		}
-	}
-}
-
-void ChunkRenderer::RemoveExcludedChunks(const std::vector<glm::ivec3>& oldOrigins)
-{
-	for (const auto& oldOrigin : oldOrigins)
-	{
-		if (std::find(_loadedChunksOrigins.begin(), _loadedChunksOrigins.end(), oldOrigin) != _loadedChunksOrigins.end())
-		{
-			_log.Trace("Reusing chunk: " + PositionToString(oldOrigin));
-			continue;
-		}
-
-		auto outdatedChunk = std::find_if(_loadedChunks.begin(), _loadedChunks.end(),
-			[&](const std::unique_ptr<Chunk>& chunk)
-			{
-				return chunk->GetOrigin() == oldOrigin * static_cast<int>(_renderView->GetChunkSize());
-			}
-		);
-
-		if (outdatedChunk != _loadedChunks.end())
-		{
-			_log.Trace("Removed chunk: " + PositionToString(oldOrigin));
-			_loadedChunks.erase(outdatedChunk);
-		}
-	}
-}
-
 void ChunkRenderer::RenderChunksAround(const glm::ivec3& normalizedOrigin)
 {
-	const auto& previousChunksAroundOrigins = _loadedChunksOrigins;
-	const auto& currentChunksAroundOrigins = _renderView->GetChunksAround(normalizedOrigin);
+	const auto previousChunksAroundOrigins = _loadedChunksOrigins;
+	const auto currentChunksAroundOrigins = _renderView->GetChunksAround(normalizedOrigin);
 
-	_loadedChunksOrigins.clear();
+	const auto newChunksOrigins = Subtract(currentChunksAroundOrigins, previousChunksAroundOrigins);
+	const auto outdatedChunksOrigins = Subtract(previousChunksAroundOrigins, currentChunksAroundOrigins);
 
-	AddOnlyNewChunks(currentChunksAroundOrigins, previousChunksAroundOrigins);
-	RemoveExcludedChunks(previousChunksAroundOrigins);
+	for (const auto& outdatedOrigin : outdatedChunksOrigins)
+	{
+		RemoveChunkAt(outdatedOrigin);
+	}
+
+	for (const auto& newOrigin : newChunksOrigins)
+	{
+		SpawnChunkAt(newOrigin);
+	}
+
+	_loadedChunksOrigins = currentChunksAroundOrigins;
 }
 
 ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera)
