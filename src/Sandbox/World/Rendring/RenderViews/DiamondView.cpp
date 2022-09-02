@@ -13,7 +13,7 @@ size_t DiamondView::GetChunksAmount()
 	return CountChunksRecursive(_renderDistance);
 }
 
-std::vector<glm::ivec3> DiamondView::GetChunksAround(const glm::ivec3 normalizedPosition)
+std::vector<glm::ivec3> DiamondView::GetChunksAround(const glm::ivec3 normalizedOrigin)
 {
 	std::vector<glm::ivec3> chunksPositions;
 
@@ -27,9 +27,9 @@ std::vector<glm::ivec3> DiamondView::GetChunksAround(const glm::ivec3 normalized
 			for (auto z = -zBound; z <= zBound; ++z)
 			{
 				chunksPositions.emplace_back(
-					glm::ivec3(x + normalizedPosition.x,
-							   y + normalizedPosition.y,
-							   z + normalizedPosition.z)
+					glm::ivec3(x + normalizedOrigin.x,
+							   y + normalizedOrigin.y,
+							   z + normalizedOrigin.z)
 				);
 			}
 		}

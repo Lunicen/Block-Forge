@@ -32,7 +32,7 @@ public:
 
 	/// @brief Get the amount of chunks that could be generated on the current render distance settings.
 	virtual size_t GetChunksAmount() = 0;
-	virtual std::vector<glm::ivec3> GetChunksAround(glm::ivec3 origin) = 0;
+	virtual std::vector<glm::ivec3> GetChunksAround(glm::ivec3 normalizedOrigin) = 0;
 
 	virtual ~RenderView() = default;
 };

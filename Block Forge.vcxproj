@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\BiomePlacer.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\ChunkRenderer.h" />

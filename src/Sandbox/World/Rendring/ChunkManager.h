@@ -1,11 +1,7 @@
 #pragma once
 #include "Sandbox/Camera.h"
 #include "ChunkRenderer.h"
-
-enum class RenderViewType
-{
-	diamond = 0
-};
+#include "RenderViews/RenderViewTypes.h"
 
 /// @class ChunkManager
 /// @brief Handles managing the chunks around the camera.
