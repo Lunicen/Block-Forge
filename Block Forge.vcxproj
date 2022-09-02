@@ -141,13 +141,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\BiomePlacer.cpp" />
     <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise2D.cpp" />
     <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise3D.cpp" />
     <ClCompile Include="src\Sandbox\Utils\Chunk\ChunkUtils.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\BiomeProvider.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\Biome.cpp" />
-    <ClCompile Include="src\Sandbox\World\ChunkManager.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\ChunkManager.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunk.cpp" />
     <ClCompile Include="src\Sandbox\Block.cpp" />
     <ClCompile Include="src\Sandbox\Events\HumanInterfaceDevice.cpp" />
@@ -173,6 +175,9 @@
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
+    <ClInclude Include="src\Core\EngineExceptions.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\ChunkRenderer.h" />
     <ClInclude Include="src\Sandbox\Utils\Chunk\ChunkFrame.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\BiomePlacer.h" />
     <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise2D.h" />
@@ -187,7 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\FPSCounter.h" />
-    <ClInclude Include="src\Sandbox\World\ChunkManager.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\ChunkManager.h" />
     <ClInclude Include="src\Sandbox\World\Chunk.h" />
     <ClInclude Include="src\Sandbox\Block.h" />
     <ClInclude Include="src\Sandbox\Events\HumanInterfaceDevice.h" />
@@ -213,6 +218,8 @@
     <ClInclude Include="src\Sandbox\World.h" />
     <ClInclude Include="src\Sandbox\Utils\Rendering\VertexBuffer.h" />
     <ClInclude Include="src\Sandbox\Utils\Rendering\VertexArray.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\RenderView.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\RenderViewTypes.h" />
     <ClInclude Include="src\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>

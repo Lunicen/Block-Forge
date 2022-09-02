@@ -3,9 +3,9 @@
 
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
-#include "World/ChunkManager.h"
 #include "World/WorldGenerator.h"
 #include "Sandbox/FPSCounter.h"
+#include "World/Rendring/ChunkManager.h"
 
 void Sandbox::InitializeGlfw()
 {
@@ -57,7 +57,7 @@ void Sandbox::Run()
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69, blockShader);
 
-	ChunkManager chunkManager(8, 2, camera);
+	ChunkManager chunkManager(RenderViewType::diamond, 8, 2, camera);
 	chunkManager.Bind(worldGenerator);
 
 	FPSCounter counter;

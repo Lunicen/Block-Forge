@@ -35,14 +35,14 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	for (size_t y = 0; y < frame.size; ++y)
 	{
 		SetBlockAccordingToNoise(
-			blocks.blocks[x][y][z],
+			blocks.blockAt[x][y][z],
 			static_cast<float>(x) + xBlock, 
 			static_cast<float>(y) + yBlock, 
 			static_cast<float>(z) + zBlock, 
 			noise[y]
 		);
 
-		blocks.isBlockVisibleAt[x][y][z] = blocks.blocks[x][y][z] == nullptr ? false : true;
+		blocks.isBlockVisibleAt[x][y][z] = blocks.blockAt[x][y][z] == nullptr ? false : true;
 	}
 }
 
@@ -63,14 +63,14 @@ void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 			for (size_t z = 0; z < frame.size; ++z)
 			{
 				SetBlockAccordingToNoise(
-					blocks.blocks[x][y][z],
+					blocks.blockAt[x][y][z],
 					static_cast<float>(x) + xBlock, 
 					static_cast<float>(y) + yBlock, 
 					static_cast<float>(z) + zBlock, 
 					noise[x][y][z]
 				);
 
-				blocks.isBlockVisibleAt[x][y][z] = blocks.blocks[x][y][z] == nullptr ? false : true;
+				blocks.isBlockVisibleAt[x][y][z] = blocks.blockAt[x][y][z] == nullptr ? false : true;
 			}
 		}
 	}
