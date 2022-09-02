@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -94,25 +94,28 @@ $(document).ready(function(){initNavTree('_sandbox_8h_source.html',''); initResi
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_sandbox.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_sandbox.html">Sandbox</a></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    std::unique_ptr&lt;World&gt; world = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_class" href="class_world.html">World</a> _world;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> InitializeGlfw();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">   17</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox</a>(<span class="keyword">const</span> std::string&amp; filename) : world(std::make_unique&lt;<a class="code hl_class" href="class_world.html">World</a>&gt;(filename))</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        world-&gt;Load();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sandbox.html#ac103b1df25988cc7b31e3a8c3cee88bd">Run</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">   19</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox</a>(<span class="keyword">const</span> std::string&amp; filename) : _world(<a class="code hl_class" href="class_world.html">World</a>(filename))</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        _world.<a class="code hl_function" href="class_world.html#a0f570293be4fd6ab6b3d3cc986647971">Load</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sandbox.html#adf3281601c4d74df146fc0a22e9342a8">Run</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:11</div></div>
 <div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:25</div></div>
 <div class="ttc" id="aclass_sandbox_html"><div class="ttname"><a href="class_sandbox.html">Sandbox</a></div><div class="ttdoc">Class where the world is projected.</div><div class="ttdef"><b>Definition:</b> Sandbox.h:9</div></div>
-<div class="ttc" id="aclass_sandbox_html_a705c789888637f39e6788c17d8f1725a"><div class="ttname"><a href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox::Sandbox</a></div><div class="ttdeci">Sandbox(const std::string &amp;filename)</div><div class="ttdoc">The constructor, loads the world data.</div><div class="ttdef"><b>Definition:</b> Sandbox.h:17</div></div>
-<div class="ttc" id="aclass_sandbox_html_ac103b1df25988cc7b31e3a8c3cee88bd"><div class="ttname"><a href="class_sandbox.html#ac103b1df25988cc7b31e3a8c3cee88bd">Sandbox::Run</a></div><div class="ttdeci">void Run() const</div><div class="ttdoc">Initializes the simulation.</div><div class="ttdef"><b>Definition:</b> Sandbox.cpp:9</div></div>
+<div class="ttc" id="aclass_sandbox_html_a705c789888637f39e6788c17d8f1725a"><div class="ttname"><a href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox::Sandbox</a></div><div class="ttdeci">Sandbox(const std::string &amp;filename)</div><div class="ttdoc">The constructor, loads the world data.</div><div class="ttdef"><b>Definition:</b> Sandbox.h:19</div></div>
+<div class="ttc" id="aclass_sandbox_html_adf3281601c4d74df146fc0a22e9342a8"><div class="ttname"><a href="class_sandbox.html#adf3281601c4d74df146fc0a22e9342a8">Sandbox::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Initializes the simulation.</div><div class="ttdef"><b>Definition:</b> Sandbox.cpp:23</div></div>
 <div class="ttc" id="aclass_world_html"><div class="ttname"><a href="class_world.html">World</a></div><div class="ttdoc">Represents the world which contains the data about the generated world.</div><div class="ttdef"><b>Definition:</b> World.h:8</div></div>
+<div class="ttc" id="aclass_world_html_a0f570293be4fd6ab6b3d3cc986647971"><div class="ttname"><a href="class_world.html#a0f570293be4fd6ab6b3d3cc986647971">World::Load</a></div><div class="ttdeci">void Load()</div><div class="ttdoc">Loads the world from the file.</div><div class="ttdef"><b>Definition:</b> World.cpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['metadata_0',['Metadata',['../class_metadata.html#ae849560667461008cb72e83919c20be0',1,'Metadata::Metadata()=default'],['../class_metadata.html#aff2bd67112362d282c051514a5768214',1,'Metadata::Metadata(const std::string &amp;filename)']]]
+  ['handleinput_0',['HandleInput',['../class_camera.html#a3ead3f55e3a9f122a391376e09a83bba',1,'Camera']]],
+  ['humaninterfacedevice_1',['HumanInterfaceDevice',['../class_human_interface_device.html#a36d9504e75ed795d55be04518ea6eb54',1,'HumanInterfaceDevice']]]
 ];
