@@ -6,7 +6,8 @@
 
 Block::Block(const float x, const float y, const float z, Shader& shader) : _shader(shader)
 {
-	_vao.Link(_vbo, 0);
+	constexpr auto vertexSize = 3;
+	_vao.Link(_vbo, vertexSize, 0);
 
 	_vao.Unbind();
 	_vbo.Unbind();

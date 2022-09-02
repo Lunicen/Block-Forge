@@ -1,6 +1,5 @@
 #include "ChunkManager.h"
 
-#include "Sandbox/Utils/EngineExceptions.h"
 #include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 glm::ivec3 ChunkManager::GetNormalizedPosition(glm::vec3 position) const
@@ -156,9 +155,11 @@ void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 size_t ChunkManager::GetChunksToRenderCount() const
 {
 	size_t result = 0;
+
 	for (size_t i = 0; i < _renderDistance; ++i)
 	{
-		result += 2 * CountChunksRecursive(i);
+		constexpr auto expansionFactor = 2;
+		result += expansionFactor * CountChunksRecursive(i);
 	}
 
 	return CountChunksRecursive(_renderDistance) + result; 

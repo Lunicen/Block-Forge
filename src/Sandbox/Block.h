@@ -16,7 +16,7 @@ class Block
 	//  | 4-----|-7  
 	//  |/      |/    
 	//  0-------3 
-	GLfloat _vertices[24] =
+	std::array<GLfloat, 24> _vertices =
 	{
 		0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f,
@@ -29,7 +29,7 @@ class Block
 		1.0f, 0.0f, 1.0f,
 	};
 
-	GLuint _indices[36]
+	std::array<GLuint, 36> _indices
 	{
 		// bottom
 		0, 4, 7,
@@ -56,8 +56,8 @@ class Block
 	glm::mat4 _position{};
 
 	VertexArray _vao;
-	VertexBuffer _vbo = VertexBuffer(_vertices, sizeof _vertices);
-	ElementBuffer _ebo = ElementBuffer(_indices, sizeof _indices);
+	VertexBuffer _vbo = VertexBuffer(_vertices.data(), sizeof _vertices);
+	ElementBuffer _ebo = ElementBuffer(_indices.data(), sizeof _indices);
 
 public:
 	/// @brief This is a Constructor that allows to create a block.

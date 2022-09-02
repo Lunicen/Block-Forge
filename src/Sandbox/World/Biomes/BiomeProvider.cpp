@@ -1,15 +1,5 @@
 #include "BiomeProvider.h"
 
-#include "Sandbox/Utils/EngineExceptions.h"
-
-void BiomeProvider::CheckIfDataIsLoaded() const
-{
-	if (!_biomesMetadata.IsLoaded())
-	{
-		throw UninitializedPropertyAccessException("Json file with biomes data is not loaded!");
-	}
-}
-
 BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader) : _blockShader(blockShader) 
 {
 	_biomesMetadata.Load(filenameWithBiomeData);
@@ -17,8 +7,6 @@ BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& b
 
 Noise2D BiomeProvider::GetPlacerNoise(const int seed, const std::string& biomesType)
 {
-	CheckIfDataIsLoaded();
-
 	auto pattern = _biomesMetadata.GetJsonObject(biomesType)["pattern"];
 
 	const auto id = pattern["id"].get<std::string>();
@@ -29,8 +17,6 @@ Noise2D BiomeProvider::GetPlacerNoise(const int seed, const std::string& biomesT
 
 std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& biomesType)
 {
-	CheckIfDataIsLoaded();
-
 	auto biomesPool = _biomesMetadata.GetJsonObject(biomesType)["biomes"];
 	auto biomes = std::vector<Biome>();
 
