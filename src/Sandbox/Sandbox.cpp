@@ -11,9 +11,12 @@ void Sandbox::InitializeGlfw()
 {
 	glfwInit();
 
+	constexpr auto versionMajor = 3;
+	constexpr auto versionMinor = 3;
+
 	// The target version is 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versionMajor);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versionMinor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 

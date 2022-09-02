@@ -8,10 +8,10 @@ VertexArray::VertexArray()
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void VertexArray::Link(const VertexBuffer& vbo, const GLuint layout) const
+void VertexArray::Link(const VertexBuffer& vbo, const size_t& sizeOfVertexAttribute, const GLuint layout) const
 {
 	vbo.Bind();
-	glVertexAttribPointer(layout, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(nullptr));
+	glVertexAttribPointer(layout, static_cast<int>(sizeOfVertexAttribute), GL_FLOAT, GL_FALSE, 0, static_cast<void*>(nullptr));
 	glEnableVertexAttribArray(layout);
 	vbo.Unbind();
 }

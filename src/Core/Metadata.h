@@ -12,8 +12,6 @@ class Metadata : protected FileUtils
 {
 	std::string _filename;
 	nlohmann::json _document = nullptr;
-	bool _isFileLoaded = false;
-	bool _isFileSaved = false;
 	Log& _log = Log::Get();
 
 	void CheckIfFilenameIsNotEmpty() const;
