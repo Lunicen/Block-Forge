@@ -15,7 +15,7 @@ ChunkBlocks ChunkUtils::InitializeData(const size_t& size)
 {
 	ChunkBlocks chunk;
 
-	InitializeVector3D(chunk.blocks, size);
+	InitializeVector3D(chunk.blockAt, size);
 	InitializeVector3D(chunk.isBlockVisibleAt, size);
 
 	return chunk;

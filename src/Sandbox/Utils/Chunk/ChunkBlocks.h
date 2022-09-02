@@ -14,5 +14,5 @@ public:
 	std::vector<std::vector<std::vector<bool>>> isBlockVisibleAt = {{}};
 
 	/// @brief The actual structure of the chunk - blocks placement.
-	std::vector<std::vector<std::vector<std::unique_ptr<Block>>>> blocks;
+	std::vector<std::vector<std::vector<std::unique_ptr<Block>>>> blockAt;
 };

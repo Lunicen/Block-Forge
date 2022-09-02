@@ -11,7 +11,7 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 		return;
 	}
 
-	// If it's not completely surrounded by blocks, it can be visible to the Camera
+	// If it's not completely surrounded by blockAt, it can be visible to the Camera
 	if (noise[x - 1][y][z] > 0 || noise[x + 1][y][z] > 0 || 
 		noise[x][y - 1][z] > 0 || noise[x][y + 1][z] > 0 || 
 		noise[x][y][z - 1] > 0 || noise[x][y][z + 1] > 0)
@@ -27,7 +27,7 @@ void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, Chun
 void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	const auto noise = _placer->GetChunkNoise(frame, 1);
-	const auto& chunkSize = blocks.blocks.size();
+	const auto& chunkSize = blocks.blockAt.size();
 	
 	for (size_t x = 0; x < chunkSize; ++x)
 	{
