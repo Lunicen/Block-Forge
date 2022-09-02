@@ -79,7 +79,7 @@ void Block::Draw() const
 	_texture.Bind();
 	//end of texture
 
-	glDrawElements(GL_TRIANGLES, sizeof _indices / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, sizeof _cubeIndices / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
 }
 
 Shader Block::GetShader() const

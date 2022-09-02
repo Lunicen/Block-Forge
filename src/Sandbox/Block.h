@@ -48,6 +48,58 @@ class Block
 		1.0f, 0.0f, 1.0f,		1.0f, 0.0f,
 	};
 
+	GLfloat _cubeVerticesOLD[120] = {
+		//cordinates																					//Texture Coordinates
+		0.0f, 0.0f, 0.0f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, 0.0f,	1.0f, 0.0f, 0.0f, /*FRONT #face 1*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f, 1.0f, /*BACK  #face 2*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+
+		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f, /*LEFT  #face 3*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 0.0f, /*RIGHT #face 4*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+
+		0.0f, 0.0f, 0.0f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 0.0f, /*FLOOR #face 5*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 0.0f, /*ROOF  #face 6*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
+	};
+
+	GLfloat _cubeVertices[120] = {
+		//cordinates			//Texture Coordinates
+
+		/*FRONT #face 1*/
+		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 0.0f,		1.0f, 1.0f,
+		1.0f, 0.0f, 0.0f,		1.0f, 0.0f,
+
+		/*BACK  #face 2*/
+		0.0f, 0.0f, 1.0f,		0.0f, 0.0f,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 0.0f, 1.0f,		1.0f, 0.0f,
+
+		/*LEFT  #face 3*/
+		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,		1.0f, 1.0f,
+		0.0f, 1.0f, 0.0f,		1.0f, 0.0f,
+
+		/*RIGHT #face 4*/
+		1.0f, 0.0f, 0.0f,		0.0f, 0.0f,
+		1.0f, 0.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
+
+		/*FLOOR #face 5*/
+		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
+		1.0f, 0.0f, 1.0f,		0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f,		1.0f, 1.0f,
+		0.0f, 0.0f, 0.0f,  		1.0f, 0.0f,
+
+		/*ROOF  #face 6*/
+		0.0f, 1.0f, 0.0f,		0.0f, 0.0f,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
+		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
+	};
+
 
 #pragma endregion
 	/*
@@ -89,12 +141,23 @@ class Block
 		2, 1, 0
 	};
 
+	GLuint _cubeIndices[36]
+	{
+		0,  1,  2,  2,  3,  0,
+		4,  5,  6,  6,  7,  4,
+		8,  9, 10, 10, 11,  8,
+		12, 13, 14, 14, 15, 12,
+		16, 17, 18, 18, 19, 16,
+		20, 21, 22, 22, 23, 20
+	};
+
 	Shader& _shader;
 	glm::mat4 _position{};
 
 	VertexArray _vao;
-	VertexBuffer _vbo = VertexBuffer(_vertices, sizeof _vertices);
-	ElementBuffer _ebo = ElementBuffer(_indices, sizeof _indices);
+	VertexBuffer _vbo = VertexBuffer(_cubeVertices, sizeof _cubeVertices);
+	ElementBuffer _ebo = ElementBuffer(_cubeIndices, sizeof _cubeIndices);
+
 	//TODO tutaj chyba trzeba bedzie dodac dodatkowe zlinkowanie vbo... link/LinkAttrib
 
 #pragma region Texture
