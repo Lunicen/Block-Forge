@@ -7,6 +7,10 @@
 #include "Sandbox/World/Chunk.h"
 #include "Sandbox/World/WorldGenerator.h"
 
+/// @class ChunkRenderer
+///	@brief Supports rendering chunks.
+/// @details This class is responsible for rendering chunks around the camera by using the algorithms
+///	specified in the @link RenderView @endlink
 class ChunkRenderer
 {
 	Log& _log = Log::Get();
@@ -28,9 +32,18 @@ class ChunkRenderer
 	void RenderChunksAround(const glm::ivec3& normalizedOrigin);
 
 public:
+
+	/// @brief The constructor.
+	///	@param generator - world generator for chunk building.
+	///	@param renderView - to specify which chunks to render.
+	///	@param camera - shares a reference point around which the chunks are rendered.
 	explicit ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera);
 
-	void Update();
+	/// @brief Renders loaded chunks.
+	void Render();
+
+	/// @brief Sets the render view.
+	///	@param renderView - render view.
 	void SetRenderView(std::unique_ptr<RenderView>& renderView);
 };
 

@@ -26,7 +26,7 @@ public:
 	/// @brief Paints the chunk according to the world map.
 	///	@details This method modifies the blockAt data according by deciding based on biomes placed on the map.
 	///	@param frame - the frame of the chunk.
-	///	@param blockAt - the blockAt inside the chunk.
+	///	@param blocks - the blockAt inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 	/// @brief Returns the noise of the chunk.

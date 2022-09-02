@@ -12,8 +12,6 @@ class BiomeProvider
 	Metadata _biomesMetadata;
 	Shader& _blockShader;
 
-	void CheckIfDataIsLoaded() const;
-
 public:
 
 	/// @brief The constructor.

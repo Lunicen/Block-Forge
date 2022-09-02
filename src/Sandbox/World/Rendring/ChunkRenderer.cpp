@@ -97,7 +97,7 @@ ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderVi
 	RenderChunksAround(_previousNormalizedPosition);
 }
 
-void ChunkRenderer::Update()
+void ChunkRenderer::Render()
 {
 	const auto currentNormalizedPosition = GetNormalizedPosition(_camera.GetPosition());
 

@@ -22,7 +22,7 @@ ChunkManager::ChunkManager(const RenderViewType viewType, const size_t chunkSize
 
 void ChunkManager::Update() const
 {
-	_renderer->Update();
+	_renderer->Render();
 }
 
 void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)

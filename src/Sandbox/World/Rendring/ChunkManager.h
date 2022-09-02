@@ -5,7 +5,7 @@
 
 /// @class ChunkManager
 /// @brief Handles managing the chunks around the camera.
-///	@details This class handles @ref Chunk objects and manages them for optimal experience.
+///	@details This class handles @link Chunk @endlink objects and manages them for optimal experience.
 class ChunkManager
 {
 	Log& _log = Log::Get();
@@ -22,7 +22,8 @@ class ChunkManager
 public:
 
 	/// @brief The constructor.
-	///	@param chunkSize - the size of the generated chunks
+	/// @param viewType - the way the chunks will be generated.
+	///	@param chunkSize - the size of the generated chunks.
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param camera - the object around which the chunks are rendered.
 	ChunkManager(RenderViewType viewType, size_t chunkSize, size_t renderDistance, Camera& camera);

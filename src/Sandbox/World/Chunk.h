@@ -7,8 +7,7 @@
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world
-///	@details This class handles managing the generated chunk in the certain position.
-///	@note You should **not** instantiate this class manually. This mechanism is supported by the @ref ChunkManager class.
+///	@details This class handles managing the generated chunk at the certain position.
 class Chunk
 {
 	ChunkFrame _frame;
