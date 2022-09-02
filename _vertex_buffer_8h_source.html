@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Sandbox/Utils/VertexBuffer.h Source File</title>
+<title>Block Forge: src/Sandbox/Utils/Rendering/VertexBuffer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -93,34 +93,37 @@ $(document).ready(function(){initNavTree('_vertex_buffer_8h_source.html',''); in
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    GLuint bufferRef = 0;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    GLuint _bufferRef = 0;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_vertex_buffer.html#a9e61281e07d2e08a293fa3dac493ec19">VertexBuffer</a>(<span class="keyword">const</span> GLfloat* vertices, GLsizeiptr size);</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_function" href="class_vertex_buffer.html#a9e61281e07d2e08a293fa3dac493ec19">VertexBuffer</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_function" href="class_vertex_buffer.html#a9e61281e07d2e08a293fa3dac493ec19">VertexBuffer</a>(<a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp; operator=(<a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_vertex_buffer.html#ad11fda87d389946d05ccefcd3818bfd8">   18</a></span>    <a class="code hl_function" href="class_vertex_buffer.html#ad11fda87d389946d05ccefcd3818bfd8">VertexBuffer</a>(<a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex_buffer.html#a13019e8580ca3e369fad4166500ad2b9">Bind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp; operator=(<a class="code hl_class" href="class_vertex_buffer.html">VertexBuffer</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex_buffer.html#a76029e4f3f7f4302791d4409e937719a">Unbind</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex_buffer.html#a13019e8580ca3e369fad4166500ad2b9">Bind</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_class" href="class_vertex_buffer.html">~VertexBuffer</a>();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex_buffer.html#abfdb36238d60f2cd7bf63093f914b61f">Unbind</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="class_vertex_buffer.html">~VertexBuffer</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="ttc" id="aclass_vertex_buffer_html"><div class="ttname"><a href="class_vertex_buffer.html">VertexBuffer</a></div><div class="ttdoc">A Vertex Buffer Object handler - wrapper for the VBO functionality.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:7</div></div>
 <div class="ttc" id="aclass_vertex_buffer_html_a13019e8580ca3e369fad4166500ad2b9"><div class="ttname"><a href="class_vertex_buffer.html#a13019e8580ca3e369fad4166500ad2b9">VertexBuffer::Bind</a></div><div class="ttdeci">void Bind() const</div><div class="ttdoc">Tells OpenGL to bind the VBO.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:10</div></div>
-<div class="ttc" id="aclass_vertex_buffer_html_a76029e4f3f7f4302791d4409e937719a"><div class="ttname"><a href="class_vertex_buffer.html#a76029e4f3f7f4302791d4409e937719a">VertexBuffer::Unbind</a></div><div class="ttdeci">void Unbind()</div><div class="ttdoc">Tells OpenGL to unbind the VBO.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:16</div></div>
 <div class="ttc" id="aclass_vertex_buffer_html_a9e61281e07d2e08a293fa3dac493ec19"><div class="ttname"><a href="class_vertex_buffer.html#a9e61281e07d2e08a293fa3dac493ec19">VertexBuffer::VertexBuffer</a></div><div class="ttdeci">VertexBuffer(const GLfloat *vertices, GLsizeiptr size)</div><div class="ttdoc">The constructor creates VBO, binds it immediately and sets its data.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:3</div></div>
+<div class="ttc" id="aclass_vertex_buffer_html_abfdb36238d60f2cd7bf63093f914b61f"><div class="ttname"><a href="class_vertex_buffer.html#abfdb36238d60f2cd7bf63093f914b61f">VertexBuffer::Unbind</a></div><div class="ttdeci">void Unbind() const</div><div class="ttdoc">Tells OpenGL to unbind the VBO.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:16</div></div>
+<div class="ttc" id="aclass_vertex_buffer_html_ad11fda87d389946d05ccefcd3818bfd8"><div class="ttname"><a href="class_vertex_buffer.html#ad11fda87d389946d05ccefcd3818bfd8">VertexBuffer::VertexBuffer</a></div><div class="ttdeci">VertexBuffer(VertexBuffer &amp;&amp;)=default</div><div class="ttdoc">Move constructor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_60aec12b08ac97802aadfb3878769d57.html">Utils</a></li><li class="navelem"><b>VertexBuffer.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_60aec12b08ac97802aadfb3878769d57.html">Utils</a></li><li class="navelem"><a class="el" href="dir_1e869a6dccaa72387a9149f2f68caa0c.html">Rendering</a></li><li class="navelem"><b>VertexBuffer.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

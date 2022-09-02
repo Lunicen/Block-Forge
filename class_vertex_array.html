@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.1</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -115,23 +115,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a90e6642172ada678018fc40497296975"><td class="memItemLeft" align="right" valign="top"><a id="a90e6642172ada678018fc40497296975" name="a90e6642172ada678018fc40497296975"></a>
 <a class="el" href="class_vertex_array.html">VertexArray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_vertex_array.html">VertexArray</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a90e6642172ada678018fc40497296975"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcdf760dc0705e5e232414da63997eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_array.html#afcdf760dc0705e5e232414da63997eda">Link</a> (<a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;vbo, GLuint layout)</td></tr>
-<tr class="memdesc:afcdf760dc0705e5e232414da63997eda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Links the VAO to the VBO.  <a href="class_vertex_array.html#afcdf760dc0705e5e232414da63997eda">More...</a><br /></td></tr>
-<tr class="separator:afcdf760dc0705e5e232414da63997eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ebeefc6d9dfafe773a01bc1cb615f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_array.html#a05ebeefc6d9dfafe773a01bc1cb615f1">Link</a> (const <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;vbo, const size_t &amp;sizeOfVertexAttribute, GLuint layout) const</td></tr>
+<tr class="memdesc:a05ebeefc6d9dfafe773a01bc1cb615f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Links the VAO to the VBO.  <a href="class_vertex_array.html#a05ebeefc6d9dfafe773a01bc1cb615f1">More...</a><br /></td></tr>
+<tr class="separator:a05ebeefc6d9dfafe773a01bc1cb615f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5059455f0864327028636c628d5a661"><td class="memItemLeft" align="right" valign="top"><a id="ad5059455f0864327028636c628d5a661" name="ad5059455f0864327028636c628d5a661"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Bind</b> () const</td></tr>
 <tr class="memdesc:ad5059455f0864327028636c628d5a661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells OpenGL to bind the VAO. <br /></td></tr>
 <tr class="separator:ad5059455f0864327028636c628d5a661"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fe5f1b8bbd96252381079af3e1aa47b"><td class="memItemLeft" align="right" valign="top"><a id="a5fe5f1b8bbd96252381079af3e1aa47b" name="a5fe5f1b8bbd96252381079af3e1aa47b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> ()</td></tr>
-<tr class="memdesc:a5fe5f1b8bbd96252381079af3e1aa47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells OpenGL to unbind the VAO. <br /></td></tr>
-<tr class="separator:a5fe5f1b8bbd96252381079af3e1aa47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f0d868a6c76622bcd57063a2c2d8d4"><td class="memItemLeft" align="right" valign="top"><a id="a73f0d868a6c76622bcd57063a2c2d8d4" name="a73f0d868a6c76622bcd57063a2c2d8d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> () const</td></tr>
+<tr class="memdesc:a73f0d868a6c76622bcd57063a2c2d8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells OpenGL to unbind the VAO. <br /></td></tr>
+<tr class="separator:a73f0d868a6c76622bcd57063a2c2d8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A Vertex Array Object handler - wrapper for the VAO functionality. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="afcdf760dc0705e5e232414da63997eda" name="afcdf760dc0705e5e232414da63997eda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcdf760dc0705e5e232414da63997eda">&#9670;&nbsp;</a></span>Link()</h2>
+<a id="a05ebeefc6d9dfafe773a01bc1cb615f1" name="a05ebeefc6d9dfafe773a01bc1cb615f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ebeefc6d9dfafe773a01bc1cb615f1">&#9670;&nbsp;</a></span>Link()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,8 +139,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> ()</td></t
         <tr>
           <td class="memname">void VertexArray::Link </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&#160;</td>
           <td class="paramname"><em>vbo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>sizeOfVertexAttribute</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -151,7 +157,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> ()</td></t
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -160,6 +166,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> ()</td></t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vbo</td><td>- Vertex Buffer Object to which the VAO should be linked. </td></tr>
+    <tr><td class="paramname">sizeOfVertexAttribute</td><td>- Size of the generic vertex attribute. </td></tr>
     <tr><td class="paramname">layout</td><td>- index of the attribute in the buffer. </td></tr>
   </table>
   </dd>
@@ -168,8 +175,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> ()</td></t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Sandbox/Utils/<a class="el" href="_vertex_array_8h_source.html">VertexArray.h</a></li>
-<li>src/Sandbox/Utils/VertexArray.cpp</li>
+<li>src/Sandbox/Utils/Rendering/<a class="el" href="_vertex_array_8h_source.html">VertexArray.h</a></li>
+<li>src/Sandbox/Utils/Rendering/VertexArray.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
