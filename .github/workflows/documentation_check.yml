@@ -1,11 +1,8 @@
 name: Documentation coverage
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches: [ develop ]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
