@@ -51,6 +51,8 @@ void Sandbox::Run()
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+	glEnable(GL_DEPTH_TEST);
+
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
@@ -61,10 +63,9 @@ void Sandbox::Run()
 	chunkManager.Bind(worldGenerator);
 
 	FPSCounter counter;
-
+	
 	while(!glfwWindowShouldClose(window))
 	{
-
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
