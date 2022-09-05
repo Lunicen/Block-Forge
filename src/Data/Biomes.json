@@ -1,0 +1,26 @@
+{
+    "default": {
+
+        "pattern": {
+            "id": "DAADAAAAAACAPw0ABQAAAAAAgD8HAAEKAAEAAAABAAAAAAAAgD8AAABAQAAAAIA/",
+            "frequency": 0.02
+        },
+
+        "biomes": [
+            {
+                "name": "Meadow",
+                "noise": {
+                    "id": "GQAHAAEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "frequency": 0.1
+                }
+            },
+            {
+                "name": "Flat",
+                "noise": {
+                    "id": "GQAHAAEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "frequency": 0.1
+                }
+            }
+        ]
+    }
+}

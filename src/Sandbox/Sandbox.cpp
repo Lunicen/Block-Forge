@@ -1,40 +1,39 @@
 #include "Sandbox.h"
 #include "World.h"
 
-//#define STB_IMAGE_IMPLEMENTATION
-//#include <stb_image.h>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
-#include "World/ChunkManager.h"
+#include "World/WorldGenerator.h"
+#include "Sandbox/FPSCounter.h"
+#include "World/Rendring/ChunkManager.h"
 
 void Sandbox::InitializeGlfw()
 {
 	glfwInit();
 
+	constexpr auto versionMajor = 3;
+	constexpr auto versionMinor = 3;
+
 	// The target version is 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versionMajor);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versionMinor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-void Sandbox::Run() const
+void Sandbox::Run()
 {
 	constexpr int width = 1280;
 	constexpr int height = 720;
 
 	InitializeGlfw();
 
-	if (!_world->IsLoaded())
+	if (!_world.IsLoaded())
 	{
 		_log.Error("Cannot start the simulation! The world is not loaded!");
 		return;
 	}
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "test", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Block Forge", nullptr, nullptr);
 	if (window == nullptr)
 	{
 		_log.Error("Failed to create window.");
@@ -46,41 +45,32 @@ void Sandbox::Run() const
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CCW);
 
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
-	//glFrontFace(GL_CCW);
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); tu jest problem z tekstura
-
-	Shader blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	//texture
-	Texture dirt("./src/Data/Textures/Dirt.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-	dirt.texUnit(blockShader, "tex0", 0); //TODO poprawic
-	ChunkManager chunkManager(1, camera, blockShader, dirt);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69, blockShader);
 
-	
+	ChunkManager chunkManager(RenderViewType::diamond, 8, 2, camera);
+	chunkManager.Bind(worldGenerator);
 
-	//texture
-	//Texture cobblestone("./src/Data/Textures/Cobblestone.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-	//cobblestone.texUnit(blockShader, "tex1", 0);
-
-
-	//end of texture
+	FPSCounter counter;
 
 	while(!glfwWindowShouldClose(window))
 	{
+
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
+		counter.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -88,4 +78,6 @@ void Sandbox::Run() const
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+
+	gltTerminate();
 }

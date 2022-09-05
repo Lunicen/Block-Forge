@@ -90,13 +90,14 @@
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\Win32\src\Debug;$(SolutionDir)lib\glad\build\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\Win32\src\Debug;$(SolutionDir)lib\glad\build\Win32\Debug;$(SolutionDir)lib\FastNoise2\build\Win32\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;FastNoiseD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -107,6 +108,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
@@ -114,8 +116,8 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\Win32\src\Release;$(SolutionDir)lib\glad\build\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\Win32\src\Release;$(SolutionDir)lib\glad\build\Win32\Release;$(SolutionDir)lib\FastNoise2\build\Win32\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;FastNoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,10 +125,11 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\x64\src\Debug;$(SolutionDir)lib\glad\build\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\x64\src\Debug;$(SolutionDir)lib\glad\build\x64\Debug;$(SolutionDir)lib\FastNoise2\build\x64\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;FastNoiseD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,20 +137,31 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\x64\src\Release;$(SolutionDir)lib\glad\build\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\build\x64\src\Release;$(SolutionDir)lib\glad\build\x64\Release;$(SolutionDir)lib\FastNoise2\build\x64\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glad.lib;FastNoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Sandbox\Utils\Texture.cpp" />
     <ClCompile Include="src\Sandbox\World\ChunkManager.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
+    <ClCompile Include="src\Sandbox\World\Biomes\BiomePlacer.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise2D.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\ProceduralGen\Noise3D.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Chunk\ChunkUtils.cpp" />
+    <ClCompile Include="src\Sandbox\World\Biomes\BiomeProvider.cpp" />
+    <ClCompile Include="src\Sandbox\World\Biomes\Biome.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\ChunkManager.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunk.cpp" />
     <ClCompile Include="src\Sandbox\Block.cpp" />
     <ClCompile Include="src\Sandbox\Events\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Sandbox\Camera.cpp" />
-    <ClCompile Include="src\Sandbox\Utils\ElementBuffer.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Rendering\ElementBuffer.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_opengl3.cpp" />
@@ -156,26 +170,48 @@
     <ClCompile Include="lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\Sandbox\Utils\Shader.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Rendering\Shader.cpp" />
     <ClCompile Include="src\Core\MainMenu.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sandbox\Sandbox.cpp" />
     <ClCompile Include="src\Sandbox\World.cpp" />
-    <ClCompile Include="src\Sandbox\Utils\VertexBuffer.cpp" />
-    <ClCompile Include="src\Sandbox\Utils\VertexArray.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Rendering\VertexBuffer.cpp" />
+    <ClCompile Include="src\Sandbox\Utils\Rendering\VertexArray.cpp" />
+    <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
+    <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\Utils\Texture.h" />
     <ClInclude Include="src\Sandbox\World\ChunkManager.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
+    <ClInclude Include="src\Core\EngineExceptions.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\ChunkRenderer.h" />
+    <ClInclude Include="src\Sandbox\Utils\Chunk\ChunkFrame.h" />
+    <ClInclude Include="src\Sandbox\World\Biomes\BiomePlacer.h" />
+    <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise2D.h" />
+    <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise3D.h" />
+    <ClInclude Include="src\Sandbox\Utils\EngineExceptions.h" />
+    <ClInclude Include="src\Sandbox\Utils\Chunk\ChunkBlocks.h" />
+    <ClInclude Include="src\Sandbox\Utils\Chunk\ChunkUtils.h" />
+    <ClInclude Include="src\Sandbox\World\Biomes\BiomeProvider.h" />
+    <ClInclude Include="src\Sandbox\Utils\ProceduralGen\Noise.h" />
+    <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
+    <ClCompile Include="src\Sandbox\FPSCounter.cpp" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Sandbox\FPSCounter.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\ChunkManager.h" />
     <ClInclude Include="src\Sandbox\World\Chunk.h" />
     <ClInclude Include="src\Sandbox\Block.h" />
     <ClInclude Include="src\Sandbox\Events\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Sandbox\Camera.h" />
     <ClInclude Include="src\Sandbox\Events\KeyCodes.h" />
-    <ClInclude Include="src\Sandbox\Utils\BufferUtils.h" />
-    <ClInclude Include="src\Sandbox\Utils\ElementBuffer.h" />
+    <ClInclude Include="src\Sandbox\Utils\Rendering\BufferUtils.h" />
+    <ClInclude Include="src\Sandbox\Utils\Rendering\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_glfw.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_opengl3.h" />
@@ -186,16 +222,20 @@
     <ClInclude Include="lib\imgui\imstb_rectpack.h" />
     <ClInclude Include="lib\imgui\imstb_textedit.h" />
     <ClInclude Include="lib\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\Sandbox\Utils\Shader.h" />
+    <ClInclude Include="src\Sandbox\Utils\Rendering\Shader.h" />
     <ClInclude Include="src\Core\MainMenu.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Core\Metadata.h" />
     <ClInclude Include="src\Sandbox\Sandbox.h" />
     <ClInclude Include="src\Sandbox\World.h" />
-    <ClInclude Include="src\Sandbox\Utils\VertexBuffer.h" />
-    <ClInclude Include="src\Sandbox\Utils\VertexArray.h" />
+    <ClInclude Include="src\Sandbox\Utils\Rendering\VertexBuffer.h" />
+    <ClInclude Include="src\Sandbox\Utils\Rendering\VertexArray.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\RenderView.h" />
+    <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\RenderViewTypes.h" />
+    <ClInclude Include="src\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\Data\Biomes.json" />
     <None Include="src\Data\Blocks.json" />
     <None Include="src\Data\Config.json" />
     <None Include="src\Data\Shaders\Block.frag" />

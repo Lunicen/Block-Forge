@@ -97,6 +97,6 @@ public:
 	void Draw() const;
 
 	/// @brief This returns shader that block is using.
-	Shader GetShader() const;
+	Shader& GetShader() const;
 };
 
