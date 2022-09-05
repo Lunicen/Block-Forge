@@ -45,11 +45,11 @@ void Sandbox::Run()
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CCW);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
+	//glFrontFace(GL_CCW);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
@@ -60,7 +60,7 @@ void Sandbox::Run()
 	ChunkManager chunkManager(RenderViewType::diamond, 8, 2, camera);
 	chunkManager.Bind(worldGenerator);
 
-	FPSCounter counter;
+	//FPSCounter counter;
 
 	while(!glfwWindowShouldClose(window))
 	{
@@ -70,7 +70,7 @@ void Sandbox::Run()
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
-		counter.Update();
+		//counter.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

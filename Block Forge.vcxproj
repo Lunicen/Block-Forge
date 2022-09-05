@@ -146,7 +146,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Sandbox\Utils\Texture.cpp" />
-    <ClCompile Include="src\Sandbox\World\ChunkManager.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
@@ -184,7 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\Utils\Texture.h" />
-    <ClInclude Include="src\Sandbox\World\ChunkManager.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />

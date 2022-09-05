@@ -1,5 +1,4 @@
 #include "Biome.h"
-
 #include "Sandbox/Utils/Chunk/ChunkUtils.h"
 
 void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock, const float noise) const
@@ -10,12 +9,12 @@ void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock
 	}
 	else
 	{
-		block = std::make_unique<Block>(xBlock, yBlock, zBlock, _blockShader);
+		block = std::make_unique<Block>(xBlock, yBlock, zBlock, _blockShader, _texture);
 	}
 }
 
-Biome::Biome(std::string name, const Noise3D& noise, Shader& blockShader) : Noise3D(noise), _name(std::move(name)),
-                                                                            _blockShader(blockShader)
+Biome::Biome(std::string name, const Noise3D& noise, Shader& blockShader, Texture& texture) : Noise3D(noise), _name(std::move(name)),
+                                                                            _blockShader(blockShader), _texture(texture)
 {
 }
 

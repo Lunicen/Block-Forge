@@ -9,6 +9,7 @@ class Biome final : public Noise3D
 {
 	std::string _name;
 	Shader& _blockShader;
+	Texture& _texture;
 
 	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock,
 	                              float noise) const;
@@ -19,7 +20,7 @@ public:
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
 	/// @param blockShader - shader of the block, so the biome could be rendered.
-	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader);
+	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader, Texture& texture);
 
 	/// @brief Adapts chunk column according to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk

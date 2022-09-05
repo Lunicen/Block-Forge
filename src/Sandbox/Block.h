@@ -1,7 +1,10 @@
 #pragma once
-#include "Utils/Shader.h"
-#include "Utils/ElementBuffer.h"
-#include "Utils/VertexArray.h"
+
+#include "Utils/Rendering/Shader.h"
+
+#include "Utils/Rendering/ElementBuffer.h"
+#include "Utils/Rendering/VertexArray.h"
+
 #include "Utils/Texture.h"
 #include <glm/gtx/transform.hpp>
 #include <stb_image.h>
