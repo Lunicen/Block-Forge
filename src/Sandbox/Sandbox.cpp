@@ -55,22 +55,23 @@ void Sandbox::Run()
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	auto worldGenerator = std::make_shared<WorldGenerator>(69, blockShader);
+	auto worldGenerator = WorldGenerator(69, blockShader);
 
 	ChunkManager chunkManager(RenderViewType::diamond, 8, 2, camera);
 	chunkManager.Bind(worldGenerator);
 
-	//FPSCounter counter;
+	FPSCounter counter;
 
 	while(!glfwWindowShouldClose(window))
 	{
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		camera.Update();
 		camera.HandleInput();
 		chunkManager.Update();
-		//counter.Update();
+		counter.Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
