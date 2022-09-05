@@ -2,34 +2,31 @@
 #include <stb_image.h>
 #include "Texture.h"
 
-Texture::Texture(const char* image, GLenum texureType, GLenum slot, GLenum format, GLenum pixelType)
+Texture::Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType)
 {
-	type = texureType; //ok
-	int widthImg; //ok sprawdzic czy tutaj czy lepiej w .h
-	int heightImg; //ok
-	int numColCh; //ok
+	type = textureType;
+	int widthImg;
+	int heightImg;
+	int numColCh;
 
-	stbi_set_flip_vertically_on_load(true); //ok
-	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0); //ok
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
-	glGenTextures(1, &texture); //zmienic id na &texture
+	glGenTextures(1, &texture);
 	glActiveTexture(slot);
-	glBindTexture(texureType, texture);
+	glBindTexture(textureType, texture);
 
-	//min & mag filters sprawdzic dzialanie
-	glTexParameteri(texureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	glTexParameteri(texureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	glTexParameteri(texureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(texureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(textureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(textureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexImage2D(texureType, 0, GL_RGBA, widthImg, heightImg, 0, format, pixelType, bytes);
-	glGenerateMipmap(texureType); //ok
+	glTexImage2D(textureType, 0, GL_RGBA, widthImg, heightImg, 0, format, pixelType, bytes);
+	glGenerateMipmap(textureType);
 
-	stbi_image_free(bytes); //ok
-	glBindTexture(texureType, 0); //ok
+	stbi_image_free(bytes);
+	glBindTexture(textureType, 0);
 }
 
 void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
@@ -42,7 +39,7 @@ void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
 
 void Texture::Bind()
 {
-	glBindTexture(type, texture); //pl
+	glBindTexture(type, texture);
 }
 void Texture::Delete()
 {

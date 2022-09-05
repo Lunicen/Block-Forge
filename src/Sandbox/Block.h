@@ -12,54 +12,11 @@ class Block
 {
 	//    5-------6  
 	//   /|      /|   
-	//  1-------2 | 
+	//  1-------2 |		
 	//  | |     | |   
 	//  | 4-----|-7  
 	//  |/      |/    
-	//  0-------3
-
-
-#pragma region Wersja z teksturami
-	GLfloat _vertices2[48] =
-	{
-		// Coordinates			//texture coordinates
-		0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,		0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,		1.0f, 1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,
-
-		0.0f, 0.0f, 1.0f,		0.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,		1.0f, 1.0f, 1.0f,
-		1.0f, 0.0f, 1.0f,		1.0f, 0.0f, 1.0f,
-	};
-
-	GLfloat _vertices[40] =
-	{
-		// Coordinates			//texture coordinates
-		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,		0.0f, 1.0f,
-		1.0f, 1.0f, 0.0f,		1.0f, 1.0f,
-		1.0f, 0.0f, 0.0f,		1.0f, 0.0f,
-
-		0.0f, 0.0f, 1.0f,		0.0f, 0.0f,
-		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
-		1.0f, 0.0f, 1.0f,		1.0f, 0.0f,
-	};
-
-	GLfloat _cubeVerticesOLD[120] = {
-		//cordinates																					//Texture Coordinates
-		0.0f, 0.0f, 0.0f,	0.0f, 1.0f, 0.0f,	1.0f, 1.0f, 0.0f,	1.0f, 0.0f, 0.0f, /*FRONT #face 1*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-		0.0f, 0.0f, 1.0f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 0.0f, 1.0f, /*BACK  #face 2*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-
-		0.0f, 0.0f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 1.0f, 1.0f,	0.0f, 1.0f, 0.0f, /*LEFT  #face 3*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 0.0f, /*RIGHT #face 4*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-
-		0.0f, 0.0f, 0.0f,	1.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 0.0f, /*FLOOR #face 5*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,	0.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 0.0f, /*ROOF  #face 6*/ 0.0f, 0.0f,		0.0f, 1.0f,		1.0f, 1.0f,		1.0f, 0.0f,
-	};
-
+	//  0-------3		
 	GLfloat _cubeVertices[120] = {
 		//cordinates			//Texture Coordinates
 
@@ -100,47 +57,6 @@ class Block
 		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
 	};
 
-
-#pragma endregion
-	/*
-	GLfloat _vertices[24] =
-	{
-		// Coordinates			//texture coordinates
-		0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-
-		0.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f, 0.0f, 1.0f,
-	};
-	*/
-
-	GLuint _indices[36]
-	{
-		// bottom
-		0, 4, 7,
-		7, 3, 0,
-
-		0, 3, 2,
-
-		// top
-		2, 6, 5,
-		5, 1, 2,
-
-		2, 3, 7,
-		7, 4, 5,
-		5, 4, 0,
-
-		// reverse
-		0, 1, 5,
-		5, 6, 7,
-		7, 6, 2,
-		2, 1, 0
-	};
-
 	GLuint _cubeIndices[36]
 	{
 		0,  1,  2,  2,  3,  0,
@@ -160,17 +76,7 @@ class Block
 
 	//TODO tutaj chyba trzeba bedzie dodac dodatkowe zlinkowanie vbo... link/LinkAttrib
 
-#pragma region Texture
-
 	Texture& _texture;
-	/*
-	int widthImage;
-	int heightImage;
-	int numColCh; //TODO ??? sprawdzic co to jest
-	unsigned char* bytes = stbi_load("./src/Data/Textures/Dirt.png", &widthImage, &heightImage, &numColCh, 0);
-	GLuint texture;
-	*/
-#pragma endregion
 
 public:
 	/// @brief This is a Constructor that allows to create a block.
@@ -178,7 +84,7 @@ public:
 	///	@param y - Y coordinate.
 	///	@param z - Z coordinate.
 	///	@param shader - Shader that block will use.
-	///	@param texture
+	///	@param texture - texture that will be used for the block.
 	Block(float x, float y, float z, Shader& shader, Texture& texture);
 
 	/// @brief This moves block to the x, y, z coordinates.
