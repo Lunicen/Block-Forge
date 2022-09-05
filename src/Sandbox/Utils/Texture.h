@@ -14,5 +14,6 @@ public:
 	void Bind();
 	void Unbind();
 	void Delete();
+	~Texture();
 };
 
