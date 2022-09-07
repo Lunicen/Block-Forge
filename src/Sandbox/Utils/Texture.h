@@ -39,7 +39,7 @@ public:
 	/// @brief Tells OpenGL to stop using this texture.
 	void Unbind();
 
-	/// @brieg Deletes the texture.
+	/// @brief Deletes the texture.
 	void Delete();
 };
 
