@@ -10,6 +10,7 @@ class WorldGenerator
 	std::unique_ptr<BiomePlacer> _placer;
 	std::vector<Biome> _biomes;
 	int _seed;
+	Texture _texture = Texture("src/Data/Textures/Dirt.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 
 	static void OptimizeChunkAt(int x, int y, int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
 	void OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;

@@ -19,9 +19,11 @@ public:
 
 	/// @brief Links the VAO to the VBO.
 	///	@param vbo - Vertex Buffer Object to which the VAO should be linked.
-	///	@param sizeOfVertexAttribute - Size of the generic vertex attribute.
 	///	@param layout - index of the attribute in the buffer.
-	void Link(const VertexBuffer& vbo, const size_t& sizeOfVertexAttribute, GLuint layout) const;
+	///	@param size - number of components 
+	///	@param stride - byte offset between consecutive generic vertex attributes.
+	///	@param offset - offset of the first component of the first generic vertex attribute in the array.
+	void Link(const VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, GLint offset) const;
 
 	/// @brief Tells OpenGL to bind the VAO.
 	void Bind() const;

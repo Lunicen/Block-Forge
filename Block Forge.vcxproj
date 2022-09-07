@@ -89,6 +89,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -106,6 +107,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -122,6 +124,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -133,6 +136,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -141,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\Utils\Texture.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
@@ -177,6 +182,7 @@
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\Utils\Texture.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
