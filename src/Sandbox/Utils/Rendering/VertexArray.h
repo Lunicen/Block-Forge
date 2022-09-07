@@ -23,7 +23,7 @@ public:
 	///	@param size - number of components 
 	///	@param stride - byte offset between consecutive generic vertex attributes.
 	///	@param offset - offset of the first component of the first generic vertex attribute in the array.
-	void Link(const VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, GLint offset);
+	void Link(const VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, GLint offset) const;
 
 	/// @brief Tells OpenGL to bind the VAO.
 	void Bind() const;

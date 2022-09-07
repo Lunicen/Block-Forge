@@ -8,7 +8,7 @@ VertexArray::VertexArray()
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void VertexArray::Link(const VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, const GLint offset)
+void VertexArray::Link(const VertexBuffer& vbo, const GLuint layout, const GLint size, const GLsizei stride, const GLint offset) const
 {
 	vbo.Bind();
 	glVertexAttribPointer(
