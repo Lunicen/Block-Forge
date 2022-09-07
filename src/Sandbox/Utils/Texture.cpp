@@ -4,7 +4,7 @@
 
 Texture::Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType)
 {
-	type = textureType;
+	_type = textureType;
 	int widthImg;
 	int heightImg;
 	int numColCh;
@@ -12,9 +12,9 @@ Texture::Texture(const char* image, GLenum textureType, GLenum slot, GLenum form
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
 
-	glGenTextures(1, &texture);
+	glGenTextures(1, &_texture);
 	glActiveTexture(slot);
-	glBindTexture(textureType, texture);
+	glBindTexture(textureType, _texture);
 
 	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
 	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -39,20 +39,20 @@ void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
 
 void Texture::Bind()
 {
-	glBindTexture(type, texture);
+	glBindTexture(_type, _texture);
 }
 void Texture::Delete()
 {
-	glDeleteTextures(1, &texture);
+	glDeleteTextures(1, &_texture);
 }
 
 void Texture::Unbind()
 {
-	glBindTexture(type, 0);
+	glBindTexture(_type, 0);
 }
 
 Texture::~Texture()
 {
 	Unbind();
-	glDeleteTextures(1, &texture);
+	glDeleteTextures(1, &_texture);
 }

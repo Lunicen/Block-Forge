@@ -59,7 +59,7 @@ void Sandbox::Run()
 
 	auto worldGenerator = WorldGenerator(69, blockShader);
 
-	ChunkManager chunkManager(RenderViewType::diamond, 8, 2, camera);
+	ChunkManager chunkManager(RenderViewType::cube, 8, 2, camera);
 	chunkManager.Bind(worldGenerator);
 
 	FPSCounter counter;

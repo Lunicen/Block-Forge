@@ -2,8 +2,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
 
-
-
 Block::Block(const float x, const float y, const float z, Shader& shader, Texture& texture) : _shader(shader), _texture(texture)
 {
 	_vao.Link(_vbo, 0, 3, 5, 0);

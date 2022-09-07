@@ -20,6 +20,7 @@ public:
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
 	/// @param blockShader - shader of the block, so the biome could be rendered.
+	///	@param texture - texture of the block.
 	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader, Texture& texture);
 
 	/// @brief Adapts chunk column according to the biome noise.

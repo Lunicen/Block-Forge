@@ -18,6 +18,7 @@ public:
 	/// @brief The constructor.
 	///	@param filenameWithBiomeData - Filename that contains all the metadata related to biomes.
 	///	@param blockShader - A reference to the block shader which is used by the @ref Biome class.
+	///	@param texture - texture of the block.
 	explicit BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader, Texture& texture);
 
 	/// @brief Get noise that is used by placer that represents world map.

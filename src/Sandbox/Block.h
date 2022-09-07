@@ -77,8 +77,6 @@ class Block
 	VertexBuffer _vbo = VertexBuffer(_cubeVertices, sizeof _cubeVertices);
 	ElementBuffer _ebo = ElementBuffer(_cubeIndices, sizeof _cubeIndices);
 
-	//TODO tutaj chyba trzeba bedzie dodac dodatkowe zlinkowanie vbo... link/LinkAttrib
-
 	Texture& _texture;
 
 public:
