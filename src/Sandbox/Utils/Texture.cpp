@@ -2,12 +2,11 @@
 #include <stb_image.h>
 #include "Texture.h"
 
-Texture::Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType)
+Texture::Texture(const char* image, const GLenum textureType, const GLenum slot, const GLenum format, const GLenum pixelType) : _type(textureType)
 {
-	_type = textureType;
-	int widthImg;
-	int heightImg;
-	int numColCh;
+	int widthImg = 0;
+	int heightImg = 0;
+	int numColCh = 0;
 
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
@@ -29,24 +28,25 @@ Texture::Texture(const char* image, GLenum textureType, GLenum slot, GLenum form
 	glBindTexture(textureType, 0);
 }
 
-void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
+// ReSharper disable once CppMemberFunctionMayBeStatic
+void Texture::TexUnit(const Shader& shader, const char* uniform, const GLuint unit) const
 {
-	GLuint texUni = glGetUniformLocation(shader.GetProgram(), uniform);
+	const GLuint texUni = glGetUniformLocation(shader.GetProgram(), uniform);
 	shader.Load();
 	glUniform1i(texUni, unit);
 }
 
 
-void Texture::Bind()
+void Texture::Bind() const
 {
 	glBindTexture(_type, _texture);
 }
-void Texture::Delete()
+void Texture::Delete() const
 {
 	glDeleteTextures(1, &_texture);
 }
 
-void Texture::Unbind()
+void Texture::Unbind() const
 {
 	glBindTexture(_type, 0);
 }

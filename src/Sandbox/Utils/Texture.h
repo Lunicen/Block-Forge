@@ -31,15 +31,15 @@ public:
 #pragma endregion
 
 	/// @brief Allows the usage of shader with the texture.
-	void texUnit(Shader& shader, const char* uniform, GLuint unit);
+	void TexUnit(const Shader& shader, const char* uniform, GLuint unit) const;
 
 	/// @brief Tells OpenGL to use the texture.
-	void Bind();
+	void Bind() const;
 
 	/// @brief Tells OpenGL to stop using this texture.
-	void Unbind();
+	void Unbind() const;
 
 	/// @brief Deletes the texture.
-	void Delete();
+	void Delete() const;
 };
 

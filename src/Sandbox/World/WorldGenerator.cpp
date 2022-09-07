@@ -47,7 +47,7 @@ void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks)
 
 WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed)
 {
-	_texture.texUnit(blockShader, "tex0", 0);
+	_texture.TexUnit(blockShader, "tex0", 0);
 
 	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", blockShader, _texture);
 

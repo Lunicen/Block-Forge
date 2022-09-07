@@ -4,8 +4,18 @@
 
 Block::Block(const float x, const float y, const float z, Shader& shader, Texture& texture) : _shader(shader), _texture(texture)
 {
-	_vao.Link(_vbo, 0, 3, 5, 0);
-	_vao.Link(_vbo, 1, 2, 5, 3);
+	constexpr int blockLayout = 0;
+	constexpr int blockSize = 3;
+	constexpr int blockStride = 5;
+	constexpr int blockOffset = 0;
+
+	constexpr int textureLayout = 1;
+	constexpr int textureSize = 2;
+	constexpr int textureStride = 5;
+	constexpr int textureOffset = 3;
+
+	_vao.Link(_vbo, blockLayout, blockSize, blockStride, blockOffset);
+	_vao.Link(_vbo, textureLayout, textureSize, textureStride, textureOffset);
 
 	_vao.Unbind();
 	_vbo.Unbind();

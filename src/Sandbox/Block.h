@@ -20,7 +20,7 @@ class Block
 	//  | 4-----|-7  
 	//  |/      |/    
 	//  0-------3		
-	GLfloat _cubeVertices[120] = {
+	std::array<GLfloat, 120>_cubeVertices = {
 		//cordinates			//Texture Coordinates
 
 		/*FRONT #face 1*/
@@ -60,7 +60,7 @@ class Block
 		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
 	};
 
-	GLuint _cubeIndices[36]
+	std::array<GLuint, 36>_cubeIndices
 	{
 		0,  1,  2,  2,  3,  0,
 		4,  5,  6,  6,  7,  4,
@@ -74,8 +74,8 @@ class Block
 	glm::mat4 _position{};
 
 	VertexArray _vao;
-	VertexBuffer _vbo = VertexBuffer(_cubeVertices, sizeof _cubeVertices);
-	ElementBuffer _ebo = ElementBuffer(_cubeIndices, sizeof _cubeIndices);
+	VertexBuffer _vbo = VertexBuffer(_cubeVertices.data(), sizeof _cubeVertices);
+	ElementBuffer _ebo = ElementBuffer(_cubeIndices.data(), sizeof _cubeIndices);
 
 	Texture& _texture;
 
