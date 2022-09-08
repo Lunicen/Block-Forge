@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "Noise.h"
-#include "Sandbox/Utils/Chunk/ChunkFrame.h"
+#include "Sandbox/World/Chunk/ChunkFrame.h"
 
 /// @class Noise2D
 /// @brief Used for gathering data from the defined 2D noise.

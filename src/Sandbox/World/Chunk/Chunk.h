@@ -2,8 +2,8 @@
 #include <glm/vec3.hpp>
 
 #include "Sandbox/Camera.h"
-#include "Sandbox/Utils/Chunk/ChunkFrame.h"
-#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
+#include "ChunkFrame.h"
+#include "ChunkBlocks.h"
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world

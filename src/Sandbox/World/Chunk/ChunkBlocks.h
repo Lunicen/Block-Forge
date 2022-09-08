@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "Sandbox/Block.h"
+#include "Sandbox/Mesh/Block.h"
 
 /// @class ChunkBlocks
 /// @brief A structure that represents the body of typical chunk. Blocks and their visibility.

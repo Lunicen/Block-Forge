@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
-#include "Sandbox/FPSCounter.h"
+#include "Utils/FPSCounter.h"
 #include "World/Rendring/ChunkManager.h"
 
 void Sandbox::InitializeGlfw()

@@ -1,7 +1,7 @@
 #include "BiomePlacer.h"
 
-#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
-#include "Sandbox/Utils/Chunk/ChunkUtils.h"
+#include "Sandbox/World/Chunk/ChunkBlocks.h"
+#include "Sandbox/World/Chunk/ChunkUtils.h"
 
 bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>& biomesMap)
 {

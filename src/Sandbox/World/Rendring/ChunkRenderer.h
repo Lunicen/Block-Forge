@@ -4,7 +4,7 @@
 
 #include "RenderViews/RenderView.h"
 #include "Sandbox/Camera.h"
-#include "Sandbox/World/Chunk.h"
+#include "Sandbox/World/Chunk/Chunk.h"
 #include "Sandbox/World/WorldGenerator.h"
 
 /// @class ChunkRenderer

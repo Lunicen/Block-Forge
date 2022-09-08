@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Utils/Rendering/Shader.h"
+#include "Geometry/Shader.h"
 
-#include "Utils/Rendering/ElementBuffer.h"
-#include "Utils/Rendering/VertexArray.h"
+#include "Geometry/ElementBuffer.h"
+#include "Geometry/VertexArray.h"
 
-#include "Utils/Texture.h"
+#include "Surface/Texture.h"
 #include <glm/gtx/transform.hpp>
-#include <stb_image.h>
 
 /// @class Block
 /// @brief Handles Block existence
@@ -20,7 +19,7 @@ class Block
 	//  | 4-----|-7  
 	//  |/      |/    
 	//  0-------3		
-	std::array<GLfloat, 120>_cubeVertices = {
+	std::array<GLfloat, 120> _cubeVertices = {
 		//cordinates			//Texture Coordinates
 
 		/*FRONT #face 1*/
@@ -60,7 +59,7 @@ class Block
 		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
 	};
 
-	std::array<GLuint, 36>_cubeIndices
+	std::array<GLuint, 36> _cubeIndices
 	{
 		0,  1,  2,  2,  3,  0,
 		4,  5,  6,  6,  7,  4,

@@ -1,6 +1,10 @@
 #pragma once
-#include "Sandbox/Utils/ProceduralGen/Noise3D.h"
-#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
+#include "Sandbox/Mesh/Block.h"
+#include "Sandbox/Mesh/Geometry/Shader.h"
+#include "Sandbox/Mesh/Surface/Texture.h"
+#include "Sandbox/Noise/Noise3D.h"
+#include "Sandbox/World/Chunk/ChunkBlocks.h"
+#include "Sandbox/World/Chunk/ChunkFrame.h"
 
 /// @class Biome
 /// @brief Represents biome that could be used for terrain generation.

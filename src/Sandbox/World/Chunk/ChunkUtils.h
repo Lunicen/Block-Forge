@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
+#include "Sandbox/World/Chunk/ChunkBlocks.h"
 
 /// @class ChunkUtils
 /// @brief Set of functions that could be used in other classes.

@@ -1,7 +1,7 @@
 #include "ChunkRenderer.h"
 
 #include "Core/EngineExceptions.h"
-#include "Sandbox/Utils/Chunk/ChunkUtils.h"
+#include "Sandbox/World/Chunk/ChunkUtils.h"
 
 std::vector<glm::ivec3> ChunkRenderer::Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet)
 {

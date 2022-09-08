@@ -1,5 +1,5 @@
 #pragma once
-#include "Rendering/Shader.h"
+#include "Sandbox/Mesh/Geometry/Shader.h"
 #include <glad/glad.h>
 
 

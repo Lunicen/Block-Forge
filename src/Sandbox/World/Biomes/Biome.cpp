@@ -1,5 +1,5 @@
 #include "Biome.h"
-#include "Sandbox/Utils/Chunk/ChunkUtils.h"
+#include "Sandbox/World/Chunk/ChunkUtils.h"
 
 void Biome::SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock, const float noise) const
 {
