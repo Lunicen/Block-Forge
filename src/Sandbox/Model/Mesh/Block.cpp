@@ -14,12 +14,12 @@ Block::Block(const float x, const float y, const float z, Shader& shader, Textur
 	constexpr int textureStride = 5;
 	constexpr int textureOffset = 3;
 
-	_vao.Link(_vbo, blockLayout, blockSize, blockStride, blockOffset);
+	/*_vao.Link(_vbo, blockLayout, blockSize, blockStride, blockOffset);
 	_vao.Link(_vbo, textureLayout, textureSize, textureStride, textureOffset);
 
 	_vao.Unbind();
 	_vbo.Unbind();
-	_ebo.Unbind();
+	_ebo.Unbind();*/
 
 	Move(x, y, z);
 }
@@ -35,7 +35,7 @@ void Block::Move(const float x, const float y, const float z)
 void Block::Draw() const
 {
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(_position));
-	_vao.Bind();
+	//_vao.Bind();
 	_texture.Bind();
 	glDrawElements(GL_TRIANGLES, sizeof _cubeIndices / sizeof(GLuint), GL_UNSIGNED_INT, nullptr);
 }

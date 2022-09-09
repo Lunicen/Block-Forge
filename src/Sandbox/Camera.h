@@ -5,8 +5,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
-#include "Mesh/Block.h"
 #include "Events/HumanInterfaceDevice.h"
+#include "Model/Mesh/Block.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.
@@ -51,9 +51,9 @@ public:
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
 
-	/// @brief Adds the camera handling to the shader.
-	///	@param block - the block instance name.
-	void Add(Block const& block) const;
+	/// @brief Binds the camera handling to the shader.
+	///	@param shader - shader to bind the camera matrix.
+	void Bind(Shader const& shader) const;
 
 	/// @brief Captures input and moves the camera accordingly.
 	void HandleInput();

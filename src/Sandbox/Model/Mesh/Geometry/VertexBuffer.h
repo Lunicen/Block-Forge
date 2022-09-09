@@ -1,5 +1,8 @@
 #pragma once
+#include <vector>
 #include <glad/glad.h>
+#include "Vertex.h"
+
 
 /// @class VertexBuffer
 /// @brief A Vertex Buffer Object handler - wrapper for the VBO functionality.
@@ -10,7 +13,7 @@ class VertexBuffer
 public:
 
 	/// @brief The constructor creates VBO, binds it immediately and sets its data.
-	explicit VertexBuffer(const GLfloat* vertices, GLsizeiptr size);
+	explicit VertexBuffer(const std::vector<Vertex>& vertices);
 
 	VertexBuffer(const VertexBuffer&) = delete;
 
@@ -18,7 +21,7 @@ public:
 	VertexBuffer(VertexBuffer&&) = default;
 
 	VertexBuffer& operator=(const VertexBuffer&) = delete;
-	VertexBuffer& operator=(VertexBuffer&&) = delete;
+	VertexBuffer& operator=(VertexBuffer&&) = default;
 
 	/// @brief Tells OpenGL to bind the VBO.
 	void Bind() const;

@@ -1,10 +1,12 @@
 #include "VertexBuffer.h"
 
-VertexBuffer::VertexBuffer(const GLfloat* vertices, const GLsizeiptr size)
+VertexBuffer::VertexBuffer(const std::vector<Vertex>& vertices)
 {
+	const auto verticesDataSize = static_cast<GLsizeiptr>(vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex));
+
 	glGenBuffers(1, &_bufferRef);
 	Bind();
-	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, verticesDataSize, vertices.data(), GL_STATIC_DRAW);
 }
 
 void VertexBuffer::Bind() const

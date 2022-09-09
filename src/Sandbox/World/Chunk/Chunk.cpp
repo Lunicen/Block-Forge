@@ -5,7 +5,7 @@ void Chunk::DrawBlockIfExists(const size_t& x, const size_t& y, const size_t& z)
 {
 	if (_blocks.blockAt[x][y][z] != nullptr && _blocks.isBlockVisibleAt[x][y][z])
 	{
-		_camera.Add(*_blocks.blockAt[x][y][z]);
+		_camera.Bind(*_blocks.blockAt[x][y][z]);
 		_blocks.blockAt[x][y][z]->Draw();
 	}
 }

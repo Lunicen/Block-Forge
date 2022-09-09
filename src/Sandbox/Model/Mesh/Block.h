@@ -72,9 +72,9 @@ class Block
 	Shader& _shader;
 	glm::mat4 _position{};
 
-	VertexArray _vao;
+	/*VertexArray _vao;
 	VertexBuffer _vbo = VertexBuffer(_cubeVertices.data(), sizeof _cubeVertices);
-	ElementBuffer _ebo = ElementBuffer(_cubeIndices.data(), sizeof _cubeIndices);
+	ElementBuffer _ebo = ElementBuffer(_cubeIndices.data(), sizeof _cubeIndices);*/
 
 	Texture& _texture;
 

@@ -29,13 +29,13 @@ Texture::Texture(const char* image, const GLenum textureType, const GLenum slot,
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void Texture::TexUnit(const Shader& shader, const char* uniform, const GLuint unit) const
+void Texture::TexUnit(const Shader& shader) const
 {
-	const GLuint texUni = glGetUniformLocation(shader.GetProgram(), uniform);
-	shader.Load();
-	glUniform1i(texUni, unit);
-}
+	const auto textureUniform = glGetUniformLocation(shader.GetProgram(), "tex0");
 
+	shader.Load();
+	glUniform1i(textureUniform, 0);
+}
 
 void Texture::Bind() const
 {

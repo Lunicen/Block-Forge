@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/Mesh/Geometry/Shader.h"
+#include "Sandbox/Model/Mesh/Geometry/Shader.h"
 #include <glad/glad.h>
 
 
@@ -7,16 +7,16 @@
 /// @brief Texture that can be used for objects.
 class Texture
 {
-private:
-	GLuint _texture;
+	GLuint _texture{};
 	GLenum _type;
 
 public:
-#pragma region RuleOfFive
-	///@brief constructor
-	Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType);
 
-	/// @brief Texture copy constructor
+	///@brief The constructor.
+	explicit Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType);
+
+
+	/// @brief Texture copy constructor.
 	///	@details Used for transferring the existing instance.
 	Texture(const Texture&) = default;
 
@@ -27,11 +27,10 @@ public:
 	Texture& operator=(const Texture&) = delete;
 	Texture& operator=(Texture&&) = delete;
 
-	~Texture();
-#pragma endregion
 
 	/// @brief Allows the usage of shader with the texture.
-	void TexUnit(const Shader& shader, const char* uniform, GLuint unit) const;
+	///	@param shader - mesh shader.
+	void TexUnit(const Shader& shader) const;
 
 	/// @brief Tells OpenGL to use the texture.
 	void Bind() const;
@@ -41,5 +40,7 @@ public:
 
 	/// @brief Deletes the texture.
 	void Delete() const;
+
+	~Texture();
 };
 

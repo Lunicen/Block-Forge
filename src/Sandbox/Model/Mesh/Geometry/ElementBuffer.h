@@ -1,16 +1,17 @@
 #pragma once
+#include <vector>
 #include <glad/glad.h>
 
 /// @class ElementBuffer
 /// @brief A Vertex Array Object handler - wrapper for the VAO functionality.
 class ElementBuffer
 {
-	GLuint _ebo = 0;
+	GLuint _bufferRef = 0;
 
 public:
 
 	/// @brief The constructor creates EBO, binds it immediately and sets its data.
-	explicit ElementBuffer(const GLuint* indices, GLsizeiptr size);
+	explicit ElementBuffer(const std::vector<GLuint>& indices);
 
 	ElementBuffer(const ElementBuffer& buffer) = delete;
 
@@ -18,7 +19,7 @@ public:
 	ElementBuffer(ElementBuffer&& buffer) = default;
 
 	ElementBuffer& operator=(const ElementBuffer& buffer) = delete;
-	ElementBuffer& operator=(ElementBuffer&& buffer) = delete;
+	ElementBuffer& operator=(ElementBuffer&& buffer) = default;
 
 	/// @brief Tells OpenGL to bind the EBO.
 	void Bind() const;
