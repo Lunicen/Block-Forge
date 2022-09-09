@@ -147,7 +147,7 @@
   <ItemGroup>
     <ClCompile Include="src\Sandbox\Model\Model.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
-    <ClCompile Include="src\Sandbox\Model\Mesh\Surface\Texture.cpp" />
+    <ClCompile Include="src\Sandbox\Model\Surface\Texture.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
@@ -187,7 +187,7 @@
     <ClInclude Include="src\Sandbox\Model\Model.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Vertex.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Mesh.h" />
-    <ClInclude Include="src\Sandbox\Model\Mesh\Surface\Texture.h" />
+    <ClInclude Include="src\Sandbox\Model\Surface\Texture.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
