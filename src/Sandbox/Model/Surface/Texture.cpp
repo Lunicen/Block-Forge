@@ -2,14 +2,17 @@
 #include <stb_image.h>
 #include "Texture.h"
 
-Texture::Texture(const char* image, const GLenum textureType, const GLenum slot, const GLenum format, const GLenum pixelType) : _type(textureType)
+Texture::Texture(const std::string& filenameWithImage, const GLenum textureType)
+	: _type(textureType), _filename(filenameWithImage)
 {
-	int widthImg = 0;
-	int heightImg = 0;
-	int numColCh = 0;
+	constexpr auto slot = GL_TEXTURE0;
+	
+	auto width = 0;
+	auto height = 0;
+	auto channelsInFile = 0;
 
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
+	const auto bytes = stbi_load(filenameWithImage.c_str(), &width, &height, &channelsInFile, 0);
 
 	glGenTextures(1, &_texture);
 	glActiveTexture(slot);
@@ -21,7 +24,7 @@ Texture::Texture(const char* image, const GLenum textureType, const GLenum slot,
 	glTexParameteri(textureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(textureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexImage2D(textureType, 0, GL_RGBA, widthImg, heightImg, 0, format, pixelType, bytes);
+	glTexImage2D(textureType, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
 	glGenerateMipmap(textureType);
 
 	stbi_image_free(bytes);

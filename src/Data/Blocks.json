@@ -1,9 +1,11 @@
 {
-    "dirt": {
-        
-    },
-    "stone" : {
-        
-    }
+    "default": {
+        "dirt": {
 
+        },
+        "stone": {
+
+        }
+    }
+    
 }

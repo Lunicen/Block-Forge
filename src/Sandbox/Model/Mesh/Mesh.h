@@ -2,6 +2,7 @@
 #include "Geometry/VertexArray.h"
 #include "Geometry/ElementBuffer.h"
 #include "Geometry/Shader.h"
+#include "Geometry/Structures.h"
 
 class Mesh
 {
@@ -13,14 +14,13 @@ class Mesh
 	VertexBuffer _vbo;
 	ElementBuffer _ebo;
 
+	void Construct();
+
 public:
 	Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, Shader& shader);
+	Mesh(std::vector<Vertex> vertices, Shader& shader);
 
 	void Bind() const;
 	void Unbind() const;
-
-	std::vector<Vertex> GetVertices() const;
-	std::vector<GLuint> GetIndices() const;
-	Shader& GetShader() const;
 };
 

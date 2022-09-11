@@ -1,4 +1,6 @@
 #pragma once
+#include <glad/glad.h>
+
 #include "Biomes/BiomePlacer.h"
 #include "Biomes/BiomeProvider.h"
 

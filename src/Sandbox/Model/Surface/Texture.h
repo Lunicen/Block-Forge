@@ -9,11 +9,12 @@ class Texture
 {
 	GLuint _texture{};
 	GLenum _type;
+	std::string _filename;
 
 public:
 
 	///@brief The constructor.
-	explicit Texture(const char* image, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType);
+	explicit Texture(const std::string& filenameWithImage, GLenum textureType, GLenum slot);
 
 
 	/// @brief Texture copy constructor.

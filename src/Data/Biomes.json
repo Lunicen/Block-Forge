@@ -12,14 +12,34 @@
                 "noise": {
                     "id": "GQAHAAEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "frequency": 0.1
-                }
+                },
+                "textures": [
+                    {
+                        "name": "dirt",
+                        "startLevel": 0
+                    },
+                    {
+                        "name": "stone",
+                        "startLevel": 3
+                    }
+                ]
             },
             {
-                "name": "Flat",
+                "name": "Desert",
                 "noise": {
                     "id": "BAAAAAAAAAAgQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
                     "frequency": 0.1
-                }
+                },
+                "textures": [
+                    {
+                        "name": "sand",
+                        "startLevel": 0
+                    },
+                    {
+                        "name": "stone",
+                        "startLevel": 5
+                    }
+                ]
             }
         ]
     }

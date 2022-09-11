@@ -145,7 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Sandbox\Model\Model.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlocksProvider.cpp" />
+    <ClCompile Include="src\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
     <ClCompile Include="src\Sandbox\Model\Surface\Texture.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
@@ -184,8 +185,10 @@
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Sandbox\Model\Model.h" />
-    <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Vertex.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlocksProvider.h" />
+    <ClInclude Include="src\Sandbox\Model\BlockModel.h" />
+    <ClInclude Include="src\Sandbox\Model\BlockFaceModel.h" />
+    <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Structures.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Sandbox\Model\Surface\Texture.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
