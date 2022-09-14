@@ -5,14 +5,20 @@
         "blocks": [
             {
                 "block": "dirt",
-                "texture": {
-                    "front":    [ 1, 0 ],
-                    "back":     [ 1, 0 ],
-                    "left":     [ 1, 0 ],
-                    "right":    [ 1, 0 ],
-                    "top":      [ 0, 0 ],
-                    "bottom":   [ 2, 0 ]
-                }
+                "textures": [
+                    {
+                        "location": [ 0, 0 ],
+                        "faces": [ "top" ]
+                    },
+                    {
+                        "location": [ 1, 0 ],
+                        "faces": [ "left", "right", "front", "back" ]
+                    },
+                    {
+                        "location": [ 2, 0 ],
+                        "faces": [ "bottom" ]
+                    }
+                ]
             }
         ]
     }

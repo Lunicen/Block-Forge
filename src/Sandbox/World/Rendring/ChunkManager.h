@@ -35,6 +35,6 @@ public:
 	///	@details The world generator is used to define how the world is generated, when
 	///	this class handles only displaying it in an optimal way.
 	///	@param worldGenerator - reference to the world generator.
-	void Bind(WorldGenerator& worldGenerator);
+	void Bind(const std::shared_ptr<WorldGenerator>& worldGenerator);
 };
 

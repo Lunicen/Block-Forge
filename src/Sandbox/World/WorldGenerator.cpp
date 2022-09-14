@@ -47,13 +47,14 @@ void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks)
 
 WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
-	auto blocksProvider = BlocksProvider("src/Data/Blocks.json");
-	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", "src/Data/Blocks.json");
-
+	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blocksQueue);
 	_biomes = biomeProvider.GetBiomes(_seed);
-	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
 
+	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
 	_placer = std::make_unique<BiomePlacer>(placerNoise, _biomes);
+
+	auto blocksProvider = BlocksProvider("src/Data/Blocks.json");
+	_blockTypes = blocksProvider.GetBlocks();
 }
 
 void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const

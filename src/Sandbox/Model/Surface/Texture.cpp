@@ -2,8 +2,8 @@
 #include <stb_image.h>
 #include "Texture.h"
 
-Texture::Texture(const std::string& filenameWithImage, const GLenum textureType)
-	: _type(textureType), _filename(filenameWithImage)
+Texture::Texture(const std::string& filenameWithImage)
+	: _filename(filenameWithImage)
 {
 	constexpr auto slot = GL_TEXTURE0;
 	
@@ -16,19 +16,19 @@ Texture::Texture(const std::string& filenameWithImage, const GLenum textureType)
 
 	glGenTextures(1, &_texture);
 	glActiveTexture(slot);
-	glBindTexture(textureType, _texture);
+	glBindTexture(_type, _texture);
 
-	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(_type, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameteri(_type, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	glTexParameteri(textureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(textureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(_type, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(_type, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexImage2D(textureType, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
-	glGenerateMipmap(textureType);
+	glTexImage2D(_type, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
+	glGenerateMipmap(_type);
 
 	stbi_image_free(bytes);
-	glBindTexture(textureType, 0);
+	glBindTexture(_type, 0);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic

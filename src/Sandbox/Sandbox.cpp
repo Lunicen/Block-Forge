@@ -56,7 +56,7 @@ void Sandbox::Run()
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
-	auto worldGenerator = WorldGenerator(69);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
 	ChunkManager chunkManager(RenderViewType::cube, 8, 2, camera);
 	chunkManager.Bind(worldGenerator);

@@ -25,8 +25,8 @@ void ChunkManager::Update() const
 	_renderer->Render();
 }
 
-void ChunkManager::Bind(WorldGenerator& worldGenerator)
+void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
 	auto view = GetRenderView(_viewType);
-	_renderer = std::make_unique<ChunkRenderer>(worldGenerator, view, _camera);
+	_renderer = std::make_unique<ChunkRenderer>(*worldGenerator, view, _camera);
 }

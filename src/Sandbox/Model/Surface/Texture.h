@@ -6,14 +6,13 @@
 class Texture
 {
 	GLuint _texture{};
-	GLenum _type;
+	const GLenum _type = GL_TEXTURE_2D;
 	std::string _filename;
 
 public:
 
 	///@brief The constructor.
-	explicit Texture(const std::string& filenameWithImage, GLenum textureType);
-
+	explicit Texture(const std::string& filenameWithImage);
 
 	/// @brief Texture copy constructor.
 	///	@details Used for transferring the existing instance.

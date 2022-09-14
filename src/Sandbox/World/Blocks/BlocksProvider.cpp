@@ -1,32 +1,27 @@
 #include "BlocksProvider.h"
 
+#include "BlockBuilder.h"
+
 BlocksProvider::BlocksProvider(const std::string& filenameWithBlocksData)
 {
 	_blocksMetadata.Load(filenameWithBlocksData);
 }
 
-std::map<std::string, std::unique_ptr<BlockModel>> BlocksProvider::GetBlocks(
-	const std::vector<std::string>& blocksTextureNames,
+std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlocksProvider::GetBlocks(
 	const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
 
 	const std::string textureAtlasName = blocksSet.value("atlas", "");
 	const size_t slotSize = blocksSet.value("slotSize", 0);
+	auto builder = BlockBuilder(textureAtlasName, slotSize);
 
-	_blockBuilder = std::make_unique<BlockBuilder>(textureAtlasName, slotSize);
-
-	auto blocks = std::map<std::string, BlockModel>();
-	
-
-	/*for (const auto& blockName : blocksTextureNames)
+	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
+	for (const auto& blockData : blocksSet["blocks"])
 	{
-		auto front = BlockFaceModel(_blockFace.front, )
-
-		blocksAtlas[blockName] = 
+		const std::string name = blockData.value("block", "unknown");
+		blocks[name] = std::make_shared<BlockModel>(builder.Build(blockData));
 	}
-	const auto id = pattern["id"].get<std::string>();
-	const auto frequency = pattern["frequency"].get<float>();*/
 
-	return {};
+	return blocks;
 }

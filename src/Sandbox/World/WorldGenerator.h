@@ -7,9 +7,11 @@
 ///	@details This class is made for transforming chunks according to the biomes that are specified in it.
 class WorldGenerator
 {
-	
-	std::unique_ptr<BiomePlacer> _placer;
+	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
 	std::vector<Biome> _biomes;
+	std::unique_ptr<BiomePlacer> _placer;
+	BlocksQueue _blocksQueue;
+
 	int _seed;
 
 	/*static void OptimizeChunkAt(int x, int y, int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);

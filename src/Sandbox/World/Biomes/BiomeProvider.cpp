@@ -1,9 +1,9 @@
 #include "BiomeProvider.h"
 
-BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, const std::string& filenameWithBlocksData)
+BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, BlocksQueue& blocksQueue)
+	: _blocksQueue(blocksQueue)
 {
 	_biomesMetadata.Load(filenameWithBiomeData);
-	_blocksProvider = std::make_unique<BlocksProvider>(filenameWithBlocksData);
 }
 
 Noise2D BiomeProvider::GetPlacerNoise(const int seed, const std::string& biomesType)

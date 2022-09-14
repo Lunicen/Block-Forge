@@ -14,12 +14,12 @@ struct BlockFaceMeshes
 
 struct BlockFaceTextures
 {
-	Texture front;
-	Texture back;
-	Texture left;
-	Texture right;
-	Texture top;
-	Texture bottom;
+	std::shared_ptr<Texture> front;
+	std::shared_ptr<Texture> back;
+	std::shared_ptr<Texture> left;
+	std::shared_ptr<Texture> right;
+	std::shared_ptr<Texture> top;
+	std::shared_ptr<Texture> bottom;
 };
 
 struct FacesVisibility

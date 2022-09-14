@@ -77,5 +77,5 @@ class BlockBuilder
 public:
 	explicit BlockBuilder(std::string textureAtlasFilename, size_t slotSize);
 
-	//BlockModel Build(const JsonData& blockData);
+	BlockModel Build(const JsonData& blockData);
 };
