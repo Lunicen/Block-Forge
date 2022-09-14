@@ -1,11 +1,9 @@
 #pragma once
-
+/*
 #include "Geometry/Shader.h"
 
 #include "Geometry/ElementBuffer.h"
-#include "Geometry/VertexArray.h"
 
-#include "Surface/Texture.h"
 #include <glm/gtx/transform.hpp>
 
 /// @class Block
@@ -22,37 +20,37 @@ class Block
 	std::array<GLfloat, 120> _cubeVertices = {
 		//cordinates			//Texture Coordinates
 
-		/*FRONT #face 1*/
+		/*FRONT #face 1/
 		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f,		0.0f, 1.0f,
 		1.0f, 1.0f, 0.0f,		1.0f, 1.0f,
 		1.0f, 0.0f, 0.0f,		1.0f, 0.0f,
 
-		/*BACK  #face 2*/
+		/*BACK  #face 2/
 		0.0f, 0.0f, 1.0f,		0.0f, 0.0f,
 		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
 		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
 		1.0f, 0.0f, 1.0f,		1.0f, 0.0f,
 
-		/*LEFT  #face 3*/
+		/*LEFT  #face 3/
 		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
 		0.0f, 1.0f, 1.0f,		1.0f, 1.0f,
 		0.0f, 1.0f, 0.0f,		1.0f, 0.0f,
 
-		/*RIGHT #face 4*/
+		/*RIGHT #face 4/
 		1.0f, 0.0f, 0.0f,		0.0f, 0.0f,
 		1.0f, 0.0f, 1.0f,		0.0f, 1.0f,
 		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
 		1.0f, 1.0f, 0.0f,  		1.0f, 0.0f,
 
-		/*FLOOR #face 5*/
+		/*FLOOR #face 5/
 		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
 		1.0f, 0.0f, 1.0f,		1.0f, 1.0f,
 		1.0f, 0.0f, 0.0f,  		1.0f, 0.0f,
 
-		/*ROOF  #face 6*/
+		/*ROOF  #face 6/
 		0.0f, 1.0f, 0.0f,		0.0f, 0.0f,
 		0.0f, 1.0f, 1.0f,		0.0f, 1.0f,
 		1.0f, 1.0f, 1.0f,		1.0f, 1.0f,
@@ -72,9 +70,9 @@ class Block
 	Shader& _shader;
 	glm::mat4 _position{};
 
-	/*VertexArray _vao;
+	VertexArray _vao;
 	VertexBuffer _vbo = VertexBuffer(_cubeVertices.data(), sizeof _cubeVertices);
-	ElementBuffer _ebo = ElementBuffer(_cubeIndices.data(), sizeof _cubeIndices);*/
+	ElementBuffer _ebo = ElementBuffer(_cubeIndices.data(), sizeof _cubeIndices);
 
 	Texture& _texture;
 
@@ -99,4 +97,4 @@ public:
 	/// @brief This returns shader that block is using.
 	Shader& GetShader() const;
 };
-
+*/

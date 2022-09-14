@@ -1,8 +1,9 @@
 #include "BiomeProvider.h"
 
-BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader, Texture& texture) : _blockShader(blockShader), _texture(texture)
+BiomeProvider::BiomeProvider(const std::string& filenameWithBiomeData, const std::string& filenameWithBlocksData)
 {
 	_biomesMetadata.Load(filenameWithBiomeData);
+	_blocksProvider = std::make_unique<BlocksProvider>(filenameWithBlocksData);
 }
 
 Noise2D BiomeProvider::GetPlacerNoise(const int seed, const std::string& biomesType)
@@ -27,7 +28,7 @@ std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& b
 		const auto id = biome["noise"]["id"].get<std::string>();
 		const auto frequency = biome["noise"]["frequency"].get<float>();
 
-		biomes.emplace_back(name, Noise3D(id, seed, frequency), _blockShader, _texture);
+		biomes.emplace_back(name, Noise3D(id, seed, frequency), std::ref(_blocksQueue));
 	}
 
 	return biomes;

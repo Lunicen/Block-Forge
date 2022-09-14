@@ -1,4 +1,4 @@
-#include "Block.h"
+/*#include "Block.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
 
@@ -19,7 +19,7 @@ Block::Block(const float x, const float y, const float z, Shader& shader, Textur
 
 	_vao.Unbind();
 	_vbo.Unbind();
-	_ebo.Unbind();*/
+	_ebo.Unbind();
 
 	Move(x, y, z);
 }
@@ -44,3 +44,4 @@ Shader& Block::GetShader() const
 {
 	return _shader;
 }
+*/

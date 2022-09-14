@@ -16,7 +16,7 @@ class ChunkRenderer
 	Log& _log = Log::Get();
 
 	Camera& _camera;
-	std::unique_ptr<RenderView> _renderView;
+	std::unique_ptr<RenderView> _renderView{};
 	WorldGenerator& _generator;
 
 	glm::ivec3 _previousNormalizedPosition;

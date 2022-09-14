@@ -5,6 +5,8 @@
 #include "FileUtils.h"
 #include "Log.h"
 
+using JsonData = nlohmann::json;
+
 /// @class Metadata
 /// @brief Handles JSON files and manipulates them.
 /// @details This class is made for handling the metadata stored in JSON files.

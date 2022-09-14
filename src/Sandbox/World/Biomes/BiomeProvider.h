@@ -2,6 +2,7 @@
 #include "Biome.h"
 #include "Core/Metadata.h"
 #include "Sandbox/Noise/Noise2D.h"
+#include "Sandbox/World/Blocks/BlocksProvider.h"
 
 /// @class BiomeProvider
 /// @brief Provides the biomes specified in the JSON file.
@@ -9,17 +10,16 @@
 ///	It's purpose is to provide all the defined biomes from the file in a convenient way.
 class BiomeProvider
 {
+	std::unique_ptr<BlocksProvider> _blocksProvider;
+	BlocksQueue _blocksQueue;
 	Metadata _biomesMetadata;
-	Shader& _blockShader;
-	Texture& _texture;
 
 public:
 
 	/// @brief The constructor.
-	///	@param filenameWithBiomeData - Filename that contains all the metadata related to biomes.
-	///	@param blockShader - A reference to the block shader which is used by the @ref Biome class.
-	///	@param texture - texture of the block.
-	explicit BiomeProvider(const std::string& filenameWithBiomeData, Shader& blockShader, Texture& texture);
+	///	@param filenameWithBiomeData - File containing the metadata related to biomes.
+	///	@param filenameWithBlocksData - File containing the metadata related to blocks.
+	explicit BiomeProvider(const std::string& filenameWithBiomeData, const std::string& filenameWithBlocksData);
 
 	/// @brief Get noise that is used by placer that represents world map.
 	///	@param seed - a seed of the world map noise.

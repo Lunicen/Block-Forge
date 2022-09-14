@@ -149,6 +149,7 @@
     <ClCompile Include="src\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
     <ClCompile Include="src\Sandbox\Model\Surface\Texture.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlocksQueue.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\ChunkRenderer.cpp" />
@@ -183,14 +184,17 @@
     <ClCompile Include="src\Sandbox\Model\Mesh\Geometry\VertexArray.cpp" />
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
     <ClCompile Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlockBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\OpenGLHeaders.h" />
     <ClInclude Include="src\Sandbox\World\Blocks\BlocksProvider.h" />
     <ClInclude Include="src\Sandbox\Model\BlockModel.h" />
     <ClInclude Include="src\Sandbox\Model\BlockFaceModel.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Structures.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Sandbox\Model\Surface\Texture.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlocksQueue.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
@@ -207,6 +211,7 @@
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
     <ClCompile Include="src\Sandbox\Utils\FPSCounter.cpp" />
     <ClInclude Include="src\Sandbox\World\Rendring\RenderViews\TiltedCube.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlockBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\Utils\FPSCounter.h" />

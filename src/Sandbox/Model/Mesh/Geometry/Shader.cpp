@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 
-
 std::string Shader::GetFileContents(const std::string& filename) const
 {
 	std::ifstream file(filename, std::ios::binary);

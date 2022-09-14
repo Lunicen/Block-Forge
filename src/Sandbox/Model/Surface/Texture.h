@@ -1,7 +1,5 @@
 #pragma once
 #include "Sandbox/Model/Mesh/Geometry/Shader.h"
-#include <glad/glad.h>
-
 
 /// @class Texture
 /// @brief Texture that can be used for objects.
@@ -14,7 +12,7 @@ class Texture
 public:
 
 	///@brief The constructor.
-	explicit Texture(const std::string& filenameWithImage, GLenum textureType, GLenum slot);
+	explicit Texture(const std::string& filenameWithImage, GLenum textureType);
 
 
 	/// @brief Texture copy constructor.

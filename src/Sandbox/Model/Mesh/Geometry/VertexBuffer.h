@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
+#include "Structures.h"
 #include <glad/glad.h>
-#include "Vertex.h"
-
 
 /// @class VertexBuffer
 /// @brief A Vertex Buffer Object handler - wrapper for the VBO functionality.

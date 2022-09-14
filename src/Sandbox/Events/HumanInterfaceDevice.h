@@ -1,7 +1,6 @@
 #pragma once
 #include <unordered_set>
 #include "Core/Log.h"
-#include <GLFW/glfw3.h>
 #include "KeyCodes.h"
 
 /// @class HumanInterfaceDevice

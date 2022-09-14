@@ -1,12 +1,10 @@
 #pragma once
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vector_angle.hpp>
-
 #include "Events/HumanInterfaceDevice.h"
-#include "Model/Mesh/Block.h"
+#include "Model/Mesh/Geometry/Shader.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.

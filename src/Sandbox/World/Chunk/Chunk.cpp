@@ -3,10 +3,9 @@
 
 void Chunk::DrawBlockIfExists(const size_t& x, const size_t& y, const size_t& z) const
 {
-	if (_blocks.blockAt[x][y][z] != nullptr && _blocks.isBlockVisibleAt[x][y][z])
+	if (_blocks.blockAt[x][y][z] != nullptr && _blocks.isBlockVisibleAt[x][y][z].back)
 	{
-		_camera.Bind(*_blocks.blockAt[x][y][z]);
-		_blocks.blockAt[x][y][z]->Draw();
+		_blocks.blockAt[x][y][z]->DrawFront(std::vector<glm::vec3>(), _camera);
 	}
 }
 

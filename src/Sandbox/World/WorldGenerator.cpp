@@ -1,6 +1,6 @@
 #include "WorldGenerator.h"
 
-void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
+/*void WorldGenerator::OptimizeChunkAt(const int x, const int y, const int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {
 	const auto& noise = surroundingNoise;
 
@@ -43,13 +43,12 @@ void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks)
 			}
 		}
 	}
-}
+}*/
 
-WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed)
+WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
-	_texture.TexUnit(blockShader, "tex0", 0);
-
-	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", blockShader, _texture);
+	auto blocksProvider = BlocksProvider("src/Data/Blocks.json");
+	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", "src/Data/Blocks.json");
 
 	_biomes = biomeProvider.GetBiomes(_seed);
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
@@ -60,5 +59,5 @@ WorldGenerator::WorldGenerator(const int seed, Shader& blockShader) : _seed(seed
 void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	_placer->PaintChunk(frame, blocks);
-	OptimizeChunk(frame, blocks);
+	//OptimizeChunk(frame, blocks);
 }

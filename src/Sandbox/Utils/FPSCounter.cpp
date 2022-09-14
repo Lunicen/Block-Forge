@@ -1,9 +1,8 @@
 #include "FPSCounter.h"
 
 #include <string>
-#include <GLFW/glfw3.h>
-
 #include "Core/EngineExceptions.h"
+#include "Core/OpenGLHeaders.h"
 
 FPSCounter::FPSCounter()
 {

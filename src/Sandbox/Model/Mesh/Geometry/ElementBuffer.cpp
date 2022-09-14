@@ -1,8 +1,8 @@
 #include "ElementBuffer.h"
 
-ElementBuffer::ElementBuffer(const std::vector<GLuint>& indices)
+ElementBuffer::ElementBuffer(const std::vector<TriangleIndexes>& indices)
 {
-	const auto verticesDataSize = static_cast<GLsizeiptr>(indices.size()) * static_cast<GLsizeiptr>(sizeof(GLuint));
+	const auto verticesDataSize = static_cast<GLsizeiptr>(indices.size()) * static_cast<GLsizeiptr>(sizeof(TriangleIndexes));
 
 	glGenBuffers(1, &_bufferRef);
 	Bind();

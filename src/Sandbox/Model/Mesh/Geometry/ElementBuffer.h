@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Structures.h"
 #include <glad/glad.h>
 
 /// @class ElementBuffer
@@ -11,7 +12,7 @@ class ElementBuffer
 public:
 
 	/// @brief The constructor creates EBO, binds it immediately and sets its data.
-	explicit ElementBuffer(const std::vector<GLuint>& indices);
+	explicit ElementBuffer(const std::vector<TriangleIndexes>& indices);
 
 	ElementBuffer(const ElementBuffer& buffer) = delete;
 

@@ -1,7 +1,7 @@
 #include "BlockFaceModel.h"
 
-BlockFaceModel::BlockFaceModel(const std::shared_ptr<Mesh> mesh, const Texture& texture)
-	: _mesh(mesh), _texture(texture)
+BlockFaceModel::BlockFaceModel(std::shared_ptr<Mesh> mesh, Texture texture)
+	: _mesh(std::move(mesh)), _texture(std::move(texture))
 {}
 
 void BlockFaceModel::DrawAt(std::vector<glm::vec3> origins, Camera& camera)
