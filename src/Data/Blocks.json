@@ -7,16 +7,25 @@
                 "block": "dirt",
                 "textures": [
                     {
-                        "location": [ 0, 0 ],
-                        "faces": [ "top" ]
+                        "faces": [ "top" ],
+                        "location": {
+                            "column": 0,
+                            "row": 0
+                        }
                     },
                     {
-                        "location": [ 1, 0 ],
-                        "faces": [ "left", "right", "front", "back" ]
+                        "faces": [ "left", "right", "front", "back" ],
+                        "location": {
+                            "column": 1,
+                            "row": 0
+                        }
                     },
                     {
-                        "location": [ 2, 0 ],
-                        "faces": [ "bottom" ]
+                        "faces": [ "bottom" ],
+                        "location": {
+                            "column": 2,
+                            "row": 0
+                        }
                     }
                 ]
             }

@@ -12,16 +12,6 @@ struct BlockFaceMeshes
 	std::shared_ptr<Mesh> bottom;
 };
 
-struct BlockFaceTextures
-{
-	std::shared_ptr<Texture> front;
-	std::shared_ptr<Texture> back;
-	std::shared_ptr<Texture> left;
-	std::shared_ptr<Texture> right;
-	std::shared_ptr<Texture> top;
-	std::shared_ptr<Texture> bottom;
-};
-
 struct FacesVisibility
 {
 	bool front;
@@ -35,11 +25,10 @@ struct FacesVisibility
 class BlockModel
 {
 	BlockFaceMeshes _blockFaces;
-	BlockFaceTextures _textures;
 
 public:
-	explicit BlockModel(BlockFaceMeshes faces, BlockFaceTextures textures)
-		: _blockFaces(std::move(faces)), _textures(std::move(textures))
+	explicit BlockModel(BlockFaceMeshes faces)
+		: _blockFaces(std::move(faces))
 	{}
 
 	void DrawFront(const std::vector<glm::vec3>& origins, Camera& camera)
