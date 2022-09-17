@@ -1,6 +1,5 @@
 #pragma once
 #include "Biome.h"
-#include "Sandbox/World/Chunk/ChunkFrame.h"
 #include "Sandbox/Noise/Noise2D.h"
 
 /// @class BiomePlacer

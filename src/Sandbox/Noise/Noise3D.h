@@ -2,7 +2,8 @@
 #include <vector>
 
 #include "Noise.h"
-#include "Sandbox/World/Chunk/ChunkFrame.h"
+#include "Sandbox/World/Chunks/Structure/ChunkFrame.h"
+
 
 /// @class Noise3D
 /// @brief Used for gathering data from the defined 3D noise.

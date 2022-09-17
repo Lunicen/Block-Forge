@@ -1,9 +1,9 @@
-#include "ChunkManager.h"
+#include "ChunkHandler.h"
 
 #include "Core/EngineExceptions.h"
 #include "RenderViews/RenderViewTypes.h"
 
-std::unique_ptr<RenderView> ChunkManager::GetRenderView(const RenderViewType viewType)
+std::unique_ptr<RenderView> ChunkHandler::GetRenderView(const RenderViewType viewType)
 {
 	switch (viewType)
 	{
@@ -15,17 +15,17 @@ std::unique_ptr<RenderView> ChunkManager::GetRenderView(const RenderViewType vie
 	throw UnknownValueException("The provided Render View type is not defined!");
 }
 
-ChunkManager::ChunkManager(const RenderViewType viewType, const size_t chunkSize, const size_t renderDistance, Camera& camera)
+ChunkHandler::ChunkHandler(const RenderViewType viewType, const size_t chunkSize, const size_t renderDistance, Camera& camera)
 	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize), _viewType(viewType)
 {
 }
 
-void ChunkManager::Update() const
+void ChunkHandler::Update() const
 {
 	_renderer->Render();
 }
 
-void ChunkManager::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
+void ChunkHandler::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
 {
 	auto view = GetRenderView(_viewType);
 	_renderer = std::make_unique<ChunkRenderer>(*worldGenerator, view, _camera);
