@@ -10,14 +10,14 @@
 ///	It's purpose is to provide all the defined biomes from the file in a convenient way.
 class BiomeProvider
 {
-	BlocksQueue& _blocksQueue;
+	BlocksHandler& _blocksHandler;
 	Metadata _biomesMetadata;
 
 public:
 
 	/// @brief The constructor.
 	///	@param filenameWithBiomeData - File containing the metadata related to biomes.
-	explicit BiomeProvider(const std::string& filenameWithBiomeData, BlocksQueue& blocksQueue);
+	explicit BiomeProvider(const std::string& filenameWithBiomeData, BlocksHandler& blocksHandler);
 
 	/// @brief Get noise that is used by placer that represents world map.
 	///	@param seed - a seed of the world map noise.

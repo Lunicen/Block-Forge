@@ -1,17 +1,17 @@
 #include "Biome.h"
 
-void Biome::SetBlockAccordingToNoise(std::shared_ptr<BlockModel>& block, const glm::ivec3 origin, const float noise) const
+void Biome::SetBlockAccordingToNoise(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin, const float noise) const
 {
 	if (noise > 0) return;
 	
 	_blocksQueue.Add(block, origin);
 }
 
-Biome::Biome(std::string name, const Noise3D& noise, const std::reference_wrapper<BlocksQueue> blocksQueue) : Noise3D(noise), _name(std::move(name)), _blocksQueue(blocksQueue)
+Biome::Biome(std::string name, const Noise3D& noise, const std::reference_wrapper<BlocksHandler> blocksQueue) : Noise3D(noise), _name(std::move(name)), _blocksQueue(blocksQueue)
 {
 }
 
-void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int xOffset, const int yOffset, const int zOffset) const
+void Biome::PaintColumn(const ChunkFrame& frame, const ChunkBlocks& blocks, const int xOffset, const int yOffset, const int zOffset) const
 {
 	const auto& x = xOffset;
 	const auto& z = zOffset;
@@ -28,7 +28,7 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	}
 }
 
-void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
+void Biome::PaintChunk(const ChunkFrame& frame, const ChunkBlocks& blocks) const
 {
 	const auto noise = GetNoise(frame);
 

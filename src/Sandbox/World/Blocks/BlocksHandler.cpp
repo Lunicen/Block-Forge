@@ -1,8 +1,8 @@
-#include "BlocksQueue.h"
+#include "BlocksHandler.h"
 
 #include "Core/EngineExceptions.h"
 
-void BlocksQueue::CheckIfKeyExists(const glm::ivec3& origin)
+void BlocksHandler::CheckIfKeyExists(const glm::ivec3& origin)
 {
 	if (_blocks.find(origin) == _blocks.end())
 	{
@@ -10,31 +10,31 @@ void BlocksQueue::CheckIfKeyExists(const glm::ivec3& origin)
 	}
 }
 
-void BlocksQueue::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin, const FacesVisibility visibilityFlags)
+void BlocksHandler::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin, const FacesVisibility visibilityFlags)
 {
 	_blocks[origin] = BlockData{block, visibilityFlags};
 }
 
-void BlocksQueue::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin)
+void BlocksHandler::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin)
 {
 	constexpr FacesVisibility visibilityFlags = {true, true, true, true, true, true};
 
 	_blocks[origin] = BlockData{block, visibilityFlags};
 }
 
-void BlocksQueue::Remove(const glm::ivec3 origin)
+void BlocksHandler::Remove(const glm::ivec3 origin)
 {
 	_blocks.erase(origin);
 }
 
-std::shared_ptr<BlockModel>& BlocksQueue::GetModel(const glm::ivec3 origin)
+std::shared_ptr<BlockModel>& BlocksHandler::GetModel(const glm::ivec3 origin)
 {
 	CheckIfKeyExists(origin);
 
 	return _blocks[origin].model;
 }
 
-FacesVisibility& BlocksQueue::GetVisibility(const glm::ivec3 origin)
+FacesVisibility& BlocksHandler::GetVisibility(const glm::ivec3 origin)
 {
 	CheckIfKeyExists(origin);
 

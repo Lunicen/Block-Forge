@@ -17,7 +17,7 @@ struct std::hash<glm::ivec3>
     }
 };
 
-class BlocksQueue
+class BlocksHandler
 {
 	struct BlockData
 	{

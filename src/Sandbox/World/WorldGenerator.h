@@ -10,7 +10,7 @@ class WorldGenerator
 	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
 	std::vector<Biome> _biomes;
 	std::unique_ptr<BiomePlacer> _placer;
-	BlocksQueue _blocksQueue;
+	BlocksHandler _blocksHandler;
 
 	int _seed;
 

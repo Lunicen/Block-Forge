@@ -47,7 +47,7 @@ void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks)
 
 WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
-	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blocksQueue);
+	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blocksHandler);
 	_biomes = biomeProvider.GetBiomes(_seed);
 
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);

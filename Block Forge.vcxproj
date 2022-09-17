@@ -149,7 +149,7 @@
     <ClCompile Include="src\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
     <ClCompile Include="src\Sandbox\Model\Surface\Texture.cpp" />
-    <ClCompile Include="src\Sandbox\World\Blocks\BlocksQueue.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlocksHandler.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\RenderViews\CubeView.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\RenderViews\DiamondView.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\ChunkRenderer.cpp" />
@@ -194,7 +194,7 @@
     <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Structures.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Sandbox\Model\Surface\Texture.h" />
-    <ClInclude Include="src\Sandbox\World\Blocks\BlocksQueue.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlocksHandler.h" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
