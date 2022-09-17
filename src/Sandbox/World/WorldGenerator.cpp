@@ -45,16 +45,13 @@ void WorldGenerator::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks)
 	}
 }*/
 
-WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
+WorldGenerator::WorldGenerator(const int seed) : _blocksHandler("src/Data/Blocks.json"), _seed(seed)
 {
 	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blocksHandler);
 	_biomes = biomeProvider.GetBiomes(_seed);
 
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
 	_placer = std::make_unique<BiomePlacer>(placerNoise, _biomes);
-
-	auto blocksProvider = BlocksProvider("src/Data/Blocks.json");
-	_blockTypes = blocksProvider.GetBlocks();
 }
 
 void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const

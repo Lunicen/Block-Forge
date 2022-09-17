@@ -7,7 +7,6 @@
 ///	@details This class is made for transforming chunks according to the biomes that are specified in it.
 class WorldGenerator
 {
-	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
 	std::vector<Biome> _biomes;
 	std::unique_ptr<BiomePlacer> _placer;
 	BlocksHandler _blocksHandler;

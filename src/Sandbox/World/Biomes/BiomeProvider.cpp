@@ -28,7 +28,7 @@ std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& b
 		const auto id = biome["noise"]["id"].get<std::string>();
 		const auto frequency = biome["noise"]["frequency"].get<float>();
 
-		biomes.emplace_back(name, Noise3D(id, seed, frequency), std::ref(_blocksHandler));
+		biomes.emplace_back(name, Noise3D(id, seed, frequency), _blocksHandler);
 	}
 
 	return biomes;

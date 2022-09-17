@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox\World\Blocks\BlockRenderer.cpp" />
     <ClCompile Include="src\Sandbox\World\Blocks\BlocksProvider.cpp" />
     <ClCompile Include="src\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
@@ -187,6 +188,7 @@
     <ClCompile Include="src\Sandbox\World\Blocks\BlockBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sandbox\World\Blocks\BlockRenderer.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
     <ClInclude Include="src\Sandbox\World\Blocks\BlocksProvider.h" />
     <ClInclude Include="src\Sandbox\Model\BlockModel.h" />

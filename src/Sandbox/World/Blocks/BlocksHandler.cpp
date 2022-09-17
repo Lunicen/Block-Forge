@@ -1,42 +1,14 @@
 #include "BlocksHandler.h"
 
-#include "Core/EngineExceptions.h"
+#include "BlocksProvider.h"
 
-void BlocksHandler::CheckIfKeyExists(const glm::ivec3& origin)
+BlocksHandler::BlocksHandler(const std::string& filenameWithBlocksData)
 {
-	if (_blocks.find(origin) == _blocks.end())
-	{
-		throw NotFoundException("This origin is not registered in queue!");
-	}
+	auto blockProvider = BlocksProvider(filenameWithBlocksData);
+	_blockTypes = blockProvider.GetBlocks();
 }
 
-void BlocksHandler::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin, const FacesVisibility visibilityFlags)
+std::shared_ptr<BlockModel>& BlocksHandler::Get(const std::string& blockName)
 {
-	_blocks[origin] = BlockData{block, visibilityFlags};
-}
-
-void BlocksHandler::Add(const std::shared_ptr<BlockModel>& block, const glm::ivec3 origin)
-{
-	constexpr FacesVisibility visibilityFlags = {true, true, true, true, true, true};
-
-	_blocks[origin] = BlockData{block, visibilityFlags};
-}
-
-void BlocksHandler::Remove(const glm::ivec3 origin)
-{
-	_blocks.erase(origin);
-}
-
-std::shared_ptr<BlockModel>& BlocksHandler::GetModel(const glm::ivec3 origin)
-{
-	CheckIfKeyExists(origin);
-
-	return _blocks[origin].model;
-}
-
-FacesVisibility& BlocksHandler::GetVisibility(const glm::ivec3 origin)
-{
-	CheckIfKeyExists(origin);
-
-	return _blocks[origin].visibility;
+	return _blockTypes[blockName];
 }

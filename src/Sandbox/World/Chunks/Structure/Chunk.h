@@ -14,7 +14,18 @@ class Chunk
 	ChunkBlocks _blocks;
 	Camera& _camera;
 
-	void DrawBlockIfExists(const size_t& x, const size_t& y, const size_t& z) const;
+	struct FaceCounter
+	{
+		std::vector<Position> front{};
+		std::vector<Position> back{};
+		std::vector<Position> left{};
+		std::vector<Position> right{};
+		std::vector<Position> top{};
+		std::vector<Position> bottom{};
+	};
+	std::unordered_map<std::shared_ptr<BlockModel>, FaceCounter> _blockFaces;
+
+	void CalculateVisibleFaces();
 
 public:
 	/// @brief The constructor.

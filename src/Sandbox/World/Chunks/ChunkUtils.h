@@ -16,10 +16,6 @@ public:
 	///	@param size - size of the chunk.
 	template <class Value>
 	static void InitializeVector3D(std::vector<std::vector<std::vector<Value>>>& vector, const size_t& size);
-
-	/// @brief Initializes chunk data.
-	///	@param size - size of the chunk.
-	static ChunkBlocks InitializeData(const size_t& size);
 };
 
 template <class Value>

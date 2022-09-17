@@ -1,7 +1,6 @@
 #include "ChunkRenderer.h"
 
 #include "Core/EngineExceptions.h"
-#include "Sandbox/World/Chunks/ChunkUtils.h"
 
 std::vector<glm::ivec3> ChunkRenderer::Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet)
 {
@@ -63,7 +62,7 @@ void ChunkRenderer::SpawnChunkAt(const glm::ivec3& origin)
 	_log.Trace("Added chunk: " + PositionToString(origin));
 	
 	const auto chunkFrame = ChunkFrame{origin, _renderView->GetChunkSize()};
-	auto chunkBlocks	  = ChunkUtils::InitializeData(_renderView->GetChunkSize());
+	auto chunkBlocks	  = ChunkBlocks{};
 	_generator.PaintChunk(chunkFrame, chunkBlocks);
 
 	auto chunk = std::make_unique<Chunk>(chunkFrame, std::move(chunkBlocks), _camera);
