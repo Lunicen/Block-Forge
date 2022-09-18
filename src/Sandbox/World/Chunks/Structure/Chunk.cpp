@@ -35,15 +35,14 @@ Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
 
 void Chunk::Draw() const
 {
-	for (size_t x = 0; x < _frame.size; ++x)
+	for (auto& block : _blockFaces)
 	{
-		for (size_t y = 0; y < _frame.size; ++y)
-		{
-			for (size_t z = 0; z < _frame.size; ++z)
-			{
-				//DrawBlockIfExists(x, y, z);
-			}
-		}
+		block.first->DrawFront (block.second.front, _camera);
+		block.first->DrawBack  (block.second.back, _camera);
+		block.first->DrawLeft  (block.second.left, _camera);
+		block.first->DrawRight (block.second.right, _camera);
+		block.first->DrawTop   (block.second.top, _camera);
+		block.first->DrawBottom(block.second.bottom, _camera);
 	}
 }
 
