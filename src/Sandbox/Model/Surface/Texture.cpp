@@ -57,7 +57,7 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 	glBindTexture(_type, 0);
 }
 
-void Texture::SetUvVertices(std::vector<Vertex>& vertices)
+void Texture::SetUvVertices(std::vector<Vertex>& vertices) const
 {
 	constexpr auto verticesAmount = 4;
 	for (auto i = 0; i < verticesAmount; ++i)

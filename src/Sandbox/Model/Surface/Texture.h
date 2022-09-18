@@ -32,7 +32,7 @@ public:
 	Texture& operator=(const Texture&) = delete;
 	Texture& operator=(Texture&&) = delete;
 
-	void SetUvVertices(std::vector<Vertex>& vertices);
+	void SetUvVertices(std::vector<Vertex>& vertices) const;
 
 	/// @brief Tells OpenGL to use the texture.
 	void Bind(const Shader& shader) const;
