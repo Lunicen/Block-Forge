@@ -25,7 +25,8 @@ class Chunk
 	};
 	std::unordered_map<std::shared_ptr<BlockModel>, FaceCounter> _blockFaces;
 
-	void CalculateVisibleFaces();
+	void UpdateFacesMap(glm::ivec3 origin, const std::shared_ptr<BlockModel>& block, const FacesVisibility& visibility);
+	void Initialize();
 
 public:
 	/// @brief The constructor.

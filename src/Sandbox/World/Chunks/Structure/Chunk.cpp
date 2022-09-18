@@ -1,16 +1,36 @@
 #include "Chunk.h"
 
+#include "Core/EngineExceptions.h"
+
+void Chunk::UpdateFacesMap(glm::ivec3 origin, const std::shared_ptr<BlockModel>& block, const FacesVisibility& visibility)
+{
+	auto& faces = _blockFaces[block];
+
+	if (visibility.front)  faces.front.emplace_back(origin);
+	if (visibility.back)   faces.back.emplace_back(origin);
+	if (visibility.left)   faces.left.emplace_back(origin);
+	if (visibility.right)  faces.right.emplace_back(origin);
+	if (visibility.top)    faces.top.emplace_back(origin);
+	if (visibility.bottom) faces.bottom.emplace_back(origin);
+}
+
+void Chunk::Initialize()
+{
+	if (_blockFaces.size() > 0)
+	{
+		throw BadInitializationException("Chunk was already initialized!");
+	}
+
+	for (auto& block : _blocks.block)
+	{
+		UpdateFacesMap(block.first, block.second.model, block.second.visibility);
+	}
+}
+
 Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
 	: _frame(frame), _blocks(std::move(blocks)), _camera(camera)
 {
-}
-
-void Chunk::CalculateVisibleFaces()
-{
-	for (auto& block : _blocks.block)
-	{
-		
-	}
+	Initialize();
 }
 
 void Chunk::Draw() const
