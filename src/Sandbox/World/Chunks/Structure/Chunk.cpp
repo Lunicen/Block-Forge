@@ -16,7 +16,7 @@ void Chunk::UpdateFacesMap(glm::ivec3 origin, const std::shared_ptr<BlockModel>&
 
 void Chunk::Initialize()
 {
-	if (_blockFaces.size() > 0)
+	if (!_blockFaces.empty())
 	{
 		throw BadInitializationException("Chunk was already initialized!");
 	}
