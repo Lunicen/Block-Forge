@@ -25,6 +25,18 @@ void Chunk::Initialize()
 	{
 		UpdateFacesMap(block.first, block.second.model, block.second.visibility);
 	}
+
+	for (auto& block : _blocks.block)
+	{
+		auto& model = block.second.model;
+
+		model->SetBackFaces  (_blockFaces[model].back);
+		model->SetFrontFaces (_blockFaces[model].front);
+		model->SetLeftFaces  (_blockFaces[model].left);
+		model->SetRightFaces (_blockFaces[model].right);
+		model->SetTopFaces   (_blockFaces[model].top);
+		model->SetBottomFaces(_blockFaces[model].bottom);
+	}
 }
 
 Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
@@ -37,12 +49,7 @@ void Chunk::Draw() const
 {
 	for (auto& block : _blockFaces)
 	{
-		block.first->DrawFront (block.second.front, _camera);
-		block.first->DrawBack  (block.second.back, _camera);
-		block.first->DrawLeft  (block.second.left, _camera);
-		block.first->DrawRight (block.second.right, _camera);
-		block.first->DrawTop   (block.second.top, _camera);
-		block.first->DrawBottom(block.second.bottom, _camera);
+		block.first->Draw(_camera);
 	}
 }
 

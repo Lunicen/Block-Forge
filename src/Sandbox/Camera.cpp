@@ -104,7 +104,6 @@ void Camera::HandleCursorMovement()
 
 void Camera::Bind(Shader const& shader) const
 {
-	shader.Load();
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 

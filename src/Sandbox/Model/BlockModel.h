@@ -2,14 +2,14 @@
 #include "BlockFaceModel.h"
 #include "Sandbox/Camera.h"
 
-struct BlockFaceMeshes
+struct BlockFaces
 {
-	std::shared_ptr<Mesh> front;
-	std::shared_ptr<Mesh> back;
-	std::shared_ptr<Mesh> left;
-	std::shared_ptr<Mesh> right;
-	std::shared_ptr<Mesh> top;
-	std::shared_ptr<Mesh> bottom;
+	std::shared_ptr<BlockFaceModel> front;
+	std::shared_ptr<BlockFaceModel> back;
+	std::shared_ptr<BlockFaceModel> left;
+	std::shared_ptr<BlockFaceModel> right;
+	std::shared_ptr<BlockFaceModel> top;
+	std::shared_ptr<BlockFaceModel> bottom;
 };
 
 struct FacesVisibility
@@ -24,40 +24,50 @@ struct FacesVisibility
 
 class BlockModel
 {
-	BlockFaceMeshes _blockFaces;
+	BlockFaces _blockFaces;
 
 public:
-	explicit BlockModel(BlockFaceMeshes faces)
+	explicit BlockModel(BlockFaces faces)
 		: _blockFaces(std::move(faces))
 	{}
 
-	void DrawFront(const std::vector<glm::vec3>& origins, Camera& camera)
+	void Draw(const Camera& camera) const
 	{
-		//_front.DrawAt(origins, camera);
+		_blockFaces.front->	Draw(camera);
+		_blockFaces.back->	Draw(camera);
+		_blockFaces.left->	Draw(camera);
+		_blockFaces.right->	Draw(camera);
+		_blockFaces.top->	Draw(camera);
+		_blockFaces.bottom->Draw(camera);
 	}
 
-	void DrawBack(const std::vector<glm::vec3>& origins, Camera& camera)
+	void SetFrontFaces(const std::vector<glm::vec3>& origins) const
 	{
-		//_back.DrawAt(origins, camera);
+		_blockFaces.front->PlaceAt(origins);
 	}
 
-	void DrawTop(const std::vector<glm::vec3>& origins, Camera& camera)
+	void SetBackFaces(const std::vector<glm::vec3>& origins) const
 	{
-		//_top.DrawAt(origins, camera);
+		_blockFaces.back->PlaceAt(origins);
+	}
+	
+	void SetLeftFaces(const std::vector<glm::vec3>& origins) const
+	{
+		_blockFaces.left->PlaceAt(origins);
 	}
 
-	void DrawBottom(const std::vector<glm::vec3>& origins, Camera& camera)
+	void SetRightFaces(const std::vector<glm::vec3>& origins) const
 	{
-		//_bottom.DrawAt(origins, camera);
+		_blockFaces.right->PlaceAt(origins);
 	}
 
-	void DrawLeft(const std::vector<glm::vec3>& origins, Camera& camera)
+	void SetTopFaces(const std::vector<glm::vec3>& origins) const
 	{
-		//_left.DrawAt(origins, camera);
+		_blockFaces.top->PlaceAt(origins);
 	}
 
-	void DrawRight(const std::vector<glm::vec3>& origins, Camera& camera)
+	void SetBottomFaces(const std::vector<glm::vec3>& origins) const
 	{
-		//_right.DrawAt(origins, camera);
+		_blockFaces.bottom->PlaceAt(origins);
 	}
 };

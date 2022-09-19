@@ -61,15 +61,37 @@ class BlockBuilder
 		TriangleIndexes{2, 3, 0}
 	};
 
+	struct FaceMeshes
+	{
+		std::shared_ptr<Mesh> front;
+		std::shared_ptr<Mesh> back;
+		std::shared_ptr<Mesh> left;
+		std::shared_ptr<Mesh> right;
+		std::shared_ptr<Mesh> top;
+		std::shared_ptr<Mesh> bottom;
+	};
+	struct FaceTextures
+	{
+		std::shared_ptr<Texture> front;
+		std::shared_ptr<Texture> back;
+		std::shared_ptr<Texture> left;
+		std::shared_ptr<Texture> right;
+		std::shared_ptr<Texture> top;
+		std::shared_ptr<Texture> bottom;
+	};
+
 	Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 	
 	size_t _slotSize;
 	std::string _textureAtlasFilename;
-	
-	void SetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture);
+
+	static void SetFaceTexture(std::vector<Vertex>& face, const std::shared_ptr<Texture>& texture, std::shared_ptr<Texture>& blockFaceTexture);
+	void DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures);
+	BlockModel CreateBlockModel(const FaceTextures& faceTextures);
 
 public:
 	explicit BlockBuilder(std::string textureAtlasFilename, size_t slotSize);
 
+	
 	BlockModel Build(const JsonData& blockData);
 };

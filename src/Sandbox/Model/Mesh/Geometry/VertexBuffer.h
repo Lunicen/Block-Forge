@@ -14,6 +14,8 @@ public:
 	/// @brief The constructor creates VBO, binds it immediately and sets its data.
 	explicit VertexBuffer(const std::vector<Vertex>& vertices);
 
+	explicit VertexBuffer(const std::vector<Matrix>& transformations);
+
 	VertexBuffer(const VertexBuffer&) = delete;
 
 	/// @brief Move constructor.
