@@ -10,6 +10,6 @@ class BlockFaceModel
 public:
 	BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Texture> texture);
 
-	void PlaceAt(const std::vector<glm::vec3>& origins) const;
+	void PlaceAt(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const;
 	void Draw(const Camera& camera) const;
 };

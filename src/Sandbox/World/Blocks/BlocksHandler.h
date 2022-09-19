@@ -1,6 +1,5 @@
 #pragma once
-#include "BlockRenderer.h"
-
+#include "Sandbox/Model/BlockModel.h"
 
 class BlocksHandler
 {

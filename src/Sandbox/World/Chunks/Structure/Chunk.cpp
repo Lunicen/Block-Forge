@@ -30,12 +30,12 @@ void Chunk::Initialize()
 	{
 		auto& model = block.first;
 
-		model->SetFrontFaces (_blockFaces[model].front);
-		model->SetBackFaces  (_blockFaces[model].back);
-		model->SetLeftFaces  (_blockFaces[model].left);
-		model->SetRightFaces (_blockFaces[model].right);
-		model->SetTopFaces   (_blockFaces[model].top);
-		model->SetBottomFaces(_blockFaces[model].bottom);
+		model->SetFrontFaces (_blockFaces[model].front, _frame.size);
+		model->SetBackFaces  (_blockFaces[model].back, _frame.size);
+		model->SetLeftFaces  (_blockFaces[model].left, _frame.size);
+		model->SetRightFaces (_blockFaces[model].right, _frame.size);
+		model->SetTopFaces   (_blockFaces[model].top, _frame.size);
+		model->SetBottomFaces(_blockFaces[model].bottom, _frame.size);
 	}
 }
 

@@ -24,6 +24,16 @@ void Mesh::SetTransformations(const std::vector<Matrix>& transformations)
 {
 	const auto vbo = VertexBuffer(transformations);
 
+	_vao.Link(vbo, 2, sizeof(Position), 4, 0);
+	_vao.Link(vbo, 3, sizeof(Position), 4, 1 * sizeof(Position));
+	_vao.Link(vbo, 4, sizeof(Position), 4, 2 * sizeof(Position));
+	_vao.Link(vbo, 5, sizeof(Position), 4, 3 * sizeof(Position));
+
+	glVertexAttribDivisor(2, 1);
+	glVertexAttribDivisor(3, 1);
+	glVertexAttribDivisor(4, 1);
+	glVertexAttribDivisor(5, 1);
+
 	vbo.Unbind();
 
 	_instancesCreated = transformations.size();

@@ -1,6 +1,6 @@
 #include "Biome.h"
 
-void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, const float noise) const
+void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const float noise) const
 {
 	if (noise > 0) return;
 
@@ -23,12 +23,13 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	const auto& z = zOffset;
 
 	const auto noise = GetColumnNoise(frame, xOffset, yOffset, zOffset);
+	const auto origin = frame.origin * static_cast<int>(frame.size);
 
 	for (size_t y = 0; y < frame.size; ++y)
 	{
 		SetBlockAccordingToNoise(
 			blocks,
-			glm::ivec3(x, y, z),
+			origin + glm::ivec3(x, y, z),
 			noise[y]
 		);
 	}
@@ -37,6 +38,7 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	const auto noise = GetNoise(frame);
+	const auto origin = frame.origin * static_cast<int>(frame.size);
 
 	for (size_t x = 0; x < frame.size; ++x)
 	{
@@ -46,7 +48,7 @@ void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 			{
 				SetBlockAccordingToNoise(
 					blocks,
-					glm::ivec3(x, y, z),
+					origin + glm::ivec3(x, y, z),
 					noise[x][y][z]
 				);
 			}
