@@ -5,10 +5,10 @@
 BlocksHandler::BlocksHandler(const std::string& filenameWithBlocksData)
 {
 	auto blockProvider = BlocksProvider(filenameWithBlocksData);
-	_blockTypes = blockProvider.GetBlocks();
+	_blockTypes = blockProvider.GetBlocks(_faceIndices, _blockShader);
 }
 
-std::shared_ptr<BlockModel>& BlocksHandler::Get(const std::string& blockName)
+std::shared_ptr<BlockModel> BlocksHandler::Get(const std::string& blockName) const
 {
-	return _blockTypes[blockName];
+	return _blockTypes.at(blockName);
 }

@@ -58,7 +58,7 @@ void Sandbox::Run()
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkHandler chunkHandler(RenderViewType::cube, 8, 2, camera);
+	ChunkHandler chunkHandler(RenderViewType::cube, 8, 0, camera);
 	chunkHandler.Bind(worldGenerator);
 
 	FPSCounter counter;

@@ -54,22 +54,18 @@ class BlockBuilder
 			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 1.0f}},
 			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
-	} _faceVertices;
-	std::vector<TriangleIndexes> _faceIndices
-	{
-		TriangleIndexes{0, 1, 2},
-		TriangleIndexes{2, 3, 0}
 	};
 
 	struct FaceMeshes
 	{
-		std::shared_ptr<Mesh> front;
-		std::shared_ptr<Mesh> back;
-		std::shared_ptr<Mesh> left;
-		std::shared_ptr<Mesh> right;
-		std::shared_ptr<Mesh> top;
-		std::shared_ptr<Mesh> bottom;
+		std::unique_ptr<Mesh> front;
+		std::unique_ptr<Mesh> back;
+		std::unique_ptr<Mesh> left;
+		std::unique_ptr<Mesh> right;
+		std::unique_ptr<Mesh> top;
+		std::unique_ptr<Mesh> bottom;
 	};
+
 	struct FaceTextures
 	{
 		std::shared_ptr<Texture> front;
@@ -80,18 +76,19 @@ class BlockBuilder
 		std::shared_ptr<Texture> bottom;
 	};
 
-	Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
-	
+	std::shared_ptr<FaceVertices> _faceVertices;
+	std::vector<TriangleIndexes>& _faceIndices;
+
 	size_t _slotSize;
 	std::string _textureAtlasFilename;
+	Shader& _blockShader;
 
 	static void SetFaceTexture(std::vector<Vertex>& face, const std::shared_ptr<Texture>& texture, std::shared_ptr<Texture>& blockFaceTexture);
-	void DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures);
-	BlockModel CreateBlockModel(const FaceTextures& faceTextures);
+	void DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const;
+	BlockModel CreateBlockModel(const FaceTextures& faceTextures) const;
 
 public:
-	explicit BlockBuilder(std::string textureAtlasFilename, size_t slotSize);
+	explicit BlockBuilder(std::string textureAtlasFilename, size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
 
-	
 	BlockModel Build(const JsonData& blockData);
 };

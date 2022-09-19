@@ -26,12 +26,12 @@ void Chunk::Initialize()
 		UpdateFacesMap(block.first, block.second.model, block.second.visibility);
 	}
 
-	for (auto& block : _blocks.block)
+	for (auto& block : _blockFaces)
 	{
-		auto& model = block.second.model;
+		auto& model = block.first;
 
-		model->SetBackFaces  (_blockFaces[model].back);
 		model->SetFrontFaces (_blockFaces[model].front);
+		model->SetBackFaces  (_blockFaces[model].back);
 		model->SetLeftFaces  (_blockFaces[model].left);
 		model->SetRightFaces (_blockFaces[model].right);
 		model->SetTopFaces   (_blockFaces[model].top);

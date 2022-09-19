@@ -20,7 +20,7 @@ struct std::hash<glm::ivec3>
 
 struct BlockVisibility
 {
-	std::shared_ptr<BlockModel> model;
+	std::shared_ptr<BlockModel> model = nullptr;
 	FacesVisibility visibility{true, true, true, true, true, true};
 
 	BlockVisibility() = default;

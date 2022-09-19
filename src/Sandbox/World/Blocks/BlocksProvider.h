@@ -8,7 +8,7 @@ class BlocksProvider
 
 public:
 	explicit BlocksProvider(const std::string& filenameWithBlocksData);
-	
-	std::unordered_map<std::string, std::shared_ptr<BlockModel>> GetBlocks(const std::string& blocksSetName = "default");
+
+	std::unordered_map<std::string, std::shared_ptr<BlockModel>> GetBlocks(std::vector<TriangleIndexes>& blockIndices, Shader& blockShader, const std::string& blocksSetName = "default");
 };
 

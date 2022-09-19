@@ -16,7 +16,6 @@ class Texture
 
 	GLuint _texture{};
 	const GLenum _type = GL_TEXTURE_2D;
-	std::string _filename;
 
 public:
 	explicit Texture(const std::string& filenameWithImage, int x, int y, size_t spriteSize);

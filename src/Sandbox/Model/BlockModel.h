@@ -4,12 +4,12 @@
 
 struct BlockFaces
 {
-	std::shared_ptr<BlockFaceModel> front;
-	std::shared_ptr<BlockFaceModel> back;
-	std::shared_ptr<BlockFaceModel> left;
-	std::shared_ptr<BlockFaceModel> right;
-	std::shared_ptr<BlockFaceModel> top;
-	std::shared_ptr<BlockFaceModel> bottom;
+	BlockFaceModel front;
+	BlockFaceModel back;
+	BlockFaceModel left;
+	BlockFaceModel right;
+	BlockFaceModel top;
+	BlockFaceModel bottom;
 };
 
 struct FacesVisibility
@@ -33,41 +33,41 @@ public:
 
 	void Draw(const Camera& camera) const
 	{
-		_blockFaces.front->	Draw(camera);
-		_blockFaces.back->	Draw(camera);
-		_blockFaces.left->	Draw(camera);
-		_blockFaces.right->	Draw(camera);
-		_blockFaces.top->	Draw(camera);
-		_blockFaces.bottom->Draw(camera);
+		_blockFaces.front.Draw(camera);
+		_blockFaces.back.Draw(camera);
+		_blockFaces.left.Draw(camera);
+		_blockFaces.right.Draw(camera);
+		_blockFaces.top.Draw(camera);
+		_blockFaces.bottom.Draw(camera);
 	}
 
 	void SetFrontFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.front->PlaceAt(origins);
+		_blockFaces.front.PlaceAt(origins);
 	}
 
 	void SetBackFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.back->PlaceAt(origins);
+		_blockFaces.back.PlaceAt(origins);
 	}
 	
 	void SetLeftFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.left->PlaceAt(origins);
+		_blockFaces.left.PlaceAt(origins);
 	}
 
 	void SetRightFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.right->PlaceAt(origins);
+		_blockFaces.right.PlaceAt(origins);
 	}
 
 	void SetTopFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.top->PlaceAt(origins);
+		_blockFaces.top.PlaceAt(origins);
 	}
 
 	void SetBottomFaces(const std::vector<glm::vec3>& origins) const
 	{
-		_blockFaces.bottom->PlaceAt(origins);
+		_blockFaces.bottom.PlaceAt(origins);
 	}
 };
