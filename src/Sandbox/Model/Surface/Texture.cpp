@@ -55,6 +55,8 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 
 	stbi_image_free(imageData);
 	glBindTexture(_type, 0);
+
+
 }
 
 void Texture::SetUvVertices(std::vector<Vertex>& vertices) const
@@ -66,13 +68,16 @@ void Texture::SetUvVertices(std::vector<Vertex>& vertices) const
 	}
 }
 
-void Texture::Bind(const Shader& shader) const
+void Texture::Initialize(const Shader& shader)
 {
 	const auto textureUniform = glGetUniformLocation(shader.GetProgram(), "textureSample");
 
 	shader.Load();
 	glUniform1i(textureUniform, 0);
+}
 
+void Texture::Bind() const
+{
 	glBindTexture(_type, _texture);
 }
 

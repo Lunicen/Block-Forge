@@ -11,7 +11,7 @@ class Mesh
 	VertexArray _vao;
 	Shader& _shader;
 
-	const std::vector<TriangleIndexes>& _indices;
+	const size_t _indicesAmount;
 	size_t _instancesCreated;
 
 public:
@@ -19,8 +19,11 @@ public:
 	void SetTransformations(const std::vector<Matrix>& transformations);
 	
 	void Draw(const Texture& texture, const Camera& camera) const;
+	void DrawAt(const glm::vec3& origin, const Texture& texture, const Camera& camera) const;
 
 	void Bind() const;
 	void Unbind() const;
+
+	Shader& GetShader() const;
 };
 

@@ -3,7 +3,7 @@
 #include "Core/EngineExceptions.h"
 
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
-	: _shader(shader), _indices(indices), _instancesCreated(0)
+	: _shader(shader), _indicesAmount(indices.size()), _instancesCreated(0)
 {
 	const auto vbo = VertexBuffer(vertices);
 	const auto ebo = ElementBuffer(indices);
@@ -22,7 +22,7 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexe
 
 void Mesh::SetTransformations(const std::vector<Matrix>& transformations)
 {
-	const auto vbo = VertexBuffer(transformations);
+	/*const auto vbo = VertexBuffer(transformations);
 
 	_vao.Link(vbo, 2, sizeof(Position), 4, 0);
 	_vao.Link(vbo, 3, sizeof(Position), 4, 1 * sizeof(Position));
@@ -36,7 +36,7 @@ void Mesh::SetTransformations(const std::vector<Matrix>& transformations)
 
 	vbo.Unbind();
 
-	_instancesCreated = transformations.size();
+	_instancesCreated = transformations.size();*/
 }
 
 void Mesh::Draw(const Texture& texture, const Camera& camera) const
@@ -49,10 +49,24 @@ void Mesh::Draw(const Texture& texture, const Camera& camera) const
 	_shader.Load();
 	_vao.Bind();
 
-	texture.Bind(_shader);
+	texture.Bind();
 	camera.Bind(_shader);
 
-	glDrawElementsInstanced(GL_TRIANGLES,  static_cast<GLsizei>(_indices.size()), GL_UNSIGNED_INT, nullptr, static_cast<GLsizei>(_instancesCreated));
+	//glDrawElementsInstanced(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr, static_cast<GLsizei>(_instancesCreated));
+}
+
+void Mesh::DrawAt(const glm::vec3& origin, const Texture& texture, const Camera& camera) const
+{
+	const auto position = translate(glm::mat4(1.0f), origin);
+
+	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
+
+	_vao.Bind();
+	texture.Bind();
+
+	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_indicesAmount) * 3, GL_UNSIGNED_INT, nullptr);
+
+	camera.Bind(_shader);
 }
 
 void Mesh::Bind() const
@@ -65,4 +79,9 @@ void Mesh::Unbind() const
 {
 	_vao.Unbind();
 	_shader.Unload();
+}
+
+Shader& Mesh::GetShader() const
+{
+	return _shader;
 }

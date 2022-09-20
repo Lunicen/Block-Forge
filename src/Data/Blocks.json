@@ -23,8 +23,8 @@
                     {
                         "faces": [ "bottom" ],
                         "location": {
-                            "column": 2,
-                            "row": 0
+                            "column": 0,
+                            "row": 1
                         }
                     }
                 ]

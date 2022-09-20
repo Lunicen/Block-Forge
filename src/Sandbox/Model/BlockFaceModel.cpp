@@ -25,3 +25,8 @@ void BlockFaceModel::Draw(const Camera& camera) const
 {
 	_mesh->Draw(*_texture, camera);
 }
+
+void BlockFaceModel::DrawAt(const glm::vec3& origin, const Camera& camera) const
+{
+	_mesh->DrawAt(origin, *_texture, camera);
+}

@@ -19,7 +19,7 @@ void VertexArray::Link(const VertexBuffer& vbo, const GLuint layout, const GLint
 	);
 
 	glEnableVertexAttribArray(layout);
-	vbo.Unbind();
+	glBindVertexArray(0);
 }
 
 void VertexArray::Bind() const

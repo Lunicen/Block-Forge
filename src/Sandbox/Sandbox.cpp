@@ -1,11 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
-
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
 #include "Utils/FPSCounter.h"
 #include "World/Chunks/Rendring/ChunkHandler.h"
+
 
 void Sandbox::InitializeGlfw()
 {
@@ -56,10 +56,33 @@ void Sandbox::Run()
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
-	auto worldGenerator = std::make_shared<WorldGenerator>(69);
+	//auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkHandler chunkHandler(RenderViewType::cube, 8, 10, camera);
-	chunkHandler.Bind(worldGenerator);
+	//ChunkHandler chunkHandler(RenderViewType::cube, 8, 0, camera);
+	//chunkHandler.Bind(worldGenerator);
+	auto block = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+
+	auto mesh = std::make_unique<Mesh>
+	(
+		std::vector<Vertex>
+		{
+			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
+		},
+		std::vector<TriangleIndexes>
+		{
+			TriangleIndexes{0, 1, 2},
+			TriangleIndexes{2, 3, 0}
+		},
+		block
+	);
+
+	auto texture = std::make_shared<Texture>("src/Data/Textures/DirtAtlas.png", 0, 0, 16);
+	texture->Initialize(block);
+
+	auto model = BlockFaceModel(mesh, texture);
 
 	FPSCounter counter;
 	
@@ -70,7 +93,8 @@ void Sandbox::Run()
 
 		camera.Update();
 		camera.HandleInput();
-		chunkHandler.Update();
+		model.DrawAt(Position(0, 0, 0), camera);
+		//chunkHandler.Update();
 		counter.Update();
 
 		glfwSwapBuffers(window);
