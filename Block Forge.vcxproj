@@ -156,7 +156,6 @@
     <ClCompile Include="src\Sandbox\World\Biomes\BiomePlacer.cpp" />
     <ClCompile Include="src\Sandbox\Noise\Noise2D.cpp" />
     <ClCompile Include="src\Sandbox\Noise\Noise3D.cpp" />
-    <ClCompile Include="src\Sandbox\World\Chunks\ChunkUtils.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\BiomeProvider.cpp" />
     <ClCompile Include="src\Sandbox\World\Biomes\Biome.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\ChunkHandler.cpp" />
