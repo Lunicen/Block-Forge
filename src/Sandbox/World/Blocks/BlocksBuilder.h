@@ -18,17 +18,17 @@ class BlocksBuilder
 		std::vector<Vertex> back
 		{
 			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 0.0f}},
-			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
 			Vertex{Position{1.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
-			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
+			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 		
 		std::vector<Vertex> left
 		{
 			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
-			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
 			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
-			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
 
 		std::vector<Vertex> right
