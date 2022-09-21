@@ -6,11 +6,6 @@
 class ChunkUtils
 {
 public:
-
-	/// @brief Calculated the midpoint of the chunk.
-	///	@param size - size of the chunk.
-	static float CalculateMidPoint(const size_t& size);
-	
 	/// @brief Creates 3d vector with a size of a chunk.
 	///	@param vector - vector to initialize.
 	///	@param size - size of the chunk.
