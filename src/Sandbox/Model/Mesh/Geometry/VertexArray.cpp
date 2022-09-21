@@ -4,7 +4,7 @@
 VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &_arrayRef);
-	Bind();
+	glBindVertexArray(_arrayRef);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
@@ -19,7 +19,7 @@ void VertexArray::Link(const VertexBuffer& vbo, const GLuint layout, const GLint
 	);
 
 	glEnableVertexAttribArray(layout);
-	glBindVertexArray(0);
+	vbo.Unbind();
 }
 
 void VertexArray::Bind() const

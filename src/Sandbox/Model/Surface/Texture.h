@@ -15,7 +15,7 @@ class Texture
 	};
 
 	GLuint _texture{};
-	const GLenum _type = GL_TEXTURE_2D;
+	const GLenum _textureType = GL_TEXTURE_2D;
 
 public:
 	explicit Texture(const std::string& filenameWithImage, int x, int y, size_t spriteSize);
@@ -31,7 +31,7 @@ public:
 	Texture& operator=(const Texture&) = delete;
 	Texture& operator=(Texture&&) = delete;
 
-	void SetUvVertices(std::vector<Vertex>& vertices) const;
+	void SetUvToTextureAtlas(std::vector<Vertex>& vertices) const;
 	static void Initialize(const Shader& shader);
 
 	/// @brief Tells OpenGL to use the texture.

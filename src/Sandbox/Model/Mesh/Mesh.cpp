@@ -5,6 +5,7 @@
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
 	: _shader(shader), _indicesAmount(indices.size()), _instancesCreated(0)
 {
+	_vao.Bind();
 	const auto vbo = VertexBuffer(vertices);
 	const auto ebo = ElementBuffer(indices);
 
@@ -57,16 +58,16 @@ void Mesh::Draw(const Texture& texture, const Camera& camera) const
 
 void Mesh::DrawAt(const glm::vec3& origin, const Texture& texture, const Camera& camera) const
 {
-	const auto position = translate(glm::mat4(1.0f), origin);
+	camera.Bind(_shader);
+
+	const auto position = translate(glm::mat4(1.0f), origin + glm::vec3(0.0f, -0.5f, -1.5f));
 
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
 
 	_vao.Bind();
 	texture.Bind();
 
-	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_indicesAmount) * 3, GL_UNSIGNED_INT, nullptr);
-
-	camera.Bind(_shader);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
 void Mesh::Bind() const

@@ -5,7 +5,7 @@ void BlockBuilder::SetFaceTexture(
 	const std::shared_ptr<Texture>& texture,
 	std::shared_ptr<Texture>& blockFaceTexture)
 {
-	texture->SetUvVertices(face);
+	texture->SetUvToTextureAtlas(face);
 	blockFaceTexture = texture;
 }
 

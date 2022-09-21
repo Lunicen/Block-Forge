@@ -2,9 +2,10 @@
 #include "World.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
-#include "World/WorldGenerator.h"
+//#include "World/WorldGenerator.h"
+#include "Model/BlockFaceModel.h"
 #include "Utils/FPSCounter.h"
-#include "World/Chunks/Rendring/ChunkHandler.h"
+//#include "World/Chunks/Rendring/ChunkHandler.h"
 
 
 void Sandbox::InitializeGlfw()
@@ -61,16 +62,39 @@ void Sandbox::Run()
 	//ChunkHandler chunkHandler(RenderViewType::cube, 8, 0, camera);
 	//chunkHandler.Bind(worldGenerator);
 	auto block = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
+	auto texture = std::make_shared<Texture>("src/Data/Textures/DirtAtlas.png", 0, 0, 16);
+	auto frontVertices = std::vector<Vertex>
+	{
+		Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+		Vertex{Position{1.0f, 0.0f, 0.0f}, Point{1.0f, 0.0f}},
+		Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
+		Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
+	};
 
-	auto mesh = std::make_unique<Mesh>
+	auto bottomVertices = std::vector<Vertex>
+	{
+		Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+		Vertex{Position{0.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
+		Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 1.0f}},
+		Vertex{Position{1.0f, 0.0f, 0.0f}, Point{0.0f, 1.0f}},
+	};
+
+	texture->SetUvToTextureAtlas(frontVertices);
+	texture->SetUvToTextureAtlas(bottomVertices);
+
+	auto frontMesh = std::make_unique<Mesh>
 	(
-		std::vector<Vertex>
+		frontVertices,
+		std::vector<TriangleIndexes>
 		{
-			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
-			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{1.0f, 0.0f}},
-			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
-			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
+			TriangleIndexes{0, 1, 2},
+			TriangleIndexes{2, 3, 0}
 		},
+		block
+	);
+	auto bottomMesh = std::make_unique<Mesh>
+	(
+		bottomVertices,
 		std::vector<TriangleIndexes>
 		{
 			TriangleIndexes{0, 1, 2},
@@ -79,10 +103,10 @@ void Sandbox::Run()
 		block
 	);
 
-	auto texture = std::make_shared<Texture>("src/Data/Textures/DirtAtlas.png", 0, 0, 16);
 	texture->Initialize(block);
 
-	auto model = BlockFaceModel(mesh, texture);
+	auto front = BlockFaceModel(frontMesh, texture);
+	auto bottom = BlockFaceModel(bottomMesh, texture);
 
 	FPSCounter counter;
 	
@@ -93,7 +117,8 @@ void Sandbox::Run()
 
 		camera.Update();
 		camera.HandleInput();
-		model.DrawAt(Position(0, 0, 0), camera);
+		front.DrawAt(Position(0, 0, 0), camera);
+		bottom.DrawAt(Position(0, 0, 0), camera);
 		//chunkHandler.Update();
 		counter.Update();
 
