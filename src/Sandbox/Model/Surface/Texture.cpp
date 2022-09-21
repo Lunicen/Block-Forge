@@ -11,23 +11,25 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 	stbi_set_flip_vertically_on_load(true);
 	const auto imageData = stbi_load(filenameWithImage.c_str(), &width, &height, &channelsInFile, 0);
 
+	const auto invertedY = height / spriteSize - y - 1;
+
 	_coords = 
 	{{
 		{
 			static_cast<float>(x) * static_cast<float>(spriteSize) / static_cast<float>(width),
-			static_cast<float>(y) * static_cast<float>(spriteSize) / static_cast<float>(height)
+			static_cast<float>(invertedY) * static_cast<float>(spriteSize) / static_cast<float>(height)
 		},
 		{
 			(static_cast<float>(x) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(width),
-			static_cast<float>(y) * static_cast<float>(spriteSize) / static_cast<float>(height)
+			static_cast<float>(invertedY) * static_cast<float>(spriteSize) / static_cast<float>(height)
 		},
 		{
 			(static_cast<float>(x) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(width),
-			(static_cast<float>(y) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(height)
+			(static_cast<float>(invertedY) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(height)
 		},
 		{
 			static_cast<float>(x) * static_cast<float>(spriteSize) / static_cast<float>(width),
-			(static_cast<float>(y) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(height)
+			(static_cast<float>(invertedY) + 1.0f) * static_cast<float>(spriteSize) / static_cast<float>(height)
 		}
 	}};
 
