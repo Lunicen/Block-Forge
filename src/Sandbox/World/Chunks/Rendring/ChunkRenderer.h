@@ -24,7 +24,7 @@ class ChunkRenderer
 	std::vector<std::unique_ptr<Chunk>> _loadedChunks = {};
 
 	static std::vector<glm::ivec3> Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet);
-	glm::ivec3 GetNormalizedPosition(glm::vec3 position) const;
+	glm::ivec3 GetNormalizedPosition(const glm::vec3& position) const;
 	std::string PositionToString(const glm::ivec3& position) const;
 
 	void RemoveChunkAt(const glm::ivec3& origin);

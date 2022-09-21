@@ -1,6 +1,6 @@
 #include "Chunk.h"
 
-#include "Core/EngineExceptions.h"
+#include "Sandbox/World/Chunks/ChunkUtils.h"
 
 Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
 	: _frame(frame), _blocks(std::move(blocks)), _camera(camera)
@@ -11,9 +11,12 @@ void Chunk::Draw() const
 {
 	for (auto& block : _blocks.block)
 	{
-		auto& origin = block.first;
-		auto& faceModel = block.second.model;
-		auto& faceVisible = block.second.visibility;
+		auto origin = block.first;
+		origin.x -= 0.5f;
+		origin.z += 1.0f;
+
+		const auto& faceModel = block.second.model;
+		const auto& faceVisible = block.second.visibility;
 
 		if (faceVisible.front)  faceModel->DrawFrontFace(origin, _camera);
 		if (faceVisible.back)   faceModel->DrawBackFace(origin, _camera);

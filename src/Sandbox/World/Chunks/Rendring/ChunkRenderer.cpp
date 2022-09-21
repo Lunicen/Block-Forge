@@ -17,16 +17,18 @@ std::vector<glm::ivec3> ChunkRenderer::Subtract(const std::vector<glm::ivec3>& a
 	return result;
 }
 
-glm::ivec3 ChunkRenderer::GetNormalizedPosition(glm::vec3 position) const
+glm::ivec3 ChunkRenderer::GetNormalizedPosition(const glm::vec3& position) const
 {
-	position /= _renderView->GetChunkSize();
-	position -= 0.5f;
-	
-	return {
-		static_cast<int>(ceil(position.x)),
-		static_cast<int>(ceil(position.y)),
-		static_cast<int>(ceil(position.z))
-	};
+	auto normalizedPosition = position;
+
+	normalizedPosition += 0.5f;
+	normalizedPosition /= _renderView->GetChunkSize();
+
+	normalizedPosition.x = floor(normalizedPosition.x);
+	normalizedPosition.y = floor(normalizedPosition.y);
+	normalizedPosition.z = floor(normalizedPosition.z);
+
+	return {normalizedPosition};
 }
 
 std::string ChunkRenderer::PositionToString(const glm::ivec3& position) const
@@ -104,6 +106,8 @@ void ChunkRenderer::Render()
 	{
 		_previousNormalizedPosition = currentNormalizedPosition;
 		RenderChunksAround(currentNormalizedPosition);
+
+		_log.Trace("Normalized position: " + PositionToString(currentNormalizedPosition));
 	}
 
 	for (const auto& chunk : _loadedChunks)
