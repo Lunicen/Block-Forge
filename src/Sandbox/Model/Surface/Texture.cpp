@@ -2,8 +2,6 @@
 #include <stb_image.h>
 #include "Texture.h"
 
-#include "Core/EngineExceptions.h"
-
 Texture::Texture(const std::string& filenameWithImage, const int x, const int y, const size_t spriteSize)
 {
 	auto width = 0;
@@ -11,7 +9,7 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 	auto channelsInFile = 0;
 
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* imageData = stbi_load(filenameWithImage.c_str(), &width, &height, &channelsInFile, 0); // auto?
+	const auto imageData = stbi_load(filenameWithImage.c_str(), &width, &height, &channelsInFile, 0);
 
 	_coords = 
 	{{
@@ -59,16 +57,13 @@ void Texture::SetUvToTextureAtlas(std::vector<Vertex>& vertices) const
 	}
 }
 
-void Texture::Initialize(const Shader& shader)
+void Texture::Bind(const Shader& shader) const
 {
 	const auto textureUniform = glGetUniformLocation(shader.GetProgram(), "textureSample");
 
 	shader.Load();
 	glUniform1i(textureUniform, 0);
-}
 
-void Texture::Bind() const
-{
 	glBindTexture(_textureType, _texture);
 }
 

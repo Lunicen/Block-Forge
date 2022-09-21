@@ -3,7 +3,7 @@
 #include "Sandbox/Model/BlockModel.h"
 #include "Sandbox/Model/Mesh/Geometry/Shader.h"
 
-class BlockBuilder
+class BlocksBuilder
 {
 	struct FaceVertices
 	{
@@ -88,7 +88,7 @@ class BlockBuilder
 	BlockModel CreateBlockModel(const FaceTextures& faceTextures) const;
 
 public:
-	explicit BlockBuilder(std::string textureAtlasFilename, size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
+	explicit BlocksBuilder(std::string textureAtlasFilename, size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
 
 	BlockModel Build(const JsonData& blockData);
 };

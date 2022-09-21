@@ -31,43 +31,33 @@ public:
 		: _blockFaces(std::move(faces))
 	{}
 
-	void Draw(const Camera& camera) const
+	void DrawFrontFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.front.Draw(camera);
-		_blockFaces.back.Draw(camera);
-		_blockFaces.left.Draw(camera);
-		_blockFaces.right.Draw(camera);
-		_blockFaces.top.Draw(camera);
-		_blockFaces.bottom.Draw(camera);
+		_blockFaces.front.Draw(origin, camera);
 	}
 
-	void SetFrontFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+	void DrawBackFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.front.PlaceAt(origins, chunkSize);
-	}
-
-	void SetBackFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
-	{
-		_blockFaces.back.PlaceAt(origins, chunkSize);
+		_blockFaces.back.Draw(origin, camera);
 	}
 	
-	void SetLeftFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+	void DrawLeftFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.left.PlaceAt(origins, chunkSize);
+		_blockFaces.left.Draw(origin, camera);
 	}
 
-	void SetRightFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+	void DrawRightFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.right.PlaceAt(origins, chunkSize);
+		_blockFaces.right.Draw(origin, camera);
 	}
 
-	void SetTopFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+	void DrawTopFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.top.PlaceAt(origins, chunkSize);
+		_blockFaces.top.Draw(origin, camera);
 	}
 
-	void SetBottomFaces(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+	void DrawBottomFace(const Position& origin, const Camera& camera) const
 	{
-		_blockFaces.bottom.PlaceAt(origins, chunkSize);
+		_blockFaces.bottom.Draw(origin, camera);
 	}
 };

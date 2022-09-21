@@ -1,6 +1,6 @@
-#include "BlockBuilder.h"
+#include "BlocksBuilder.h"
 
-void BlockBuilder::SetFaceTexture(
+void BlocksBuilder::SetFaceTexture(
 	std::vector<Vertex>& face, 
 	const std::shared_ptr<Texture>& texture,
 	std::shared_ptr<Texture>& blockFaceTexture)
@@ -9,7 +9,7 @@ void BlockBuilder::SetFaceTexture(
 	blockFaceTexture = texture;
 }
 
-void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
+void BlocksBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
 {
 	if (face == "front")	SetFaceTexture(_faceVertices->front, texture, blockFaceTextures.front);
 	if (face == "back")		SetFaceTexture(_faceVertices->back, texture, blockFaceTextures.back);
@@ -19,7 +19,7 @@ void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const std
 	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, texture, blockFaceTextures.bottom);
 }
 
-BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) const
+BlockModel BlocksBuilder::CreateBlockModel(const FaceTextures& faceTextures) const
 {
 	FaceMeshes faceMeshes
 	{
@@ -44,13 +44,13 @@ BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) cons
 	return BlockModel(std::move(faces));
 }
 
-BlockBuilder::BlockBuilder(std::string textureAtlasFilename, const size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
+BlocksBuilder::BlocksBuilder(std::string textureAtlasFilename, const size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
 	: _faceVertices(std::make_shared<FaceVertices>()), _faceIndices(blockIndices), _slotSize(slotSize),
 	  _textureAtlasFilename(std::move(textureAtlasFilename)), _blockShader(blockShader)
 {
 }
 
-BlockModel BlockBuilder::Build(const JsonData& blockData)
+BlockModel BlocksBuilder::Build(const JsonData& blockData)
 {
 	FaceTextures faceTextures;
 

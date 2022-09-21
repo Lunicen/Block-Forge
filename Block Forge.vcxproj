@@ -183,7 +183,7 @@
     <ClCompile Include="src\Sandbox\Model\Mesh\Geometry\VertexArray.cpp" />
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.cpp" />
-    <ClCompile Include="src\Sandbox\World\Blocks\BlockBuilder.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlocksBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
@@ -210,7 +210,7 @@
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
     <ClCompile Include="src\Sandbox\Utils\FPSCounter.cpp" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.h" />
-    <ClInclude Include="src\Sandbox\World\Blocks\BlockBuilder.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlocksBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox\Utils\FPSCounter.h" />

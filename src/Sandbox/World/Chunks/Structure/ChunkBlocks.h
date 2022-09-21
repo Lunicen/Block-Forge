@@ -18,9 +18,9 @@ struct BlockVisibility
 };
 
 template <>
-struct std::hash<glm::ivec3>
+struct std::hash<Position>
 {
-    size_t operator()(const glm::ivec3 &origin) const noexcept
+    size_t operator()(const Position &origin) const noexcept
     {
         return std::hash<std::string>()
     	(
@@ -41,5 +41,5 @@ public:
 	///	@details This map contains all blocks that are included in the chunk
 	///	and maps the location of the block as a key, and it's model and
 	///	faces visibility as a key.
-	std::unordered_map<glm::ivec3, BlockVisibility> block;
+	std::unordered_map<Position, BlockVisibility> block;
 };

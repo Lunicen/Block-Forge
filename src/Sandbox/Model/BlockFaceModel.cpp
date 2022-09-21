@@ -6,27 +6,7 @@ BlockFaceModel::BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Text
 	: _mesh(std::move(mesh)), _texture(std::move(texture))
 {}
 
-void BlockFaceModel::PlaceAt(const std::vector<glm::vec3>& origins, const size_t& chunkSize) const
+void BlockFaceModel::Draw(const glm::vec3& origin, const Camera& camera) const
 {
-	std::vector<Matrix> transformations;
-	const auto midpoint = ChunkUtils::CalculateMidPoint(chunkSize);
-
-	transformations.reserve(origins.size());
-	for (auto& origin : origins)
-	{
-		const auto normalizedOrigin = origin - glm::vec3(midpoint, midpoint, midpoint);
-		transformations.emplace_back(translate(glm::mat4(1.0f), normalizedOrigin));
-	}
-
-	_mesh->SetTransformations(transformations);
-}
-
-void BlockFaceModel::Draw(const Camera& camera) const
-{
-	_mesh->Draw(*_texture, camera);
-}
-
-void BlockFaceModel::DrawAt(const glm::vec3& origin, const Camera& camera) const
-{
-	_mesh->DrawAt(origin, *_texture, camera);
+	_mesh->Draw(origin, *_texture, camera);
 }

@@ -2,10 +2,10 @@
 #include "World.h"
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
-//#include "World/WorldGenerator.h"
+#include "World/WorldGenerator.h"
 #include "Model/BlockFaceModel.h"
 #include "Utils/FPSCounter.h"
-//#include "World/Chunks/Rendring/ChunkHandler.h"
+#include "World/Chunks/Rendring/ChunkHandler.h"
 
 
 void Sandbox::InitializeGlfw()
@@ -57,57 +57,11 @@ void Sandbox::Run()
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
-	//auto worldGenerator = std::make_shared<WorldGenerator>(69);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	//ChunkHandler chunkHandler(RenderViewType::cube, 8, 0, camera);
-	//chunkHandler.Bind(worldGenerator);
-	auto block = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
-	auto texture = std::make_shared<Texture>("src/Data/Textures/DirtAtlas.png", 0, 0, 16);
-	auto frontVertices = std::vector<Vertex>
-	{
-		Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
-		Vertex{Position{1.0f, 0.0f, 0.0f}, Point{1.0f, 0.0f}},
-		Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
-		Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
-	};
-
-	auto bottomVertices = std::vector<Vertex>
-	{
-		Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
-		Vertex{Position{0.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
-		Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 1.0f}},
-		Vertex{Position{1.0f, 0.0f, 0.0f}, Point{0.0f, 1.0f}},
-	};
-
-	texture->SetUvToTextureAtlas(frontVertices);
-	texture->SetUvToTextureAtlas(bottomVertices);
-
-	auto frontMesh = std::make_unique<Mesh>
-	(
-		frontVertices,
-		std::vector<TriangleIndexes>
-		{
-			TriangleIndexes{0, 1, 2},
-			TriangleIndexes{2, 3, 0}
-		},
-		block
-	);
-	auto bottomMesh = std::make_unique<Mesh>
-	(
-		bottomVertices,
-		std::vector<TriangleIndexes>
-		{
-			TriangleIndexes{0, 1, 2},
-			TriangleIndexes{2, 3, 0}
-		},
-		block
-	);
-
-	texture->Initialize(block);
-
-	auto front = BlockFaceModel(frontMesh, texture);
-	auto bottom = BlockFaceModel(bottomMesh, texture);
-
+	ChunkHandler chunkHandler(RenderViewType::cube, 8, 0, camera);
+	chunkHandler.Bind(worldGenerator);
+	
 	FPSCounter counter;
 	
 	while(!glfwWindowShouldClose(window))
@@ -117,9 +71,7 @@ void Sandbox::Run()
 
 		camera.Update();
 		camera.HandleInput();
-		front.DrawAt(Position(0, 0, 0), camera);
-		bottom.DrawAt(Position(0, 0, 0), camera);
-		//chunkHandler.Update();
+		chunkHandler.Update();
 		counter.Update();
 
 		glfwSwapBuffers(window);

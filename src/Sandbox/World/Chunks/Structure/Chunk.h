@@ -14,20 +14,6 @@ class Chunk
 	ChunkBlocks _blocks;
 	Camera& _camera;
 
-	struct FaceCounter
-	{
-		std::vector<Position> front{};
-		std::vector<Position> back{};
-		std::vector<Position> left{};
-		std::vector<Position> right{};
-		std::vector<Position> top{};
-		std::vector<Position> bottom{};
-	};
-	std::unordered_map<std::shared_ptr<BlockModel>, FaceCounter> _blockFaces;
-
-	void UpdateFacesMap(glm::ivec3 origin, const std::shared_ptr<BlockModel>& block, const FacesVisibility& visibility);
-	void Initialize();
-
 public:
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)

@@ -32,10 +32,9 @@ public:
 	Texture& operator=(Texture&&) = delete;
 
 	void SetUvToTextureAtlas(std::vector<Vertex>& vertices) const;
-	static void Initialize(const Shader& shader);
 
 	/// @brief Tells OpenGL to use the texture.
-	void Bind() const;
+	void Bind(const Shader& shader) const;
 
 	/// @brief Tells OpenGL to stop using this texture.
 	void Unbind() const;

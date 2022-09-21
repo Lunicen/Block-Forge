@@ -3,7 +3,7 @@
 #include "Core/EngineExceptions.h"
 
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
-	: _shader(shader), _indicesAmount(indices.size()), _instancesCreated(0)
+	: _shader(shader), _indicesAmount(static_cast<GLsizei>(indices.size()) * 3)
 {
 	_vao.Bind();
 	const auto vbo = VertexBuffer(vertices);
@@ -21,42 +21,7 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexe
 	ebo.Unbind();
 }
 
-void Mesh::SetTransformations(const std::vector<Matrix>& transformations)
-{
-	/*const auto vbo = VertexBuffer(transformations);
-
-	_vao.Link(vbo, 2, sizeof(Position), 4, 0);
-	_vao.Link(vbo, 3, sizeof(Position), 4, 1 * sizeof(Position));
-	_vao.Link(vbo, 4, sizeof(Position), 4, 2 * sizeof(Position));
-	_vao.Link(vbo, 5, sizeof(Position), 4, 3 * sizeof(Position));
-
-	glVertexAttribDivisor(2, 1);
-	glVertexAttribDivisor(3, 1);
-	glVertexAttribDivisor(4, 1);
-	glVertexAttribDivisor(5, 1);
-
-	vbo.Unbind();
-
-	_instancesCreated = transformations.size();*/
-}
-
-void Mesh::Draw(const Texture& texture, const Camera& camera) const
-{
-	if (_instancesCreated == 0)
-	{
-		throw UninitializedPropertyAccessException("No instance of this mesh has been created!");
-	}
-
-	_shader.Load();
-	_vao.Bind();
-
-	texture.Bind();
-	camera.Bind(_shader);
-
-	//glDrawElementsInstanced(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr, static_cast<GLsizei>(_instancesCreated));
-}
-
-void Mesh::DrawAt(const glm::vec3& origin, const Texture& texture, const Camera& camera) const
+void Mesh::Draw(const Position& origin, const Texture& texture, const Camera& camera) const
 {
 	camera.Bind(_shader);
 
@@ -65,9 +30,9 @@ void Mesh::DrawAt(const glm::vec3& origin, const Texture& texture, const Camera&
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
 
 	_vao.Bind();
-	texture.Bind();
+	texture.Bind(_shader);
 
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
 }
 
 void Mesh::Bind() const
