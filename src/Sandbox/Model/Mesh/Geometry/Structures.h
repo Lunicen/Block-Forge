@@ -4,16 +4,16 @@
 #include <glm/vec3.hpp>
 
 /// @brief A 4x4 matrix.
-typedef glm::mat4 Matrix;
+using Matrix = glm::mat4;
 
 /// @brief The group of indexes that represent the indices of the mesh. 
-typedef glm::ivec3 TriangleIndexes;
+using TriangleIndexes = glm::ivec3;
 
 /// @brief A position in space of the object.
-typedef glm::vec3 Position;
+using Position = glm::vec3;
 
 /// @brief A point in the 2D space.
-typedef glm::vec2 Point;
+using Point = glm::vec2;
 
 /// @brief Represent a single vertex that is used by the shader.
 struct Vertex

@@ -45,7 +45,7 @@ BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) cons
 }
 
 BlockBuilder::BlockBuilder(std::string textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
-	: _faceVertices(std::make_shared<FaceVertices>()), _faceIndices(blockIndices), _slotSize(spriteSize),
+	: _faceIndices(blockIndices), _slotSize(spriteSize),
 	  _textureAtlasFilename(std::move(textureAtlasFilename)), _blockShader(blockShader)
 {
 }

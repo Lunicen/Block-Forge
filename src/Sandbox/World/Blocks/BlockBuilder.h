@@ -78,7 +78,7 @@ class BlockBuilder
 		std::shared_ptr<Texture> bottom;
 	};
 
-	std::shared_ptr<FaceVertices> _faceVertices;
+	std::shared_ptr<FaceVertices> _faceVertices = std::make_shared<FaceVertices>();
 	std::vector<TriangleIndexes>& _faceIndices;
 
 	size_t _slotSize;

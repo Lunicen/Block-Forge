@@ -2,7 +2,7 @@
 
 #include "WorldGeneratorUtils.h"
 
-WorldGenerator::WorldGenerator(const int seed) : _blockMap("src/Data/Blocks.json"), _seed(seed)
+WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
 	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blockMap);
 	_biomes = biomeProvider.GetBiomes(_seed);

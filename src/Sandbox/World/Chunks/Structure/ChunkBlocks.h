@@ -39,9 +39,17 @@ class ChunkBlocks
 {
 public:
 
+	ChunkBlocks(const ChunkBlocks&);
+	ChunkBlocks(ChunkBlocks&&) noexcept;
+	
+	ChunkBlocks &operator=(const ChunkBlocks &);
+	ChunkBlocks &operator=(ChunkBlocks &&) noexcept;
+
 	/// @brief Map with blocks that are placed inside the chunk.
 	///	@details This map contains all blocks that are included in the chunk
 	///	and maps the location of the block as a key, and it's model and
 	///	faces visibility as a key.
 	std::unordered_map<Position, BlockVisibility> block;
+
+	~ChunkBlocks();
 };

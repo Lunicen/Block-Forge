@@ -34,8 +34,6 @@ void FPSCounter:: CountFps()
 
 void FPSCounter::Update()
 {
-	//glDisable(GL_CULL_FACE);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	gltBeginDraw();
 
 	CountFps();
@@ -45,8 +43,6 @@ void FPSCounter::Update()
 	gltDrawText2DAligned(_fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
 
 	gltEndDraw();
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glEnable(GL_CULL_FACE);
 }
 
 FPSCounter::~FPSCounter()

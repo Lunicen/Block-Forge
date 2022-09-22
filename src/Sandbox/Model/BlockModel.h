@@ -48,7 +48,7 @@ struct FacesVisibility
 };
 
 /// @class BlockModel
-///	@brief Represents a model of a block.
+///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Graphical_model" target="_blank">graphical model</a> of a block.
 ///	@note This class is not an actual model.
 ///	More like container for the @see BlockFaceModel objects. But it suits well it's definition and
 ///	has functionality that makes sense.

@@ -1,10 +1,15 @@
 #pragma once
-#include "Model.h"
+#include <memory>
+
+#include "Mesh/Mesh.h"
 
 /// @class BlockFaceModel
 ///	@brief Represents face of a @see BlockModel.
-class BlockFaceModel : public Model
+class BlockFaceModel
 {
+	std::unique_ptr<Mesh> _mesh;
+	std::shared_ptr<Texture> _texture;
+
 public:
 
 	/// @brief The constructor.

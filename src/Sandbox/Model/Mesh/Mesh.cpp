@@ -1,8 +1,11 @@
 #include "Mesh.h"
 
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
-	: _shader(shader), _indicesAmount(static_cast<GLsizei>(indices.size()) * 3)
+	: _shader(shader)
 {
+	constexpr auto indexesInOneTriangle = 3;
+	_indicesAmount = static_cast<GLsizei>(indices.size()) * indexesInOneTriangle;
+
 	_vao.Bind();
 	const auto vbo = VertexBuffer(vertices);
 	const auto ebo = ElementBuffer(indices);

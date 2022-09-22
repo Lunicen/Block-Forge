@@ -186,7 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
-    <ClInclude Include="src\Sandbox\Model\Model.h" />
     <ClInclude Include="src\Sandbox\World\Blocks\BlockProvider.h" />
     <ClInclude Include="src\Sandbox\Model\BlockModel.h" />
     <ClInclude Include="src\Sandbox\Model\BlockFaceModel.h" />

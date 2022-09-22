@@ -9,9 +9,9 @@ glm::ivec3 Noise3D::GetOriginShiftedByExpansionFactor(
 {
 	glm::ivec3 result;
 
-	result.x = static_cast<int>(frame.origin.x) * static_cast<int>(frame.size) - expansionFactor + xOffset;
-	result.y = static_cast<int>(frame.origin.y) * static_cast<int>(frame.size) - expansionFactor + yOffset;
-	result.z = static_cast<int>(frame.origin.z) * static_cast<int>(frame.size) - expansionFactor + zOffset;
+	result.x = frame.origin.x * static_cast<int>(frame.size) - expansionFactor + xOffset;
+	result.y = frame.origin.y * static_cast<int>(frame.size) - expansionFactor + yOffset;
+	result.z = frame.origin.z * static_cast<int>(frame.size) - expansionFactor + zOffset;
 
 	return result;
 }

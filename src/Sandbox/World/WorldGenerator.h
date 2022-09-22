@@ -9,7 +9,7 @@ class WorldGenerator
 {
 	std::vector<Biome> _biomes;
 	std::unique_ptr<BiomePlacer> _placer;
-	BlockMap _blockMap;
+	BlockMap _blockMap = BlockMap("src/Data/Blocks.json");
 
 	int _seed;
 

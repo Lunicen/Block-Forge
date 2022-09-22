@@ -12,7 +12,7 @@ class Mesh
 {
 	VertexArray _vao;
 	Shader& _shader;
-	const GLsizei _indicesAmount;
+	GLsizei _indicesAmount{};
 
 public:
 
