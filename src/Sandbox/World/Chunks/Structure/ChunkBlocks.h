@@ -60,5 +60,5 @@ public:
 	///	faces visibility as a key.
 	std::unordered_map<Position, BlockVisibility> block;
 
-	~ChunkBlocks();
+	~ChunkBlocks() = default;
 };
