@@ -1,7 +1,6 @@
 #pragma once
 #include "Biome.h"
-#include "Sandbox/Utils/Chunk/ChunkFrame.h"
-#include "Sandbox/Utils/ProceduralGen/Noise2D.h"
+#include "Sandbox/Noise/Noise2D.h"
 
 /// @class BiomePlacer
 /// @brief Places biomes according to the biomes map.

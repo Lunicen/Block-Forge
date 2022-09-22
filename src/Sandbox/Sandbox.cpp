@@ -1,11 +1,11 @@
 #include "Sandbox.h"
 #include "World.h"
-
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
-#include "Sandbox/FPSCounter.h"
-#include "World/Rendring/ChunkManager.h"
+#include "Utils/FPSCounter.h"
+#include "World/Chunks/Rendring/ChunkPlacer.h"
+
 
 void Sandbox::InitializeGlfw()
 {
@@ -45,23 +45,16 @@ void Sandbox::Run()
 	gladLoadGL();
 	glViewport(0, 0, width, height);
 
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
-	//glFrontFace(GL_CCW);
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 	glEnable(GL_DEPTH_TEST);
 
 	HumanInterfaceDevice hid(window);
 	Camera camera(window, width, height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
-	auto blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
 
-	auto worldGenerator = WorldGenerator(69, blockShader);
+	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkManager chunkManager(RenderViewType::cube, 8, 2, camera);
-	chunkManager.Bind(worldGenerator);
-
+	ChunkPlacer chunkPlacer(RenderViewType::cube, 8, 1, camera);
+	chunkPlacer.Bind(worldGenerator);
+	
 	FPSCounter counter;
 	
 	while(!glfwWindowShouldClose(window))
@@ -71,7 +64,7 @@ void Sandbox::Run()
 
 		camera.Update();
 		camera.HandleInput();
-		chunkManager.Update();
+		chunkPlacer.Update();
 		counter.Update();
 
 		glfwSwapBuffers(window);

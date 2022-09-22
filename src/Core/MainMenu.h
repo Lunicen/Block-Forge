@@ -6,9 +6,7 @@
 #include"imgui.h"
 #include"backends/imgui_impl_glfw.h"
 #include"backends/imgui_impl_opengl3.h"
-#include <glad/glad.h>
-// Warning, glfw library MUST be defined at the end!
-#include <GLFW/glfw3.h>
+#include "Core/OpenGLHeaders.h"
 
 /// @class MainMenu
 /// @brief Displays the GUI that is a Main Menu.

@@ -86,6 +86,7 @@ void Camera::HandleCursorMovement()
 
 	const double middleAxisX = static_cast<double>(_width) / 2.0;
 	const double middleAxisY = static_cast<double>(_height) / 2.0;
+
 	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_height));
 	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_width));
 
@@ -102,10 +103,10 @@ void Camera::HandleCursorMovement()
 	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
 }
 
-void Camera::Add(Block const& block) const
+void Camera::Bind(Shader const& shader) const
 {
-	block.GetShader().Load();
-	glUniformMatrix4fv(glGetUniformLocation(block.GetShader().GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
+	shader.Load();
+	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
 void Camera::HandleInput()
