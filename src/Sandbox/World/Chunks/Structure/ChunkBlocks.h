@@ -39,10 +39,19 @@ class ChunkBlocks
 {
 public:
 
+	/// @brief The constructor.
+	ChunkBlocks();
+
+	/// @brief Copy constructor.
 	ChunkBlocks(const ChunkBlocks&);
+
+	/// @brief Move constructor.
 	ChunkBlocks(ChunkBlocks&&) noexcept;
 	
+	/// @brief Copy assignment constructor.
 	ChunkBlocks &operator=(const ChunkBlocks &);
+
+	/// @brief Move assignment constructor.
 	ChunkBlocks &operator=(ChunkBlocks &&) noexcept;
 
 	/// @brief Map with blocks that are placed inside the chunk.
