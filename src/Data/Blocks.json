@@ -4,7 +4,7 @@
         "slotSize": 16,
         "blocks": [
             {
-                "block": "dirt",
+                "block": "grass",
                 "textures": [
                     {
                         "faces": [ "top" ],
@@ -22,6 +22,18 @@
                     },
                     {
                         "faces": [ "bottom" ],
+                        "location": {
+                            "column": 0,
+                            "row": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "block": "dirt",
+                "textures": [
+                    {
+                        "faces": [ "left", "right", "front", "back", "top", "bottom" ],
                         "location": {
                             "column": 0,
                             "row": 1

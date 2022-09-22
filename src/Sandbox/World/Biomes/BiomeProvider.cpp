@@ -28,7 +28,18 @@ std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& b
 		const auto id = biome["noise"]["id"].get<std::string>();
 		const auto frequency = biome["noise"]["frequency"].get<float>();
 
-		biomes.emplace_back(name, Noise3D(id, seed, frequency), _blockMap);
+		std::vector<std::pair<size_t, std::string>> paintLevels;
+		for (const auto& block : biome["blocks"])
+		{
+			std::pair<size_t, std::string> level;
+
+			level.first = block["depthLevel"].get<size_t>();
+			level.second = block["name"].get<std::string>();
+
+			paintLevels.emplace_back(level);
+		}
+
+		biomes.emplace_back(name, Noise3D(id, seed, frequency), paintLevels, _blockMap);
 	}
 
 	return biomes;
