@@ -16,11 +16,11 @@
                 "blocks": [
                     {
                         "name": "grass",
-                        "startLevel": 0
+                        "depthLevel": 0
                     },
                     {
                         "name": "dirt",
-                        "startLevel": 1
+                        "depthLevel": 1
                     }
                 ]
             },
@@ -33,7 +33,7 @@
                 "blocks": [
                     {
                         "name": "dirt",
-                        "startLevel": 0
+                        "depthLevel": 0
                     }
                 ]
             }

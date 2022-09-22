@@ -33,7 +33,7 @@ std::vector<Biome> BiomeProvider::GetBiomes(const int seed, const std::string& b
 		{
 			std::pair<size_t, std::string> level;
 
-			level.first = block["startLevel"].get<size_t>();
+			level.first = block["depthLevel"].get<size_t>();
 			level.second = block["name"].get<std::string>();
 
 			paintLevels.emplace_back(level);

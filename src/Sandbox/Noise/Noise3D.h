@@ -25,6 +25,12 @@ public:
 	{
 	}
 
+	/// @brief Get noise of the chunk column with additional blocks on the top.
+	/// @param frame - the frame of the chunk.
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis.
+	///	@param zOffset - offset from the origin Z axis. 
+	/// @param additionalHeight - the amount of additional blocks on Y axis (from the top of the column).
 	std::vector<float> GetColumnNoiseWithAdditionalHeight(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, size_t additionalHeight) const;
 
 	/// @brief Get noise of the chunk column.
