@@ -11,17 +11,6 @@ VertexBuffer::VertexBuffer(const std::vector<Vertex>& vertices)
 	glBufferData(GL_ARRAY_BUFFER, verticesSize, vertices.data(), GL_STATIC_DRAW);
 }
 
-VertexBuffer::VertexBuffer(const std::vector<Matrix>& transformations)
-{
-	const auto matricesSize = 
-		static_cast<GLsizeiptr>(transformations.size()) * 
-		static_cast<GLsizeiptr>(sizeof(Matrix));
-
-	glGenBuffers(1, &_bufferRef);
-	glBindBuffer(GL_ARRAY_BUFFER, _bufferRef);
-	glBufferData(GL_ARRAY_BUFFER, matricesSize, transformations.data(), GL_STATIC_DRAW);
-}
-
 void VertexBuffer::Bind() const
 {
 	glBindBuffer(GL_ARRAY_BUFFER, _bufferRef);

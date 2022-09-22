@@ -3,7 +3,9 @@
 #include "Sandbox/Model/BlockModel.h"
 #include "Sandbox/Model/Mesh/Geometry/Shader.h"
 
-class BlocksBuilder
+/// @class BlockBuilder
+/// @brief A factory that builds and outputs blocks based on their metadata.
+class BlockBuilder
 {
 	struct FaceVertices
 	{
@@ -88,7 +90,15 @@ class BlocksBuilder
 	BlockModel CreateBlockModel(const FaceTextures& faceTextures) const;
 
 public:
-	explicit BlocksBuilder(std::string textureAtlasFilename, size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
 
+	/// The constructor.
+	///	@param textureAtlasFilename - Path of the file containing the texture atlas of blocks.
+	///	@param spriteSize - The size of the sprite.
+	///	@param blockIndices - Indices of a block (for optimization purposes).
+	/// @param blockShader - Shader of a block (for optimization purposes).
+	explicit BlockBuilder(std::string textureAtlasFilename, size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
+
+	/// @brief Builds block based on the data.
+	///	@param blockData - metadata of the block to be built.
 	BlockModel Build(const JsonData& blockData);
 };

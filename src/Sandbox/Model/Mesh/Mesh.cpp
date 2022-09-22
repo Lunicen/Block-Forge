@@ -32,20 +32,3 @@ void Mesh::Draw(const Position& origin, const Texture& texture, const Camera& ca
 
 	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
 }
-
-void Mesh::Bind() const
-{
-	_shader.Load();
-	_vao.Bind();
-}
-
-void Mesh::Unbind() const
-{
-	_vao.Unbind();
-	_shader.Unload();
-}
-
-Shader& Mesh::GetShader() const
-{
-	return _shader;
-}

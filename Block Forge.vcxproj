@@ -145,7 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Sandbox\World\Blocks\BlocksProvider.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Sandbox\Model\Mesh\Mesh.cpp" />
     <ClCompile Include="src\Sandbox\Model\Surface\Texture.cpp" />
@@ -181,18 +181,19 @@
     <ClCompile Include="src\Sandbox\Model\Mesh\Geometry\VertexArray.cpp" />
     <ClCompile Include="src\Sandbox\World\WorldGenerator.cpp" />
     <ClCompile Include="src\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.cpp" />
-    <ClCompile Include="src\Sandbox\World\Blocks\BlocksBuilder.cpp" />
+    <ClCompile Include="src\Sandbox\World\Blocks\BlockBuilder.cpp" />
     <ClCompile Include="src\Sandbox\World\WorldGeneratorUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
-    <ClInclude Include="src\Sandbox\World\Blocks\BlocksProvider.h" />
+    <ClInclude Include="src\Sandbox\Model\Model.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlockProvider.h" />
     <ClInclude Include="src\Sandbox\Model\BlockModel.h" />
     <ClInclude Include="src\Sandbox\Model\BlockFaceModel.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Geometry\Structures.h" />
     <ClInclude Include="src\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Sandbox\Model\Surface\Texture.h" />
-    <ClInclude Include="src\Sandbox\World\Blocks\BlocksMap.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlockMap.h" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\CubeView.h" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\DiamondView.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
@@ -208,7 +209,7 @@
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />
     <ClCompile Include="src\Sandbox\Utils\FPSCounter.cpp" />
     <ClInclude Include="src\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.h" />
-    <ClInclude Include="src\Sandbox\World\Blocks\BlocksBuilder.h" />
+    <ClInclude Include="src\Sandbox\World\Blocks\BlockBuilder.h" />
     <ClInclude Include="src\Sandbox\World\WorldGeneratorUtils.h" />
   </ItemGroup>
   <ItemGroup>

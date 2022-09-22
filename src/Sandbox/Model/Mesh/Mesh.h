@@ -6,6 +6,8 @@
 #include "Sandbox/Camera.h"
 #include "Sandbox/Model/Surface/Texture.h"
 
+/// @class Mesh
+///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a @see Model.
 class Mesh
 {
 	VertexArray _vao;
@@ -13,13 +15,17 @@ class Mesh
 	const GLsizei _indicesAmount;
 
 public:
+
+	/// @brief The constructor.
+	///	@param vertices - The vertices of the mesh.
+	/// @param indices - The indices sequence of the vertices position.
+	/// @param shader - The shader that the mesh is using.
 	Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader);
-	
+
+	/// @brief Draws the mesh.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param texture - The texture to cover the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn mesh.
 	void Draw(const Position& origin, const Texture& texture, const Camera& camera) const;
-
-	void Bind() const;
-	void Unbind() const;
-
-	Shader& GetShader() const;
 };
 

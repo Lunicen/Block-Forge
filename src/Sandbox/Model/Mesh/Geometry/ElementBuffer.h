@@ -20,6 +20,8 @@ public:
 	ElementBuffer(ElementBuffer&& buffer) = default;
 
 	ElementBuffer& operator=(const ElementBuffer& buffer) = delete;
+
+	/// @brief Move assignment constructor.
 	ElementBuffer& operator=(ElementBuffer&& buffer) = default;
 
 	/// @brief Tells OpenGL to bind the EBO.

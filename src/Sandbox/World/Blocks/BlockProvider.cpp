@@ -1,13 +1,13 @@
-#include "BlocksProvider.h"
+#include "BlockProvider.h"
 
-#include "BlocksBuilder.h"
+#include "BlockBuilder.h"
 
-BlocksProvider::BlocksProvider(const std::string& filenameWithBlocksData)
+BlockProvider::BlockProvider(const std::string& filenameWithBlocksData)
 {
 	_blocksMetadata.Load(filenameWithBlocksData);
 }
 
-std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlocksProvider::GetBlocks(
+std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetBlocks(
 	std::vector<TriangleIndexes>& blockIndices,
 	Shader& blockShader,
 	const std::string& blocksSetName)
@@ -17,7 +17,7 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlocksProvider::Get
 	const std::string textureAtlasName = blocksSet.value("atlas", "");
 	const size_t slotSize = blocksSet.value("slotSize", 0);
 
-	auto builder = BlocksBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
+	auto builder = BlockBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
 	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
 
 	for (const auto& blockData : blocksSet["blocks"])

@@ -5,7 +5,7 @@
 
 /// @class ChunkPlacer
 /// @brief Handles placing the chunks around the camera.
-///	@details This class handles @link ../Structure/Chunk @endlink objects and manages them for optimal experience.
+///	@details This class handles @see Chunk objects and manages them for optimal experience.
 class ChunkPlacer
 {
 	Log& _log = Log::Get();

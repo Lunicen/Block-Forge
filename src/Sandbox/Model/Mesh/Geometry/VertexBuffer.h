@@ -14,14 +14,14 @@ public:
 	/// @brief The constructor creates VBO, binds it immediately and sets its data.
 	explicit VertexBuffer(const std::vector<Vertex>& vertices);
 
-	explicit VertexBuffer(const std::vector<Matrix>& transformations);
-
 	VertexBuffer(const VertexBuffer&) = delete;
 
 	/// @brief Move constructor.
 	VertexBuffer(VertexBuffer&&) = default;
 
 	VertexBuffer& operator=(const VertexBuffer&) = delete;
+
+	/// @brief Move assignment constructor.
 	VertexBuffer& operator=(VertexBuffer&&) = default;
 
 	/// @brief Tells OpenGL to bind the VBO.

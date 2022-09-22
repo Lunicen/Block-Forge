@@ -1,6 +1,6 @@
 #pragma once
 #include "Sandbox/Noise/Noise3D.h"
-#include "Sandbox/World/Blocks/BlocksMap.h"
+#include "Sandbox/World/Blocks/BlockMap.h"
 #include "Sandbox/World/Chunks/Structure/ChunkBlocks.h"
 
 /// @class Biome
@@ -9,7 +9,7 @@
 class Biome final : public Noise3D
 {
 	std::string _name;
-	BlocksMap& _blocksHandler;
+	BlockMap& _blocksMap;
 
 	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, float noise) const;
 
@@ -18,7 +18,8 @@ public:
 	/// @brief The constructor.
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
-	explicit Biome(std::string name, const Noise3D& noise, BlocksMap& blocksHandler);
+	/// @param blocksMap - block map, which is used to place them inside chunks based on the biome noise. 
+	explicit Biome(std::string name, const Noise3D& noise, BlockMap& blocksMap);
 	
 	/// @brief Adapts chunk column according to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk

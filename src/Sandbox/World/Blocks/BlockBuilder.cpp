@@ -1,6 +1,6 @@
-#include "BlocksBuilder.h"
+#include "BlockBuilder.h"
 
-void BlocksBuilder::SetFaceTexture(
+void BlockBuilder::SetFaceTexture(
 	std::vector<Vertex>& face, 
 	const std::shared_ptr<Texture>& texture,
 	std::shared_ptr<Texture>& blockFaceTexture)
@@ -9,7 +9,7 @@ void BlocksBuilder::SetFaceTexture(
 	blockFaceTexture = texture;
 }
 
-void BlocksBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
+void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
 {
 	if (face == "front")	SetFaceTexture(_faceVertices->front, texture, blockFaceTextures.front);
 	if (face == "back")		SetFaceTexture(_faceVertices->back, texture, blockFaceTextures.back);
@@ -19,7 +19,7 @@ void BlocksBuilder::DetermineAndSetFaceTexture(const std::string& face, const st
 	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, texture, blockFaceTextures.bottom);
 }
 
-BlockModel BlocksBuilder::CreateBlockModel(const FaceTextures& faceTextures) const
+BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) const
 {
 	FaceMeshes faceMeshes
 	{
@@ -44,13 +44,13 @@ BlockModel BlocksBuilder::CreateBlockModel(const FaceTextures& faceTextures) con
 	return BlockModel(std::move(faces));
 }
 
-BlocksBuilder::BlocksBuilder(std::string textureAtlasFilename, const size_t slotSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
-	: _faceVertices(std::make_shared<FaceVertices>()), _faceIndices(blockIndices), _slotSize(slotSize),
+BlockBuilder::BlockBuilder(std::string textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
+	: _faceVertices(std::make_shared<FaceVertices>()), _faceIndices(blockIndices), _slotSize(spriteSize),
 	  _textureAtlasFilename(std::move(textureAtlasFilename)), _blockShader(blockShader)
 {
 }
 
-BlockModel BlocksBuilder::Build(const JsonData& blockData)
+BlockModel BlockBuilder::Build(const JsonData& blockData)
 {
 	FaceTextures faceTextures;
 

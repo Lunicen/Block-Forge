@@ -1,6 +1,38 @@
+#include "Texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include "Texture.h"
+
+void Texture::LoadTexture(const unsigned char* image, const int& width, const int& height)
+{
+	glGenTextures(1, &_texture);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(_textureType, _texture);
+
+	glTexParameteri(_textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameteri(_textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glTexParameteri(_textureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(_textureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexImage2D(_textureType, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(_textureType);
+
+	glBindTexture(_textureType, 0);
+}
+
+Texture::Texture(const std::string& filenameWithImage)
+{
+	auto width = 0;
+	auto height = 0;
+	auto channelsInFile = 0;
+
+	stbi_set_flip_vertically_on_load(true);
+	const auto imageData = stbi_load(filenameWithImage.c_str(), &width, &height, &channelsInFile, 0);
+
+	LoadTexture(imageData, width, height);
+
+	stbi_image_free(imageData);
+}
 
 Texture::Texture(const std::string& filenameWithImage, const int x, const int y, const size_t spriteSize)
 {
@@ -33,21 +65,9 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 		}
 	}};
 
-	glGenTextures(1, &_texture);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(_textureType, _texture);
-
-	glTexParameteri(_textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	glTexParameteri(_textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	glTexParameteri(_textureType, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(_textureType, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	glTexImage2D(_textureType, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
-	glGenerateMipmap(_textureType);
+	LoadTexture(imageData, width, height);
 
 	stbi_image_free(imageData);
-	glBindTexture(_textureType, 0);
 }
 
 void Texture::SetUvToTextureAtlas(std::vector<Vertex>& vertices) const
