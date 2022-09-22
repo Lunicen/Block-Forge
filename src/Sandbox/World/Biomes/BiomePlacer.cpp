@@ -1,20 +1,19 @@
 #include "BiomePlacer.h"
 
-#include "Sandbox/World/Chunks/ChunkUtils.h"
-
 
 bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>& biomesMap)
 {
 	const auto& size = biomesMap.size() - 1; 
 
-	const auto noiseLowerLeft  = static_cast<int>(biomesMap[0][0]);
-	const auto noiseUpperLeft  = static_cast<int>(biomesMap[0][size]);
-	const auto noiseLowerRight = static_cast<int>(biomesMap[size][0]);
-	const auto noiseUpperRight = static_cast<int>(biomesMap[size][size]);
+	const auto noiseLowerLeft  = biomesMap[0][0];
+	const auto noiseUpperLeft  = biomesMap[0][size];
+	const auto noiseLowerRight = biomesMap[size][0];
+	const auto noiseUpperRight = biomesMap[size][size];
 
-	return	noiseLowerLeft == noiseLowerRight && 
-			noiseUpperRight == noiseLowerRight &&
-			noiseUpperLeft == noiseUpperRight;
+	constexpr float epsilon = FLT_MIN;
+	return	fabs(noiseLowerLeft - noiseLowerRight) < epsilon && 
+			fabs(noiseUpperRight - noiseLowerRight) < epsilon &&
+			fabs(noiseUpperLeft - noiseUpperRight) < epsilon;
 }
 
 Biome& BiomePlacer::GetBiomeAt(const float noise) const
@@ -69,7 +68,16 @@ std::vector<std::vector<std::vector<float>>> BiomePlacer::GetChunkNoise(const Ch
 	}
 
 	std::vector<std::vector<std::vector<float>>> noise;
-	ChunkUtils::InitializeVector3D(noise, sizeWithBorders);
+
+	noise.resize(sizeWithBorders);
+	for (size_t x = 0; x < sizeWithBorders; ++x)
+	{
+		noise[x].resize(sizeWithBorders);
+		for (size_t y = 0; y < sizeWithBorders; ++y)
+		{
+			noise[x][y].resize(sizeWithBorders);
+		}
+	}
 
 	for (size_t x = 0; x < sizeWithBorders; ++x)
 	{
