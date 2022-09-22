@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Noise.h"
+#include "Sandbox/Model/Mesh/Geometry/Structures.h"
 #include "Sandbox/World/Chunks/Structure/ChunkFrame.h"
 
 
@@ -9,6 +10,7 @@
 /// @brief Used for gathering data from the defined 3D noise.
 class Noise3D : protected Noise
 {
+	static glm::ivec3 GetOriginShiftedByExpansionFactor(const ChunkFrame& frame, const int xOffset, const int yOffset, const int zOffset, int expansionFactor);
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
 
 public:
