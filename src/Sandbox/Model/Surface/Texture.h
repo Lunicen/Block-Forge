@@ -48,7 +48,8 @@ public:
 	/// @brief Sets the UV values of the vertices.
 	///	@details Sets the UV values of the vertices, so the texture from the texture atlas could be displayed correctly.
 	/// @param vertices - The vertices of the mesh.
-	void SetUvToTextureAtlas(std::vector<Vertex>& vertices) const;
+	/// @param flip - If true, it flips the texture coordinates 180 degrees.
+	void SetUvToTextureAtlas(std::vector<Vertex>& vertices, bool flip = false) const;
 
 	/// @brief Tells OpenGL to use the texture.
 	void Bind(const Shader& shader) const;

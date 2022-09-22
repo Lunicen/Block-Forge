@@ -3,20 +3,21 @@
 void BlockBuilder::SetFaceTexture(
 	std::vector<Vertex>& face, 
 	const std::shared_ptr<Texture>& texture,
-	std::shared_ptr<Texture>& blockFaceTexture)
+	std::shared_ptr<Texture>& blockFaceTexture,
+	const bool flipTexture)
 {
-	texture->SetUvToTextureAtlas(face);
+	texture->SetUvToTextureAtlas(face, flipTexture);
 	blockFaceTexture = texture;
 }
 
 void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
 {
-	if (face == "front")	SetFaceTexture(_faceVertices->front, texture, blockFaceTextures.front);
-	if (face == "back")		SetFaceTexture(_faceVertices->back, texture, blockFaceTextures.back);
-	if (face == "left")		SetFaceTexture(_faceVertices->left, texture, blockFaceTextures.left);
-	if (face == "right")	SetFaceTexture(_faceVertices->right, texture, blockFaceTextures.right);
-	if (face == "top")		SetFaceTexture(_faceVertices->top, texture, blockFaceTextures.top);
-	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, texture, blockFaceTextures.bottom);
+	if (face == "front")	SetFaceTexture(_faceVertices->front, texture, blockFaceTextures.front, false);
+	if (face == "back")		SetFaceTexture(_faceVertices->back, texture, blockFaceTextures.back, true);
+	if (face == "left")		SetFaceTexture(_faceVertices->left, texture, blockFaceTextures.left, true);
+	if (face == "right")	SetFaceTexture(_faceVertices->right, texture, blockFaceTextures.right, false);
+	if (face == "top")		SetFaceTexture(_faceVertices->top, texture, blockFaceTextures.top, false);
+	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, texture, blockFaceTextures.bottom, true);
 }
 
 BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) const

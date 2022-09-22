@@ -70,12 +70,19 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 	stbi_image_free(imageData);
 }
 
-void Texture::SetUvToTextureAtlas(std::vector<Vertex>& vertices) const
+void Texture::SetUvToTextureAtlas(std::vector<Vertex>& vertices, const bool flip) const
 {
 	constexpr auto verticesAmount = 4;
 	for (auto i = 0; i < verticesAmount; ++i)
 	{
-		vertices.at(i).uvCoordinate = _textureAtlasCoords[i];
+		if (flip)
+		{
+			vertices.at((i + verticesAmount - 1) % verticesAmount).uvCoordinate = _textureAtlasCoords[i];
+		}
+		else
+		{
+			vertices.at(i).uvCoordinate = _textureAtlasCoords[i];
+		}
 	}
 }
 
