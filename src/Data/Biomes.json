@@ -13,14 +13,14 @@
                     "id": "GQAHAAEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "frequency": 0.1
                 },
-                "textures": [
+                "blocks": [
                     {
-                        "name": "dirt",
+                        "name": "grass",
                         "startLevel": 0
                     },
                     {
-                        "name": "stone",
-                        "startLevel": 3
+                        "name": "dirt",
+                        "startLevel": 1
                     }
                 ]
             },
@@ -30,14 +30,10 @@
                     "id": "BAAAAAAAAAAgQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
                     "frequency": 0.1
                 },
-                "textures": [
+                "blocks": [
                     {
-                        "name": "sand",
+                        "name": "dirt",
                         "startLevel": 0
-                    },
-                    {
-                        "name": "stone",
-                        "startLevel": 5
                     }
                 ]
             }
