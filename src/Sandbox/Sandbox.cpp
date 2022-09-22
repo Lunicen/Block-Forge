@@ -3,7 +3,6 @@
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
-#include "Model/BlockFaceModel.h"
 #include "Utils/FPSCounter.h"
 #include "World/Chunks/Rendring/ChunkHandler.h"
 
