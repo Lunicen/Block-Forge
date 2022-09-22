@@ -45,7 +45,7 @@ Texture::Texture(const std::string& filenameWithImage, const int x, const int y,
 
 	const auto invertedY = height / spriteSize - y - 1;
 
-	_coords = 
+	_textureAtlasCoords = 
 	{{
 		{
 			static_cast<float>(x) * static_cast<float>(spriteSize) / static_cast<float>(width),
@@ -75,7 +75,7 @@ void Texture::SetUvToTextureAtlas(std::vector<Vertex>& vertices) const
 	constexpr auto verticesAmount = 4;
 	for (auto i = 0; i < verticesAmount; ++i)
 	{
-		vertices.at(i).uvCoordinate = _coords[i];
+		vertices.at(i).uvCoordinate = _textureAtlasCoords[i];
 	}
 }
 
@@ -92,11 +92,6 @@ void Texture::Bind(const Shader& shader) const
 void Texture::Unbind() const
 {
 	glBindTexture(_textureType, 0);
-}
-
-void Texture::Delete() const
-{
-	glDeleteTextures(1, &_texture);
 }
 
 Texture::~Texture()

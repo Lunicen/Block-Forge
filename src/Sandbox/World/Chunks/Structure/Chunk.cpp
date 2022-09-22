@@ -12,15 +12,15 @@ void Chunk::Draw() const
 	{
 		auto origin = block.first;
 
-		const auto& faceModel = block.second.model;
+		const auto& blockModel = block.second.model;
 		const auto& faceVisible = block.second.visibility;
 
-		if (faceVisible.front)  faceModel->DrawFrontFace(origin, _camera);
-		if (faceVisible.back)   faceModel->DrawBackFace(origin, _camera);
-		if (faceVisible.left)   faceModel->DrawLeftFace(origin, _camera);
-		if (faceVisible.right)  faceModel->DrawRightFace(origin, _camera);
-		if (faceVisible.top)    faceModel->DrawTopFace(origin, _camera);
-		if (faceVisible.bottom) faceModel->DrawBottomFace(origin, _camera);
+		if (faceVisible.front)  blockModel->DrawFrontFace(origin, _camera);
+		if (faceVisible.back)   blockModel->DrawBackFace(origin, _camera);
+		if (faceVisible.left)   blockModel->DrawLeftFace(origin, _camera);
+		if (faceVisible.right)  blockModel->DrawRightFace(origin, _camera);
+		if (faceVisible.top)    blockModel->DrawTopFace(origin, _camera);
+		if (faceVisible.bottom) blockModel->DrawBottomFace(origin, _camera);
 	}
 }
 

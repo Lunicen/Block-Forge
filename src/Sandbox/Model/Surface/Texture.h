@@ -6,7 +6,7 @@
 /// @brief Texture represents an image that is displayed on the @see Mesh.
 class Texture
 {
-	std::array<Point, 4> _coords
+	std::array<Point, 4> _textureAtlasCoords
 	{
 		Point{0.0f, 0.0f},
 		Point{1.0f, 0.0f},
@@ -55,9 +55,6 @@ public:
 
 	/// @brief Tells OpenGL to stop using this texture.
 	void Unbind() const;
-
-	/// @brief Deletes the texture.
-	void Delete() const;
 
 	~Texture();
 };
