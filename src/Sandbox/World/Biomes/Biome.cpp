@@ -12,7 +12,7 @@ void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origi
 	blocks.block[origin] = blockData;
 }
 
-Biome::Biome(std::string name, const Noise3D& noise, BlocksHandler& blocksHandler)
+Biome::Biome(std::string name, const Noise3D& noise, BlocksMap& blocksHandler)
 	: Noise3D(noise), _name(std::move(name)), _blocksHandler(blocksHandler)
 {
 }

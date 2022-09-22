@@ -9,7 +9,7 @@ class WorldGenerator
 {
 	std::vector<Biome> _biomes;
 	std::unique_ptr<BiomePlacer> _placer;
-	BlocksHandler _blocksHandler;
+	BlocksMap _blocksMap;
 
 	int _seed;
 
