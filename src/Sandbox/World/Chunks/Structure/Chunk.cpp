@@ -12,8 +12,6 @@ void Chunk::Draw() const
 	for (auto& block : _blocks.block)
 	{
 		auto origin = block.first;
-		origin.x -= 0.5f;
-		origin.z += 1.0f;
 
 		const auto& faceModel = block.second.model;
 		const auto& faceVisible = block.second.visibility;

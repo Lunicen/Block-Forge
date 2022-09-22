@@ -21,7 +21,6 @@ glm::ivec3 ChunkRenderer::GetNormalizedPosition(const glm::vec3& position) const
 {
 	auto normalizedPosition = position;
 
-	normalizedPosition += 0.5f;
 	normalizedPosition /= _renderView->GetChunkSize();
 
 	normalizedPosition.x = floor(normalizedPosition.x);
