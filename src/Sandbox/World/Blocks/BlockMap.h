@@ -16,6 +16,18 @@ class BlockMap
 
 public:
 
+	/// @brief Copy constructor.
+	BlockMap(const BlockMap&) = default;
+
+	/// @brief Move constructor.
+	BlockMap(BlockMap&&) noexcept = default;
+
+	/// @brief Copy assignment constructor.
+	BlockMap &operator=(const BlockMap&) = delete;
+
+	/// @brief Move assignment constructor.
+	BlockMap &operator=(const BlockMap&&) noexcept = delete;
+
 	/// @brief The constructor.
 	///	@param filenameWithBlocksData - Path to the JSON file containing the blocks metadata.
 	explicit BlockMap(const std::string& filenameWithBlocksData)
@@ -30,4 +42,6 @@ public:
 	{
 		return _blockTypes.at(blockName);
 	}
+
+	~BlockMap() = default;
 };
