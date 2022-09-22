@@ -3,10 +3,10 @@
 #include "ChunkRenderer.h"
 #include "RenderViews/RenderViewTypes.h"
 
-/// @class ChunkHandler
-/// @brief Handles managing the chunks around the camera.
+/// @class ChunkPlacer
+/// @brief Handles placing the chunks around the camera.
 ///	@details This class handles @link ../Structure/Chunk @endlink objects and manages them for optimal experience.
-class ChunkHandler
+class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
@@ -26,7 +26,7 @@ public:
 	///	@param chunkSize - the size of the generated chunks.
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param camera - the object around which the chunks are rendered.
-	ChunkHandler(RenderViewType viewType, size_t chunkSize, size_t renderDistance, Camera& camera);
+	ChunkPlacer(RenderViewType viewType, size_t chunkSize, size_t renderDistance, Camera& camera);
 
 	/// @brief Updates the chunk manager to adapt to the current frame.
 	void Update() const;
