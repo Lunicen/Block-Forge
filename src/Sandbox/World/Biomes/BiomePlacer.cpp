@@ -33,13 +33,13 @@ void BiomePlacer::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	const auto biomesMapNoise = _noise.GetNoise(frame);
 
-	if (HasChunkOnlySingleBiome(biomesMapNoise))
+	/*if (HasChunkOnlySingleBiome(biomesMapNoise))
 	{
 		const auto biome = GetBiomeAt(biomesMapNoise[0][0]);
 		biome.PaintChunk(frame, blocks);
 
 		return;
-	}
+	}*/
 
 	for (size_t x = 0; x < frame.size; ++x)
 	{

@@ -12,6 +12,7 @@ class Noise3D : protected Noise
 {
 	static glm::ivec3 GetOriginShiftedByExpansionFactor(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor);
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
+	
 
 public:
 
@@ -23,6 +24,8 @@ public:
 		: Noise(encodedTree, seed, frequency)
 	{
 	}
+
+	std::vector<float> GetColumnNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, size_t additionalHeight) const;
 
 	/// @brief Get noise of the chunk column.
 	/// @param frame - the frame of the chunk.

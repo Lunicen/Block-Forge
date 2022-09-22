@@ -46,8 +46,35 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 	return result;
 }
 
+std::vector<float> Noise3D::GetColumnNoiseAt(
+	const ChunkFrame& frame, 
+	const int xOffset, const int yOffset, const int zOffset,
+	const size_t additionalHeight) const
+{
+	constexpr auto minimalSupportedNoiseSize = 8;
+	if (frame.size < minimalSupportedNoiseSize)
+	{
+		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
+	}
+
+	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, 0);
+	const auto areaSize = frame.size + additionalHeight;
+
+	auto noise = std::vector<float>(areaSize);
+
+	GetGenerator()->GenUniformGrid3D(
+		noise.data(),
+		origin.x, origin.y, origin.z,
+		1, static_cast<int>(areaSize), 1,
+		GetFrequency(), GetSeed());
+
+	return noise;
+}
+
 std::vector<float> Noise3D::GetColumnNoise(
-	const ChunkFrame& frame, const int xOffset, const int yOffset, const int zOffset, const int expansionFactor) const
+	const ChunkFrame& frame, 
+	const int xOffset, const int yOffset, const int zOffset, 
+	const int expansionFactor) const
 {
 	constexpr auto minimalSupportedNoiseSize = 8;
 	if (frame.size < minimalSupportedNoiseSize)

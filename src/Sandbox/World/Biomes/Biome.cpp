@@ -1,12 +1,25 @@
 #include "Biome.h"
 
-void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const float noise) const
+
+void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const std::vector<float>& noise, const size_t yLevel) const
 {
-	if (noise > 0) return;
+	if (noise[yLevel] > 0) return;
+
+	auto blockIndex = _paintLevel.size() - 1;
+	while (blockIndex > 0)
+	{
+		const auto& noiseOverThisBlock = yLevel + _paintLevel[blockIndex].first;
+		if (noise[noiseOverThisBlock] <= 0)
+		{
+			break;
+		}
+
+		--blockIndex;
+	}
 
 	const BlockVisibility blockData = 
 	{
-		_blocksMap.Get("dirt")
+		_blocksMap.Get(_paintLevel[blockIndex].second)
 	};
 
 	blocks.block[origin] = blockData;
@@ -22,7 +35,12 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	const auto& x = xOffset;
 	const auto& z = zOffset;
 
-	const auto noise = GetColumnNoise(frame, xOffset, yOffset, zOffset);
+	const auto noise = GetColumnNoiseAt(
+		frame,
+		xOffset, yOffset, zOffset, 
+		_paintLevel.back().first
+	);
+
 	const auto origin = frame.origin * static_cast<int>(frame.size);
 
 	for (size_t y = 0; y < frame.size; ++y)
@@ -30,28 +48,7 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 		SetBlockAccordingToNoise(
 			blocks,
 			origin + glm::ivec3(x, y, z),
-			noise[y]
+			noise, y
 		);
-	}
-}
-
-void Biome::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
-{
-	const auto noise = GetNoise(frame);
-	const auto origin = frame.origin * static_cast<int>(frame.size);
-
-	for (size_t x = 0; x < frame.size; ++x)
-	{
-		for (size_t y = 0; y < frame.size; ++y)
-		{
-			for (size_t z = 0; z < frame.size; ++z)
-			{
-				SetBlockAccordingToNoise(
-					blocks,
-					origin + glm::ivec3(x, y, z),
-					noise[x][y][z]
-				);
-			}
-		}
 	}
 }
