@@ -94,6 +94,9 @@ void ChunkRenderer::RenderChunksAround(const glm::ivec3& normalizedOrigin)
 ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera)
 	: _camera(camera), _renderView(std::move(renderView)), _generator(generator), _previousNormalizedPosition(GetNormalizedPosition(camera.GetPosition()))
 {
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CCW);
+
 	RenderChunksAround(_previousNormalizedPosition);
 }
 
@@ -109,10 +112,14 @@ void ChunkRenderer::Render()
 		_log.Trace("Normalized position: " + PositionToString(currentNormalizedPosition));
 	}
 
+	glEnable(GL_CULL_FACE);
+
 	for (const auto& chunk : _loadedChunks)
 	{
 		chunk->Draw();
 	}
+
+	glDisable(GL_CULL_FACE);
 }
 
 void ChunkRenderer::SetRenderView(std::unique_ptr<RenderView>& renderView)

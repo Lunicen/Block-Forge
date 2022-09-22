@@ -16,21 +16,21 @@ class BlockBuilder
 			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
 			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
-
+		
 		std::vector<Vertex> back
 		{
 			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 0.0f}},
-			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 0.0f}},
 			Vertex{Position{1.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
-			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{0.0f, 1.0f}},
+			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 		
 		std::vector<Vertex> left
 		{
 			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
-			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{1.0f, 0.0f}},
 			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
-			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
+			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 
 		std::vector<Vertex> right
@@ -85,7 +85,8 @@ class BlockBuilder
 	std::string _textureAtlasFilename;
 	Shader& _blockShader;
 
-	static void SetFaceTexture(std::vector<Vertex>& face, const std::shared_ptr<Texture>& texture, std::shared_ptr<Texture>& blockFaceTexture);
+	static void SetFaceTexture(std::vector<Vertex>& face, const std::shared_ptr<Texture>& texture, std::shared_ptr<Texture>& blockFaceTexture, bool
+	                           flipTexture);
 	void DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const;
 	BlockModel CreateBlockModel(const FaceTextures& faceTextures) const;
 
