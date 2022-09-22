@@ -35,7 +35,7 @@ void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int 
 	const auto& x = xOffset;
 	const auto& z = zOffset;
 
-	const auto noise = GetColumnNoiseAt(
+	const auto noise = GetColumnNoiseWithAdditionalHeight(
 		frame,
 		xOffset, yOffset, zOffset, 
 		_paintLevel.back().first

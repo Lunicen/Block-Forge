@@ -46,16 +46,21 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 	return result;
 }
 
-std::vector<float> Noise3D::GetColumnNoiseAt(
+void Noise3D::ValidateDataCorrectness(const size_t& noiseSize)
+{
+	constexpr auto minimalSupportedNoiseSize = 8;
+	if (noiseSize < minimalSupportedNoiseSize)
+	{
+		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
+	}
+}
+
+std::vector<float> Noise3D::GetColumnNoiseWithAdditionalHeight(
 	const ChunkFrame& frame, 
 	const int xOffset, const int yOffset, const int zOffset,
 	const size_t additionalHeight) const
 {
-	constexpr auto minimalSupportedNoiseSize = 8;
-	if (frame.size < minimalSupportedNoiseSize)
-	{
-		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
-	}
+	ValidateDataCorrectness(frame.size);
 
 	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, 0);
 	const auto areaSize = frame.size + additionalHeight;
@@ -76,11 +81,7 @@ std::vector<float> Noise3D::GetColumnNoise(
 	const int xOffset, const int yOffset, const int zOffset, 
 	const int expansionFactor) const
 {
-	constexpr auto minimalSupportedNoiseSize = 8;
-	if (frame.size < minimalSupportedNoiseSize)
-	{
-		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
-	}
+	ValidateDataCorrectness(frame.size);
 
 	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, expansionFactor);
 	const auto areaSize = frame.size + static_cast<size_t>(2) * expansionFactor;
