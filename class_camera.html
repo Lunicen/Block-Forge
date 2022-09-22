@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -106,9 +106,9 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
 <tr class="memdesc:a4a596a3ea1fdc7d244ba4268031a360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the camera orthogonal projection settings. <br /></td></tr>
 <tr class="separator:a4a596a3ea1fdc7d244ba4268031a360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86bb43eaed27b97c0a42e904d0eef694"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a86bb43eaed27b97c0a42e904d0eef694">Add</a> (<a class="el" href="class_block.html">Block</a> const &amp;block) const</td></tr>
-<tr class="memdesc:a86bb43eaed27b97c0a42e904d0eef694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the camera handling to the shader.  <a href="class_camera.html#a86bb43eaed27b97c0a42e904d0eef694">More...</a><br /></td></tr>
-<tr class="separator:a86bb43eaed27b97c0a42e904d0eef694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f523e4c06d2ab772df2f88a951936eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a7f523e4c06d2ab772df2f88a951936eb">Bind</a> (<a class="el" href="class_shader.html">Shader</a> const &amp;shader) const</td></tr>
+<tr class="memdesc:a7f523e4c06d2ab772df2f88a951936eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the camera handling to the shader.  <a href="class_camera.html#a7f523e4c06d2ab772df2f88a951936eb">More...</a><br /></td></tr>
+<tr class="separator:a7f523e4c06d2ab772df2f88a951936eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ead3f55e3a9f122a391376e09a83bba"><td class="memItemLeft" align="right" valign="top"><a id="a3ead3f55e3a9f122a391376e09a83bba" name="a3ead3f55e3a9f122a391376e09a83bba"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>HandleInput</b> ()</td></tr>
 <tr class="memdesc:a3ead3f55e3a9f122a391376e09a83bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Captures input and moves the camera accordingly. <br /></td></tr>
@@ -235,26 +235,26 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFarPane</b> () co
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a86bb43eaed27b97c0a42e904d0eef694" name="a86bb43eaed27b97c0a42e904d0eef694"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86bb43eaed27b97c0a42e904d0eef694">&#9670;&nbsp;</a></span>Add()</h2>
+<a id="a7f523e4c06d2ab772df2f88a951936eb" name="a7f523e4c06d2ab772df2f88a951936eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f523e4c06d2ab772df2f88a951936eb">&#9670;&nbsp;</a></span>Bind()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Camera::Add </td>
+          <td class="memname">void Camera::Bind </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_block.html">Block</a> const &amp;&#160;</td>
-          <td class="paramname"><em>block</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> const &amp;&#160;</td>
+          <td class="paramname"><em>shader</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds the camera handling to the shader. </p>
+<p>Binds the camera handling to the shader. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">block</td><td>- the block instance name. </td></tr>
+    <tr><td class="paramname">shader</td><td>- shader to bind the camera matrix. </td></tr>
   </table>
   </dd>
 </dl>

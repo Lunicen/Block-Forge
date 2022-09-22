@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -89,34 +89,34 @@ $(document).ready(function(){initNavTree('_biome_8h_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Sandbox/Utils/ProceduralGen/Noise3D.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Sandbox/Utils/Chunk/ChunkBlocks.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_biome.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_biome.html">Biome</a> final : <span class="keyword">public</span> <a class="code hl_class" href="class_noise3_d.html">Noise3D</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    std::string _name;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; _blockShader;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">void</span> SetBlockAccordingToNoise(std::unique_ptr&lt;Block&gt;&amp; block, <span class="keywordtype">float</span> xBlock, <span class="keywordtype">float</span> yBlock, <span class="keywordtype">float</span> zBlock,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                                  <span class="keywordtype">float</span> noise) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Sandbox/Noise/Noise3D.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Sandbox/World/Blocks/BlockMap.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Sandbox/World/Chunks/Structure/ChunkBlocks.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_biome.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="class_biome.html">Biome</a> final : <span class="keyword">public</span> <a class="code hl_class" href="class_noise3_d.html">Noise3D</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    std::string _name;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; _blocksMap;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">void</span> SetBlockAccordingToNoise(<a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a>&amp; blocks, glm::ivec3 origin, <span class="keywordtype">float</span> noise) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_biome.html#a7d0b999e4c581f3574318bfe2a536c9b">Biome</a>(std::string name, <span class="keyword">const</span> <a class="code hl_class" href="class_noise3_d.html">Noise3D</a>&amp; noise, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; blockShader);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_biome.html#aeee33dfa4fc67e65b6996e305d026317">Biome</a>(std::string name, <span class="keyword">const</span> <a class="code hl_class" href="class_noise3_d.html">Noise3D</a>&amp; noise, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blocksMap);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">PaintColumn</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a>&amp; frame, <a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a>&amp; blocks, <span class="keywordtype">int</span> xOffset, <span class="keywordtype">int</span> yOffset, <span class="keywordtype">int</span> zOffset) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_biome.html#a017789f9099adf9cdd698e505ac71c1d">PaintChunk</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a>&amp; frame, <a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a>&amp; blocks) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="ttc" id="aclass_biome_html"><div class="ttname"><a href="class_biome.html">Biome</a></div><div class="ttdoc">Represents biome that could be used for terrain generation.</div><div class="ttdef"><b>Definition:</b> Biome.h:9</div></div>
-<div class="ttc" id="aclass_biome_html_a017789f9099adf9cdd698e505ac71c1d"><div class="ttname"><a href="class_biome.html#a017789f9099adf9cdd698e505ac71c1d">Biome::PaintChunk</a></div><div class="ttdeci">void PaintChunk(const ChunkFrame &amp;frame, ChunkBlocks &amp;blocks) const</div><div class="ttdoc">Adapts chunk to the biome noise.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:49</div></div>
-<div class="ttc" id="aclass_biome_html_a7d0b999e4c581f3574318bfe2a536c9b"><div class="ttname"><a href="class_biome.html#a7d0b999e4c581f3574318bfe2a536c9b">Biome::Biome</a></div><div class="ttdeci">Biome(std::string name, const Noise3D &amp;noise, Shader &amp;blockShader)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:17</div></div>
-<div class="ttc" id="aclass_biome_html_ae10b1dee3ade5ae8f65f955311780aac"><div class="ttname"><a href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">Biome::PaintColumn</a></div><div class="ttdeci">void PaintColumn(const ChunkFrame &amp;frame, ChunkBlocks &amp;blocks, int xOffset, int yOffset, int zOffset) const</div><div class="ttdoc">Adapts chunk column according to the biome noise.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:22</div></div>
-<div class="ttc" id="aclass_chunk_blocks_html"><div class="ttname"><a href="class_chunk_blocks.html">ChunkBlocks</a></div><div class="ttdoc">A structure that represents the body of typical chunk. Blocks and their visibility.</div><div class="ttdef"><b>Definition:</b> ChunkBlocks.h:9</div></div>
+<div class="ttc" id="aclass_biome_html"><div class="ttname"><a href="class_biome.html">Biome</a></div><div class="ttdoc">Represents biome that could be used for terrain generation.</div><div class="ttdef"><b>Definition:</b> Biome.h:10</div></div>
+<div class="ttc" id="aclass_biome_html_a017789f9099adf9cdd698e505ac71c1d"><div class="ttname"><a href="class_biome.html#a017789f9099adf9cdd698e505ac71c1d">Biome::PaintChunk</a></div><div class="ttdeci">void PaintChunk(const ChunkFrame &amp;frame, ChunkBlocks &amp;blocks) const</div><div class="ttdoc">Adapts chunk to the biome noise.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:38</div></div>
+<div class="ttc" id="aclass_biome_html_ae10b1dee3ade5ae8f65f955311780aac"><div class="ttname"><a href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">Biome::PaintColumn</a></div><div class="ttdeci">void PaintColumn(const ChunkFrame &amp;frame, ChunkBlocks &amp;blocks, int xOffset, int yOffset, int zOffset) const</div><div class="ttdoc">Adapts chunk column according to the biome noise.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:20</div></div>
+<div class="ttc" id="aclass_biome_html_aeee33dfa4fc67e65b6996e305d026317"><div class="ttname"><a href="class_biome.html#aeee33dfa4fc67e65b6996e305d026317">Biome::Biome</a></div><div class="ttdeci">Biome(std::string name, const Noise3D &amp;noise, BlockMap &amp;blocksMap)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Biome.cpp:15</div></div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:8</div></div>
+<div class="ttc" id="aclass_chunk_blocks_html"><div class="ttname"><a href="class_chunk_blocks.html">ChunkBlocks</a></div><div class="ttdoc">A structure that represents the body of typical chunk. Blocks and their visibility.</div><div class="ttdef"><b>Definition:</b> ChunkBlocks.h:39</div></div>
 <div class="ttc" id="aclass_chunk_frame_html"><div class="ttname"><a href="class_chunk_frame.html">ChunkFrame</a></div><div class="ttdoc">A structure that represents the frame of chunk. It's location and size.</div><div class="ttdef"><b>Definition:</b> ChunkFrame.h:7</div></div>
-<div class="ttc" id="aclass_noise3_d_html"><div class="ttname"><a href="class_noise3_d.html">Noise3D</a></div><div class="ttdoc">Used for gathering data from the defined 3D noise.</div><div class="ttdef"><b>Definition:</b> Noise3D.h:10</div></div>
-<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
+<div class="ttc" id="aclass_noise3_d_html"><div class="ttname"><a href="class_noise3_d.html">Noise3D</a></div><div class="ttdoc">Used for gathering data from the defined 3D noise.</div><div class="ttdef"><b>Definition:</b> Noise3D.h:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

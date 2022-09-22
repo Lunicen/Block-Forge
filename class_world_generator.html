@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,8 +99,8 @@ $(document).ready(function(){initNavTree('class_world_generator.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade4f5b6101e2af7dfa5b4de7f59b095b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_generator.html#ade4f5b6101e2af7dfa5b4de7f59b095b">WorldGenerator</a> (int seed, <a class="el" href="class_shader.html">Shader</a> &amp;blockShader)</td></tr>
-<tr class="separator:ade4f5b6101e2af7dfa5b4de7f59b095b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a18e522393256a82058f44d9d9f296"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_generator.html#ab1a18e522393256a82058f44d9d9f296">WorldGenerator</a> (int seed)</td></tr>
+<tr class="separator:ab1a18e522393256a82058f44d9d9f296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56de4e1e40c7b3cf32dd56607d2b4a23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23">PaintChunk</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;blocks) const</td></tr>
 <tr class="memdesc:a56de4e1e40c7b3cf32dd56607d2b4a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapts chunk at specified origin, according to the world terrain noise.  <a href="class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23">More...</a><br /></td></tr>
 <tr class="separator:a56de4e1e40c7b3cf32dd56607d2b4a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,8 +109,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >Handles generating the world. </p>
 <p >This class is made for transforming chunks according to the biomes that are specified in it. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ade4f5b6101e2af7dfa5b4de7f59b095b" name="ade4f5b6101e2af7dfa5b4de7f59b095b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade4f5b6101e2af7dfa5b4de7f59b095b">&#9670;&nbsp;</a></span>WorldGenerator()</h2>
+<a id="ab1a18e522393256a82058f44d9d9f296" name="ab1a18e522393256a82058f44d9d9f296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a18e522393256a82058f44d9d9f296">&#9670;&nbsp;</a></span>WorldGenerator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,18 +122,8 @@ Public Member Functions</h2></td></tr>
           <td class="memname">WorldGenerator::WorldGenerator </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>seed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
-          <td class="paramname"><em>blockShader</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -145,7 +135,6 @@ Public Member Functions</h2></td></tr>
 <p >The constructor. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">seed</td><td>- the world seed. </td></tr>
-    <tr><td class="paramname">blockShader</td><td>- a reference specified for the <a class="el" href="class_biome.html">Biome</a> class. </td></tr>
   </table>
   </dd>
 </dl>

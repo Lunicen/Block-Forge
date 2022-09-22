@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,12 +99,9 @@ $(document).ready(function(){initNavTree('class_chunk.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72c226e877caee5e96cc5dc5680d5a87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#a72c226e877caee5e96cc5dc5680d5a87">Chunk</a> (glm::ivec3 origin, <a class="el" href="class_chunk_manager.html">ChunkManager</a> &amp;chunkManager)</td></tr>
-<tr class="memdesc:a72c226e877caee5e96cc5dc5680d5a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk.html#a72c226e877caee5e96cc5dc5680d5a87">More...</a><br /></td></tr>
-<tr class="separator:a72c226e877caee5e96cc5dc5680d5a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a232a0f6e5c7cec43b88117a2cb94c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#a9a232a0f6e5c7cec43b88117a2cb94c8">Load</a> (<a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;chunkData)</td></tr>
-<tr class="memdesc:a9a232a0f6e5c7cec43b88117a2cb94c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes chunk by allocating the memory.  <a href="class_chunk.html#a9a232a0f6e5c7cec43b88117a2cb94c8">More...</a><br /></td></tr>
-<tr class="separator:a9a232a0f6e5c7cec43b88117a2cb94c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">Chunk</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> blocks, <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="memdesc:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">More...</a><br /></td></tr>
+<tr class="separator:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3498d0c9e6cd5a93fcf70da77a65ef82"><td class="memItemLeft" align="right" valign="top"><a id="a3498d0c9e6cd5a93fcf70da77a65ef82" name="a3498d0c9e6cd5a93fcf70da77a65ef82"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td></tr>
 <tr class="memdesc:a3498d0c9e6cd5a93fcf70da77a65ef82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the chunk in the world. <br /></td></tr>
@@ -116,10 +113,10 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Represents a single chunk placed in the world. </p>
-<p >This class handles managing the generated chunk in the certain position. </p><dl class="section note"><dt>Note</dt><dd>You should <b>not</b> instantiate this class manually. This mechanism is supported by the <a class="el" href="class_chunk_manager.html">ChunkManager</a> class. </dd></dl>
+<p >This class handles managing the generated chunk at the certain position. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a72c226e877caee5e96cc5dc5680d5a87" name="a72c226e877caee5e96cc5dc5680d5a87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72c226e877caee5e96cc5dc5680d5a87">&#9670;&nbsp;</a></span>Chunk()</h2>
+<a id="ac0d3cbccbf2f8c5eca6520573c95ec9c" name="ac0d3cbccbf2f8c5eca6520573c95ec9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d3cbccbf2f8c5eca6520573c95ec9c">&#9670;&nbsp;</a></span>Chunk()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,14 +127,20 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
         <tr>
           <td class="memname">Chunk::Chunk </td>
           <td>(</td>
-          <td class="paramtype">glm::ivec3&#160;</td>
-          <td class="paramname"><em>origin</em>, </td>
+          <td class="paramtype">const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_chunk_manager.html">ChunkManager</a> &amp;&#160;</td>
-          <td class="paramname"><em>chunkManager</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_chunk_blocks.html">ChunkBlocks</a>&#160;</td>
+          <td class="paramname"><em>blocks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -155,8 +158,9 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
 <p>The constructor. </p>
 <p >The chunk on initialization knows it's position, the structure to render (blocks) and the player position for proper displaying blocks while the player is moving. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">origin</td><td>- chunk XYZ position represented in a 3d vector. </td></tr>
-    <tr><td class="paramname">chunkManager</td><td>- reference to the manager that handles chunks in the world. </td></tr>
+    <tr><td class="paramname">frame</td><td>- the frame of the chunk. </td></tr>
+    <tr><td class="paramname">blocks</td><td>- the blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">camera</td><td>- reference to the camera so that the blocks could be seen. </td></tr>
   </table>
   </dd>
 </dl>
@@ -164,36 +168,9 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9a232a0f6e5c7cec43b88117a2cb94c8" name="a9a232a0f6e5c7cec43b88117a2cb94c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a232a0f6e5c7cec43b88117a2cb94c8">&#9670;&nbsp;</a></span>Load()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Chunk::Load </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;&#160;</td>
-          <td class="paramname"><em>chunkData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes chunk by allocating the memory. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">chunkData</td><td>- reference to the block structure of the chunk. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Sandbox/World/<a class="el" href="_chunk_8h_source.html">Chunk.h</a></li>
-<li>src/Sandbox/World/Chunk.cpp</li>
+<li>src/Sandbox/World/Chunks/Structure/<a class="el" href="_chunk_8h_source.html">Chunk.h</a></li>
+<li>src/Sandbox/World/Chunks/Structure/Chunk.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

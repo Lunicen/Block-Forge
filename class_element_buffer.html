@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('class_element_buffer.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
-<p>A Vertex Array Object handler - wrapper for the VAO functionality.  
+<p>A <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Array Object handler - wrapper for the VAO functionality.  
  <a href="class_element_buffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_element_buffer_8h_source.html">ElementBuffer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acd31d15157f7c20a74552c97632f0767"><td class="memItemLeft" align="right" valign="top"><a id="acd31d15157f7c20a74552c97632f0767" name="acd31d15157f7c20a74552c97632f0767"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ElementBuffer</b> (const GLuint *indices, GLsizeiptr size)</td></tr>
-<tr class="memdesc:acd31d15157f7c20a74552c97632f0767"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates EBO, binds it immediately and sets its data. <br /></td></tr>
-<tr class="separator:acd31d15157f7c20a74552c97632f0767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fdf91b67d4cbd9b1953b2d584a0e45d"><td class="memItemLeft" align="right" valign="top"><a id="a0fdf91b67d4cbd9b1953b2d584a0e45d" name="a0fdf91b67d4cbd9b1953b2d584a0e45d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ElementBuffer</b> (const std::vector&lt; TriangleIndexes &gt; &amp;indices)</td></tr>
+<tr class="memdesc:a0fdf91b67d4cbd9b1953b2d584a0e45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates EBO, binds it immediately and sets its data. <br /></td></tr>
+<tr class="separator:a0fdf91b67d4cbd9b1953b2d584a0e45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3bd8009324468305bde133e4e9834d6"><td class="memItemLeft" align="right" valign="top"><a id="af3bd8009324468305bde133e4e9834d6" name="af3bd8009324468305bde133e4e9834d6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ElementBuffer</b> (const <a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;buffer)=delete</td></tr>
 <tr class="separator:af3bd8009324468305bde133e4e9834d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a90488f662a72c0462eb00762b5ffd612"><td class="memItemLeft" align="right" valign="top"><a id="a90488f662a72c0462eb00762b5ffd612" name="a90488f662a72c0462eb00762b5ffd612"></a>
 <a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;buffer)=delete</td></tr>
 <tr class="separator:a90488f662a72c0462eb00762b5ffd612"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0460412a9cd6276014e3439d4e90f32c"><td class="memItemLeft" align="right" valign="top"><a id="a0460412a9cd6276014e3439d4e90f32c" name="a0460412a9cd6276014e3439d4e90f32c"></a>
-<a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;&amp;buffer)=delete</td></tr>
-<tr class="separator:a0460412a9cd6276014e3439d4e90f32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a704b63fe1de8d304e2fea9bc5ad968db"><td class="memItemLeft" align="right" valign="top"><a id="a704b63fe1de8d304e2fea9bc5ad968db" name="a704b63fe1de8d304e2fea9bc5ad968db"></a>
+<a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_element_buffer.html">ElementBuffer</a> &amp;&amp;buffer)=default</td></tr>
+<tr class="memdesc:a704b63fe1de8d304e2fea9bc5ad968db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment constructor. <br /></td></tr>
+<tr class="separator:a704b63fe1de8d304e2fea9bc5ad968db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5642235a9bb3170e2535f756fb2628a"><td class="memItemLeft" align="right" valign="top"><a id="ac5642235a9bb3170e2535f756fb2628a" name="ac5642235a9bb3170e2535f756fb2628a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Bind</b> () const</td></tr>
 <tr class="memdesc:ac5642235a9bb3170e2535f756fb2628a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells OpenGL to bind the EBO. <br /></td></tr>
@@ -126,10 +127,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> () const</
 <tr class="separator:aa087d420f9973af8a966a4f7cbe044a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A Vertex Array Object handler - wrapper for the VAO functionality. </p>
+<div class="textblock"><p >A <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Array Object handler - wrapper for the VAO functionality. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Sandbox/Utils/Rendering/<a class="el" href="_element_buffer_8h_source.html">ElementBuffer.h</a></li>
-<li>src/Sandbox/Utils/Rendering/ElementBuffer.cpp</li>
+<li>src/Sandbox/Model/Mesh/Geometry/<a class="el" href="_element_buffer_8h_source.html">ElementBuffer.h</a></li>
+<li>src/Sandbox/Model/Mesh/Geometry/ElementBuffer.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

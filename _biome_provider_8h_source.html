@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -91,16 +91,16 @@ $(document).ready(function(){initNavTree('_biome_provider_8h_source.html',''); i
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Biome.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Core/Metadata.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Sandbox/Utils/ProceduralGen/Noise2D.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Sandbox/Noise/Noise2D.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_biome_provider.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_biome_provider.html">BiomeProvider</a></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _biomesMetadata;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; _blockShader;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; _blockMap;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _biomesMetadata;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_biome_provider.html#a1684ea0d624616d06ce4e1bf82ff6742">BiomeProvider</a>(<span class="keyword">const</span> std::string&amp; filenameWithBiomeData, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; blockShader);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_biome_provider.html#af4337725e58fdfec75912a5a0c4f3638">BiomeProvider</a>(<span class="keyword">const</span> std::string&amp; filenameWithBiomeData, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blockMap);</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="class_noise2_d.html">Noise2D</a> <a class="code hl_function" href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">GetPlacerNoise</a>(<span class="keywordtype">int</span> seed, <span class="keyword">const</span> std::string&amp; biomesType = <span class="stringliteral">&quot;default&quot;</span>);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
@@ -108,12 +108,12 @@ $(document).ready(function(){initNavTree('_biome_provider_8h_source.html',''); i
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="ttc" id="aclass_biome_provider_html"><div class="ttname"><a href="class_biome_provider.html">BiomeProvider</a></div><div class="ttdoc">Provides the biomes specified in the JSON file.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.h:11</div></div>
-<div class="ttc" id="aclass_biome_provider_html_a02c7ea213e7683b6ebfb562d72d4291a"><div class="ttname"><a href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">BiomeProvider::GetPlacerNoise</a></div><div class="ttdeci">Noise2D GetPlacerNoise(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get noise that is used by placer that represents world map.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:8</div></div>
-<div class="ttc" id="aclass_biome_provider_html_a1684ea0d624616d06ce4e1bf82ff6742"><div class="ttname"><a href="class_biome_provider.html#a1684ea0d624616d06ce4e1bf82ff6742">BiomeProvider::BiomeProvider</a></div><div class="ttdeci">BiomeProvider(const std::string &amp;filenameWithBiomeData, Shader &amp;blockShader)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:3</div></div>
-<div class="ttc" id="aclass_biome_provider_html_a4dfc26ff5fc64a3ea3aff568f3eeff51"><div class="ttname"><a href="class_biome_provider.html#a4dfc26ff5fc64a3ea3aff568f3eeff51">BiomeProvider::GetBiomes</a></div><div class="ttdeci">std::vector&lt; Biome &gt; GetBiomes(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get all the biomes specified in the file with a particular type.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:18</div></div>
-<div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:12</div></div>
+<div class="ttc" id="aclass_biome_provider_html_a02c7ea213e7683b6ebfb562d72d4291a"><div class="ttname"><a href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">BiomeProvider::GetPlacerNoise</a></div><div class="ttdeci">Noise2D GetPlacerNoise(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get noise that is used by placer that represents world map.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:9</div></div>
+<div class="ttc" id="aclass_biome_provider_html_a4dfc26ff5fc64a3ea3aff568f3eeff51"><div class="ttname"><a href="class_biome_provider.html#a4dfc26ff5fc64a3ea3aff568f3eeff51">BiomeProvider::GetBiomes</a></div><div class="ttdeci">std::vector&lt; Biome &gt; GetBiomes(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get all the biomes specified in the file with a particular type.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:19</div></div>
+<div class="ttc" id="aclass_biome_provider_html_af4337725e58fdfec75912a5a0c4f3638"><div class="ttname"><a href="class_biome_provider.html#af4337725e58fdfec75912a5a0c4f3638">BiomeProvider::BiomeProvider</a></div><div class="ttdeci">BiomeProvider(const std::string &amp;filenameWithBiomeData, BlockMap &amp;blockMap)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:3</div></div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:8</div></div>
+<div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:14</div></div>
 <div class="ttc" id="aclass_noise2_d_html"><div class="ttname"><a href="class_noise2_d.html">Noise2D</a></div><div class="ttdoc">Used for gathering data from the defined 2D noise.</div><div class="ttdef"><b>Definition:</b> Noise2D.h:10</div></div>
-<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

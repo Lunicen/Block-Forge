@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_chunk_blocks.html',''); initResi
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_chunk_blocks-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ChunkBlocks Class Reference</div></div>
@@ -97,38 +98,57 @@ $(document).ready(function(){initNavTree('class_chunk_blocks.html',''); initResi
 
 <p><code>#include &lt;<a class="el" href="_chunk_blocks_8h_source.html">ChunkBlocks.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a0cf8890e859ace625ec75756eb75c748"><td class="memItemLeft" align="right" valign="top"><a id="a0cf8890e859ace625ec75756eb75c748" name="a0cf8890e859ace625ec75756eb75c748"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChunkBlocks</b> ()=default</td></tr>
+<tr class="memdesc:a0cf8890e859ace625ec75756eb75c748"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor. <br /></td></tr>
+<tr class="separator:a0cf8890e859ace625ec75756eb75c748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb26975189d3d92cd01b97c436fbe56"><td class="memItemLeft" align="right" valign="top"><a id="a6fb26975189d3d92cd01b97c436fbe56" name="a6fb26975189d3d92cd01b97c436fbe56"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChunkBlocks</b> (const <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;)=default</td></tr>
+<tr class="memdesc:a6fb26975189d3d92cd01b97c436fbe56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. <br /></td></tr>
+<tr class="separator:a6fb26975189d3d92cd01b97c436fbe56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ffe1eb85053a842e12576dcb8c9ef2"><td class="memItemLeft" align="right" valign="top"><a id="aa9ffe1eb85053a842e12576dcb8c9ef2" name="aa9ffe1eb85053a842e12576dcb8c9ef2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChunkBlocks</b> (<a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="memdesc:aa9ffe1eb85053a842e12576dcb8c9ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. <br /></td></tr>
+<tr class="separator:aa9ffe1eb85053a842e12576dcb8c9ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7db70345faf3f4e3056063f6d526e8cf"><td class="memItemLeft" align="right" valign="top"><a id="a7db70345faf3f4e3056063f6d526e8cf" name="a7db70345faf3f4e3056063f6d526e8cf"></a>
+<a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;)=default</td></tr>
+<tr class="memdesc:a7db70345faf3f4e3056063f6d526e8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment constructor. <br /></td></tr>
+<tr class="separator:a7db70345faf3f4e3056063f6d526e8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ec8f0a4e5b77e9b9afdec0d72cbbf8"><td class="memItemLeft" align="right" valign="top"><a id="a20ec8f0a4e5b77e9b9afdec0d72cbbf8" name="a20ec8f0a4e5b77e9b9afdec0d72cbbf8"></a>
+<a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="memdesc:a20ec8f0a4e5b77e9b9afdec0d72cbbf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment constructor. <br /></td></tr>
+<tr class="separator:a20ec8f0a4e5b77e9b9afdec0d72cbbf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7c8669dc66db1dcb16a450ab236842a2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::vector&lt; bool &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_blocks.html#a7c8669dc66db1dcb16a450ab236842a2">isBlockVisibleAt</a> = {{}}</td></tr>
-<tr class="memdesc:a7c8669dc66db1dcb16a450ab236842a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of the visibility of the blocks.  <a href="class_chunk_blocks.html#a7c8669dc66db1dcb16a450ab236842a2">More...</a><br /></td></tr>
-<tr class="separator:a7c8669dc66db1dcb16a450ab236842a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6feae8fd8f7f348e8a3366ec64e61679"><td class="memItemLeft" align="right" valign="top"><a id="a6feae8fd8f7f348e8a3366ec64e61679" name="a6feae8fd8f7f348e8a3366ec64e61679"></a>
-std::vector&lt; std::vector&lt; std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_block.html">Block</a> &gt; &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>blocks</b></td></tr>
-<tr class="memdesc:a6feae8fd8f7f348e8a3366ec64e61679"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual structure of the chunk - blocks placement. <br /></td></tr>
-<tr class="separator:a6feae8fd8f7f348e8a3366ec64e61679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1e4d6eb449c31c7b008897cca1c4ea"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; Position, <a class="el" href="struct_block_visibility.html">BlockVisibility</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_blocks.html#ace1e4d6eb449c31c7b008897cca1c4ea">block</a></td></tr>
+<tr class="memdesc:ace1e4d6eb449c31c7b008897cca1c4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map with blocks that are placed inside the chunk.  <a href="class_chunk_blocks.html#ace1e4d6eb449c31c7b008897cca1c4ea">More...</a><br /></td></tr>
+<tr class="separator:ace1e4d6eb449c31c7b008897cca1c4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A structure that represents the body of typical chunk. Blocks and their visibility. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a7c8669dc66db1dcb16a450ab236842a2" name="a7c8669dc66db1dcb16a450ab236842a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c8669dc66db1dcb16a450ab236842a2">&#9670;&nbsp;</a></span>isBlockVisibleAt</h2>
+<a id="ace1e4d6eb449c31c7b008897cca1c4ea" name="ace1e4d6eb449c31c7b008897cca1c4ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1e4d6eb449c31c7b008897cca1c4ea">&#9670;&nbsp;</a></span>block</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::vector&lt;std::vector&lt;bool&gt; &gt; &gt; ChunkBlocks::isBlockVisibleAt = {{}}</td>
+          <td class="memname">std::unordered_map&lt;Position, <a class="el" href="struct_block_visibility.html">BlockVisibility</a>&gt; ChunkBlocks::block</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Vector of the visibility of the blocks. </p>
-<dl class="section note"><dt>Note</dt><dd>Made for optimization purposes. </dd></dl>
+<p>Map with blocks that are placed inside the chunk. </p>
+<p >This map contains all blocks that are included in the chunk and maps the location of the block as a key, and it's model and faces visibility as a key. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/Sandbox/Utils/Chunk/<a class="el" href="_chunk_blocks_8h_source.html">ChunkBlocks.h</a></li>
+<li>src/Sandbox/World/Chunks/Structure/<a class="el" href="_chunk_blocks_8h_source.html">ChunkBlocks.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

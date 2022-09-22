@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('class_vertex_buffer.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>A Vertex Buffer Object handler - wrapper for the VBO functionality.  
+<p>A <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Buffer Object handler - wrapper for the VBO functionality.  
  <a href="class_vertex_buffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_vertex_buffer_8h_source.html">VertexBuffer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e61281e07d2e08a293fa3dac493ec19"><td class="memItemLeft" align="right" valign="top"><a id="a9e61281e07d2e08a293fa3dac493ec19" name="a9e61281e07d2e08a293fa3dac493ec19"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const GLfloat *vertices, GLsizeiptr size)</td></tr>
-<tr class="memdesc:a9e61281e07d2e08a293fa3dac493ec19"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates VBO, binds it immediately and sets its data. <br /></td></tr>
-<tr class="separator:a9e61281e07d2e08a293fa3dac493ec19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a343c8920365b1d9217cb0e87f0dc0094"><td class="memItemLeft" align="right" valign="top"><a id="a343c8920365b1d9217cb0e87f0dc0094" name="a343c8920365b1d9217cb0e87f0dc0094"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices)</td></tr>
+<tr class="memdesc:a343c8920365b1d9217cb0e87f0dc0094"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates VBO, binds it immediately and sets its data. <br /></td></tr>
+<tr class="separator:a343c8920365b1d9217cb0e87f0dc0094"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e4ce6bde5c2f39c8640aa6d66b0a032"><td class="memItemLeft" align="right" valign="top"><a id="a7e4ce6bde5c2f39c8640aa6d66b0a032" name="a7e4ce6bde5c2f39c8640aa6d66b0a032"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;)=delete</td></tr>
 <tr class="separator:a7e4ce6bde5c2f39c8640aa6d66b0a032"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1dab90c1631031da8577683f08644087"><td class="memItemLeft" align="right" valign="top"><a id="a1dab90c1631031da8577683f08644087" name="a1dab90c1631031da8577683f08644087"></a>
 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;)=delete</td></tr>
 <tr class="separator:a1dab90c1631031da8577683f08644087"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af148b5699a4ea219f5d9fb18278c9802"><td class="memItemLeft" align="right" valign="top"><a id="af148b5699a4ea219f5d9fb18278c9802" name="af148b5699a4ea219f5d9fb18278c9802"></a>
-<a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&amp;)=delete</td></tr>
-<tr class="separator:af148b5699a4ea219f5d9fb18278c9802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36aad777939c67e4cd478792953a35ce"><td class="memItemLeft" align="right" valign="top"><a id="a36aad777939c67e4cd478792953a35ce" name="a36aad777939c67e4cd478792953a35ce"></a>
+<a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;&amp;)=default</td></tr>
+<tr class="memdesc:a36aad777939c67e4cd478792953a35ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment constructor. <br /></td></tr>
+<tr class="separator:a36aad777939c67e4cd478792953a35ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13019e8580ca3e369fad4166500ad2b9"><td class="memItemLeft" align="right" valign="top"><a id="a13019e8580ca3e369fad4166500ad2b9" name="a13019e8580ca3e369fad4166500ad2b9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Bind</b> () const</td></tr>
 <tr class="memdesc:a13019e8580ca3e369fad4166500ad2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells OpenGL to bind the VBO. <br /></td></tr>
@@ -126,10 +127,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> () const</
 <tr class="separator:abfdb36238d60f2cd7bf63093f914b61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A Vertex Buffer Object handler - wrapper for the VBO functionality. </p>
+<div class="textblock"><p >A <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Buffer Object handler - wrapper for the VBO functionality. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Sandbox/Utils/Rendering/<a class="el" href="_vertex_buffer_8h_source.html">VertexBuffer.h</a></li>
-<li>src/Sandbox/Utils/Rendering/VertexBuffer.cpp</li>
+<li>src/Sandbox/Model/Mesh/Geometry/<a class="el" href="_vertex_buffer_8h_source.html">VertexBuffer.h</a></li>
+<li>src/Sandbox/Model/Mesh/Geometry/VertexBuffer.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

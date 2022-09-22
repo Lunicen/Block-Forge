@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -109,9 +109,9 @@ Inheritance diagram for Biome:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d0b999e4c581f3574318bfe2a536c9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#a7d0b999e4c581f3574318bfe2a536c9b">Biome</a> (std::string name, const <a class="el" href="class_noise3_d.html">Noise3D</a> &amp;noise, <a class="el" href="class_shader.html">Shader</a> &amp;blockShader)</td></tr>
-<tr class="memdesc:a7d0b999e4c581f3574318bfe2a536c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_biome.html#a7d0b999e4c581f3574318bfe2a536c9b">More...</a><br /></td></tr>
-<tr class="separator:a7d0b999e4c581f3574318bfe2a536c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee33dfa4fc67e65b6996e305d026317"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#aeee33dfa4fc67e65b6996e305d026317">Biome</a> (std::string name, const <a class="el" href="class_noise3_d.html">Noise3D</a> &amp;noise, <a class="el" href="class_block_map.html">BlockMap</a> &amp;blocksMap)</td></tr>
+<tr class="memdesc:aeee33dfa4fc67e65b6996e305d026317"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_biome.html#aeee33dfa4fc67e65b6996e305d026317">More...</a><br /></td></tr>
+<tr class="separator:aeee33dfa4fc67e65b6996e305d026317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10b1dee3ade5ae8f65f955311780aac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">PaintColumn</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> &amp;blocks, int xOffset, int yOffset, int zOffset) const</td></tr>
 <tr class="memdesc:ae10b1dee3ade5ae8f65f955311780aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapts chunk column according to the biome noise.  <a href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">More...</a><br /></td></tr>
 <tr class="separator:ae10b1dee3ade5ae8f65f955311780aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,8 +155,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
 <div class="textblock"><p >Represents biome that could be used for terrain generation. </p>
 <p >This class brings to life the data specified in the JSON file that specifies the biome behavior. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7d0b999e4c581f3574318bfe2a536c9b" name="a7d0b999e4c581f3574318bfe2a536c9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d0b999e4c581f3574318bfe2a536c9b">&#9670;&nbsp;</a></span>Biome()</h2>
+<a id="aeee33dfa4fc67e65b6996e305d026317" name="aeee33dfa4fc67e65b6996e305d026317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee33dfa4fc67e65b6996e305d026317">&#9670;&nbsp;</a></span>Biome()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,8 +179,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
-          <td class="paramname"><em>blockShader</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_block_map.html">BlockMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>blocksMap</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,7 +200,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
   <table class="params">
     <tr><td class="paramname">name</td><td>- name of the <a class="el" href="class_biome.html" title="Represents biome that could be used for terrain generation.">Biome</a>. </td></tr>
     <tr><td class="paramname">noise</td><td>- noise class that has specified the procedural generation algorithm of the biome. </td></tr>
-    <tr><td class="paramname">blockShader</td><td>- shader of the block, so the biome could be rendered. </td></tr>
+    <tr><td class="paramname">blocksMap</td><td>- block map, which is used to place them inside chunks based on the biome noise. <br  />
+ </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,7 +257,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
 <p >The purpose of this method is to "paint" the chunk according to the biome noise with respect of the origin of that chunk. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">frame</td><td>- frame of the chunk. </td></tr>
-    <tr><td class="paramname">blocks</td><td>- the metadata of the chunk (basically blocks). </td></tr>
+    <tr><td class="paramname">blocks</td><td>- the metadata of the chunk (basically blockAt). </td></tr>
     <tr><td class="paramname">xOffset</td><td>- X offset from the chunk origin. </td></tr>
     <tr><td class="paramname">yOffset</td><td>- Y offset from the chunk origin. </td></tr>
     <tr><td class="paramname">zOffset</td><td>- Z offset from the chunk origin. </td></tr>
@@ -296,7 +297,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
 <p >The purpose of this method is to "paint" the chunk according to the biome noise with respect of the origin of that chunk. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">frame</td><td>- frame of the chunk. </td></tr>
-    <tr><td class="paramname">blocks</td><td>- the metadata of the chunk (basically blocks). </td></tr>
+    <tr><td class="paramname">blocks</td><td>- the metadata of the chunk (basically blockAt). </td></tr>
   </table>
   </dd>
 </dl>

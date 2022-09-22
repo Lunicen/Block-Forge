@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.3</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,9 +99,9 @@ $(document).ready(function(){initNavTree('class_biome_provider.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1684ea0d624616d06ce4e1bf82ff6742"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome_provider.html#a1684ea0d624616d06ce4e1bf82ff6742">BiomeProvider</a> (const std::string &amp;filenameWithBiomeData, <a class="el" href="class_shader.html">Shader</a> &amp;blockShader)</td></tr>
-<tr class="memdesc:a1684ea0d624616d06ce4e1bf82ff6742"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_biome_provider.html#a1684ea0d624616d06ce4e1bf82ff6742">More...</a><br /></td></tr>
-<tr class="separator:a1684ea0d624616d06ce4e1bf82ff6742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4337725e58fdfec75912a5a0c4f3638"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome_provider.html#af4337725e58fdfec75912a5a0c4f3638">BiomeProvider</a> (const std::string &amp;filenameWithBiomeData, <a class="el" href="class_block_map.html">BlockMap</a> &amp;blockMap)</td></tr>
+<tr class="memdesc:af4337725e58fdfec75912a5a0c4f3638"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_biome_provider.html#af4337725e58fdfec75912a5a0c4f3638">More...</a><br /></td></tr>
+<tr class="separator:af4337725e58fdfec75912a5a0c4f3638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c7ea213e7683b6ebfb562d72d4291a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_noise2_d.html">Noise2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">GetPlacerNoise</a> (int seed, const std::string &amp;biomesType=&quot;default&quot;)</td></tr>
 <tr class="memdesc:a02c7ea213e7683b6ebfb562d72d4291a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get noise that is used by placer that represents world map.  <a href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">More...</a><br /></td></tr>
 <tr class="separator:a02c7ea213e7683b6ebfb562d72d4291a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,8 +113,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >Provides the biomes specified in the JSON file. </p>
 <p >This class manages creating the list of biomes that are specified in the JSON file. It's purpose is to provide all the defined biomes from the file in a convenient way. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1684ea0d624616d06ce4e1bf82ff6742" name="a1684ea0d624616d06ce4e1bf82ff6742"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1684ea0d624616d06ce4e1bf82ff6742">&#9670;&nbsp;</a></span>BiomeProvider()</h2>
+<a id="af4337725e58fdfec75912a5a0c4f3638" name="af4337725e58fdfec75912a5a0c4f3638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4337725e58fdfec75912a5a0c4f3638">&#9670;&nbsp;</a></span>BiomeProvider()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,8 +131,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
-          <td class="paramname"><em>blockShader</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_block_map.html">BlockMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>blockMap</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -150,8 +150,8 @@ Public Member Functions</h2></td></tr>
 <p>The constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filenameWithBiomeData</td><td>- Filename that contains all the metadata related to biomes. </td></tr>
-    <tr><td class="paramname">blockShader</td><td>- A reference to the block shader which is used by the <a class="el" href="class_biome.html">Biome</a> class. </td></tr>
+    <tr><td class="paramname">filenameWithBiomeData</td><td>- File containing the metadata related to biomes. </td></tr>
+    <tr><td class="paramname">blockMap</td><td>- block map, which is used to place them inside chunks based on the biome noise. </td></tr>
   </table>
   </dd>
 </dl>

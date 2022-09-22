@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['origin_0',['origin',['../class_chunk_frame.html#afc5bb58977e7435e759e62f082882c55',1,'ChunkFrame']]]
+  ['left_0',['left',['../struct_block_faces.html#ae5052e04d9b807d1de64da78981420d2',1,'BlockFaces::left()'],['../struct_faces_visibility.html#aa9ba5d3f9371c0720018568a31018df7',1,'FacesVisibility::left()']]]
 ];

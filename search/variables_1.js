@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isblockvisibleat_0',['isBlockVisibleAt',['../class_chunk_blocks.html#a7c8669dc66db1dcb16a450ab236842a2',1,'ChunkBlocks']]]
+  ['front_0',['front',['../struct_block_faces.html#a44387d51bb70563c37964b3347688c08',1,'BlockFaces::front()'],['../struct_faces_visibility.html#aa0d35dd67797aac21fbe414a84c1679c',1,'FacesVisibility::front()']]]
 ];

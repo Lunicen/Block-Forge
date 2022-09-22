@@ -44,7 +44,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_biome_8h_source.html"
+"_biome_8h_source.html",
+"class_vertex_buffer.html#a13019e8580ca3e369fad4166500ad2b9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -2,7 +2,7 @@ var class_camera =
 [
     [ "Camera", "class_camera.html#aba0a9fb5ff94aebe84128b23313c8724", null ],
     [ "Update", "class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b", null ],
-    [ "Add", "class_camera.html#a86bb43eaed27b97c0a42e904d0eef694", null ],
+    [ "Bind", "class_camera.html#a7f523e4c06d2ab772df2f88a951936eb", null ],
     [ "HandleInput", "class_camera.html#a3ead3f55e3a9f122a391376e09a83bba", null ],
     [ "GetPosition", "class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955", null ],
     [ "GetWidth", "class_camera.html#a2f95a436f6214798e9a1c8f406169319", null ],
