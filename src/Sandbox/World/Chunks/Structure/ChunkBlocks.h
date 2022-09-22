@@ -40,19 +40,19 @@ class ChunkBlocks
 public:
 
 	/// @brief The constructor.
-	ChunkBlocks();
+	ChunkBlocks() = default;
 
 	/// @brief Copy constructor.
-	ChunkBlocks(const ChunkBlocks&);
+	ChunkBlocks(const ChunkBlocks&) = default;
 
 	/// @brief Move constructor.
-	ChunkBlocks(ChunkBlocks&&) noexcept;
+	ChunkBlocks(ChunkBlocks&&) noexcept = default;
 	
 	/// @brief Copy assignment constructor.
-	ChunkBlocks &operator=(const ChunkBlocks &);
+	ChunkBlocks &operator=(const ChunkBlocks &) = default;
 
 	/// @brief Move assignment constructor.
-	ChunkBlocks &operator=(ChunkBlocks &&) noexcept;
+	ChunkBlocks &operator=(ChunkBlocks &&) noexcept = default;
 
 	/// @brief Map with blocks that are placed inside the chunk.
 	///	@details This map contains all blocks that are included in the chunk
