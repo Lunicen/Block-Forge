@@ -203,7 +203,6 @@
     <ClInclude Include="src\Sandbox\Noise\Noise3D.h" />
     <ClInclude Include="src\Sandbox\Utils\EngineExceptions.h" />
     <ClInclude Include="src\Sandbox\World\Chunks\Structure\ChunkBlocks.h" />
-    <ClInclude Include="src\Sandbox\World\Chunks\ChunkUtils.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\BiomeProvider.h" />
     <ClInclude Include="src\Sandbox\Noise\Noise.h" />
     <ClInclude Include="src\Sandbox\World\Biomes\Biome.h" />

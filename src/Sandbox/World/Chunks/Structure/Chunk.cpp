@@ -1,6 +1,5 @@
 #include "Chunk.h"
 
-#include "Sandbox/World/Chunks/ChunkUtils.h"
 
 Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
 	: _frame(frame), _blocks(std::move(blocks)), _camera(camera)

@@ -1,7 +1,5 @@
 #include "Mesh.h"
 
-#include "Core/EngineExceptions.h"
-
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
 	: _shader(shader), _indicesAmount(static_cast<GLsizei>(indices.size()) * 3)
 {

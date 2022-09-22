@@ -1,6 +1,5 @@
 #include "BlockFaceModel.h"
 
-#include "Sandbox/World/Chunks/ChunkUtils.h"
 
 BlockFaceModel::BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Texture> texture)
 	: _mesh(std::move(mesh)), _texture(std::move(texture))

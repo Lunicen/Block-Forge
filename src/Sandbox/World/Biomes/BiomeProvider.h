@@ -3,7 +3,6 @@
 #include "Core/Metadata.h"
 #include "Sandbox/Noise/Noise2D.h"
 #include "Sandbox/World/Blocks/BlocksHandler.h"
-#include "Sandbox/World/Blocks/BlocksProvider.h"
 
 /// @class BiomeProvider
 /// @brief Provides the biomes specified in the JSON file.
