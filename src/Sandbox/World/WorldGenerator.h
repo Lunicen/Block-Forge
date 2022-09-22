@@ -13,9 +13,6 @@ class WorldGenerator
 
 	int _seed;
 
-	static void OptimizeBlock(const Position& origin, BlockVisibility& block, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
-	void OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
-
 public:
 
 	/// The constructor.
