@@ -86,6 +86,7 @@ void Camera::HandleCursorMovement()
 
 	const double middleAxisX = static_cast<double>(_width) / 2.0;
 	const double middleAxisY = static_cast<double>(_height) / 2.0;
+
 	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_height));
 	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_width));
 

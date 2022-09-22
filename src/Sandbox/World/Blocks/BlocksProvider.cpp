@@ -16,9 +16,10 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlocksProvider::Get
 
 	const std::string textureAtlasName = blocksSet.value("atlas", "");
 	const size_t slotSize = blocksSet.value("slotSize", 0);
-	auto builder = BlocksBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
 
+	auto builder = BlocksBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
 	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
+
 	for (const auto& blockData : blocksSet["blocks"])
 	{
 		const std::string name = blockData.value("block", "unknown");
