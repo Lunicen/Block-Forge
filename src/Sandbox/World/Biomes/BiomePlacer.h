@@ -1,7 +1,6 @@
 #pragma once
 #include "Biome.h"
-#include "Sandbox/Utils/Chunk/ChunkFrame.h"
-#include "Sandbox/Utils/ProceduralGen/Noise2D.h"
+#include "Sandbox/Noise/Noise2D.h"
 
 /// @class BiomePlacer
 /// @brief Places biomes according to the biomes map.
@@ -24,9 +23,9 @@ public:
 	explicit BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes);
 
 	/// @brief Paints the chunk according to the world map.
-	///	@details This method modifies the blocks data according by deciding based on biomes placed on the map.
+	///	@details This method modifies the blockAt data according by deciding based on biomes placed on the map.
 	///	@param frame - the frame of the chunk.
-	///	@param blocks - the blocks inside the chunk.
+	///	@param blocks - the blockAt inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 	/// @brief Returns the noise of the chunk.

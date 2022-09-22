@@ -1,6 +1,7 @@
 #pragma once
-#include "Sandbox/Utils/ProceduralGen/Noise3D.h"
-#include "Sandbox/Utils/Chunk/ChunkBlocks.h"
+#include "Sandbox/Noise/Noise3D.h"
+#include "Sandbox/World/Blocks/BlockMap.h"
+#include "Sandbox/World/Chunks/Structure/ChunkBlocks.h"
 
 /// @class Biome
 /// @brief Represents biome that could be used for terrain generation.
@@ -8,24 +9,23 @@
 class Biome final : public Noise3D
 {
 	std::string _name;
-	Shader& _blockShader;
+	BlockMap& _blocksMap;
 
-	void SetBlockAccordingToNoise(std::unique_ptr<Block>& block, float xBlock, float yBlock, float zBlock,
-	                              float noise) const;
+	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, float noise) const;
 
 public:
 	
 	/// @brief The constructor.
 	/// @param name - name of the Biome.
 	/// @param noise - noise class that has specified the procedural generation algorithm of the biome. 
-	/// @param blockShader - shader of the block, so the biome could be rendered.
-	explicit Biome(std::string name, const Noise3D& noise, Shader& blockShader);
-
+	/// @param blocksMap - block map, which is used to place them inside chunks based on the biome noise. 
+	explicit Biome(std::string name, const Noise3D& noise, BlockMap& blocksMap);
+	
 	/// @brief Adapts chunk column according to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
 	/// @param frame - frame of the chunk.
-	/// @param blocks - the metadata of the chunk (basically blocks).
+	/// @param blocks - the metadata of the chunk (basically blockAt).
 	/// @param xOffset - X offset from the chunk origin.
 	/// @param yOffset - Y offset from the chunk origin.
 	/// @param zOffset - Z offset from the chunk origin.
@@ -35,7 +35,7 @@ public:
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
 	/// @param frame - frame of the chunk.
-	/// @param blocks - the metadata of the chunk (basically blocks).
+	/// @param blocks - the metadata of the chunk (basically blockAt).
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 };
 

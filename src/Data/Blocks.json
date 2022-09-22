@@ -1,9 +1,34 @@
 {
-    "dirt": {
-        
-    },
-    "stone" : {
-        
+    "default": {
+        "atlas": "src/Data/Textures/DirtAtlas.png",
+        "slotSize": 16,
+        "blocks": [
+            {
+                "block": "dirt",
+                "textures": [
+                    {
+                        "faces": [ "top" ],
+                        "location": {
+                            "column": 0,
+                            "row": 0
+                        }
+                    },
+                    {
+                        "faces": [ "left", "right", "front", "back" ],
+                        "location": {
+                            "column": 1,
+                            "row": 0
+                        }
+                    },
+                    {
+                        "faces": [ "bottom" ],
+                        "location": {
+                            "column": 0,
+                            "row": 1
+                        }
+                    }
+                ]
+            }
+        ]
     }
-
 }

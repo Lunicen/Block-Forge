@@ -7,19 +7,17 @@
 ///	@details This class is made for transforming chunks according to the biomes that are specified in it.
 class WorldGenerator
 {
-	std::unique_ptr<BiomePlacer> _placer;
 	std::vector<Biome> _biomes;
-	int _seed;
+	std::unique_ptr<BiomePlacer> _placer;
+	BlockMap _blockMap = BlockMap("src/Data/Blocks.json");
 
-	static void OptimizeChunkAt(int x, int y, int z, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
-	void OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
+	int _seed;
 
 public:
 
 	/// The constructor.
 	///	@param seed - the world seed.
-	///	@param blockShader - a reference specified for the @ref Biome class.
-	explicit WorldGenerator(int seed, Shader& blockShader);
+	explicit WorldGenerator(int seed);
 
 	/// @brief Adapts chunk at specified origin, according to the world terrain noise.
 	///	@details This class transforms chunks by using specified biomes that are incorporated

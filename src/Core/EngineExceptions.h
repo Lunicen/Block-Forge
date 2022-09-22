@@ -84,3 +84,17 @@ public:
     /// @param message - exception message.
     explicit MismatchException(const std::string& message) : Base(message) {}
 };
+
+/// @class UnknownValueException
+/// @brief Exception made for handling values to which control flow is undefined.
+class UnknownValueException final : public EngineException
+{
+	using Base = EngineException;
+
+public:
+
+    /// @brief Alerts that the given value is not defined for the control flow.
+    /// @details This exception should be thrown, if the variable value is crucial for defining the behaviour of the function.
+    /// @param message - exception message.
+    explicit UnknownValueException(const std::string& message) : Base(message) {}
+};
