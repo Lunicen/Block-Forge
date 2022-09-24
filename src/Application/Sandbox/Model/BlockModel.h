@@ -1,6 +1,6 @@
 #pragma once
 #include "BlockFaceModel.h"
-#include "Sandbox/Camera.h"
+#include "Application/Sandbox/Camera.h"
 
 /// @brief Container for the face models of a block.
 struct BlockFaces

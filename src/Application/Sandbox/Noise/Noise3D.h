@@ -2,8 +2,8 @@
 #include <vector>
 
 #include "Noise.h"
-#include "Sandbox/Model/Mesh/Geometry/Structures.h"
-#include "Sandbox/World/Chunks/Structure/ChunkFrame.h"
+#include "Application/Sandbox/Model/Mesh/Geometry/Structures.h"
+#include "Application/Sandbox/World/Chunks/Structure/ChunkFrame.h"
 
 
 /// @class Noise3D

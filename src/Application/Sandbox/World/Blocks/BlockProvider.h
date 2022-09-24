@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Metadata.h"
-#include "Sandbox/Model/BlockModel.h"
+#include "Application/Sandbox/Model/BlockModel.h"
 
 /// @class BlockProvider
 ///	@brief Provides all the blocks mentioned in the file.

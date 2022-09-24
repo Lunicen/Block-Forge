@@ -1,7 +1,7 @@
 #pragma once
 #include "Biome.h"
 #include "Core/Metadata.h"
-#include "Sandbox/Noise/Noise2D.h"
+#include "Application/Sandbox/Noise/Noise2D.h"
 
 /// @class BiomeProvider
 /// @brief Provides the biomes specified in the JSON file.

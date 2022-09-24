@@ -3,8 +3,8 @@
 #include "Geometry/Shader.h"
 #include "Geometry/VertexArray.h"
 #include "Geometry/ElementBuffer.h"
-#include "Sandbox/Camera.h"
-#include "Sandbox/Model/Surface/Texture.h"
+#include "Application/Sandbox/Camera.h"
+#include "Application/Sandbox/Model/Surface/Texture.h"
 
 /// @class Mesh
 ///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a @see Model.

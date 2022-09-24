@@ -3,9 +3,9 @@
 #include <glm/vec3.hpp>
 
 #include "RenderViews/RenderView.h"
-#include "Sandbox/Camera.h"
-#include "Sandbox/World/Chunks/Structure/Chunk.h"
-#include "Sandbox/World/WorldGenerator.h"
+#include "Application/Sandbox/Camera.h"
+#include "Application/Sandbox/World/Chunks/Structure/Chunk.h"
+#include "Application/Sandbox/World/WorldGenerator.h"
 
 /// @class ChunkRenderer
 ///	@brief Supports rendering chunks.

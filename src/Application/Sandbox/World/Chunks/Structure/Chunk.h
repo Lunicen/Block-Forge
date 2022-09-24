@@ -1,7 +1,7 @@
 #pragma once
 #include <glm/vec3.hpp>
 
-#include "Sandbox/Camera.h"
+#include "Application/Sandbox/Camera.h"
 #include "ChunkFrame.h"
 #include "ChunkBlocks.h"
 

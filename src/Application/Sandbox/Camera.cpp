@@ -1,14 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(GLFWwindow*& window, const int width, const int height, const glm::vec3 position, HumanInterfaceDevice& hid) : _position(position), _width(width), _height(height), _hid(hid), _window(window)
+Camera::Camera(GLFWwindow*& window, const size_t width, const size_t height, const glm::vec3 position, HumanInterfaceDevice& hid) : _position(position), _width(width), _height(height), _hid(hid), _window(window)
 {
-	if (width <= 0 || height <= 0)
-	{
-		_log.Warn(
-			"The width and height of a window must be a positive number. Given: width = " + std::to_string(width) +
-			"height = " + std::to_string(height));
-	}
-
 	_orientation = glm::vec3(0.0f, 0.0f, -1.0f);
 	_up = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -141,22 +134,22 @@ glm::vec3 Camera::GetPosition() const
 	return _position;	
 }
 
-inline int Camera::GetWidth() const
+inline size_t Camera::GetWidth() const
 {
 	return _width;
 }
 
-inline void Camera::SetWidth(const int width)
+inline void Camera::SetWidth(const size_t width)
 {
 	_width = width;
 }
 
-inline int Camera::GetHeight() const
+inline size_t Camera::GetHeight() const
 {
 	return _height;
 }
 
-inline void Camera::SetHeight(const int height)
+inline void Camera::SetHeight(const size_t height)
 {
 	_height = height;
 }

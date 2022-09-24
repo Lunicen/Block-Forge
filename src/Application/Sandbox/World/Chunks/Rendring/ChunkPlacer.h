@@ -1,5 +1,5 @@
 #pragma once
-#include "Sandbox/Camera.h"
+#include "Application/Sandbox/Camera.h"
 #include "ChunkRenderer.h"
 #include "RenderViews/RenderViewTypes.h"
 

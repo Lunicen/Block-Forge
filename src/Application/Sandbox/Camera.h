@@ -18,8 +18,8 @@ class Camera
 	glm::vec3 _up{};
 	glm::mat4 _orthographicProjection = glm::mat4(1.0f);
 
-	int _width;
-	int _height;
+	size_t _width;
+	size_t _height;
 
 	float _defaultSpeed;
 	float _speed;
@@ -44,7 +44,7 @@ public:
 	/// @param height - Height of the window.
 	/// @param position - Spawn point of the camera.
 	/// @param hid - Pointer to the HID handler.
-	Camera(GLFWwindow*& window, int width, int height, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(GLFWwindow*& window, size_t width, size_t height, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -61,18 +61,18 @@ public:
 	glm::vec3 GetPosition() const;
 
 	/// @brief Get width.
-	int GetWidth() const;
+	size_t GetWidth() const;
 
 	/// @brief Set width.
 	///	@param width - the width of camera viewport.
-	void SetWidth(int width);
+	void SetWidth(size_t width);
 
 	/// @brief Get height.
-	int GetHeight() const;
+	size_t GetHeight() const;
 
 	/// @brief Set height.
 	///	@param height - the height of camera viewport.
-	void SetHeight(int height);
+	void SetHeight(size_t height);
 
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.

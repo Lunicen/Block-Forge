@@ -1,6 +1,6 @@
 #pragma once
 #include "BlockProvider.h"
-#include "Sandbox/Model/BlockModel.h"
+#include "Application/Sandbox/Model/BlockModel.h"
 
 /// @class BlockMap
 ///	@brief Represents a map of the blocks that could be used to place in the chunks.
