@@ -28,6 +28,8 @@ void Application::Initialize()
 	glfwMakeContextCurrent(_window.handle);
 	gladLoadGL();
 	glViewport(0, 0, width, height);
+
+	_log.Info("Block Forge initialized!");
 }
 
 Application::Application(const std::string& filename)

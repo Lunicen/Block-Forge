@@ -1,6 +1,6 @@
 #pragma once
-#include "Application/ApplicationUtils.h"
 #include "Core/Log.h"
+#include "Application/ApplicationUtils.h"
 
 /// @class Sandbox
 /// @brief Class where the world is projected.

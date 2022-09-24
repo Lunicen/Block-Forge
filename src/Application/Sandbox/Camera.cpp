@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(GLFWwindow*& window, const size_t width, const size_t height, const glm::vec3 position, HumanInterfaceDevice& hid) : _position(position), _width(width), _height(height), _hid(hid), _window(window)
+Camera::Camera(Window& window, const glm::vec3 position, HumanInterfaceDevice& hid) : _window(window), _position(position), _hid(hid)
 {
 	_orientation = glm::vec3(0.0f, 0.0f, -1.0f);
 	_up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -15,7 +15,7 @@ Camera::Camera(GLFWwindow*& window, const size_t width, const size_t height, con
 
 	_isPaused = false;
 
-	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
 
 void Camera::Update()
@@ -24,7 +24,7 @@ void Camera::Update()
 	auto view = glm::mat4(1.0f);
 	view = lookAt(_position, _position + _orientation, _up);
 
-	const float aspectRatio = static_cast<float>(_width) / static_cast<float>(_height);
+	const float aspectRatio = static_cast<float>(_window.width) / static_cast<float>(_window.height);
 
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto projection = glm::mat4(1.0f);
@@ -75,13 +75,13 @@ void Camera::HandleCursorMovement()
 {
 	double mouseX;
 	double mouseY;
-	glfwGetCursorPos(_window, &mouseX, &mouseY);
+	glfwGetCursorPos(_window.handle, &mouseX, &mouseY);
 
-	const double middleAxisX = static_cast<double>(_width) / 2.0;
-	const double middleAxisY = static_cast<double>(_height) / 2.0;
+	const double middleAxisX = static_cast<double>(_window.width) / 2.0;
+	const double middleAxisY = static_cast<double>(_window.height) / 2.0;
 
-	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_height));
-	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_width));
+	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_window.height));
+	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_window.width));
 
 	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _up)));
 	const auto angleWithXAxis = abs(angle(orientation, _up) - glm::radians(90.0f));
@@ -93,7 +93,7 @@ void Camera::HandleCursorMovement()
 	}
 
 	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _up);
-	glfwSetCursorPos(_window, middleAxisX, middleAxisY);
+	glfwSetCursorPos(_window.handle, middleAxisX, middleAxisY);
 }
 
 void Camera::Bind(Shader const& shader) const
@@ -110,11 +110,11 @@ void Camera::HandleInput()
 		_isPaused = !_isPaused;
 		if (_isPaused)
 		{
-			glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 		else
 		{
-			glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+			glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 		}
 	}
 
@@ -136,22 +136,12 @@ glm::vec3 Camera::GetPosition() const
 
 inline size_t Camera::GetWidth() const
 {
-	return _width;
-}
-
-inline void Camera::SetWidth(const size_t width)
-{
-	_width = width;
+	return _window.width;
 }
 
 inline size_t Camera::GetHeight() const
 {
-	return _height;
-}
-
-inline void Camera::SetHeight(const size_t height)
-{
-	_height = height;
+	return _window.height;
 }
 
 inline float Camera::GetDefaultSpeed() const

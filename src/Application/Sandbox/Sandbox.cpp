@@ -1,4 +1,5 @@
 #include "Sandbox.h"
+
 #include "Camera.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
@@ -15,7 +16,7 @@ void Sandbox::Run() const
 	_log.Info("Launching simulation...");
 
 	HumanInterfaceDevice hid(_window.handle);
-	Camera camera(_window.handle, _window.width, _window.height, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 

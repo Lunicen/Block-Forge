@@ -3,8 +3,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vector_angle.hpp>
+
 #include "Events/HumanInterfaceDevice.h"
 #include "Model/Mesh/Geometry/Shader.h"
+#include "Application/ApplicationUtils.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.
@@ -12,14 +14,12 @@
 class Camera
 {
 	Log& _log = Log::Get();
+	Window& _window;
 
 	glm::vec3 _position{};
 	glm::vec3 _orientation{};
 	glm::vec3 _up{};
 	glm::mat4 _orthographicProjection = glm::mat4(1.0f);
-
-	size_t _width;
-	size_t _height;
 
 	float _defaultSpeed;
 	float _speed;
@@ -29,7 +29,6 @@ class Camera
 	float _farPane;
 
 	HumanInterfaceDevice& _hid;
-	GLFWwindow*& _window;
 	bool _isPaused;
 
 	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
@@ -39,12 +38,10 @@ class Camera
 
 public:
 	/// @brief The constructor.
-	///	@param window - Window in which the simulation is played.
-	///	@param width - Width of the window.
-	/// @param height - Height of the window.
+	///	@param window - Reference to the application window.
 	/// @param position - Spawn point of the camera.
 	/// @param hid - Pointer to the HID handler.
-	Camera(GLFWwindow*& window, size_t width, size_t height, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -63,16 +60,8 @@ public:
 	/// @brief Get width.
 	size_t GetWidth() const;
 
-	/// @brief Set width.
-	///	@param width - the width of camera viewport.
-	void SetWidth(size_t width);
-
 	/// @brief Get height.
 	size_t GetHeight() const;
-
-	/// @brief Set height.
-	///	@param height - the height of camera viewport.
-	void SetHeight(size_t height);
 
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.
