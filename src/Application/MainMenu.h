@@ -1,11 +1,11 @@
 // ReSharper disable CppUnusedIncludeDirective
 #pragma once
 #include <string>
-#include "Log.h"
+#include "Core/Log.h"
 
-#include"imgui.h"
-#include"backends/imgui_impl_glfw.h"
-#include"backends/imgui_impl_opengl3.h"
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
 #include "Core/OpenGLHeaders.h"
 
 /// @class MainMenu

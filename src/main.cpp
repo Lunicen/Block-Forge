@@ -1,14 +1,21 @@
 #include "Core/Log.h"
-#include "Sandbox/Sandbox.h"
+#include "Application/Application.h"
 
-int main()
+int main(const int argc, char *argv[])
 {
-	// TODO integrate the Main Menu with Sandbox class 
-	// MainMenu mainMenu = MainMenu();
-	// mainMenu.Draw();
+	const auto& log = Log::Get();
+	const auto configFile = argc > 1 ? argv[1] : "Settings.json";
 
-	const auto sandbox = new Sandbox("test.json");
-	sandbox->Run();
+	try
+	{
+		const auto application = new Application(configFile);
+		application->Run();
+	}
+	catch (std::exception& e)
+	{
+		log.Critical(e.what());
+		return 1;
+	}
 
 	return 0;
 }

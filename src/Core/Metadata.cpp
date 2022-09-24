@@ -42,7 +42,7 @@ void Metadata::TryToLoadFile(const std::string& filename)
 	std::ifstream file(filename);
 	if (!file.good())
 	{
-		throw NotFoundException("File doesn't exist!");
+		throw NotFoundException("File " + filename + " doesn't exist!");
 	}
 
 	if (IsFileEmpty(file))
