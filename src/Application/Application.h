@@ -7,8 +7,12 @@ class Application
 {
 	Log& _log = Log::Get();
 	Metadata _settings;
-	Window _window;
+	Window _window{};
 
+	size_t _fullscreenWidth{};
+	size_t _fullscreenHeight{};
+
+	void CentralizeWindow() const;
 	void Initialize();
 
 public:

@@ -3,6 +3,14 @@
 #include "Core/EngineExceptions.h"
 #include "Sandbox/Sandbox.h"
 
+void Application::CentralizeWindow() const
+{
+	const auto& x = _fullscreenWidth / 2 - _window.width / 2;
+	const auto& y = _fullscreenHeight / 2 - _window.height / 2;
+
+	glfwSetWindowPos(_window.handle, x, y);
+}
+
 void Application::Initialize()
 {
 	glfwInit();
@@ -28,6 +36,23 @@ void Application::Initialize()
 	glfwMakeContextCurrent(_window.handle);
 	gladLoadGL();
 	glViewport(0, 0, width, height);
+
+	const auto screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+	_fullscreenWidth = screenMode->width;
+	_fullscreenHeight = screenMode->height;
+
+	if (_fullscreenWidth > static_cast<size_t>(width) || _fullscreenHeight < static_cast<size_t>(height))
+	{
+		_log.Warn("The resolution size settings " + 
+			std::to_string(width) + "x" + std::to_string(height) + 
+			" exceed the supported monitor resolution " + 
+			std::to_string(_fullscreenWidth) + "x" + std::to_string(_fullscreenHeight) +
+			"."
+		);
+	}
+
+	CentralizeWindow();
 
 	_log.Info("Block Forge initialized!");
 }
