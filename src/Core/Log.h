@@ -1,7 +1,7 @@
 #pragma once
 #include "spdlog/spdlog.h"
 
-#define DEBUG 1
+
 
 /// @class   Log
 /// @brief   Logs the occurred events with additional information and status.
@@ -13,17 +13,18 @@ class Log
 {
 	Log() {
 		spdlog::set_pattern("[%T] [%^%l%$] %v");
-
-#if DEBUG
-		spdlog::set_level(spdlog::level::trace);
-#else
 		spdlog::set_level(spdlog::level::info);
-#endif
-		
 		spdlog::info("Logging initialized!");
 	}
 
 public:
+	enum class LogMode
+	{
+		trace = 0,
+		debug,
+		normal
+	};
+
 	Log(const Log&) = delete;
 	Log(Log&&) = delete;
 	Log& operator=(Log) = delete;
@@ -35,6 +36,8 @@ public:
 		static Log instance;
 		return instance;
 	}
+
+	static void SetMode(LogMode mode);
 
 	/// @brief Prints tracing message.
 	///	@details The trace is used to print EVERYTHING that is happening.

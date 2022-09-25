@@ -1,6 +1,24 @@
 #include "Log.h"
 
 
+void Log::SetMode(const LogMode mode)
+{
+	switch(mode)
+	{
+	case LogMode::trace:
+		spdlog::set_level(spdlog::level::trace);
+		break;
+
+	case LogMode::debug:
+		spdlog::set_level(spdlog::level::debug);
+		break;
+
+	case LogMode::normal:
+		spdlog::set_level(spdlog::level::info);
+		break;
+	}
+}
+
 void Log::Trace(const std::string& message) const
 {
 	spdlog::trace(message);
