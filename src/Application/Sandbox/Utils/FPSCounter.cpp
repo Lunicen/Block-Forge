@@ -40,7 +40,7 @@ void FPSCounter::Update()
 	const auto text = "FPS: " + std::to_string(_actualFps);
 	gltSetText(_fps, text.c_str());
 
-	gltDrawText2DAligned(_fps, 0.0f, 20.0f, 1.0f, GLT_LEFT, GLT_BOTTOM);
+	gltDrawText2DAligned(_fps, 0.0f, 0.0f, 1.0f, GLT_LEFT, GLT_TOP);
 
 	gltEndDraw();
 }
