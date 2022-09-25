@@ -1,6 +1,8 @@
 #pragma once
 #include "spdlog/spdlog.h"
 
+#define DEBUG 1
+
 /// @class   Log
 /// @brief   Logs the occurred events with additional information and status.
 /// @details This static class is made for logging events where actions might contain important messages.
@@ -11,7 +13,13 @@ class Log
 {
 	Log() {
 		spdlog::set_pattern("[%T] [%^%l%$] %v");
+
+#if DEBUG
 		spdlog::set_level(spdlog::level::trace);
+#else
+		spdlog::set_level(spdlog::level::info);
+#endif
+		
 		spdlog::info("Logging initialized!");
 	}
 
