@@ -13,7 +13,7 @@ class Application
 	size_t _fullscreenWidth{};
 	size_t _fullscreenHeight{};
 
-	static void WindowResizeEvent(GLFWwindow* window, int width, int height);
+	static void WindowResizeEvent(GLFWwindow*, int width, int height);
 	void CentralizeWindow() const;
 	void Initialize();
 
