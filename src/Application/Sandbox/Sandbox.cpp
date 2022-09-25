@@ -29,6 +29,13 @@ void Sandbox::Run() const
 
 	while(!glfwWindowShouldClose(_window.handle))
 	{
+		glfwPollEvents();
+
+		if (_window.width <= 0 || _window.height <= 0)
+		{
+			continue;
+		}
+
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -38,7 +45,6 @@ void Sandbox::Run() const
 		counter.Update();
 
 		glfwSwapBuffers(_window.handle);
-		glfwPollEvents();
 	}
 
 	glDisable(GL_DEPTH_TEST);
