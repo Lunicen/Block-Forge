@@ -14,7 +14,7 @@ void Application::WindowResizeEvent(GLFWwindow*, const int width, const int heig
 	glViewport(0, 0, width, height);
 
 	_window.width = static_cast<size_t>(width);
-	_window.height = static_cast<size_t>(width);
+	_window.height = static_cast<size_t>(height);
 }
 
 void Application::CentralizeWindow() const
