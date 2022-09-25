@@ -18,7 +18,6 @@ class HumanInterfaceDevice
 
 	int GetState(const KeyboardKey& key) const;
 	int GetState(const MouseButton& button) const;
-	void ResetOnceHandledInputStates();
 
 public:
 	/// @brief The constructor.

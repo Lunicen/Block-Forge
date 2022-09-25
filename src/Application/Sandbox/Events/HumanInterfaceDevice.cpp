@@ -43,12 +43,6 @@ int HumanInterfaceDevice::GetState(const MouseButton& button) const
 	return glfwGetMouseButton(_window, static_cast<int>(button));
 }
 
-void HumanInterfaceDevice::ResetOnceHandledInputStates()
-{
-	_onceHandledKeyboardKeys.clear();
-	_onceHandledMouseButtons.clear();
-}
-
 HumanInterfaceDevice::HumanInterfaceDevice(GLFWwindow*& window) : _window(window)
 {
 }
@@ -74,7 +68,7 @@ bool HumanInterfaceDevice::IsPressedOnce(const KeyboardKey& key)
 
 	if (IsReleased(key))
 	{
-		ResetOnceHandledInputStates();
+		_onceHandledKeyboardKeys.erase(key);
 	}
 
 	return false;
@@ -106,7 +100,7 @@ bool HumanInterfaceDevice::IsPressedOnce(const MouseButton& button)
 
 	if (IsReleased(button))
 	{
-		ResetOnceHandledInputStates();
+		_onceHandledMouseButtons.erase(button);
 	}
 
 	return false;
