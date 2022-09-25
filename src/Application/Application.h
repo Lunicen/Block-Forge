@@ -5,13 +5,15 @@
 
 class Application
 {
+	static Window _window;
+
 	Log& _log = Log::Get();
 	Metadata _settings;
-	Window _window{};
 
 	size_t _fullscreenWidth{};
 	size_t _fullscreenHeight{};
 
+	static void WindowResizeEvent(GLFWwindow* window, int width, int height);
 	void CentralizeWindow() const;
 	void Initialize();
 

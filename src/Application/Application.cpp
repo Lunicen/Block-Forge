@@ -3,12 +3,26 @@
 #include "Core/EngineExceptions.h"
 #include "Sandbox/Sandbox.h"
 
+// As a static member of class this variable
+// must be here initialized
+Window Application::_window = {
+	nullptr, 0, 0
+};
+
+void Application::WindowResizeEvent(GLFWwindow*, const int width, const int height)
+{
+	glViewport(0, 0, width, height);
+
+	_window.width = static_cast<size_t>(width);
+	_window.height = static_cast<size_t>(width);
+}
+
 void Application::CentralizeWindow() const
 {
 	const auto& x = _fullscreenWidth / 2 - _window.width / 2;
 	const auto& y = _fullscreenHeight / 2 - _window.height / 2;
 
-	glfwSetWindowPos(_window.handle, x, y);
+	glfwSetWindowPos(_window.handle, static_cast<int>(x), static_cast<int>(y));
 }
 
 void Application::Initialize()
@@ -35,6 +49,9 @@ void Application::Initialize()
 
 	glfwMakeContextCurrent(_window.handle);
 	gladLoadGL();
+
+	glfwSetWindowUserPointer(_window.handle, this);
+
 	glViewport(0, 0, width, height);
 
 	const auto screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -42,7 +59,7 @@ void Application::Initialize()
 	_fullscreenWidth = screenMode->width;
 	_fullscreenHeight = screenMode->height;
 
-	if (_fullscreenWidth > static_cast<size_t>(width) || _fullscreenHeight < static_cast<size_t>(height))
+	if (_fullscreenWidth < static_cast<size_t>(width) || _fullscreenHeight < static_cast<size_t>(height))
 	{
 		_log.Warn("The resolution size settings " + 
 			std::to_string(width) + "x" + std::to_string(height) + 
@@ -52,6 +69,8 @@ void Application::Initialize()
 		);
 	}
 
+	glfwSetFramebufferSizeCallback(_window.handle, WindowResizeEvent);
+
 	CentralizeWindow();
 
 	_log.Info("Block Forge initialized!");
@@ -60,7 +79,6 @@ void Application::Initialize()
 Application::Application(const std::string& filename)
 {
 	_settings.Load(filename);
-	_window.handle = nullptr;
 
 	const auto resolution = _settings.GetJsonObject("resolution");
 	_window.height = resolution["height"].get<int>();

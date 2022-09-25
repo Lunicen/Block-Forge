@@ -20,6 +20,8 @@ Camera::Camera(Window& window, const glm::vec3 position, HumanInterfaceDevice& h
 
 void Camera::Update()
 {
+	glViewport(0, 0, static_cast<int>(_window.width), static_cast<int>(_window.height));
+
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto view = glm::mat4(1.0f);
 	view = lookAt(_position, _position + _orientation, _up);
