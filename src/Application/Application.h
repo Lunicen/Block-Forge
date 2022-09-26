@@ -1,8 +1,14 @@
 #pragma once
 #include "Core/Log.h"
 #include "Core/Metadata.h"
-#include "ApplicationUtils.h"
+#include "Window.h"
 
+/// @class Application
+///	@brief Represents the application context.
+/// @details Application manages events that are bound to the logic of an application. 
+/// For example, handling window events such as resize, minimize, exit, etc... 
+/// and providing a control flow for selecting what to display in the application.
+///	@note This class should be called at the entry point.
 class Application
 {
 	static Window _window;
@@ -18,8 +24,12 @@ class Application
 	void Initialize();
 
 public:
-	explicit Application(const std::string& filename);
 
+	/// @brief The constructor.
+	///	@param filenameWithSettings - path to the JSON file with application settings.
+	explicit Application(const std::string& filenameWithSettings);
+
+	/// @brief Creates an application and runs it.
 	void Run();
 };
 

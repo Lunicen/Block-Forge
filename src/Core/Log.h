@@ -18,6 +18,8 @@ class Log
 	}
 
 public:
+
+	/// @brief Represents the levels of detail logging information to the console.
 	enum class LogMode
 	{
 		trace = 0,
@@ -37,6 +39,9 @@ public:
 		return instance;
 	}
 
+	/// @brief Sets the log mode.
+	///	@param mode - chosen logging mode.
+	///	@see LogMode
 	static void SetMode(LogMode mode);
 
 	/// @brief Prints tracing message.
