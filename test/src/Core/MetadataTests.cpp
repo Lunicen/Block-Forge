@@ -39,7 +39,7 @@ namespace MetadataTests
 	    }
 	    catch(const NotFoundException& err)
 		{
-	        EXPECT_EQ(err.what(), std::string("File doesn't exist!"));
+	        EXPECT_EQ(err.what(), std::string("File " + filename + " doesn't exist!"));
 	    }
 	    catch(...)
 		{

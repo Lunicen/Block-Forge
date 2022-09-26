@@ -1,6 +1,8 @@
 #pragma once
 #include "spdlog/spdlog.h"
 
+
+
 /// @class   Log
 /// @brief   Logs the occurred events with additional information and status.
 /// @details This static class is made for logging events where actions might contain important messages.
@@ -11,11 +13,20 @@ class Log
 {
 	Log() {
 		spdlog::set_pattern("[%T] [%^%l%$] %v");
-		spdlog::set_level(spdlog::level::trace);
+		spdlog::set_level(spdlog::level::info);
 		spdlog::info("Logging initialized!");
 	}
 
 public:
+
+	/// @brief Represents the levels of detail logging information to the console.
+	enum class LogMode
+	{
+		trace = 0,
+		debug,
+		normal
+	};
+
 	Log(const Log&) = delete;
 	Log(Log&&) = delete;
 	Log& operator=(Log) = delete;
@@ -27,6 +38,11 @@ public:
 		static Log instance;
 		return instance;
 	}
+
+	/// @brief Sets the log mode.
+	///	@param mode - chosen logging mode.
+	///	@see LogMode
+	static void SetMode(LogMode mode);
 
 	/// @brief Prints tracing message.
 	///	@details The trace is used to print EVERYTHING that is happening.
