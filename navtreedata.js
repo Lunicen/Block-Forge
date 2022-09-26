@@ -25,15 +25,15 @@
 var NAVTREE =
 [
   [ "Block Forge", "index.html", [
-    [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -44,8 +44,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_biome_8h_source.html",
-"class_vertex_buffer.html#a13019e8580ca3e369fad4166500ad2b9"
+"_application_8h_source.html",
+"class_tilted_cube.html#ad178819dfcb3a48e9e3a83151d568145"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

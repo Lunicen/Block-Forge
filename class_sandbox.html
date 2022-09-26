@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,20 +99,20 @@ $(document).ready(function(){initNavTree('class_sandbox.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a705c789888637f39e6788c17d8f1725a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">Sandbox</a> (const std::string &amp;filename)</td></tr>
-<tr class="memdesc:a705c789888637f39e6788c17d8f1725a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor, loads the world data.  <a href="class_sandbox.html#a705c789888637f39e6788c17d8f1725a">More...</a><br /></td></tr>
-<tr class="separator:a705c789888637f39e6788c17d8f1725a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf3281601c4d74df146fc0a22e9342a8"><td class="memItemLeft" align="right" valign="top"><a id="adf3281601c4d74df146fc0a22e9342a8" name="adf3281601c4d74df146fc0a22e9342a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
-<tr class="memdesc:adf3281601c4d74df146fc0a22e9342a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the simulation. <br /></td></tr>
-<tr class="separator:adf3281601c4d74df146fc0a22e9342a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0c3e35f7c83474e8fc8ee4455f4d89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sandbox.html#a8d0c3e35f7c83474e8fc8ee4455f4d89">Sandbox</a> (<a class="el" href="class_window.html">Window</a> &amp;window)</td></tr>
+<tr class="memdesc:a8d0c3e35f7c83474e8fc8ee4455f4d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_sandbox.html#a8d0c3e35f7c83474e8fc8ee4455f4d89">More...</a><br /></td></tr>
+<tr class="separator:a8d0c3e35f7c83474e8fc8ee4455f4d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="memItemLeft" align="right" valign="top"><a id="ac103b1df25988cc7b31e3a8c3cee88bd" name="ac103b1df25988cc7b31e3a8c3cee88bd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> () const</td></tr>
+<tr class="memdesc:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the simulation. <br /></td></tr>
+<tr class="separator:ac103b1df25988cc7b31e3a8c3cee88bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Class where the world is projected. </p>
 <p >This class handles displaying the world or so to say the actual simulation. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a705c789888637f39e6788c17d8f1725a" name="a705c789888637f39e6788c17d8f1725a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a705c789888637f39e6788c17d8f1725a">&#9670;&nbsp;</a></span>Sandbox()</h2>
+<a id="a8d0c3e35f7c83474e8fc8ee4455f4d89" name="a8d0c3e35f7c83474e8fc8ee4455f4d89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0c3e35f7c83474e8fc8ee4455f4d89">&#9670;&nbsp;</a></span>Sandbox()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,22 +123,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
         <tr>
           <td class="memname">Sandbox::Sandbox </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_window.html">Window</a> &amp;&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>The constructor, loads the world data. </p>
+<p>The constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>- The filename of the file containing the world data. </td></tr>
+    <tr><td class="paramname">window</td><td>- Reference to the window settings. </td></tr>
   </table>
   </dd>
 </dl>
@@ -146,8 +146,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Sandbox/<a class="el" href="_sandbox_8h_source.html">Sandbox.h</a></li>
-<li>src/Sandbox/Sandbox.cpp</li>
+<li>src/Application/Sandbox/<a class="el" href="_sandbox_8h_source.html">Sandbox.h</a></li>
+<li>src/Application/Sandbox/Sandbox.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

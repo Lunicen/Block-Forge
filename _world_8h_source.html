@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Sandbox/World.h Source File</title>
+<title>Block Forge: src/Application/Sandbox/World.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -102,31 +102,19 @@ $(document).ready(function(){initNavTree('_world_8h_source.html',''); initResiza
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_world.html#a6355e23026c7590b227f0c6a2b4dd3a7">   16</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_world.html#a6355e23026c7590b227f0c6a2b4dd3a7">World</a>(<span class="keyword">const</span> std::string&amp; filename) : _worldData(filename)</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    }</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_world.html#a89019eff3475e0a3e38ff4cf5a625d42">Create</a>();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_world.html#a0f570293be4fd6ab6b3d3cc986647971">Load</a>();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_world.html#a0aad4fb9baba51670741746dc993f3fa">IsLoaded</a>();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_world.html#a32a6bacf092cf5219681e73e4144dcc1">Save</a>();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:11</div></div>
-<div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:25</div></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:13</div></div>
+<div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:36</div></div>
 <div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:14</div></div>
 <div class="ttc" id="aclass_world_html"><div class="ttname"><a href="class_world.html">World</a></div><div class="ttdoc">Represents the world which contains the data about the generated world.</div><div class="ttdef"><b>Definition:</b> World.h:8</div></div>
-<div class="ttc" id="aclass_world_html_a0aad4fb9baba51670741746dc993f3fa"><div class="ttname"><a href="class_world.html#a0aad4fb9baba51670741746dc993f3fa">World::IsLoaded</a></div><div class="ttdeci">bool IsLoaded()</div><div class="ttdoc">Checks if the world is loaded.</div><div class="ttdef"><b>Definition:</b> World.cpp:15</div></div>
-<div class="ttc" id="aclass_world_html_a0f570293be4fd6ab6b3d3cc986647971"><div class="ttname"><a href="class_world.html#a0f570293be4fd6ab6b3d3cc986647971">World::Load</a></div><div class="ttdeci">void Load()</div><div class="ttdoc">Loads the world from the file.</div><div class="ttdef"><b>Definition:</b> World.cpp:9</div></div>
-<div class="ttc" id="aclass_world_html_a32a6bacf092cf5219681e73e4144dcc1"><div class="ttname"><a href="class_world.html#a32a6bacf092cf5219681e73e4144dcc1">World::Save</a></div><div class="ttdeci">void Save()</div><div class="ttdoc">Saves the world with it's contents.</div><div class="ttdef"><b>Definition:</b> World.cpp:23</div></div>
 <div class="ttc" id="aclass_world_html_a6355e23026c7590b227f0c6a2b4dd3a7"><div class="ttname"><a href="class_world.html#a6355e23026c7590b227f0c6a2b4dd3a7">World::World</a></div><div class="ttdeci">World(const std::string &amp;filename)</div><div class="ttdoc">The constructor that takes the pointer to the metadata file.</div><div class="ttdef"><b>Definition:</b> World.h:16</div></div>
-<div class="ttc" id="aclass_world_html_a89019eff3475e0a3e38ff4cf5a625d42"><div class="ttname"><a href="class_world.html#a89019eff3475e0a3e38ff4cf5a625d42">World::Create</a></div><div class="ttdeci">void Create()</div><div class="ttdoc">Generates the world and creates the file with the world data.</div><div class="ttdef"><b>Definition:</b> World.cpp:3</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><b>World.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><b>World.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

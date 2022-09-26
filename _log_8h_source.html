@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -91,48 +91,62 @@ $(document).ready(function(){initNavTree('_log_8h_source.html',''); initResizabl
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;spdlog/spdlog.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_log.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_log.html">Log</a></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_log.html">Log</a>() {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        spdlog::set_pattern(<span class="stringliteral">&quot;[%T] [%^%l%$] %v&quot;</span>);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        spdlog::set_level(spdlog::level::trace);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        spdlog::info(<span class="stringliteral">&quot;Logging initialized!&quot;</span>);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    }</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="class_log.html">Log</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_log.html">Log</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="class_log.html">Log</a>(<a class="code hl_class" href="class_log.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; operator=(<a class="code hl_class" href="class_log.html">Log</a>) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; operator=(<a class="code hl_class" href="class_log.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">   25</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="class_log.html">Log</a>&amp; <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Get</a>()</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">static</span> <a class="code hl_class" href="class_log.html">Log</a> instance;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">return</span> instance;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ab37c05ff8e8e33b3bc493b4c370ae9d8">Trace</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ab78c9793213de82c2f4ef713ff5f92f5">Debug</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_log.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_log.html">Log</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_class" href="class_log.html">Log</a>() {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        spdlog::set_pattern(<span class="stringliteral">&quot;[%T] [%^%l%$] %v&quot;</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        spdlog::set_level(spdlog::level::info);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        spdlog::info(<span class="stringliteral">&quot;Logging initialized!&quot;</span>);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">   23</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">LogMode</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        trace = 0,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        debug,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        normal</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    };</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="class_log.html">Log</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_log.html">Log</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_class" href="class_log.html">Log</a>(<a class="code hl_class" href="class_log.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; operator=(<a class="code hl_class" href="class_log.html">Log</a>) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; operator=(<a class="code hl_class" href="class_log.html">Log</a>&amp;&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">   36</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="class_log.html">Log</a>&amp; <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Get</a>()</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">static</span> <a class="code hl_class" href="class_log.html">Log</a> instance;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#a9a1405db271faaf3c22f80aceb617851">Info</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#a363bed211450a83906746994087f9472">SetMode</a>(<a class="code hl_enumeration" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">LogMode</a> mode);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ad8276dc31ac96781827055ccffcb23a9">Warn</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#adbeb56537cfdbb0ea51ec699c3268dca">Error</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#a2de185c2001e269efca3edd8c5624fed">Critical</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_class" href="class_log.html">~Log</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
-<div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:11</div></div>
-<div class="ttc" id="aclass_log_html_a2de185c2001e269efca3edd8c5624fed"><div class="ttname"><a href="class_log.html#a2de185c2001e269efca3edd8c5624fed">Log::Critical</a></div><div class="ttdeci">void Critical(const std::string &amp;message) const</div><div class="ttdoc">Prints critical message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:29</div></div>
-<div class="ttc" id="aclass_log_html_a9a1405db271faaf3c22f80aceb617851"><div class="ttname"><a href="class_log.html#a9a1405db271faaf3c22f80aceb617851">Log::Info</a></div><div class="ttdeci">void Info(const std::string &amp;message) const</div><div class="ttdoc">Prints info message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:14</div></div>
-<div class="ttc" id="aclass_log_html_ab37c05ff8e8e33b3bc493b4c370ae9d8"><div class="ttname"><a href="class_log.html#ab37c05ff8e8e33b3bc493b4c370ae9d8">Log::Trace</a></div><div class="ttdeci">void Trace(const std::string &amp;message) const</div><div class="ttdoc">Prints tracing message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:4</div></div>
-<div class="ttc" id="aclass_log_html_ab78c9793213de82c2f4ef713ff5f92f5"><div class="ttname"><a href="class_log.html#ab78c9793213de82c2f4ef713ff5f92f5">Log::Debug</a></div><div class="ttdeci">void Debug(const std::string &amp;message) const</div><div class="ttdoc">Prints debug message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:9</div></div>
-<div class="ttc" id="aclass_log_html_ad8276dc31ac96781827055ccffcb23a9"><div class="ttname"><a href="class_log.html#ad8276dc31ac96781827055ccffcb23a9">Log::Warn</a></div><div class="ttdeci">void Warn(const std::string &amp;message) const</div><div class="ttdoc">Prints warning message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:19</div></div>
-<div class="ttc" id="aclass_log_html_adbeb56537cfdbb0ea51ec699c3268dca"><div class="ttname"><a href="class_log.html#adbeb56537cfdbb0ea51ec699c3268dca">Log::Error</a></div><div class="ttdeci">void Error(const std::string &amp;message) const</div><div class="ttdoc">Prints error message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:24</div></div>
-<div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:25</div></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ab37c05ff8e8e33b3bc493b4c370ae9d8">Trace</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ab78c9793213de82c2f4ef713ff5f92f5">Debug</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#a9a1405db271faaf3c22f80aceb617851">Info</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#ad8276dc31ac96781827055ccffcb23a9">Warn</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#adbeb56537cfdbb0ea51ec699c3268dca">Error</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_log.html#a2de185c2001e269efca3edd8c5624fed">Critical</a>(<span class="keyword">const</span> std::string&amp; message) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_class" href="class_log.html">~Log</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+<div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:13</div></div>
+<div class="ttc" id="aclass_log_html_a2de185c2001e269efca3edd8c5624fed"><div class="ttname"><a href="class_log.html#a2de185c2001e269efca3edd8c5624fed">Log::Critical</a></div><div class="ttdeci">void Critical(const std::string &amp;message) const</div><div class="ttdoc">Prints critical message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:47</div></div>
+<div class="ttc" id="aclass_log_html_a363bed211450a83906746994087f9472"><div class="ttname"><a href="class_log.html#a363bed211450a83906746994087f9472">Log::SetMode</a></div><div class="ttdeci">static void SetMode(LogMode mode)</div><div class="ttdoc">Sets the log mode.</div><div class="ttdef"><b>Definition:</b> Log.cpp:4</div></div>
+<div class="ttc" id="aclass_log_html_a9a1405db271faaf3c22f80aceb617851"><div class="ttname"><a href="class_log.html#a9a1405db271faaf3c22f80aceb617851">Log::Info</a></div><div class="ttdeci">void Info(const std::string &amp;message) const</div><div class="ttdoc">Prints info message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:32</div></div>
+<div class="ttc" id="aclass_log_html_ab37c05ff8e8e33b3bc493b4c370ae9d8"><div class="ttname"><a href="class_log.html#ab37c05ff8e8e33b3bc493b4c370ae9d8">Log::Trace</a></div><div class="ttdeci">void Trace(const std::string &amp;message) const</div><div class="ttdoc">Prints tracing message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:22</div></div>
+<div class="ttc" id="aclass_log_html_ab78c9793213de82c2f4ef713ff5f92f5"><div class="ttname"><a href="class_log.html#ab78c9793213de82c2f4ef713ff5f92f5">Log::Debug</a></div><div class="ttdeci">void Debug(const std::string &amp;message) const</div><div class="ttdoc">Prints debug message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:27</div></div>
+<div class="ttc" id="aclass_log_html_ad8276dc31ac96781827055ccffcb23a9"><div class="ttname"><a href="class_log.html#ad8276dc31ac96781827055ccffcb23a9">Log::Warn</a></div><div class="ttdeci">void Warn(const std::string &amp;message) const</div><div class="ttdoc">Prints warning message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:37</div></div>
+<div class="ttc" id="aclass_log_html_adbeb56537cfdbb0ea51ec699c3268dca"><div class="ttname"><a href="class_log.html#adbeb56537cfdbb0ea51ec699c3268dca">Log::Error</a></div><div class="ttdeci">void Error(const std::string &amp;message) const</div><div class="ttdoc">Prints error message.</div><div class="ttdef"><b>Definition:</b> Log.cpp:42</div></div>
+<div class="ttc" id="aclass_log_html_ae702dfea75c6b886c9bd5214160aece5"><div class="ttname"><a href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">Log::LogMode</a></div><div class="ttdeci">LogMode</div><div class="ttdoc">Represents the levels of detail logging information to the console.</div><div class="ttdef"><b>Definition:</b> Log.h:24</div></div>
+<div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

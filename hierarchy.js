@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Application", "class_application.html", null ],
     [ "BiomePlacer", "class_biome_placer.html", null ],
     [ "BiomeProvider", "class_biome_provider.html", null ],
     [ "BlockBuilder", "class_block_builder.html", null ],
@@ -49,10 +50,13 @@ var hierarchy =
       [ "TiltedCube", "class_tilted_cube.html", null ]
     ] ],
     [ "Sandbox", "class_sandbox.html", null ],
-    [ "Texture", "class_texture.html", null ],
+    [ "Texture", "class_texture.html", [
+      [ "TextureAtlas", "class_texture_atlas.html", null ]
+    ] ],
     [ "Vertex", "struct_vertex.html", null ],
     [ "VertexArray", "class_vertex_array.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", null ],
+    [ "Window", "class_window.html", null ],
     [ "World", "class_world.html", null ],
     [ "WorldGenerator", "class_world_generator.html", null ],
     [ "WorldGeneratorUtils", "class_world_generator_utils.html", null ]

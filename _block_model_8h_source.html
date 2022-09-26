@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Sandbox/Model/BlockModel.h Source File</title>
+<title>Block Forge: src/Application/Sandbox/Model/BlockModel.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_block_model_8h_source.html',''); init
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;BlockFaceModel.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Sandbox/Camera.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Sandbox/Camera.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="struct_block_faces.html">    6</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
@@ -173,7 +173,7 @@ $(document).ready(function(){initNavTree('_block_model_8h_source.html',''); init
 <div class="ttc" id="aclass_block_model_html_a97736ed4b25239dcf0295c5b3aced711"><div class="ttname"><a href="class_block_model.html#a97736ed4b25239dcf0295c5b3aced711">BlockModel::DrawLeftFace</a></div><div class="ttdeci">void DrawLeftFace(const Position &amp;origin, const Camera &amp;camera) const</div><div class="ttdoc">Draws the left face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:86</div></div>
 <div class="ttc" id="aclass_block_model_html_ac580c8dbfbbdcceed16e7d0a62e585c3"><div class="ttname"><a href="class_block_model.html#ac580c8dbfbbdcceed16e7d0a62e585c3">BlockModel::DrawBackFace</a></div><div class="ttdeci">void DrawBackFace(const Position &amp;origin, const Camera &amp;camera) const</div><div class="ttdoc">Draws the back face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:78</div></div>
 <div class="ttc" id="aclass_block_model_html_ac6a155bc0148c40b280bd588fc6086c3"><div class="ttname"><a href="class_block_model.html#ac6a155bc0148c40b280bd588fc6086c3">BlockModel::DrawFrontFace</a></div><div class="ttdeci">void DrawFrontFace(const Position &amp;origin, const Camera &amp;camera) const</div><div class="ttdoc">Draws the front face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:70</div></div>
-<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:13</div></div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
 <div class="ttc" id="astruct_block_faces_html"><div class="ttname"><a href="struct_block_faces.html">BlockFaces</a></div><div class="ttdoc">Container for the face models of a block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:7</div></div>
 <div class="ttc" id="astruct_block_faces_html_a3df91d77b445f498781fdb65d1aa61fd"><div class="ttname"><a href="struct_block_faces.html#a3df91d77b445f498781fdb65d1aa61fd">BlockFaces::back</a></div><div class="ttdeci">BlockFaceModel back</div><div class="ttdoc">Model of the block back face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:12</div></div>
 <div class="ttc" id="astruct_block_faces_html_a44387d51bb70563c37964b3347688c08"><div class="ttname"><a href="struct_block_faces.html#a44387d51bb70563c37964b3347688c08">BlockFaces::front</a></div><div class="ttdeci">BlockFaceModel front</div><div class="ttdoc">Model of the block front face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:9</div></div>
@@ -193,7 +193,7 @@ $(document).ready(function(){initNavTree('_block_model_8h_source.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_34af0959eb28c822354cf2f8de93f1a0.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_52b3e80ee2740d84726376148bc870c0.html">Model</a></li><li class="navelem"><b>BlockModel.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_c5a0c248c3e40fde9ca7469a3ac2896b.html">Model</a></li><li class="navelem"><b>BlockModel.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.4</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_log.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_log-members.html">List of all members</a>  </div>
@@ -98,6 +99,15 @@ $(document).ready(function(){initNavTree('class_log.html',''); initResizable(); 
 
 <p><code>#include &lt;<a class="el" href="_log_8h_source.html">Log.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae702dfea75c6b886c9bd5214160aece5"><td class="memItemLeft" align="right" valign="top"><a id="ae702dfea75c6b886c9bd5214160aece5" name="ae702dfea75c6b886c9bd5214160aece5"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">LogMode</a> { <b>trace</b> = 0
+, <b>debug</b>
+, <b>normal</b>
+ }</td></tr>
+<tr class="memdesc:ae702dfea75c6b886c9bd5214160aece5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the levels of detail logging information to the console. <br /></td></tr>
+<tr class="separator:ae702dfea75c6b886c9bd5214160aece5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae1f217486548f0c7921ff95316f56883"><td class="memItemLeft" align="right" valign="top"><a id="ae1f217486548f0c7921ff95316f56883" name="ae1f217486548f0c7921ff95316f56883"></a>
@@ -137,11 +147,49 @@ Static Public Member Functions</h2></td></tr>
 static <a class="el" href="class_log.html">Log</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>Get</b> ()</td></tr>
 <tr class="memdesc:ae83c4fbe516247d0006cb35636469e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns Logger instance. <br /></td></tr>
 <tr class="separator:ae83c4fbe516247d0006cb35636469e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363bed211450a83906746994087f9472"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#a363bed211450a83906746994087f9472">SetMode</a> (<a class="el" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">LogMode</a> mode)</td></tr>
+<tr class="memdesc:a363bed211450a83906746994087f9472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the log mode.  <a href="class_log.html#a363bed211450a83906746994087f9472">More...</a><br /></td></tr>
+<tr class="separator:a363bed211450a83906746994087f9472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Logs the occurred events with additional information and status. </p>
 <p >This static class is made for logging events where actions might contain important messages. Used for tracking control flow, errors, etc. If you need more information about the log levels and when to use them, check out <a href="https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels">this</a> link. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a363bed211450a83906746994087f9472" name="a363bed211450a83906746994087f9472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a363bed211450a83906746994087f9472">&#9670;&nbsp;</a></span>SetMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::SetMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5">LogMode</a>&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the log mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>- chosen logging mode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_log.html#ae702dfea75c6b886c9bd5214160aece5" title="Represents the levels of detail logging information to the console.">LogMode</a> </dd></dl>
+
+</div>
+</div>
 <a id="ab37c05ff8e8e33b3bc493b4c370ae9d8" name="ab37c05ff8e8e33b3bc493b4c370ae9d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab37c05ff8e8e33b3bc493b4c370ae9d8">&#9670;&nbsp;</a></span>Trace()</h2>
 

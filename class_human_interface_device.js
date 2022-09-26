@@ -1,6 +1,6 @@
 var class_human_interface_device =
 [
-    [ "HumanInterfaceDevice", "class_human_interface_device.html#a36d9504e75ed795d55be04518ea6eb54", null ],
+    [ "HumanInterfaceDevice", "class_human_interface_device.html#a34c3dbc69ffcc9ad90fcb5cc98a9bd10", null ],
     [ "IsPressed", "class_human_interface_device.html#ab2fef47bbad071085e5fc18a74706a4e", null ],
     [ "IsPressedOnce", "class_human_interface_device.html#a14849fe605bf93a19ad3b0a52c319f25", null ],
     [ "IsReleased", "class_human_interface_device.html#ac07d60ca3db3cca852d68ae5da9c4a9a", null ],

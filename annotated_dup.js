@@ -3,6 +3,7 @@ var annotated_dup =
     [ "std", null, [
       [ "hash< Position >", "structstd_1_1hash_3_01_position_01_4.html", "structstd_1_1hash_3_01_position_01_4" ]
     ] ],
+    [ "Application", "class_application.html", "class_application" ],
     [ "BadInitializationException", "class_bad_initialization_exception.html", "class_bad_initialization_exception" ],
     [ "Biome", "class_biome.html", "class_biome" ],
     [ "BiomePlacer", "class_biome_placer.html", "class_biome_placer" ],
@@ -42,12 +43,14 @@ var annotated_dup =
     [ "Sandbox", "class_sandbox.html", "class_sandbox" ],
     [ "Shader", "class_shader.html", "class_shader" ],
     [ "Texture", "class_texture.html", "class_texture" ],
+    [ "TextureAtlas", "class_texture_atlas.html", "class_texture_atlas" ],
     [ "TiltedCube", "class_tilted_cube.html", "class_tilted_cube" ],
     [ "UninitializedPropertyAccessException", "class_uninitialized_property_access_exception.html", "class_uninitialized_property_access_exception" ],
     [ "UnknownValueException", "class_unknown_value_exception.html", "class_unknown_value_exception" ],
     [ "Vertex", "struct_vertex.html", "struct_vertex" ],
     [ "VertexArray", "class_vertex_array.html", "class_vertex_array" ],
     [ "VertexBuffer", "class_vertex_buffer.html", "class_vertex_buffer" ],
+    [ "Window", "class_window.html", "class_window" ],
     [ "World", "class_world.html", "class_world" ],
     [ "WorldGenerator", "class_world_generator.html", "class_world_generator" ],
     [ "WorldGeneratorUtils", "class_world_generator_utils.html", null ]

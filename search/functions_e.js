@@ -1,26 +1,6 @@
 var searchData=
 [
-  ['sandbox_0',['Sandbox',['../class_sandbox.html#a705c789888637f39e6788c17d8f1725a',1,'Sandbox']]],
-  ['save_1',['Save',['../class_metadata.html#a347117de858546e8fd7ea3016e88323b',1,'Metadata::Save()'],['../class_world.html#a32a6bacf092cf5219681e73e4144dcc1',1,'World::Save()']]],
-  ['setbool_2',['SetBool',['../class_metadata.html#a63bf33687ae931bb706cfdccd61e48d3',1,'Metadata']]],
-  ['setchunksize_3',['SetChunkSize',['../class_render_view.html#aee5038ecbeed5c92dcd7c34882a61dc3',1,'RenderView']]],
-  ['setdefaultspeed_4',['SetDefaultSpeed',['../class_camera.html#a9b5b72fb6ffc22090c1bdc7923624d65',1,'Camera']]],
-  ['setdouble_5',['SetDouble',['../class_metadata.html#a2069322f9e0695232740ad64bd8ff56a',1,'Metadata']]],
-  ['setfarpane_6',['SetFarPane',['../class_camera.html#a6d2967978b891fc0c94bb185897b483d',1,'Camera']]],
-  ['setfieldofview_7',['SetFieldOfView',['../class_camera.html#a741b54ee00f28d9d69505e79de7c0343',1,'Camera']]],
-  ['setfilename_8',['SetFilename',['../class_metadata.html#ad84e37040e02575b907895212baa9bf6',1,'Metadata']]],
-  ['setheight_9',['SetHeight',['../class_camera.html#aacfc9953509db7afd29278c4338e2987',1,'Camera']]],
-  ['setint_10',['SetInt',['../class_metadata.html#a307ee88b93f1f2a3909a1c736341f4b2',1,'Metadata']]],
-  ['setjsonarray_11',['SetJsonArray',['../class_metadata.html#a572d6a084ecb61c0b27cfefaf0721f13',1,'Metadata']]],
-  ['setjsonobject_12',['SetJsonObject',['../class_metadata.html#a8c5559751c2701467289c997bed4e791',1,'Metadata']]],
-  ['setnearpane_13',['SetNearPane',['../class_camera.html#af77277727d659216711df6b01c60cb82',1,'Camera']]],
-  ['setnull_14',['SetNull',['../class_metadata.html#aefd89080abb7532d82b748575094b25f',1,'Metadata']]],
-  ['setrenderdistance_15',['SetRenderDistance',['../class_render_view.html#a8001311948bbb8cfb538161374e1e85d',1,'RenderView']]],
-  ['setrenderview_16',['SetRenderView',['../class_chunk_renderer.html#a761b21f0ec71c4fc21b1276e1b8a99d0',1,'ChunkRenderer']]],
-  ['setsensitivity_17',['SetSensitivity',['../class_camera.html#a1b5df4b2e2c2b9d6de70fdf398fcb883',1,'Camera']]],
-  ['setspeed_18',['SetSpeed',['../class_camera.html#af3b8786d5ca47657f67f79c9a9b24419',1,'Camera']]],
-  ['setstring_19',['SetString',['../class_metadata.html#a988d7a62d4642bf6e7cdbfd56e832703',1,'Metadata']]],
-  ['setuvtotextureatlas_20',['SetUvToTextureAtlas',['../class_texture.html#a5da670d410f496f353b80cd2b5954c9a',1,'Texture']]],
-  ['setwidth_21',['SetWidth',['../class_camera.html#a54558a69f3d08c167e2f2f49e79ab405',1,'Camera']]],
-  ['shader_22',['Shader',['../class_shader.html#a11126523f264f46c8b5b2959a0f82136',1,'Shader::Shader(const Shader &amp;)=default'],['../class_shader.html#a82902dcffbfeab356a5a024c50095724',1,'Shader::Shader(Shader &amp;&amp;)=default'],['../class_shader.html#aa60afe8be2c497a1bd154bba57eedf9c',1,'Shader::Shader(const std::string &amp;vertexFile, const std::string &amp;fragmentFile)']]]
+  ['render_0',['Render',['../class_chunk_renderer.html#ac4256098205e544df8746c9263928ad4',1,'ChunkRenderer']]],
+  ['renderview_1',['RenderView',['../class_render_view.html#a2536e01bd5bc5daf2dffb2043f71e101',1,'RenderView::RenderView()'],['../class_cube_view.html#a2536e01bd5bc5daf2dffb2043f71e101',1,'CubeView::RenderView()'],['../class_diamond_view.html#a2536e01bd5bc5daf2dffb2043f71e101',1,'DiamondView::RenderView()'],['../class_tilted_cube.html#a2536e01bd5bc5daf2dffb2043f71e101',1,'TiltedCube::RenderView()']]],
+  ['run_2',['Run',['../class_application.html#aaf09cd6cb412086dc039e28cdb059f0d',1,'Application::Run()'],['../class_sandbox.html#ac103b1df25988cc7b31e3a8c3cee88bd',1,'Sandbox::Run()']]]
 ];

@@ -1,5 +1,28 @@
 var searchData=
 [
-  ['texture_0',['Texture',['../class_texture.html#a6c41865c701dc745d76247c2aabd69a8',1,'Texture::Texture(const std::string &amp;filenameWithImage)'],['../class_texture.html#a0f5a6faf3299ec7edc2b46f79521eea4',1,'Texture::Texture(const std::string &amp;filenameWithImage, int x, int y, size_t spriteSize)'],['../class_texture.html#a045b7ee52dfedc3602549c3706b3b4aa',1,'Texture::Texture(const Texture &amp;)=default'],['../class_texture.html#a004dd9bd404d90c4be569497aa5540e1',1,'Texture::Texture(Texture &amp;&amp;)=default']]],
-  ['trace_1',['Trace',['../class_log.html#ab37c05ff8e8e33b3bc493b4c370ae9d8',1,'Log']]]
+  ['sandbox_0',['Sandbox',['../class_sandbox.html#a8d0c3e35f7c83474e8fc8ee4455f4d89',1,'Sandbox']]],
+  ['save_1',['Save',['../class_metadata.html#a347117de858546e8fd7ea3016e88323b',1,'Metadata']]],
+  ['setbool_2',['SetBool',['../class_metadata.html#a63bf33687ae931bb706cfdccd61e48d3',1,'Metadata']]],
+  ['setchunksize_3',['SetChunkSize',['../class_render_view.html#aee5038ecbeed5c92dcd7c34882a61dc3',1,'RenderView']]],
+  ['setdefaultspeed_4',['SetDefaultSpeed',['../class_camera.html#a9b5b72fb6ffc22090c1bdc7923624d65',1,'Camera']]],
+  ['setdouble_5',['SetDouble',['../class_metadata.html#a2069322f9e0695232740ad64bd8ff56a',1,'Metadata']]],
+  ['setfarpane_6',['SetFarPane',['../class_camera.html#a6d2967978b891fc0c94bb185897b483d',1,'Camera']]],
+  ['setfieldofview_7',['SetFieldOfView',['../class_camera.html#a741b54ee00f28d9d69505e79de7c0343',1,'Camera']]],
+  ['setfilename_8',['SetFilename',['../class_metadata.html#ad84e37040e02575b907895212baa9bf6',1,'Metadata']]],
+  ['sethandle_9',['SetHandle',['../class_window.html#a314df4122e61ae4f06ff039be42e36ab',1,'Window']]],
+  ['setheight_10',['SetHeight',['../class_window.html#a4a3b65cde74716035d78b091802459a5',1,'Window']]],
+  ['setint_11',['SetInt',['../class_metadata.html#a307ee88b93f1f2a3909a1c736341f4b2',1,'Metadata']]],
+  ['setjsonarray_12',['SetJsonArray',['../class_metadata.html#a572d6a084ecb61c0b27cfefaf0721f13',1,'Metadata']]],
+  ['setjsonobject_13',['SetJsonObject',['../class_metadata.html#a8c5559751c2701467289c997bed4e791',1,'Metadata']]],
+  ['setmode_14',['SetMode',['../class_log.html#a363bed211450a83906746994087f9472',1,'Log']]],
+  ['setnearpane_15',['SetNearPane',['../class_camera.html#af77277727d659216711df6b01c60cb82',1,'Camera']]],
+  ['setnull_16',['SetNull',['../class_metadata.html#aefd89080abb7532d82b748575094b25f',1,'Metadata']]],
+  ['setrenderdistance_17',['SetRenderDistance',['../class_render_view.html#a8001311948bbb8cfb538161374e1e85d',1,'RenderView']]],
+  ['setrenderview_18',['SetRenderView',['../class_chunk_renderer.html#a761b21f0ec71c4fc21b1276e1b8a99d0',1,'ChunkRenderer']]],
+  ['setsensitivity_19',['SetSensitivity',['../class_camera.html#a1b5df4b2e2c2b9d6de70fdf398fcb883',1,'Camera']]],
+  ['setspeed_20',['SetSpeed',['../class_camera.html#af3b8786d5ca47657f67f79c9a9b24419',1,'Camera']]],
+  ['setsprite_21',['SetSprite',['../class_texture_atlas.html#a3ab0fae7ebace864877d7c0203af5bc7',1,'TextureAtlas']]],
+  ['setstring_22',['SetString',['../class_metadata.html#a988d7a62d4642bf6e7cdbfd56e832703',1,'Metadata']]],
+  ['setwidth_23',['SetWidth',['../class_window.html#acf2700cf08127a8f0693413f99c668d8',1,'Window']]],
+  ['shader_24',['Shader',['../class_shader.html#a11126523f264f46c8b5b2959a0f82136',1,'Shader::Shader(const Shader &amp;)=default'],['../class_shader.html#a82902dcffbfeab356a5a024c50095724',1,'Shader::Shader(Shader &amp;&amp;)=default'],['../class_shader.html#aa60afe8be2c497a1bd154bba57eedf9c',1,'Shader::Shader(const std::string &amp;vertexFile, const std::string &amp;fragmentFile)']]]
 ];
