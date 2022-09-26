@@ -2,6 +2,7 @@
 #include "Core/Metadata.h"
 #include "Application/Sandbox/Model/BlockModel.h"
 #include "Application/Sandbox/Model/Mesh/Geometry/Shader.h"
+#include "Application/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockBuilder
 /// @brief A factory that builds and outputs blocks based on their metadata.
@@ -80,15 +81,11 @@ class BlockBuilder
 
 	std::shared_ptr<FaceVertices> _faceVertices = std::make_shared<FaceVertices>();
 	std::vector<TriangleIndexes>& _faceIndices;
-
-	size_t _slotSize;
-	std::string _textureAtlasFilename;
+	std::shared_ptr<TextureAtlas> _textureAtlas;
 	Shader& _blockShader;
 
-	static void SetFaceTexture(std::vector<Vertex>& face, const std::shared_ptr<Texture>& texture, std::shared_ptr<Texture>& blockFaceTexture, bool
-	                           flipTexture);
-	void DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const;
-	BlockModel CreateBlockModel(const FaceTextures& faceTextures) const;
+	void SetFaceTexture(std::vector<Vertex>& face, int x, int y, bool flipTexture) const;
+	void DetermineAndSetFaceTexture(const std::string& face, int x, int y);
 
 public:
 
@@ -97,7 +94,7 @@ public:
 	///	@param spriteSize - The size of the sprite.
 	///	@param blockIndices - Indices of a block (for optimization purposes).
 	/// @param blockShader - Shader of a block (for optimization purposes).
-	explicit BlockBuilder(std::string textureAtlasFilename, size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
+	explicit BlockBuilder(const std::string& textureAtlasFilename, size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
 
 	/// @brief Builds block based on the data.
 	///	@param blockData - metadata of the block to be built.
