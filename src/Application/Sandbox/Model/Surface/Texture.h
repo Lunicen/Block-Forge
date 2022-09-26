@@ -14,7 +14,10 @@ class Texture
 	const GLenum _textureType = GL_TEXTURE_2D;
 
 protected:
+	/// @brief Height of the texture.
 	int _height = 0;
+
+	/// @brief Width of the texture.
 	int _width = 0;
 
 public:
