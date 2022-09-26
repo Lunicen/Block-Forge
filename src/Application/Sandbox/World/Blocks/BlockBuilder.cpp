@@ -2,26 +2,43 @@
 
 void BlockBuilder::SetFaceTexture(
 	std::vector<Vertex>& face, 
-	const std::shared_ptr<Texture>& texture,
-	std::shared_ptr<Texture>& blockFaceTexture,
-	const bool flipTexture)
+	const int x, 
+	const int y,
+	const bool flipTexture) const
 {
-	texture->SetUvToTextureAtlas(face, flipTexture);
-	blockFaceTexture = texture;
+	_textureAtlas->SetSprite(face, x, y, flipTexture);
 }
 
-void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const std::shared_ptr<Texture>& texture, FaceTextures& blockFaceTextures) const
+void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y) const
 {
-	if (face == "front")	SetFaceTexture(_faceVertices->front, texture, blockFaceTextures.front, false);
-	if (face == "back")		SetFaceTexture(_faceVertices->back, texture, blockFaceTextures.back, true);
-	if (face == "left")		SetFaceTexture(_faceVertices->left, texture, blockFaceTextures.left, true);
-	if (face == "right")	SetFaceTexture(_faceVertices->right, texture, blockFaceTextures.right, false);
-	if (face == "top")		SetFaceTexture(_faceVertices->top, texture, blockFaceTextures.top, false);
-	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, texture, blockFaceTextures.bottom, true);
+	if (face == "front")	SetFaceTexture(_faceVertices->front, x, y, false);
+	if (face == "back")		SetFaceTexture(_faceVertices->back, x, y, true);
+	if (face == "left")		SetFaceTexture(_faceVertices->left, x, y, true);
+	if (face == "right")	SetFaceTexture(_faceVertices->right, x, y, false);
+	if (face == "top")		SetFaceTexture(_faceVertices->top, x, y, false);
+	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, x, y, true);
 }
 
-BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) const
+BlockBuilder::BlockBuilder(const std::string& textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
+	: _faceIndices(blockIndices),
+	  _textureAtlas(std::make_shared<TextureAtlas>(textureAtlasFilename, spriteSize)),
+	  _blockShader(blockShader)
 {
+}
+
+BlockModel BlockBuilder::Build(const JsonData& blockData)
+{
+	for (const auto& textureData : blockData["textures"])
+	{
+		const int x = textureData["location"].value("column", 0);
+		const int y = textureData["location"].value("row", 0);
+
+		for (const auto& face : textureData["faces"])
+		{
+			DetermineAndSetFaceTexture(face, x, y);
+		}
+	}
+
 	FaceMeshes faceMeshes
 	{
 		std::make_unique<Mesh>(_faceVertices->front, _faceIndices, _blockShader),
@@ -34,40 +51,14 @@ BlockModel BlockBuilder::CreateBlockModel(const FaceTextures& faceTextures) cons
 
 	BlockFaces faces
 	{
-		BlockFaceModel(faceMeshes.front, faceTextures.front),
-		BlockFaceModel(faceMeshes.back, faceTextures.back),
-		BlockFaceModel(faceMeshes.left, faceTextures.left),
-		BlockFaceModel(faceMeshes.right, faceTextures.right),
-		BlockFaceModel(faceMeshes.top, faceTextures.top),
-		BlockFaceModel(faceMeshes.bottom, faceTextures.bottom)
+		BlockFaceModel(faceMeshes.front, _textureAtlas),
+		BlockFaceModel(faceMeshes.back, _textureAtlas),
+		BlockFaceModel(faceMeshes.left, _textureAtlas),
+		BlockFaceModel(faceMeshes.right, _textureAtlas),
+		BlockFaceModel(faceMeshes.top, _textureAtlas),
+		BlockFaceModel(faceMeshes.bottom, _textureAtlas)
 	};
 
 	return BlockModel(std::move(faces));
-}
-
-BlockBuilder::BlockBuilder(std::string textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
-	: _faceIndices(blockIndices), _slotSize(spriteSize),
-	  _textureAtlasFilename(std::move(textureAtlasFilename)), _blockShader(blockShader)
-{
-}
-
-BlockModel BlockBuilder::Build(const JsonData& blockData)
-{
-	FaceTextures faceTextures;
-
-	for (const auto& textureData : blockData["textures"])
-	{
-		const int x = textureData["location"].value("column", 0);
-		const int y = textureData["location"].value("row", 0);
-
-		auto texture = std::make_shared<Texture>(_textureAtlasFilename, x, y, _slotSize);
-
-		for (const auto& face : textureData["faces"])
-		{
-			DetermineAndSetFaceTexture(face, texture, faceTextures);
-		}
-	}
-
-	return CreateBlockModel(faceTextures);
 }
 
