@@ -85,7 +85,7 @@ class BlockBuilder
 	Shader& _blockShader;
 
 	void SetFaceTexture(std::vector<Vertex>& face, int x, int y, bool flipTexture) const;
-	void DetermineAndSetFaceTexture(const std::string& face, int x, int y);
+	void DetermineAndSetFaceTexture(const std::string& face, int x, int y) const;
 
 public:
 

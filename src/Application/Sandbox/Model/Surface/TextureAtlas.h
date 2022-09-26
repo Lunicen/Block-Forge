@@ -19,6 +19,6 @@ public:
 	///	@param x - The column index of the texture.
 	/// @param y - The row index of the texture.
 	/// @param flip - If true, it flips the texture coordinates 180 degrees.
-	void SetSprite(std::vector<Vertex>& vertices, unsigned x, unsigned y, bool flip = false) const;
+	void SetSprite(std::vector<Vertex>& vertices, unsigned x, unsigned y, bool flip = false);
 };
 

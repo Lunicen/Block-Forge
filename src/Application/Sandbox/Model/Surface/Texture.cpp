@@ -53,6 +53,16 @@ void Texture::Unbind() const
 	glBindTexture(_textureType, 0);
 }
 
+int& Texture::GetHeight()
+{
+	return _height;
+}
+
+int& Texture::GetWidth()
+{
+	return _width;
+}
+
 Texture::~Texture()
 {
 	glBindTexture(_textureType, 0);

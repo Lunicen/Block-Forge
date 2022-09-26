@@ -9,7 +9,7 @@ void BlockBuilder::SetFaceTexture(
 	_textureAtlas->SetSprite(face, x, y, flipTexture);
 }
 
-void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y)
+void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y) const
 {
 	if (face == "front")	SetFaceTexture(_faceVertices->front, x, y, false);
 	if (face == "back")		SetFaceTexture(_faceVertices->back, x, y, true);

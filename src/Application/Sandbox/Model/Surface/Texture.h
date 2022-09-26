@@ -13,11 +13,7 @@ class Texture
 	
 	const GLenum _textureType = GL_TEXTURE_2D;
 
-protected:
-	/// @brief Height of the texture.
 	int _height = 0;
-
-	/// @brief Width of the texture.
 	int _width = 0;
 
 public:
@@ -42,6 +38,12 @@ public:
 
 	/// @brief Tells OpenGL to stop using this texture.
 	void Unbind() const;
+
+	/// @brief Returns image height.
+	int& GetHeight();
+
+	/// @brief Returns image width.
+	int& GetWidth();
 
 	~Texture();
 };
