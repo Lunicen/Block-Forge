@@ -6,7 +6,7 @@
 
 #include "Events/HumanInterfaceDevice.h"
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/ApplicationUtils.h"
+#include "Application/Window.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.

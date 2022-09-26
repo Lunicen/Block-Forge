@@ -192,7 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Application.h" />
-    <ClInclude Include="src\Application\ApplicationUtils.h" />
+    <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockProvider.h" />
     <ClInclude Include="src\Application\Sandbox\Model\BlockModel.h" />

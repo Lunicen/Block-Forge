@@ -5,24 +5,22 @@
 
 // As a static member of class this variable
 // must be here initialized
-Window Application::_window = {
-	nullptr, 0, 0
-};
+Window Application::_window{};
 
 void Application::WindowResizeEvent(GLFWwindow*, const int width, const int height)
 {
 	glViewport(0, 0, width, height);
 
-	_window.width = static_cast<size_t>(width);
-	_window.height = static_cast<size_t>(height);
+	_window.SetWidth(static_cast<size_t>(width));
+	_window.SetHeight(static_cast<size_t>(height));
 }
 
 void Application::CentralizeWindow() const
 {
-	const auto& x = _fullscreenWidth / 2 - _window.width / 2;
-	const auto& y = _fullscreenHeight / 2 - _window.height / 2;
+	const auto& x = _fullscreenWidth / 2 - _window.GetWidth() / 2;
+	const auto& y = _fullscreenHeight / 2 - _window.GetHeight() / 2;
 
-	glfwSetWindowPos(_window.handle, static_cast<int>(x), static_cast<int>(y));
+	glfwSetWindowPos(_window.GetHandle(), static_cast<int>(x), static_cast<int>(y));
 }
 
 void Application::Initialize()
@@ -37,20 +35,20 @@ void Application::Initialize()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versionMinor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	const auto& width = static_cast<int>(_window.width);
-	const auto& height = static_cast<int>(_window.height);
+	const auto& width = static_cast<int>(_window.GetWidth());
+	const auto& height = static_cast<int>(_window.GetHeight());
 
-	_window.handle = glfwCreateWindow(width, height, "Block Forge", nullptr, nullptr);
-	if (_window.handle == nullptr)
+	_window.SetHandle(glfwCreateWindow(width, height, "Block Forge", nullptr, nullptr));
+	if (_window.GetHandle() == nullptr)
 	{
 		glfwTerminate();
 		throw BadInitializationException("Failed to create window.");
 	}
 
-	glfwMakeContextCurrent(_window.handle);
+	glfwMakeContextCurrent(_window.GetHandle());
 	gladLoadGL();
 
-	glfwSetWindowUserPointer(_window.handle, this);
+	glfwSetWindowUserPointer(_window.GetHandle(), this);
 
 	glViewport(0, 0, width, height);
 
@@ -69,7 +67,7 @@ void Application::Initialize()
 		);
 	}
 
-	glfwSetFramebufferSizeCallback(_window.handle, WindowResizeEvent);
+	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
 
 	CentralizeWindow();
 
@@ -81,8 +79,8 @@ Application::Application(const std::string& filename)
 	_settings.Load(filename);
 
 	const auto resolution = _settings.GetJsonObject("resolution");
-	_window.height = resolution["height"].get<int>();
-	_window.width = resolution["width"].get<int>();
+	_window.SetHeight(resolution["height"].get<int>());
+	_window.SetWidth(resolution["width"].get<int>());
 }
 
 void Application::Run()
@@ -94,6 +92,6 @@ void Application::Run()
 
 	_log.Info("Quitting...");
 
-	glfwDestroyWindow(_window.handle);
+	glfwDestroyWindow(_window.GetHandle());
 	glfwTerminate();
 }

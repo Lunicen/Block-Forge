@@ -43,7 +43,7 @@ int HumanInterfaceDevice::GetState(const MouseButton& button) const
 	return glfwGetMouseButton(_window, static_cast<int>(button));
 }
 
-HumanInterfaceDevice::HumanInterfaceDevice(GLFWwindow*& window) : _window(window)
+HumanInterfaceDevice::HumanInterfaceDevice(GLFWwindow* window) : _window(window)
 {
 }
 

@@ -15,7 +15,7 @@ void Sandbox::Run() const
 {
 	_log.Info("Launching simulation...");
 
-	HumanInterfaceDevice hid(_window.handle);
+	HumanInterfaceDevice hid(_window.GetHandle());
 	Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
@@ -27,11 +27,11 @@ void Sandbox::Run() const
 
 	glEnable(GL_DEPTH_TEST);
 
-	while(!glfwWindowShouldClose(_window.handle))
+	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
 		glfwPollEvents();
 
-		if (_window.width <= 0 || _window.height <= 0)
+		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0)
 		{
 			continue;
 		}
@@ -44,7 +44,7 @@ void Sandbox::Run() const
 		chunkPlacer.Update();
 		counter.Update();
 
-		glfwSwapBuffers(_window.handle);
+		glfwSwapBuffers(_window.GetHandle());
 	}
 
 	glDisable(GL_DEPTH_TEST);

@@ -15,7 +15,7 @@ Camera::Camera(Window& window, const glm::vec3 position, HumanInterfaceDevice& h
 
 	_isPaused = false;
 
-	glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Camera::Update()
@@ -24,7 +24,7 @@ void Camera::Update()
 	auto view = glm::mat4(1.0f);
 	view = lookAt(_position, _position + _orientation, _up);
 
-	const float aspectRatio = static_cast<float>(_window.width) / static_cast<float>(_window.height);
+	const float aspectRatio = static_cast<float>(_window.GetWidth()) / static_cast<float>(_window.GetHeight());
 
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto projection = glm::mat4(1.0f);
@@ -75,13 +75,13 @@ void Camera::HandleCursorMovement()
 {
 	double mouseX;
 	double mouseY;
-	glfwGetCursorPos(_window.handle, &mouseX, &mouseY);
+	glfwGetCursorPos(_window.GetHandle(), &mouseX, &mouseY);
 
-	const double middleAxisX = static_cast<double>(_window.width) / 2.0;
-	const double middleAxisY = static_cast<double>(_window.height) / 2.0;
+	const double middleAxisX = static_cast<double>(_window.GetWidth()) / 2.0;
+	const double middleAxisY = static_cast<double>(_window.GetHeight()) / 2.0;
 
-	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_window.height));
-	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_window.width));
+	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_window.GetHeight()));
+	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_window.GetWidth()));
 
 	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _up)));
 	const auto angleWithXAxis = abs(angle(orientation, _up) - glm::radians(90.0f));
@@ -93,7 +93,7 @@ void Camera::HandleCursorMovement()
 	}
 
 	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _up);
-	glfwSetCursorPos(_window.handle, middleAxisX, middleAxisY);
+	glfwSetCursorPos(_window.GetHandle(), middleAxisX, middleAxisY);
 }
 
 void Camera::Bind(Shader const& shader) const
@@ -110,11 +110,11 @@ void Camera::HandleInput()
 		_isPaused = !_isPaused;
 		if (_isPaused)
 		{
-			glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 		else
 		{
-			glfwSetInputMode(_window.handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		}
 	}
 
@@ -136,12 +136,12 @@ glm::vec3 Camera::GetPosition() const
 
 inline size_t Camera::GetWidth() const
 {
-	return _window.width;
+	return _window.GetWidth();
 }
 
 inline size_t Camera::GetHeight() const
 {
-	return _window.height;
+	return _window.GetHeight();
 }
 
 inline float Camera::GetDefaultSpeed() const
