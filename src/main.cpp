@@ -1,14 +1,37 @@
 #include "Core/Log.h"
-#include "Sandbox/Sandbox.h"
+#include "Application/Application.h"
 
-int main()
+void ParseArgument(const char *argument)
 {
-	// TODO integrate the Main Menu with Sandbox class 
-	// MainMenu mainMenu = MainMenu();
-	// mainMenu.Draw();
+	if (strcmp(argument, "--trace") == 0)
+	{
+		Log::SetMode(Log::LogMode::trace);
+	}
 
-	const auto sandbox = new Sandbox("test.json");
-	sandbox->Run();
+	if (strcmp(argument, "--debug") == 0)
+	{
+		Log::SetMode(Log::LogMode::debug);
+	}
+}
+
+int main(const int argc, char *argv[])
+{
+	const auto& logger = Log::Get();
+	for (auto i = 1; i < argc; ++i)
+	{
+		ParseArgument(argv[i]);
+	}
+
+	try
+	{
+		Application application("Settings.json");
+		application.Run();
+	}
+	catch (const std::exception& e)
+	{
+		logger.Critical(e.what());
+		return 1;
+	}
 
 	return 0;
 }
