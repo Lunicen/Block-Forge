@@ -182,7 +182,6 @@
     <ClCompile Include="src\Core\Metadata.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Application\Sandbox\Sandbox.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexBuffer.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexArray.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\WorldGenerator.cpp" />

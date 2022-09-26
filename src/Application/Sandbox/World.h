@@ -16,22 +16,5 @@ public:
 	explicit World(const std::string& filename) : _worldData(filename)
 	{
 	}
-
-	/// @brief Generates the world and creates the file with the world data.
-	///	@todo This function is not implemented yet.
-	void Create();
-
-	/// @brief Loads the world from the file.
-	///	@todo This function is not implemented yet.
-	void Load();
-
-	/// @brief Checks if the world is loaded.
-	///	@return If the world was correctly loaded from file returns true, otherwise false.
-	///	@todo This function is not implemented yet.
-	bool IsLoaded();
-
-	/// @brief Saves the world with it's contents.
-	///	@todo This function is not implemented yet.
-	void Save();
 };
 

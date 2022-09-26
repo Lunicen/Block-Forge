@@ -7,7 +7,7 @@
 // must be here initialized
 Window Application::_window{};
 
-void Application::WindowResizeEvent(GLFWwindow*, const int width, const int height)
+void Application::WindowResizeEvent(GLFWwindow* const, const int width, const int height)
 {
 	glViewport(0, 0, width, height);
 

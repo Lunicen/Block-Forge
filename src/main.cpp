@@ -1,35 +1,35 @@
 #include "Core/Log.h"
 #include "Application/Application.h"
 
-void ParseArguments(char *argumentsArray[], const int argumentsCount)
+void ParseArgument(const char *argument)
 {
-	for (auto i = 1; i < argumentsCount; ++i)
+	if (strcmp(argument, "--trace") == 0)
 	{
-		if (strcmp(argumentsArray[i], "--trace") == 0)
-		{
-			Log::SetMode(Log::LogMode::trace);
-		}
+		Log::SetMode(Log::LogMode::trace);
+	}
 
-		if (strcmp(argumentsArray[i], "--debug") == 0)
-		{
-			Log::SetMode(Log::LogMode::debug);
-		}
+	if (strcmp(argument, "--debug") == 0)
+	{
+		Log::SetMode(Log::LogMode::debug);
 	}
 }
 
 int main(const int argc, char *argv[])
 {
-	const auto& log = Log::Get();
-	ParseArguments(argv, argc);
+	const auto& logger = Log::Get();
+	for (auto i = 1; i < argc; ++i)
+	{
+		ParseArgument(argv[i]);
+	}
 
 	try
 	{
-		const auto application = new Application("Settings.json");
-		application->Run();
+		Application application("Settings.json");
+		application.Run();
 	}
-	catch (std::exception& e)
+	catch (const std::exception& e)
 	{
-		log.Critical(e.what());
+		logger.Critical(e.what());
 		return 1;
 	}
 

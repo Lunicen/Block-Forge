@@ -2,19 +2,6 @@
 
 Camera::Camera(Window& window, const glm::vec3 position, HumanInterfaceDevice& hid) : _window(window), _position(position), _hid(hid)
 {
-	_orientation = glm::vec3(0.0f, 0.0f, -1.0f);
-	_up = glm::vec3(0.0f, 1.0f, 0.0f);
-
-	_speed = 0.1f;
-	_defaultSpeed = _speed;
-	_sensitivity = 100.0f;
-
-	_fieldOfView = 45.0f;
-	_nearPane = 0.1f;
-	_farPane = 100.0f;
-
-	_isPaused = false;
-
 	glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 

@@ -99,29 +99,9 @@ void MainMenu::Draw() const
 		SetImguiBackgroundStyle(BackgroundStyle::dark);
 		DrawCenteredText("Welcome to the Block Forge!");
 
-		if(DrawWindowSizedButton("PLAY"))
-		{
-			// TODO
-			// BF-102 Add missing functionality
-		}
-
-		if(DrawWindowSizedButton("OPTIONS"))
-		{
-			// TODO
-			// BF-102 Add missing functionality
-		}
-
 		if(DrawWindowSizedButton("EXIT"))
 		{
-			// TODO
-			// BF-102 Add missing functionality
 			quit = true;
-		}
-
-		if(DrawWindowSizedButton("CREDITS"))
-		{
-			// TODO
-			// BF-102 Add missing functionality
 		}
 
 		ImGui::End();

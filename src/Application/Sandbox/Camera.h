@@ -17,19 +17,19 @@ class Camera
 	Window& _window;
 
 	glm::vec3 _position{};
-	glm::vec3 _orientation{};
-	glm::vec3 _up{};
+	glm::vec3 _orientation = glm::vec3(0.0f, 0.0f, -1.0f);
+	glm::vec3 _up = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::mat4 _orthographicProjection = glm::mat4(1.0f);
 
-	float _defaultSpeed;
-	float _speed;
-	float _sensitivity;
-	float _fieldOfView;
-	float _nearPane;
-	float _farPane;
+	float _defaultSpeed = 0.1f;
+	float _speed = 0.1f;
+	float _sensitivity = 100.0f;
+	float _fieldOfView = 45.0f;
+	float _nearPane = 0.1f;
+	float _farPane = 100.0f;
 
 	HumanInterfaceDevice& _hid;
-	bool _isPaused;
+	bool _isPaused = false;
 
 	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
 	void HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down);
