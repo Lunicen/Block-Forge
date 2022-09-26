@@ -74,9 +74,9 @@ void Application::Initialize()
 	_log.Info("Block Forge initialized!");
 }
 
-Application::Application(const std::string& filename)
+Application::Application(const std::string& filenameWithSettings)
 {
-	_settings.Load(filename);
+	_settings.Load(filenameWithSettings);
 
 	const auto resolution = _settings.GetJsonObject("resolution");
 	_window.SetHeight(resolution["height"].get<int>());
