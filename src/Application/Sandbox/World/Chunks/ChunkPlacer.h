@@ -1,4 +1,5 @@
 #pragma once
+#include "ChunkBuilder.h"
 #include "Application/Sandbox/Camera.h"
 #include "Application/Sandbox/World/WorldGenerator.h"
 #include "OrderType/OrderTypes.h"
@@ -10,6 +11,7 @@
 class ChunkPlacer
 {
 	Log& _log = Log::Get();
+	ChunkBuilder _chunkBuilder;
 
 	std::shared_ptr<WorldGenerator> _generator;
 	std::unique_ptr<Order> _order;
@@ -20,8 +22,6 @@ class ChunkPlacer
 	static std::vector<Position> Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet);
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
-	
-	void SpawnChunkAt(const Position& origin);
 
 	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 	void AddNewChunks(const std::vector<Position>& currentChunksOrigins);

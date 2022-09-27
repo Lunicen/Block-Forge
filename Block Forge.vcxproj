@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\BlockFaceModel.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />

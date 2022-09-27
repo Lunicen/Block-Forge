@@ -37,18 +37,6 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-void ChunkPlacer::SpawnChunkAt(const Position& origin)
-{
-	_log.Trace("Added chunk: " + PositionToString(origin));
-	
-	const auto chunkFrame = ChunkFrame{origin, _order->GetChunkSize()};
-	auto chunkBlocks	  = ChunkBlocks{};
-	_generator->PaintChunk(chunkFrame, chunkBlocks);
-
-	auto chunk = std::make_unique<Chunk>(std::move(chunkBlocks));
-	_loadedChunks[origin] = std::move(chunk);
-}
-
 void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
 {
 	std::vector<Position> staleChunksOrigins;
@@ -64,6 +52,7 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 	for (const auto& origin : staleChunksOrigins)
 	{
+		_log.Trace("Removed chunk: " + PositionToString(origin));
 		_loadedChunks.erase(origin);
 	}
 }
@@ -74,7 +63,8 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
-			SpawnChunkAt(origin);
+			_log.Trace("Added chunk: " + PositionToString(origin));
+			_loadedChunks[origin] = std::move(_chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator));
 		}
 	}
 }
