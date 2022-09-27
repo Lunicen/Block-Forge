@@ -12,6 +12,8 @@ class Chunk
 	ChunkBlocks _blocks;
 
 public:
+	Chunk();
+
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
 	/// and the player position for proper displaying blocks while the player is moving.

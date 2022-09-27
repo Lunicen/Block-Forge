@@ -5,6 +5,6 @@
 class ChunkBuilder
 {
 public:
-	std::unique_ptr<Chunk> Build(Position origin, const size_t& size, const WorldGenerator& generator) const;
+	Chunk Build(Position origin, const size_t& size, const WorldGenerator& generator) const;
 };
 

@@ -64,7 +64,7 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			_log.Trace("Added chunk: " + PositionToString(origin));
-			_loadedChunks[origin] = std::move(_chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator));
+			_loadedChunks[origin] = _chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator);
 		}
 	}
 }
@@ -115,7 +115,7 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 	_generator = std::move(generator);
 }
 
-std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
+std::unordered_map<Position, Chunk>& ChunkPlacer::GetChunks()
 {
 	return _loadedChunks;
 }

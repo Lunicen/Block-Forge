@@ -13,7 +13,7 @@ void ChunkRenderer::Render(const Camera& camera) const
 	const auto& chunks = _chunkPlacer.GetChunks();
 	for (const auto& chunk : chunks)
 	{
-		chunk.second->Draw(camera);
+		chunk.second.Draw(camera);
 	}
 
 	glDisable(GL_CULL_FACE);
