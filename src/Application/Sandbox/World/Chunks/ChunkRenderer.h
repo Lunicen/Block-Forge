@@ -1,50 +1,23 @@
 #pragma once
-#include <vector>
-#include <glm/vec3.hpp>
-
-#include "OrderType/Order.h"
-#include "Application/Sandbox/Camera.h"
-#include "Application/Sandbox/World/Chunks/Structure/Chunk.h"
-#include "Application/Sandbox/World/WorldGenerator.h"
+#include "ChunkPlacer.h"
 
 /// @class ChunkRenderer
 ///	@brief Supports rendering chunks.
 /// @details This class is responsible for rendering chunks around the camera by using the algorithms
-///	specified in the @link RenderView @endlink
+///	specified in the @see Order.
 class ChunkRenderer
 {
 	Log& _log = Log::Get();
-
-	Camera& _camera;
-	std::unique_ptr<Order> _orderType{};
-	WorldGenerator& _generator;
-
-	glm::ivec3 _previousNormalizedPosition;
-	std::vector<glm::ivec3> _loadedChunksOrigins = {};
-	std::vector<std::unique_ptr<Chunk>> _loadedChunks = {};
-
-	static std::vector<glm::ivec3> Subtract(const std::vector<glm::ivec3>& aSet, const std::vector<glm::ivec3>& bSet);
-	glm::ivec3 GetNormalizedPosition(const glm::vec3& position) const;
-	std::string PositionToString(const glm::ivec3& position) const;
-
-	void RemoveChunkAt(const glm::ivec3& origin);
-	void SpawnChunkAt(const glm::ivec3& origin);
-	void RenderChunksAround(const glm::ivec3& normalizedOrigin);
+	ChunkPlacer& _chunkPlacer;
 
 public:
 
 	/// @brief The constructor.
-	///	@param generator - world generator for chunk building.
-	///	@param orderType - to specify which chunks to render.
-	///	@param camera - shares a reference point around which the chunks are rendered.
-	explicit ChunkRenderer(WorldGenerator& generator, std::unique_ptr<Order>& orderType, Camera& camera);
+	explicit ChunkRenderer(ChunkPlacer& chunkPlacer);
 
 	/// @brief Renders loaded chunks.
-	void Render();
-
-	/// @brief Sets the render view.
-	///	@param orderType - render view.
-	void SetRenderView(std::unique_ptr<Order>& orderType);
+	///	@param camera - A reference to the camera around which the objects are rendered.
+	void Render(const Camera& camera) const;
 };
 
 

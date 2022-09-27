@@ -22,12 +22,12 @@ template <>
 struct std::hash<Position>
 {
 	/// @brief Definition of how to handle the passed origin as a key in the map.
-    size_t operator()(const Position &origin) const noexcept
+    size_t operator()(const Position& origin) const noexcept
     {
         return std::hash<std::string>()
     	(
-			std::to_string(origin.x) + 
-			std::to_string(origin.y) + 
+			std::to_string(origin.x) + "." +
+			std::to_string(origin.y) + "." + 
 			std::to_string(origin.z)
 		);
     }

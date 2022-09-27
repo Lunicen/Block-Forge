@@ -26,7 +26,7 @@ void Mesh::Draw(const Position& origin, const Texture& texture, const Camera& ca
 {
 	camera.Bind(_shader);
 
-	const auto position = translate(glm::mat4(1.0f), origin);
+	const auto position = translate(glm::mat4(1.0f), glm::vec3(origin));
 
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
 

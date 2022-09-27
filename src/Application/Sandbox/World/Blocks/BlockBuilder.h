@@ -98,5 +98,5 @@ public:
 
 	/// @brief Builds block based on the data.
 	///	@param blockData - metadata of the block to be built.
-	BlockModel Build(const JsonData& blockData);
+	BlockModel Build(const JsonData& blockData) const;
 };

@@ -6,7 +6,7 @@ BlockFaceModel::BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Text
 	_texture = std::move(texture);
 }
 
-void BlockFaceModel::Draw(const glm::vec3& origin, const Camera& camera) const
+void BlockFaceModel::Draw(const Position& origin, const Camera& camera) const
 {
 	_mesh->Draw(origin, *_texture, camera);
 }

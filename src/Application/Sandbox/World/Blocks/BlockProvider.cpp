@@ -15,9 +15,10 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetB
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
 
 	const std::string textureAtlasName = blocksSet.value("atlas", "");
+	// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 	const size_t slotSize = blocksSet.value("slotSize", 0);
 
-	auto builder = BlockBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
+	const auto builder = BlockBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
 	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
 
 	for (const auto& blockData : blocksSet["blocks"])

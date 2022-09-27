@@ -5,6 +5,7 @@
 #include "World/WorldGenerator.h"
 #include "Utils/FPSCounter.h"
 #include "World/Chunks/ChunkPlacer.h"
+#include "World/Chunks/ChunkRenderer.h"
 
 
 Sandbox::Sandbox(Window& window) : _window(window)
@@ -20,8 +21,10 @@ void Sandbox::Run() const
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(OrderType::cube, 8, 1, camera);
+	ChunkPlacer chunkPlacer(OrderType::cube, 8, 1, camera.GetPosition());
 	chunkPlacer.Bind(worldGenerator);
+
+	ChunkRenderer chunkRenderer(chunkPlacer);
 	
 	FPSCounter counter;
 
@@ -41,7 +44,9 @@ void Sandbox::Run() const
 
 		camera.Update();
 		camera.HandleInput();
-		chunkPlacer.Update();
+
+		chunkPlacer.Update(camera.GetPosition());
+		chunkRenderer.Render(camera);
 		counter.Update();
 
 		glfwSwapBuffers(_window.GetHandle());

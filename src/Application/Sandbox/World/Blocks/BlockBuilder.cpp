@@ -26,11 +26,13 @@ BlockBuilder::BlockBuilder(const std::string& textureAtlasFilename, const size_t
 {
 }
 
-BlockModel BlockBuilder::Build(const JsonData& blockData)
+BlockModel BlockBuilder::Build(const JsonData& blockData) const
 {
 	for (const auto& textureData : blockData["textures"])
 	{
+		// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 		const int x = textureData["location"].value("column", 0);
+		// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 		const int y = textureData["location"].value("row", 0);
 
 		for (const auto& face : textureData["faces"])

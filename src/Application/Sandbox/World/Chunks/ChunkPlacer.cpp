@@ -1,31 +1,131 @@
 #include "ChunkPlacer.h"
 
-#include "Core/EngineExceptions.h"
+#include "Application/Sandbox/World/Biomes/Biome.h"
 
-std::unique_ptr<Order> ChunkPlacer::GetRenderView(const OrderType orderType)
+std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
-	switch (orderType)
+	std::vector<Position> result;
+
+	for (const auto& value : aSet)
 	{
-		case OrderType::diamond:		return std::make_unique<DiamondOrder>(_renderDistance, _chunkSize);
-		case OrderType::cube:			return std::make_unique<CubeOrder>(_renderDistance, _chunkSize);
-		case OrderType::tiltedCube:		return std::make_unique<TiltedCubeOrder>(_renderDistance, _chunkSize);
+		if (std::find(bSet.begin(), bSet.end(), value) == bSet.end())
+		{
+			result.emplace_back(value);
+		}
 	}
 
-	throw UnknownValueException("The provided Render View type is not defined!");
+	return result;
 }
 
-ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, Camera& camera)
-	: _camera(camera), _renderDistance(renderDistance), _chunkSize(chunkSize), _orderType(orderType)
+Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const
 {
+	auto normalizedPosition = position;
+
+	normalizedPosition /= chunkSize;
+
+	normalizedPosition.x = floor(normalizedPosition.x);
+	normalizedPosition.y = floor(normalizedPosition.y);
+	normalizedPosition.z = floor(normalizedPosition.z);
+
+	return {normalizedPosition};
 }
 
-void ChunkPlacer::Update() const
+std::string ChunkPlacer::PositionToString(const Position& position) const
 {
-	_renderer->Render();
+	return std::to_string(position.x) + ", " + 
+		   std::to_string(position.y) + ", " + 
+		   std::to_string(position.z);
 }
 
-void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& worldGenerator)
+void ChunkPlacer::SpawnChunkAt(const Position& origin)
 {
-	auto view = GetRenderView(_orderType);
-	_renderer = std::make_unique<ChunkRenderer>(*worldGenerator, view, _camera);
+	_log.Trace("Added chunk: " + PositionToString(origin));
+	
+	const auto chunkFrame = ChunkFrame{origin, _order->GetChunkSize()};
+	auto chunkBlocks	  = ChunkBlocks{};
+	_generator->PaintChunk(chunkFrame, chunkBlocks);
+
+	auto chunk = std::make_unique<Chunk>(chunkFrame, std::move(chunkBlocks));
+	_loadedChunks[origin] = std::move(chunk);
+}
+
+void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
+{
+	std::vector<Position> staleChunksOrigins;
+
+	for (const auto& chunkData : _loadedChunks)
+	{
+		const auto origin = chunkData.first;
+		if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
+		{
+			staleChunksOrigins.emplace_back(origin);
+		}
+	}
+
+	for (const auto& origin : staleChunksOrigins)
+	{
+		_loadedChunks.erase(origin);
+	}
+}
+
+void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
+{
+	for (const auto& origin : currentChunksOrigins)
+	{
+		if (_loadedChunks.find(origin) == _loadedChunks.end())
+		{
+			SpawnChunkAt(origin);
+		}
+	}
+}
+
+void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
+{
+	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
+
+	RemoveStaleChunks(currentChunksAroundOrigins);
+	AddNewChunks(currentChunksAroundOrigins);
+}
+
+ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
+{
+	_previousNormalizedPosition = GetNormalizedPosition(initPosition, chunkSize);
+
+	switch (orderType)
+	{
+	case OrderType::cube:	
+		_order = std::make_unique<CubeOrder>(renderDistance, chunkSize);
+		break;
+
+	case OrderType::diamond: 
+		_order = std::make_unique<DiamondOrder>(renderDistance, chunkSize);
+		break;
+
+	case OrderType::tiltedCube:	
+		_order = std::make_unique<TiltedCubeOrder>(renderDistance, chunkSize);
+		break;
+	}
+}
+
+void ChunkPlacer::Update(const Position& position)
+{
+	const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize());
+
+	if (currentNormalizedPosition != _previousNormalizedPosition)
+	{
+		_previousNormalizedPosition = currentNormalizedPosition;
+		UpdateChunksAround(currentNormalizedPosition);
+
+		_log.Trace("Normalized position: " + PositionToString(currentNormalizedPosition));
+	}
+}
+
+void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
+{
+	_generator = std::move(generator);
+}
+
+std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
+{
+	return _loadedChunks;
 }
