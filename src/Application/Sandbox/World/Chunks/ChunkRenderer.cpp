@@ -21,7 +21,7 @@ glm::ivec3 ChunkRenderer::GetNormalizedPosition(const glm::vec3& position) const
 {
 	auto normalizedPosition = position;
 
-	normalizedPosition /= _renderView->GetChunkSize();
+	normalizedPosition /= _orderType->GetChunkSize();
 
 	normalizedPosition.x = floor(normalizedPosition.x);
 	normalizedPosition.y = floor(normalizedPosition.y);
@@ -62,7 +62,7 @@ void ChunkRenderer::SpawnChunkAt(const glm::ivec3& origin)
 {
 	_log.Trace("Added chunk: " + PositionToString(origin));
 	
-	const auto chunkFrame = ChunkFrame{origin, _renderView->GetChunkSize()};
+	const auto chunkFrame = ChunkFrame{origin, _orderType->GetChunkSize()};
 	auto chunkBlocks	  = ChunkBlocks{};
 	_generator.PaintChunk(chunkFrame, chunkBlocks);
 
@@ -73,7 +73,7 @@ void ChunkRenderer::SpawnChunkAt(const glm::ivec3& origin)
 void ChunkRenderer::RenderChunksAround(const glm::ivec3& normalizedOrigin)
 {
 	const auto previousChunksAroundOrigins = _loadedChunksOrigins;
-	const auto currentChunksAroundOrigins = _renderView->GetChunksAround(normalizedOrigin);
+	const auto currentChunksAroundOrigins = _orderType->GetChunksAround(normalizedOrigin);
 
 	const auto newChunksOrigins = Subtract(currentChunksAroundOrigins, previousChunksAroundOrigins);
 	const auto outdatedChunksOrigins = Subtract(previousChunksAroundOrigins, currentChunksAroundOrigins);
@@ -91,8 +91,8 @@ void ChunkRenderer::RenderChunksAround(const glm::ivec3& normalizedOrigin)
 	_loadedChunksOrigins = currentChunksAroundOrigins;
 }
 
-ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera)
-	: _camera(camera), _renderView(std::move(renderView)), _generator(generator), _previousNormalizedPosition(GetNormalizedPosition(camera.GetPosition()))
+ChunkRenderer::ChunkRenderer(WorldGenerator& generator, std::unique_ptr<Order>& orderType, Camera& camera)
+	: _camera(camera), _orderType(std::move(orderType)), _generator(generator), _previousNormalizedPosition(GetNormalizedPosition(camera.GetPosition()))
 {
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CCW);
@@ -122,7 +122,7 @@ void ChunkRenderer::Render()
 	glDisable(GL_CULL_FACE);
 }
 
-void ChunkRenderer::SetRenderView(std::unique_ptr<RenderView>& renderView)
+void ChunkRenderer::SetRenderView(std::unique_ptr<Order>& orderType)
 {
-	_renderView = std::move(renderView);
+	_orderType = std::move(orderType);
 }

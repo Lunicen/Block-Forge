@@ -2,7 +2,7 @@
 #include <vector>
 #include <glm/vec3.hpp>
 
-#include "RenderViews/RenderView.h"
+#include "OrderType/Order.h"
 #include "Application/Sandbox/Camera.h"
 #include "Application/Sandbox/World/Chunks/Structure/Chunk.h"
 #include "Application/Sandbox/World/WorldGenerator.h"
@@ -16,7 +16,7 @@ class ChunkRenderer
 	Log& _log = Log::Get();
 
 	Camera& _camera;
-	std::unique_ptr<RenderView> _renderView{};
+	std::unique_ptr<Order> _orderType{};
 	WorldGenerator& _generator;
 
 	glm::ivec3 _previousNormalizedPosition;
@@ -35,16 +35,16 @@ public:
 
 	/// @brief The constructor.
 	///	@param generator - world generator for chunk building.
-	///	@param renderView - to specify which chunks to render.
+	///	@param orderType - to specify which chunks to render.
 	///	@param camera - shares a reference point around which the chunks are rendered.
-	explicit ChunkRenderer(WorldGenerator& generator, std::unique_ptr<RenderView>& renderView, Camera& camera);
+	explicit ChunkRenderer(WorldGenerator& generator, std::unique_ptr<Order>& orderType, Camera& camera);
 
 	/// @brief Renders loaded chunks.
 	void Render();
 
 	/// @brief Sets the render view.
-	///	@param renderView - render view.
-	void SetRenderView(std::unique_ptr<RenderView>& renderView);
+	///	@param orderType - render view.
+	void SetRenderView(std::unique_ptr<Order>& orderType);
 };
 
 

@@ -4,7 +4,7 @@
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
 #include "Utils/FPSCounter.h"
-#include "World/Chunks/Rendring/ChunkPlacer.h"
+#include "World/Chunks/ChunkPlacer.h"
 
 
 Sandbox::Sandbox(Window& window) : _window(window)
@@ -20,7 +20,7 @@ void Sandbox::Run() const
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(RenderViewType::cube, 8, 1, camera);
+	ChunkPlacer chunkPlacer(OrderType::cube, 8, 1, camera);
 	chunkPlacer.Bind(worldGenerator);
 	
 	FPSCounter counter;

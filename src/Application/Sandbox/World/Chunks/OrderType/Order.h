@@ -2,11 +2,11 @@
 #include <vector>
 #include <glm/vec3.hpp>
 
-/// @class RenderView
-///	@brief The base class for creating render views.
-///	@details A render view is a class providing the algorithm, by which
-///	the chunks are rendered.
-class RenderView  // NOLINT(cppcoreguidelines-special-member-functions)
+/// @class Order
+///	@brief The base class for creating placing order types.
+///	@details An order type is a class providing an algorithm, by which
+///	the chunks are placer by the ChunkPlacer.
+class Order  // NOLINT(cppcoreguidelines-special-member-functions)
 {
 	size_t _renderDistance;
 	size_t _chunkSize;
@@ -16,7 +16,7 @@ public:
 	/// @brief The constructor.
 	///	@param renderDistance - the maximum distance from the camera to render.
 	///	@param chunkSize - the size of the generated chunks.
-	RenderView(const size_t& renderDistance, const size_t& chunkSize)
+	Order(const size_t& renderDistance, const size_t& chunkSize)
 		: _renderDistance(renderDistance), _chunkSize(chunkSize)
 	{}
 
@@ -53,5 +53,5 @@ public:
 	/// @brief Get the amount of chunks that could be generated on the current render distance settings.
 	virtual std::vector<glm::ivec3> GetChunksAround(glm::ivec3 normalizedOrigin) = 0;
 
-	virtual ~RenderView() = default;
+	virtual ~Order() = default;
 };
