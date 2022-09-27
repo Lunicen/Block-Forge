@@ -45,7 +45,7 @@ void ChunkPlacer::SpawnChunkAt(const Position& origin)
 	auto chunkBlocks	  = ChunkBlocks{};
 	_generator->PaintChunk(chunkFrame, chunkBlocks);
 
-	auto chunk = std::make_unique<Chunk>(chunkFrame, std::move(chunkBlocks));
+	auto chunk = std::make_unique<Chunk>(std::move(chunkBlocks));
 	_loadedChunks[origin] = std::move(chunk);
 }
 

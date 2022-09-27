@@ -1,7 +1,7 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks) : _frame(frame), _blocks(std::move(blocks))
+Chunk::Chunk(ChunkBlocks blocks) : _blocks(std::move(blocks))
 {
 }
 
@@ -21,9 +21,4 @@ void Chunk::Draw(const Camera& camera) const
 		if (faceVisible.top)    blockModel->DrawTopFace(origin, camera);
 		if (faceVisible.bottom) blockModel->DrawBottomFace(origin, camera);
 	}
-}
-
-glm::ivec3 Chunk::GetOrigin() const
-{
-	return _frame.origin;
 }
