@@ -24,7 +24,8 @@ void Sandbox::Run() const
 	ChunkPlacer chunkPlacer(OrderType::cube, 8, 1, camera.GetPosition());
 	chunkPlacer.Bind(worldGenerator);
 
-	ChunkRenderer chunkRenderer(chunkPlacer);
+	// ReSharper disable once CppTooWideScope
+	ChunkRenderer chunkRenderer;
 	
 	FPSCounter counter;
 
@@ -46,7 +47,7 @@ void Sandbox::Run() const
 		camera.HandleInput();
 
 		chunkPlacer.Update(camera.GetPosition());
-		chunkRenderer.Render(camera);
+		chunkRenderer.Render(chunkPlacer.GetChunks(), camera);
 		counter.Update();
 
 		glfwSwapBuffers(_window.GetHandle());

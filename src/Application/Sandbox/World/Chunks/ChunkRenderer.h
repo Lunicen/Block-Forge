@@ -8,16 +8,16 @@
 class ChunkRenderer
 {
 	Log& _log = Log::Get();
-	ChunkPlacer& _chunkPlacer;
 
 public:
 
 	/// @brief The constructor.
-	explicit ChunkRenderer(ChunkPlacer& chunkPlacer);
+	ChunkRenderer();
 
 	/// @brief Renders loaded chunks.
 	///	@param camera - A reference to the camera around which the objects are rendered.
-	void Render(const Camera& camera) const;
+	///	@param chunks - Chunks to render with their positions on the map.
+	void Render(const std::unordered_map<Position, Chunk>& chunks, const Camera& camera) const;
 };
 
 
