@@ -1,10 +1,6 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk()
-{
-}
-
 Chunk::Chunk(ChunkBlocks blocks) : _blocks(std::move(blocks))
 {
 }
