@@ -7,7 +7,7 @@
 #include "Application/Sandbox/Model/Surface/Texture.h"
 
 /// @class Mesh
-///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a @see Model.
+///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a Model.
 class Mesh
 {
 	VertexArray _vao;
