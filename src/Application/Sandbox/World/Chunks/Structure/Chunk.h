@@ -1,6 +1,4 @@
 #pragma once
-#include <glm/vec3.hpp>
-
 #include "Application/Sandbox/Camera.h"
 #include "ChunkBlocks.h"
 

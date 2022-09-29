@@ -43,5 +43,10 @@ public:
 		return _blockTypes.at(blockName);
 	}
 
+	std::shared_ptr<BlockModel>& operator[](const std::string& blockName)
+	{
+		return _blockTypes.at(blockName);
+	}
+
 	~BlockMap() = default;
 };

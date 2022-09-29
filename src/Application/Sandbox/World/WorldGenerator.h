@@ -25,4 +25,6 @@ public:
 	///	@param frame - the frame of the chunk.
 	///	@param blocks - the blocks inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
+
+	BlockMap& GetBlockMap();
 };

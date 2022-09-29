@@ -4,7 +4,7 @@
 Chunk ChunkBuilder::Build(const Position origin, const size_t& size, const WorldGenerator& generator) const
 {
 	const auto chunkFrame = ChunkFrame{origin, size};
-	auto chunkBlocks	  = ChunkBlocks{};
+	ChunkBlocks chunkBlocks;
 
 	generator.PaintChunk(chunkFrame, chunkBlocks);
 

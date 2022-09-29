@@ -7,7 +7,7 @@ Chunk::Chunk(ChunkBlocks blocks) : _blocks(std::move(blocks))
 
 void Chunk::Draw(const Camera& camera) const
 {
-	for (auto& block : _blocks.block)
+	for (auto& block : _blocks)
 	{
 		auto origin = block.first;
 
