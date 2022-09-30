@@ -36,7 +36,7 @@ DynamicMesh::DynamicMesh(
 			return std::max({a.x, a.y, a.z}) < std::max({b.x, b.y, b.z});
 		}
 	);
-	_indicesInOneInstance = std::max({triangleWithMaxValue->x, triangleWithMaxValue->y, triangleWithMaxValue->z});
+	_indicesInOneInstance = std::max({triangleWithMaxValue->x, triangleWithMaxValue->y, triangleWithMaxValue->z}) + 1;
 
 	const auto& indices = GenerateIndicesFromPattern(indicesPattern, maxInstancesAmount);
 
