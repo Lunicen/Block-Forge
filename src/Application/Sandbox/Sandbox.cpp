@@ -21,12 +21,11 @@ void Sandbox::Run() const
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(OrderType::cube, 8, 1, camera.GetPosition());
+	ChunkPlacer chunkPlacer(OrderType::diamond, 15, 8, camera.GetPosition());
 	chunkPlacer.Bind(worldGenerator);
 
 	// ReSharper disable once CppTooWideScope
 	ChunkRenderer chunkRenderer;
-	
 	FPSCounter counter;
 
 	glEnable(GL_DEPTH_TEST);
@@ -48,6 +47,7 @@ void Sandbox::Run() const
 
 		chunkPlacer.Update(camera.GetPosition());
 		chunkRenderer.Render(chunkPlacer.GetChunks(), camera);
+
 		counter.Update();
 
 		glfwSwapBuffers(_window.GetHandle());

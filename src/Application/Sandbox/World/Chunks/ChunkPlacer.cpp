@@ -55,6 +55,8 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 		_log.Trace("Removed chunk: " + PositionToString(origin));
 		_loadedChunks.erase(origin);
 	}
+
+	_log.Debug("Finished removing stale chunks!");
 }
 
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
@@ -67,6 +69,8 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 			_loadedChunks[origin] = _chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator);
 		}
 	}
+
+	_log.Debug("Finished adding new chunks!");
 }
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
