@@ -17,7 +17,7 @@ class ChunkPlacer
 	std::unique_ptr<Order> _order;
 
 	Position _previousNormalizedPosition = {};
-	std::unordered_map<Position, Chunk> _loadedChunks = {};
+	std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks = {};
 
 	static std::vector<Position> Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet);
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
@@ -47,7 +47,7 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(std::shared_ptr<WorldGenerator> generator);
 
-	std::unordered_map<Position, Chunk>& GetChunks();
+	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 	
 };
 

@@ -7,13 +7,13 @@ ChunkRenderer::ChunkRenderer()
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void ChunkRenderer::Render(const std::unordered_map<Position, Chunk>& chunks, const Camera& camera) const
+void ChunkRenderer::Render(const std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, const Camera& camera) const
 {
 	glEnable(GL_CULL_FACE);
 
 	for (const auto& chunk : chunks)
 	{
-		chunk.second.Draw(camera);
+		chunk.second->Draw(camera);
 	}
 
 	glDisable(GL_CULL_FACE);

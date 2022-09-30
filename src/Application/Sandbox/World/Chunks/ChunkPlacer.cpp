@@ -115,7 +115,7 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 	_generator = std::move(generator);
 }
 
-std::unordered_map<Position, Chunk>& ChunkPlacer::GetChunks()
+std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 {
 	return _loadedChunks;
 }

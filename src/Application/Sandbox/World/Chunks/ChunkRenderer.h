@@ -17,7 +17,7 @@ public:
 	/// @brief Renders loaded chunks.
 	///	@param camera - A reference to the camera around which the objects are rendered.
 	///	@param chunks - Chunks to render with their positions on the map.
-	void Render(const std::unordered_map<Position, Chunk>& chunks, const Camera& camera) const;
+	void Render(const std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, const Camera& camera) const;
 };
 
 
