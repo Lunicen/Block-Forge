@@ -150,11 +150,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\BlockFaceModel.cpp" />
-    <ClCompile Include="src\Application\Sandbox\Model\Mesh\Mesh.cpp" />
+    <ClCompile Include="src\Application\Sandbox\Model\Mesh\StaticMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Surface\Texture.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\OrderType\CubeOrder.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\OrderType\DiamondOrder.cpp" />
@@ -192,6 +194,9 @@
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
@@ -200,7 +205,7 @@
     <ClInclude Include="src\Application\Sandbox\Model\BlockModel.h" />
     <ClInclude Include="src\Application\Sandbox\Model\BlockFaceModel.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\Structures.h" />
-    <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\StaticMesh.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Surface\Texture.h" />
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockMap.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\CubeOrder.h" />
