@@ -42,6 +42,16 @@ class ChunkMesh
 		std::array<Point3D, 4> right
 		{
 			{
+				Point3D{1.0f, 0.0f, 0.0f},
+				Point3D{1.0f, 0.0f, 1.0f},
+				Point3D{1.0f, 1.0f, 1.0f},
+				Point3D{1.0f, 1.0f, 0.0f}
+			}
+		};
+
+		std::array<Point3D, 4> top
+		{
+			{
 				Point3D{0.0f, 1.0f, 0.0f},
 				Point3D{1.0f, 1.0f, 0.0f},
 				Point3D{1.0f, 1.0f, 1.0f},
@@ -49,23 +59,13 @@ class ChunkMesh
 			}
 		};
 
-		std::array<Point3D, 4> top
-		{
-			{
-				Point3D{0.0f, 0.0f, 1.0f},
-				Point3D{0.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 0.0f, 1.0f}
-			}
-		};
-
 		std::array<Point3D, 4> bottom
 		{
 			{
+				Point3D{0.0f, 0.0f, 0.0f},
 				Point3D{0.0f, 0.0f, 1.0f},
-				Point3D{0.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 0.0f, 1.0f}
+				Point3D{1.0f, 0.0f, 1.0f},
+				Point3D{1.0f, 0.0f, 0.0f},
 			}
 		};
 		

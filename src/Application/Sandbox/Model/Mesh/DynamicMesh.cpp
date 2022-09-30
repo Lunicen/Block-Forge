@@ -59,6 +59,10 @@ DynamicMesh::DynamicMesh(
 void DynamicMesh::Update(const std::vector<Vertex>& vertices)
 {
 	_vertices = vertices;
+
+	_vbo->Bind();
+	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(_vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), _vertices.data());
+	_vbo->Unbind();
 }
 
 void DynamicMesh::Draw(const Texture& texture, const Camera& camera) const
@@ -66,10 +70,6 @@ void DynamicMesh::Draw(const Texture& texture, const Camera& camera) const
 	if (_vertices.empty()) return;
 
 	camera.Bind(_shader);
-
-	_vbo->Bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(_vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), _vertices.data());
-	_vbo->Unbind();
 
 	_vao.Bind();
 	texture.Bind(_shader);

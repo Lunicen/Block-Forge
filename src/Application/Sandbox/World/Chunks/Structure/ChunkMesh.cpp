@@ -27,48 +27,18 @@ ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk) : _blockSha
 void ChunkMesh::Rebuild(const ChunkBlocks& blocks) const
 {
 	std::vector<Vertex> vertices;
-	size_t addedFaces = 0;
 
 	for (const auto& block : blocks)
 	{
 		auto& faceModels = block.second.model->GetFaces();
 		const auto& facesVisibility = block.second.visibility;
 
-		if (facesVisibility.front) 
-		{
-			AddFaceToMesh(_faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
-
-		if (facesVisibility.back)
-		{
-			AddFaceToMesh(_faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
-
-		if (facesVisibility.left)
-		{
-			AddFaceToMesh(_faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
-
-		if (facesVisibility.right)
-		{
-			AddFaceToMesh(_faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
-
-		if (facesVisibility.top)
-		{
-			AddFaceToMesh(_faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
-
-		if (facesVisibility.bottom)
-		{
-			AddFaceToMesh(_faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
-			++addedFaces;
-		}
+		if (facesVisibility.front)	AddFaceToMesh(_faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
+		if (facesVisibility.back)	AddFaceToMesh(_faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
+		if (facesVisibility.left)	AddFaceToMesh(_faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
+		if (facesVisibility.right)	AddFaceToMesh(_faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
+		if (facesVisibility.top)	AddFaceToMesh(_faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
+		if (facesVisibility.bottom)	AddFaceToMesh(_faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
 	}
 
 	_mesh->Update(vertices);
