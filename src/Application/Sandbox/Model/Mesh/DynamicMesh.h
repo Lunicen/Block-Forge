@@ -3,6 +3,8 @@
 
 class DynamicMesh final : protected Mesh
 {
+	std::unique_ptr<VertexBuffer> _vbo;
+
 	Shader& _shader;
 	std::vector<Vertex> _vertices;
 	GLsizei _indicesInPatternAmount{};
