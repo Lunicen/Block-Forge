@@ -1,28 +1,18 @@
 #include "BlockBuilder.h"
 
-void BlockBuilder::SetFaceTexture(
-	std::vector<Vertex>& face, 
-	const int x, 
-	const int y,
-	const bool flipTexture) const
-{
-	_textureAtlas->SetSprite(face, x, y, flipTexture);
-}
 
 void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y) const
 {
-	if (face == "front")	SetFaceTexture(_faceVertices->front, x, y, false);
-	if (face == "back")		SetFaceTexture(_faceVertices->back, x, y, true);
-	if (face == "left")		SetFaceTexture(_faceVertices->left, x, y, true);
-	if (face == "right")	SetFaceTexture(_faceVertices->right, x, y, false);
-	if (face == "top")		SetFaceTexture(_faceVertices->top, x, y, false);
-	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, x, y, true);
+	if (face == "front")	_textureAtlas->SetSprite(_facesTextureCoordinates->front, x, y, false);
+	if (face == "back")		_textureAtlas->SetSprite(_facesTextureCoordinates->back, x, y, true);
+	if (face == "left")		_textureAtlas->SetSprite(_facesTextureCoordinates->left, x, y, true);
+	if (face == "right")	_textureAtlas->SetSprite(_facesTextureCoordinates->right, x, y, false);
+	if (face == "top")		_textureAtlas->SetSprite(_facesTextureCoordinates->top, x, y, false);
+	if (face == "bottom")	_textureAtlas->SetSprite(_facesTextureCoordinates->bottom, x, y, true);
 }
 
-BlockBuilder::BlockBuilder(const std::string& textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
-	: _faceIndices(blockIndices),
-	  _textureAtlas(std::make_shared<TextureAtlas>(textureAtlasFilename, spriteSize)),
-	  _blockShader(blockShader)
+BlockBuilder::BlockBuilder(const std::string& textureAtlasFilename, const size_t spriteSize)
+	: _textureAtlas(std::make_shared<TextureAtlas>(textureAtlasFilename, spriteSize))
 {
 }
 
@@ -41,24 +31,14 @@ BlockModel BlockBuilder::Build(const JsonData& blockData) const
 		}
 	}
 
-	FaceMeshes faceMeshes
-	{
-		std::make_unique<Mesh>(_faceVertices->front, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->back, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->left, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->right, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->top, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->bottom, _faceIndices, _blockShader)
-	};
-
 	BlockFaces faces
 	{
-		BlockFaceModel(faceMeshes.front, _textureAtlas),
-		BlockFaceModel(faceMeshes.back, _textureAtlas),
-		BlockFaceModel(faceMeshes.left, _textureAtlas),
-		BlockFaceModel(faceMeshes.right, _textureAtlas),
-		BlockFaceModel(faceMeshes.top, _textureAtlas),
-		BlockFaceModel(faceMeshes.bottom, _textureAtlas)
+		BlockFaceModel(_facesTextureCoordinates->front, _textureAtlas),
+		BlockFaceModel(_facesTextureCoordinates->back, _textureAtlas),
+		BlockFaceModel(_facesTextureCoordinates->left, _textureAtlas),
+		BlockFaceModel(_facesTextureCoordinates->right, _textureAtlas),
+		BlockFaceModel(_facesTextureCoordinates->top, _textureAtlas),
+		BlockFaceModel(_facesTextureCoordinates->bottom, _textureAtlas)
 	};
 
 	return BlockModel(std::move(faces));

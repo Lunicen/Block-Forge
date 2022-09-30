@@ -64,51 +64,8 @@ public:
 		: _blockFaces(std::move(faces))
 	{}
 
-	/// @brief Draws the front face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawFrontFace(const Position& origin, const Camera& camera) const
+	BlockFaces& GetFaces()
 	{
-		_blockFaces.front.Draw(origin, camera);
-	}
-	
-	/// @brief Draws the back face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawBackFace(const Position& origin, const Camera& camera) const
-	{
-		_blockFaces.back.Draw(origin, camera);
-	}
-	
-	/// @brief Draws the left face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawLeftFace(const Position& origin, const Camera& camera) const
-	{
-		_blockFaces.left.Draw(origin, camera);
-	}
-	
-	/// @brief Draws the right face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawRightFace(const Position& origin, const Camera& camera) const
-	{
-		_blockFaces.right.Draw(origin, camera);
-	}
-	
-	/// @brief Draws the top face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawTopFace(const Position& origin, const Camera& camera) const
-	{
-		_blockFaces.top.Draw(origin, camera);
-	}
-	
-	/// @brief Draws the bottom face.
-	///	@param origin - A position in the world to place the mesh.
-	/// @param camera - It is used to bind a shader to see the drawn model.
-	void DrawBottomFace(const Position& origin, const Camera& camera) const
-	{
-		_blockFaces.bottom.Draw(origin, camera);
+		return _blockFaces;
 	}
 };

@@ -7,18 +7,15 @@
 ///	@brief Represents face of a @see BlockModel.
 class BlockFaceModel
 {
-	std::unique_ptr<Mesh> _mesh;
+	std::array<Point, 4> _textureCoordinates;
 	std::shared_ptr<Texture> _texture;
 
 public:
 
 	/// @brief The constructor.
-	/// @param mesh - The mesh of the model.
+	/// @param uvTextureCoordinates - UV texture coordinates.
 	///	@param texture - The texture that the model is covered with.
-	BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Texture> texture);
+	BlockFaceModel(std::array<Point, 4> uvTextureCoordinates, std::shared_ptr<Texture> texture);
 
-	/// @brief Draws the face of a block.
-	/// @param origin - A position in the world to place the model.
-	///	@param camera - It is used to bind a shader to see the drawn model.
-	void Draw(const Position& origin, const Camera& camera) const;
+	std::array<Point, 4>& GetUvCoordinates();
 };

@@ -1,23 +1,20 @@
 #pragma once
 #include "BlockProvider.h"
 #include "Application/Sandbox/Model/BlockModel.h"
+#include "Application/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockMap
 ///	@brief Represents a map of the blocks that could be used to place in the chunks.
 class BlockMap
 {
-	Shader _blockShader = Shader("src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag");
-	std::vector<TriangleIndexes> _faceIndices
-	{
-		TriangleIndexes{0, 1, 2},
-		TriangleIndexes{2, 3, 0}
-	};
+	std::unique_ptr<Texture> _blockTextures{};
 	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
+	Shader _blockShader{"src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag"};
 
 public:
 
 	/// @brief Copy constructor.
-	BlockMap(const BlockMap&) = default;
+	BlockMap(const BlockMap&) = delete;
 
 	/// @brief Move constructor.
 	BlockMap(BlockMap&&) noexcept = default;
@@ -33,7 +30,9 @@ public:
 	explicit BlockMap(const std::string& filenameWithBlocksData)
 	{
 		auto blockProvider = BlockProvider(filenameWithBlocksData);
-		_blockTypes = blockProvider.GetBlocks(_faceIndices, _blockShader);
+
+		_blockTextures = std::make_unique<TextureAtlas>(blockProvider.GetBlocksTextures());
+		_blockTypes = blockProvider.GetBlocks();
 	}
 
 	/// @brief Returns the block model based on it's name.
@@ -46,6 +45,16 @@ public:
 	std::shared_ptr<BlockModel>& operator[](const std::string& blockName)
 	{
 		return _blockTypes.at(blockName);
+	}
+
+	Texture& GetBlocksTexture() const
+	{
+		return *_blockTextures;
+	}
+
+	Shader& GetBlocksShader()
+	{
+		return _blockShader;
 	}
 
 	~BlockMap() = default;
