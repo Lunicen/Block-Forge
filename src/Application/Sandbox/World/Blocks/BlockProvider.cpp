@@ -12,24 +12,20 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetB
 	const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
-
-	const std::string textureAtlasName = blocksSet.value("atlas", "");
-	// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
-	const size_t slotSize = blocksSet.value("slotSize", 0);
-
-	const auto builder = BlockBuilder(blocksTextureAtlas);
 	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
 
 	for (const auto& blockData : blocksSet["blocks"])
 	{
 		const std::string name = blockData.value("block", "unknown");
-		blocks[name] = std::make_shared<BlockModel>(builder.Build(blockData));
+		const BlockBuilder builder;
+
+		blocks[name] = std::make_shared<BlockModel>(builder.Build(blockData, blocksTextureAtlas));
 	}
 
 	return blocks;
 }
 
-std::string BlockProvider::GetTextureAtlasName(const std::string& blocksSetName)
+std::string BlockProvider::GetTextureAtlasFilename(const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
 	return blocksSet.value("atlas", "");

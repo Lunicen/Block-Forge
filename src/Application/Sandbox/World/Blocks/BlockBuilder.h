@@ -79,18 +79,13 @@ class BlockBuilder
 	};
 
 	std::shared_ptr<FacesUvTextureCoordinates> _facesTextureCoordinates = std::make_shared<FacesUvTextureCoordinates>();
-	TextureAtlas& _textureAtlas;
 	
-	void DetermineAndSetFaceTexture(const std::string& face, int x, int y) const;
+	void DetermineAndSetFaceTexture(const std::string& face, int x, int y, TextureAtlas& textureAtlas) const;
 
 public:
 
-	/// The constructor.
-	///	@param textureAtlasFilename - Path of the file containing the texture atlas of blocks.
-	///	@param spriteSize - The size of the sprite.
-	explicit BlockBuilder(TextureAtlas& textureAtlas);
-
 	/// @brief Builds block based on the data.
-	///	@param blockData - metadata of the block to be built.
-	BlockModel Build(const JsonData& blockData) const;
+	///	@param blockData - Metadata of the block to be built.
+	///	@param textureAtlas - Texture atlas related to the block data.
+	BlockModel Build(const JsonData& blockData, TextureAtlas& textureAtlas) const;
 };

@@ -18,8 +18,11 @@ public:
 	///	@param vertices - The vertices of the mesh.
 	/// @param indicesPattern - The indices pattern sequence of the vertices position (to replicate for allocating the buffer).
 	/// @param shader - The shader that the mesh is using.
+	/// @param maxInstancesAmount - Amount of maximum possible instances to create within this mesh.
 	DynamicMesh(std::vector<Vertex> vertices, const std::vector<TriangleIndexes>& indicesPattern, Shader& shader, const size_t& maxInstancesAmount);
 
+	/// @brief Rebuilds the mesh.
+	///	@param vertices - new mesh vertices.
 	void Update(const std::vector<Vertex>& vertices);
 
 	/// @brief Draws the mesh.

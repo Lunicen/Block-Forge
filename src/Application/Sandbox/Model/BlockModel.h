@@ -1,6 +1,5 @@
 #pragma once
 #include "BlockFaceModel.h"
-#include "Application/Sandbox/Camera.h"
 
 /// @brief Container for the face models of a block.
 struct BlockFaces
@@ -60,8 +59,8 @@ public:
 
 	/// @brief The constructor.
 	///	@param faces - The faces of the block.
-	explicit BlockModel(BlockFaces faces)
-		: _blockFaces(std::move(faces))
+	explicit BlockModel(const BlockFaces& faces)
+		: _blockFaces(faces)
 	{}
 
 	BlockFaces& GetFaces()

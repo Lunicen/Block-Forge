@@ -20,10 +20,10 @@ public:
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
 	/// and the player position for proper displaying blocks while the player is moving.
-	///	@param blocks - the blocks inside the chunk.
-	///	@attention Do **NOT** give the exact origin position, where You want to have a chunk placed.
-	///	In the constructor it's implemented to place them respectively to the chunk size.
-	///	If the defined chunk size is 16 and the origin is (1, 1, 1) the real chunk origin will be (16, 16, 16).
+	///	@param blocks - The blocks inside the chunk.
+	///	@param blocksTexture - Texture atlas of the blocks inside the chunk.
+	///	@param size - Size of the chunk edge.
+	///	@param shader - Reference to the blocks shader.
 	explicit Chunk(ChunkBlocks blocks, std::shared_ptr<Texture> blocksTexture, const size_t& size, Shader& shader);
 
 	/// @brief Draws the chunk in the world.

@@ -31,7 +31,7 @@ public:
 	{
 		auto blockProvider = BlockProvider(filenameWithBlocksData);
 
-		const auto& textureName = blockProvider.GetTextureAtlasName();
+		const auto& textureName = blockProvider.GetTextureAtlasFilename();
 		const auto& textureSlotSize = blockProvider.GetTextureAtlasSlotSize();
 
 		_blockTextures = std::make_shared<TextureAtlas>(textureName, textureSlotSize);

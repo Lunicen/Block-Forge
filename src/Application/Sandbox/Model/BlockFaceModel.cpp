@@ -1,8 +1,8 @@
 #include "BlockFaceModel.h"
 
-BlockFaceModel::BlockFaceModel(std::array<Point, 4> uvTextureCoordinates)
+BlockFaceModel::BlockFaceModel(const std::array<Point, 4>& uvTextureCoordinates)
 {
-	_textureCoordinates = std::move(uvTextureCoordinates);
+	_textureCoordinates = uvTextureCoordinates;
 }
 
 std::array<Point, 4>& BlockFaceModel::GetUvCoordinates()
