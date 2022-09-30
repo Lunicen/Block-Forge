@@ -1,17 +1,18 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk(const size_t& size, Texture& blocksTexture, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(blocksTexture)
+Chunk::Chunk(const size_t& size, std::shared_ptr<Texture> blocksTexture, Shader& shader) :
+	_mesh(ChunkMesh(shader, size)), _blockTexture(std::move(blocksTexture))
 {
 }
 
-Chunk::Chunk(ChunkBlocks blocks, Texture& blocksTexture, const size_t& size, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(blocksTexture), _blocks(std::move(blocks))
+Chunk::Chunk(ChunkBlocks blocks, std::shared_ptr<Texture> blocksTexture, const size_t& size, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(
+	std::move(blocksTexture)), _blocks(std::move(blocks))
 {
-	// TODO: Passing blocks by reference is broken.
 	_mesh.Rebuild(_blocks);
 }
 
 void Chunk::Draw(const Camera& camera) const
 {
-	_mesh.Draw(_blockTexture, camera);
+	_mesh.Draw(*_blockTexture, camera);
 }

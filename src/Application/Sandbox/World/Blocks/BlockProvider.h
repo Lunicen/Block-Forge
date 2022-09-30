@@ -19,6 +19,6 @@ public:
 	/// @param blocksSetName - Name of the blocks set that is used for this particular block map.
 	std::unordered_map<std::string, std::shared_ptr<BlockModel>> GetBlocks(const std::string& blocksSetName = "default");
 
-	TextureAtlas&& GetBlocksTextures(const std::string& blocksSetName = "default");
+	TextureAtlas GetBlocksTextures(const std::string& blocksSetName = "default");
 };
 

@@ -28,7 +28,7 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetB
 	return blocks;
 }
 
-TextureAtlas&& BlockProvider::GetBlocksTextures(const std::string& blocksSetName)
+TextureAtlas BlockProvider::GetBlocksTextures(const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
 
@@ -36,5 +36,5 @@ TextureAtlas&& BlockProvider::GetBlocksTextures(const std::string& blocksSetName
 	// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 	const size_t slotSize = blocksSet.value("slotSize", 0);
 
-	return std::move(TextureAtlas(textureAtlasName, slotSize));
+	return TextureAtlas(textureAtlasName, slotSize);
 }
