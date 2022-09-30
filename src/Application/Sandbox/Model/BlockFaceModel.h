@@ -8,14 +8,13 @@
 class BlockFaceModel
 {
 	std::array<Point, 4> _textureCoordinates;
-	std::shared_ptr<Texture> _texture;
 
 public:
 
 	/// @brief The constructor.
 	/// @param uvTextureCoordinates - UV texture coordinates.
 	///	@param texture - The texture that the model is covered with.
-	BlockFaceModel(std::array<Point, 4> uvTextureCoordinates, std::shared_ptr<Texture> texture);
+	explicit BlockFaceModel(std::array<Point, 4> uvTextureCoordinates);
 
 	std::array<Point, 4>& GetUvCoordinates();
 };

@@ -17,8 +17,10 @@ public:
 
 	/// @brief Provides the map of the built blocks.
 	/// @param blocksSetName - Name of the blocks set that is used for this particular block map.
-	std::unordered_map<std::string, std::shared_ptr<BlockModel>> GetBlocks(const std::string& blocksSetName = "default");
+	std::unordered_map<std::string, std::shared_ptr<BlockModel>> GetBlocks(TextureAtlas& blocksTextureAtlas, const std::string& blocksSetName = "default");
 
-	TextureAtlas GetBlocksTextures(const std::string& blocksSetName = "default");
+	std::string GetTextureAtlasName(const std::string& blocksSetName = "default");
+
+	size_t GetTextureAtlasSlotSize(const std::string& blocksSetName = "default");
 };
 

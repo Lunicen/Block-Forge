@@ -7,7 +7,7 @@
 ///	@brief Represents a map of the blocks that could be used to place in the chunks.
 class BlockMap
 {
-	std::shared_ptr<Texture> _blockTextures{};
+	std::shared_ptr<TextureAtlas> _blockTextures{};
 	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
 	Shader _blockShader{"src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag"};
 
@@ -31,8 +31,11 @@ public:
 	{
 		auto blockProvider = BlockProvider(filenameWithBlocksData);
 
-		_blockTextures = std::make_shared<TextureAtlas>(blockProvider.GetBlocksTextures());
-		_blockTypes = blockProvider.GetBlocks();
+		const auto& textureName = blockProvider.GetTextureAtlasName();
+		const auto& textureSlotSize = blockProvider.GetTextureAtlasSlotSize();
+
+		_blockTextures = std::make_shared<TextureAtlas>(textureName, textureSlotSize);
+		_blockTypes = blockProvider.GetBlocks(*_blockTextures);
 	}
 
 	/// @brief Returns the block model based on it's name.
@@ -47,7 +50,7 @@ public:
 		return _blockTypes.at(blockName);
 	}
 
-	std::shared_ptr<Texture>& GetBlocksTexture()
+	std::shared_ptr<TextureAtlas>& GetBlocksTexture()
 	{
 		return _blockTextures;
 	}
