@@ -2,7 +2,8 @@
 #include "Mesh.h"
 
 /// @class StaticMesh
-///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a Model.
+///	@brief Represents a static <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a Model.
+///	@details Static mesh is a mesh that it's vertices will never change.
 class StaticMesh final : protected Mesh
 {
 	Shader& _shader;

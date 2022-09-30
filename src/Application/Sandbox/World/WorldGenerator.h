@@ -26,5 +26,6 @@ public:
 	///	@param blocks - the blocks inside the chunk.
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
+	/// @brief Returns the map of blocks used by this generator.
 	BlockMap& GetBlockMap();
 };

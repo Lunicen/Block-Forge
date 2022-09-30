@@ -21,7 +21,7 @@ void Sandbox::Run() const
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(OrderType::diamond, 15, 8, camera.GetPosition());
+	ChunkPlacer chunkPlacer(OrderType::diamond, 8, 8, camera.GetPosition());
 	chunkPlacer.Bind(worldGenerator);
 
 	// ReSharper disable once CppTooWideScope

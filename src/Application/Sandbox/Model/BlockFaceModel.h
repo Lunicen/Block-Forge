@@ -13,5 +13,6 @@ public:
 	/// @param uvTextureCoordinates - UV texture coordinates.
 	explicit BlockFaceModel(const std::array<Point, 4>& uvTextureCoordinates);
 
+	/// @brief Returns the uv coordinates associated with the face model.
 	std::array<Point, 4>& GetUvCoordinates();
 };

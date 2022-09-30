@@ -45,16 +45,19 @@ public:
 		return _blockTypes.at(blockName);
 	}
 
+	/// @brief An operator that allows to get the block by its key in a convenient way.
 	std::shared_ptr<BlockModel>& operator[](const std::string& blockName)
 	{
 		return _blockTypes.at(blockName);
 	}
 
+	/// @brief Returns the texture atlas that is used in this map.
 	std::shared_ptr<TextureAtlas>& GetBlocksTexture()
 	{
 		return _blockTextures;
 	}
 
+	/// @brief Returns the blocks shader. 
 	Shader& GetBlocksShader()
 	{
 		return _blockShader;

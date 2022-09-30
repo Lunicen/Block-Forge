@@ -22,6 +22,11 @@ public:
 	/// @param flip - If true, it flips the texture coordinates 180 degrees.
 	void SetSprite(std::vector<Vertex>& vertices, unsigned x, unsigned y, bool flip = false);
 
+	/// @brief Sets the vertices according to the sprite from the texture atlas.
+	///	@param textureUvCoordinates - UV coordinates of a texture.
+	///	@param x - The column index of the texture.
+	/// @param y - The row index of the texture.
+	/// @param flip - If true, it flips the texture coordinates 180 degrees.
 	void SetSprite(std::array<Point, 4>& textureUvCoordinates, unsigned x, unsigned y, bool flip = false);
 };
 

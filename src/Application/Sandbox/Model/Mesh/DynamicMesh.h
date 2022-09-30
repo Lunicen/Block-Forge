@@ -1,6 +1,10 @@
 #pragma once
 #include "Mesh.h"
 
+/// @class DynamicMesh
+///	@brief Represents a dynamic <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a Model.
+///	@details Dynamic mesh is a mesh that it's vertices could be changed in a runtime.
+///	@note If your object won't change its structure, you should use StaticMesh.
 class DynamicMesh final : protected Mesh
 {
 	std::unique_ptr<VertexBuffer> _vbo;

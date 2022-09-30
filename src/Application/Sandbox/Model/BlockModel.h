@@ -63,6 +63,7 @@ public:
 		: _blockFaces(faces)
 	{}
 
+	/// @brief Returns the faces data of the block.
 	BlockFaces& GetFaces()
 	{
 		return _blockFaces;

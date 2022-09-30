@@ -47,7 +47,7 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(std::shared_ptr<WorldGenerator> generator);
 
+	/// @brief Returns the map of placed chunks.
 	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
-	
 };
 

@@ -1,7 +1,5 @@
 #include "ChunkPlacer.h"
 
-#include "Application/Sandbox/World/Biomes/Biome.h"
-
 std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
 	std::vector<Position> result;
