@@ -6,6 +6,7 @@
 class TextureAtlas : public Texture
 {
 	size_t _spriteSize;
+	std::array<Point, 4> GetTextureCoordinatesAt(unsigned x, unsigned y);
 
 public:
 
@@ -20,5 +21,7 @@ public:
 	/// @param y - The row index of the texture.
 	/// @param flip - If true, it flips the texture coordinates 180 degrees.
 	void SetSprite(std::vector<Vertex>& vertices, unsigned x, unsigned y, bool flip = false);
+
+	void SetSprite(std::array<Point, 4>& textureUvCoordinates, unsigned x, unsigned y, bool flip = false);
 };
 
