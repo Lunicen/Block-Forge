@@ -71,7 +71,7 @@ class ChunkMesh
 		
 	} _faceVertices;
 
-	static void AddFaceToMesh(const std::array<Point3D, 4>& faceVertices, const std::array<Point, 4>& faceTextureCoordinates, std::vector<Vertex>& mesh);
+	static void AddFaceToMesh(const Position& origin, const std::array<Point3D, 4>& faceVertices, const std::array<Point, 4>& faceTextureCoordinates, std::vector<Vertex>& mesh);
 
 public:
 	explicit ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk);

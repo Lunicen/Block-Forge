@@ -1,6 +1,7 @@
 #include "ChunkMesh.h"
 
 void ChunkMesh::AddFaceToMesh(
+	const Position& origin,
 	const std::array<Point3D, 4>& faceVertices,
 	const std::array<Point, 4>& faceTextureCoordinates,
 	std::vector<Vertex>& mesh)
@@ -8,7 +9,7 @@ void ChunkMesh::AddFaceToMesh(
 	constexpr auto quadVerticesCount = 4;
 	for (auto i = 0; i < quadVerticesCount; ++i)
 	{
-		mesh.emplace_back(Vertex{faceVertices[i], faceTextureCoordinates[i]});
+		mesh.emplace_back(Vertex{faceVertices[i] + Point3D(origin), faceTextureCoordinates[i]});
 	}
 }
 
@@ -30,15 +31,16 @@ void ChunkMesh::Rebuild(const ChunkBlocks& blocks) const
 
 	for (const auto& block : blocks)
 	{
+		auto& origin = block.first;
 		auto& faceModels = block.second.model->GetFaces();
 		const auto& facesVisibility = block.second.visibility;
 
-		if (facesVisibility.front)	AddFaceToMesh(_faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-		if (facesVisibility.back)	AddFaceToMesh(_faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-		if (facesVisibility.left)	AddFaceToMesh(_faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-		if (facesVisibility.right)	AddFaceToMesh(_faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-		if (facesVisibility.top)	AddFaceToMesh(_faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-		if (facesVisibility.bottom)	AddFaceToMesh(_faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
+		if (facesVisibility.front)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
+		if (facesVisibility.back)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
+		if (facesVisibility.left)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
+		if (facesVisibility.right)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
+		if (facesVisibility.top)	AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
+		if (facesVisibility.bottom)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
 	}
 
 	_mesh->Update(vertices);
