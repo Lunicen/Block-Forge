@@ -71,7 +71,7 @@ void DynamicMesh::Draw(const Texture& texture, const Camera& camera) const
 	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(_vertices.size()) * static_cast<GLsizeiptr>(sizeof(float)), _vertices.data());
 	texture.Bind(_shader);
 
-	glDrawElements(GL_TRIANGLES, _indicesInPatternAmount * _indicesInOneInstance, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, static_cast<GLsizeiptr>(_vertices.size()) / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
 	//texture.Unbind();
 	//_vao.Unbind();
 }

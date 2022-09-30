@@ -7,6 +7,8 @@ Chunk::Chunk(const size_t& size, Texture& blocksTexture, Shader& shader) : _mesh
 
 Chunk::Chunk(ChunkBlocks blocks, Texture& blocksTexture, const size_t& size, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(blocksTexture), _blocks(std::move(blocks))
 {
+	// TODO: Passing blocks by reference is broken.
+	_mesh.Rebuild(_blocks);
 }
 
 void Chunk::Draw(const Camera& camera) const
