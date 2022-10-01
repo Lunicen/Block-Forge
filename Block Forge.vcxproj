@@ -168,7 +168,7 @@
     <ClCompile Include="src\Application\Sandbox\World\Biomes\Biome.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.cpp" />
-    <ClCompile Include="src\Application\HumanInterfaceDevice\HumanInterfaceDevice.cpp" />
+    <ClCompile Include="src\Application\Event\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Application\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
@@ -192,6 +192,7 @@
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockBuilder.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\WorldGeneratorUtils.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
+    <ClCompile Include="src\Application\LayerStack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
@@ -226,14 +227,15 @@
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockBuilder.h" />
     <ClInclude Include="src\Application\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Surface\TextureAtlas.h" />
+    <ClInclude Include="src\Application\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox\Utils\FPSCounter.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.h" />
-    <ClInclude Include="src\Application\HumanInterfaceDevice\HumanInterfaceDevice.h" />
+    <ClInclude Include="src\Application\Event\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Application\Sandbox\Camera.h" />
-    <ClInclude Include="src\Application\HumanInterfaceDevice\KeyCodes.h" />
+    <ClInclude Include="src\Application\Event\KeyCodes.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_glfw.h" />

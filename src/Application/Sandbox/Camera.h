@@ -5,7 +5,7 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/HumanInterfaceDevice/HumanInterfaceDevice.h"
+#include "Application/Event/HumanInterfaceDevice.h"
 #include "Application/Window.h"
 
 /// @class Camera
