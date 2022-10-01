@@ -9,7 +9,7 @@ class ChunkMesh
 	std::unique_ptr<DynamicMesh> _mesh = nullptr;
 	Shader& _blockShader;
 
-	const struct FaceVertices
+	struct FaceVertices
 	{
 		std::array<Point3D, 4> front
 		{
@@ -71,7 +71,7 @@ class ChunkMesh
 			}
 		};
 	};
-	FaceVertices _faceVertices;
+	const FaceVertices _faceVertices;
 
 	static void AddFaceToMesh(const Position& origin, const std::array<Point3D, 4>& faceVertices, const std::array<Point, 4>& faceTextureCoordinates, std::vector<Vertex>& mesh);
 
