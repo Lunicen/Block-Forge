@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Event\Event.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="src\Application\LayerStack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Event\Event.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
