@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Sandbox\Hud.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\BlockFaceModel.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Sandbox\Hud.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
@@ -256,6 +258,8 @@
     <None Include="src\Data\Shaders\Block.frag" />
     <None Include="src\Data\Shaders\Block.vert" />
     <None Include="Settings.json" />
+    <None Include="src\Data\Shaders\Hud.frag" />
+    <None Include="src\Data\Shaders\Hud.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
