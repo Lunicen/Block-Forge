@@ -2,6 +2,7 @@
 #include <unordered_set>
 #include "Core/Log.h"
 #include "KeyCodes.h"
+#include "Application/Window.h"
 
 /// @class HumanInterfaceDevice
 /// @brief Handles and defines input devices.
@@ -9,7 +10,7 @@
 class HumanInterfaceDevice
 {
 	Log& _log = Log::Get();
-	GLFWwindow* _window;
+	Window& _window;
 	std::unordered_set<KeyboardKey> _onceHandledKeyboardKeys;
 	std::unordered_set<MouseButton> _onceHandledMouseButtons;
 
@@ -22,7 +23,7 @@ class HumanInterfaceDevice
 public:
 	/// @brief The constructor.
 	///	@param window - The window in which the simulation is played.
-	explicit HumanInterfaceDevice(GLFWwindow* window);
+	explicit HumanInterfaceDevice(Window& window);
 
 	/// @brief Checks if the requested key is pressed.
 	///	@param key - The key from keyboard.
@@ -38,6 +39,8 @@ public:
 	///	@param key - The key from keyboard.
 	///	@return Returns true is the key is released, otherwise false.
 	bool IsReleased(const KeyboardKey& key) const;
+
+
 
 	/// @brief Checks if the requested button is pressed.
 	///	@param button - The button from mouse.

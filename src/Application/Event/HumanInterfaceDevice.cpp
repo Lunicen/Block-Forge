@@ -35,15 +35,15 @@ std::string HumanInterfaceDevice::ButtonDescription(const MouseButton& button) c
 
 int HumanInterfaceDevice::GetState(const KeyboardKey& key) const
 {
-	return glfwGetKey(_window, static_cast<int>(key));
+	return glfwGetKey(_window.GetHandle(), static_cast<int>(key));
 }
 
 int HumanInterfaceDevice::GetState(const MouseButton& button) const
 {
-	return glfwGetMouseButton(_window, static_cast<int>(button));
+	return glfwGetMouseButton(_window.GetHandle(), static_cast<int>(button));
 }
 
-HumanInterfaceDevice::HumanInterfaceDevice(GLFWwindow* window) : _window(window)
+HumanInterfaceDevice::HumanInterfaceDevice(Window& window) : _window(window)
 {
 }
 
