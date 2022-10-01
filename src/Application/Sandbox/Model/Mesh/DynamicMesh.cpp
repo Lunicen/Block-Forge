@@ -73,7 +73,7 @@ void DynamicMesh::Draw(const Texture& texture, const Camera& camera) const
 
 	_vao.Bind();
 	texture.Bind(_shader);
-	glDrawElements(GL_TRIANGLES, static_cast<GLsizeiptr>(_vertices.size()) / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
-	//texture.Unbind();
-	//_vao.Unbind();
+	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_vertices.size()) / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
+	texture.Unbind();
+	_vao.Unbind();
 }

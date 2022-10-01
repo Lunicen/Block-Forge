@@ -33,9 +33,5 @@ public:
 	/// @brief Draws the chunk in the world.
 	///	@param camera - reference to the camera so that the blocks could be seen.
 	void Draw(const Camera& camera) const;
-
-	//void InsertAt(const Position& origin, std::shared_ptr<BlockModel> block); todo
-
-	//void RemoveAt(const Position& origin); todo
 };
 

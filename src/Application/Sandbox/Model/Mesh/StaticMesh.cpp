@@ -36,4 +36,7 @@ void StaticMesh::Draw(const Position& origin, const Texture& texture, const Came
 	texture.Bind(_shader);
 
 	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
+
+	texture.Unbind();
+	_vao.Unbind();
 }
