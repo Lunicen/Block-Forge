@@ -18,6 +18,9 @@ using Point3D = glm::vec3;
 /// @brief A point in the 2D space.
 using Point = glm::vec2;
 
+/// @brief Tells how many vertices a quad (two triangles connected by a hypotenuse) has.
+constexpr size_t VerticesInQuad = 4;
+
 /// @brief Represent a single vertex that is used by the shader.
 struct Vertex
 {

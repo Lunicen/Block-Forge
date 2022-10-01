@@ -1,11 +1,10 @@
 #include "BlockFaceModel.h"
 
-BlockFaceModel::BlockFaceModel(const std::array<Point, 4>& uvTextureCoordinates)
+BlockFaceModel::BlockFaceModel(const std::array<Point, VerticesInQuad>& uvTextureCoordinates) : _textureCoordinates(uvTextureCoordinates)
 {
-	_textureCoordinates = uvTextureCoordinates;
 }
 
-std::array<Point, 4>& BlockFaceModel::GetUvCoordinates()
+std::array<Point, VerticesInQuad>& BlockFaceModel::GetUvCoordinates()
 {
 	return _textureCoordinates;
 }

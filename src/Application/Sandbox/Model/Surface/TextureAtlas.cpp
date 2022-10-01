@@ -1,13 +1,13 @@
 #include "TextureAtlas.h"
 
-std::array<Point, 4> TextureAtlas::GetTextureCoordinatesAt(const unsigned x, const unsigned y)
+std::array<Point, VerticesInQuad> TextureAtlas::GetTextureCoordinatesAt(const unsigned x, const unsigned y)
 {
 	const auto& width = GetWidth();
 	const auto& height = GetHeight();
 
 	const auto invertedY = height / _spriteSize - y - 1;
 
-	const std::array<Point, 4> textureCoords = 
+	const std::array<Point, VerticesInQuad> textureCoords = 
 	{{
 		{
 			static_cast<float>(x) * static_cast<float>(_spriteSize) / static_cast<float>(width),
@@ -38,12 +38,11 @@ void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, co
 {
 	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 
 
-	constexpr auto verticesAmount = 4;
-	for (auto i = 0; i < verticesAmount; ++i)
+	for (auto i = 0; i < VerticesInQuad; ++i)
 	{
 		if (flip)
 		{
-			vertices.at((i + verticesAmount - 1) % verticesAmount).uvCoordinate = textureCoords[i];
+			vertices.at((i + VerticesInQuad - 1) % VerticesInQuad).uvCoordinate = textureCoords[i];
 		}
 		else
 		{
@@ -52,7 +51,7 @@ void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, co
 	}
 }
 
-void TextureAtlas::SetSprite(std::array<Point, 4>& textureUvCoordinates, const unsigned x, const unsigned y, const bool flip)
+void TextureAtlas::SetSprite(std::array<Point, VerticesInQuad>& textureUvCoordinates, const unsigned x, const unsigned y, const bool flip)
 {
 	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 
 
@@ -61,10 +60,9 @@ void TextureAtlas::SetSprite(std::array<Point, 4>& textureUvCoordinates, const u
 		textureUvCoordinates = textureCoords;
 		return;
 	}
-
-	constexpr auto quadCoordinatesAmount = 4;
-	for (auto i = 0; i < quadCoordinatesAmount; ++i)
+	
+	for (auto i = 0; i < VerticesInQuad; ++i)
 	{
-		textureUvCoordinates[(i + quadCoordinatesAmount - 1) % quadCoordinatesAmount] = textureCoords[i];
+		textureUvCoordinates[(i + VerticesInQuad - 1) % VerticesInQuad] = textureCoords[i];
 	}
 }
