@@ -196,6 +196,7 @@
     <ClCompile Include="src\Application\LayerStack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Event\EventQueue.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Event\Event.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
