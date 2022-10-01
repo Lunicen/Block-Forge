@@ -36,7 +36,7 @@ void WorldGeneratorUtils::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& bl
 {
 	const auto noise = biomePlacer.GetChunkNoise(frame, 1);
 	
-	for (auto& block : blocks)
+	for (auto& block : blocks.block)
 	{
 		OptimizeBlock(block.first, block.second, noise);
 	}

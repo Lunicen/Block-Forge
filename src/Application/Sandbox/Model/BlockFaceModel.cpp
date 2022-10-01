@@ -1,10 +1,12 @@
 #include "BlockFaceModel.h"
 
-BlockFaceModel::BlockFaceModel(const std::array<Point, VerticesInQuad>& uvTextureCoordinates) : _textureCoordinates(uvTextureCoordinates)
+BlockFaceModel::BlockFaceModel(std::unique_ptr<Mesh>& mesh, std::shared_ptr<Texture> texture)
 {
+	_mesh = std::move(mesh);
+	_texture = std::move(texture);
 }
 
-std::array<Point, VerticesInQuad>& BlockFaceModel::GetUvCoordinates()
+void BlockFaceModel::Draw(const glm::vec3& origin, const Camera& camera) const
 {
-	return _textureCoordinates;
+	_mesh->Draw(origin, *_texture, camera);
 }

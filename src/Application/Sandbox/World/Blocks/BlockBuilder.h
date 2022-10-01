@@ -1,60 +1,61 @@
 #pragma once
 #include "Core/Metadata.h"
 #include "Application/Sandbox/Model/BlockModel.h"
+#include "Application/Sandbox/Model/Mesh/Geometry/Shader.h"
 #include "Application/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockBuilder
 /// @brief A factory that builds and outputs blocks based on their metadata.
 class BlockBuilder
 {
-	struct FacesUvTextureCoordinates
+	struct FaceVertices
 	{
-		std::array<Point, 4> front
+		std::vector<Vertex> front
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
 		
-		std::array<Point, 4> back
+		std::vector<Vertex> back
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 		
-		std::array<Point, 4> left
+		std::vector<Vertex> left
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 
-		std::array<Point, 4> right
+		std::vector<Vertex> right
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
 		
-		std::array<Point, 4> top
+		std::vector<Vertex> top
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{0.0f, 1.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 0.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 1.0f, 1.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{0.0f, 1.0f, 1.0f}, Point{0.0f, 1.0f}},
 		};
 		
-		std::array<Point, 4> bottom
+		std::vector<Vertex> bottom
 		{
-			Point{0.0f, 0.0f},
-			Point{1.0f, 0.0f},
-			Point{1.0f, 1.0f},
-			Point{0.0f, 1.0f},
+			Vertex{Position{0.0f, 0.0f, 0.0f}, Point{0.0f, 0.0f}},
+			Vertex{Position{0.0f, 0.0f, 1.0f}, Point{1.0f, 0.0f}},
+			Vertex{Position{1.0f, 0.0f, 1.0f}, Point{1.0f, 1.0f}},
+			Vertex{Position{1.0f, 0.0f, 0.0f}, Point{0.0f, 1.0f}},
 		};
 	};
 
@@ -78,14 +79,24 @@ class BlockBuilder
 		std::shared_ptr<Texture> bottom;
 	};
 
-	std::shared_ptr<FacesUvTextureCoordinates> _facesTextureCoordinates = std::make_shared<FacesUvTextureCoordinates>();
-	
-	void DetermineAndSetFaceTexture(const std::string& face, int x, int y, TextureAtlas& textureAtlas) const;
+	std::shared_ptr<FaceVertices> _faceVertices = std::make_shared<FaceVertices>();
+	std::vector<TriangleIndexes>& _faceIndices;
+	std::shared_ptr<TextureAtlas> _textureAtlas;
+	Shader& _blockShader;
+
+	void SetFaceTexture(std::vector<Vertex>& face, int x, int y, bool flipTexture) const;
+	void DetermineAndSetFaceTexture(const std::string& face, int x, int y) const;
 
 public:
 
+	/// The constructor.
+	///	@param textureAtlasFilename - Path of the file containing the texture atlas of blocks.
+	///	@param spriteSize - The size of the sprite.
+	///	@param blockIndices - Indices of a block (for optimization purposes).
+	/// @param blockShader - Shader of a block (for optimization purposes).
+	explicit BlockBuilder(const std::string& textureAtlasFilename, size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader);
+
 	/// @brief Builds block based on the data.
-	///	@param blockData - Metadata of the block to be built.
-	///	@param textureAtlas - Texture atlas related to the block data.
-	BlockModel Build(const JsonData& blockData, TextureAtlas& textureAtlas) const;
+	///	@param blockData - metadata of the block to be built.
+	BlockModel Build(const JsonData& blockData);
 };

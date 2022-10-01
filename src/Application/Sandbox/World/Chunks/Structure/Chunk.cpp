@@ -1,18 +1,30 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk(const size_t& size, std::shared_ptr<Texture> blocksTexture, Shader& shader) :
-	_mesh(ChunkMesh(shader, size)), _blockTexture(std::move(blocksTexture))
+Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks, Camera& camera)
+	: _frame(frame), _blocks(std::move(blocks)), _camera(camera)
 {
 }
 
-Chunk::Chunk(ChunkBlocks blocks, std::shared_ptr<Texture> blocksTexture, const size_t& size, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(
-	std::move(blocksTexture)), _blocks(std::move(blocks))
+void Chunk::Draw() const
 {
-	_mesh.Rebuild(_blocks);
+	for (auto& block : _blocks.block)
+	{
+		auto origin = block.first;
+
+		const auto& blockModel = block.second.model;
+		const auto& faceVisible = block.second.visibility;
+
+		if (faceVisible.front)  blockModel->DrawFrontFace(origin, _camera);
+		if (faceVisible.back)   blockModel->DrawBackFace(origin, _camera);
+		if (faceVisible.left)   blockModel->DrawLeftFace(origin, _camera);
+		if (faceVisible.right)  blockModel->DrawRightFace(origin, _camera);
+		if (faceVisible.top)    blockModel->DrawTopFace(origin, _camera);
+		if (faceVisible.bottom) blockModel->DrawBottomFace(origin, _camera);
+	}
 }
 
-void Chunk::Draw(const Camera& camera) const
+glm::ivec3 Chunk::GetOrigin() const
 {
-	_mesh.Draw(*_blockTexture, camera);
+	return _frame.origin;
 }

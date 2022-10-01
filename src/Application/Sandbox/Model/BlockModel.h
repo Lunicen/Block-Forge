@@ -1,5 +1,6 @@
 #pragma once
 #include "BlockFaceModel.h"
+#include "Application/Sandbox/Camera.h"
 
 /// @brief Container for the face models of a block.
 struct BlockFaces
@@ -59,13 +60,55 @@ public:
 
 	/// @brief The constructor.
 	///	@param faces - The faces of the block.
-	explicit BlockModel(const BlockFaces& faces)
-		: _blockFaces(faces)
+	explicit BlockModel(BlockFaces faces)
+		: _blockFaces(std::move(faces))
 	{}
 
-	/// @brief Returns the faces data of the block.
-	BlockFaces& GetFaces()
+	/// @brief Draws the front face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawFrontFace(const Position& origin, const Camera& camera) const
 	{
-		return _blockFaces;
+		_blockFaces.front.Draw(origin, camera);
+	}
+	
+	/// @brief Draws the back face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawBackFace(const Position& origin, const Camera& camera) const
+	{
+		_blockFaces.back.Draw(origin, camera);
+	}
+	
+	/// @brief Draws the left face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawLeftFace(const Position& origin, const Camera& camera) const
+	{
+		_blockFaces.left.Draw(origin, camera);
+	}
+	
+	/// @brief Draws the right face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawRightFace(const Position& origin, const Camera& camera) const
+	{
+		_blockFaces.right.Draw(origin, camera);
+	}
+	
+	/// @brief Draws the top face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawTopFace(const Position& origin, const Camera& camera) const
+	{
+		_blockFaces.top.Draw(origin, camera);
+	}
+	
+	/// @brief Draws the bottom face.
+	///	@param origin - A position in the world to place the mesh.
+	/// @param camera - It is used to bind a shader to see the drawn model.
+	void DrawBottomFace(const Position& origin, const Camera& camera) const
+	{
+		_blockFaces.bottom.Draw(origin, camera);
 	}
 };

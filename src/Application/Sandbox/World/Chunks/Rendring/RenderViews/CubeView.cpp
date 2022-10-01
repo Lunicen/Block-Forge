@@ -1,12 +1,12 @@
-#include "TiltedCubeOrder.h"
+#include "CubeView.h"
 
-size_t TiltedCubeOrder::GetChunksAmount()
+size_t CubeView::GetChunksAmount()
 {
-	const auto& r = GetChunkSize();
-	return (r + 1) * ((r + 1) * (r + 1) + r * r);
+	const auto& chunkSize = GetChunkSize();
+	return chunkSize * chunkSize * chunkSize;
 }
 
-std::vector<glm::ivec3> TiltedCubeOrder::GetChunksAround(const glm::ivec3 normalizedOrigin)
+std::vector<glm::ivec3> CubeView::GetChunksAround(const glm::ivec3 normalizedOrigin)
 {
 	std::vector<glm::ivec3> chunksPositions;
 
@@ -15,8 +15,7 @@ std::vector<glm::ivec3> TiltedCubeOrder::GetChunksAround(const glm::ivec3 normal
 	{
 		for (auto y = -bound; y <= bound; ++y)
 		{
-			const auto zBound = abs(bound - abs(x));
-			for (auto z = -zBound; z <= zBound; ++z)
+			for (auto z = -bound; z <= bound; ++z)
 			{
 				chunksPositions.emplace_back(
 					glm::ivec3(x + normalizedOrigin.x,

@@ -1,13 +1,17 @@
 #include "TextureAtlas.h"
 
-std::array<Point, VerticesInQuad> TextureAtlas::GetTextureCoordinatesAt(const unsigned x, const unsigned y)
+TextureAtlas::TextureAtlas(const std::string& filenameWithImage, const size_t spriteSize) : Texture(filenameWithImage), _spriteSize(spriteSize)
+{
+}
+
+void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, const unsigned y, const bool flip)
 {
 	const auto& width = GetWidth();
 	const auto& height = GetHeight();
 
 	const auto invertedY = height / _spriteSize - y - 1;
 
-	const std::array<Point, VerticesInQuad> textureCoords = 
+	const std::array<Point, 4> textureCoords = 
 	{{
 		{
 			static_cast<float>(x) * static_cast<float>(_spriteSize) / static_cast<float>(width),
@@ -27,42 +31,16 @@ std::array<Point, VerticesInQuad> TextureAtlas::GetTextureCoordinatesAt(const un
 		}
 	}};
 
-	return textureCoords;
-}
-
-TextureAtlas::TextureAtlas(const std::string& filenameWithImage, const size_t spriteSize) : Texture(filenameWithImage), _spriteSize(spriteSize)
-{
-}
-
-void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, const unsigned y, const bool flip)
-{
-	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 
-
-	for (auto i = 0; i < VerticesInQuad; ++i)
+	constexpr auto verticesAmount = 4;
+	for (auto i = 0; i < verticesAmount; ++i)
 	{
 		if (flip)
 		{
-			vertices.at((i + VerticesInQuad - 1) % VerticesInQuad).uvCoordinate = textureCoords[i];
+			vertices.at((i + verticesAmount - 1) % verticesAmount).uvCoordinate = textureCoords[i];
 		}
 		else
 		{
 			vertices.at(i).uvCoordinate = textureCoords[i];
 		}
-	}
-}
-
-void TextureAtlas::SetSprite(std::array<Point, VerticesInQuad>& textureUvCoordinates, const unsigned x, const unsigned y, const bool flip)
-{
-	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 
-
-	if (!flip)
-	{
-		textureUvCoordinates = textureCoords;
-		return;
-	}
-	
-	for (auto i = 0; i < VerticesInQuad; ++i)
-	{
-		textureUvCoordinates[(i + VerticesInQuad - 1) % VerticesInQuad] = textureCoords[i];
 	}
 }

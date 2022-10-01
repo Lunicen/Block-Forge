@@ -22,7 +22,7 @@ void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origi
 		_blocksMap.Get(_depthLevel[blockIndex].second)
 	};
 
-	blocks[origin] = blockData;
+	blocks.block[origin] = blockData;
 }
 
 Biome::Biome(std::string name, const Noise3D& noise, std::vector<std::pair<size_t, std::string>> depthLevels, BlockMap& blocksMap)

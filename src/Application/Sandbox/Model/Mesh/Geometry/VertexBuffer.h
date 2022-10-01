@@ -12,14 +12,7 @@ class VertexBuffer
 public:
 
 	/// @brief The constructor creates VBO, binds it immediately and sets its data.
-	///	@warning This constructor creates **STATIC** vertex buffer object.
-	///	It's meant to represent single objects or to be used with instancing.
 	explicit VertexBuffer(const std::vector<Vertex>& vertices);
-
-	/// @brief The constructor creates VBO, binds it immediately and sets its data.
-	///	@warning This constructor **allocates** **DYNAMIC** vertex buffer object.
-	///	It's meant to be flexible and it's empty!
-	explicit VertexBuffer(const size_t& vertexSize, const size_t& maxAmountOfVertices);
 
 	VertexBuffer(const VertexBuffer&) = delete;
 

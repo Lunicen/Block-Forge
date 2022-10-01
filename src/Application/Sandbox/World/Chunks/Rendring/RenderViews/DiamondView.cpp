@@ -1,6 +1,6 @@
-#include "DiamondOrder.h"
+#include "DiamondView.h"
 
-size_t DiamondOrder::CountChunksRecursive(const size_t level)
+size_t DiamondView::CountChunksRecursive(const size_t level)
 {
 	const auto result = 4 * level;
 
@@ -8,12 +8,12 @@ size_t DiamondOrder::CountChunksRecursive(const size_t level)
 	return result + CountChunksRecursive(level - 1);
 }
 
-size_t DiamondOrder::GetChunksAmount()
+size_t DiamondView::GetChunksAmount()
 {
 	return CountChunksRecursive(GetRenderDistance());
 }
 
-std::vector<glm::ivec3> DiamondOrder::GetChunksAround(const glm::ivec3 normalizedOrigin)
+std::vector<glm::ivec3> DiamondView::GetChunksAround(const glm::ivec3 normalizedOrigin)
 {
 	std::vector<glm::ivec3> chunksPositions;
 

@@ -1,13 +1,13 @@
 #pragma once
-#include "Order.h"
+#include "RenderView.h"
 
-/// @class CubeOrder
-/// @brief Provides an algorithm for the ChunkPlacer to place the chunks in a cube manner.
+/// @class CubeView
+///	@brief Provides an algorithm that the renderer renders chunks in as a cube.
 /// @details Basically this algorithm returns origins formed in a cube.
-class CubeOrder final : public Order
+class CubeView final : public RenderView
 {
 public:
-	using Order::Order;
+	using RenderView::RenderView;
 
 	size_t GetChunksAmount() override;
 	std::vector<glm::ivec3> GetChunksAround(glm::ivec3 normalizedOrigin) override;
