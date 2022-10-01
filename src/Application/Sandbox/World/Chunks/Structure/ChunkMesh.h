@@ -70,8 +70,8 @@ class ChunkMesh
 				Point3D{1.0f, 0.0f, 0.0f},
 			}
 		};
-		
-	} _faceVertices;
+	};
+	FaceVertices _faceVertices;
 
 	static void AddFaceToMesh(const Position& origin, const std::array<Point3D, 4>& faceVertices, const std::array<Point, 4>& faceTextureCoordinates, std::vector<Vertex>& mesh);
 
