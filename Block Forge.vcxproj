@@ -169,7 +169,7 @@
     <ClCompile Include="src\Application\Sandbox\World\Biomes\Biome.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.cpp" />
-    <ClCompile Include="src\Application\Event\HumanInterfaceDevice.cpp" />
+    <ClCompile Include="src\Application\HID\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Application\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
@@ -237,9 +237,9 @@
     <ClInclude Include="src\Application\Sandbox\Utils\FPSCounter.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.h" />
-    <ClInclude Include="src\Application\Event\HumanInterfaceDevice.h" />
+    <ClInclude Include="src\Application\HID\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Application\Sandbox\Camera.h" />
-    <ClInclude Include="src\Application\Event\KeyCodes.h" />
+    <ClInclude Include="src\Application\HID\KeyCodes.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_glfw.h" />
