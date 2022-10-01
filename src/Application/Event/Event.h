@@ -12,7 +12,7 @@ class Event
 public:
 	explicit Event(HumanInterfaceDevice& hid);
 
-	bool IsActive() const;
+	bool WasHandled() const;
 
 	/// @brief Checks if the requested key is pressed.
 	///	@param key - The key from keyboard.

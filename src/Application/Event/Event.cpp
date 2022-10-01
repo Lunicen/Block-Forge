@@ -15,9 +15,9 @@ Event::Event(HumanInterfaceDevice& hid) : _hid(hid)
 {
 }
 
-bool Event::IsActive() const
+bool Event::WasHandled() const
 {
-	return !_wasHandled;
+	return _wasHandled;
 }
 
 bool Event::IsPressed(const KeyboardKey& key)
