@@ -1,6 +1,7 @@
 #include "Sandbox.h"
 
 #include "Camera.h"
+#include "Hud.h"
 #include "Events/HumanInterfaceDevice.h"
 #include "World/WorldGenerator.h"
 #include "Utils/FPSCounter.h"
@@ -21,7 +22,7 @@ void Sandbox::Run() const
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(OrderType::diamond, 8, 8, camera.GetPosition());
+	ChunkPlacer chunkPlacer(OrderType::cube, 8, 8, camera.GetPosition());
 	chunkPlacer.Bind(worldGenerator);
 
 	// ReSharper disable once CppTooWideScope
@@ -29,6 +30,8 @@ void Sandbox::Run() const
 	FPSCounter counter;
 
 	glEnable(GL_DEPTH_TEST);
+
+	Hud hud;
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
@@ -49,6 +52,7 @@ void Sandbox::Run() const
 		chunkRenderer.Render(chunkPlacer.GetChunks(), camera);
 
 		counter.Update();
+		hud.Draw2();
 
 		glfwSwapBuffers(_window.GetHandle());
 	}
