@@ -22,43 +22,19 @@ template <>
 struct std::hash<Position>
 {
 	/// @brief Definition of how to handle the passed origin as a key in the map.
-    size_t operator()(const Position &origin) const noexcept
+    size_t operator()(const Position& origin) const noexcept
     {
         return std::hash<std::string>()
     	(
-			std::to_string(origin.x) + 
-			std::to_string(origin.y) + 
+			std::to_string(origin.x) + "." +
+			std::to_string(origin.y) + "." + 
 			std::to_string(origin.z)
 		);
     }
 };
 
-/// @class ChunkBlocks
 /// @brief A structure that represents the body of typical chunk. Blocks and their visibility.
-class ChunkBlocks
-{
-public:
-
-	/// @brief The constructor.
-	ChunkBlocks() = default;
-
-	/// @brief Copy constructor.
-	ChunkBlocks(const ChunkBlocks&) = default;
-
-	/// @brief Move constructor.
-	ChunkBlocks(ChunkBlocks&&) noexcept = default;
-	
-	/// @brief Copy assignment constructor.
-	ChunkBlocks &operator=(const ChunkBlocks &) = default;
-
-	/// @brief Move assignment constructor.
-	ChunkBlocks &operator=(ChunkBlocks &&) noexcept = default;
-
-	/// @brief Map with blocks that are placed inside the chunk.
-	///	@details This map contains all blocks that are included in the chunk
-	///	and maps the location of the block as a key, and it's model and
-	///	faces visibility as a key.
-	std::unordered_map<Position, BlockVisibility> block;
-
-	~ChunkBlocks() = default;
-};
+///	@details This map contains all blocks that are included in the chunk
+///	and maps the location of the block as a key, and it's model and
+///	faces visibility as a key.
+using ChunkBlocks = std::unordered_map<Position, BlockVisibility>;

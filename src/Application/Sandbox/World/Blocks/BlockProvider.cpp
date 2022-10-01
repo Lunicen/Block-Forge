@@ -8,23 +8,31 @@ BlockProvider::BlockProvider(const std::string& filenameWithBlocksData)
 }
 
 std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetBlocks(
-	std::vector<TriangleIndexes>& blockIndices,
-	Shader& blockShader,
+	TextureAtlas& blocksTextureAtlas,
 	const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
-
-	const std::string textureAtlasName = blocksSet.value("atlas", "");
-	const size_t slotSize = blocksSet.value("slotSize", 0);
-
-	auto builder = BlockBuilder(textureAtlasName, slotSize, blockIndices, blockShader);
 	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
 
 	for (const auto& blockData : blocksSet["blocks"])
 	{
 		const std::string name = blockData.value("block", "unknown");
-		blocks[name] = std::make_shared<BlockModel>(builder.Build(blockData));
+		const BlockBuilder builder;
+
+		blocks[name] = std::make_shared<BlockModel>(builder.Build(blockData, blocksTextureAtlas));
 	}
 
 	return blocks;
+}
+
+std::string BlockProvider::GetTextureAtlasFilename(const std::string& blocksSetName)
+{
+	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
+	return blocksSet.value("atlas", "");
+}
+
+size_t BlockProvider::GetTextureAtlasSlotSize(const std::string& blocksSetName)
+{
+	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
+	return blocksSet.value("slotSize", 0);
 }
