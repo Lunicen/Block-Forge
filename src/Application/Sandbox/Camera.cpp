@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(Window& window, const glm::vec3 position, HumanInterfaceDevice& hid) : _window(window), _position(position), _hid(hid)
+Camera::Camera(Window& window, const glm::vec3 position) : _window(window), _position(position)
 {
 	glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
@@ -9,7 +9,7 @@ void Camera::Update()
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto view = glm::mat4(1.0f);
-	view = lookAt(_position, _position + _orientation, _up);
+	view = lookAt(_position, _position + _orientation, _upVector);
 
 	const float aspectRatio = static_cast<float>(_window.GetWidth()) / static_cast<float>(_window.GetHeight());
 
@@ -20,45 +20,44 @@ void Camera::Update()
 	_orthographicProjection = projection * view;
 }
 
-void Camera::HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward,
-                                      const KeyboardKey& backward)
+void Camera::HandleHorizontalMovement(Event& eventToProcess)
 {
-	if (_hid.IsPressed(left))
+	if (eventToProcess.IsPressed(_left))
 	{
-		_position += _speed * -normalize(cross(_orientation, _up));
+		_position += _speed * -normalize(cross(_orientation, _upVector));
 	}
-	if (_hid.IsPressed(right))
+	if (eventToProcess.IsPressed(_right))
 	{
-		_position += _speed * normalize(cross(_orientation, _up));
+		_position += _speed * normalize(cross(_orientation, _upVector));
 	}
-	if (_hid.IsPressed(forward))
+	if (eventToProcess.IsPressed(_forward))
 	{
 		_position += _speed * _orientation;
 	}
-	if (_hid.IsPressed(backward))
+	if (eventToProcess.IsPressed(_backward))
 	{
 		_position += _speed * -_orientation;
 	}
 }
 
-void Camera::HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down)
+void Camera::HandleVerticalMovement(Event& eventToProcess)
 {
-	if (_hid.IsPressed(up))
+	if (eventToProcess.IsPressed(_up))
 	{
-		_position += _speed * _up;
+		_position += _speed * _upVector;
 	}
-	if (_hid.IsPressed(down))
+	if (eventToProcess.IsPressed(_down))
 	{
-		_position += _speed * -_up;
+		_position += _speed * -_upVector;
 	}
 }
 
-void Camera::HandleSpeed(const KeyboardKey& boost, const float boostSpeed)
+void Camera::HandleSpeed(const float boostSpeed, Event& eventToProcess)
 {
-	_speed = _hid.IsPressed(boost) ? boostSpeed : _defaultSpeed;
+	_speed = eventToProcess.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
-void Camera::HandleCursorMovement()
+void Camera::UpdateCursorMovement()
 {
 	double mouseX;
 	double mouseY;
@@ -70,8 +69,8 @@ void Camera::HandleCursorMovement()
 	const float xAxisRotation = _sensitivity * (static_cast<float>(mouseY - middleAxisY) / static_cast<float>(_window.GetHeight()));
 	const float yAxisRotation = _sensitivity * (static_cast<float>(mouseX - middleAxisX) / static_cast<float>(_window.GetWidth()));
 
-	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _up)));
-	const auto angleWithXAxis = abs(angle(orientation, _up) - glm::radians(90.0f));
+	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _upVector)));
+	const auto angleWithXAxis = abs(angle(orientation, _upVector) - glm::radians(90.0f));
 
 	// This prevents the barrel roll situation when looking up
 	if (angleWithXAxis < glm::radians(85.0f))
@@ -79,7 +78,7 @@ void Camera::HandleCursorMovement()
 		_orientation = orientation;
 	}
 
-	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _up);
+	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _upVector);
 	glfwSetCursorPos(_window.GetHandle(), middleAxisX, middleAxisY);
 }
 
@@ -89,9 +88,9 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput()
+void Camera::HandleInput(Event& eventToProcess)
 {
-	if (_hid.IsPressedOnce(KeyboardKey::escape))
+	if (eventToProcess.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;
 		if (_isPaused)
@@ -109,10 +108,10 @@ void Camera::HandleInput()
 		return;
 	}
 
-	HandleHorizontalMovement(KeyboardKey::a, KeyboardKey::d, KeyboardKey::w, KeyboardKey::s);
-	HandleVerticalMovement(KeyboardKey::space, KeyboardKey::leftCtrl);
-	HandleSpeed(KeyboardKey::leftShift, 0.4f);
-	HandleCursorMovement();
+	HandleHorizontalMovement(eventToProcess);
+	HandleVerticalMovement(eventToProcess);
+	HandleSpeed(0.4f, eventToProcess);
+	UpdateCursorMovement();
 }
 
 glm::vec3 Camera::GetPosition() const

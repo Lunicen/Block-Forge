@@ -16,7 +16,7 @@ void Sandbox::Run() const
 	_log.Info("Launching simulation...");
 
 	HumanInterfaceDevice hid(_window);
-	Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+	Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f));
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
@@ -42,7 +42,7 @@ void Sandbox::Run() const
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		camera.Update();
-		camera.HandleInput();
+		//camera.HandleInput();
 
 		chunkPlacer.Update(camera.GetPosition());
 		chunkRenderer.Render(chunkPlacer.GetChunks(), camera);

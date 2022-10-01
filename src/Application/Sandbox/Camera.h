@@ -5,7 +5,7 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/Event/HumanInterfaceDevice.h"
+#include "Application/Event/Event.h"
 #include "Application/Window.h"
 
 /// @class Camera
@@ -18,7 +18,7 @@ class Camera
 
 	glm::vec3 _position{};
 	glm::vec3 _orientation = glm::vec3(0.0f, 0.0f, -1.0f);
-	glm::vec3 _up = glm::vec3(0.0f, 1.0f, 0.0f);
+	glm::vec3 _upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::mat4 _orthographicProjection = glm::mat4(1.0f);
 
 	float _defaultSpeed = 0.1f;
@@ -28,20 +28,28 @@ class Camera
 	float _nearPane = 0.1f;
 	float _farPane = 100.0f;
 
-	HumanInterfaceDevice& _hid;
 	bool _isPaused = false;
 
-	void HandleHorizontalMovement(const KeyboardKey& left, const KeyboardKey& right, const KeyboardKey& forward, const KeyboardKey& backward);
-	void HandleVerticalMovement(const KeyboardKey& up, const KeyboardKey& down);
-	void HandleSpeed(const KeyboardKey& boost, float boostSpeed);
-	void HandleCursorMovement();
+	const KeyboardKey _left = KeyboardKey::a;
+	const KeyboardKey _right = KeyboardKey::d;
+	const KeyboardKey _forward = KeyboardKey::w;
+	const KeyboardKey _backward = KeyboardKey::s;
+
+	const KeyboardKey _up = KeyboardKey::space;
+	const KeyboardKey _down = KeyboardKey::leftCtrl;
+
+	const KeyboardKey _boost = KeyboardKey::leftShift;
+
+	void HandleHorizontalMovement(Event& eventToProcess);
+	void HandleVerticalMovement(Event& eventToProcess);
+	void HandleSpeed(float boostSpeed, Event& eventToProcess);
+	void UpdateCursorMovement();
 
 public:
 	/// @brief The constructor.
 	///	@param window - Reference to the application window.
 	/// @param position - Spawn point of the camera.
-	/// @param hid - Pointer to the HID handler.
-	Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(Window& window, glm::vec3 position);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -51,7 +59,7 @@ public:
 	void Bind(Shader const& shader) const;
 
 	/// @brief Captures input and moves the camera accordingly.
-	void HandleInput();
+	void HandleInput(Event& eventToProcess);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

@@ -1,6 +1,6 @@
 #pragma once
-#include "HumanInterfaceDevice.h"
-#include "KeyCodes.h"
+#include "Application/HID/HumanInterfaceDevice.h"
+#include "Application/HID/KeyCodes.h"
 
 class Event
 {
