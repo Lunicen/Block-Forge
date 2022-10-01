@@ -35,11 +35,6 @@ public:
 	///	@return Returns true is the key is pressed and was not before, otherwise false.
 	bool IsPressedOnce(const KeyboardKey& key);
 
-	/// @brief Checks if the requested key is released.
-	///	@param key - The key from keyboard.
-	///	@return Returns true is the key is released, otherwise false.
-	bool IsReleased(const KeyboardKey& key) const;
-
 
 
 	/// @brief Checks if the requested button is pressed.
@@ -51,9 +46,4 @@ public:
 	///	@param button - The button from mouse.
 	///	@return Returns true is the button is pressed and was not before, otherwise false.
 	bool IsPressedOnce(const MouseButton& button);
-
-	/// @brief Checks if the requested button is released.
-	///	@param button - The button from keyboard.
-	///	@return Returns true is the button is released, otherwise false.
-	bool IsReleased(const MouseButton& button) const;
 };

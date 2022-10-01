@@ -66,17 +66,12 @@ bool HumanInterfaceDevice::IsPressedOnce(const KeyboardKey& key)
 		return IsPressed(key);
 	}
 
-	if (IsReleased(key))
+	if (GetState(key) == GLFW_RELEASE)
 	{
 		_onceHandledKeyboardKeys.erase(key);
 	}
 
 	return false;
-}
-
-bool HumanInterfaceDevice::IsReleased(const KeyboardKey& key) const
-{
-	return GetState(key) == GLFW_RELEASE;
 }
 
 bool HumanInterfaceDevice::IsPressed(const MouseButton& button) const
@@ -98,15 +93,10 @@ bool HumanInterfaceDevice::IsPressedOnce(const MouseButton& button)
 		return IsPressed(button);
 	}
 
-	if (IsReleased(button))
+	if (GetState(button) == GLFW_RELEASE)
 	{
 		_onceHandledMouseButtons.erase(button);
 	}
 
 	return false;
-}
-
-bool HumanInterfaceDevice::IsReleased(const MouseButton& button) const
-{
-	return GetState(button) == GLFW_RELEASE;
 }

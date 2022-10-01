@@ -91,7 +91,6 @@ void Camera::Bind(Shader const& shader) const
 
 void Camera::HandleInput()
 {
-
 	if (_hid.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;
