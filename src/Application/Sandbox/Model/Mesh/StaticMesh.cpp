@@ -1,6 +1,6 @@
-#include "Mesh.h"
+#include "StaticMesh.h"
 
-Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
+StaticMesh::StaticMesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
 	: _shader(shader)
 {
 	constexpr auto indexesInOneTriangle = 3;
@@ -22,11 +22,13 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexe
 	ebo.Unbind();
 }
 
-void Mesh::Draw(const Position& origin, const Texture& texture, const Camera& camera) const
+
+
+void StaticMesh::Draw(const Position& origin, const Texture& texture, const Camera& camera) const
 {
 	camera.Bind(_shader);
 
-	const auto position = translate(glm::mat4(1.0f), origin);
+	const auto position = translate(glm::mat4(1.0f), glm::vec3(origin));
 
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
 
@@ -34,4 +36,7 @@ void Mesh::Draw(const Position& origin, const Texture& texture, const Camera& ca
 	texture.Bind(_shader);
 
 	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
+
+	texture.Unbind();
+	_vao.Unbind();
 }

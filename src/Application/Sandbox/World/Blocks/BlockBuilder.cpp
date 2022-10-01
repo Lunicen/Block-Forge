@@ -1,64 +1,41 @@
 #include "BlockBuilder.h"
 
-void BlockBuilder::SetFaceTexture(
-	std::vector<Vertex>& face, 
-	const int x, 
-	const int y,
-	const bool flipTexture) const
+
+void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y, TextureAtlas& textureAtlas) const
 {
-	_textureAtlas->SetSprite(face, x, y, flipTexture);
+	if (face == "front")	textureAtlas.SetSprite(_facesTextureCoordinates->front, x, y, false);
+	if (face == "back")		textureAtlas.SetSprite(_facesTextureCoordinates->back, x, y, true);
+	if (face == "left")		textureAtlas.SetSprite(_facesTextureCoordinates->left, x, y, true);
+	if (face == "right")	textureAtlas.SetSprite(_facesTextureCoordinates->right, x, y, false);
+	if (face == "top")		textureAtlas.SetSprite(_facesTextureCoordinates->top, x, y, false);
+	if (face == "bottom")	textureAtlas.SetSprite(_facesTextureCoordinates->bottom, x, y, true);
 }
 
-void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y) const
-{
-	if (face == "front")	SetFaceTexture(_faceVertices->front, x, y, false);
-	if (face == "back")		SetFaceTexture(_faceVertices->back, x, y, true);
-	if (face == "left")		SetFaceTexture(_faceVertices->left, x, y, true);
-	if (face == "right")	SetFaceTexture(_faceVertices->right, x, y, false);
-	if (face == "top")		SetFaceTexture(_faceVertices->top, x, y, false);
-	if (face == "bottom")	SetFaceTexture(_faceVertices->bottom, x, y, true);
-}
-
-BlockBuilder::BlockBuilder(const std::string& textureAtlasFilename, const size_t spriteSize, std::vector<TriangleIndexes>& blockIndices, Shader& blockShader)
-	: _faceIndices(blockIndices),
-	  _textureAtlas(std::make_shared<TextureAtlas>(textureAtlasFilename, spriteSize)),
-	  _blockShader(blockShader)
-{
-}
-
-BlockModel BlockBuilder::Build(const JsonData& blockData)
+BlockModel BlockBuilder::Build(const JsonData& blockData, TextureAtlas& textureAtlas) const
 {
 	for (const auto& textureData : blockData["textures"])
 	{
+		// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 		const int x = textureData["location"].value("column", 0);
+		// ReSharper disable once CppZeroConstantCanBeReplacedWithNullptr
 		const int y = textureData["location"].value("row", 0);
 
 		for (const auto& face : textureData["faces"])
 		{
-			DetermineAndSetFaceTexture(face, x, y);
+			DetermineAndSetFaceTexture(face, x, y, textureAtlas);
 		}
 	}
 
-	FaceMeshes faceMeshes
+	const BlockFaces faces
 	{
-		std::make_unique<Mesh>(_faceVertices->front, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->back, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->left, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->right, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->top, _faceIndices, _blockShader),
-		std::make_unique<Mesh>(_faceVertices->bottom, _faceIndices, _blockShader)
+		BlockFaceModel(_facesTextureCoordinates->front),
+		BlockFaceModel(_facesTextureCoordinates->back),
+		BlockFaceModel(_facesTextureCoordinates->left),
+		BlockFaceModel(_facesTextureCoordinates->right),
+		BlockFaceModel(_facesTextureCoordinates->top),
+		BlockFaceModel(_facesTextureCoordinates->bottom)
 	};
 
-	BlockFaces faces
-	{
-		BlockFaceModel(faceMeshes.front, _textureAtlas),
-		BlockFaceModel(faceMeshes.back, _textureAtlas),
-		BlockFaceModel(faceMeshes.left, _textureAtlas),
-		BlockFaceModel(faceMeshes.right, _textureAtlas),
-		BlockFaceModel(faceMeshes.top, _textureAtlas),
-		BlockFaceModel(faceMeshes.bottom, _textureAtlas)
-	};
-
-	return BlockModel(std::move(faces));
+	return BlockModel(faces);
 }
 

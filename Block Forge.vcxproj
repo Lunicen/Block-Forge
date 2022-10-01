@@ -151,20 +151,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application\Sandbox\Hud.cpp" />
+    <ClCompile Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\BlockFaceModel.cpp" />
-    <ClCompile Include="src\Application\Sandbox\Model\Mesh\Mesh.cpp" />
+    <ClCompile Include="src\Application\Sandbox\Model\Mesh\StaticMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Surface\Texture.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\CubeView.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\DiamondView.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Rendring\ChunkRenderer.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\OrderType\CubeOrder.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\OrderType\DiamondOrder.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkRenderer.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Biomes\BiomePlacer.cpp" />
     <ClCompile Include="src\Application\Sandbox\Noise\Noise2D.cpp" />
     <ClCompile Include="src\Application\Sandbox\Noise\Noise3D.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Biomes\BiomeProvider.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Biomes\Biome.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Rendring\ChunkPlacer.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.cpp" />
     <ClCompile Include="src\Application\Sandbox\Events\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Application\Sandbox\Camera.cpp" />
@@ -186,13 +189,17 @@
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexBuffer.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexArray.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\WorldGenerator.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.cpp" />
+    <ClCompile Include="src\Application\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockBuilder.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\WorldGeneratorUtils.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox\Hud.h" />
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
@@ -200,13 +207,13 @@
     <ClInclude Include="src\Application\Sandbox\Model\BlockModel.h" />
     <ClInclude Include="src\Application\Sandbox\Model\BlockFaceModel.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\Structures.h" />
-    <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Sandbox\Model\Mesh\StaticMesh.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Surface\Texture.h" />
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockMap.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\CubeView.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\DiamondView.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\CubeOrder.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\DiamondOrder.h" />
     <ClInclude Include="src\Core\EngineExceptions.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\ChunkRenderer.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkRenderer.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\ChunkFrame.h" />
     <ClInclude Include="src\Application\Sandbox\World\Biomes\BiomePlacer.h" />
     <ClInclude Include="src\Application\Sandbox\Noise\Noise2D.h" />
@@ -217,14 +224,14 @@
     <ClInclude Include="src\Application\Sandbox\Noise\Noise.h" />
     <ClInclude Include="src\Application\Sandbox\World\Biomes\Biome.h" />
     <ClCompile Include="src\Application\Sandbox\Utils\FPSCounter.cpp" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\TiltedCube.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.h" />
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockBuilder.h" />
     <ClInclude Include="src\Application\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Surface\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox\Utils\FPSCounter.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\ChunkPlacer.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.h" />
     <ClInclude Include="src\Application\Sandbox\Events\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Application\Sandbox\Camera.h" />
@@ -248,8 +255,8 @@
     <ClInclude Include="src\Application\Sandbox\World.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexBuffer.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\VertexArray.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\RenderView.h" />
-    <ClInclude Include="src\Application\Sandbox\World\Chunks\Rendring\RenderViews\RenderViewTypes.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\Order.h" />
+    <ClInclude Include="src\Application\Sandbox\World\Chunks\OrderType\OrderTypes.h" />
     <ClInclude Include="src\Application\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>

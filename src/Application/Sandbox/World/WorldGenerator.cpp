@@ -16,3 +16,8 @@ void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) co
 	_placer->PaintChunk(frame, blocks);
 	WorldGeneratorUtils::OptimizeChunk(frame, blocks, *_placer);
 }
+
+BlockMap& WorldGenerator::GetBlockMap()
+{
+	return _blockMap;
+}
