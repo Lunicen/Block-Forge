@@ -5,7 +5,7 @@
 class Layer  // NOLINT(cppcoreguidelines-special-member-functions)
 {
 public:
-	virtual void OnInitialize(size_t screenWidth, size_t screenHeight) = 0;
+	virtual void OnInitialize(size_t windowWidth, size_t windowHeight) = 0;
 	virtual void OnUpdate() = 0;
 
 	virtual void OnEvent(InputEvent& inputEvent) {}

@@ -9,11 +9,11 @@ class LayerStack
 	std::vector<std::unique_ptr<Layer>> _layers;
 	static void DispatchEvent(Layer& layer, Event& eventToProcess);
 
-	size_t _initialScreenWidth;
-	size_t _initialScreenHeight;
+	size_t _initialWindowWidth;
+	size_t _initialWindowHeight;
 
 public:
-	explicit LayerStack(size_t screenWidth, size_t screenHeight);
+	explicit LayerStack(size_t windowWidth, size_t windowHeight);
 
 	void Push(std::unique_ptr<Layer> layer);
 	void Pop();

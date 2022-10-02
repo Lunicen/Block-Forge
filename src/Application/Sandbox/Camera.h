@@ -6,6 +6,7 @@
 
 #include "Model/Mesh/Geometry/Shader.h"
 #include "Application/Event/InputEvent.h"
+#include "Application/Event/WindowEvent.h"
 #include "Application/HID/KeyCodes.h"
 
 /// @class Camera
@@ -15,8 +16,8 @@ class Camera
 {
 	Log& _log = Log::Get();
 
-	size_t _screenHeight;
-	size_t _screenWidth;
+	size_t _windowHeight;
+	size_t _windowWidth;
 
 	glm::vec3 _position{};
 	glm::vec3 _orientation = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -50,10 +51,12 @@ class Camera
 public:
 	/// @brief The constructor.
 	/// @param position - Spawn point of the camera.
-	Camera(size_t screenWidth, size_t screenHeight, glm::vec3 position);
+	Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
+
+	void UpdateViewport(WindowEvent& windowEvent);
 
 	/// @brief Binds the camera handling to the shader.
 	///	@param shader - shader to bind the camera matrix.

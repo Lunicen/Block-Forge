@@ -9,14 +9,14 @@ void LayerStack::DispatchEvent(Layer& layer, Event& eventToProcess)
 	}
 }
 
-LayerStack::LayerStack(const size_t screenWidth, const size_t screenHeight)
-	: _initialScreenWidth(screenWidth), _initialScreenHeight(screenHeight)
+LayerStack::LayerStack(const size_t windowWidth, const size_t windowHeight)
+	: _initialWindowWidth(windowWidth), _initialWindowHeight(windowHeight)
 {
 }
 
 void LayerStack::Push(std::unique_ptr<Layer> layer)
 {
-	layer->OnInitialize(_initialScreenWidth, _initialScreenHeight);
+	layer->OnInitialize(_initialWindowWidth, _initialWindowHeight);
 	_layers.emplace_back(std::move(layer));
 }
 

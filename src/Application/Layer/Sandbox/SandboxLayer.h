@@ -44,5 +44,10 @@ public:
 		_camera->HandleInput(inputEvent);
 	}
 
+	void OnEvent(WindowEvent& windowEvent) override
+	{
+		_camera->UpdateViewport(windowEvent);
+	}
+
 	void OnDestroy() override;
 };
