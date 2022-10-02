@@ -20,41 +20,41 @@ void Camera::Update()
 	_orthographicProjection = projection * view;
 }
 
-void Camera::HandleHorizontalMovement(Event& eventToProcess)
+void Camera::HandleHorizontalMovement(InputEvent& input)
 {
-	if (eventToProcess.IsPressed(_left))
+	if (input.IsPressed(_left))
 	{
 		_position += _speed * -normalize(cross(_orientation, _upVector));
 	}
-	if (eventToProcess.IsPressed(_right))
+	if (input.IsPressed(_right))
 	{
 		_position += _speed * normalize(cross(_orientation, _upVector));
 	}
-	if (eventToProcess.IsPressed(_forward))
+	if (input.IsPressed(_forward))
 	{
 		_position += _speed * _orientation;
 	}
-	if (eventToProcess.IsPressed(_backward))
+	if (input.IsPressed(_backward))
 	{
 		_position += _speed * -_orientation;
 	}
 }
 
-void Camera::HandleVerticalMovement(Event& eventToProcess)
+void Camera::HandleVerticalMovement(InputEvent& input)
 {
-	if (eventToProcess.IsPressed(_up))
+	if (input.IsPressed(_up))
 	{
 		_position += _speed * _upVector;
 	}
-	if (eventToProcess.IsPressed(_down))
+	if (input.IsPressed(_down))
 	{
 		_position += _speed * -_upVector;
 	}
 }
 
-void Camera::HandleSpeed(const float boostSpeed, Event& eventToProcess)
+void Camera::HandleSpeed(const float boostSpeed, InputEvent& input)
 {
-	_speed = eventToProcess.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
+	_speed = input.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
 void Camera::UpdateCursorMovement()
@@ -88,9 +88,9 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput(Event& eventToProcess)
+void Camera::HandleInput(InputEvent& input)
 {
-	if (eventToProcess.IsPressedOnce(KeyboardKey::escape))
+	if (input.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;
 		if (_isPaused)
@@ -108,9 +108,9 @@ void Camera::HandleInput(Event& eventToProcess)
 		return;
 	}
 
-	HandleHorizontalMovement(eventToProcess);
-	HandleVerticalMovement(eventToProcess);
-	HandleSpeed(0.4f, eventToProcess);
+	HandleHorizontalMovement(input);
+	HandleVerticalMovement(input);
+	HandleSpeed(0.4f, input);
 	UpdateCursorMovement();
 }
 

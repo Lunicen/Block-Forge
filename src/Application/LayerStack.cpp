@@ -1,5 +1,14 @@
 #include "LayerStack.h"
 
+void LayerStack::DispatchEvent(Layer& layer, Event& eventToProcess)
+{
+	switch(eventToProcess.GetType())
+	{
+		case EventType::input:  layer.OnEvent(dynamic_cast<InputEvent&>(eventToProcess));  break;
+		case EventType::window: layer.OnEvent(dynamic_cast<WindowEvent&>(eventToProcess)); break;
+	}
+}
+
 void LayerStack::Push(std::unique_ptr<Layer> layer)
 {
 	layer->Initialize();
@@ -24,6 +33,8 @@ void LayerStack::Process(Event& eventToProcess) const
 {
 	for (auto i = _layers.size(); i > 0; --i)
 	{
-		_layers[i - 1]->OnEvent(eventToProcess);
+		if (eventToProcess.WasHandled()) break;
+
+		DispatchEvent(*_layers[i - 1], eventToProcess);
 	}
 }

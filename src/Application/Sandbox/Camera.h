@@ -5,8 +5,9 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/Event/Event.h"
 #include "Application/Window.h"
+#include "Application/Event/InputEvent.h"
+#include "Application/HID/KeyCodes.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.
@@ -40,9 +41,9 @@ class Camera
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
 
-	void HandleHorizontalMovement(Event& eventToProcess);
-	void HandleVerticalMovement(Event& eventToProcess);
-	void HandleSpeed(float boostSpeed, Event& eventToProcess);
+	void HandleHorizontalMovement(InputEvent& input);
+	void HandleVerticalMovement(InputEvent& input);
+	void HandleSpeed(float boostSpeed, InputEvent& input);
 	void UpdateCursorMovement();
 
 public:
@@ -59,7 +60,7 @@ public:
 	void Bind(Shader const& shader) const;
 
 	/// @brief Captures input and moves the camera accordingly.
-	void HandleInput(Event& eventToProcess);
+	void HandleInput(InputEvent& input);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

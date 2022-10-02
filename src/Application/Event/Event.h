@@ -1,38 +1,32 @@
 #pragma once
-#include "Application/HID/HumanInterfaceDevice.h"
-#include "Application/HID/KeyCodes.h"
+enum class EventType
+{
+	input = 0,
+	window
+};
 
-class Event
+class Event  // NOLINT(cppcoreguidelines-special-member-functions)
 {
 	bool _wasHandled = false;
-	HumanInterfaceDevice& _hid;
-
-	bool GetFunctionalityResultAndUpdateFlag(bool resultWasSuccessful);
 
 public:
-	explicit Event(HumanInterfaceDevice& hid);
+	bool WasHandled() const
+	{
+		return _wasHandled;
+	}
 
-	bool WasHandled() const;
+	bool GetResultAndUpdateFlag(const bool resultWasSuccessful)
+	{
+		if (resultWasSuccessful)
+		{
+			_wasHandled = true;
+			return true;
+		}
 
-	/// @brief Checks if the requested key is pressed.
-	///	@param key - The key from keyboard.
-	///	@return Returns true is the key is pressed, otherwise false.
-	bool IsPressed(const KeyboardKey& key);
+		return false;
+	}
 
-	/// @brief Checks if the requested key is pressed **only** once.
-	///	@param key - The key from keyboard.
-	///	@return Returns true is the key is pressed and was not before, otherwise false.
-	bool IsPressedOnce(const KeyboardKey& key);
+	virtual EventType GetType() = 0;
 
-
-
-	/// @brief Checks if the requested button is pressed.
-	///	@param button - The button from mouse.
-	///	@return Returns true is the button is pressed, otherwise false.
-	bool IsPressed(const MouseButton& button);
-
-	/// @brief Checks if the requested key is pressed **only** once.
-	///	@param button - The button from mouse.
-	///	@return Returns true is the button is pressed and was not before, otherwise false.
-	bool IsPressedOnce(const MouseButton& button);
+	virtual ~Event() = default;
 };
