@@ -5,13 +5,10 @@
 class Layer  // NOLINT(cppcoreguidelines-special-member-functions)
 {
 public:
-	virtual void OnInitialize(size_t windowWidth, size_t windowHeight) = 0;
 	virtual void OnUpdate() = 0;
 
 	virtual void OnEvent(InputEvent& inputEvent) {}
 	virtual void OnEvent(WindowEvent& windowEvent) {}
-
-	virtual void OnDestroy() = 0;
 
 	virtual ~Layer() = default;
 };

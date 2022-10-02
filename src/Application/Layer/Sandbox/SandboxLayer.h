@@ -17,7 +17,7 @@ class SandboxLayer final : public Layer
 
 public:
 
-	void OnInitialize(size_t screenWidth, size_t screenHeight) override
+	explicit SandboxLayer(size_t screenWidth, size_t screenHeight)
 	{
 		_camera = std::make_unique<Camera>(screenWidth, screenHeight, glm::vec3(0.0f, 0.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(69);
@@ -48,6 +48,4 @@ public:
 	{
 		_camera->UpdateViewport(windowEvent);
 	}
-
-	void OnDestroy() override;
 };

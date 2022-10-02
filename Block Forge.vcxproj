@@ -192,12 +192,12 @@
     <ClCompile Include="src\Application\Sandbox\World\Blocks\BlockBuilder.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\WorldGeneratorUtils.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
-    <ClCompile Include="src\Application\LayerStack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\EventQueue.h" />
     <ClInclude Include="src\Application\Event\InputEvent.h" />
     <ClInclude Include="src\Application\Event\WindowEvent.h" />
+    <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Event\Event.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\SandboxLayer.h" />
@@ -233,7 +233,7 @@
     <ClInclude Include="src\Application\Sandbox\World\Blocks\BlockBuilder.h" />
     <ClInclude Include="src\Application\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Surface\TextureAtlas.h" />
-    <ClInclude Include="src\Application\LayerStack.h" />
+    <ClInclude Include="src\Application\LayerStack\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox\Utils\FPSCounter.h" />

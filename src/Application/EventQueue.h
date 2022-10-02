@@ -2,7 +2,9 @@
 #include <memory>
 #include <queue>
 
-#include "Event.h"
+#include "Event/Event.h"
+#include "LayerStack/Stack/SandboxStack.h"
+
 
 class EventQueue
 {
@@ -14,11 +16,16 @@ public:
 		_eventQueue.emplace(std::move(eventToPush));
 	}
 
-	static std::unique_ptr<Event> Pop()
+	static void Update(const LayerStack& stack)
 	{
-		auto result = std::move(_eventQueue.front());
-		_eventQueue.pop();
+		if (!_eventQueue.empty())
+		{
+			const auto result = std::move(_eventQueue.front());
+			_eventQueue.pop();
 
-		return std::move(result);
+			stack.Process(*result);
+		}
 	}
 };
+
+std::queue<std::unique_ptr<Event>> EventQueue::_eventQueue;

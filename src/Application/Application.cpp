@@ -1,6 +1,8 @@
 #include "Application.h"
 
+#include "EventQueue.h"
 #include "Core/EngineExceptions.h"
+#include "LayerStack/Stack/SandboxStack.h"
 #include "Sandbox/Sandbox.h"
 
 // As a static member of class this variable
@@ -87,13 +89,16 @@ void Application::Run()
 {
 	Initialize();
 
+	const auto sandbox = SandboxStack(_window.GetWidth(), _window.GetHeight());
+
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
-
+		sandbox.Update();
+		EventQueue::Update(sandbox);
 	}
 
-	const auto sandbox = std::make_unique<Sandbox>(_window);
-	sandbox->Run();
+	//const auto sandbox = std::make_unique<Sandbox>(_window);
+	//sandbox->Run();
 
 	_log.Info("Quitting...");
 
