@@ -16,12 +16,12 @@ void Sandbox::Run() const
 	_log.Info("Launching simulation...");
 
 	HumanInterfaceDevice hid(_window);
-	Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f));
+	//Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f));
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);
 
-	ChunkPlacer chunkPlacer(OrderType::diamond, 8, 8, camera.GetPosition());
-	chunkPlacer.Bind(worldGenerator);
+	//ChunkPlacer chunkPlacer(OrderType::diamond, 8, 8, camera.GetPosition());
+	//chunkPlacer.Bind(worldGenerator);
 
 	// ReSharper disable once CppTooWideScope
 	ChunkRenderer chunkRenderer;
@@ -41,11 +41,11 @@ void Sandbox::Run() const
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		camera.Update();
+		//camera.Update();
 		//camera.HandleInput();
 
-		chunkPlacer.Update(camera.GetPosition());
-		chunkRenderer.Render(chunkPlacer.GetChunks(), camera);
+		//chunkPlacer.Update(camera.GetPosition());
+		//chunkRenderer.Render(chunkPlacer.GetChunks(), camera);
 
 		counter.Update();
 

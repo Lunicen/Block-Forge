@@ -200,6 +200,7 @@
     <ClInclude Include="src\Application\Event\WindowEvent.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Event\Event.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\SandboxLayer.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.h" />

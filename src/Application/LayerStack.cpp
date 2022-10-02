@@ -9,15 +9,20 @@ void LayerStack::DispatchEvent(Layer& layer, Event& eventToProcess)
 	}
 }
 
+LayerStack::LayerStack(const size_t screenWidth, const size_t screenHeight)
+	: _initialScreenWidth(screenWidth), _initialScreenHeight(screenHeight)
+{
+}
+
 void LayerStack::Push(std::unique_ptr<Layer> layer)
 {
-	layer->Initialize();
+	layer->OnInitialize(_initialScreenWidth, _initialScreenHeight);
 	_layers.emplace_back(std::move(layer));
 }
 
 void LayerStack::Pop()
 {
-	_layers.front()->Destroy();
+	_layers.front()->OnDestroy();
 	_layers.pop_back();
 }
 

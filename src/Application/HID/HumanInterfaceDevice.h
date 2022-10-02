@@ -11,6 +11,7 @@ class HumanInterfaceDevice
 {
 	Log& _log = Log::Get();
 	Window& _window;
+
 	std::unordered_set<KeyboardKey> _onceHandledKeyboardKeys;
 	std::unordered_set<MouseButton> _onceHandledMouseButtons;
 
@@ -46,4 +47,12 @@ public:
 	///	@param button - The button from mouse.
 	///	@return Returns true is the button is pressed and was not before, otherwise false.
 	bool IsPressedOnce(const MouseButton& button);
+
+	std::pair<double, double> GetCursorPosition() const;
+
+	void SetCursorPosition(double x, double y) const;
+
+	void EnableCursor() const;
+
+	void DisableCursor() const;
 };

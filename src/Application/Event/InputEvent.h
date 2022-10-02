@@ -7,6 +7,11 @@ class InputEvent final : public Event
 	HumanInterfaceDevice& _hid;
 
 public:
+	EventType GetType() override
+	{
+		return EventType::input;
+	}
+
 	explicit InputEvent(HumanInterfaceDevice& hid) : _hid(hid)
 	{
 	}
@@ -43,8 +48,27 @@ public:
 		return GetResultAndUpdateFlag(_hid.IsPressedOnce(button));
 	}
 
-	EventType GetType() override
+	std::pair<double, double> GetCursorPosition()
 	{
-		return EventType::input;
+		MarkEventAsHandled();
+		return _hid.GetCursorPosition();
+	}
+
+	void SetCursorPosition(const double x, const double y)
+	{
+		MarkEventAsHandled();
+		_hid.SetCursorPosition(x, y);
+	}
+
+	void EnableCursor()
+	{
+		MarkEventAsHandled();
+		_hid.EnableCursor();
+	}
+
+	void DisableCursor()
+	{
+		MarkEventAsHandled();
+		_hid.DisableCursor();
 	}
 };

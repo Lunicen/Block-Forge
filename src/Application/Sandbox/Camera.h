@@ -5,7 +5,6 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/Window.h"
 #include "Application/Event/InputEvent.h"
 #include "Application/HID/KeyCodes.h"
 
@@ -15,7 +14,9 @@
 class Camera
 {
 	Log& _log = Log::Get();
-	Window& _window;
+
+	size_t _screenHeight;
+	size_t _screenWidth;
 
 	glm::vec3 _position{};
 	glm::vec3 _orientation = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -44,13 +45,12 @@ class Camera
 	void HandleHorizontalMovement(InputEvent& input);
 	void HandleVerticalMovement(InputEvent& input);
 	void HandleSpeed(float boostSpeed, InputEvent& input);
-	void UpdateCursorMovement();
+	void UpdateCursorMovement(InputEvent& input);
 
 public:
 	/// @brief The constructor.
-	///	@param window - Reference to the application window.
 	/// @param position - Spawn point of the camera.
-	Camera(Window& window, glm::vec3 position);
+	Camera(size_t screenWidth, size_t screenHeight, glm::vec3 position);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -65,12 +65,6 @@ public:
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.
 	glm::vec3 GetPosition() const;
-
-	/// @brief Get width.
-	size_t GetWidth() const;
-
-	/// @brief Get height.
-	size_t GetHeight() const;
 
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.

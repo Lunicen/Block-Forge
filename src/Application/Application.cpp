@@ -87,6 +87,11 @@ void Application::Run()
 {
 	Initialize();
 
+	while(!glfwWindowShouldClose(_window.GetHandle()))
+	{
+
+	}
+
 	const auto sandbox = std::make_unique<Sandbox>(_window);
 	sandbox->Run();
 

@@ -26,6 +26,11 @@ public:
 		return false;
 	}
 
+	void MarkEventAsHandled()
+	{
+		_wasHandled = true;
+	}
+
 	virtual EventType GetType() = 0;
 
 	virtual ~Event() = default;
