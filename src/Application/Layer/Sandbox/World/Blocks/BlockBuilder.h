@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Metadata.h"
-#include "Application/Sandbox/Model/BlockModel.h"
-#include "Application/Sandbox/Model/Surface/TextureAtlas.h"
+#include "Application/Layer/Sandbox/Model/BlockModel.h"
+#include "Application/Layer/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockBuilder
 /// @brief A factory that builds and outputs blocks based on their metadata.

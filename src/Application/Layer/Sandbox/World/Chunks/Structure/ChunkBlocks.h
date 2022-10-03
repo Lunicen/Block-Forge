@@ -1,5 +1,5 @@
 #pragma once
-#include "Application/Sandbox/Model/BlockModel.h"
+#include "Application/Layer/Sandbox/Model/BlockModel.h"
 
 /// @brief Contains the information about a certain block and the visibility of its faces.
 struct BlockVisibility

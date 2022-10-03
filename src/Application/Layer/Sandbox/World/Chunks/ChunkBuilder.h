@@ -1,5 +1,5 @@
 #pragma once
-#include "Application/Sandbox/World/WorldGenerator.h"
+#include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "Structure/Chunk.h"
 
 /// @class ChunkBuilder

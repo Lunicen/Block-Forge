@@ -1,6 +1,6 @@
 #pragma once
-#include "Application/Sandbox/Model/Mesh/Geometry/Shader.h"
-#include "Application/Sandbox/Model/Mesh/Geometry/Structures.h"
+#include "Application/Layer/Sandbox/Model/Mesh/Geometry/Shader.h"
+#include "Application/Layer/Sandbox/Model/Mesh/Geometry/Structures.h"
 
 /// @class Texture
 /// @brief Texture represents an image that is displayed on the @see Mesh.

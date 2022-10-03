@@ -1,6 +1,6 @@
 #include "DynamicMesh.h"
 
-#include "Application/Sandbox/World/Biomes/Biome.h"
+#include "Application/Layer/Sandbox/World/Biomes/Biome.h"
 
 std::vector<TriangleIndexes> DynamicMesh::GenerateIndicesFromPattern(const std::vector<TriangleIndexes>& pattern, const size_t& maxVerticesAmount) const
 {

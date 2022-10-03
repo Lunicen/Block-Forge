@@ -1,7 +1,7 @@
 #pragma once
-#include "Application/Sandbox/Noise/Noise3D.h"
-#include "Application/Sandbox/World/Blocks/BlockMap.h"
-#include "Application/Sandbox/World/Chunks/Structure/ChunkBlocks.h"
+#include "Application/Layer/Sandbox/Noise/Noise3D.h"
+#include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
+#include "Application/Layer/Sandbox/World/Chunks/Structure/ChunkBlocks.h"
 
 /// @class Biome
 /// @brief Represents biome that could be used for terrain generation.

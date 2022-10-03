@@ -1,7 +1,7 @@
 #pragma once
 #include "BlockProvider.h"
-#include "Application/Sandbox/Model/BlockModel.h"
-#include "Application/Sandbox/Model/Surface/TextureAtlas.h"
+#include "Application/Layer/Sandbox/Model/BlockModel.h"
+#include "Application/Layer/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockMap
 ///	@brief Represents a map of the blocks that could be used to place in the chunks.

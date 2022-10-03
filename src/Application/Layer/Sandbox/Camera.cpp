@@ -6,7 +6,7 @@ void Camera::Update()
 	auto view = glm::mat4(1.0f);
 	view = lookAt(_position, _position + _orientation, _upVector);
 
-	const float aspectRatio = static_cast<float>(_windowWidth) / static_cast<float>(_windowHeight);
+	const float aspectRatio = static_cast<float>(_window.GetWidth()) / static_cast<float>(_window.GetHeight());
 
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
 	auto projection = glm::mat4(1.0f);
@@ -20,48 +20,41 @@ void Camera::Update()
 	}
 }
 
-void Camera::UpdateViewport(WindowEvent& windowEvent)
+void Camera::HandleHorizontalMovement()
 {
-	const auto& windowSize = windowEvent.GetWindowSize();
-	_windowWidth = windowSize.first;
-	_windowHeight = windowSize.second;
-}
-
-void Camera::HandleHorizontalMovement(KeyboardEvent& input)
-{
-	if (input.IsPressed(_left))
+	if (_hid.IsPressed(_left))
 	{
 		_position += _speed * -normalize(cross(_orientation, _upVector));
 	}
-	if (input.IsPressed(_right))
+	if (_hid.IsPressed(_right))
 	{
 		_position += _speed * normalize(cross(_orientation, _upVector));
 	}
-	if (input.IsPressed(_forward))
+	if (_hid.IsPressed(_forward))
 	{
 		_position += _speed * _orientation;
 	}
-	if (input.IsPressed(_backward))
+	if (_hid.IsPressed(_backward))
 	{
 		_position += _speed * -_orientation;
 	}
 }
 
-void Camera::HandleVerticalMovement(KeyboardEvent& input)
+void Camera::HandleVerticalMovement()
 {
-	if (input.IsPressed(_up))
+	if (_hid.IsPressed(_up))
 	{
 		_position += _speed * _upVector;
 	}
-	if (input.IsPressed(_down))
+	if (_hid.IsPressed(_down))
 	{
 		_position += _speed * -_upVector;
 	}
 }
 
-void Camera::HandleSpeed(const float boostSpeed, KeyboardEvent& input)
+void Camera::HandleSpeed(const float boostSpeed)
 {
-	_speed = input.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
+	_speed = _hid.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
 void Camera::UpdateCursorMovement()
@@ -73,8 +66,8 @@ void Camera::UpdateCursorMovement()
 	const auto& middleAxisX = mouseX / 2.0;
 	const auto& middleAxisY = mouseY / 2.0;
 
-	const float xAxisRotation = _sensitivity * (static_cast<float>(middleAxisY) / static_cast<float>(_windowHeight));
-	const float yAxisRotation = _sensitivity * (static_cast<float>(middleAxisX) / static_cast<float>(_windowWidth));
+	const float xAxisRotation = _sensitivity * (static_cast<float>(middleAxisY) / static_cast<float>(_window.GetHeight()));
+	const float yAxisRotation = _sensitivity * (static_cast<float>(middleAxisX) / static_cast<float>(_window.GetWidth()));
 
 	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _upVector)));
 	const auto angleWithXAxis = abs(angle(orientation, _upVector) - glm::radians(90.0f));
@@ -90,10 +83,9 @@ void Camera::UpdateCursorMovement()
 	_hid.SetCursorPosition(middleAxisX, middleAxisY);
 }
 
-Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HID& hid)
+Camera::Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid)
 	: _hid(hid),
-	  _windowHeight(windowHeight),
-	  _windowWidth(windowWidth),
+	  _window(window),
 	  _position(position)
 {
 	_hid.DisableCursor();
@@ -105,9 +97,9 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput(KeyboardEvent& input)
+void Camera::HandleInput()
 {
-	if (input.IsPressedOnce(KeyboardKey::escape))
+	if (_hid.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;
 		_isPaused ? _hid.EnableCursor() : _hid.DisableCursor();
@@ -118,9 +110,9 @@ void Camera::HandleInput(KeyboardEvent& input)
 		return;
 	}
 
-	HandleHorizontalMovement(input);
-	HandleVerticalMovement(input);
-	HandleSpeed(0.4f, input);
+	HandleHorizontalMovement();
+	HandleVerticalMovement();
+	HandleSpeed(0.4f);
 }
 
 glm::vec3 Camera::GetPosition() const

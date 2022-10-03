@@ -1,6 +1,6 @@
 #pragma once
 #include "Biome.h"
-#include "Application/Sandbox/Noise/Noise2D.h"
+#include "Application/Layer/Sandbox/Noise/Noise2D.h"
 
 /// @class BiomePlacer
 /// @brief Places biomes according to the biomes map.

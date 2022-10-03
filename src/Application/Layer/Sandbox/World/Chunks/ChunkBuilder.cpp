@@ -1,6 +1,6 @@
 #include "ChunkBuilder.h"
 
-#include "Application/Sandbox/World/Biomes/Biome.h"
+#include "Application/Layer/Sandbox/World/Biomes/Biome.h"
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
 std::unique_ptr<Chunk> ChunkBuilder::Build(const Position origin, const size_t& size, WorldGenerator& generator) const

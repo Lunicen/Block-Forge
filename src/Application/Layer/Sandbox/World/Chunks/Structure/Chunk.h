@@ -1,8 +1,8 @@
 #pragma once
-#include "Application/Sandbox/Camera.h"
+#include "Application/Layer/Sandbox/Camera.h"
 #include "ChunkBlocks.h"
 #include "ChunkMesh.h"
-#include "Application/Sandbox/Model/Mesh/DynamicMesh.h"
+#include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world

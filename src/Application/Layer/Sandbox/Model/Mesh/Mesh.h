@@ -4,8 +4,8 @@
 #include "Geometry/Shader.h"
 #include "Geometry/VertexArray.h"
 #include "Geometry/ElementBuffer.h"
-#include "Application/Sandbox/Camera.h"
-#include "Application/Sandbox/Model/Surface/Texture.h"
+#include "Application/Layer/Sandbox/Camera.h"
+#include "Application/Layer/Sandbox/Model/Surface/Texture.h"
 
 /// @class Mesh
 ///	@brief The interface for the classes which purpose is to create mesh for the models.

@@ -2,11 +2,11 @@
 #include <glm/vec3.hpp>
 
 #include "Application/Layer/Layer.h"
-#include "Application/Sandbox/Camera.h"
-#include "Application/Sandbox/Utils/FPSCounter.h"
-#include "Application/Sandbox/World/WorldGenerator.h"
-#include "Application/Sandbox/World/Chunks/ChunkPlacer.h"
-#include "Application/Sandbox/World/Chunks/ChunkRenderer.h"
+#include "Application/Layer/Sandbox/Camera.h"
+#include "Application/Layer/Sandbox/Utils/FPSCounter.h"
+#include "Application/Layer/Sandbox/World/WorldGenerator.h"
+#include "Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h"
+#include "Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h"
 
 class SandboxLayer final : public Layer
 {
@@ -18,11 +18,11 @@ class SandboxLayer final : public Layer
 
 public:
 
-	explicit SandboxLayer(size_t screenWidth, size_t screenHeight, HID& hid)
+	explicit SandboxLayer(Window& window, HumanInterfaceDevice& hid)
 	{
 		glEnable(GL_DEPTH_TEST);
 
-		_camera = std::make_unique<Camera>(screenWidth, screenHeight, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 		_worldGenerator = std::make_shared<WorldGenerator>(69);
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 3, _camera->GetPosition());
@@ -43,14 +43,9 @@ public:
 		_fpsCounter->Update();
 	}
 	
-	void OnEvent(KeyboardEvent& keyboardEvent) override
+	void OnEvent() override
 	{
-		_camera->HandleInput(keyboardEvent);
-	}
-
-	void OnEvent(WindowEvent& windowEvent) override
-	{
-		_camera->UpdateViewport(windowEvent);
+		_camera->HandleInput();
 	}
 
 	~SandboxLayer() override

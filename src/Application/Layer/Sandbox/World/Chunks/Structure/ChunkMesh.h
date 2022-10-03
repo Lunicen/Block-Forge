@@ -1,6 +1,6 @@
 #pragma once
 #include "ChunkBlocks.h"
-#include "Application/Sandbox/Model/Mesh/DynamicMesh.h"
+#include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
 
 /// @class ChunkMesh
 ///	@brief Represents the chunk mesh and manages it in a runtime.
