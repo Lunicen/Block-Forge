@@ -10,6 +10,8 @@ public:
 
 	void OnUpdate() override
 	{
+		// For now there is nothing to render.
+		// That's why this method is empty.
 	}
 
 	void OnEvent(HumanInterfaceDevice& hid) override

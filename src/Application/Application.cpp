@@ -80,7 +80,7 @@ void Application::SetCallbacks()
 	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
 }
 
-Application::Application(const std::string& filenameWithSettings) : _hid(_window)
+Application::Application(const std::string& filenameWithSettings)
 {
 	_settings.Load(filenameWithSettings);
 

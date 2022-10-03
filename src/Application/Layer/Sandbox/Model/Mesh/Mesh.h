@@ -11,9 +11,14 @@
 ///	@brief The interface for the classes which purpose is to create mesh for the models.
 class Mesh  // NOLINT(cppcoreguidelines-special-member-functions)
 {
-protected:
 	/// @brief Vertex array object of the meshes.
 	VertexArray _vao;
+
 public:
+	VertexArray& GetVao()
+	{
+		return _vao;
+	}
+
 	virtual ~Mesh() = default;
 };

@@ -31,10 +31,14 @@ public:
 	{
 		glEnable(GL_DEPTH_TEST);
 
-		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
-		_worldGenerator = std::make_shared<WorldGenerator>(69);
+		constexpr auto worldSeed = 69;
+		constexpr auto chunkSize = 32;
+		constexpr auto renderDistance = 2;
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 3, _camera->GetPosition());
+		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
+		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
+
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::tiltedCube, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
 
 		_fpsCounter = std::make_unique<FPSCounter>();

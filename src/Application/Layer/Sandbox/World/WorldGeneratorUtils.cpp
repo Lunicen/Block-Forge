@@ -16,9 +16,9 @@ void WorldGeneratorUtils::OptimizeBlock(const Position& origin, BlockVisibility&
 	factor = -factor;
 	factor *= frameSize;
 
-	const int& x = static_cast<int>(factor.x) + static_cast<int>(origin.x) + 1;
-	const int& y = static_cast<int>(factor.y) + static_cast<int>(origin.y) + 1;
-	const int& z = static_cast<int>(factor.z) + static_cast<int>(origin.z) + 1;
+	const int& x = static_cast<int>(factor.x) + origin.x + 1;
+	const int& y = static_cast<int>(factor.y) + origin.y + 1;
+	const int& z = static_cast<int>(factor.z) + origin.z + 1;
 
 	block.visibility = {false, false, false, false, false, false};
 

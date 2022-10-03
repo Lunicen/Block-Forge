@@ -6,7 +6,7 @@ StaticMesh::StaticMesh(const std::vector<Vertex>& vertices, const std::vector<Tr
 	constexpr auto indexesInOneTriangle = 3;
 	_indicesAmount = static_cast<GLsizei>(indices.size()) * indexesInOneTriangle;
 
-	_vao.Bind();
+	GetVao().Bind();
 	const auto vbo = VertexBuffer(vertices);
 	const auto ebo = ElementBuffer(indices);
 
@@ -14,17 +14,17 @@ StaticMesh::StaticMesh(const std::vector<Vertex>& vertices, const std::vector<Tr
 	constexpr auto vector2dSize = 2;
 	constexpr auto vector3dSize = 3;
 
-	_vao.Link(vbo, 0, vector3dSize, stride, 0);
-	_vao.Link(vbo, 1, vector2dSize, stride, vector3dSize);
+	GetVao().Link(vbo, 0, vector3dSize, stride, 0);
+	GetVao().Link(vbo, 1, vector2dSize, stride, vector3dSize);
 
-	_vao.Unbind();
+	GetVao().Unbind();
 	vbo.Unbind();
 	ebo.Unbind();
 }
 
 
 
-void StaticMesh::Draw(const Position& origin, const Texture& texture, const Camera& camera) const
+void StaticMesh::Draw(const Position& origin, const Texture& texture, const Camera& camera)
 {
 	camera.Bind(_shader);
 
@@ -32,11 +32,11 @@ void StaticMesh::Draw(const Position& origin, const Texture& texture, const Came
 
 	glUniformMatrix4fv(glGetUniformLocation(_shader.GetProgram(), "position"), 1, GL_FALSE, value_ptr(position));
 
-	_vao.Bind();
+	GetVao().Bind();
 	texture.Bind(_shader);
 
 	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
 
 	texture.Unbind();
-	_vao.Unbind();
+	GetVao().Unbind();
 }

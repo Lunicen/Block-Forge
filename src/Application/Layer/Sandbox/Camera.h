@@ -58,7 +58,7 @@ public:
 
 	/// @brief Captures input and moves the camera accordingly.
 	///	@param hid - Reference to the Human Interface Device controller.
-	void HandleInput(HumanInterfaceDevice& hid);
+	void HandleInput(const HumanInterfaceDevice& hid);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

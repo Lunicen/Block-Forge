@@ -13,7 +13,7 @@
 class Application
 {
 	static Window _window;
-	HumanInterfaceDevice _hid;
+	HumanInterfaceDevice _hid{_window};
 
 	Log& _log = Log::Get();
 

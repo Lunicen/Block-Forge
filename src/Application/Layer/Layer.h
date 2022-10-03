@@ -47,7 +47,7 @@ public:
 	///	Using this method, you can tell it to freeze when necessary and
 	///	use the OnUpdate() method to render continuously.
 	/// @param hid - Reference to the Human Interface Device.
-	virtual void OnEvent(HumanInterfaceDevice& hid) {}
+	virtual void OnEvent(HumanInterfaceDevice& hid) = 0;
 
 	/// @brief Checks if this layer is locked.
 	///	@details If the layer is locked,

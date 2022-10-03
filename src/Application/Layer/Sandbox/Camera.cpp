@@ -90,7 +90,7 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput(HumanInterfaceDevice& hid)
+void Camera::HandleInput(const HumanInterfaceDevice& hid)
 {
 	HandleHorizontalMovement(hid);
 	HandleVerticalMovement(hid);

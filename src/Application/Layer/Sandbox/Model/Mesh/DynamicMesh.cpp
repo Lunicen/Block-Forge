@@ -40,7 +40,7 @@ DynamicMesh::DynamicMesh(
 
 	const auto& indices = GenerateIndicesFromPattern(indicesPattern, maxInstancesAmount);
 
-	_vao.Bind();
+	GetVao().Bind();
 	_vbo = std::make_unique<VertexBuffer>(sizeof(Vertex), maxInstancesAmount * _indicesInOneInstance);
 	const auto ebo = ElementBuffer(indices);
 
@@ -48,10 +48,10 @@ DynamicMesh::DynamicMesh(
 	constexpr auto vector2dSize = 2;
 	constexpr auto vector3dSize = 3;
 
-	_vao.Link(*_vbo, 0, vector3dSize, stride, 0);
-	_vao.Link(*_vbo, 1, vector2dSize, stride, vector3dSize);
+	GetVao().Link(*_vbo, 0, vector3dSize, stride, 0);
+	GetVao().Link(*_vbo, 1, vector2dSize, stride, vector3dSize);
 
-	_vao.Unbind();
+	GetVao().Unbind();
 	_vbo->Unbind();
 	ebo.Unbind();
 }
@@ -65,15 +65,15 @@ void DynamicMesh::Update(const std::vector<Vertex>& vertices)
 	_vbo->Unbind();
 }
 
-void DynamicMesh::Draw(const Texture& texture, const Camera& camera) const
+void DynamicMesh::Draw(const Texture& texture, const Camera& camera)
 {
 	if (_vertices.empty()) return;
 
 	camera.Bind(_shader);
 
-	_vao.Bind();
+	GetVao().Bind();
 	texture.Bind(_shader);
 	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_vertices.size()) / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
 	texture.Unbind();
-	_vao.Unbind();
+	GetVao().Unbind();
 }
