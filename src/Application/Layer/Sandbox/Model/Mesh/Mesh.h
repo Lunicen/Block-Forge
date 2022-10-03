@@ -15,6 +15,8 @@ class Mesh  // NOLINT(cppcoreguidelines-special-member-functions)
 	VertexArray _vao;
 
 public:
+
+	/// @brief Returns mesh Vertex Array Object.
 	VertexArray& GetVao()
 	{
 		return _vao;
