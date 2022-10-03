@@ -2,7 +2,6 @@
 
 class Layer
 {
-	EventListener& _eventListener;
 	bool _isLocked = false;
 
 protected:
@@ -17,9 +16,7 @@ protected:
 	}
 
 public:
-
-	explicit Layer(EventListener& eventListener) : _eventListener(eventListener)
-	{}
+	Layer() = default;
 
 	Layer(const Layer&) = default;
 	Layer(Layer&&) = default;
@@ -32,7 +29,7 @@ public:
 
 	bool IsLocked() const
 	{
-		return _eventListener.HasEventOccurred() || _isLocked;
+		return _isLocked;
 	}
 
 	virtual ~Layer() = default;

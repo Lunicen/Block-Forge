@@ -3,7 +3,6 @@
 
 #include "Core/Log.h"
 #include "KeyCodes.h"
-#include "Application/EventListener.h"
 #include "Application/Window.h"
 
 
@@ -14,7 +13,6 @@ class HumanInterfaceDevice
 {
 	Log& _log = Log::Get();
 	Window& _window;
-	EventListener& _eventListener;
 
 	std::unordered_set<KeyboardKey> _onceHandledKeyboardKeys;
 	std::unordered_set<MouseButton> _onceHandledMouseButtons;
@@ -26,9 +24,7 @@ public:
 
 	/// @brief The constructor.
 	///	@param window - The window in which the simulation is played.
-	explicit HumanInterfaceDevice(Window& window, EventListener& eventListener);
-
-	EventListener& GetEventListener() const;
+	explicit HumanInterfaceDevice(Window& window);
 
 	/// @brief Checks if the requested key is pressed.
 	///	@param key - The key from keyboard.

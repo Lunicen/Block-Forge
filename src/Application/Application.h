@@ -13,9 +13,7 @@
 class Application
 {
 	static Window _window;
-
-	EventListener _eventListener;
-	HumanInterfaceDevice _hid{_window, _eventListener};
+	HumanInterfaceDevice _hid;
 
 	Log& _log = Log::Get();
 

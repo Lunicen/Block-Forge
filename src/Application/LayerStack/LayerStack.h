@@ -6,13 +6,9 @@
 
 class LayerStack
 {
-	std::vector<std::unique_ptr<Layer>> _layers;
-	EventListener& _eventListener;
+	std::vector<std::unique_ptr<Layer>> _layers{};
 
 public:
-	explicit LayerStack(EventListener& eventListener) : _eventListener(eventListener)
-	{}
-
 	void Push(std::unique_ptr<Layer> layer)
 	{
 		_layers.emplace_back(std::move(layer));
@@ -33,13 +29,12 @@ public:
 
 	void ProcessEvents() const
 	{
-		_eventListener.Reset();
-
 		for (auto i = _layers.size(); i > 0; --i)
 		{
-			if (_eventListener.HasEventOccurred()) break;
+			auto& layer = _layers[i - 1];
 
-			_layers[i - 1]->OnEvent();
+			layer->OnEvent();
+			if (layer->IsLocked()) break;
 		}
 	}
 };

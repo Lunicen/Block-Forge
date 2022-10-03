@@ -10,20 +10,14 @@ int HumanInterfaceDevice::GetState(const MouseButton& button) const
 	return glfwGetMouseButton(_window.GetHandle(), static_cast<int>(button));
 }
 
-HumanInterfaceDevice::HumanInterfaceDevice(Window& window, EventListener& eventListener) : _window(window), _eventListener(eventListener)
+HumanInterfaceDevice::HumanInterfaceDevice(Window& window) : _window(window)
 {
-}
-
-EventListener& HumanInterfaceDevice::GetEventListener() const
-{
-	return _eventListener;
 }
 
 bool HumanInterfaceDevice::IsPressed(const KeyboardKey& key) const
 {
 	if (GetState(key) == GLFW_PRESS)
 	{
-		_eventListener.RegisterEvent();
 		return true;
 	}
 	
@@ -50,7 +44,6 @@ bool HumanInterfaceDevice::IsPressed(const MouseButton& button) const
 {
 	if (GetState(button) == GLFW_PRESS)
 	{
-		_eventListener.RegisterEvent();
 		return true;
 	}
 
@@ -79,24 +72,20 @@ std::pair<double, double> HumanInterfaceDevice::GetCursorPosition() const
 	double y;
 	glfwGetCursorPos(_window.GetHandle(), &x, &y);
 
-	_eventListener.RegisterEvent();
 	return {x, y};
 }
 
 void HumanInterfaceDevice::SetCursorPosition(const double x, const double y) const
 {
-	_eventListener.RegisterEvent();
 	glfwSetCursorPos(_window.GetHandle(), x, y);
 }
 
 void HumanInterfaceDevice::EnableCursor() const
 {
-	_eventListener.RegisterEvent();
 	glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
 void HumanInterfaceDevice::DisableCursor() const
 {
-	_eventListener.RegisterEvent();
 	glfwSetInputMode(_window.GetHandle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
