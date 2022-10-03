@@ -12,6 +12,7 @@ class SandboxLayer final : public Layer
 {
 	std::unique_ptr<Camera> _camera{};
 	std::unique_ptr<ChunkPlacer> _chunkPlacer{};
+	std::unique_ptr<FPSCounter> _fpsCounter{};
 
 	std::shared_ptr<WorldGenerator> _worldGenerator;
 
@@ -24,19 +25,20 @@ public:
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 8, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
+
+		_fpsCounter = std::make_unique<FPSCounter>();
 	}
 
 	void OnUpdate() override
 	{
 		const ChunkRenderer chunkRenderer;
-		FPSCounter counter;
 
 		_camera->Update();
 
 		_chunkPlacer->Update(_camera->GetPosition());
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_camera);
 
-		counter.Update();
+		_fpsCounter->Update();
 	}
 	
 	void OnEvent(KeyboardEvent& inputEvent) override
