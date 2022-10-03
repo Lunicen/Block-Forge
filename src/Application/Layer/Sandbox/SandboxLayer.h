@@ -41,16 +41,14 @@ public:
 		const ChunkRenderer chunkRenderer;
 
 		_camera->Update();
-
-		_chunkPlacer->Update(_camera->GetPosition());
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_camera);
-
 		_fpsCounter->Update();
 	}
 	
 	void OnEvent() override
 	{
 		_camera->HandleInput();
+		_chunkPlacer->Update(_camera->GetPosition());
 	}
 
 	~SandboxLayer() override
