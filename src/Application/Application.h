@@ -2,8 +2,7 @@
 #include "Core/Log.h"
 #include "Core/Metadata.h"
 #include "Window.h"
-#include "HID/HID.h"
-#include "HID/HIDEventReporter.h"
+#include "HID/HumanInterfaceDevice.h"
 
 /// @class Application
 ///	@brief Represents the application context.
@@ -15,9 +14,10 @@ class Application
 {
 	static Window _window;
 
+	EventListener _eventListener;
+	HumanInterfaceDevice _hid{_window, _eventListener};
+
 	Log& _log = Log::Get();
-	HID _hid;
-	HIDEventReporter _eventReporter;
 
 	Metadata _settings;
 

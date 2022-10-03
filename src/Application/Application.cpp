@@ -1,15 +1,11 @@
 #include "Application.h"
 
-#include "EventQueue.h"
 #include "Core/EngineExceptions.h"
 #include "LayerStack/Stack/SandboxStack.h"
-#include "Sandbox/Sandbox.h"
 
 // As a static member of class this variable
 // must be here initialized
 Window Application::_window{};
-std::array<Event*, MaxEventQueueCapacity> EventQueue::_eventQueue;
-size_t EventQueue::_queueIterator = 0;
 
 void Application::WindowResizeEvent(GLFWwindow* const, const int width, const int height)
 {
@@ -17,8 +13,6 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 
 	_window.SetWidth(static_cast<size_t>(width));
 	_window.SetHeight(static_cast<size_t>(height));
-
-	EventQueue::Push(new WindowEvent(_window));
 }
 
 
@@ -86,7 +80,7 @@ void Application::SetCallbacks()
 	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
 }
 
-Application::Application(const std::string& filenameWithSettings) : _hid(_window), _eventReporter(_window)
+Application::Application(const std::string& filenameWithSettings)
 {
 	_settings.Load(filenameWithSettings);
 
@@ -99,26 +93,21 @@ void Application::Run()
 {
 	Initialize();
 
-	const auto sandbox = SandboxStack(_window.GetWidth(), _window.GetHeight(), _hid);
+	const auto sandbox = SandboxStack(_window, _hid);
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
-		_eventReporter.Report();
-
 		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0) continue;
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		EventQueue::Update(sandbox);
 		sandbox.Update();
+		sandbox.ProcessEvents();
 
 		glfwSwapBuffers(_window.GetHandle());
 		glfwPollEvents();
 	}
-
-	//const auto sandbox = std::make_unique<Sandbox>(_window);
-	//sandbox->Run();
 
 	_log.Info("Quitting...");
 

@@ -7,17 +7,12 @@
 class LayerStack
 {
 	std::vector<std::unique_ptr<Layer>> _layers;
-	static void DispatchEvent(Layer& layer, Event& eventToProcess)
-	{
-		switch(eventToProcess.GetType())
-		{
-			case EventType::keyboard:   layer.OnEvent(dynamic_cast<KeyboardEvent&>(eventToProcess)); break;
-			case EventType::window:		layer.OnEvent(dynamic_cast<WindowEvent&>(eventToProcess));   break;
-			case EventType::mouse:		layer.OnEvent(dynamic_cast<MouseEvent&>(eventToProcess));    break;
-		}
-	}
+	EventListener& _eventListener;
 
 public:
+	explicit LayerStack(EventListener& eventListener) : _eventListener(eventListener)
+	{}
+
 	void Push(std::unique_ptr<Layer> layer)
 	{
 		_layers.emplace_back(std::move(layer));
@@ -36,14 +31,15 @@ public:
 		}
 	}
 
-	void Process(Event& eventToProcess) const
+	void ProcessEvents() const
 	{
+		_eventListener.Reset();
+
 		for (auto i = _layers.size(); i > 0; --i)
 		{
-			if (eventToProcess.WasHandled()) break;
+			if (_eventListener.HasEventOccurred()) break;
 
-			DispatchEvent(*_layers[i - 1], eventToProcess);
-			glfwPollEvents();
+			_layers[i - 1]->OnEvent();
 		}
 	}
 };
