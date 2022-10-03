@@ -1,7 +1,7 @@
 #include "Application.h"
 
 #include "Core/EngineExceptions.h"
-#include "Sandbox/Sandbox.h"
+#include "LayerStack/Stack/SandboxStack.h"
 
 // As a static member of class this variable
 // must be here initialized
@@ -14,6 +14,7 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 	_window.SetWidth(static_cast<size_t>(width));
 	_window.SetHeight(static_cast<size_t>(height));
 }
+
 
 void Application::CentralizeWindow() const
 {
@@ -67,11 +68,16 @@ void Application::Initialize()
 		);
 	}
 
-	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
+	SetCallbacks();
 
 	CentralizeWindow();
 
 	_log.Info("Block Forge initialized!");
+}
+
+void Application::SetCallbacks()
+{
+	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
 }
 
 Application::Application(const std::string& filenameWithSettings)
@@ -87,8 +93,22 @@ void Application::Run()
 {
 	Initialize();
 
-	const auto sandbox = std::make_unique<Sandbox>(_window);
-	sandbox->Run();
+	const auto sandbox = SandboxStack(_window);
+	_hid.DisableCursor();
+
+	while(!glfwWindowShouldClose(_window.GetHandle()))
+	{
+		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0) continue;
+
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		sandbox.Update();
+		sandbox.ProcessEvents(_hid);
+
+		glfwSwapBuffers(_window.GetHandle());
+		glfwPollEvents();
+	}
 
 	_log.Info("Quitting...");
 
