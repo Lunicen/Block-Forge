@@ -18,7 +18,7 @@ class SandboxLayer final : public Layer
 
 public:
 
-	explicit SandboxLayer(Window& window, HumanInterfaceDevice& hid)
+	explicit SandboxLayer(Window& window, HumanInterfaceDevice& hid) : Layer(hid.GetEventListener())
 	{
 		glEnable(GL_DEPTH_TEST);
 
@@ -52,6 +52,4 @@ public:
 	{
 		gltTerminate();
 	}
-
-	
 };
