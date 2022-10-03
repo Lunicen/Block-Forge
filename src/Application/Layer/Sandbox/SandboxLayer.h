@@ -10,16 +10,16 @@
 
 class SandboxLayer final : public Layer
 {
-	std::unique_ptr<Camera> _camera;
-	std::unique_ptr<ChunkPlacer> _chunkPlacer;
+	std::unique_ptr<Camera> _camera{};
+	std::unique_ptr<ChunkPlacer> _chunkPlacer{};
 
 	std::shared_ptr<WorldGenerator> _worldGenerator;
 
 public:
 
-	explicit SandboxLayer(size_t screenWidth, size_t screenHeight)
+	explicit SandboxLayer(size_t screenWidth, size_t screenHeight, HumanInterfaceDevice& hid)
 	{
-		_camera = std::make_unique<Camera>(screenWidth, screenHeight, glm::vec3(0.0f, 0.0f, 0.0f));
+		_camera = std::make_unique<Camera>(screenWidth, screenHeight, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 		_worldGenerator = std::make_shared<WorldGenerator>(69);
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 8, _camera->GetPosition());
@@ -39,7 +39,7 @@ public:
 		counter.Update();
 	}
 	
-	void OnEvent(InputEvent& inputEvent) override
+	void OnEvent(KeyboardEvent& inputEvent) override
 	{
 		_camera->HandleInput(inputEvent);
 	}
@@ -47,5 +47,10 @@ public:
 	void OnEvent(WindowEvent& windowEvent) override
 	{
 		_camera->UpdateViewport(windowEvent);
+	}
+
+	~SandboxLayer() override
+	{
+		gltTerminate();
 	}
 };

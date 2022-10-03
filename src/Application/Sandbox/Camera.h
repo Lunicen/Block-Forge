@@ -5,9 +5,12 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-#include "Application/Event/InputEvent.h"
+
+#include "Application/Event/KeyboardEvent.h"
+#include "Application/Event/MouseEvent.h"
 #include "Application/Event/WindowEvent.h"
-#include "Application/HID/KeyCodes.h"
+
+#include "Application/HID/HumanInterfaceDevice.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.
@@ -15,6 +18,7 @@
 class Camera
 {
 	Log& _log = Log::Get();
+	HumanInterfaceDevice& _hid;
 
 	size_t _windowHeight;
 	size_t _windowWidth;
@@ -43,15 +47,15 @@ class Camera
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
 
-	void HandleHorizontalMovement(InputEvent& input);
-	void HandleVerticalMovement(InputEvent& input);
-	void HandleSpeed(float boostSpeed, InputEvent& input);
-	void UpdateCursorMovement(InputEvent& input);
+	void HandleHorizontalMovement(KeyboardEvent& input);
+	void HandleVerticalMovement(KeyboardEvent& input);
+	void HandleSpeed(float boostSpeed, KeyboardEvent& input);
+	void UpdateCursorMovement();
 
 public:
 	/// @brief The constructor.
 	/// @param position - Spawn point of the camera.
-	Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position);
+	Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -63,7 +67,9 @@ public:
 	void Bind(Shader const& shader) const;
 
 	/// @brief Captures input and moves the camera accordingly.
-	void HandleInput(InputEvent& input);
+	void HandleInput(KeyboardEvent& input);
+
+	void HandleInput(MouseEvent& input);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

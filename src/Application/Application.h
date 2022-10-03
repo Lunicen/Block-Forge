@@ -2,6 +2,7 @@
 #include "Core/Log.h"
 #include "Core/Metadata.h"
 #include "Window.h"
+#include "HID/HumanInterfaceDevice.h"
 
 /// @class Application
 ///	@brief Represents the application context.
@@ -14,14 +15,21 @@ class Application
 	static Window _window;
 
 	Log& _log = Log::Get();
+	HumanInterfaceDevice _hid;
+
 	Metadata _settings;
 
 	size_t _fullscreenWidth{};
 	size_t _fullscreenHeight{};
 
 	static void WindowResizeEvent(GLFWwindow*, int width, int height);
+	static void KeyboardEventCallback(GLFWwindow*, int key, int scancode, int action, int mods);
+	static void CursorMoveEventCallback(GLFWwindow*, double, double);
+	static void MouseClickCallback(GLFWwindow* window, int button, int action, int mods);
+	
 	void CentralizeWindow() const;
 	void Initialize();
+	static void SetCallbacks();
 
 public:
 

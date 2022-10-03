@@ -15,7 +15,29 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 
 	_window.SetWidth(static_cast<size_t>(width));
 	_window.SetHeight(static_cast<size_t>(height));
+
+	EventQueue::Push(std::make_unique<WindowEvent>(_window));
 }
+
+void Application::KeyboardEventCallback(GLFWwindow* const, int key, int scancode, int action, int mods)
+{
+	if (action == GLFW_RELEASE) return;
+
+	EventQueue::Push(std::make_unique<KeyboardEvent>(static_cast<KeyboardKey>(key), static_cast<KeyboardAction>(action)));
+}
+
+void Application::CursorMoveEventCallback(GLFWwindow* const, double, double)
+{
+	EventQueue::Push(std::make_unique<MouseEvent>(MouseButton::unknown, MouseAction::moved));
+}
+
+void Application::MouseClickCallback(GLFWwindow* const, int button, int action, int mods)
+{
+	if (action == GLFW_RELEASE) return;
+
+	EventQueue::Push(std::make_unique<MouseEvent>(static_cast<MouseButton>(button), static_cast<MouseAction>(action)));
+}
+
 
 void Application::CentralizeWindow() const
 {
@@ -69,14 +91,22 @@ void Application::Initialize()
 		);
 	}
 
-	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
+	SetCallbacks();
 
 	CentralizeWindow();
 
 	_log.Info("Block Forge initialized!");
 }
 
-Application::Application(const std::string& filenameWithSettings)
+void Application::SetCallbacks()
+{
+	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
+	glfwSetKeyCallback(_window.GetHandle(), KeyboardEventCallback);
+	glfwSetCursorPosCallback(_window.GetHandle(), CursorMoveEventCallback);
+	glfwSetMouseButtonCallback(_window.GetHandle(), MouseClickCallback);
+}
+
+Application::Application(const std::string& filenameWithSettings) : _hid(_window)
 {
 	_settings.Load(filenameWithSettings);
 
@@ -89,7 +119,7 @@ void Application::Run()
 {
 	Initialize();
 
-	const auto sandbox = SandboxStack(_window.GetWidth(), _window.GetHeight());
+	const auto sandbox = SandboxStack(_window.GetWidth(), _window.GetHeight(), _hid);
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{

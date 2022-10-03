@@ -1,4 +1,5 @@
 #pragma once
+#include "Application/Window.h"
 #include "Event.h"
 
 class WindowEvent final : public Event
@@ -10,14 +11,14 @@ public:
 	{
 	}
 
-	EventType GetType() override
-	{
-		return EventType::window;
-	}
-
 	std::pair<size_t, size_t> GetWindowSize()
 	{
 		MarkEventAsHandled();
-		return std::pair<size_t, size_t>(_window.GetWidth(), _window.GetHeight());
+		return {_window.GetWidth(), _window.GetHeight()};
+	}
+
+	EventType GetType() override
+	{
+		return EventType::window;
 	}
 };

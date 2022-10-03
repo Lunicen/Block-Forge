@@ -195,7 +195,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\EventQueue.h" />
-    <ClInclude Include="src\Application\Event\InputEvent.h" />
+    <ClInclude Include="src\Application\Event\KeyboardEvent.h" />
+    <ClInclude Include="src\Application\Event\MouseEvent.h" />
     <ClInclude Include="src\Application\Event\WindowEvent.h" />
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
@@ -241,7 +242,6 @@
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.h" />
     <ClInclude Include="src\Application\HID\HumanInterfaceDevice.h" />
     <ClInclude Include="src\Application\Sandbox\Camera.h" />
-    <ClInclude Include="src\Application\HID\KeyCodes.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />
     <ClInclude Include="lib\imgui\backends\imgui_impl_glfw.h" />

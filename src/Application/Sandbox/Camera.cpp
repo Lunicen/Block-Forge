@@ -22,7 +22,7 @@ void Camera::UpdateViewport(WindowEvent& windowEvent)
 	_windowHeight = windowSize.second;
 }
 
-void Camera::HandleHorizontalMovement(InputEvent& input)
+void Camera::HandleHorizontalMovement(KeyboardEvent& input)
 {
 	if (input.IsPressed(_left))
 	{
@@ -42,7 +42,7 @@ void Camera::HandleHorizontalMovement(InputEvent& input)
 	}
 }
 
-void Camera::HandleVerticalMovement(InputEvent& input)
+void Camera::HandleVerticalMovement(KeyboardEvent& input)
 {
 	if (input.IsPressed(_up))
 	{
@@ -54,14 +54,14 @@ void Camera::HandleVerticalMovement(InputEvent& input)
 	}
 }
 
-void Camera::HandleSpeed(const float boostSpeed, InputEvent& input)
+void Camera::HandleSpeed(const float boostSpeed, KeyboardEvent& input)
 {
 	_speed = input.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
-void Camera::UpdateCursorMovement(InputEvent& input)
+void Camera::UpdateCursorMovement()
 {
-	const auto& mousePosition = input.GetCursorPosition();
+	const auto& mousePosition = _hid.GetCursorPosition();
 	const auto& mouseX = mousePosition.first;
 	const auto& mouseY = mousePosition.second;
 
@@ -82,11 +82,12 @@ void Camera::UpdateCursorMovement(InputEvent& input)
 
 	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _upVector);
 
-	input.SetCursorPosition(middleAxisX, middleAxisY);
+	_hid.SetCursorPosition(middleAxisX, middleAxisY);
 }
 
-Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position)
-	: _windowHeight(windowHeight),
+Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HumanInterfaceDevice& hid)
+	: _hid(hid),
+	  _windowHeight(windowHeight),
 	  _windowWidth(windowWidth),
 	  _position(position)
 {
@@ -98,19 +99,12 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput(InputEvent& input)
+void Camera::HandleInput(KeyboardEvent& input)
 {
 	if (input.IsPressedOnce(KeyboardKey::escape))
 	{
 		_isPaused = !_isPaused;
-		if (_isPaused)
-		{
-			input.EnableCursor();
-		}
-		else
-		{
-			input.DisableCursor();
-		}
+		_isPaused ? _hid.EnableCursor() : _hid.DisableCursor();
 	}
 
 	if (_isPaused)
@@ -121,7 +115,11 @@ void Camera::HandleInput(InputEvent& input)
 	HandleHorizontalMovement(input);
 	HandleVerticalMovement(input);
 	HandleSpeed(0.4f, input);
-	UpdateCursorMovement(input);
+}
+
+void Camera::HandleInput(MouseEvent& input)
+{
+	UpdateCursorMovement();
 }
 
 glm::vec3 Camera::GetPosition() const

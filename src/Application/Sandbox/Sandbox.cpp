@@ -15,7 +15,7 @@ void Sandbox::Run() const
 {
 	_log.Info("Launching simulation...");
 
-	HumanInterfaceDevice hid(_window);
+	//HumanInterfaceDevice hid(_window);
 	//Camera camera(_window, glm::vec3(0.0f, 0.0f, 0.0f));
 
 	auto worldGenerator = std::make_shared<WorldGenerator>(69);

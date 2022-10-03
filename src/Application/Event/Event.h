@@ -1,29 +1,20 @@
 #pragma once
 enum class EventType
 {
-	input = 0,
+	keyboard = 0,
+	mouse,
 	window
 };
 
-class Event  // NOLINT(cppcoreguidelines-special-member-functions)
+class Event
 {
 	bool _wasHandled = false;
 
 public:
+
 	bool WasHandled() const
 	{
 		return _wasHandled;
-	}
-
-	bool GetResultAndUpdateFlag(const bool resultWasSuccessful)
-	{
-		if (resultWasSuccessful)
-		{
-			_wasHandled = true;
-			return true;
-		}
-
-		return false;
 	}
 
 	void MarkEventAsHandled()

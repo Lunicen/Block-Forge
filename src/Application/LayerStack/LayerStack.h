@@ -11,8 +11,9 @@ class LayerStack
 	{
 		switch(eventToProcess.GetType())
 		{
-			case EventType::input:  layer.OnEvent(dynamic_cast<InputEvent&>(eventToProcess));  break;
-			case EventType::window: layer.OnEvent(dynamic_cast<WindowEvent&>(eventToProcess)); break;
+			case EventType::keyboard:   layer.OnEvent(dynamic_cast<KeyboardEvent&>(eventToProcess)); break;
+			case EventType::window:		layer.OnEvent(dynamic_cast<WindowEvent&>(eventToProcess));   break;
+			case EventType::mouse:		layer.OnEvent(dynamic_cast<MouseEvent&>(eventToProcess));    break;
 		}
 	}
 
@@ -42,15 +43,6 @@ public:
 			if (eventToProcess.WasHandled()) break;
 
 			DispatchEvent(*_layers[i - 1], eventToProcess);
-		}
-	}
-
-	virtual ~LayerStack()
-	{
-		const auto stackSize = _layers.size();
-		for (size_t i = 0; i < stackSize; ++i)
-		{
-			_layers.pop_back();
 		}
 	}
 };

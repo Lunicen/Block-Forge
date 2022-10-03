@@ -5,8 +5,8 @@
 class SandboxStack final : public LayerStack
 {
 public:
-	SandboxStack(size_t windowWidth, size_t windowHeight)
+	SandboxStack(size_t windowWidth, size_t windowHeight, HumanInterfaceDevice& hid)
 	{
-		Push(std::make_unique<SandboxLayer>(windowWidth, windowHeight));
+		Push(std::make_unique<SandboxLayer>(windowWidth, windowHeight, hid));
 	}
 };
