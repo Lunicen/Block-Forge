@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sandbox_0',['Sandbox',['../class_sandbox.html',1,'']]],
-  ['shader_1',['Shader',['../class_shader.html',1,'']]]
+  ['pausemenulayer_0',['PauseMenuLayer',['../class_pause_menu_layer.html',1,'']]]
 ];

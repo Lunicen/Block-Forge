@@ -1,6 +1,7 @@
 var class_chunk_placer =
 [
-    [ "ChunkPlacer", "class_chunk_placer.html#aa4ffcd927a850a7d8834a9c86428ca24", null ],
-    [ "Update", "class_chunk_placer.html#acf2b29a184aae7eeba1b874c27939211", null ],
-    [ "Bind", "class_chunk_placer.html#a7b7022bad021cc7e39596ca67218ed07", null ]
+    [ "ChunkPlacer", "class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0", null ],
+    [ "Update", "class_chunk_placer.html#a8ca70b61992b620ab11bbd405897e888", null ],
+    [ "Bind", "class_chunk_placer.html#a9399d9845790ff2cabfba302dac17f3f", null ],
+    [ "GetChunks", "class_chunk_placer.html#aeb34968ebba20d0667101cb15c20d9cd", null ]
 ];

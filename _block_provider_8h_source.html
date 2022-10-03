@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/World/Blocks/BlockProvider.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/World/Blocks/BlockProvider.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -90,30 +90,37 @@ $(document).ready(function(){initNavTree('_block_provider_8h_source.html',''); i
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Core/Metadata.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Sandbox/Model/BlockModel.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_block_provider.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_provider.html">BlockProvider</a></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _blocksMetadata;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_provider.html#a3d26863d56b6d06adf4d2fd476e8b4a1">BlockProvider</a>(<span class="keyword">const</span> std::string&amp; filenameWithBlocksData);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::unordered_map&lt;std::string, std::shared_ptr&lt;BlockModel&gt;&gt; <a class="code hl_function" href="class_block_provider.html#affb07e4d77cdd7b2763d445b3a431f06">GetBlocks</a>(std::vector&lt;TriangleIndexes&gt;&amp; blockIndices, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; blockShader, <span class="keyword">const</span> std::string&amp; blocksSetName = <span class="stringliteral">&quot;default&quot;</span>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="ttc" id="aclass_block_provider_html"><div class="ttname"><a href="class_block_provider.html">BlockProvider</a></div><div class="ttdoc">Provides all the blocks mentioned in the file.</div><div class="ttdef"><b>Definition:</b> BlockProvider.h:8</div></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Model/BlockModel.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Model/Surface/TextureAtlas.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_block_provider.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_provider.html">BlockProvider</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _blocksMetadata;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_provider.html#a3d26863d56b6d06adf4d2fd476e8b4a1">BlockProvider</a>(<span class="keyword">const</span> std::string&amp; filenameWithBlocksData);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::unordered_map&lt;std::string, std::shared_ptr&lt;BlockModel&gt;&gt; <a class="code hl_function" href="class_block_provider.html#ab5cfd67a5e163b8b9ab1d613f5004c5d">GetBlocks</a>(<a class="code hl_class" href="class_texture_atlas.html">TextureAtlas</a>&amp; blocksTextureAtlas, <span class="keyword">const</span> std::string&amp; blocksSetName = <span class="stringliteral">&quot;default&quot;</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::string <a class="code hl_function" href="class_block_provider.html#a4dc7a7391ee796c356aeb88af2b98826">GetTextureAtlasFilename</a>(<span class="keyword">const</span> std::string&amp; blocksSetName = <span class="stringliteral">&quot;default&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_block_provider.html#a83aa53971db406f3050a9ae9a2445715">GetTextureAtlasSlotSize</a>(<span class="keyword">const</span> std::string&amp; blocksSetName = <span class="stringliteral">&quot;default&quot;</span>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="ttc" id="aclass_block_provider_html"><div class="ttname"><a href="class_block_provider.html">BlockProvider</a></div><div class="ttdoc">Provides all the blocks mentioned in the file.</div><div class="ttdef"><b>Definition:</b> BlockProvider.h:9</div></div>
 <div class="ttc" id="aclass_block_provider_html_a3d26863d56b6d06adf4d2fd476e8b4a1"><div class="ttname"><a href="class_block_provider.html#a3d26863d56b6d06adf4d2fd476e8b4a1">BlockProvider::BlockProvider</a></div><div class="ttdeci">BlockProvider(const std::string &amp;filenameWithBlocksData)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockProvider.cpp:5</div></div>
-<div class="ttc" id="aclass_block_provider_html_affb07e4d77cdd7b2763d445b3a431f06"><div class="ttname"><a href="class_block_provider.html#affb07e4d77cdd7b2763d445b3a431f06">BlockProvider::GetBlocks</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::shared_ptr&lt; BlockModel &gt; &gt; GetBlocks(std::vector&lt; TriangleIndexes &gt; &amp;blockIndices, Shader &amp;blockShader, const std::string &amp;blocksSetName=&quot;default&quot;)</div><div class="ttdoc">Provides the map of the built blocks.</div><div class="ttdef"><b>Definition:</b> BlockProvider.cpp:10</div></div>
+<div class="ttc" id="aclass_block_provider_html_a4dc7a7391ee796c356aeb88af2b98826"><div class="ttname"><a href="class_block_provider.html#a4dc7a7391ee796c356aeb88af2b98826">BlockProvider::GetTextureAtlasFilename</a></div><div class="ttdeci">std::string GetTextureAtlasFilename(const std::string &amp;blocksSetName=&quot;default&quot;)</div><div class="ttdoc">Returns texture atlas filename of the blocks set.</div><div class="ttdef"><b>Definition:</b> BlockProvider.cpp:28</div></div>
+<div class="ttc" id="aclass_block_provider_html_a83aa53971db406f3050a9ae9a2445715"><div class="ttname"><a href="class_block_provider.html#a83aa53971db406f3050a9ae9a2445715">BlockProvider::GetTextureAtlasSlotSize</a></div><div class="ttdeci">size_t GetTextureAtlasSlotSize(const std::string &amp;blocksSetName=&quot;default&quot;)</div><div class="ttdoc">Returns the sprite size defined in the set data.</div><div class="ttdef"><b>Definition:</b> BlockProvider.cpp:34</div></div>
+<div class="ttc" id="aclass_block_provider_html_ab5cfd67a5e163b8b9ab1d613f5004c5d"><div class="ttname"><a href="class_block_provider.html#ab5cfd67a5e163b8b9ab1d613f5004c5d">BlockProvider::GetBlocks</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::shared_ptr&lt; BlockModel &gt; &gt; GetBlocks(TextureAtlas &amp;blocksTextureAtlas, const std::string &amp;blocksSetName=&quot;default&quot;)</div><div class="ttdoc">Provides the map of the built blocks.</div><div class="ttdef"><b>Definition:</b> BlockProvider.cpp:10</div></div>
 <div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:14</div></div>
-<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
+<div class="ttc" id="aclass_texture_atlas_html"><div class="ttname"><a href="class_texture_atlas.html">TextureAtlas</a></div><div class="ttdoc">Represents an image extracted from the Texture Atlas and used as a Texture.</div><div class="ttdef"><b>Definition:</b> TextureAtlas.h:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_bdf89298e56d9048405f54cce2c00b1e.html">World</a></li><li class="navelem"><a class="el" href="dir_afbdd04aec301a73b8a03b57f23c4fb6.html">Blocks</a></li><li class="navelem"><b>BlockProvider.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_1186b7adf5317977b19ddb4694ebd609.html">World</a></li><li class="navelem"><a class="el" href="dir_57f994802dd186d4c732bb8f5b9a9044.html">Blocks</a></li><li class="navelem"><b>BlockProvider.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

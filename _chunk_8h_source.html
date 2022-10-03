@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/World/Chunks/Structure/Chunk.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/World/Chunks/Structure/Chunk.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -89,39 +89,38 @@ $(document).ready(function(){initNavTree('_chunk_8h_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;glm/vec3.hpp&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Sandbox/Camera.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;ChunkFrame.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;ChunkBlocks.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_chunk.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk.html">Chunk</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a> _frame;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a> _blocks;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="class_camera.html">Camera</a>&amp; _camera;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">Chunk</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a>&amp; frame, <a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a> blocks, <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#a3498d0c9e6cd5a93fcf70da77a65ef82">Draw</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    glm::ivec3 <a class="code hl_function" href="class_chunk.html#aa2568946ba89ed1ed7d1d0b518396820">GetOrigin</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Camera.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;ChunkBlocks.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;ChunkMesh.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_chunk.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk.html">Chunk</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_chunk_mesh.html">ChunkMesh</a> _mesh;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    std::shared_ptr&lt;Texture&gt; _blockTexture;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    ChunkBlocks _blocks;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; size, std::shared_ptr&lt;Texture&gt; blocksTexture, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a>(ChunkBlocks blocks, std::shared_ptr&lt;Texture&gt; blocksTexture, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; size, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Draw</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
-<div class="ttc" id="aclass_chunk_blocks_html"><div class="ttname"><a href="class_chunk_blocks.html">ChunkBlocks</a></div><div class="ttdoc">A structure that represents the body of typical chunk. Blocks and their visibility.</div><div class="ttdef"><b>Definition:</b> ChunkBlocks.h:39</div></div>
-<div class="ttc" id="aclass_chunk_frame_html"><div class="ttname"><a href="class_chunk_frame.html">ChunkFrame</a></div><div class="ttdoc">A structure that represents the frame of chunk. It's location and size.</div><div class="ttdef"><b>Definition:</b> ChunkFrame.h:7</div></div>
-<div class="ttc" id="aclass_chunk_html"><div class="ttname"><a href="class_chunk.html">Chunk</a></div><div class="ttdoc">Represents a single chunk placed in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.h:12</div></div>
-<div class="ttc" id="aclass_chunk_html_a3498d0c9e6cd5a93fcf70da77a65ef82"><div class="ttname"><a href="class_chunk.html#a3498d0c9e6cd5a93fcf70da77a65ef82">Chunk::Draw</a></div><div class="ttdeci">void Draw() const</div><div class="ttdoc">Draws the chunk in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:9</div></div>
-<div class="ttc" id="aclass_chunk_html_aa2568946ba89ed1ed7d1d0b518396820"><div class="ttname"><a href="class_chunk.html#aa2568946ba89ed1ed7d1d0b518396820">Chunk::GetOrigin</a></div><div class="ttdeci">glm::ivec3 GetOrigin() const</div><div class="ttdoc">Get the actual origin of the chunk.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:27</div></div>
-<div class="ttc" id="aclass_chunk_html_ac0d3cbccbf2f8c5eca6520573c95ec9c"><div class="ttname"><a href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">Chunk::Chunk</a></div><div class="ttdeci">Chunk(const ChunkFrame &amp;frame, ChunkBlocks blocks, Camera &amp;camera)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:4</div></div>
+<div class="ttc" id="aclass_chunk_html"><div class="ttname"><a href="class_chunk.html">Chunk</a></div><div class="ttdoc">Represents a single chunk placed in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.h:11</div></div>
+<div class="ttc" id="aclass_chunk_html_a06956544975958b89ff190699b856ebd"><div class="ttname"><a href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk::Chunk</a></div><div class="ttdeci">Chunk(const size_t &amp;size, std::shared_ptr&lt; Texture &gt; blocksTexture, Shader &amp;shader)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:4</div></div>
+<div class="ttc" id="aclass_chunk_html_a904bf1fb0e5c0b893003a3265be35443"><div class="ttname"><a href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Chunk::Draw</a></div><div class="ttdeci">void Draw(const Camera &amp;camera) const</div><div class="ttdoc">Draws the chunk in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:15</div></div>
+<div class="ttc" id="aclass_chunk_mesh_html"><div class="ttname"><a href="class_chunk_mesh.html">ChunkMesh</a></div><div class="ttdoc">Represents the chunk mesh and manages it in a runtime.</div><div class="ttdef"><b>Definition:</b> ChunkMesh.h:8</div></div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_bdf89298e56d9048405f54cce2c00b1e.html">World</a></li><li class="navelem"><a class="el" href="dir_7df4fe8fefceb4f4b107acf95c74aaac.html">Chunks</a></li><li class="navelem"><a class="el" href="dir_a03fc8b4522289b836265d3c6859a19c.html">Structure</a></li><li class="navelem"><b>Chunk.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_1186b7adf5317977b19ddb4694ebd609.html">World</a></li><li class="navelem"><a class="el" href="dir_998e62e40b812da25a899b76de509b42.html">Chunks</a></li><li class="navelem"><a class="el" href="dir_37e05bd51511875c59068ae6cbd1cda8.html">Structure</a></li><li class="navelem"><b>Chunk.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

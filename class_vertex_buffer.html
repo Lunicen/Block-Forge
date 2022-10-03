@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,10 +99,12 @@ $(document).ready(function(){initNavTree('class_vertex_buffer.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a343c8920365b1d9217cb0e87f0dc0094"><td class="memItemLeft" align="right" valign="top"><a id="a343c8920365b1d9217cb0e87f0dc0094" name="a343c8920365b1d9217cb0e87f0dc0094"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices)</td></tr>
-<tr class="memdesc:a343c8920365b1d9217cb0e87f0dc0094"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates VBO, binds it immediately and sets its data. <br /></td></tr>
+<tr class="memitem:a343c8920365b1d9217cb0e87f0dc0094"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#a343c8920365b1d9217cb0e87f0dc0094">VertexBuffer</a> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices)</td></tr>
+<tr class="memdesc:a343c8920365b1d9217cb0e87f0dc0094"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates VBO, binds it immediately and sets its data.  <a href="class_vertex_buffer.html#a343c8920365b1d9217cb0e87f0dc0094">More...</a><br /></td></tr>
 <tr class="separator:a343c8920365b1d9217cb0e87f0dc0094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6976394aeb81f532862b3ac2502cc12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#ac6976394aeb81f532862b3ac2502cc12">VertexBuffer</a> (const size_t &amp;vertexSize, const size_t &amp;maxAmountOfVertices)</td></tr>
+<tr class="memdesc:ac6976394aeb81f532862b3ac2502cc12"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor creates VBO, binds it immediately and sets its data.  <a href="class_vertex_buffer.html#ac6976394aeb81f532862b3ac2502cc12">More...</a><br /></td></tr>
+<tr class="separator:ac6976394aeb81f532862b3ac2502cc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e4ce6bde5c2f39c8640aa6d66b0a032"><td class="memItemLeft" align="right" valign="top"><a id="a7e4ce6bde5c2f39c8640aa6d66b0a032" name="a7e4ce6bde5c2f39c8640aa6d66b0a032"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &amp;)=delete</td></tr>
 <tr class="separator:a7e4ce6bde5c2f39c8640aa6d66b0a032"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,9 +130,78 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Unbind</b> () const</
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Buffer Object handler - wrapper for the VBO functionality. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/Model/Mesh/Geometry/<a class="el" href="_vertex_buffer_8h_source.html">VertexBuffer.h</a></li>
-<li>src/Application/Sandbox/Model/Mesh/Geometry/VertexBuffer.cpp</li>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a343c8920365b1d9217cb0e87f0dc0094" name="a343c8920365b1d9217cb0e87f0dc0094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a343c8920365b1d9217cb0e87f0dc0094">&#9670;&nbsp;</a></span>VertexBuffer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VertexBuffer::VertexBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The constructor creates VBO, binds it immediately and sets its data. </p>
+<dl class="section warning"><dt>Warning</dt><dd>This constructor creates <b>STATIC</b> vertex buffer object. It's meant to represent single objects or to be used with instancing. </dd></dl>
+
+</div>
+</div>
+<a id="ac6976394aeb81f532862b3ac2502cc12" name="ac6976394aeb81f532862b3ac2502cc12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6976394aeb81f532862b3ac2502cc12">&#9670;&nbsp;</a></span>VertexBuffer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VertexBuffer::VertexBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>vertexSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>maxAmountOfVertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The constructor creates VBO, binds it immediately and sets its data. </p>
+<dl class="section warning"><dt>Warning</dt><dd>This constructor <b>allocates</b> <b>DYNAMIC</b> vertex buffer object. It's meant to be flexible and it's empty! </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/Application/Layer/Sandbox/Model/Mesh/Geometry/<a class="el" href="_vertex_buffer_8h_source.html">VertexBuffer.h</a></li>
+<li>src/Application/Layer/Sandbox/Model/Mesh/Geometry/VertexBuffer.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

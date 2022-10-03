@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -92,31 +92,37 @@ $(document).ready(function(){initNavTree('_application_8h_source.html',''); init
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Core/Log.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Core/Metadata.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Window.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_application.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_application.html">Application</a></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_window.html">Window</a> _window;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _settings;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">size_t</span> _fullscreenWidth{};</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">size_t</span> _fullscreenHeight{};</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;HID/HumanInterfaceDevice.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_application.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="class_application.html">Application</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_window.html">Window</a> _window;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_human_interface_device.html">HumanInterfaceDevice</a> _hid{_window};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="class_metadata.html">Metadata</a> _settings;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> WindowResizeEvent(GLFWwindow*, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> CentralizeWindow() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> Initialize();</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_application.html#a6ce7c23a4ae66fe966bc91d2dc05fd8c">Application</a>(<span class="keyword">const</span> std::string&amp; filenameWithSettings);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_application.html#aaf09cd6cb412086dc039e28cdb059f0d">Run</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="ttc" id="aclass_application_html"><div class="ttname"><a href="class_application.html">Application</a></div><div class="ttdoc">Represents the application context.</div><div class="ttdef"><b>Definition:</b> Application.h:13</div></div>
-<div class="ttc" id="aclass_application_html_a6ce7c23a4ae66fe966bc91d2dc05fd8c"><div class="ttname"><a href="class_application.html#a6ce7c23a4ae66fe966bc91d2dc05fd8c">Application::Application</a></div><div class="ttdeci">Application(const std::string &amp;filenameWithSettings)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Application.cpp:77</div></div>
-<div class="ttc" id="aclass_application_html_aaf09cd6cb412086dc039e28cdb059f0d"><div class="ttname"><a href="class_application.html#aaf09cd6cb412086dc039e28cdb059f0d">Application::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Creates an application and runs it.</div><div class="ttdef"><b>Definition:</b> Application.cpp:86</div></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">size_t</span> _fullscreenWidth{};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">size_t</span> _fullscreenHeight{};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> WindowResizeEvent(GLFWwindow*, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> CentralizeWindow() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> Initialize();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> SetCallbacks();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_application.html#a6ce7c23a4ae66fe966bc91d2dc05fd8c">Application</a>(<span class="keyword">const</span> std::string&amp; filenameWithSettings);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_application.html#aaf09cd6cb412086dc039e28cdb059f0d">Run</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="ttc" id="aclass_application_html"><div class="ttname"><a href="class_application.html">Application</a></div><div class="ttdoc">Represents the application context.</div><div class="ttdef"><b>Definition:</b> Application.h:14</div></div>
+<div class="ttc" id="aclass_application_html_a6ce7c23a4ae66fe966bc91d2dc05fd8c"><div class="ttname"><a href="class_application.html#a6ce7c23a4ae66fe966bc91d2dc05fd8c">Application::Application</a></div><div class="ttdeci">Application(const std::string &amp;filenameWithSettings)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Application.cpp:83</div></div>
+<div class="ttc" id="aclass_application_html_aaf09cd6cb412086dc039e28cdb059f0d"><div class="ttname"><a href="class_application.html#aaf09cd6cb412086dc039e28cdb059f0d">Application::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Creates an application and runs it.</div><div class="ttdef"><b>Definition:</b> Application.cpp:92</div></div>
+<div class="ttc" id="aclass_human_interface_device_html"><div class="ttname"><a href="class_human_interface_device.html">HumanInterfaceDevice</a></div><div class="ttdoc">Handles and defines input devices.</div><div class="ttdef"><b>Definition:</b> HumanInterfaceDevice.h:13</div></div>
 <div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:13</div></div>
 <div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:36</div></div>
 <div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:14</div></div>

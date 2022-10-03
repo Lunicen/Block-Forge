@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/World/Biomes/BiomeProvider.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/World/Biomes/BiomeProvider.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('_biome_provider_8h_source.html',''); i
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Biome.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Core/Metadata.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Sandbox/Noise/Noise2D.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Noise/Noise2D.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_biome_provider.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_biome_provider.html">BiomeProvider</a></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('_biome_provider_8h_source.html',''); i
 <div class="ttc" id="aclass_biome_provider_html_a02c7ea213e7683b6ebfb562d72d4291a"><div class="ttname"><a href="class_biome_provider.html#a02c7ea213e7683b6ebfb562d72d4291a">BiomeProvider::GetPlacerNoise</a></div><div class="ttdeci">Noise2D GetPlacerNoise(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get noise that is used by placer that represents world map.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:9</div></div>
 <div class="ttc" id="aclass_biome_provider_html_a4dfc26ff5fc64a3ea3aff568f3eeff51"><div class="ttname"><a href="class_biome_provider.html#a4dfc26ff5fc64a3ea3aff568f3eeff51">BiomeProvider::GetBiomes</a></div><div class="ttdeci">std::vector&lt; Biome &gt; GetBiomes(int seed, const std::string &amp;biomesType=&quot;default&quot;)</div><div class="ttdoc">Get all the biomes specified in the file with a particular type.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:19</div></div>
 <div class="ttc" id="aclass_biome_provider_html_af4337725e58fdfec75912a5a0c4f3638"><div class="ttname"><a href="class_biome_provider.html#af4337725e58fdfec75912a5a0c4f3638">BiomeProvider::BiomeProvider</a></div><div class="ttdeci">BiomeProvider(const std::string &amp;filenameWithBiomeData, BlockMap &amp;blockMap)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BiomeProvider.cpp:3</div></div>
-<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:8</div></div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:9</div></div>
 <div class="ttc" id="aclass_metadata_html"><div class="ttname"><a href="class_metadata.html">Metadata</a></div><div class="ttdoc">Handles JSON files and manipulates them.</div><div class="ttdef"><b>Definition:</b> Metadata.h:14</div></div>
 <div class="ttc" id="aclass_noise2_d_html"><div class="ttname"><a href="class_noise2_d.html">Noise2D</a></div><div class="ttdoc">Used for gathering data from the defined 2D noise.</div><div class="ttdef"><b>Definition:</b> Noise2D.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('_biome_provider_8h_source.html',''); i
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_bdf89298e56d9048405f54cce2c00b1e.html">World</a></li><li class="navelem"><a class="el" href="dir_25dc090e31f2dfcc4f4cd99d02f596d4.html">Biomes</a></li><li class="navelem"><b>BiomeProvider.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_1186b7adf5317977b19ddb4694ebd609.html">World</a></li><li class="navelem"><a class="el" href="dir_9980929ca959b25fc1cbe5f0e0d6bebe.html">Biomes</a></li><li class="navelem"><b>BiomeProvider.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,86 +99,46 @@ $(document).ready(function(){initNavTree('class_block_face_model.html',''); init
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a927617cacc5ca2e67bda6f274486b060"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_face_model.html#a927617cacc5ca2e67bda6f274486b060">BlockFaceModel</a> (std::unique_ptr&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;mesh, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; texture)</td></tr>
-<tr class="memdesc:a927617cacc5ca2e67bda6f274486b060"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_block_face_model.html#a927617cacc5ca2e67bda6f274486b060">More...</a><br /></td></tr>
-<tr class="separator:a927617cacc5ca2e67bda6f274486b060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41bd708d264643795212e40bd4ea9db0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_face_model.html#a41bd708d264643795212e40bd4ea9db0">Draw</a> (const Position &amp;origin, const <a class="el" href="class_camera.html">Camera</a> &amp;camera) const</td></tr>
-<tr class="memdesc:a41bd708d264643795212e40bd4ea9db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the face of a block.  <a href="class_block_face_model.html#a41bd708d264643795212e40bd4ea9db0">More...</a><br /></td></tr>
-<tr class="separator:a41bd708d264643795212e40bd4ea9db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae3f80093b63331a4c264f67e53bce1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">BlockFaceModel</a> (const std::array&lt; Point, VerticesInQuad &gt; &amp;uvTextureCoordinates)</td></tr>
+<tr class="memdesc:a8ae3f80093b63331a4c264f67e53bce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">More...</a><br /></td></tr>
+<tr class="separator:a8ae3f80093b63331a4c264f67e53bce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f65c758cc67c23b091fc3f49a14f61a"><td class="memItemLeft" align="right" valign="top"><a id="a9f65c758cc67c23b091fc3f49a14f61a" name="a9f65c758cc67c23b091fc3f49a14f61a"></a>
+std::array&lt; Point, VerticesInQuad &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetUvCoordinates</b> ()</td></tr>
+<tr class="memdesc:a9f65c758cc67c23b091fc3f49a14f61a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the uv coordinates associated with the face model. <br /></td></tr>
+<tr class="separator:a9f65c758cc67c23b091fc3f49a14f61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Represents face of a. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_block_model.html" title="Represents a graphical model of a block.">BlockModel</a>. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a927617cacc5ca2e67bda6f274486b060" name="a927617cacc5ca2e67bda6f274486b060"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a927617cacc5ca2e67bda6f274486b060">&#9670;&nbsp;</a></span>BlockFaceModel()</h2>
+<a id="a8ae3f80093b63331a4c264f67e53bce1" name="a8ae3f80093b63331a4c264f67e53bce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae3f80093b63331a4c264f67e53bce1">&#9670;&nbsp;</a></span>BlockFaceModel()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">BlockFaceModel::BlockFaceModel </td>
           <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::array&lt; Point, VerticesInQuad &gt; &amp;&#160;</td>
+          <td class="paramname"><em>uvTextureCoordinates</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td>
-          <td class="paramname"><em>texture</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>The constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mesh</td><td>- The mesh of the model. </td></tr>
-    <tr><td class="paramname">texture</td><td>- The texture that the model is covered with. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a41bd708d264643795212e40bd4ea9db0" name="a41bd708d264643795212e40bd4ea9db0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41bd708d264643795212e40bd4ea9db0">&#9670;&nbsp;</a></span>Draw()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void BlockFaceModel::Draw </td>
-          <td>(</td>
-          <td class="paramtype">const Position &amp;&#160;</td>
-          <td class="paramname"><em>origin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
-          <td class="paramname"><em>camera</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Draws the face of a block. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">origin</td><td>- A position in the world to place the model. </td></tr>
-    <tr><td class="paramname">camera</td><td>- It is used to bind a shader to see the drawn model. </td></tr>
+    <tr><td class="paramname">uvTextureCoordinates</td><td>- UV texture coordinates. </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,8 +146,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/Model/<a class="el" href="_block_face_model_8h_source.html">BlockFaceModel.h</a></li>
-<li>src/Application/Sandbox/Model/BlockFaceModel.cpp</li>
+<li>src/Application/Layer/Sandbox/Model/<a class="el" href="_block_face_model_8h_source.html">BlockFaceModel.h</a></li>
+<li>src/Application/Layer/Sandbox/Model/BlockFaceModel.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

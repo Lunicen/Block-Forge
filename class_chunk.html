@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,24 +99,22 @@ $(document).ready(function(){initNavTree('class_chunk.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">Chunk</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, <a class="el" href="class_chunk_blocks.html">ChunkBlocks</a> blocks, <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
-<tr class="memdesc:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk.html#ac0d3cbccbf2f8c5eca6520573c95ec9c">More...</a><br /></td></tr>
-<tr class="separator:ac0d3cbccbf2f8c5eca6520573c95ec9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3498d0c9e6cd5a93fcf70da77a65ef82"><td class="memItemLeft" align="right" valign="top"><a id="a3498d0c9e6cd5a93fcf70da77a65ef82" name="a3498d0c9e6cd5a93fcf70da77a65ef82"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td></tr>
-<tr class="memdesc:a3498d0c9e6cd5a93fcf70da77a65ef82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the chunk in the world. <br /></td></tr>
-<tr class="separator:a3498d0c9e6cd5a93fcf70da77a65ef82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2568946ba89ed1ed7d1d0b518396820"><td class="memItemLeft" align="right" valign="top"><a id="aa2568946ba89ed1ed7d1d0b518396820" name="aa2568946ba89ed1ed7d1d0b518396820"></a>
-glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> () const</td></tr>
-<tr class="memdesc:aa2568946ba89ed1ed7d1d0b518396820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <b>actual</b> origin of the chunk. <br /></td></tr>
-<tr class="separator:aa2568946ba89ed1ed7d1d0b518396820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06956544975958b89ff190699b856ebd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a> (const size_t &amp;size, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; blocksTexture, <a class="el" href="class_shader.html">Shader</a> &amp;shader)</td></tr>
+<tr class="memdesc:a06956544975958b89ff190699b856ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk.html#a06956544975958b89ff190699b856ebd">More...</a><br /></td></tr>
+<tr class="separator:a06956544975958b89ff190699b856ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692686f463beeccb594e33e7894000c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#a692686f463beeccb594e33e7894000c1">Chunk</a> (ChunkBlocks blocks, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; blocksTexture, const size_t &amp;size, <a class="el" href="class_shader.html">Shader</a> &amp;shader)</td></tr>
+<tr class="memdesc:a692686f463beeccb594e33e7894000c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk.html#a692686f463beeccb594e33e7894000c1">More...</a><br /></td></tr>
+<tr class="separator:a692686f463beeccb594e33e7894000c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a904bf1fb0e5c0b893003a3265be35443"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Draw</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera) const</td></tr>
+<tr class="memdesc:a904bf1fb0e5c0b893003a3265be35443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the chunk in the world.  <a href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">More...</a><br /></td></tr>
+<tr class="separator:a904bf1fb0e5c0b893003a3265be35443"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Represents a single chunk placed in the world. </p>
 <p >This class handles managing the generated chunk at the certain position. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac0d3cbccbf2f8c5eca6520573c95ec9c" name="ac0d3cbccbf2f8c5eca6520573c95ec9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0d3cbccbf2f8c5eca6520573c95ec9c">&#9670;&nbsp;</a></span>Chunk()</h2>
+<a id="a06956544975958b89ff190699b856ebd" name="a06956544975958b89ff190699b856ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06956544975958b89ff190699b856ebd">&#9670;&nbsp;</a></span>Chunk() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,20 +125,78 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
         <tr>
           <td class="memname">Chunk::Chunk </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;&#160;</td>
-          <td class="paramname"><em>frame</em>, </td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_chunk_blocks.html">ChunkBlocks</a>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td>
+          <td class="paramname"><em>blocksTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
+          <td class="paramname"><em>shader</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>- Size of the chunk edge. </td></tr>
+    <tr><td class="paramname">blocksTexture</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> atlas of the blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">shader</td><td>- Reference to the blocks shader. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a692686f463beeccb594e33e7894000c1" name="a692686f463beeccb594e33e7894000c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692686f463beeccb594e33e7894000c1">&#9670;&nbsp;</a></span>Chunk() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Chunk::Chunk </td>
+          <td>(</td>
+          <td class="paramtype">ChunkBlocks&#160;</td>
           <td class="paramname"><em>blocks</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
-          <td class="paramname"><em>camera</em>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td>
+          <td class="paramname"><em>blocksTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
+          <td class="paramname"><em>shader</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -158,19 +214,46 @@ glm::ivec3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> (
 <p>The constructor. </p>
 <p >The chunk on initialization knows it's position, the structure to render (blocks) and the player position for proper displaying blocks while the player is moving. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frame</td><td>- the frame of the chunk. </td></tr>
-    <tr><td class="paramname">blocks</td><td>- the blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">blocks</td><td>- The blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">blocksTexture</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> atlas of the blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">size</td><td>- Size of the chunks edge. </td></tr>
+    <tr><td class="paramname">shader</td><td>- Reference to the blocks shader. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a904bf1fb0e5c0b893003a3265be35443" name="a904bf1fb0e5c0b893003a3265be35443"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a904bf1fb0e5c0b893003a3265be35443">&#9670;&nbsp;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Chunk::Draw </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draws the chunk in the world. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">camera</td><td>- reference to the camera so that the blocks could be seen. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section attention"><dt>Attention</dt><dd>Do <b>NOT</b> give the exact origin position You want to have a chunk placed. In the constructor it's implemented to place them respectively to the chunk size. If the defined chunk size is 16 and the origin is (1, 1, 1) the real chunk origin will be (16, 16, 16). </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/World/Chunks/Structure/<a class="el" href="_chunk_8h_source.html">Chunk.h</a></li>
-<li>src/Application/Sandbox/World/Chunks/Structure/Chunk.cpp</li>
+<li>src/Application/Layer/Sandbox/World/Chunks/Structure/<a class="el" href="_chunk_8h_source.html">Chunk.h</a></li>
+<li>src/Application/Layer/Sandbox/World/Chunks/Structure/Chunk.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

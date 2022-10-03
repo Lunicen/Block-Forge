@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/Model/BlockFaceModel.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/Model/BlockFaceModel.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -89,31 +89,27 @@ $(document).ready(function(){initNavTree('_block_face_model_8h_source.html','');
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Mesh/Mesh.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Mesh/Mesh.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_block_face_model.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_face_model.html">BlockFaceModel</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    std::unique_ptr&lt;Mesh&gt; _mesh;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    std::shared_ptr&lt;Texture&gt; _texture;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="class_block_face_model.html#a927617cacc5ca2e67bda6f274486b060">BlockFaceModel</a>(std::unique_ptr&lt;Mesh&gt;&amp; mesh, std::shared_ptr&lt;Texture&gt; texture);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_block_face_model.html#a41bd708d264643795212e40bd4ea9db0">Draw</a>(<span class="keyword">const</span> Position&amp; origin, <span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
-<div class="ttc" id="aclass_block_face_model_html"><div class="ttname"><a href="class_block_face_model.html">BlockFaceModel</a></div><div class="ttdoc">Represents face of a.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.h:9</div></div>
-<div class="ttc" id="aclass_block_face_model_html_a41bd708d264643795212e40bd4ea9db0"><div class="ttname"><a href="class_block_face_model.html#a41bd708d264643795212e40bd4ea9db0">BlockFaceModel::Draw</a></div><div class="ttdeci">void Draw(const Position &amp;origin, const Camera &amp;camera) const</div><div class="ttdoc">Draws the face of a block.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:9</div></div>
-<div class="ttc" id="aclass_block_face_model_html_a927617cacc5ca2e67bda6f274486b060"><div class="ttname"><a href="class_block_face_model.html#a927617cacc5ca2e67bda6f274486b060">BlockFaceModel::BlockFaceModel</a></div><div class="ttdeci">BlockFaceModel(std::unique_ptr&lt; Mesh &gt; &amp;mesh, std::shared_ptr&lt; Texture &gt; texture)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:3</div></div>
-<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_block_face_model.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_face_model.html">BlockFaceModel</a></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    std::array&lt;Point, VerticesInQuad&gt; _textureCoordinates{};</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">BlockFaceModel</a>(<span class="keyword">const</span> std::array&lt;Point, VerticesInQuad&gt;&amp; uvTextureCoordinates);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::array&lt;Point, VerticesInQuad&gt;&amp; <a class="code hl_function" href="class_block_face_model.html#a9f65c758cc67c23b091fc3f49a14f61a">GetUvCoordinates</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+<div class="ttc" id="aclass_block_face_model_html"><div class="ttname"><a href="class_block_face_model.html">BlockFaceModel</a></div><div class="ttdoc">Represents face of a.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.h:7</div></div>
+<div class="ttc" id="aclass_block_face_model_html_a8ae3f80093b63331a4c264f67e53bce1"><div class="ttname"><a href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">BlockFaceModel::BlockFaceModel</a></div><div class="ttdeci">BlockFaceModel(const std::array&lt; Point, VerticesInQuad &gt; &amp;uvTextureCoordinates)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:3</div></div>
+<div class="ttc" id="aclass_block_face_model_html_a9f65c758cc67c23b091fc3f49a14f61a"><div class="ttname"><a href="class_block_face_model.html#a9f65c758cc67c23b091fc3f49a14f61a">BlockFaceModel::GetUvCoordinates</a></div><div class="ttdeci">std::array&lt; Point, VerticesInQuad &gt; &amp; GetUvCoordinates()</div><div class="ttdoc">Returns the uv coordinates associated with the face model.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_c5a0c248c3e40fde9ca7469a3ac2896b.html">Model</a></li><li class="navelem"><b>BlockFaceModel.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_07628cb095a0d6ed7f30fd07a55acd9e.html">Model</a></li><li class="navelem"><b>BlockFaceModel.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

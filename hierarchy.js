@@ -12,8 +12,9 @@ var hierarchy =
     [ "BlockVisibility", "struct_block_visibility.html", null ],
     [ "Camera", "class_camera.html", null ],
     [ "Chunk", "class_chunk.html", null ],
-    [ "ChunkBlocks", "class_chunk_blocks.html", null ],
+    [ "ChunkBuilder", "class_chunk_builder.html", null ],
     [ "ChunkFrame", "class_chunk_frame.html", null ],
+    [ "ChunkMesh", "class_chunk_mesh.html", null ],
     [ "ChunkPlacer", "class_chunk_placer.html", null ],
     [ "ChunkRenderer", "class_chunk_renderer.html", null ],
     [ "ElementBuffer", "class_element_buffer.html", null ],
@@ -35,21 +36,30 @@ var hierarchy =
     [ "FPSCounter", "class_f_p_s_counter.html", null ],
     [ "std::hash< Position >", "structstd_1_1hash_3_01_position_01_4.html", null ],
     [ "HumanInterfaceDevice", "class_human_interface_device.html", null ],
+    [ "Layer", "class_layer.html", [
+      [ "PauseMenuLayer", "class_pause_menu_layer.html", null ],
+      [ "SandboxLayer", "class_sandbox_layer.html", null ]
+    ] ],
+    [ "LayerStack", "class_layer_stack.html", [
+      [ "SandboxStack", "class_sandbox_stack.html", null ]
+    ] ],
     [ "Log", "class_log.html", null ],
     [ "MainMenu", "class_main_menu.html", null ],
-    [ "Mesh", "class_mesh.html", null ],
+    [ "Mesh", "class_mesh.html", [
+      [ "DynamicMesh", "class_dynamic_mesh.html", null ],
+      [ "StaticMesh", "class_static_mesh.html", null ]
+    ] ],
     [ "Noise", "class_noise.html", [
       [ "Noise2D", "class_noise2_d.html", null ],
       [ "Noise3D", "class_noise3_d.html", [
         [ "Biome", "class_biome.html", null ]
       ] ]
     ] ],
-    [ "RenderView", "class_render_view.html", [
-      [ "CubeView", "class_cube_view.html", null ],
-      [ "DiamondView", "class_diamond_view.html", null ],
-      [ "TiltedCube", "class_tilted_cube.html", null ]
+    [ "Order", "class_order.html", [
+      [ "CubeOrder", "class_cube_order.html", null ],
+      [ "DiamondOrder", "class_diamond_order.html", null ],
+      [ "TiltedCubeOrder", "class_tilted_cube_order.html", null ]
     ] ],
-    [ "Sandbox", "class_sandbox.html", null ],
     [ "Texture", "class_texture.html", [
       [ "TextureAtlas", "class_texture_atlas.html", null ]
     ] ],

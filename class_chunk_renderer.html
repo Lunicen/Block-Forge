@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,94 +99,49 @@ $(document).ready(function(){initNavTree('class_chunk_renderer.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aca9bb11a76d86f22eac3b378c3ffa024"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_renderer.html#aca9bb11a76d86f22eac3b378c3ffa024">ChunkRenderer</a> (<a class="el" href="class_world_generator.html">WorldGenerator</a> &amp;generator, std::unique_ptr&lt; <a class="el" href="class_render_view.html">RenderView</a> &gt; &amp;renderView, <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
-<tr class="memdesc:aca9bb11a76d86f22eac3b378c3ffa024"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk_renderer.html#aca9bb11a76d86f22eac3b378c3ffa024">More...</a><br /></td></tr>
-<tr class="separator:aca9bb11a76d86f22eac3b378c3ffa024"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4256098205e544df8746c9263928ad4"><td class="memItemLeft" align="right" valign="top"><a id="ac4256098205e544df8746c9263928ad4" name="ac4256098205e544df8746c9263928ad4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> ()</td></tr>
-<tr class="memdesc:ac4256098205e544df8746c9263928ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders loaded chunks. <br /></td></tr>
-<tr class="separator:ac4256098205e544df8746c9263928ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a761b21f0ec71c4fc21b1276e1b8a99d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_renderer.html#a761b21f0ec71c4fc21b1276e1b8a99d0">SetRenderView</a> (std::unique_ptr&lt; <a class="el" href="class_render_view.html">RenderView</a> &gt; &amp;renderView)</td></tr>
-<tr class="memdesc:a761b21f0ec71c4fc21b1276e1b8a99d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the render view.  <a href="class_chunk_renderer.html#a761b21f0ec71c4fc21b1276e1b8a99d0">More...</a><br /></td></tr>
-<tr class="separator:a761b21f0ec71c4fc21b1276e1b8a99d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a527ccf2fa7884dddb3bbd492c50925"><td class="memItemLeft" align="right" valign="top"><a id="a1a527ccf2fa7884dddb3bbd492c50925" name="a1a527ccf2fa7884dddb3bbd492c50925"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ChunkRenderer</b> ()</td></tr>
+<tr class="memdesc:a1a527ccf2fa7884dddb3bbd492c50925"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor. <br /></td></tr>
+<tr class="separator:a1a527ccf2fa7884dddb3bbd492c50925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56b7983a75565256d76d091e69dd59d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_renderer.html#a56b7983a75565256d76d091e69dd59d9">Render</a> (const std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt; &gt; &amp;chunks, const <a class="el" href="class_camera.html">Camera</a> &amp;camera) const</td></tr>
+<tr class="memdesc:a56b7983a75565256d76d091e69dd59d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders loaded chunks.  <a href="class_chunk_renderer.html#a56b7983a75565256d76d091e69dd59d9">More...</a><br /></td></tr>
+<tr class="separator:a56b7983a75565256d76d091e69dd59d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Supports rendering chunks. </p>
-<p >This class is responsible for rendering chunks around the camera by using the algorithms specified in the <a class="el" href="class_render_view.html">RenderView</a> </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aca9bb11a76d86f22eac3b378c3ffa024" name="aca9bb11a76d86f22eac3b378c3ffa024"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca9bb11a76d86f22eac3b378c3ffa024">&#9670;&nbsp;</a></span>ChunkRenderer()</h2>
+<p >This class is responsible for rendering chunks around the camera by using the algorithms specified in the </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_order.html" title="The base class for creating placing order types.">Order</a>. </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a56b7983a75565256d76d091e69dd59d9" name="a56b7983a75565256d76d091e69dd59d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b7983a75565256d76d091e69dd59d9">&#9670;&nbsp;</a></span>Render()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ChunkRenderer::ChunkRenderer </td>
+          <td class="memname">void ChunkRenderer::Render </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_world_generator.html">WorldGenerator</a> &amp;&#160;</td>
-          <td class="paramname"><em>generator</em>, </td>
+          <td class="paramtype">const std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>chunks</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="class_render_view.html">RenderView</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>renderView</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
           <td class="paramname"><em>camera</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The constructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">generator</td><td>- world generator for chunk building. </td></tr>
-    <tr><td class="paramname">renderView</td><td>- to specify which chunks to render. </td></tr>
-    <tr><td class="paramname">camera</td><td>- shares a reference point around which the chunks are rendered. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a761b21f0ec71c4fc21b1276e1b8a99d0" name="a761b21f0ec71c4fc21b1276e1b8a99d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a761b21f0ec71c4fc21b1276e1b8a99d0">&#9670;&nbsp;</a></span>SetRenderView()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ChunkRenderer::SetRenderView </td>
-          <td>(</td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="class_render_view.html">RenderView</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>renderView</em></td><td>)</td>
-          <td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the render view. </p>
+<p>Renders loaded chunks. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">renderView</td><td>- render view. </td></tr>
+    <tr><td class="paramname">camera</td><td>- A reference to the camera around which the objects are rendered. </td></tr>
+    <tr><td class="paramname">chunks</td><td>- Chunks to render with their positions on the map. </td></tr>
   </table>
   </dd>
 </dl>
@@ -194,8 +149,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> ()</td></t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/World/Chunks/Rendring/<a class="el" href="_chunk_renderer_8h_source.html">ChunkRenderer.h</a></li>
-<li>src/Application/Sandbox/World/Chunks/Rendring/ChunkRenderer.cpp</li>
+<li>src/Application/Layer/Sandbox/World/Chunks/<a class="el" href="_chunk_renderer_8h_source.html">ChunkRenderer.h</a></li>
+<li>src/Application/Layer/Sandbox/World/Chunks/ChunkRenderer.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

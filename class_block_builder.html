@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -100,75 +100,15 @@ $(document).ready(function(){initNavTree('class_block_builder.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7adcda5bde1ba522dcc5de9e492520de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_builder.html#a7adcda5bde1ba522dcc5de9e492520de">BlockBuilder</a> (const std::string &amp;textureAtlasFilename, size_t spriteSize, std::vector&lt; TriangleIndexes &gt; &amp;blockIndices, <a class="el" href="class_shader.html">Shader</a> &amp;blockShader)</td></tr>
-<tr class="separator:a7adcda5bde1ba522dcc5de9e492520de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafa3be709c1e94054da06089af36627c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block_model.html">BlockModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_builder.html#aafa3be709c1e94054da06089af36627c">Build</a> (const JsonData &amp;blockData)</td></tr>
-<tr class="memdesc:aafa3be709c1e94054da06089af36627c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds block based on the data.  <a href="class_block_builder.html#aafa3be709c1e94054da06089af36627c">More...</a><br /></td></tr>
-<tr class="separator:aafa3be709c1e94054da06089af36627c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0307f3cfd2612f47e10d80fddc8133f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_block_model.html">BlockModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_builder.html#a0307f3cfd2612f47e10d80fddc8133f5">Build</a> (const JsonData &amp;blockData, <a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;textureAtlas) const</td></tr>
+<tr class="memdesc:a0307f3cfd2612f47e10d80fddc8133f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds block based on the data.  <a href="class_block_builder.html#a0307f3cfd2612f47e10d80fddc8133f5">More...</a><br /></td></tr>
+<tr class="separator:a0307f3cfd2612f47e10d80fddc8133f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A factory that builds and outputs blocks based on their metadata. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7adcda5bde1ba522dcc5de9e492520de" name="a7adcda5bde1ba522dcc5de9e492520de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7adcda5bde1ba522dcc5de9e492520de">&#9670;&nbsp;</a></span>BlockBuilder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">BlockBuilder::BlockBuilder </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>textureAtlasFilename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>spriteSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; TriangleIndexes &gt; &amp;&#160;</td>
-          <td class="paramname"><em>blockIndices</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
-          <td class="paramname"><em>blockShader</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >The constructor. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">textureAtlasFilename</td><td>- Path of the file containing the texture atlas of blocks. </td></tr>
-    <tr><td class="paramname">spriteSize</td><td>- The size of the sprite. </td></tr>
-    <tr><td class="paramname">blockIndices</td><td>- Indices of a block (for optimization purposes). </td></tr>
-    <tr><td class="paramname">blockShader</td><td>- <a class="el" href="class_shader.html" title="Handles shader programs.">Shader</a> of a block (for optimization purposes). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="aafa3be709c1e94054da06089af36627c" name="aafa3be709c1e94054da06089af36627c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafa3be709c1e94054da06089af36627c">&#9670;&nbsp;</a></span>Build()</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0307f3cfd2612f47e10d80fddc8133f5" name="a0307f3cfd2612f47e10d80fddc8133f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0307f3cfd2612f47e10d80fddc8133f5">&#9670;&nbsp;</a></span>Build()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,8 +117,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="class_block_model.html">BlockModel</a> BlockBuilder::Build </td>
           <td>(</td>
           <td class="paramtype">const JsonData &amp;&#160;</td>
-          <td class="paramname"><em>blockData</em></td><td>)</td>
+          <td class="paramname"><em>blockData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;&#160;</td>
+          <td class="paramname"><em>textureAtlas</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -186,7 +136,8 @@ Public Member Functions</h2></td></tr>
 <p>Builds block based on the data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">blockData</td><td>- metadata of the block to be built. </td></tr>
+    <tr><td class="paramname">blockData</td><td>- <a class="el" href="class_metadata.html" title="Handles JSON files and manipulates them.">Metadata</a> of the block to be built. </td></tr>
+    <tr><td class="paramname">textureAtlas</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> atlas related to the block data. </td></tr>
   </table>
   </dd>
 </dl>
@@ -194,8 +145,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/World/Blocks/<a class="el" href="_block_builder_8h_source.html">BlockBuilder.h</a></li>
-<li>src/Application/Sandbox/World/Blocks/BlockBuilder.cpp</li>
+<li>src/Application/Layer/Sandbox/World/Blocks/<a class="el" href="_block_builder_8h_source.html">BlockBuilder.h</a></li>
+<li>src/Application/Layer/Sandbox/World/Blocks/BlockBuilder.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

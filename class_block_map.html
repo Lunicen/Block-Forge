@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -99,10 +99,10 @@ $(document).ready(function(){initNavTree('class_block_map.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a16005dc419ee3d14c1921cf146949ad5"><td class="memItemLeft" align="right" valign="top"><a id="a16005dc419ee3d14c1921cf146949ad5" name="a16005dc419ee3d14c1921cf146949ad5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BlockMap</b> (const <a class="el" href="class_block_map.html">BlockMap</a> &amp;)=default</td></tr>
-<tr class="memdesc:a16005dc419ee3d14c1921cf146949ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. <br /></td></tr>
-<tr class="separator:a16005dc419ee3d14c1921cf146949ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114d073fc1988ddc45682b2cf48bda5a"><td class="memItemLeft" align="right" valign="top"><a id="a114d073fc1988ddc45682b2cf48bda5a" name="a114d073fc1988ddc45682b2cf48bda5a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BlockMap</b> (const <a class="el" href="class_block_map.html">BlockMap</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a114d073fc1988ddc45682b2cf48bda5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. <br /></td></tr>
+<tr class="separator:a114d073fc1988ddc45682b2cf48bda5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9953cc5edbe5f5d267c6878a0d178db9"><td class="memItemLeft" align="right" valign="top"><a id="a9953cc5edbe5f5d267c6878a0d178db9" name="a9953cc5edbe5f5d267c6878a0d178db9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BlockMap</b> (<a class="el" href="class_block_map.html">BlockMap</a> &amp;&amp;) noexcept=default</td></tr>
 <tr class="memdesc:a9953cc5edbe5f5d267c6878a0d178db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor. <br /></td></tr>
@@ -121,6 +121,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_map.html#ac4d6c9f5c2205d4b3d01706b00d9d605">Get</a> (const std::string &amp;blockName)</td></tr>
 <tr class="memdesc:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the block model based on it's name.  <a href="class_block_map.html#ac4d6c9f5c2205d4b3d01706b00d9d605">More...</a><br /></td></tr>
 <tr class="separator:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a396f604fce472caed3a0c36ab7103d51"><td class="memItemLeft" align="right" valign="top"><a id="a396f604fce472caed3a0c36ab7103d51" name="a396f604fce472caed3a0c36ab7103d51"></a>
+std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const std::string &amp;blockName)</td></tr>
+<tr class="memdesc:a396f604fce472caed3a0c36ab7103d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">An operator that allows to get the block by its key in a convenient way. <br /></td></tr>
+<tr class="separator:a396f604fce472caed3a0c36ab7103d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab467aad7d5b102f01f06f471442899d4"><td class="memItemLeft" align="right" valign="top"><a id="ab467aad7d5b102f01f06f471442899d4" name="ab467aad7d5b102f01f06f471442899d4"></a>
+std::shared_ptr&lt; <a class="el" href="class_texture_atlas.html">TextureAtlas</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetBlocksTexture</b> ()</td></tr>
+<tr class="memdesc:ab467aad7d5b102f01f06f471442899d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the texture atlas that is used in this map. <br /></td></tr>
+<tr class="separator:ab467aad7d5b102f01f06f471442899d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2847a62dd74d5ba3b9b3793c55add531"><td class="memItemLeft" align="right" valign="top"><a id="a2847a62dd74d5ba3b9b3793c55add531" name="a2847a62dd74d5ba3b9b3793c55add531"></a>
+<a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetBlocksShader</b> ()</td></tr>
+<tr class="memdesc:a2847a62dd74d5ba3b9b3793c55add531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the blocks shader. <br /></td></tr>
+<tr class="separator:a2847a62dd74d5ba3b9b3793c55add531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Represents a map of the blocks that could be used to place in the chunks. </p>
@@ -195,7 +207,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/Application/Sandbox/World/Blocks/<a class="el" href="_block_map_8h_source.html">BlockMap.h</a></li>
+<li>src/Application/Layer/Sandbox/World/Blocks/<a class="el" href="_block_map_8h_source.html">BlockMap.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

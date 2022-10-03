@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/World/WorldGenerator.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/World/WorldGenerator.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -104,20 +104,22 @@ $(document).ready(function(){initNavTree('_world_generator_8h_source.html',''); 
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_world_generator.html#ab1a18e522393256a82058f44d9d9f296">WorldGenerator</a>(<span class="keywordtype">int</span> seed);</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23">PaintChunk</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a>&amp; frame, <a class="code hl_class" href="class_chunk_blocks.html">ChunkBlocks</a>&amp; blocks) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
-<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:8</div></div>
-<div class="ttc" id="aclass_chunk_blocks_html"><div class="ttname"><a href="class_chunk_blocks.html">ChunkBlocks</a></div><div class="ttdoc">A structure that represents the body of typical chunk. Blocks and their visibility.</div><div class="ttdef"><b>Definition:</b> ChunkBlocks.h:39</div></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23">PaintChunk</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a>&amp; frame, ChunkBlocks&amp; blocks) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; <a class="code hl_function" href="class_world_generator.html#aa887acd303c5e1fb87da781c6e8d1365">GetBlockMap</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:9</div></div>
 <div class="ttc" id="aclass_chunk_frame_html"><div class="ttname"><a href="class_chunk_frame.html">ChunkFrame</a></div><div class="ttdoc">A structure that represents the frame of chunk. It's location and size.</div><div class="ttdef"><b>Definition:</b> ChunkFrame.h:7</div></div>
 <div class="ttc" id="aclass_world_generator_html"><div class="ttname"><a href="class_world_generator.html">WorldGenerator</a></div><div class="ttdoc">Handles generating the world.</div><div class="ttdef"><b>Definition:</b> WorldGenerator.h:9</div></div>
 <div class="ttc" id="aclass_world_generator_html_a56de4e1e40c7b3cf32dd56607d2b4a23"><div class="ttname"><a href="class_world_generator.html#a56de4e1e40c7b3cf32dd56607d2b4a23">WorldGenerator::PaintChunk</a></div><div class="ttdeci">void PaintChunk(const ChunkFrame &amp;frame, ChunkBlocks &amp;blocks) const</div><div class="ttdoc">Adapts chunk at specified origin, according to the world terrain noise.</div><div class="ttdef"><b>Definition:</b> WorldGenerator.cpp:14</div></div>
+<div class="ttc" id="aclass_world_generator_html_aa887acd303c5e1fb87da781c6e8d1365"><div class="ttname"><a href="class_world_generator.html#aa887acd303c5e1fb87da781c6e8d1365">WorldGenerator::GetBlockMap</a></div><div class="ttdeci">BlockMap &amp; GetBlockMap()</div><div class="ttdoc">Returns the map of blocks used by this generator.</div><div class="ttdef"><b>Definition:</b> WorldGenerator.cpp:20</div></div>
 <div class="ttc" id="aclass_world_generator_html_ab1a18e522393256a82058f44d9d9f296"><div class="ttname"><a href="class_world_generator.html#ab1a18e522393256a82058f44d9d9f296">WorldGenerator::WorldGenerator</a></div><div class="ttdeci">WorldGenerator(int seed)</div><div class="ttdef"><b>Definition:</b> WorldGenerator.cpp:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_bdf89298e56d9048405f54cce2c00b1e.html">World</a></li><li class="navelem"><b>WorldGenerator.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_1186b7adf5317977b19ddb4694ebd609.html">World</a></li><li class="navelem"><b>WorldGenerator.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

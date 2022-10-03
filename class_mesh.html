@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -92,116 +92,32 @@ $(document).ready(function(){initNavTree('class_mesh.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a.  
+<p>The interface for the classes which purpose is to create mesh for the models.  
  <a href="class_mesh.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_mesh_8h_source.html">Mesh.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Mesh:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mesh.png" usemap="#Mesh_map" alt=""/>
+  <map id="Mesh_map" name="Mesh_map">
+<area href="class_dynamic_mesh.html" title="Represents a dynamic mesh of a Model." alt="DynamicMesh" shape="rect" coords="0,56,92,80"/>
+<area href="class_static_mesh.html" title="Represents a static mesh of a Model." alt="StaticMesh" shape="rect" coords="102,56,194,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afc93402348888a39e22b2aeded8f89f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#afc93402348888a39e22b2aeded8f89f6">Mesh</a> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices, const std::vector&lt; TriangleIndexes &gt; &amp;indices, <a class="el" href="class_shader.html">Shader</a> &amp;shader)</td></tr>
-<tr class="memdesc:afc93402348888a39e22b2aeded8f89f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_mesh.html#afc93402348888a39e22b2aeded8f89f6">More...</a><br /></td></tr>
-<tr class="separator:afc93402348888a39e22b2aeded8f89f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafca754355cca7132b530ad00165a7eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#aafca754355cca7132b530ad00165a7eb">Draw</a> (const Position &amp;origin, const <a class="el" href="class_texture.html">Texture</a> &amp;texture, const <a class="el" href="class_camera.html">Camera</a> &amp;camera) const</td></tr>
-<tr class="memdesc:aafca754355cca7132b530ad00165a7eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the mesh.  <a href="class_mesh.html#aafca754355cca7132b530ad00165a7eb">More...</a><br /></td></tr>
-<tr class="separator:aafca754355cca7132b530ad00165a7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0deff89bbca21633153d12fb9eef4ba4"><td class="memItemLeft" align="right" valign="top"><a id="a0deff89bbca21633153d12fb9eef4ba4" name="a0deff89bbca21633153d12fb9eef4ba4"></a>
+<a class="el" href="class_vertex_array.html">VertexArray</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetVao</b> ()</td></tr>
+<tr class="memdesc:a0deff89bbca21633153d12fb9eef4ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns mesh <a class="el" href="struct_vertex.html" title="Represent a single vertex that is used by the shader.">Vertex</a> Array Object. <br /></td></tr>
+<tr class="separator:a0deff89bbca21633153d12fb9eef4ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Represents a <a href="https://en.wikipedia.org/wiki/Polygon_mesh" target="_blank">mesh</a> of a. </p>
-<dl class="section see"><dt>See also</dt><dd>Model. </dd></dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afc93402348888a39e22b2aeded8f89f6" name="afc93402348888a39e22b2aeded8f89f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc93402348888a39e22b2aeded8f89f6">&#9670;&nbsp;</a></span>Mesh()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mesh::Mesh </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vertices</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; TriangleIndexes &gt; &amp;&#160;</td>
-          <td class="paramname"><em>indices</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
-          <td class="paramname"><em>shader</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The constructor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vertices</td><td>- The vertices of the mesh. </td></tr>
-    <tr><td class="paramname">indices</td><td>- The indices sequence of the vertices position. </td></tr>
-    <tr><td class="paramname">shader</td><td>- The shader that the mesh is using. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="aafca754355cca7132b530ad00165a7eb" name="aafca754355cca7132b530ad00165a7eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aafca754355cca7132b530ad00165a7eb">&#9670;&nbsp;</a></span>Draw()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mesh::Draw </td>
-          <td>(</td>
-          <td class="paramtype">const Position &amp;&#160;</td>
-          <td class="paramname"><em>origin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_texture.html">Texture</a> &amp;&#160;</td>
-          <td class="paramname"><em>texture</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
-          <td class="paramname"><em>camera</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Draws the mesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">origin</td><td>- A position in the world to place the mesh. </td></tr>
-    <tr><td class="paramname">texture</td><td>- The texture to cover the mesh. </td></tr>
-    <tr><td class="paramname">camera</td><td>- It is used to bind a shader to see the drawn mesh. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Sandbox/Model/Mesh/<a class="el" href="_mesh_8h_source.html">Mesh.h</a></li>
-<li>src/Application/Sandbox/Model/Mesh/Mesh.cpp</li>
+<div class="textblock"><p >The interface for the classes which purpose is to create mesh for the models. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/Application/Layer/Sandbox/Model/Mesh/<a class="el" href="_mesh_8h_source.html">Mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Sandbox/World/Chunks/Rendring/ChunkPlacer.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.5</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -89,37 +89,49 @@ $(document).ready(function(){initNavTree('_chunk_placer_8h_source.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Application/Sandbox/Camera.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;ChunkRenderer.h&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;RenderViews/RenderViewTypes.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_chunk_placer.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk_placer.html">ChunkPlacer</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    std::unique_ptr&lt;ChunkRenderer&gt; _renderer{};</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_class" href="class_camera.html">Camera</a>&amp; _camera;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">size_t</span> _renderDistance;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">size_t</span> _chunkSize;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    RenderViewType _viewType;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::unique_ptr&lt;RenderView&gt; GetRenderView(RenderViewType viewType);</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;ChunkBuilder.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Camera.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/WorldGenerator.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;OrderType/OrderTypes.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Structure/Chunk.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_chunk_placer.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk_placer.html">ChunkPlacer</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_class" href="class_chunk_builder.html">ChunkBuilder</a> _chunkBuilder;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::shared_ptr&lt;WorldGenerator&gt; _generator;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::unique_ptr&lt;Order&gt; _order;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    Position _previousNormalizedPosition = {};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::unordered_map&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt; _loadedChunks = {};</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="class_chunk_placer.html#aa4ffcd927a850a7d8834a9c86428ca24">ChunkPlacer</a>(RenderViewType viewType, <span class="keywordtype">size_t</span> chunkSize, <span class="keywordtype">size_t</span> renderDistance, <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">static</span> std::vector&lt;Position&gt; Subtract(<span class="keyword">const</span> std::vector&lt;Position&gt;&amp; aSet, <span class="keyword">const</span> std::vector&lt;Position&gt;&amp; bSet);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    Position GetNormalizedPosition(<span class="keyword">const</span> Point3D&amp; position, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; chunkSize) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::string PositionToString(<span class="keyword">const</span> Position&amp; position) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> RemoveStaleChunks(<span class="keyword">const</span> std::vector&lt;Position&gt;&amp; currentChunksOrigins);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> AddNewChunks(<span class="keyword">const</span> std::vector&lt;Position&gt;&amp; currentChunksOrigins);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> UpdateChunksAround(<span class="keyword">const</span> Position&amp; normalizedOrigin);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#acf2b29a184aae7eeba1b874c27939211">Update</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a7b7022bad021cc7e39596ca67218ed07">Bind</a>(<span class="keyword">const</span> std::shared_ptr&lt;WorldGenerator&gt;&amp; worldGenerator);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
-<div class="ttc" id="aclass_chunk_placer_html"><div class="ttname"><a href="class_chunk_placer.html">ChunkPlacer</a></div><div class="ttdoc">Handles placing the chunks around the camera.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.h:10</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_a7b7022bad021cc7e39596ca67218ed07"><div class="ttname"><a href="class_chunk_placer.html#a7b7022bad021cc7e39596ca67218ed07">ChunkPlacer::Bind</a></div><div class="ttdeci">void Bind(const std::shared_ptr&lt; WorldGenerator &gt; &amp;worldGenerator)</div><div class="ttdoc">Binds world generator to the chunk manager.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:28</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_aa4ffcd927a850a7d8834a9c86428ca24"><div class="ttname"><a href="class_chunk_placer.html#aa4ffcd927a850a7d8834a9c86428ca24">ChunkPlacer::ChunkPlacer</a></div><div class="ttdeci">ChunkPlacer(RenderViewType viewType, size_t chunkSize, size_t renderDistance, Camera &amp;camera)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:18</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_acf2b29a184aae7eeba1b874c27939211"><div class="ttname"><a href="class_chunk_placer.html#acf2b29a184aae7eeba1b874c27939211">ChunkPlacer::Update</a></div><div class="ttdeci">void Update() const</div><div class="ttdoc">Updates the chunk manager to adapt to the current frame.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:23</div></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_function" href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer</a>(OrderType orderType, <span class="keywordtype">size_t</span> chunkSize, <span class="keywordtype">size_t</span> renderDistance, <span class="keyword">const</span> Position&amp; initPosition);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a8ca70b61992b620ab11bbd405897e888">Update</a>(<span class="keyword">const</span> Position&amp; position);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a9399d9845790ff2cabfba302dac17f3f">Bind</a>(std::shared_ptr&lt;WorldGenerator&gt; generator);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unordered_map&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt;&amp; <a class="code hl_function" href="class_chunk_placer.html#aeb34968ebba20d0667101cb15c20d9cd">GetChunks</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="ttc" id="aclass_chunk_builder_html"><div class="ttname"><a href="class_chunk_builder.html">ChunkBuilder</a></div><div class="ttdoc">Builds chunks.</div><div class="ttdef"><b>Definition:</b> ChunkBuilder.h:8</div></div>
+<div class="ttc" id="aclass_chunk_placer_html"><div class="ttname"><a href="class_chunk_placer.html">ChunkPlacer</a></div><div class="ttdoc">Handles placing the chunks around the camera.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.h:12</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a1ac8edcfb9c8b7fd1aea75b781c50ef0"><div class="ttname"><a href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer::ChunkPlacer</a></div><div class="ttdeci">ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position &amp;initPosition)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:82</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a8ca70b61992b620ab11bbd405897e888"><div class="ttname"><a href="class_chunk_placer.html#a8ca70b61992b620ab11bbd405897e888">ChunkPlacer::Update</a></div><div class="ttdeci">void Update(const Position &amp;position)</div><div class="ttdoc">Updates the chunk placer to adapt to the current frame.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:102</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a9399d9845790ff2cabfba302dac17f3f"><div class="ttname"><a href="class_chunk_placer.html#a9399d9845790ff2cabfba302dac17f3f">ChunkPlacer::Bind</a></div><div class="ttdeci">void Bind(std::shared_ptr&lt; WorldGenerator &gt; generator)</div><div class="ttdoc">Binds world generator to the chunk placer.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:115</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_aeb34968ebba20d0667101cb15c20d9cd"><div class="ttname"><a href="class_chunk_placer.html#aeb34968ebba20d0667101cb15c20d9cd">ChunkPlacer::GetChunks</a></div><div class="ttdeci">std::unordered_map&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp; GetChunks()</div><div class="ttdoc">Returns the map of placed chunks.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:120</div></div>
 <div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:13</div></div>
 <div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -127,7 +139,7 @@ $(document).ready(function(){initNavTree('_chunk_placer_8h_source.html',''); ini
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_99d2d6bac0e957423de66328d6f30694.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_bdf89298e56d9048405f54cce2c00b1e.html">World</a></li><li class="navelem"><a class="el" href="dir_7df4fe8fefceb4f4b107acf95c74aaac.html">Chunks</a></li><li class="navelem"><a class="el" href="dir_2f1e095483db366662f8b13ed2cf8821.html">Rendring</a></li><li class="navelem"><b>ChunkPlacer.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_1186b7adf5317977b19ddb4694ebd609.html">World</a></li><li class="navelem"><a class="el" href="dir_998e62e40b812da25a899b76de509b42.html">Chunks</a></li><li class="navelem"><b>ChunkPlacer.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -1,12 +1,10 @@
 var class_camera =
 [
-    [ "Camera", "class_camera.html#a4d2e31973d18ffefc9cd438fade71be3", null ],
+    [ "Camera", "class_camera.html#a1958ab8aefd80adb9768e2dd4fbca83b", null ],
     [ "Update", "class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b", null ],
     [ "Bind", "class_camera.html#a7f523e4c06d2ab772df2f88a951936eb", null ],
-    [ "HandleInput", "class_camera.html#a3ead3f55e3a9f122a391376e09a83bba", null ],
+    [ "HandleInput", "class_camera.html#a8ecc59a4ef874ebb84bbc2df64589cbe", null ],
     [ "GetPosition", "class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955", null ],
-    [ "GetWidth", "class_camera.html#a7388167cf65adafa3c14234815cd4a59", null ],
-    [ "GetHeight", "class_camera.html#af57cdaf3aa08c8bfde34fbb0b2e34c1d", null ],
     [ "GetDefaultSpeed", "class_camera.html#abf3d5b287a358ac37ded8cacefa08428", null ],
     [ "SetDefaultSpeed", "class_camera.html#a9b5b72fb6ffc22090c1bdc7923624d65", null ],
     [ "GetSpeed", "class_camera.html#a6a25e2b6f5e9ae8e2c4816257e0c4393", null ],
