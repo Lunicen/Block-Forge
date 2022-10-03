@@ -29,8 +29,6 @@ class Camera
 	float _nearPane = 0.1f;
 	float _farPane = 100.0f;
 
-	bool _isPaused = false;
-
 	const KeyboardKey _left = KeyboardKey::a;
 	const KeyboardKey _right = KeyboardKey::d;
 	const KeyboardKey _forward = KeyboardKey::w;

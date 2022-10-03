@@ -13,11 +13,6 @@ void Camera::Update()
 	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
 
 	_orthographicProjection = projection * view;
-
-	if (!_isPaused)
-	{
-		UpdateCursorMovement();
-	}
 }
 
 void Camera::HandleHorizontalMovement()
@@ -99,20 +94,10 @@ void Camera::Bind(Shader const& shader) const
 
 void Camera::HandleInput()
 {
-	if (_hid.IsPressedOnce(KeyboardKey::escape))
-	{
-		_isPaused = !_isPaused;
-		_isPaused ? _hid.EnableCursor() : _hid.DisableCursor();
-	}
-
-	if (_isPaused)
-	{
-		return;
-	}
-
 	HandleHorizontalMovement();
 	HandleVerticalMovement();
 	HandleSpeed(0.4f);
+	UpdateCursorMovement();
 }
 
 glm::vec3 Camera::GetPosition() const
