@@ -23,12 +23,12 @@ void HIDEventReporter::ReportKeyboard()
 			if (_onceHandledKeyboardKeys.find(key) == _onceHandledKeyboardKeys.end())
 			{
 				_onceHandledKeyboardKeys.insert(key);
-				EventQueue::Push(std::make_unique<KeyboardEvent>(key, KeyboardAction::isPressedOnce));
+				EventQueue::Push(new KeyboardEvent(key, KeyboardAction::isPressedOnce));
 
 				return;
 			}
 			
-			EventQueue::Push(std::make_unique<KeyboardEvent>(key, KeyboardAction::isPressed));
+			EventQueue::Push(new KeyboardEvent(key, KeyboardAction::isPressed));
 		}
 
 		if (state == GLFW_RELEASE)
@@ -49,12 +49,12 @@ void HIDEventReporter::ReportMouse()
 			if (_onceHandledMouseButtons.find(button) == _onceHandledMouseButtons.end())
 			{
 				_onceHandledMouseButtons.insert(button);
-				EventQueue::Push(std::make_unique<MouseEvent>(button, MouseAction::isPressedOnce));
+				EventQueue::Push(new MouseEvent(button, MouseAction::isPressedOnce));
 
 				return;
 			}
 			
-			EventQueue::Push(std::make_unique<MouseEvent>(button, MouseAction::isPressed));
+			EventQueue::Push(new MouseEvent(button, MouseAction::isPressed));
 		}
 
 		if (state == GLFW_RELEASE)

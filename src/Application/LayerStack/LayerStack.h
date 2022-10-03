@@ -43,6 +43,7 @@ public:
 			if (eventToProcess.WasHandled()) break;
 
 			DispatchEvent(*_layers[i - 1], eventToProcess);
+			glfwPollEvents();
 		}
 	}
 };

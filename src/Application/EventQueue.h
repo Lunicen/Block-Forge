@@ -1,29 +1,34 @@
 #pragma once
-#include <memory>
-#include <queue>
+#include <array>
 
 #include "Event/Event.h"
 #include "LayerStack/LayerStack.h"
 
 
+constexpr size_t MaxEventQueueCapacity = 256;
+
 class EventQueue
 {
-	static std::queue<std::unique_ptr<Event>> _eventQueue;
+	static std::array<Event*, MaxEventQueueCapacity> _eventQueue;
+	static size_t _queueIterator;
 
 public:
-	static void Push(std::unique_ptr<Event> eventToPush)
+	static void Push(Event* eventToPush)
 	{
-		_eventQueue.emplace(std::move(eventToPush));
+		if (_queueIterator < MaxEventQueueCapacity - 1)
+		{
+			_eventQueue[_queueIterator++] = eventToPush;
+		}
 	}
 
 	static void Update(const LayerStack& stack)
 	{
-		if (!_eventQueue.empty())
+		if (_queueIterator > 0)
 		{
-			const auto result = std::move(_eventQueue.front());
-			_eventQueue.pop();
+			--_queueIterator;
 
-			stack.Process(*result);
+			stack.Process(*_eventQueue[_queueIterator]);
+			delete _eventQueue[_queueIterator];
 		}
 	}
 };

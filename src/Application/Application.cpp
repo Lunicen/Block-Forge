@@ -8,7 +8,8 @@
 // As a static member of class this variable
 // must be here initialized
 Window Application::_window{};
-std::queue<std::unique_ptr<Event>> EventQueue::_eventQueue;
+std::array<Event*, MaxEventQueueCapacity> EventQueue::_eventQueue;
+size_t EventQueue::_queueIterator = 0;
 
 void Application::WindowResizeEvent(GLFWwindow* const, const int width, const int height)
 {
@@ -17,7 +18,7 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 	_window.SetWidth(static_cast<size_t>(width));
 	_window.SetHeight(static_cast<size_t>(height));
 
-	EventQueue::Push(std::make_unique<WindowEvent>(_window));
+	EventQueue::Push(new WindowEvent(_window));
 }
 
 
