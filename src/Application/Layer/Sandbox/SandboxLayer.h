@@ -20,10 +20,12 @@ public:
 
 	explicit SandboxLayer(size_t screenWidth, size_t screenHeight, HumanInterfaceDevice& hid)
 	{
+		glEnable(GL_DEPTH_TEST);
+
 		_camera = std::make_unique<Camera>(screenWidth, screenHeight, glm::vec3(0.0f, 0.0f, 0.0f), hid);
 		_worldGenerator = std::make_shared<WorldGenerator>(69);
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 8, _camera->GetPosition());
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 3, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
 
 		_fpsCounter = std::make_unique<FPSCounter>();
@@ -41,9 +43,9 @@ public:
 		_fpsCounter->Update();
 	}
 	
-	void OnEvent(KeyboardEvent& inputEvent) override
+	void OnEvent(KeyboardEvent& keyboardEvent) override
 	{
-		_camera->HandleInput(inputEvent);
+		_camera->HandleInput(keyboardEvent);
 	}
 
 	void OnEvent(WindowEvent& windowEvent) override
@@ -51,8 +53,15 @@ public:
 		_camera->UpdateViewport(windowEvent);
 	}
 
+	void OnEvent(MouseEvent& mouseEvent) override
+	{
+		_camera->HandleInput(mouseEvent);
+	}
+
 	~SandboxLayer() override
 	{
 		gltTerminate();
 	}
+
+	
 };

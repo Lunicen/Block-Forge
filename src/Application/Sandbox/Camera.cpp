@@ -68,8 +68,8 @@ void Camera::UpdateCursorMovement()
 	const auto& middleAxisX = mouseX / 2.0;
 	const auto& middleAxisY = mouseY / 2.0;
 
-	const float xAxisRotation = _sensitivity * (static_cast<float>(middleAxisX) / static_cast<float>(_windowHeight));
-	const float yAxisRotation = _sensitivity * (static_cast<float>(middleAxisY) / static_cast<float>(_windowWidth));
+	const float xAxisRotation = _sensitivity * (static_cast<float>(middleAxisY) / static_cast<float>(_windowHeight));
+	const float yAxisRotation = _sensitivity * (static_cast<float>(middleAxisX) / static_cast<float>(_windowWidth));
 
 	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _upVector)));
 	const auto angleWithXAxis = abs(angle(orientation, _upVector) - glm::radians(90.0f));
@@ -91,6 +91,7 @@ Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, Huma
 	  _windowWidth(windowWidth),
 	  _position(position)
 {
+	_hid.DisableCursor();
 }
 
 void Camera::Bind(Shader const& shader) const
@@ -117,9 +118,9 @@ void Camera::HandleInput(KeyboardEvent& input)
 	HandleSpeed(0.4f, input);
 }
 
-void Camera::HandleInput(MouseEvent& input)
+void Camera::HandleInput(MouseEvent&)
 {
-	UpdateCursorMovement();
+	if (!_isPaused) UpdateCursorMovement();
 }
 
 glm::vec3 Camera::GetPosition() const

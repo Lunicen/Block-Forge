@@ -123,8 +123,16 @@ void Application::Run()
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
+		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0) continue;
+
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		sandbox.Update();
 		EventQueue::Update(sandbox);
+
+		glfwSwapBuffers(_window.GetHandle());
+		glfwPollEvents();
 	}
 
 	//const auto sandbox = std::make_unique<Sandbox>(_window);
