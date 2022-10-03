@@ -3,7 +3,7 @@
 #include <queue>
 
 #include "Event/Event.h"
-#include "LayerStack/Stack/SandboxStack.h"
+#include "LayerStack/LayerStack.h"
 
 
 class EventQueue
@@ -27,5 +27,3 @@ public:
 		}
 	}
 };
-
-std::queue<std::unique_ptr<Event>> EventQueue::_eventQueue;

@@ -2,10 +2,10 @@
 #include "Core/Log.h"
 #include "Application/Window.h"
 
-/// @class HumanInterfaceDevice
+/// @class HID
 /// @brief Handles and defines input devices.
 ///	@details This class handles Human Interface Devices and defines the behaviour of events that support them.
-class HumanInterfaceDevice
+class HID
 {
 	Log& _log = Log::Get();
 	Window& _window;
@@ -14,7 +14,7 @@ public:
 
 	/// @brief The constructor.
 	///	@param window - The window in which the simulation is played.
-	explicit HumanInterfaceDevice(Window& window);
+	explicit HID(Window& window);
 
 	std::pair<double, double> GetCursorPosition() const;
 
@@ -23,4 +23,5 @@ public:
 	void EnableCursor() const;
 
 	void DisableCursor() const;
+	
 };

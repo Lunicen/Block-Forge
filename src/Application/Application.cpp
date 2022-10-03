@@ -8,6 +8,7 @@
 // As a static member of class this variable
 // must be here initialized
 Window Application::_window{};
+std::queue<std::unique_ptr<Event>> EventQueue::_eventQueue;
 
 void Application::WindowResizeEvent(GLFWwindow* const, const int width, const int height)
 {
@@ -17,25 +18,6 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 	_window.SetHeight(static_cast<size_t>(height));
 
 	EventQueue::Push(std::make_unique<WindowEvent>(_window));
-}
-
-void Application::KeyboardEventCallback(GLFWwindow* const, int key, int scancode, int action, int mods)
-{
-	if (action == GLFW_RELEASE) return;
-
-	EventQueue::Push(std::make_unique<KeyboardEvent>(static_cast<KeyboardKey>(key), static_cast<KeyboardAction>(action)));
-}
-
-void Application::CursorMoveEventCallback(GLFWwindow* const, double, double)
-{
-	EventQueue::Push(std::make_unique<MouseEvent>(MouseButton::unknown, MouseAction::moved));
-}
-
-void Application::MouseClickCallback(GLFWwindow* const, int button, int action, int mods)
-{
-	if (action == GLFW_RELEASE) return;
-
-	EventQueue::Push(std::make_unique<MouseEvent>(static_cast<MouseButton>(button), static_cast<MouseAction>(action)));
 }
 
 
@@ -101,12 +83,9 @@ void Application::Initialize()
 void Application::SetCallbacks()
 {
 	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
-	glfwSetKeyCallback(_window.GetHandle(), KeyboardEventCallback);
-	glfwSetCursorPosCallback(_window.GetHandle(), CursorMoveEventCallback);
-	glfwSetMouseButtonCallback(_window.GetHandle(), MouseClickCallback);
 }
 
-Application::Application(const std::string& filenameWithSettings) : _hid(_window)
+Application::Application(const std::string& filenameWithSettings) : _hid(_window), _eventReporter(_window)
 {
 	_settings.Load(filenameWithSettings);
 
@@ -123,13 +102,15 @@ void Application::Run()
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
+		_eventReporter.Report();
+
 		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0) continue;
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		sandbox.Update();
 		EventQueue::Update(sandbox);
+		sandbox.Update();
 
 		glfwSwapBuffers(_window.GetHandle());
 		glfwPollEvents();

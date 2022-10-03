@@ -21,8 +21,8 @@ enum class KeyboardKey
 
 enum class KeyboardAction
 {
-	isPressed = GLFW_PRESS,
-	isStillPressed = GLFW_REPEAT
+	isPressedOnce,
+	isPressed
 };
 
 class KeyboardEvent final : public Event
@@ -40,7 +40,7 @@ public:
 	///	@return Returns true is the key is pressed, otherwise false.
 	bool IsPressed(const KeyboardKey& key)
 	{
-		if (key == _keyCode && (_action == KeyboardAction::isPressed || _action == KeyboardAction::isStillPressed))
+		if (key == _keyCode && _action == KeyboardAction::isPressed)
 		{
 			MarkEventAsHandled();
 			return true;
@@ -54,7 +54,7 @@ public:
 	///	@return Returns true is the key is pressed and was not before, otherwise false.
 	bool IsPressedOnce(const KeyboardKey& key)
 	{
-		if (key == _keyCode && _action == KeyboardAction::isPressed)
+		if (key == _keyCode && _action == KeyboardAction::isPressedOnce)
 		{
 			MarkEventAsHandled();
 			return true;

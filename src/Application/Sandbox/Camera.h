@@ -5,12 +5,10 @@
 #include <glm/gtx/vector_angle.hpp>
 
 #include "Model/Mesh/Geometry/Shader.h"
-
+#include "Application/HID/HID.h"
 #include "Application/Event/KeyboardEvent.h"
-#include "Application/Event/MouseEvent.h"
 #include "Application/Event/WindowEvent.h"
 
-#include "Application/HID/HumanInterfaceDevice.h"
 
 /// @class Camera
 /// @brief Handles input to allow spectating the world.
@@ -18,7 +16,7 @@
 class Camera
 {
 	Log& _log = Log::Get();
-	HumanInterfaceDevice& _hid;
+	HID& _hid;
 
 	size_t _windowHeight;
 	size_t _windowWidth;
@@ -55,7 +53,7 @@ class Camera
 public:
 	/// @brief The constructor.
 	/// @param position - Spawn point of the camera.
-	Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HID& hid);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -68,8 +66,6 @@ public:
 
 	/// @brief Captures input and moves the camera accordingly.
 	void HandleInput(KeyboardEvent& input);
-
-	void HandleInput(MouseEvent& input);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

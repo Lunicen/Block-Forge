@@ -18,7 +18,7 @@ class SandboxLayer final : public Layer
 
 public:
 
-	explicit SandboxLayer(size_t screenWidth, size_t screenHeight, HumanInterfaceDevice& hid)
+	explicit SandboxLayer(size_t screenWidth, size_t screenHeight, HID& hid)
 	{
 		glEnable(GL_DEPTH_TEST);
 
@@ -51,11 +51,6 @@ public:
 	void OnEvent(WindowEvent& windowEvent) override
 	{
 		_camera->UpdateViewport(windowEvent);
-	}
-
-	void OnEvent(MouseEvent& mouseEvent) override
-	{
-		_camera->HandleInput(mouseEvent);
 	}
 
 	~SandboxLayer() override

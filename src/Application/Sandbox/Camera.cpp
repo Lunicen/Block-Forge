@@ -13,6 +13,11 @@ void Camera::Update()
 	projection = glm::perspective(glm::radians(_fieldOfView), aspectRatio, _nearPane, _farPane);
 
 	_orthographicProjection = projection * view;
+
+	if (!_isPaused)
+	{
+		UpdateCursorMovement();
+	}
 }
 
 void Camera::UpdateViewport(WindowEvent& windowEvent)
@@ -85,7 +90,7 @@ void Camera::UpdateCursorMovement()
 	_hid.SetCursorPosition(middleAxisX, middleAxisY);
 }
 
-Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HumanInterfaceDevice& hid)
+Camera::Camera(size_t windowWidth, size_t windowHeight, glm::vec3 position, HID& hid)
 	: _hid(hid),
 	  _windowHeight(windowHeight),
 	  _windowWidth(windowWidth),
@@ -116,11 +121,6 @@ void Camera::HandleInput(KeyboardEvent& input)
 	HandleHorizontalMovement(input);
 	HandleVerticalMovement(input);
 	HandleSpeed(0.4f, input);
-}
-
-void Camera::HandleInput(MouseEvent&)
-{
-	if (!_isPaused) UpdateCursorMovement();
 }
 
 glm::vec3 Camera::GetPosition() const

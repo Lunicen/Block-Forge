@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\HID\HIDEventReporter.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
@@ -168,7 +169,7 @@
     <ClCompile Include="src\Application\Sandbox\World\Biomes\Biome.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.cpp" />
     <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.cpp" />
-    <ClCompile Include="src\Application\HID\HumanInterfaceDevice.cpp" />
+    <ClCompile Include="src\Application\HID\HID.cpp" />
     <ClCompile Include="src\Application\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
@@ -194,10 +195,12 @@
     <ClCompile Include="src\Application\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\HID\HIDEventReporter.h" />
     <ClInclude Include="src\Application\EventQueue.h" />
     <ClInclude Include="src\Application\Event\KeyboardEvent.h" />
     <ClInclude Include="src\Application\Event\MouseEvent.h" />
     <ClInclude Include="src\Application\Event\WindowEvent.h" />
+    <ClInclude Include="src\Application\HID\HIDMap.h" />
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Event\Event.h" />
@@ -240,7 +243,7 @@
     <ClInclude Include="src\Application\Sandbox\Utils\FPSCounter.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\ChunkPlacer.h" />
     <ClInclude Include="src\Application\Sandbox\World\Chunks\Structure\Chunk.h" />
-    <ClInclude Include="src\Application\HID\HumanInterfaceDevice.h" />
+    <ClInclude Include="src\Application\HID\HID.h" />
     <ClInclude Include="src\Application\Sandbox\Camera.h" />
     <ClInclude Include="src\Application\Sandbox\Model\Mesh\Geometry\ElementBuffer.h" />
     <ClInclude Include="src\Core\FileUtils.h" />

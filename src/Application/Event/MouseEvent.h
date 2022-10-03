@@ -12,9 +12,9 @@ enum class MouseButton
 
 enum class MouseAction
 {
+	isPressedOnce,
 	isPressed = GLFW_PRESS,
 	moved
-
 };
 
 class MouseEvent final : public Event
