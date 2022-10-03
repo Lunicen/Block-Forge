@@ -46,7 +46,9 @@ class Camera
 
 public:
 	/// @brief The constructor.
+	///	@param window - Reference to the application window.
 	/// @param position - Spawn point of the camera.
+	///	@param hid - Reference to the Human Interface Device controller.
 	Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid);
 
 	/// @brief Update the camera orthogonal projection settings.

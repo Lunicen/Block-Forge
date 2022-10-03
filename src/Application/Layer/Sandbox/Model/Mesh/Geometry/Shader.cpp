@@ -19,7 +19,7 @@ std::string Shader::GetFileContents(const std::string& filename) const
 	contents.resize(static_cast<size_t>(file.tellg()));
 	file.seekg(0, std::ios::beg);
 
-	file.read(&contents[0], contents.size());  // NOLINT(readability-container-data-pointer)
+	file.read(&contents[0], static_cast<std::streamsize>(contents.size()));  // NOLINT(readability-container-data-pointer)
 
 	file.close();
 	return contents;

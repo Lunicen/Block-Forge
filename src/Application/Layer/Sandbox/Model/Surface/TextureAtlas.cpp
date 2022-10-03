@@ -38,7 +38,7 @@ void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, co
 {
 	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 
 
-	for (auto i = 0; i < VerticesInQuad; ++i)
+	for (size_t i = 0; i < VerticesInQuad; ++i)
 	{
 		if (flip)
 		{
@@ -61,7 +61,7 @@ void TextureAtlas::SetSprite(std::array<Point, VerticesInQuad>& textureUvCoordin
 		return;
 	}
 	
-	for (auto i = 0; i < VerticesInQuad; ++i)
+	for (size_t i = 0; i < VerticesInQuad; ++i)
 	{
 		textureUvCoordinates[(i + VerticesInQuad - 1) % VerticesInQuad] = textureCoords[i];
 	}

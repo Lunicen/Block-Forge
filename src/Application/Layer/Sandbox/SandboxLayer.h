@@ -18,6 +18,11 @@ class SandboxLayer final : public Layer
 
 public:
 
+	SandboxLayer(const SandboxLayer&) = delete;
+	SandboxLayer(SandboxLayer&&) = delete;
+	SandboxLayer& operator=(const SandboxLayer&) = delete;
+	SandboxLayer& operator=(SandboxLayer&&) = delete;
+
 	explicit SandboxLayer(Window& window, HumanInterfaceDevice& hid)
 	{
 		glEnable(GL_DEPTH_TEST);
