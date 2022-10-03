@@ -3,12 +3,17 @@
 #include "Application/Layer/Sandbox/SandboxLayer.h"
 #include "Application/LayerStack/LayerStack.h"
 
+/// @class SandboxStack
+///	@brief Represents the stack responsible for the full simulation of the sandbox.
 class SandboxStack final : public LayerStack
 {
 public:
-	SandboxStack(Window& window, HumanInterfaceDevice& hid)
+
+	/// @brief The constructor.
+	///	@param window - Reference to the window.
+	explicit SandboxStack(Window& window)
 	{
-		Push(std::make_unique<SandboxLayer>(window, hid));
-		Push(std::make_unique<PauseMenuLayer>(hid));
+		Push(std::make_unique<SandboxLayer>(window));
+		Push(std::make_unique<PauseMenuLayer>());
 	}
 };

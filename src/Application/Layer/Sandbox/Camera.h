@@ -14,7 +14,6 @@
 class Camera
 {
 	Log& _log = Log::Get();
-	HumanInterfaceDevice& _hid;
 	Window& _window;
 
 	glm::vec3 _position{};
@@ -39,17 +38,16 @@ class Camera
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
 
-	void HandleHorizontalMovement();
-	void HandleVerticalMovement();
-	void HandleSpeed(float boostSpeed);
-	void UpdateCursorMovement();
+	void HandleHorizontalMovement(const HumanInterfaceDevice& hid);
+	void HandleVerticalMovement(const HumanInterfaceDevice& hid);
+	void HandleSpeed(float boostSpeed, const HumanInterfaceDevice& hid);
+	void UpdateCursorMovement(const HumanInterfaceDevice& hid);
 
 public:
 	/// @brief The constructor.
 	///	@param window - Reference to the application window.
 	/// @param position - Spawn point of the camera.
-	///	@param hid - Reference to the Human Interface Device controller.
-	Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid);
+	Camera(Window& window, glm::vec3 position);
 
 	/// @brief Update the camera orthogonal projection settings.
 	void Update();
@@ -59,7 +57,8 @@ public:
 	void Bind(Shader const& shader) const;
 
 	/// @brief Captures input and moves the camera accordingly.
-	void HandleInput();
+	///	@param hid - Reference to the Human Interface Device controller.
+	void HandleInput(HumanInterfaceDevice& hid);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

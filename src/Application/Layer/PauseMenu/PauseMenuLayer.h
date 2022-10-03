@@ -2,32 +2,29 @@
 #include "Application/HID/HumanInterfaceDevice.h"
 #include "Application/Layer/Layer.h"
 
+/// @class PauseMenuLayer
+///	@brief Represents the pause menu.
 class PauseMenuLayer final : public Layer
 {
-	HumanInterfaceDevice& _hid;
-
 public:
-	explicit PauseMenuLayer(HumanInterfaceDevice& hid) : _hid(hid)
-	{
-	}
 
 	void OnUpdate() override
 	{
 	}
 
-	void OnEvent() override
+	void OnEvent(HumanInterfaceDevice& hid) override
 	{
-		if (_hid.IsPressedOnce(KeyboardKey::escape))
+		if (hid.IsPressedOnce(KeyboardKey::escape))
 		{
 			if (IsLocked())
 			{
-				_hid.DisableCursor();
+				hid.DisableCursor();
 
 				UnlockLayer();
 				return;
 			}
 
-			_hid.EnableCursor();
+			hid.EnableCursor();
 			LockLayer();
 		}
 	}

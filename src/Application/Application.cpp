@@ -93,7 +93,8 @@ void Application::Run()
 {
 	Initialize();
 
-	const auto sandbox = SandboxStack(_window, _hid);
+	const auto sandbox = SandboxStack(_window);
+	_hid.DisableCursor();
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
@@ -103,7 +104,7 @@ void Application::Run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		sandbox.Update();
-		sandbox.ProcessEvents();
+		sandbox.ProcessEvents(_hid);
 
 		glfwSwapBuffers(_window.GetHandle());
 		glfwPollEvents();

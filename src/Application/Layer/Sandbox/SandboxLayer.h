@@ -8,6 +8,8 @@
 #include "Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h"
 
+/// @class SandboxLayer
+///	@brief Represents sandbox that is played as an simulation.
 class SandboxLayer final : public Layer
 {
 	std::unique_ptr<Camera> _camera{};
@@ -23,11 +25,13 @@ public:
 	SandboxLayer& operator=(const SandboxLayer&) = delete;
 	SandboxLayer& operator=(SandboxLayer&&) = delete;
 
-	explicit SandboxLayer(Window& window, HumanInterfaceDevice& hid)
+	/// @brief The constructor.
+	///	@param window - Reference to the window.
+	explicit SandboxLayer(Window& window)
 	{
 		glEnable(GL_DEPTH_TEST);
 
-		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f), hid);
+		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(69);
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::diamond, 8, 3, _camera->GetPosition());
@@ -45,9 +49,9 @@ public:
 		_fpsCounter->Update();
 	}
 	
-	void OnEvent() override
+	void OnEvent(HumanInterfaceDevice& hid) override
 	{
-		_camera->HandleInput();
+		_camera->HandleInput(hid);
 		_chunkPlacer->Update(_camera->GetPosition());
 	}
 

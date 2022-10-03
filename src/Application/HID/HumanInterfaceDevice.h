@@ -46,11 +46,17 @@ public:
 	///	@return Returns true is the button is pressed and was not before, otherwise false.
 	bool IsPressedOnce(const MouseButton& button);
 
+	/// @brief Returns the current cursor position.
 	std::pair<double, double> GetCursorPosition() const;
 
+	/// @brief Sets the cursor position to the desired location.
+	///	@param x - Cursor X location.
+	///	@param y - Cursor Y location.
 	void SetCursorPosition(double x, double y) const;
 
+	/// @brief Enables cursor making it visible.
 	void EnableCursor() const;
 
+	/// @brief Disables cursor making it invisible.
 	void DisableCursor() const;
 };

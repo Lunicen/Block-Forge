@@ -15,46 +15,46 @@ void Camera::Update()
 	_orthographicProjection = projection * view;
 }
 
-void Camera::HandleHorizontalMovement()
+void Camera::HandleHorizontalMovement(const HumanInterfaceDevice& hid)
 {
-	if (_hid.IsPressed(_left))
+	if (hid.IsPressed(_left))
 	{
 		_position += _speed * -normalize(cross(_orientation, _upVector));
 	}
-	if (_hid.IsPressed(_right))
+	if (hid.IsPressed(_right))
 	{
 		_position += _speed * normalize(cross(_orientation, _upVector));
 	}
-	if (_hid.IsPressed(_forward))
+	if (hid.IsPressed(_forward))
 	{
 		_position += _speed * _orientation;
 	}
-	if (_hid.IsPressed(_backward))
+	if (hid.IsPressed(_backward))
 	{
 		_position += _speed * -_orientation;
 	}
 }
 
-void Camera::HandleVerticalMovement()
+void Camera::HandleVerticalMovement(const HumanInterfaceDevice& hid)
 {
-	if (_hid.IsPressed(_up))
+	if (hid.IsPressed(_up))
 	{
 		_position += _speed * _upVector;
 	}
-	if (_hid.IsPressed(_down))
+	if (hid.IsPressed(_down))
 	{
 		_position += _speed * -_upVector;
 	}
 }
 
-void Camera::HandleSpeed(const float boostSpeed)
+void Camera::HandleSpeed(const float boostSpeed, const HumanInterfaceDevice& hid)
 {
-	_speed = _hid.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
+	_speed = hid.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
-void Camera::UpdateCursorMovement()
+void Camera::UpdateCursorMovement(const HumanInterfaceDevice& hid)
 {
-	const auto& mousePosition = _hid.GetCursorPosition();
+	const auto& mousePosition = hid.GetCursorPosition();
 	const auto& mouseX = mousePosition.first;
 	const auto& mouseY = mousePosition.second;
 
@@ -75,15 +75,13 @@ void Camera::UpdateCursorMovement()
 
 	_orientation = rotate(_orientation, glm::radians(-yAxisRotation), _upVector);
 
-	_hid.SetCursorPosition(middleAxisX, middleAxisY);
+	hid.SetCursorPosition(middleAxisX, middleAxisY);
 }
 
-Camera::Camera(Window& window, glm::vec3 position, HumanInterfaceDevice& hid)
-	: _hid(hid),
-	  _window(window),
+Camera::Camera(Window& window, const glm::vec3 position)
+	: _window(window),
 	  _position(position)
 {
-	_hid.DisableCursor();
 }
 
 void Camera::Bind(Shader const& shader) const
@@ -92,12 +90,12 @@ void Camera::Bind(Shader const& shader) const
 	glUniformMatrix4fv(glGetUniformLocation(shader.GetProgram(), "camera"), 1, GL_FALSE, value_ptr(_orthographicProjection));
 }
 
-void Camera::HandleInput()
+void Camera::HandleInput(HumanInterfaceDevice& hid)
 {
-	HandleHorizontalMovement();
-	HandleVerticalMovement();
-	HandleSpeed(0.4f);
-	UpdateCursorMovement();
+	HandleHorizontalMovement(hid);
+	HandleVerticalMovement(hid);
+	HandleSpeed(0.4f, hid);
+	UpdateCursorMovement(hid);
 }
 
 glm::vec3 Camera::GetPosition() const
