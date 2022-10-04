@@ -7,7 +7,7 @@
 /// @brief Class that contains utilities that are useful for the @see WorldGenerator class.
 class WorldGeneratorUtils
 {
-	static void OptimizeBlock(const Position& origin, BlockVisibility& block, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
+	static void OptimizeBlock(const Position& origin, BlockData& block, const std::vector<std::vector<std::vector<float>>>& surroundingNoise);
 
 public:
 

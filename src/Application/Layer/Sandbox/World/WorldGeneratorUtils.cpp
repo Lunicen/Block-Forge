@@ -1,6 +1,6 @@
 #include "WorldGeneratorUtils.h"
 
-void WorldGeneratorUtils::OptimizeBlock(const Position& origin, BlockVisibility& block,
+void WorldGeneratorUtils::OptimizeBlock(const Position& origin, BlockData& block,
                                         const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {
 	const auto& noise = surroundingNoise;
@@ -20,16 +20,16 @@ void WorldGeneratorUtils::OptimizeBlock(const Position& origin, BlockVisibility&
 	const int& y = static_cast<int>(factor.y) + origin.y + 1;
 	const int& z = static_cast<int>(factor.z) + origin.z + 1;
 
-	block.visibility = {false, false, false, false, false, false};
+	block.blockFlags &= 0b00000011; // Disable all faces
 
-	if (noise[x + 1][y][z] > 0) block.visibility.right  = true;
-	if (noise[x - 1][y][z] > 0) block.visibility.left   = true;
+	if (noise[x + 1][y][z] > 0) block.blockFlags |= 0b00010000; // right
+	if (noise[x - 1][y][z] > 0) block.blockFlags |= 0b00100000; // left
 
-	if (noise[x][y + 1][z] > 0) block.visibility.top    = true;
-	if (noise[x][y - 1][z] > 0) block.visibility.bottom = true;
+	if (noise[x][y + 1][z] > 0) block.blockFlags |= 0b00001000; // top
+	if (noise[x][y - 1][z] > 0) block.blockFlags |= 0b00000100; // bottom
 
-	if (noise[x][y][z + 1] > 0) block.visibility.back   = true;
-	if (noise[x][y][z - 1] > 0) block.visibility.front  = true;
+	if (noise[x][y][z + 1] > 0) block.blockFlags |= 0b01000000; // back
+	if (noise[x][y][z - 1] > 0) block.blockFlags |= 0b10000000; // front
 }
 
 void WorldGeneratorUtils::OptimizeChunk(const ChunkFrame& frame, ChunkBlocks& blocks, const BiomePlacer& biomePlacer)

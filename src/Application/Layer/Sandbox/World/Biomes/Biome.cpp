@@ -17,7 +17,7 @@ void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origi
 		--blockIndex;
 	}
 
-	const BlockVisibility blockData = 
+	const BlockData blockData = 
 	{
 		_blocksMap.Get(_depthLevel[blockIndex].second)
 	};

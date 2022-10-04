@@ -33,14 +33,14 @@ void ChunkMesh::Rebuild(const ChunkBlocks& blocks) const
 	{
 		auto& origin = block.first;
 		auto& faceModels = block.second.model->GetFaces();
-		const auto& facesVisibility = block.second.visibility;
+		const auto& blockFlags = block.second.blockFlags;
 
-		if (facesVisibility.front)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-		if (facesVisibility.back)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-		if (facesVisibility.left)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-		if (facesVisibility.right)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-		if (facesVisibility.top)	AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-		if (facesVisibility.bottom)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b10000000)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b01000000)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00100000)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00010000)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00001000)	AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00000100)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
 	}
 
 	_mesh->Update(vertices);

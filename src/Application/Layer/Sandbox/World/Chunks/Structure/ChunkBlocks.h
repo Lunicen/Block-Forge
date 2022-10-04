@@ -1,18 +1,26 @@
 #pragma once
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
 
+using Byte = unsigned char;
+
 /// @brief Contains the information about a certain block and the visibility of its faces.
-struct BlockVisibility
+struct BlockData
 {
 	/// @brief A pointer to the model of a block.
 	std::shared_ptr<BlockModel> model = nullptr;
 
-	/// @brief Represents the visibility of block faces.
-	///	@details This structure represents the visibility of block faces. 
-	///	The value "true" means that the block face in a certain position should be visible.
-	///	For instance, if the camera can see this block face, the value should remain true.
-	///	Otherwise, if the block is hidden behind others and cannot be seen, the visibility of this face should be disabled.
-	FacesVisibility visibility{true, true, true, true, true, true};
+	/// @brief Represents the flags of of the block.
+	///	@details
+	/// What each bit means: <br>
+	/// 0: Is the FRONT face of this block visible?, <br>
+	///	1: Is the BACK face of this block visible?, <br>
+	///	2: Is the LEFT face of this block visible?, <br>
+	///	3: Is the RIGHT face of this block visible?, <br>
+	///	4: Is the TOP face of this block visible?, <br>
+	///	5: Is the BOTTOM face of this block visible?, <br>
+	///	6: Is the block modified? (for ex was placed manually), <br>
+	///	7: unused.
+	Byte blockFlags = 0b11111100;
 };
 
 template <>
@@ -37,4 +45,4 @@ struct std::hash<Position>
 ///	@details This map contains all blocks that are included in the chunk
 ///	and maps the location of the block as a key, and it's model and
 ///	faces visibility as a key.
-using ChunkBlocks = std::unordered_map<Position, BlockVisibility>;
+using ChunkBlocks = std::unordered_map<Position, BlockData>;

@@ -23,29 +23,6 @@ struct BlockFaces
 	BlockFaceModel bottom;
 };
 
-
-/// @brief Represents visibility of the faces.
-struct FacesVisibility
-{
-	/// @brief Answers the question "Is the front face of this block visible?".
-	bool front;
-
-	/// @brief Answers the question "Is the back face of this block visible?".
-	bool back;
-
-	/// @brief Answers the question "Is the left face of this block visible?".
-	bool left;
-
-	/// @brief Answers the question "Is the right face of this block visible?".
-	bool right;
-
-	/// @brief Answers the question "Is the top face of this block visible?".
-	bool top;
-
-	/// @brief Answers the question "Is the bottom face of this block visible?".
-	bool bottom;
-};
-
 /// @class BlockModel
 ///	@brief Represents a <a href="https://en.wikipedia.org/wiki/Graphical_model" target="_blank">graphical model</a> of a block.
 ///	@note This class is not an actual model.
