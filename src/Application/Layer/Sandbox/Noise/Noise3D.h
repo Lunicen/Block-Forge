@@ -25,6 +25,13 @@ public:
 	{
 	}
 
+	/// @brief Get noise that is at certain point of the chunk.
+	/// @param frame - the frame of the chunk.
+	/// @param xOffset - offset from the origin X axis. 
+	///	@param yOffset - offset from the origin Y axis. 
+	///	@param zOffset - offset from the origin Z axis. 
+	float GetNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset) const;
+
 	/// @brief Get noise of the chunk column with additional blocks on the top.
 	/// @param frame - the frame of the chunk.
 	/// @param xOffset - offset from the origin X axis. 
