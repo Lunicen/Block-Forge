@@ -231,6 +231,7 @@
     <ClInclude Include="src\Application\Layer\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.h" />
     <ClInclude Include="src\Application\LayerStack\LayerStack.h" />
+    <ClInclude Include="src\DebugTools\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Layer\Sandbox\Utils\FPSCounter.h" />
