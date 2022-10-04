@@ -1,7 +1,5 @@
 #include "ChunkPlacer.h"
 
-#include "DebugTools/Timer.h"
-
 std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
 	std::vector<Position> result;
@@ -65,8 +63,6 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
-			Timer timer{"Adding chunk"};
-
 			_log.Trace("Added chunk: " + PositionToString(origin));
 			_loadedChunks[origin] = _chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator);
 		}

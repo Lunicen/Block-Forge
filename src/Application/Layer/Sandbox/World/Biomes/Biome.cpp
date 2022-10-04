@@ -2,8 +2,6 @@
 
 void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const std::vector<float>& noise, const size_t yLevel, const Byte& visibilityFlags) const
 {
-	if (noise[yLevel] > 0) return;
-
 	auto blockIndex = _depthLevel.size() - 1;
 	while (blockIndex > 0)
 	{
@@ -34,7 +32,9 @@ void Biome::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkB
 {
 	const auto noise = GetColumnNoiseWithAdditionalHeight(
 		frame,
-		origin.x, origin.y, origin.z, 
+		origin.x, 
+		origin.y, 
+		origin.z, 
 		_depthLevel.back().first
 	);
 
