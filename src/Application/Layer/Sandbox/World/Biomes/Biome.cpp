@@ -40,7 +40,7 @@ void Biome::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkB
 
 	SetBlockAccordingToNoise(
 		blocks,
-		frame.origin + origin,
+		frame.origin * static_cast<int>(frame.size) + origin,
 		noise, origin.y,
 		visibilityFlags
 	);

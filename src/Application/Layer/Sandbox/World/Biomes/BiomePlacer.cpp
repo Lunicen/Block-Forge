@@ -74,7 +74,7 @@ void BiomePlacer::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 
 				if (visibilityFlags != 0)
 				{
-					const auto biome = GetBiomeAt(biomesMapNoise[x][y]);
+					const auto biome = GetBiomeAt(biomesMapNoise[x][z]);
 					biome.PaintBlockAt(
 						position,
 						frame,
