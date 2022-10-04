@@ -12,7 +12,7 @@ class Biome final : public Noise3D
 	std::vector<std::pair<size_t, std::string>> _depthLevel;
 	BlockMap& _blocksMap;
 
-	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, const std::vector<float>& noise, size_t yLevel) const;
+	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, const std::vector<float>& noise, size_t yLevel, const Byte& visibilityFlags) const;
 
 public:
 	
@@ -32,6 +32,8 @@ public:
 	/// @param xOffset - X offset from the chunk origin.
 	/// @param yOffset - Y offset from the chunk origin.
 	/// @param zOffset - Z offset from the chunk origin.
-	void PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, int xOffset, int yOffset, int zOffset) const;
+	//void PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, int xOffset, int yOffset, int zOffset) const;
+
+	void PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const Byte& visibilityFlags) const;
 };
 

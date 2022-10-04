@@ -1,5 +1,7 @@
 #include "WorldGeneratorUtils.h"
 
+#include "DebugTools/Timer.h"
+
 void WorldGeneratorUtils::OptimizeBlock(const Position& origin, BlockData& block,
                                         const std::vector<std::vector<std::vector<float>>>& surroundingNoise)
 {

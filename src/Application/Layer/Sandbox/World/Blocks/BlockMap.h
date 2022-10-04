@@ -8,7 +8,9 @@
 class BlockMap
 {
 	std::shared_ptr<TextureAtlas> _blockTextures{};
-	std::unordered_map<std::string, std::shared_ptr<BlockModel>> _blockTypes;
+	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount> _blockTypes;
+	std::unordered_map<std::string, Byte> _blockNames;
+	
 	Shader _blockShader{"src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag"};
 
 public:
@@ -20,10 +22,15 @@ public:
 	BlockMap(BlockMap&&) noexcept = default;
 
 	/// @brief Copy assignment constructor.
-	BlockMap &operator=(const BlockMap&) = delete;
+	BlockMap& operator=(const BlockMap&) = delete;
 
 	/// @brief Move assignment constructor.
-	BlockMap &operator=(const BlockMap&&) noexcept = delete;
+	BlockMap& operator=(const BlockMap&&) noexcept = delete;
+
+	Byte GetId(const std::string& blockName)
+	{
+		return _blockNames[blockName];
+	}
 
 	/// @brief The constructor.
 	///	@param filenameWithBlocksData - Path to the JSON file containing the blocks metadata.
@@ -35,20 +42,26 @@ public:
 		const auto& textureSlotSize = blockProvider.GetTextureAtlasSlotSize();
 
 		_blockTextures = std::make_shared<TextureAtlas>(textureName, textureSlotSize);
-		_blockTypes = blockProvider.GetBlocks(*_blockTextures);
+		blockProvider.SetBlocks(_blockTypes, _blockNames, *_blockTextures);
 	}
 
 	/// @brief Returns the block model based on it's name.
 	/// @param blockName - name of the block.
 	std::shared_ptr<BlockModel>& Get(const std::string& blockName)
 	{
-		return _blockTypes.at(blockName);
+		return _blockTypes.at(_blockNames[blockName]);
+	}
+
+	/// @brief An operator that allows to get the block by its key in a convenient way.
+	std::shared_ptr<BlockModel>& operator[](const Byte& blockId)
+	{
+		return _blockTypes.at(blockId);
 	}
 
 	/// @brief An operator that allows to get the block by its key in a convenient way.
 	std::shared_ptr<BlockModel>& operator[](const std::string& blockName)
 	{
-		return _blockTypes.at(blockName);
+		return _blockTypes.at(_blockNames[blockName]);
 	}
 
 	/// @brief Returns the texture atlas that is used in this map.

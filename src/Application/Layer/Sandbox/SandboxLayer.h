@@ -32,8 +32,8 @@ public:
 		glEnable(GL_DEPTH_TEST);
 
 		constexpr auto worldSeed = 69;
-		constexpr auto chunkSize = 8;
-		constexpr auto renderDistance = 2;
+		constexpr auto chunkSize = 32;
+		constexpr auto renderDistance = 6;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
@@ -49,7 +49,7 @@ public:
 		const ChunkRenderer chunkRenderer;
 
 		_camera->Update();
-		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_camera);
+		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
 		_fpsCounter->Update();
 	}
 	

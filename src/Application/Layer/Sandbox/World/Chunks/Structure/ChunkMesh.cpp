@@ -13,7 +13,7 @@ void ChunkMesh::AddFaceToMesh(
 	}
 }
 
-ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk) : _blockShader(blockShader)
+ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk)
 {
 	const std::vector<TriangleIndexes> indicesPattern =
 	{
@@ -22,25 +22,88 @@ ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk) : _blockSha
 	};
 	const auto maxInstancesAmount = sizeOfChunk * sizeOfChunk * sizeOfChunk;
 
-	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, _blockShader, maxInstancesAmount);
+	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, blockShader, maxInstancesAmount);
 }
 
-void ChunkMesh::Rebuild(const ChunkBlocks& blocks) const
+void ChunkMesh::Rebuild(const ChunkBlocks& blocks, BlockMap& blockMap) const
 {
 	std::vector<Vertex> vertices;
 
 	for (const auto& block : blocks)
 	{
+		struct FaceVertices
+		{
+			std::array<Point3D, 4> front
+			{
+				{
+					Point3D{0.0f, 0.0f, 0.0f},
+					Point3D{1.0f, 0.0f, 0.0f},
+					Point3D{1.0f, 1.0f, 0.0f},
+					Point3D{0.0f, 1.0f, 0.0f}
+				}
+			};
+
+			std::array<Point3D, 4> back
+			{
+				{
+					Point3D{0.0f, 0.0f, 1.0f},
+					Point3D{0.0f, 1.0f, 1.0f},
+					Point3D{1.0f, 1.0f, 1.0f},
+					Point3D{1.0f, 0.0f, 1.0f}
+				}
+			};
+
+			std::array<Point3D, 4> left
+			{
+				{
+					Point3D{0.0f, 0.0f, 0.0f},
+					Point3D{0.0f, 1.0f, 0.0f},
+					Point3D{0.0f, 1.0f, 1.0f},
+					Point3D{0.0f, 0.0f, 1.0f}
+				}
+			};
+
+			std::array<Point3D, 4> right
+			{
+				{
+					Point3D{1.0f, 0.0f, 0.0f},
+					Point3D{1.0f, 0.0f, 1.0f},
+					Point3D{1.0f, 1.0f, 1.0f},
+					Point3D{1.0f, 1.0f, 0.0f}
+				}
+			};
+
+			std::array<Point3D, 4> top
+			{
+				{
+					Point3D{0.0f, 1.0f, 0.0f},
+					Point3D{1.0f, 1.0f, 0.0f},
+					Point3D{1.0f, 1.0f, 1.0f},
+					Point3D{0.0f, 1.0f, 1.0f}
+				}
+			};
+
+			std::array<Point3D, 4> bottom
+			{
+				{
+					Point3D{0.0f, 0.0f, 0.0f},
+					Point3D{0.0f, 0.0f, 1.0f},
+					Point3D{1.0f, 0.0f, 1.0f},
+					Point3D{1.0f, 0.0f, 0.0f},
+				}
+			};
+		} faceVertices;
+
 		auto& origin = block.first;
-		auto& faceModels = block.second.model->GetFaces();
+		auto& faceModels = blockMap[block.second.blockModel]->GetFaces();
 		const auto& blockFlags = block.second.blockFlags;
 
-		if (blockFlags & 0b10000000)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-		if (blockFlags & 0b01000000)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-		if (blockFlags & 0b00100000)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-		if (blockFlags & 0b00010000)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-		if (blockFlags & 0b00001000)	AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-		if (blockFlags & 0b00000100)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b10000000)	AddFaceToMesh(origin, faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b01000000)	AddFaceToMesh(origin, faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00100000)	AddFaceToMesh(origin, faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00010000)	AddFaceToMesh(origin, faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00001000)	AddFaceToMesh(origin, faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
+		if (blockFlags & 0b00000100)	AddFaceToMesh(origin, faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
 	}
 
 	_mesh->Update(vertices);

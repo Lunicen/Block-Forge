@@ -3,6 +3,7 @@
 #include "ChunkBlocks.h"
 #include "ChunkMesh.h"
 #include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
+#include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world
@@ -10,16 +11,9 @@
 class Chunk
 {
 	ChunkMesh _mesh;
-	std::shared_ptr<Texture> _blockTexture;
 	ChunkBlocks _blocks;
 
 public:
-
-	/// @brief The constructor.
-	///	@param size - Size of the chunk edge.
-	///	@param blocksTexture - Texture atlas of the blocks inside the chunk.
-	///	@param shader - Reference to the blocks shader.
-	explicit Chunk(const size_t& size, std::shared_ptr<Texture> blocksTexture, Shader& shader);
 
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
@@ -28,10 +22,10 @@ public:
 	///	@param blocksTexture - Texture atlas of the blocks inside the chunk.
 	///	@param size - Size of the chunks edge.
 	///	@param shader - Reference to the blocks shader.
-	explicit Chunk(ChunkBlocks blocks, std::shared_ptr<Texture> blocksTexture, const size_t& size, Shader& shader);
+	explicit Chunk(ChunkBlocks blocks, BlockMap& blockMap, const size_t& size);
 
 	/// @brief Draws the chunk in the world.
 	///	@param camera - reference to the camera so that the blocks could be seen.
-	void Draw(const Camera& camera) const;
+	void Draw(const TextureAtlas& blockTexture, const Camera& camera) const;
 };
 

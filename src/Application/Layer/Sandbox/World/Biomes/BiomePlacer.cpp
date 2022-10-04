@@ -1,6 +1,5 @@
 #include "BiomePlacer.h"
 
-
 bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>& biomesMap)
 {
 	const auto& size = biomesMap.size() - 1; 
@@ -25,6 +24,30 @@ Biome& BiomePlacer::GetBiomeAt(const float noise) const
 	return _biomes.at(1);
 }
 
+Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
+{
+	const auto& x = origin.x + 1;
+	const auto& y = origin.y + 1;
+	const auto& z = origin.z + 1;
+
+	Byte visibilityFlags = 0;
+
+	visibilityFlags |= chunkNoiseWithBorders[x - 1][y][z] > 0 ? 0b00100000 : 0; // left
+	visibilityFlags |= chunkNoiseWithBorders[x + 1][y][z] > 0 ? 0b00010000 : 0; // right
+	visibilityFlags |= chunkNoiseWithBorders[x][y - 1][z] > 0 ? 0b00000100 : 0; // bottom
+	visibilityFlags |= chunkNoiseWithBorders[x][y + 1][z] > 0 ? 0b00001000 : 0; // top 
+	visibilityFlags |= chunkNoiseWithBorders[x][y][z - 1] > 0 ? 0b10000000 : 0; // front
+	visibilityFlags |= chunkNoiseWithBorders[x][y][z + 1] > 0 ? 0b01000000 : 0; // back
+
+	return visibilityFlags;
+}
+
+bool BiomePlacer::IsAir(const Position& origin,
+	const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
+{
+	return chunkNoiseWithBorders[origin.x + 1][origin.y + 1][origin.z + 1] > 0 ? true : false;
+}
+
 BiomePlacer::BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes) : _noise(std::move(noise2D)), _biomes(biomes)
 {
 }
@@ -32,18 +55,34 @@ BiomePlacer::BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes) : _noise(s
 void BiomePlacer::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	const auto biomesMapNoise = _noise.GetNoise(frame);
+	const auto chunkNoiseWithBorders = GetChunkNoise(frame, 1);
 
 	for (size_t x = 0; x < frame.size; ++x)
 	{
 		for (size_t y = 0; y < frame.size; ++y)
 		{
-			const auto biome = GetBiomeAt(biomesMapNoise[x][y]);
-			
-			biome.PaintColumn(frame, blocks, 
-				static_cast<int>(x), 
-				0, 
-				static_cast<int>(y)
-			);
+			for (size_t z = 0; z < frame.size; ++z)
+			{
+				const auto& position = Position(x, y, z);
+
+				if (IsAir(position, chunkNoiseWithBorders))
+				{
+					continue;
+				}
+
+				const Byte visibilityFlags = GetBlockVisibilityFlags(position, chunkNoiseWithBorders);
+
+				if (visibilityFlags != 0)
+				{
+					const auto biome = GetBiomeAt(biomesMapNoise[x][y]);
+					biome.PaintBlockAt(
+						position,
+						frame,
+						blocks,
+						visibilityFlags
+					);
+				}
+			}
 		}
 	}
 }

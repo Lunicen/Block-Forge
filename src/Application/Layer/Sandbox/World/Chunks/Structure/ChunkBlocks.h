@@ -1,13 +1,11 @@
 #pragma once
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
 
-using Byte = unsigned char;
-
 /// @brief Contains the information about a certain block and the visibility of its faces.
 struct BlockData
 {
-	/// @brief A pointer to the model of a block.
-	std::shared_ptr<BlockModel> model = nullptr;
+	/// @brief Block ID from the blocks map.
+	Byte blockModel = 0b00000000;
 
 	/// @brief Represents the flags of of the block.
 	///	@details
@@ -18,7 +16,7 @@ struct BlockData
 	///	3: Is the RIGHT face of this block visible?, <br>
 	///	4: Is the TOP face of this block visible?, <br>
 	///	5: Is the BOTTOM face of this block visible?, <br>
-	///	6: Is the block modified? (for ex was placed manually), <br>
+	///	6: unused. <br>
 	///	7: unused.
 	Byte blockFlags = 0b11111100;
 };

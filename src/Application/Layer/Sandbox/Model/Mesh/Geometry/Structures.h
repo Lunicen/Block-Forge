@@ -3,6 +3,8 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
+using Byte = unsigned char;
+
 /// @brief A 4x4 matrix.
 using Matrix = glm::mat4;
 
