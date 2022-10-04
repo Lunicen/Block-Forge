@@ -32,7 +32,7 @@ public:
 		glEnable(GL_DEPTH_TEST);
 
 		constexpr auto worldSeed = 69;
-		constexpr auto chunkSize = 32;
+		constexpr auto chunkSize = 8;
 		constexpr auto renderDistance = 2;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
