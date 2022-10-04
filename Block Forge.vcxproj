@@ -189,7 +189,6 @@
     <ClCompile Include="src\Application\Layer\Sandbox\World\WorldGenerator.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Blocks\BlockBuilder.cpp" />
-    <ClCompile Include="src\Application\Layer\Sandbox\World\WorldGeneratorUtils.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +227,6 @@
     <ClCompile Include="src\Application\Layer\Sandbox\Utils\FPSCounter.cpp" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Blocks\BlockBuilder.h" />
-    <ClInclude Include="src\Application\Layer\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.h" />
     <ClInclude Include="src\Application\LayerStack\LayerStack.h" />
     <ClInclude Include="src\DebugTools\Timer.h" />
