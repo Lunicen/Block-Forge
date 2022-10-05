@@ -4,7 +4,7 @@
 
 /// @brief This struct represents the block data flags
 ///	in a human readable format.
-constexpr struct BlockFlags
+struct BlockFlags
 {
 	/// @brief Front face visibility flag.
 	Byte frontFace  = 0b10000000;
@@ -21,7 +21,8 @@ constexpr struct BlockFlags
 
 	/// @brief "Is block active?" flag (or is it air?)
 	Byte activate   = 0b00000010;
-} BlockFlag;
+};
+const BlockFlags BlockFlag;
 
 /// @brief Contains the information about a certain block and the visibility of its faces.
 struct BlockData
