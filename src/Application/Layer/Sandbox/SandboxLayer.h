@@ -33,7 +33,7 @@ public:
 
 		constexpr auto worldSeed = 69;
 		constexpr auto chunkSize = 16;
-		constexpr auto renderDistance = 4;
+		constexpr auto renderDistance = 10;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);

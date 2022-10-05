@@ -33,7 +33,10 @@ void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, Bloc
 
 	for (size_t i = 0; i < blocks.size(); ++i)
 	{
-		if (blocks[i] == nullptr)
+		const auto& blockFlags = blocks[i].blockFlags;
+
+		// If block is disabled
+		if ((blockFlags & 0b00000010) == 0)
 		{
 			continue;
 		}
@@ -102,8 +105,7 @@ void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, Bloc
 		} faceVertices;
 
 		auto origin = ChunkUtils::GetBlockPosition(i, frame.size) + frame.origin * static_cast<int>(frame.size);
-		auto faceModels = blockMap[blocks[i]->blockModel]->GetFaces();
-		const auto& blockFlags = blocks[i]->blockFlags;
+		auto faceModels = blockMap[blocks[i].blockModel]->GetFaces();
 
 		if (blockFlags & 0b10000000)	AddFaceToMesh(origin, faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
 		if (blockFlags & 0b01000000)	AddFaceToMesh(origin, faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);

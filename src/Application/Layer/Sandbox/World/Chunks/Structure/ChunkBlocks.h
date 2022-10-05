@@ -17,9 +17,9 @@ struct BlockData
 	///	3: Is the RIGHT face of this block visible?, <br>
 	///	4: Is the TOP face of this block visible?, <br>
 	///	5: Is the BOTTOM face of this block visible?, <br>
-	///	6: unused. <br>
+	///	6: Is the block active? Or it's treated as an air. <br>
 	///	7: unused.
-	Byte blockFlags = 0b11111100;
+	Byte blockFlags = 0b00000000;
 };
 
 template <>
@@ -44,4 +44,4 @@ struct std::hash<Position>
 ///	@details This map contains all blocks that are included in the chunk
 ///	and maps the location of the block as a key, and it's model and
 ///	faces visibility as a key.
-using ChunkBlocks = std::vector<std::unique_ptr<BlockData>>;
+using ChunkBlocks = std::vector<BlockData>;

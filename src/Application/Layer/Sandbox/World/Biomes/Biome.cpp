@@ -16,13 +16,16 @@ void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, ChunkBlocks& bloc
 		--blockIndex;
 	}
 
+	Byte blockFlags = visibilityFlags;
+	blockFlags |= 0b00000010; // Enables block, so it's not treated as an air.
+
 	const BlockData blockData = 
 	{
 		_blocksMap.GetId(_depthLevel[blockIndex].second),
-		visibilityFlags
+		blockFlags
 	};
 
-	blocks[ChunkUtils::GetBlockIndex(origin, chunkSize)] = std::make_unique<BlockData>(blockData);
+	blocks[ChunkUtils::GetBlockIndex(origin, chunkSize)] = BlockData(blockData);
 }
 
 Biome::Biome(std::string name, const Noise3D& noise, std::vector<std::pair<size_t, std::string>> depthLevels, BlockMap& blocksMap)
