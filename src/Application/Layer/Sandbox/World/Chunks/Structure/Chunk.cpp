@@ -1,9 +1,9 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk(ChunkBlocks blocks, BlockMap& blockMap, const size_t& size) : _mesh(ChunkMesh(blockMap.GetBlocksShader(), size)), _blocks(std::move(blocks))
+Chunk::Chunk(const ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap) : _mesh(ChunkMesh(blockMap.GetBlocksShader(), frame.size)), _blocks(std::move(blocks))
 {
-	_mesh.Rebuild(_blocks, blockMap);
+	_mesh.Rebuild(frame, _blocks, blockMap);
 }
 
 void Chunk::Draw(const TextureAtlas& blockTexture, const Camera& camera) const

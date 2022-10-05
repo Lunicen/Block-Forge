@@ -12,7 +12,7 @@ class Biome final : public Noise3D
 	std::vector<std::pair<size_t, std::string>> _depthLevel;
 	BlockMap& _blocksMap;
 
-	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, const std::vector<float>& noise, size_t yLevel, const Byte& visibilityFlags) const;
+	void SetBlockAccordingToNoise(const glm::ivec3& origin, ChunkBlocks& blocks, const size_t& chunkSize, const std::vector<float>& noise, size_t yLevel, const Byte& visibilityFlags) const;
 
 public:
 	

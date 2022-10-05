@@ -1,4 +1,5 @@
 #pragma once
+// ReSharper disable once CppUnusedIncludeDirective
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
 
 /// @brief Contains the information about a certain block and the visibility of its faces.
@@ -43,4 +44,4 @@ struct std::hash<Position>
 ///	@details This map contains all blocks that are included in the chunk
 ///	and maps the location of the block as a key, and it's model and
 ///	faces visibility as a key.
-using ChunkBlocks = std::unordered_map<Position, BlockData>;
+using ChunkBlocks = std::vector<std::unique_ptr<BlockData>>;

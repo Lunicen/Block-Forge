@@ -64,7 +64,7 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			_log.Trace("Added chunk: " + PositionToString(origin));
-			_loadedChunks[origin] = _chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator);
+			_loadedChunks[origin] = _chunkBuilder.Build(ChunkFrame{origin, _order->GetChunkSize()}, *_generator);
 		}
 	}
 

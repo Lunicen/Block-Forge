@@ -22,7 +22,7 @@ public:
 	///	@param blocksTexture - Texture atlas of the blocks inside the chunk.
 	///	@param size - Size of the chunks edge.
 	///	@param shader - Reference to the blocks shader.
-	explicit Chunk(ChunkBlocks blocks, BlockMap& blockMap, const size_t& size);
+	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap);
 
 	/// @brief Draws the chunk in the world.
 	///	@param camera - reference to the camera so that the blocks could be seen.

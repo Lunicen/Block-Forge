@@ -1,12 +1,14 @@
 #include "ChunkBuilder.h"
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-std::unique_ptr<Chunk> ChunkBuilder::Build(const Position origin, const size_t& size, WorldGenerator& generator) const
+std::unique_ptr<Chunk> ChunkBuilder::Build(ChunkFrame frame, WorldGenerator& generator) const
 {
-	const auto chunkFrame = ChunkFrame{origin, size};
+	const auto chunkFrame = ChunkFrame{frame.origin, frame.size};
+
 	ChunkBlocks chunkBlocks;
+	chunkBlocks.resize(frame.size * frame.size * frame.size);
 
 	generator.PaintChunk(chunkFrame, chunkBlocks);
 
-	return std::make_unique<Chunk>(chunkBlocks, generator.GetBlockMap(), size);
+	return std::make_unique<Chunk>(frame, std::move(chunkBlocks), generator.GetBlockMap());
 }

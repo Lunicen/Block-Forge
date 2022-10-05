@@ -1,5 +1,6 @@
 #pragma once
 #include "ChunkBlocks.h"
+#include "ChunkFrame.h"
 #include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
 #include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
 
@@ -20,7 +21,7 @@ public:
 
 	/// @brief Rebuilds the mesh basing on the passed blocks.
 	///	@param blocks - Blocks inside the chunk.
-	void Rebuild(const ChunkBlocks& blocks, BlockMap& blockMap) const;
+	void Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const;
 
 	/// @brief Renders blocks inside the chunk.
 	///	@param blocksTexture - The texture that blocks uses.

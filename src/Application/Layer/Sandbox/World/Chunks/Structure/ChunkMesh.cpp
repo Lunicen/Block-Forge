@@ -1,5 +1,7 @@
 #include "ChunkMesh.h"
 
+#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
+
 void ChunkMesh::AddFaceToMesh(
 	const Position& origin,
 	const std::array<Point3D, 4>& faceVertices,
@@ -25,12 +27,17 @@ ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk)
 	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, blockShader, maxInstancesAmount);
 }
 
-void ChunkMesh::Rebuild(const ChunkBlocks& blocks, BlockMap& blockMap) const
+void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const
 {
 	std::vector<Vertex> vertices;
 
-	for (const auto& block : blocks)
+	for (size_t i = 0; i < blocks.size(); ++i)
 	{
+		if (blocks[i] == nullptr)
+		{
+			continue;
+		}
+
 		struct FaceVertices
 		{
 			std::array<Point3D, 4> front
@@ -94,9 +101,9 @@ void ChunkMesh::Rebuild(const ChunkBlocks& blocks, BlockMap& blockMap) const
 			};
 		} faceVertices;
 
-		auto& origin = block.first;
-		auto& faceModels = blockMap[block.second.blockModel]->GetFaces();
-		const auto& blockFlags = block.second.blockFlags;
+		auto origin = ChunkUtils::GetBlockPosition(i, frame.size);
+		auto faceModels = blockMap[blocks[i]->blockModel]->GetFaces();
+		const auto& blockFlags = blocks[i]->blockFlags;
 
 		if (blockFlags & 0b10000000)	AddFaceToMesh(origin, faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
 		if (blockFlags & 0b01000000)	AddFaceToMesh(origin, faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);

@@ -1,6 +1,8 @@
 #include "Biome.h"
 
-void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const std::vector<float>& noise, const size_t yLevel, const Byte& visibilityFlags) const
+#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
+
+void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, ChunkBlocks& blocks, const size_t& chunkSize, const std::vector<float>& noise, const size_t yLevel, const Byte& visibilityFlags) const
 {
 	auto blockIndex = _depthLevel.size() - 1;
 	while (blockIndex > 0)
@@ -20,7 +22,7 @@ void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origi
 		visibilityFlags
 	};
 
-	blocks[origin] = blockData;
+	blocks[ChunkUtils::GetBlockIndex(origin, chunkSize)] = std::make_unique<BlockData>(blockData);
 }
 
 Biome::Biome(std::string name, const Noise3D& noise, std::vector<std::pair<size_t, std::string>> depthLevels, BlockMap& blocksMap)
@@ -39,8 +41,9 @@ void Biome::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkB
 	);
 
 	SetBlockAccordingToNoise(
+		origin,
 		blocks,
-		frame.origin * static_cast<int>(frame.size) + origin,
+		frame.size,
 		noise, origin.y,
 		visibilityFlags
 	);

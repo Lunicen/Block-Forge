@@ -199,6 +199,7 @@
     <ClInclude Include="src\Application\Layer\Sandbox\SandboxLayer.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
