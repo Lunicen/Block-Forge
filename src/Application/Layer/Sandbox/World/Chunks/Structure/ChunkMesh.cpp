@@ -101,7 +101,7 @@ void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, Bloc
 			};
 		} faceVertices;
 
-		auto origin = ChunkUtils::GetBlockPosition(i, frame.size);
+		auto origin = ChunkUtils::GetBlockPosition(i, frame.size) + frame.origin * static_cast<int>(frame.size);
 		auto faceModels = blockMap[blocks[i]->blockModel]->GetFaces();
 		const auto& blockFlags = blocks[i]->blockFlags;
 
