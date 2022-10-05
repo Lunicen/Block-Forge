@@ -17,6 +17,8 @@ class BiomePlacer
 	static Byte GetBlockVisibilityFlags(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders);
 	static bool IsAir(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders);
 
+	void PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders, const std::vector<std::vector<float>>& biomesMapNoise) const;
+
 public:
 
 	/// @brief The constructor.

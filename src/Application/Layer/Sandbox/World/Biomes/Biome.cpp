@@ -17,7 +17,7 @@ void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, ChunkBlocks& bloc
 	}
 
 	Byte blockFlags = visibilityFlags;
-	blockFlags |= 0b00000010; // Enables block, so it's not treated as an air.
+	blockFlags |= BlockFlag.activate; // Enables block, so it's not treated as an air.
 
 	const BlockData blockData = 
 	{

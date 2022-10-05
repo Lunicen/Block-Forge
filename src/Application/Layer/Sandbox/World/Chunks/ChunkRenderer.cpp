@@ -7,7 +7,7 @@ ChunkRenderer::ChunkRenderer()
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void ChunkRenderer::Render(const std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, TextureAtlas& blocksTexture, const Camera& camera) const
+void ChunkRenderer::Render(const std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, const TextureAtlas& blocksTexture, const Camera& camera) const
 {
 	glEnable(GL_CULL_FACE);
 

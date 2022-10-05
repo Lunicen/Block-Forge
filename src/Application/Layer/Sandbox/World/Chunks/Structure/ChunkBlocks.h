@@ -2,6 +2,27 @@
 // ReSharper disable once CppUnusedIncludeDirective
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
 
+/// @brief This struct represents the block data flags
+///	in a human readable format.
+constexpr struct BlockFlags
+{
+	/// @brief Front face visibility flag.
+	Byte frontFace  = 0b10000000;
+	/// @brief Back face visibility flag.
+	Byte backFace   = 0b01000000;
+	/// @brief Left face visibility flag. 
+	Byte leftFace   = 0b00100000;
+	/// @brief Right face visibility flag. 
+	Byte rightFace  = 0b00010000;
+	/// @brief Top face visibility flag. 
+	Byte topFace    = 0b00001000;
+	/// @brief Bottom face visibility flag. 
+	Byte bottomFace = 0b00000100; 
+
+	/// @brief "Is block active?" flag (or is it air?)
+	Byte activate   = 0b00000010;
+} BlockFlag;
+
 /// @brief Contains the information about a certain block and the visibility of its faces.
 struct BlockData
 {

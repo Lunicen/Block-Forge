@@ -32,12 +32,12 @@ Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vec
 
 	Byte visibilityFlags = 0;
 
-	visibilityFlags |= chunkNoiseWithBorders[x - 1][y][z] > 0 ? 0b00100000 : 0; // left
-	visibilityFlags |= chunkNoiseWithBorders[x + 1][y][z] > 0 ? 0b00010000 : 0; // right
-	visibilityFlags |= chunkNoiseWithBorders[x][y - 1][z] > 0 ? 0b00000100 : 0; // bottom
-	visibilityFlags |= chunkNoiseWithBorders[x][y + 1][z] > 0 ? 0b00001000 : 0; // top 
-	visibilityFlags |= chunkNoiseWithBorders[x][y][z - 1] > 0 ? 0b10000000 : 0; // front
-	visibilityFlags |= chunkNoiseWithBorders[x][y][z + 1] > 0 ? 0b01000000 : 0; // back
+	visibilityFlags |= chunkNoiseWithBorders[x - 1][y][z] > 0 ? BlockFlag.leftFace   : 0;
+	visibilityFlags |= chunkNoiseWithBorders[x + 1][y][z] > 0 ? BlockFlag.rightFace  : 0;
+	visibilityFlags |= chunkNoiseWithBorders[x][y - 1][z] > 0 ? BlockFlag.bottomFace : 0;
+	visibilityFlags |= chunkNoiseWithBorders[x][y + 1][z] > 0 ? BlockFlag.topFace    : 0;
+	visibilityFlags |= chunkNoiseWithBorders[x][y][z - 1] > 0 ? BlockFlag.frontFace  : 0;
+	visibilityFlags |= chunkNoiseWithBorders[x][y][z + 1] > 0 ? BlockFlag.backFace   : 0;
 
 	return visibilityFlags;
 }
@@ -46,6 +46,29 @@ bool BiomePlacer::IsAir(const Position& origin,
 	const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
 {
 	return chunkNoiseWithBorders[origin.x + 1][origin.y + 1][origin.z + 1] > 0 ? true : false;
+}
+
+void BiomePlacer::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders, const std::vector<std::vector<float>>& biomesMapNoise) const
+{
+	const auto& position = Position(origin.x, origin.y, origin.z);
+
+	if (IsAir(position, chunkNoiseWithBorders))
+	{
+		return;
+	}
+
+	const Byte visibilityFlags = GetBlockVisibilityFlags(position, chunkNoiseWithBorders);
+
+	if (visibilityFlags != 0)
+	{
+		const auto biome = GetBiomeAt(biomesMapNoise[origin.x][origin.z]);
+		biome.PaintBlockAt(
+			position,
+			frame,
+			blocks,
+			visibilityFlags
+		);
+	}
 }
 
 BiomePlacer::BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes) : _noise(std::move(noise2D)), _biomes(biomes)
@@ -63,25 +86,7 @@ void BiomePlacer::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 		{
 			for (size_t z = 0; z < frame.size; ++z)
 			{
-				const auto& position = Position(x, y, z);
-
-				if (IsAir(position, chunkNoiseWithBorders))
-				{
-					continue;
-				}
-
-				const Byte visibilityFlags = GetBlockVisibilityFlags(position, chunkNoiseWithBorders);
-
-				if (visibilityFlags != 0)
-				{
-					const auto biome = GetBiomeAt(biomesMapNoise[x][z]);
-					biome.PaintBlockAt(
-						position,
-						frame,
-						blocks,
-						visibilityFlags
-					);
-				}
+				PaintBlockAt(Position(x, y, z), frame, blocks, chunkNoiseWithBorders, biomesMapNoise);
 			}
 		}
 	}
