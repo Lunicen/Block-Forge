@@ -18,14 +18,14 @@ public:
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
 	/// and the player position for proper displaying blocks while the player is moving.
+	///	@param frame - Frame of the chunk.
 	///	@param blocks - The blocks inside the chunk.
-	///	@param blocksTexture - Texture atlas of the blocks inside the chunk.
-	///	@param size - Size of the chunks edge.
-	///	@param shader - Reference to the blocks shader.
+	///	@param blockMap - Reference to the blocks map.
 	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap);
 
 	/// @brief Draws the chunk in the world.
-	///	@param camera - reference to the camera so that the blocks could be seen.
+	///	@param blockTexture - Reference texture atlas that the blocks are using.
+	///	@param camera - Reference to the camera so that the blocks could be seen.
 	void Draw(const TextureAtlas& blockTexture, const Camera& camera) const;
 };
 

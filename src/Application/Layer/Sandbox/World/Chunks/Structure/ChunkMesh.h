@@ -20,11 +20,13 @@ public:
 	explicit ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk);
 
 	/// @brief Rebuilds the mesh basing on the passed blocks.
+	///	@param frame - Frame of the chunk.
 	///	@param blocks - Blocks inside the chunk.
+	///	@param blockMap - Reference to the block map.
 	void Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const;
 
 	/// @brief Renders blocks inside the chunk.
-	///	@param blocksTexture - The texture that blocks uses.
+	///	@param blocksTexture - The texture that the blocks are using.
 	///	@param camera - Reference to the camera, so the blocks could be seen.
 	void Draw(const Texture& blocksTexture, const Camera& camera) const;
 };

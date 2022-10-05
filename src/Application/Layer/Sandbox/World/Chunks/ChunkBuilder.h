@@ -9,9 +9,8 @@ class ChunkBuilder
 public:
 
 	/// @brief Builds the chunk.
-	///	@param origin - origin of the chunk.
-	///	@param size - size of the chunks edge.
-	///	@param generator - the world generator that chunk uses to generate it's content.
+	///	@param frame - Frame of the chunk.
+	///	@param generator - The world generator that chunk uses to generate it's content.
 	std::unique_ptr<Chunk> Build(ChunkFrame frame, WorldGenerator& generator) const;
 };
 

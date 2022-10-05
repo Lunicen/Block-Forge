@@ -27,6 +27,8 @@ public:
 	/// @brief Move assignment constructor.
 	BlockMap& operator=(const BlockMap&&) noexcept = delete;
 
+	/// @brief Returns ID of the block based on its name.
+	///	@param blockName - name of the block.
 	Byte GetId(const std::string& blockName)
 	{
 		return _blockNames[blockName];

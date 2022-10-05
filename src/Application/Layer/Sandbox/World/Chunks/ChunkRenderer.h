@@ -16,6 +16,7 @@ public:
 
 	/// @brief Renders loaded chunks.
 	///	@param camera - A reference to the camera around which the objects are rendered.
+	///	@param blocksTexture - The texture that the blocks are using.
 	///	@param chunks - Chunks to render with their positions on the map.
 	void Render(const std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, TextureAtlas& blocksTexture, const Camera& camera) const;
 };
