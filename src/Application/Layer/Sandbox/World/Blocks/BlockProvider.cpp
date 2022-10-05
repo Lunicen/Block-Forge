@@ -25,6 +25,27 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetB
 	return blocks;
 }
 
+void BlockProvider::SetBlocks(
+	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount>& blockArray,
+	std::unordered_map<std::string, unsigned char>& blockNames, 
+	TextureAtlas& blocksTextureAtlas,
+	const std::string& blocksSetName)
+{
+	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
+
+	Byte arrayIterator = 0;
+	for (const auto& blockData : blocksSet["blocks"])
+	{
+		const std::string name = blockData.value("block", "unknown");
+		blockNames[name] = arrayIterator;
+
+		const BlockBuilder builder;
+		blockArray[arrayIterator] = std::make_shared<BlockModel>(builder.Build(blockData, blocksTextureAtlas));
+
+		++arrayIterator;
+	}
+}
+
 std::string BlockProvider::GetTextureAtlasFilename(const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);

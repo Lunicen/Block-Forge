@@ -1,5 +1,7 @@
 #include "ChunkMesh.h"
 
+#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
+
 void ChunkMesh::AddFaceToMesh(
 	const Position& origin,
 	const std::array<Point3D, 4>& faceVertices,
@@ -13,7 +15,7 @@ void ChunkMesh::AddFaceToMesh(
 	}
 }
 
-ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk) : _blockShader(blockShader)
+ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk)
 {
 	const std::vector<TriangleIndexes> indicesPattern =
 	{
@@ -22,25 +24,32 @@ ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk) : _blockSha
 	};
 	const auto maxInstancesAmount = sizeOfChunk * sizeOfChunk * sizeOfChunk;
 
-	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, _blockShader, maxInstancesAmount);
+	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, blockShader, maxInstancesAmount);
 }
 
-void ChunkMesh::Rebuild(const ChunkBlocks& blocks) const
+void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const
 {
 	std::vector<Vertex> vertices;
 
-	for (const auto& block : blocks)
+	for (size_t i = 0; i < blocks.size(); ++i)
 	{
-		auto& origin = block.first;
-		auto& faceModels = block.second.model->GetFaces();
-		const auto& facesVisibility = block.second.visibility;
+		const auto& blockFlags = blocks[i].blockFlags;
 
-		if (facesVisibility.front)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-		if (facesVisibility.back)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-		if (facesVisibility.left)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-		if (facesVisibility.right)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-		if (facesVisibility.top)	AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-		if (facesVisibility.bottom)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
+		// If block is disabled
+		if ((blockFlags & BlockFlag.activate) == 0)
+		{
+			continue;
+		}
+
+		auto origin = ChunkUtils::GetBlockPosition(i, frame.size) + frame.origin * static_cast<int>(frame.size);
+		auto faceModels = blockMap[blocks[i].blockModel]->GetFaces();
+
+		if (blockFlags & BlockFlag.frontFace)	AddFaceToMesh(origin, _faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.backFace)	AddFaceToMesh(origin, _faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.leftFace)	AddFaceToMesh(origin, _faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.rightFace)	AddFaceToMesh(origin, _faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.topFace)		AddFaceToMesh(origin, _faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.bottomFace)	AddFaceToMesh(origin, _faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
 	}
 
 	_mesh->Update(vertices);

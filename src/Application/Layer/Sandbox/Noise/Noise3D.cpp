@@ -55,6 +55,18 @@ void Noise3D::ValidateDataCorrectness(const size_t& noiseSize)
 	}
 }
 
+float Noise3D::GetNoiseAt(const ChunkFrame& frame, const int xOffset, const int yOffset, const int zOffset) const
+{
+	// The reason why these values must be multiplied by the frequency
+	// is due to the fact of an inconsistency in the noise library interface
+	// https://github.com/Auburn/FastNoise2/issues/99#issuecomment-1232627339
+	const auto x = static_cast<float>(frame.origin.x * frame.size + xOffset) * GetFrequency();
+	const auto y = static_cast<float>(frame.origin.y * frame.size + yOffset) * GetFrequency();
+	const auto z = static_cast<float>(frame.origin.z * frame.size + zOffset) * GetFrequency();
+
+	return GetGenerator()->GenSingle3D(x, y, z, GetSeed());
+}
+
 std::vector<float> Noise3D::GetColumnNoiseWithAdditionalHeight(
 	const ChunkFrame& frame, 
 	const int xOffset, const int yOffset, const int zOffset,

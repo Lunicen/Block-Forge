@@ -12,7 +12,7 @@ class Biome final : public Noise3D
 	std::vector<std::pair<size_t, std::string>> _depthLevel;
 	BlockMap& _blocksMap;
 
-	void SetBlockAccordingToNoise(ChunkBlocks& blocks, glm::ivec3 origin, const std::vector<float>& noise, size_t yLevel) const;
+	void SetBlockAccordingToNoise(const glm::ivec3& origin, ChunkBlocks& blocks, const size_t& chunkSize, const std::vector<float>& noise, size_t yLevel, const Byte& visibilityFlags) const;
 
 public:
 	
@@ -27,11 +27,10 @@ public:
 	/// @brief Adapts chunk column according to the biome noise.
 	///	@details The purpose of this method is to "paint" the chunk
 	///	according to the biome noise with respect of the origin of that chunk.
+	/// @param origin - position of the block to paint (relative to the chunk, not world direct coordinates).
 	/// @param frame - frame of the chunk.
 	/// @param blocks - the metadata of the chunk (basically blockAt).
-	/// @param xOffset - X offset from the chunk origin.
-	/// @param yOffset - Y offset from the chunk origin.
-	/// @param zOffset - Z offset from the chunk origin.
-	void PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, int xOffset, int yOffset, int zOffset) const;
+	/// @param visibilityFlags - calculated visibility flags of the block.
+	void PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const Byte& visibilityFlags) const;
 };
 

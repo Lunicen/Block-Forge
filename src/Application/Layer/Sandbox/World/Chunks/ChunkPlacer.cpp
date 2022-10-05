@@ -64,7 +64,7 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			_log.Trace("Added chunk: " + PositionToString(origin));
-			_loadedChunks[origin] = _chunkBuilder.Build(origin, _order->GetChunkSize(), *_generator);
+			_loadedChunks[origin] = _chunkBuilder.Build(ChunkFrame{origin, _order->GetChunkSize()}, *_generator);
 		}
 	}
 
@@ -81,8 +81,6 @@ void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
 {
-	_previousNormalizedPosition = GetNormalizedPosition(initPosition, chunkSize);
-
 	switch (orderType)
 	{
 	case OrderType::cube:	
@@ -97,6 +95,8 @@ ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, cons
 		_order = std::make_unique<TiltedCubeOrder>(renderDistance, chunkSize);
 		break;
 	}
+
+	_previousNormalizedPosition = GetNormalizedPosition(initPosition, chunkSize);
 }
 
 void ChunkPlacer::Update(const Position& position)
@@ -115,6 +115,7 @@ void ChunkPlacer::Update(const Position& position)
 void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 {
 	_generator = std::move(generator);
+	UpdateChunksAround(_previousNormalizedPosition);
 }
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
