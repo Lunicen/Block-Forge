@@ -56,20 +56,15 @@ float Noise3D::GetNoiseAt(const ChunkFrame& frame, const int xOffset, const int 
 	return GetGenerator()->GenSingle3D(x, y, z, GetSeed());
 }
 
-std::vector<float> Noise3D::GetColumnNoiseWithAdditionalHeight(
-	const ChunkFrame& frame, 
-	const int xOffset, const int yOffset, const int zOffset,
-	const size_t additionalHeight) const
+std::vector<float> Noise3D::GetNoiseAtWithTopColumn(const Position& origin, const size_t& topColumnHeight) const
 {
-	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, 0);
-	const auto areaSize = frame.size + additionalHeight;
-
-	auto noise = std::vector<float>(areaSize);
-
+	const auto& additionalHeight = topColumnHeight + 1;
+	auto noise = std::vector<float>(additionalHeight);
+	
 	GetGenerator()->GenUniformGrid3D(
 		noise.data(),
 		origin.x, origin.y, origin.z,
-		1, static_cast<int>(areaSize), 1,
+		1, static_cast<int>(additionalHeight), 1,
 		GetFrequency(), GetSeed());
 
 	return noise;

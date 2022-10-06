@@ -17,7 +17,7 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>&
 
 Biome& BiomePlacer::GetBiomeAt(const float noise) const
 {
-	if (noise < 0)
+	if (noise > 0)
 	{
 		return _biomes.at(0);
 	}
@@ -50,20 +50,18 @@ bool BiomePlacer::IsAir(const Position& origin,
 
 void BiomePlacer::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders, const std::vector<std::vector<float>>& biomesMapNoise) const
 {
-	const auto& position = Position(origin.x, origin.y, origin.z);
-
-	if (IsAir(position, chunkNoiseWithBorders))
+	if (IsAir(origin, chunkNoiseWithBorders))
 	{
 		return;
 	}
 
-	const Byte visibilityFlags = GetBlockVisibilityFlags(position, chunkNoiseWithBorders);
+	const Byte visibilityFlags = GetBlockVisibilityFlags(origin, chunkNoiseWithBorders);
 
 	if (visibilityFlags != 0)
 	{
 		const auto biome = GetBiomeAt(biomesMapNoise[origin.x][origin.z]);
 		biome.PaintBlockAt(
-			position,
+			origin,
 			frame,
 			blocks,
 			visibilityFlags
