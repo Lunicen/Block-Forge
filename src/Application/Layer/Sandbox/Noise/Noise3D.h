@@ -12,7 +12,6 @@ class Noise3D : protected Noise
 {
 	static glm::ivec3 GetOriginShiftedByExpansionFactor(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor);
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
-	static void ValidateDataCorrectness(const size_t& noiseSize);
 
 public:
 
@@ -32,13 +31,10 @@ public:
 	///	@param zOffset - offset from the origin Z axis. 
 	float GetNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset) const;
 
-	/// @brief Get noise of the chunk column with additional blocks on the top.
-	/// @param frame - the frame of the chunk.
-	/// @param xOffset - offset from the origin X axis. 
-	///	@param yOffset - offset from the origin Y axis.
-	///	@param zOffset - offset from the origin Z axis. 
-	/// @param additionalHeight - the amount of additional blocks on Y axis (from the top of the column).
-	std::vector<float> GetColumnNoiseWithAdditionalHeight(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, size_t additionalHeight) const;
+	/// @brief Get noise that is at certain point on the map, with additional blocks on the top.
+	/// @param origin - Block origin.
+	/// @param topColumnHeight - Additional blocks from the top of the block.
+	std::vector<float> GetNoiseAtWithTopColumn(const Position& origin, const size_t& topColumnHeight) const;
 
 	/// @brief Get noise of the chunk column.
 	/// @param frame - the frame of the chunk.

@@ -261,7 +261,7 @@
     <ClInclude Include="src\Application\Layer\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Data\Biomes.json" />
+    <None Include="src\Data\Generators.json" />
     <None Include="src\Data\Blocks.json" />
     <None Include="src\Data\Shaders\Block.frag" />
     <None Include="src\Data\Shaders\Block.vert" />

@@ -2,7 +2,7 @@
 
 WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
-	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blockMap);
+	auto biomeProvider = BiomeProvider("src/Data/Generators.json", _blockMap);
 	_biomes = biomeProvider.GetBiomes(_seed);
 
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
