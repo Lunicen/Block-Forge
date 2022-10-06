@@ -6,6 +6,13 @@
             "frequency": 0.02
         },
 
+        "fluids": [
+            {
+                "name": "Water",
+                "spawnLevel": 0
+            }
+        ],
+
         "biomes": [
             {
                 "name": "Meadow",
