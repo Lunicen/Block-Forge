@@ -12,7 +12,6 @@ class Noise3D : protected Noise
 {
 	static glm::ivec3 GetOriginShiftedByExpansionFactor(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset, int expansionFactor);
 	static std::vector<std::vector<std::vector<float>>> ConvertNoiseFrom1DTo3D(const std::vector<float>& noise, const size_t& size);
-	static void ValidateDataCorrectness(const size_t& noiseSize);
 
 public:
 

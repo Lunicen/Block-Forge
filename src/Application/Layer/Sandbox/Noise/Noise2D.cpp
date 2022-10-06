@@ -1,7 +1,5 @@
 #include "Noise2D.h"
 
-#include "Core/EngineExceptions.h"
-
 std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size)
 {
 	std::vector<std::vector<float>> result;

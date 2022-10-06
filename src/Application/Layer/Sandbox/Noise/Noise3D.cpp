@@ -1,7 +1,5 @@
 #include "Noise3D.h"
 
-#include "Core/EngineExceptions.h"
-
 glm::ivec3 Noise3D::GetOriginShiftedByExpansionFactor(
 	const ChunkFrame& frame, 
 	const int xOffset, const int yOffset, const int zOffset,
@@ -46,15 +44,6 @@ std::vector<std::vector<std::vector<float>>> Noise3D::ConvertNoiseFrom1DTo3D(con
 	return result;
 }
 
-void Noise3D::ValidateDataCorrectness(const size_t& noiseSize)
-{
-	constexpr auto minimalSupportedNoiseSize = 8;
-	if (noiseSize < minimalSupportedNoiseSize)
-	{
-		throw LibraryBugException("FastNoise2 library does not supporting sizes smaller than " + std::to_string(minimalSupportedNoiseSize) + " for 3D noise generation. Link: https://github.com/Auburn/FastNoise2/issues/89");
-	}
-}
-
 float Noise3D::GetNoiseAt(const ChunkFrame& frame, const int xOffset, const int yOffset, const int zOffset) const
 {
 	// The reason why these values must be multiplied by the frequency
@@ -72,8 +61,6 @@ std::vector<float> Noise3D::GetColumnNoiseWithAdditionalHeight(
 	const int xOffset, const int yOffset, const int zOffset,
 	const size_t additionalHeight) const
 {
-	ValidateDataCorrectness(frame.size);
-
 	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, 0);
 	const auto areaSize = frame.size + additionalHeight;
 
@@ -93,8 +80,6 @@ std::vector<float> Noise3D::GetColumnNoise(
 	const int xOffset, const int yOffset, const int zOffset, 
 	const int expansionFactor) const
 {
-	ValidateDataCorrectness(frame.size);
-
 	const auto origin = GetOriginShiftedByExpansionFactor(frame, xOffset, yOffset, zOffset, expansionFactor);
 	const auto areaSize = frame.size + static_cast<size_t>(2) * expansionFactor;
 
