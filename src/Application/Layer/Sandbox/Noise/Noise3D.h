@@ -31,6 +31,9 @@ public:
 	///	@param zOffset - offset from the origin Z axis. 
 	float GetNoiseAt(const ChunkFrame& frame, int xOffset, int yOffset, int zOffset) const;
 
+	/// @brief Get noise that is at certain point on the map, with additional blocks on the top.
+	/// @param origin - Block origin.
+	/// @param topColumnHeight - Additional blocks from the top of the block.
 	std::vector<float> GetNoiseAtWithTopColumn(const Position& origin, const size_t& topColumnHeight) const;
 
 	/// @brief Get noise of the chunk column.
