@@ -94,7 +94,7 @@ std::vector<std::vector<std::vector<float>>> BiomePlacer::GetChunkNoise(const Ch
 
 	if (HasChunkOnlySingleBiome(biomesMapNoise))
 	{
-		const auto biome = GetBiomeAt(biomesMapNoise[0][0]);
+		const auto biome = GetBiomeAt(biomesMapNoise[1][1]);
 		return biome.GetNoise(frame, expansionFactor);
 	}
 
