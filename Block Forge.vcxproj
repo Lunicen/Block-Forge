@@ -150,15 +150,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application\Sandbox\Hud.cpp" />
-    <ClCompile Include="src\Application\Sandbox\Model\Mesh\DynamicMesh.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
-    <ClCompile Include="src\Application\Sandbox\World\Chunks\ChunkBuilder.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Hud.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\StaticMesh.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\Texture.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\CubeOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\DiamondOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\ChunkRenderer.cpp" />
@@ -172,6 +171,7 @@
     <ClCompile Include="src\Application\HID\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\Geometry\ElementBuffer.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_opengl3.cpp" />
@@ -197,6 +197,7 @@
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Layer\PauseMenu\PauseMenuLayer.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\Hud.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\SandboxLayer.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\Mesh.h" />

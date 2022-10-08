@@ -11,7 +11,7 @@ Hud::Hud()
 }
 
 
-void Hud::Draw2()
+void Hud::Draw()
 {
 	_mesh.Draw(_texture);
 }

@@ -22,15 +22,15 @@ public:
 	///	@param origin - A position in the world to place the mesh.
 	/// @param texture - The texture to cover the mesh.
 	/// @param camera - It is used to bind a shader to see the drawn mesh.
-	void Draw(const Position& origin, const Texture& texture, const Camera& camera) const;
+	void Draw(const Position& origin, const Texture& texture, const Camera& camera);
 
 
 	/// @brief Draws the mesh
 	/// @param texture - The texture to cover the mesh.
-	void Draw(const Texture& texture) const;
+	void Draw(const Texture& texture);
 
 
 
-	void Draw() const;
+	void Draw();
 };
 

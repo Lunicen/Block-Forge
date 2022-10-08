@@ -27,6 +27,6 @@ public:
 	Hud();
 
 
-	void Draw2();
+	void Draw();
 };
 

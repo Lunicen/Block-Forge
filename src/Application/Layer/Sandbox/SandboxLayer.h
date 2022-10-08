@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/vec3.hpp>
 
+#include "Hud.h"
 #include "Application/Layer/Layer.h"
 #include "Application/Layer/Sandbox/Camera.h"
 #include "Application/Layer/Sandbox/Utils/FPSCounter.h"
@@ -15,6 +16,7 @@ class SandboxLayer final : public Layer
 	std::unique_ptr<Camera> _camera{};
 	std::unique_ptr<ChunkPlacer> _chunkPlacer{};
 	std::unique_ptr<FPSCounter> _fpsCounter{};
+	std::unique_ptr<Hud> _hud{};
 
 	std::shared_ptr<WorldGenerator> _worldGenerator;
 
@@ -37,6 +39,7 @@ public:
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
+		_hud = std::make_unique<Hud>();
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
@@ -51,6 +54,7 @@ public:
 		_camera->Update();
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
 		_fpsCounter->Update();
+		_hud->Draw();
 	}
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
