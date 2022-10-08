@@ -42,7 +42,7 @@ void Texture::Bind(const Shader& shader) const
 	const auto textureUniform = glGetUniformLocation(shader.GetProgram(), "textureSample");
 
 	shader.Load();
-	glUniform1i(textureUniform, 0);
+	glUniform1i(textureUniform, _textureSlot);
 
 	glActiveTexture(GL_TEXTURE0 + _textureSlot);
 	glBindTexture(_textureType, _texture);
