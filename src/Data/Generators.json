@@ -1,0 +1,49 @@
+{
+    "default": {
+
+        "pattern": {
+            "id": "BwA=",
+            "frequency": 0.002
+        },
+
+        "fluids": [
+            {
+                "name": "Water",
+                "spawnLevel": 0
+            }
+        ],
+
+        "biomes": [
+            {
+                "name": "Meadow",
+                "noise": {
+                    "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                    "frequency": 0.005
+                },
+                "blocks": [
+                    {
+                        "name": "grass",
+                        "depthLevel": 0
+                    },
+                    {
+                        "name": "dirt",
+                        "depthLevel": 1
+                    }
+                ]
+            },
+            {
+                "name": "Desert",
+                "noise": {
+                    "id": "GQAHAAEEAAAAAAAAACBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "frequency": 0.01
+                },
+                "blocks": [
+                    {
+                        "name": "dirt",
+                        "depthLevel": 0
+                    }
+                ]
+            }
+        ]
+    }
+}
