@@ -9,5 +9,5 @@ void main()
 {
    gl_Position = vec4(model, 1.0);
 
-    textureCoordinate = uv; //texture
+   textureCoordinate = uv; //texture
 }
