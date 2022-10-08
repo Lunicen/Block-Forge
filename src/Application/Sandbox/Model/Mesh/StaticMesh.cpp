@@ -61,6 +61,21 @@ void StaticMesh::Draw(const Position& origin, const Texture& texture, const Came
 	_vao.Unbind();
 }
 
+void StaticMesh::Draw(const Texture& texture) const
+{
+	_shader.Load();
+
+	//position may go here
+
+	_vao.Bind();
+	texture.Bind(_shader);
+
+	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
+
+	texture.Unbind();
+	_vao.Unbind();
+}
+
 void StaticMesh::Draw() const
 {
 	_shader.Load();

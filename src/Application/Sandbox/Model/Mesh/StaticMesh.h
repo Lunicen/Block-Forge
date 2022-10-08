@@ -24,6 +24,13 @@ public:
 	/// @param camera - It is used to bind a shader to see the drawn mesh.
 	void Draw(const Position& origin, const Texture& texture, const Camera& camera) const;
 
+
+	/// @brief Draws the mesh
+	/// @param texture - The texture to cover the mesh.
+	void Draw(const Texture& texture) const;
+
+
+
 	void Draw() const;
 };
 
