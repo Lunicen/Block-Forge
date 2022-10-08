@@ -57,16 +57,13 @@ void BiomePlacer::PaintBlockAt(const Position& origin, const ChunkFrame& frame, 
 
 	const Byte visibilityFlags = GetBlockVisibilityFlags(origin, chunkNoiseWithBorders);
 
-	if (visibilityFlags != 0)
-	{
-		const auto biome = GetBiomeAt(biomesMapNoise[origin.x][origin.z]);
-		biome.PaintBlockAt(
-			origin,
-			frame,
-			blocks,
-			visibilityFlags
-		);
-	}
+	const auto biome = GetBiomeAt(biomesMapNoise[origin.x][origin.z]);
+	biome.PaintBlockAt(
+		origin,
+		frame,
+		blocks,
+		visibilityFlags
+	);
 }
 
 BiomePlacer::BiomePlacer(Noise2D noise2D, std::vector<Biome>& biomes) : _noise(std::move(noise2D)), _biomes(biomes)
@@ -97,7 +94,7 @@ std::vector<std::vector<std::vector<float>>> BiomePlacer::GetChunkNoise(const Ch
 
 	if (HasChunkOnlySingleBiome(biomesMapNoise))
 	{
-		const auto biome = GetBiomeAt(biomesMapNoise[0][0]);
+		const auto biome = GetBiomeAt(biomesMapNoise[1][1]);
 		return biome.GetNoise(frame, expansionFactor);
 	}
 
