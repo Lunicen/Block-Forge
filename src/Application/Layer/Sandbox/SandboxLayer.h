@@ -40,7 +40,7 @@ public:
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
-
+		
 		_fpsCounter = std::make_unique<FPSCounter>();
 	}
 

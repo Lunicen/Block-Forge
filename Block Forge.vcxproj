@@ -152,7 +152,6 @@
   <ItemGroup>
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
-    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\BlockFaceModel.cpp" />
@@ -201,7 +200,6 @@
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\Mesh.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
-    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />

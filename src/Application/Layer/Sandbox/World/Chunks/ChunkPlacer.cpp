@@ -1,5 +1,7 @@
 #include "ChunkPlacer.h"
 
+#include <ppl.h>
+
 std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
 	std::vector<Position> result;
@@ -59,13 +61,33 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
 {
-	for (const auto& origin : currentChunksOrigins)
+	std::vector<std::pair<ChunkFrame, ChunkBlocks>> chunksData;
+
+	concurrency::critical_section mutex;
+
+	Concurrency::parallel_for_each(currentChunksOrigins.begin(), currentChunksOrigins.end(), [&](const Position& origin)
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			_log.Trace("Added chunk: " + PositionToString(origin));
-			_loadedChunks[origin] = _chunkBuilder.Build(ChunkFrame{origin, _order->GetChunkSize()}, *_generator);
+
+			const auto& frameSize = _order->GetChunkSize();
+			const auto chunkFrame = ChunkFrame{origin, frameSize};
+
+			ChunkBlocks chunkBlocks;
+			chunkBlocks.resize(frameSize * frameSize * frameSize);
+
+			_generator->PaintChunk(chunkFrame, chunkBlocks);
+
+			mutex.lock();
+			chunksData.emplace_back(std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, frameSize}, chunkBlocks));
+			mutex.unlock();
 		}
+	});
+
+	for (const auto& data : chunksData)
+	{
+		_loadedChunks[data.first.origin] = std::make_unique<Chunk>(data.first, data.second, _generator->GetBlockMap());
 	}
 
 	_log.Debug("Finished adding new chunks!");
