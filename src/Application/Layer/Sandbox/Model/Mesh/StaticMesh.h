@@ -27,7 +27,7 @@ public:
 
 	/// @brief Draws the mesh
 	/// @param texture - The texture to cover the mesh.
-	void Draw(const Texture& texture);
+	void Draw(const Point& origin, const Texture& texture);
 
 
 

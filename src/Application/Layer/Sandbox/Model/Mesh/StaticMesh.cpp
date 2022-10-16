@@ -61,7 +61,7 @@ void StaticMesh::Draw(const Position& origin, const Texture& texture, const Came
 	GetVao().Unbind();
 }
 
-void StaticMesh::Draw(const Texture& texture)
+void StaticMesh::Draw(const Point& origin, const Texture& texture)
 {
 	_shader.Load();
 
