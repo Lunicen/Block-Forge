@@ -1,4 +1,6 @@
 #pragma once
+#include <future>
+
 #include "Application/Layer/Sandbox/Camera.h"
 #include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "OrderType/OrderTypes.h"
@@ -11,6 +13,7 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
+	std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> _futures;
 	std::shared_ptr<WorldGenerator> _generator;
 	std::unique_ptr<Order> _order;
 
@@ -20,10 +23,12 @@ class ChunkPlacer
 	static std::vector<Position> Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet);
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
+	static std::pair<ChunkFrame, ChunkBlocks> GetChunkAt(Position origin, const size_t size, const std::shared_ptr<WorldGenerator> generator);
 
 	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 	void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
 
+	void UpdateLoadedChunksVector();
 	void UpdateChunksAround(const Position& normalizedOrigin);
 
 public:
@@ -45,6 +50,7 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(std::shared_ptr<WorldGenerator> generator);
 
+	
 	/// @brief Returns the map of placed chunks.
 	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 };
