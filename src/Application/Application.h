@@ -23,6 +23,7 @@ class Application
 	size_t _fullscreenHeight{};
 
 	static void WindowResizeEvent(GLFWwindow*, int width, int height);
+	static void MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset);
 	
 	void CentralizeWindow() const;
 	void Initialize();

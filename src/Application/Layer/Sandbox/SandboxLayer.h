@@ -61,6 +61,7 @@ public:
 	{
 		_camera->HandleInput(hid);
 		_chunkPlacer->Update(_camera->GetPosition());
+		_hud->ChangeSelectedItemSlot(hid);
 	}
 
 	~SandboxLayer() override

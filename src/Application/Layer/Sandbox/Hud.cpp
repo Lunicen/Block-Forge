@@ -25,12 +25,25 @@ void HudItemSlot::Draw()
 void HudItemSlot::Activate() {
 	_state = true;
 	_texture.SetSprite(_vertices, 1, 0, false);
+	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
 void HudItemSlot::Deactivate() {
 	_state = false;
+	_texture.SetSprite(_vertices, 0, 0, false);
+	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
+void Hud::DeactivateEntireHudItemSlotBar()
+{
+	for (auto& HudItemSlotRow : HudItemSlotBar)
+	{
+		for (auto& HudItemSlot : HudItemSlotRow)
+		{
+			HudItemSlot->Deactivate();
+		}
+	}
+}
 
 Hud::Hud()
 {
@@ -60,11 +73,10 @@ Hud::Hud()
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f + i * scale, -1.0f + j * scale), scale)));
+			HudItemSlotBar[j].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f + i * scale, -1.0f + j * scale), scale)));
 		}
 	}
-
-
+	//HudItemSlotBar[0][0]->Activate();
 }
 
 
@@ -81,4 +93,35 @@ void Hud::Draw()
 			HudItemSlot->Draw();
 		}
 	}
+}
+
+void Hud::ChangeSelectedItemSlot(HumanInterfaceDevice &hid)
+{
+	if (hid.IsPressedOnce(KeyboardKey::key1))
+		selectedSlot = 0;
+	else if (hid.IsPressedOnce(KeyboardKey::key2))
+		selectedSlot = 1;
+	else if (hid.IsPressedOnce(KeyboardKey::key3))
+		selectedSlot = 2;
+	else if (hid.IsPressedOnce(KeyboardKey::key4))
+		selectedSlot = 3;
+	else if (hid.IsPressedOnce(KeyboardKey::key5))
+		selectedSlot = 4;
+	else if (hid.IsPressedOnce(KeyboardKey::key6))
+		selectedSlot = 5;
+	else if (hid.IsPressedOnce(KeyboardKey::key7))
+		selectedSlot = 6;
+	else if (hid.IsPressedOnce(KeyboardKey::key8))
+		selectedSlot = 7;
+	else if (hid.IsPressedOnce(KeyboardKey::key9))
+		selectedSlot = 8;
+	else if (hid.IsPressedOnce(KeyboardKey::key0))
+		selectedSlot = 9;
+	else if (hid.IsPressedOnce(KeyboardKey::minus))
+		selectedRow = 0;
+	else if (hid.IsPressedOnce(KeyboardKey::plus))
+		selectedRow = 1;
+	this->DeactivateEntireHudItemSlotBar();
+	HudItemSlotBar[selectedRow][selectedSlot]->Activate();
+
 }

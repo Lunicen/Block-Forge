@@ -1,6 +1,9 @@
 #pragma once
 #include "Model/Mesh/StaticMesh.h"
+#include "Model/Mesh/DynamicMesh.h"
 #include "Model/Surface/TextureAtlas.h"
+
+
 class HudItemSlot
 {
 	Shader& _shader;
@@ -23,6 +26,7 @@ class HudItemSlot
 	};
 
 	std::unique_ptr<StaticMesh> _mesh;
+	//std::unique_ptr<DynamicMesh> _mesh;
 
 
 public:
@@ -37,13 +41,15 @@ class Hud
 	TextureAtlas texture = TextureAtlas("src/Data/Textures/HudAtlas.png", 16);
 	Shader shader = Shader("src/Data/Shaders/Hud.vert", "src/Data/Shaders/Hud.frag");
 
-	HudItemSlot slot1 = HudItemSlot(texture, shader, Point(-1.0f, -1.0f), 0.25f);
+	//HudItemSlot slot1 = HudItemSlot(texture, shader, Point(-1.0f, -1.0f), 0.25f);
 
-	
 	std::vector<std::vector<std::unique_ptr<HudItemSlot>>> HudItemSlotBar;
-
+	int selectedRow = 0;
+	int selectedSlot = 0;
+	void DeactivateEntireHudItemSlotBar();
 public:
 	Hud();
 	void Draw();
+	void ChangeSelectedItemSlot(HumanInterfaceDevice &hid);
 };
 

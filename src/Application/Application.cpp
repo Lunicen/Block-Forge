@@ -15,6 +15,11 @@ void Application::WindowResizeEvent(GLFWwindow* const, const int width, const in
 	_window.SetHeight(static_cast<size_t>(height));
 }
 
+void Application::MouseScrollEvent(GLFWwindow* window, double xoffset, double yoffset)
+{
+	
+}
+
 
 void Application::CentralizeWindow() const
 {
@@ -78,6 +83,7 @@ void Application::Initialize()
 void Application::SetCallbacks()
 {
 	glfwSetFramebufferSizeCallback(_window.GetHandle(), WindowResizeEvent);
+	glfwSetScrollCallback(_window.GetHandle(), MouseScrollEvent);
 }
 
 Application::Application(const std::string& filenameWithSettings)
