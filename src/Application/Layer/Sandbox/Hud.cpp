@@ -1,10 +1,5 @@
 #include "Hud.h"
-//#define STB_IMAGE_IMPLEMENTATION
-//#include <stb_image.h>
-
 #include "Model/Surface/Texture.h"
-
-
 
 HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, Point position, float scale = 1.0f) : _texture(texture), _shader(shader), _position(position), _scale(scale)
 {
@@ -18,7 +13,7 @@ HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, Point position, 
 		vertex.position = vertex.position + Point3D(position.x, position.y, 0);
 	}
 	
-	_texture.SetSprite(_vertices, 1, 0, false);
+	_texture.SetSprite(_vertices, 0, 0, false);
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader); //to trzeba zmienic na dynamic mesha
 }
 
@@ -59,9 +54,11 @@ Hud::Hud()
 	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.5f, -0.75f), scale)));
 	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.25f, -0.75f), scale)));
 	*/
+
+
 	for (int j = 0; j < 2; j++)
 	{
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f + i * scale, -1.0f + j * scale), scale)));
 		}
@@ -74,7 +71,6 @@ Hud::Hud()
 void Hud::Draw()
 {
 	//slot1.Drwa();
-
 	//HudItemSlotBar[0]->Draw();
 	//HudItemSlotBar[0]->Draw();
 

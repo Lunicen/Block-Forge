@@ -24,6 +24,7 @@ class HudItemSlot
 
 	std::unique_ptr<StaticMesh> _mesh;
 
+
 public:
 	HudItemSlot(TextureAtlas &texture, Shader &shader, Point position, float scale);
 	void Activate();
