@@ -61,9 +61,9 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(std::shared_ptr<WorldGenerator> generator) const;
 
-	static void Terminate();
-
 	/// @brief Returns the map of placed chunks.
 	static std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
+
+	static void Terminate();
 };
 

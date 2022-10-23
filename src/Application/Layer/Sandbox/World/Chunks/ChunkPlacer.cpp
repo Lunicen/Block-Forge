@@ -185,6 +185,11 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator) const
 	UpdateChunksAround(_previousNormalizedPosition);
 }
 
+std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
+{
+	return _loadedChunks;
+}
+
 void ChunkPlacer::Terminate()
 {
 	while (!_futures.empty())
@@ -193,9 +198,4 @@ void ChunkPlacer::Terminate()
 	}
 
 	_generator = nullptr;
-}
-
-std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
-{
-	return _loadedChunks;
 }
