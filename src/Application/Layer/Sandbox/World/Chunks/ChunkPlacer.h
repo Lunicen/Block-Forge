@@ -17,6 +17,7 @@ class ChunkPlacer
 	static std::mutex _cleanupFuturesMutex;
 
 	static std::vector<std::future<void>> _futures;
+	static std::vector<std::future<void>> _globalFutures;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::vector<std::pair<ChunkFrame, ChunkBlocks>> _chunksToBuildQueue;
@@ -36,8 +37,8 @@ class ChunkPlacer
 	void BuildChunksInQueue() const;
 	void RemoveChunksInQueue() const;
 
-	static void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
-	static void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
+	static void RemoveStaleChunksAround(Position normalizedOrigin);
+	static void AddNewChunksAround(Position normalizedOrigin);
 
 	static void UpdateChunksAround(const Position& normalizedOrigin);
 	static void CleanupStaleFutures();

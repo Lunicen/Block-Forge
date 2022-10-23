@@ -3,6 +3,7 @@
 #include <ppl.h>
 
 std::vector<std::future<void>> ChunkPlacer::_futures = {};
+std::vector<std::future<void>> ChunkPlacer::_globalFutures = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
 std::vector<std::pair<ChunkFrame, ChunkBlocks>> ChunkPlacer::_chunksToBuildQueue = {};
 std::vector<Position> ChunkPlacer::_chunksToRemoveQueue = {};
@@ -85,8 +86,9 @@ void ChunkPlacer::RemoveChunksInQueue() const
 	_log.Trace("Removed chunk: " + PositionToString(position));
 }
 
-void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
+void ChunkPlacer::AddNewChunksAround(const Position normalizedOrigin)
 {
+	const auto currentChunksOrigins = _order->GetChunksAround(normalizedOrigin);
 	const auto chunkSize = _order->GetChunkSize();
 
 	std::lock_guard<std::mutex> lock(_cleanupFuturesMutex);
@@ -103,8 +105,10 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 	});
 }
 
-void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
+void ChunkPlacer::RemoveStaleChunksAround(const Position normalizedOrigin)
 {
+	const auto currentChunksOrigins = _order->GetChunksAround(normalizedOrigin);
+
 	for (const auto& chunkData : _loadedChunks)
 	{
 		const auto origin = chunkData.first;
@@ -129,10 +133,20 @@ void ChunkPlacer::CleanupStaleFutures()
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
-	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
+	_globalFutures.emplace_back(std::async(std::launch::async, RemoveStaleChunksAround, normalizedOrigin));
+	_globalFutures.emplace_back(std::async(std::launch::async, AddNewChunksAround, normalizedOrigin));
 
-	RemoveStaleChunks(currentChunksAroundOrigins);
-	AddNewChunks(currentChunksAroundOrigins);
+	for(auto globalFuture = _globalFutures.begin(); globalFuture != _globalFutures.end();)
+	{ 
+		if(globalFuture->_Is_ready())
+		{
+			globalFuture = _globalFutures.erase(globalFuture); 
+		}
+		else
+		{
+			++globalFuture;
+		}
+	}
 }
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
@@ -193,6 +207,14 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 
 void ChunkPlacer::Terminate()
 {
+	while (!_globalFutures.empty())
+	{ 
+		if(_globalFutures.back()._Is_ready())
+		{
+			_globalFutures.pop_back();
+		}
+	}
+
 	while (!_futures.empty())
 	{
 		CleanupStaleFutures();
