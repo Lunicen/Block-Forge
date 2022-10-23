@@ -2,13 +2,14 @@
 
 #include <ppl.h>
 
-std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> ChunkPlacer::_futures = {};
-std::vector<std::future<void>> ChunkPlacer::_futuresPool = {};
+std::vector<std::future<void>> ChunkPlacer::_futures = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
 std::vector<std::pair<ChunkFrame, ChunkBlocks>> ChunkPlacer::_chunksToBuildQueue = {};
 std::vector<Position> ChunkPlacer::_chunksToRemoveQueue = {};
 std::unique_ptr<Order> ChunkPlacer::_order = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+std::mutex ChunkPlacer::_buildQueueMutex;
+std::mutex ChunkPlacer::_cleanupFuturesMutex;
 
 std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
@@ -48,21 +49,8 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-std::mutex BuildQueueMutex;
-
-void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
-{
-	for (const auto& chunkData : _loadedChunks)
-	{
-		const auto origin = chunkData.first;
-		if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
-		{
-			_chunksToRemoveQueue.emplace_back(origin);
-		}
-	}
-}
-
-std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
+void ChunkPlacer::GetChunkAt(
+	std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue,
 	const Position origin,
 	const size_t size,
 	const std::shared_ptr<WorldGenerator>& generator)
@@ -74,28 +62,8 @@ std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
 	
 	generator->PaintChunk(chunkFrame, chunkBlocks);
 
-	return std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks);
-}
-
-void ChunkPlacer::UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue, std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue)
-{
-	while(!futuresQueue->empty())
-	{
-		std::lock_guard<std::mutex> lock(BuildQueueMutex);
-
-		for(auto currentFuture = futuresQueue->begin(); currentFuture != futuresQueue->end(); ++currentFuture)
-		{
-			if(currentFuture->_Is_ready())
-			{
-				const auto& chunkData = currentFuture->get();
-				chunksToBuildQueue->push_back(chunkData);
-
-				currentFuture = futuresQueue->erase(currentFuture);
-
-				break;
-			}
-		}
-	}
+	std::lock_guard<std::mutex> lock(_buildQueueMutex);
+	chunksToBuildQueue->emplace_back(std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks));
 }
 
 void ChunkPlacer::BuildChunksInQueue() const
@@ -120,37 +88,63 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 {
 	const auto chunkSize = _order->GetChunkSize();
 
+	std::lock_guard<std::mutex> lock(_cleanupFuturesMutex);
 	for(const auto& origin : currentChunksOrigins)
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
-			std::lock_guard<std::mutex> lock(BuildQueueMutex);
-			_futures.push_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
+			_futures.push_back(std::async(std::launch::async, GetChunkAt, &_chunksToBuildQueue, origin, chunkSize, _generator));
 		}
 	}
-
-	_futuresPool.push_back(std::async(std::launch::async, UpdateLoadedChunksVector, &_futures, &_chunksToBuildQueue));
 }
 
+void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
+{
+	for (const auto& chunkData : _loadedChunks)
+	{
+		const auto origin = chunkData.first;
+		if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
+		{
+			_chunksToRemoveQueue.emplace_back(origin);
+		}
+	}
+}
+
+void ChunkPlacer::CleanupStaleFutures()
+{
+	while(!_futures.empty())
+	{
+		if (_futures.back()._Is_ready())
+		{
+			if (_cleanupFuturesMutex.try_lock())
+			{
+				_futures.pop_back();
+				_cleanupFuturesMutex.unlock();
+			}
+		}
+	}
+}
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
-	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
-
-	for (auto future = _globalFuturesPool.begin() ; future != _globalFuturesPool.end();) 
+	for(auto futureToCleanup = _futuresToCleanup.begin(); futureToCleanup != _futuresToCleanup.end();)
 	{
-		if (future->_Is_ready())
+		if(futureToCleanup->_Is_ready())
 		{
-			future = _globalFuturesPool.erase(future);
+			futureToCleanup = _futuresToCleanup.erase(futureToCleanup);
 		}
 		else
 		{
-			++future;
+			 ++futureToCleanup;
 		}
 	}
 
-	_globalFuturesPool.push_back(std::async(std::launch::async, RemoveStaleChunks, currentChunksAroundOrigins));
-	_globalFuturesPool.push_back(std::async(std::launch::async, AddNewChunks, currentChunksAroundOrigins));
+	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
+
+	RemoveStaleChunks(currentChunksAroundOrigins);
+	AddNewChunks(currentChunksAroundOrigins);
+
+	_futuresToCleanup.push_back(std::async(std::launch::async, CleanupStaleFutures));
 }
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
@@ -175,6 +169,16 @@ ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, cons
 
 void ChunkPlacer::Update(const Position& position)
 {
+	if (!_chunksToBuildQueue.empty())
+	{
+		BuildChunksInQueue();
+	}
+
+	if (!_chunksToRemoveQueue.empty())
+	{
+		RemoveChunksInQueue();
+	}
+
 	const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize());
 
 	if (currentNormalizedPosition != _previousNormalizedPosition)
@@ -192,17 +196,7 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 	UpdateChunksAround(_previousNormalizedPosition);
 }
 
-std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
+std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 {
-	if (!_chunksToBuildQueue.empty())
-	{
-		BuildChunksInQueue();
-	}
-
-	if (!_chunksToRemoveQueue.empty())
-	{
-		RemoveChunksInQueue();
-	}
-
 	return _loadedChunks;
 }

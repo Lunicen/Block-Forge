@@ -12,10 +12,12 @@
 class ChunkPlacer
 {
 	Log& _log = Log::Get();
+	
+	static std::mutex _buildQueueMutex;
+	static std::mutex _cleanupFuturesMutex;
 
-	static std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> _futures;
-	static std::vector<std::future<void>> _futuresPool;
-	std::vector<std::future<void>> _globalFuturesPool;
+	static std::vector<std::future<void>> _futures;
+	std::vector<std::future<void>> _futuresToCleanup;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::vector<std::pair<ChunkFrame, ChunkBlocks>> _chunksToBuildQueue;
@@ -30,9 +32,7 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue,
-	                                     std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue);
-	static std::pair<ChunkFrame, ChunkBlocks> GetChunkAt(Position origin, size_t size, 
+	static void GetChunkAt(std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue, Position origin, size_t size, 
 														 const std::shared_ptr<WorldGenerator>& generator);
 	void BuildChunksInQueue() const;
 	void RemoveChunksInQueue() const;
@@ -41,6 +41,7 @@ class ChunkPlacer
 	static void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
 	
 	void UpdateChunksAround(const Position& normalizedOrigin);
+	static void CleanupStaleFutures();
 
 public:
 
@@ -50,6 +51,7 @@ public:
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param initPosition - position in space from where initialize the chunk placer.
 	ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position& initPosition);
+	static void CleanupGlobalStaleFutures();
 
 	/// @brief Updates the chunk placer to adapt to the current frame.
 	///	@param position - Position around which chunks are going to be placed.
@@ -62,6 +64,6 @@ public:
 	void Bind(std::shared_ptr<WorldGenerator> generator);
 
 	/// @brief Returns the map of placed chunks.
-	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks() const;
+	static std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 };
 
