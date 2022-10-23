@@ -96,7 +96,7 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			mutex.lock();
-			_futures.push_back(std::async(std::launch::async, GetChunkAt, &_chunksToBuildQueue, origin, chunkSize, _generator));
+			_futures.emplace_back(std::async(std::launch::async, GetChunkAt, &_chunksToBuildQueue, origin, chunkSize, _generator));
 			mutex.unlock();
 		}
 	});
@@ -116,15 +116,12 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 void ChunkPlacer::CleanupStaleFutures()
 {
-	while(!_futures.empty())
+	if (!_futures.empty() && _futures.back()._Is_ready())
 	{
-		if (_futures.back()._Is_ready())
+		if (_cleanupFuturesMutex.try_lock())
 		{
-			if (_cleanupFuturesMutex.try_lock())
-			{
-				_futures.pop_back();
-				_cleanupFuturesMutex.unlock();
-			}
+			_futures.pop_back();
+			_cleanupFuturesMutex.unlock();
 		}
 	}
 }
@@ -147,8 +144,6 @@ void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 
 	RemoveStaleChunks(currentChunksAroundOrigins);
 	AddNewChunks(currentChunksAroundOrigins);
-
-	_futuresToCleanup.push_back(std::async(std::launch::async, CleanupStaleFutures));
 }
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
@@ -182,6 +177,8 @@ void ChunkPlacer::Update(const Position& position)
 	{
 		RemoveChunksInQueue();
 	}
+
+	CleanupStaleFutures();
 
 	const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize());
 
