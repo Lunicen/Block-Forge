@@ -10,78 +10,16 @@ class ChunkMesh
 {
 	std::unique_ptr<DynamicMesh> _mesh = nullptr;
 
-	struct FaceVertices
-	{
-		std::array<Point3D, 4> front
-		{
-			{
-				Point3D{0.0f, 0.0f, 0.0f},
-				Point3D{1.0f, 0.0f, 0.0f},
-				Point3D{1.0f, 1.0f, 0.0f},
-				Point3D{0.0f, 1.0f, 0.0f}
-			}
-		};
-
-		std::array<Point3D, 4> back
-		{
-			{
-				Point3D{0.0f, 0.0f, 1.0f},
-				Point3D{0.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 0.0f, 1.0f}
-			}
-		};
-
-		std::array<Point3D, 4> left
-		{
-			{
-				Point3D{0.0f, 0.0f, 0.0f},
-				Point3D{0.0f, 1.0f, 0.0f},
-				Point3D{0.0f, 1.0f, 1.0f},
-				Point3D{0.0f, 0.0f, 1.0f}
-			}
-		};
-
-		std::array<Point3D, 4> right
-		{
-			{
-				Point3D{1.0f, 0.0f, 0.0f},
-				Point3D{1.0f, 0.0f, 1.0f},
-				Point3D{1.0f, 1.0f, 1.0f},
-				Point3D{1.0f, 1.0f, 0.0f}
-			}
-		};
-
-		std::array<Point3D, 4> top
-		{
-			{
-				Point3D{0.0f, 1.0f, 0.0f},
-				Point3D{1.0f, 1.0f, 0.0f},
-				Point3D{1.0f, 1.0f, 1.0f},
-				Point3D{0.0f, 1.0f, 1.0f}
-			}
-		};
-
-		std::array<Point3D, 4> bottom
-		{
-			{
-				Point3D{0.0f, 0.0f, 0.0f},
-				Point3D{0.0f, 0.0f, 1.0f},
-				Point3D{1.0f, 0.0f, 1.0f},
-				Point3D{1.0f, 0.0f, 0.0f},
-			}
-		};
-	};
-	FaceVertices _faceVertices;
-
-	static void AddFaceToMesh(const Position& origin, const std::array<Point3D, 4>& faceVertices, const std::array<Point, 4>& faceTextureCoordinates, std::vector<Vertex>& mesh);
-
 public:
 
 	/// @brief The constructor.
 	///	@param blockShader - Shader of the blocks inside the chunk.
 	///	@param sizeOfChunk - Size of the chunk edge.
 	explicit ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk);
+
+	explicit ChunkMesh(const std::vector<Vertex>& vertices, Shader& blockShader, const size_t& sizeOfChunk);
+
+	void Set(const std::vector<Vertex>& vertices) const;
 
 	/// @brief Rebuilds the mesh basing on the passed blocks.
 	///	@param frame - Frame of the chunk.

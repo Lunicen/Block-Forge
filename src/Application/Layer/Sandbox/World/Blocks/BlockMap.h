@@ -7,6 +7,70 @@
 ///	@brief Represents a map of the blocks that could be used to place in the chunks.
 class BlockMap
 {
+	struct FaceVertices
+	{
+		std::array<Point3D, 4> front
+		{
+			{
+				Point3D{0.0f, 0.0f, 0.0f},
+				Point3D{1.0f, 0.0f, 0.0f},
+				Point3D{1.0f, 1.0f, 0.0f},
+				Point3D{0.0f, 1.0f, 0.0f}
+			}
+		};
+
+		std::array<Point3D, 4> back
+		{
+			{
+				Point3D{0.0f, 0.0f, 1.0f},
+				Point3D{0.0f, 1.0f, 1.0f},
+				Point3D{1.0f, 1.0f, 1.0f},
+				Point3D{1.0f, 0.0f, 1.0f}
+			}
+		};
+
+		std::array<Point3D, 4> left
+		{
+			{
+				Point3D{0.0f, 0.0f, 0.0f},
+				Point3D{0.0f, 1.0f, 0.0f},
+				Point3D{0.0f, 1.0f, 1.0f},
+				Point3D{0.0f, 0.0f, 1.0f}
+			}
+		};
+
+		std::array<Point3D, 4> right
+		{
+			{
+				Point3D{1.0f, 0.0f, 0.0f},
+				Point3D{1.0f, 0.0f, 1.0f},
+				Point3D{1.0f, 1.0f, 1.0f},
+				Point3D{1.0f, 1.0f, 0.0f}
+			}
+		};
+
+		std::array<Point3D, 4> top
+		{
+			{
+				Point3D{0.0f, 1.0f, 0.0f},
+				Point3D{1.0f, 1.0f, 0.0f},
+				Point3D{1.0f, 1.0f, 1.0f},
+				Point3D{0.0f, 1.0f, 1.0f}
+			}
+		};
+
+		std::array<Point3D, 4> bottom
+		{
+			{
+				Point3D{0.0f, 0.0f, 0.0f},
+				Point3D{0.0f, 0.0f, 1.0f},
+				Point3D{1.0f, 0.0f, 1.0f},
+				Point3D{1.0f, 0.0f, 0.0f},
+			}
+		};
+	};
+	FaceVertices _faceVertices;
+
 	std::shared_ptr<TextureAtlas> _blockTextures{};
 	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount> _blockTypes;
 	std::unordered_map<std::string, Byte> _blockNames;
@@ -32,6 +96,11 @@ public:
 	Byte GetId(const std::string& blockName)
 	{
 		return _blockNames[blockName];
+	}
+
+	FaceVertices GetFaceVertices() const
+	{
+		return _faceVertices;
 	}
 
 	/// @brief The constructor.

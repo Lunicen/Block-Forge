@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.h" />
     <ClInclude Include="src\Application\HID\KeyCodes.h" />
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />

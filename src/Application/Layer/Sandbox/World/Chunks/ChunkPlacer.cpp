@@ -2,10 +2,12 @@
 
 #include <ppl.h>
 
+#include "Structure/ChunkMeshUtils.h"
+
 std::vector<std::future<void>> ChunkPlacer::_futures = {};
 std::vector<std::future<void>> ChunkPlacer::_globalFutures = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
-std::vector<std::pair<ChunkFrame, ChunkBlocks>> ChunkPlacer::_chunksToBuildQueue = {};
+std::vector<std::tuple<ChunkFrame, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToBuildQueue = {};
 std::vector<Position> ChunkPlacer::_chunksToRemoveQueue = {};
 std::unique_ptr<Order> ChunkPlacer::_order = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
@@ -50,7 +52,7 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-void ChunkPlacer::GetChunkAt(
+void ChunkPlacer::BuildChunkAt(
 	const Position origin,
 	const size_t size,
 	const std::shared_ptr<WorldGenerator>& generator)
@@ -63,7 +65,10 @@ void ChunkPlacer::GetChunkAt(
 	generator->PaintChunk(chunkFrame, chunkBlocks);
 
 	std::lock_guard<std::mutex> lock(_buildQueueMutex);
-	_chunksToBuildQueue.emplace_back(std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks));
+	_chunksToBuildQueue.emplace_back(std::tuple<ChunkFrame, ChunkBlocks, std::vector<Vertex>>(
+		ChunkFrame{origin, size}, 
+		chunkBlocks, 
+		ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap())));
 }
 
 void ChunkPlacer::BuildChunksInQueue() const
@@ -73,8 +78,12 @@ void ChunkPlacer::BuildChunksInQueue() const
 	_chunksToBuildQueue.pop_back();
 	_buildQueueMutex.unlock();
 
-	_loadedChunks[chunkData.first.origin] = std::make_unique<Chunk>(chunkData.first, chunkData.second, _generator->GetBlockMap());
-	_log.Trace("Added chunk: " + PositionToString(chunkData.first.origin));
+	const auto& frame = std::get<0>(chunkData);
+	const auto& blocks = std::get<1>(chunkData);
+	const auto& meshVertices = std::get<2>(chunkData);
+
+	_loadedChunks[frame.origin] = std::make_unique<Chunk>(frame, blocks, _generator->GetBlockMap(), meshVertices);
+	_log.Trace("Added chunk: " + PositionToString(frame.origin));
 }
 
 void ChunkPlacer::RemoveChunksInQueue() const
@@ -99,7 +108,7 @@ void ChunkPlacer::AddNewChunksAround(const Position normalizedOrigin)
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			mutex.lock();
-			_futures.emplace_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
+			_futures.emplace_back(std::async(std::launch::async, BuildChunkAt, origin, chunkSize, _generator));
 			mutex.unlock();
 		}
 	});
@@ -121,13 +130,13 @@ void ChunkPlacer::RemoveStaleChunksAround(const Position normalizedOrigin)
 
 void ChunkPlacer::CleanupStaleFutures()
 {
-	if (!_futures.empty() && _futures.back()._Is_ready())
+	if (_cleanupFuturesMutex.try_lock())
 	{
-		if (_cleanupFuturesMutex.try_lock())
+		if (!_futures.empty() && _futures.back()._Is_ready())
 		{
 			_futures.pop_back();
-			_cleanupFuturesMutex.unlock();
 		}
+		_cleanupFuturesMutex.unlock();
 	}
 }
 

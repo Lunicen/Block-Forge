@@ -23,6 +23,9 @@ public:
 	///	@param blockMap - Reference to the blocks map.
 	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap);
 
+	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap, const std::vector<Vertex>&
+	               precalculatedMesh);
+
 	/// @brief Draws the chunk in the world.
 	///	@param blockTexture - Reference texture atlas that the blocks are using.
 	///	@param camera - Reference to the camera so that the blocks could be seen.

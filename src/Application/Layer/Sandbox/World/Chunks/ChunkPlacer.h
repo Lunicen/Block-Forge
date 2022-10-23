@@ -20,7 +20,7 @@ class ChunkPlacer
 	static std::vector<std::future<void>> _globalFutures;
 
 	static std::shared_ptr<WorldGenerator> _generator;
-	static std::vector<std::pair<ChunkFrame, ChunkBlocks>> _chunksToBuildQueue;
+	static std::vector<std::tuple<ChunkFrame, ChunkBlocks, std::vector<Vertex>>> _chunksToBuildQueue;
 	static std::vector<Position> _chunksToRemoveQueue;
 
 	static std::unique_ptr<Order> _order;
@@ -32,7 +32,7 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void GetChunkAt(Position origin, const size_t size,
+	static void BuildChunkAt(Position origin, const size_t size,
 	                       const std::shared_ptr<WorldGenerator>& generator);
 	void BuildChunksInQueue() const;
 	void RemoveChunksInQueue() const;
