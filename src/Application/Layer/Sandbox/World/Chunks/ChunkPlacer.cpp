@@ -14,24 +14,6 @@ std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks 
 std::mutex ChunkPlacer::_buildQueueMutex;
 std::mutex ChunkPlacer::_cleanupFuturesMutex;
 
-std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
-{
-	std::vector<Position> result;
-
-	Concurrency::critical_section mutex;
-	Concurrency::parallel_for_each(aSet.begin(), aSet.end(), [&](const auto& value)
-	{
-		if (std::find(bSet.begin(), bSet.end(), value) == bSet.end())
-		{
-			mutex.lock();
-			result.emplace_back(value);
-			mutex.unlock();
-		}
-	});
-
-	return result;
-}
-
 Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const
 {
 	auto normalizedPosition = position;
@@ -101,17 +83,14 @@ void ChunkPlacer::AddNewChunksAround(const Position normalizedOrigin)
 	const auto chunkSize = _order->GetChunkSize();
 
 	std::lock_guard<std::mutex> lock(_cleanupFuturesMutex);
-
-	Concurrency::critical_section mutex;
-	Concurrency::parallel_for_each(currentChunksOrigins.begin(), currentChunksOrigins.end(), [&](const Position& origin)
+	
+	for(const auto& origin : currentChunksOrigins)
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
-			mutex.lock();
 			_futures.emplace_back(std::async(std::launch::async, BuildChunkAt, origin, chunkSize, _generator));
-			mutex.unlock();
 		}
-	});
+	}
 }
 
 void ChunkPlacer::RemoveStaleChunksAround(const Position normalizedOrigin)

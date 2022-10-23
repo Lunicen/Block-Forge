@@ -27,8 +27,7 @@ class ChunkPlacer
 
 	Position _previousNormalizedPosition = {};
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
-
-	static std::vector<Position> Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet);
+	
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
