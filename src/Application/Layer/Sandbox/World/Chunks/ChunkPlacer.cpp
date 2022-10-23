@@ -50,7 +50,6 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 }
 
 void ChunkPlacer::GetChunkAt(
-	std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue,
 	const Position origin,
 	const size_t size,
 	const std::shared_ptr<WorldGenerator>& generator)
@@ -63,13 +62,15 @@ void ChunkPlacer::GetChunkAt(
 	generator->PaintChunk(chunkFrame, chunkBlocks);
 
 	std::lock_guard<std::mutex> lock(_buildQueueMutex);
-	chunksToBuildQueue->emplace_back(std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks));
+	_chunksToBuildQueue.emplace_back(std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks));
 }
 
 void ChunkPlacer::BuildChunksInQueue() const
 {
+	_buildQueueMutex.lock();
 	const auto chunkData = _chunksToBuildQueue.back();
 	_chunksToBuildQueue.pop_back();
+	_buildQueueMutex.unlock();
 
 	_loadedChunks[chunkData.first.origin] = std::make_unique<Chunk>(chunkData.first, chunkData.second, _generator->GetBlockMap());
 	_log.Trace("Added chunk: " + PositionToString(chunkData.first.origin));
@@ -96,7 +97,7 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
 			mutex.lock();
-			_futures.emplace_back(std::async(std::launch::async, GetChunkAt, &_chunksToBuildQueue, origin, chunkSize, _generator));
+			_futures.emplace_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
 			mutex.unlock();
 		}
 	});

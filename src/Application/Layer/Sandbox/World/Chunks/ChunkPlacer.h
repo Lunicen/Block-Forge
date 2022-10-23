@@ -31,8 +31,8 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void GetChunkAt(std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue, Position origin, size_t size, 
-														 const std::shared_ptr<WorldGenerator>& generator);
+	static void GetChunkAt(Position origin, const size_t size,
+	                       const std::shared_ptr<WorldGenerator>& generator);
 	void BuildChunksInQueue() const;
 	void RemoveChunksInQueue() const;
 
