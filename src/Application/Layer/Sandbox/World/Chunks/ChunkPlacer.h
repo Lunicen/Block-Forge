@@ -64,6 +64,7 @@ public:
 	/// @brief Returns the map of placed chunks.
 	static std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 
+	/// @brief Terminates the chunk placer.
 	static void Terminate();
 };
 
