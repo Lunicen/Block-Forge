@@ -26,7 +26,23 @@ class HudItemSlot
 	};
 
 	std::unique_ptr<StaticMesh> _mesh;
-	//std::unique_ptr<DynamicMesh> _mesh;
+
+
+
+	std::vector<Vertex> _vertices2 = {
+		Vertex{Point3D{ 0.0f, 0.0f, 0.0f }, Point{ 0.0f, 0.0f}},
+		Vertex{Point3D{ 0.8f, 0.0f, 0.0f }, Point{ 1.0f, 0.0f}},
+		Vertex{Point3D{ 0.8f, 0.8f, 0.0f }, Point{1.0f, 1.0f}},
+		Vertex{Point3D{ 0.0f, 0.8f, 0.0f }, Point{0.0f, 1.0f}},
+	};
+
+	std::vector<TriangleIndexes> _indices2 =
+	{
+		TriangleIndexes{0, 1, 2},
+		TriangleIndexes{2, 3, 0}
+	};
+
+	std::unique_ptr<StaticMesh> _mesh2;
 
 
 public:

@@ -15,6 +15,20 @@ HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, Point position, 
 	
 	_texture.SetSprite(_vertices, 0, 0, false);
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader); //to trzeba zmienic na dynamic mesha
+
+
+
+	for (auto& vertex : _vertices2)
+	{
+		vertex.position = vertex.position * scale;
+	}
+
+	for (auto& vertex : _vertices2)
+	{
+		vertex.position = vertex.position + Point3D(position.x, position.y, 0);
+	}
+
+
 }
 
 void HudItemSlot::Draw()
