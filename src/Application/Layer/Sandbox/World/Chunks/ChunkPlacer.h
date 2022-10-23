@@ -51,7 +51,6 @@ public:
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param initPosition - position in space from where initialize the chunk placer.
 	ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position& initPosition);
-	static void CleanupGlobalStaleFutures();
 
 	/// @brief Updates the chunk placer to adapt to the current frame.
 	///	@param position - Position around which chunks are going to be placed.

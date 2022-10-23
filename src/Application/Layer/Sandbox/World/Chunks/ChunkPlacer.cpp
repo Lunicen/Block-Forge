@@ -15,7 +15,7 @@ std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, c
 {
 	std::vector<Position> result;
 
-	concurrency::critical_section mutex;
+	Concurrency::critical_section mutex;
 	Concurrency::parallel_for_each(aSet.begin(), aSet.end(), [&](const auto& value)
 	{
 		if (std::find(bSet.begin(), bSet.end(), value) == bSet.end())
@@ -89,13 +89,17 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 	const auto chunkSize = _order->GetChunkSize();
 
 	std::lock_guard<std::mutex> lock(_cleanupFuturesMutex);
-	for(const auto& origin : currentChunksOrigins)
+
+	Concurrency::critical_section mutex;
+	Concurrency::parallel_for_each(currentChunksOrigins.begin(), currentChunksOrigins.end(), [&](const Position& origin)
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
+			mutex.lock();
 			_futures.push_back(std::async(std::launch::async, GetChunkAt, &_chunksToBuildQueue, origin, chunkSize, _generator));
+			mutex.unlock();
 		}
-	}
+	});
 }
 
 void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
