@@ -1,5 +1,7 @@
 #include "ChunkPlacer.h"
 
+#include <ppl.h>
+
 std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> ChunkPlacer::_futures = {};
 std::vector<std::future<void>> ChunkPlacer::_futuresPool = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
