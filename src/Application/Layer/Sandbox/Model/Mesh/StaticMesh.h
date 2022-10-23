@@ -10,8 +10,6 @@ class StaticMesh final : protected Mesh
 	GLsizei _indicesAmount{};
 
 public:
-
-	StaticMesh(const std::vector<Point3D>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader);
 	/// @brief The constructor.
 	///	@param vertices - The vertices of the mesh.
 	/// @param indices - The indices sequence of the vertices position.
@@ -27,10 +25,6 @@ public:
 
 	/// @brief Draws the mesh
 	/// @param texture - The texture to cover the mesh.
-	void Draw(const Point& origin, const Texture& texture);
-
-
-
-	void Draw();
+	void Draw(const Texture& texture);
 };
 

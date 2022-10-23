@@ -1,39 +1,39 @@
 #include "Hud.h"
 #include "Model/Surface/Texture.h"
 
-HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, Point position, float scale = 1.0f) : _texture(texture), _shader(shader), _position(position), _scale(scale)
+HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, const Point position, const float scale = 1.0f) : _shader(shader), _texture(texture), _position(position), _scale(scale)
 {
+	_state = false;
+
 	for (auto& vertex : _vertices)
 	{
-		vertex.position = vertex.position * scale;
+		vertex.position = vertex.position * _scale;
 	}
 	
 	for (auto& vertex :_vertices)
 	{
-		vertex.position = vertex.position + Point3D(position.x, position.y, 0);
+		vertex.position = vertex.position + Point3D(_position.x, _position.y, 0);
 	}
 	
 	_texture.SetSprite(_vertices, 0, 0, false);
-	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader); //to trzeba zmienic na dynamic mesha
-
-
+	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 
 	for (auto& vertex : _vertices2)
 	{
-		vertex.position = vertex.position * scale;
+		vertex.position = vertex.position * _scale;
 	}
 
 	for (auto& vertex : _vertices2)
 	{
-		vertex.position = vertex.position + Point3D(position.x, position.y, 0);
+		vertex.position = vertex.position + Point3D(_position.x, _position.y, 0);
 	}
 
 
 }
 
-void HudItemSlot::Draw()
+void HudItemSlot::Draw() const
 {
-	_mesh->Draw(_position, _texture);
+	_mesh->Draw(_texture);
 }
 
 void HudItemSlot::Activate() {
@@ -48,13 +48,13 @@ void HudItemSlot::Deactivate() {
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
-void Hud::DeactivateEntireHudItemSlotBar()
+void Hud::DeactivateEntireHudItemSlotBar() const
 {
-	for (auto& HudItemSlotRow : HudItemSlotBar)
+	for (auto& hudItemSlotRow : _hudItemSlotBar)
 	{
-		for (auto& HudItemSlot : HudItemSlotRow)
+		for (auto& hudItemSlot : hudItemSlotRow)
 		{
-			HudItemSlot->Deactivate();
+			hudItemSlot->Deactivate();
 		}
 	}
 }
@@ -63,48 +63,25 @@ Hud::Hud()
 {
 	float scale = 0.20f;
 
-	//add Row
-	HudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
-	HudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
-
-	//add elements
-	/*
-	HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f, -1.0f), scale)));
-	HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.75f, -1.0f), scale)));
-	HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.5f, -1.0f), scale)));
-	HudItemSlotBar[0].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.25f, -1.0f), scale)));
-	*/
-	//add elements
-	/*
-	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f, -0.75f), scale)));
-	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.75f, -0.75f), scale)));
-	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.5f, -0.75f), scale)));
-	HudItemSlotBar[1].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-0.25f, -0.75f), scale)));
-	*/
-
+	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
+	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
 
 	for (int j = 0; j < 2; j++)
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			HudItemSlotBar[j].emplace_back(std::move(std::make_unique<HudItemSlot>(texture, shader, Point(-1.0f + i * scale, -1.0f + j * scale), scale)));
+			_hudItemSlotBar[j].emplace_back(std::make_unique<HudItemSlot>(_texture, _shader, Point(-1.0f + static_cast<float>(i) * scale, -1.0f + static_cast<float>(j) * scale), scale));
 		}
 	}
-	//HudItemSlotBar[0][0]->Activate();
 }
 
-
-void Hud::Draw()
+void Hud::Draw() const
 {
-	//slot1.Drwa();
-	//HudItemSlotBar[0]->Draw();
-	//HudItemSlotBar[0]->Draw();
-
-	for (auto& HudItemSlotRow : HudItemSlotBar)
+	for (auto& hudItemSlotRow : _hudItemSlotBar)
 	{
-		for (auto& HudItemSlot : HudItemSlotRow)
+		for (const auto& hudItemSlot : hudItemSlotRow)
 		{
-			HudItemSlot->Draw();
+			hudItemSlot->Draw();
 		}
 	}
 }
@@ -112,30 +89,30 @@ void Hud::Draw()
 void Hud::ChangeSelectedItemSlot(HumanInterfaceDevice &hid)
 {
 	if (hid.IsPressedOnce(KeyboardKey::key1))
-		selectedSlot = 0;
+		_selectedSlot = 0;
 	else if (hid.IsPressedOnce(KeyboardKey::key2))
-		selectedSlot = 1;
+		_selectedSlot = 1;
 	else if (hid.IsPressedOnce(KeyboardKey::key3))
-		selectedSlot = 2;
+		_selectedSlot = 2;
 	else if (hid.IsPressedOnce(KeyboardKey::key4))
-		selectedSlot = 3;
+		_selectedSlot = 3;
 	else if (hid.IsPressedOnce(KeyboardKey::key5))
-		selectedSlot = 4;
+		_selectedSlot = 4;
 	else if (hid.IsPressedOnce(KeyboardKey::key6))
-		selectedSlot = 5;
+		_selectedSlot = 5;
 	else if (hid.IsPressedOnce(KeyboardKey::key7))
-		selectedSlot = 6;
+		_selectedSlot = 6;
 	else if (hid.IsPressedOnce(KeyboardKey::key8))
-		selectedSlot = 7;
+		_selectedSlot = 7;
 	else if (hid.IsPressedOnce(KeyboardKey::key9))
-		selectedSlot = 8;
+		_selectedSlot = 8;
 	else if (hid.IsPressedOnce(KeyboardKey::key0))
-		selectedSlot = 9;
+		_selectedSlot = 9;
 	else if (hid.IsPressedOnce(KeyboardKey::minus))
-		selectedRow = 0;
+		_selectedRow = 0;
 	else if (hid.IsPressedOnce(KeyboardKey::plus))
-		selectedRow = 1;
+		_selectedRow = 1;
 	this->DeactivateEntireHudItemSlotBar();
-	HudItemSlotBar[selectedRow][selectedSlot]->Activate();
+	_hudItemSlotBar[_selectedRow][_selectedSlot]->Activate();
 
 }

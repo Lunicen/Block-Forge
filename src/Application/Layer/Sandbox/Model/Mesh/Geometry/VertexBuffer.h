@@ -11,10 +11,6 @@ class VertexBuffer
 
 public:
 
-
-
-	explicit VertexBuffer(const std::vector<Point3D>& vertices);
-
 	/// @brief The constructor creates VBO, binds it immediately and sets its data.
 	///	@warning This constructor creates **STATIC** vertex buffer object.
 	///	It's meant to represent single objects or to be used with instancing.
