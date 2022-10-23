@@ -128,18 +128,6 @@ void ChunkPlacer::CleanupStaleFutures()
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
-	for(auto futureToCleanup = _futuresToCleanup.begin(); futureToCleanup != _futuresToCleanup.end();)
-	{
-		if(futureToCleanup->_Is_ready())
-		{
-			futureToCleanup = _futuresToCleanup.erase(futureToCleanup);
-		}
-		else
-		{
-			 ++futureToCleanup;
-		}
-	}
-
 	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
 
 	RemoveStaleChunks(currentChunksAroundOrigins);
@@ -191,10 +179,20 @@ void ChunkPlacer::Update(const Position& position)
 	}
 }
 
-void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
+void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator) const
 {
 	_generator = std::move(generator);
 	UpdateChunksAround(_previousNormalizedPosition);
+}
+
+void ChunkPlacer::Terminate()
+{
+	while (!_futures.empty())
+	{
+		CleanupStaleFutures();
+	}
+
+	_generator = nullptr;
 }
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()

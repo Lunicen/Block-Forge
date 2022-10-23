@@ -68,6 +68,7 @@ public:
 
 	~SandboxLayer() override
 	{
+		_chunkPlacer->Terminate();
 		gltTerminate();
 	}
 };

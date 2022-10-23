@@ -17,7 +17,6 @@ class ChunkPlacer
 	static std::mutex _cleanupFuturesMutex;
 
 	static std::vector<std::future<void>> _futures;
-	std::vector<std::future<void>> _futuresToCleanup;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::vector<std::pair<ChunkFrame, ChunkBlocks>> _chunksToBuildQueue;
@@ -39,8 +38,8 @@ class ChunkPlacer
 
 	static void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 	static void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
-	
-	void UpdateChunksAround(const Position& normalizedOrigin);
+
+	static void UpdateChunksAround(const Position& normalizedOrigin);
 	static void CleanupStaleFutures();
 
 public:
@@ -60,7 +59,9 @@ public:
 	///	@details The world generator is used to define how the world is generated, when
 	///	this class handles only displaying it in an optimal way.
 	///	@param generator - reference to the world generator.
-	void Bind(std::shared_ptr<WorldGenerator> generator);
+	void Bind(std::shared_ptr<WorldGenerator> generator) const;
+
+	static void Terminate();
 
 	/// @brief Returns the map of placed chunks.
 	static std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
