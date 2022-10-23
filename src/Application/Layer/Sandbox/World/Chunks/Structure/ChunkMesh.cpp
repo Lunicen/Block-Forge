@@ -3,40 +3,26 @@
 #include "ChunkMeshUtils.h"
 
 ChunkMesh::ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk)
+	: _mesh(std::vector<Vertex>(), _indicesPattern, blockShader, sizeOfChunk * sizeOfChunk * sizeOfChunk)
 {
-	const std::vector<TriangleIndexes> indicesPattern =
-	{
-		TriangleIndexes{0, 1, 2},
-		TriangleIndexes{2, 3, 0}
-	};
-	const auto maxInstancesAmount = sizeOfChunk * sizeOfChunk * sizeOfChunk;
-
-	_mesh = std::make_unique<DynamicMesh>(std::vector<Vertex>(), indicesPattern, blockShader, maxInstancesAmount);
 }
 
 ChunkMesh::ChunkMesh(const std::vector<Vertex>& vertices, Shader& blockShader, const size_t& sizeOfChunk)
+	: _mesh(vertices, _indicesPattern, blockShader, sizeOfChunk * sizeOfChunk * sizeOfChunk)
 {
-	const std::vector<TriangleIndexes> indicesPattern =
-	{
-		TriangleIndexes{0, 1, 2},
-		TriangleIndexes{2, 3, 0}
-	};
-	const auto maxInstancesAmount = sizeOfChunk * sizeOfChunk * sizeOfChunk;
-
-	_mesh = std::make_unique<DynamicMesh>(vertices, indicesPattern, blockShader, maxInstancesAmount);
 }
 
-void ChunkMesh::Set(const std::vector<Vertex>& vertices) const
+void ChunkMesh::Rebuild(const std::vector<Vertex>& vertices)
 {
-	_mesh->Update(vertices);
+	_mesh.Update(vertices);
 }
 
-void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const
+void ChunkMesh::Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap)
 {
-	_mesh->Update(ChunkMeshUtils::GetMeshVertices(frame, blocks, blockMap));
+	_mesh.Update(ChunkMeshUtils::GetMeshVertices(frame, blocks, blockMap));
 }
 
-void ChunkMesh::Draw(const Texture& blocksTexture, const Camera& camera) const
+void ChunkMesh::Draw(const Texture& blocksTexture, const Camera& camera)
 {
-	_mesh->Draw(blocksTexture, camera);
+	_mesh.Draw(blocksTexture, camera);
 }

@@ -10,7 +10,7 @@ class DynamicMesh final : protected Mesh
 	std::unique_ptr<VertexBuffer> _vbo;
 
 	Shader& _shader;
-	std::vector<Vertex> _vertices;
+	GLsizei _verticesSize;
 	GLsizei _indicesInPatternAmount{};
 	GLsizei _indicesInOneInstance{};
 
@@ -23,7 +23,7 @@ public:
 	/// @param indicesPattern - The indices pattern sequence of the vertices position (to replicate for allocating the buffer).
 	/// @param shader - The shader that the mesh is using.
 	/// @param maxInstancesAmount - Amount of maximum possible instances to create within this mesh.
-	DynamicMesh(std::vector<Vertex> vertices, const std::vector<TriangleIndexes>& indicesPattern, Shader& shader, const size_t& maxInstancesAmount);
+	DynamicMesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indicesPattern, Shader& shader, const size_t& maxInstancesAmount);
 
 	/// @brief Rebuilds the mesh.
 	///	@param vertices - new mesh vertices.

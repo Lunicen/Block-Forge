@@ -33,13 +33,13 @@ public:
 
 		constexpr auto worldSeed = 1337;
 		constexpr auto chunkSize = 16;
-		constexpr auto renderDistance = 10;
+		constexpr auto renderDistance = 3;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
-		_chunkPlacer->Bind(_worldGenerator);
+		_chunkPlacer->Bind(_worldGenerator, chunkSize);
 		
 		_fpsCounter = std::make_unique<FPSCounter>();
 	}
@@ -47,23 +47,22 @@ public:
 	void OnUpdate() override
 	{
 		_camera->Update();
+		_chunkPlacer->Update();
 
-		std::mutex chunksRenderingMutex;
-		if (chunksRenderingMutex.try_lock())
-		{
-			const ChunkRenderer chunkRenderer;
+		const ChunkRenderer chunkRenderer;
+		auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
 
-			chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
-			chunksRenderingMutex.unlock();
-		}
-
+		chunksRenderingMutex.lock();
+		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
+		chunksRenderingMutex.unlock();
+		
 		_fpsCounter->Update();
 	}
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
 		_camera->HandleInput(hid);
-		_chunkPlacer->Update(_camera->GetPosition());
+		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
 	}
 
 	~SandboxLayer() override

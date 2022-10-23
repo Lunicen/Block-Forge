@@ -15,6 +15,12 @@ class Chunk
 
 public:
 
+	explicit Chunk(size_t chunkSize, BlockMap& blockMap);
+
+	void LoadBlocks(const ChunkBlocks& blocks);
+	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
+	void LoadMesh(ChunkFrame frame, BlockMap& blockMap);
+
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
 	/// and the player position for proper displaying blocks while the player is moving.
@@ -29,6 +35,6 @@ public:
 	/// @brief Draws the chunk in the world.
 	///	@param blockTexture - Reference texture atlas that the blocks are using.
 	///	@param camera - Reference to the camera so that the blocks could be seen.
-	void Draw(const TextureAtlas& blockTexture, const Camera& camera) const;
+	void Draw(const TextureAtlas& blockTexture, const Camera& camera);
 };
 

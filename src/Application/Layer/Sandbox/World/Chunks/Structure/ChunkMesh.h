@@ -8,7 +8,13 @@
 ///	@brief Represents the chunk mesh and manages it in a runtime.
 class ChunkMesh
 {
-	std::unique_ptr<DynamicMesh> _mesh = nullptr;
+	const std::vector<TriangleIndexes> _indicesPattern =
+	{
+		TriangleIndexes{0, 1, 2},
+		TriangleIndexes{2, 3, 0}
+	};
+
+	DynamicMesh _mesh;
 
 public:
 
@@ -19,17 +25,17 @@ public:
 
 	explicit ChunkMesh(const std::vector<Vertex>& vertices, Shader& blockShader, const size_t& sizeOfChunk);
 
-	void Set(const std::vector<Vertex>& vertices) const;
+	void Rebuild(const std::vector<Vertex>& vertices);
 
 	/// @brief Rebuilds the mesh basing on the passed blocks.
 	///	@param frame - Frame of the chunk.
 	///	@param blocks - Blocks inside the chunk.
 	///	@param blockMap - Reference to the block map.
-	void Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap) const;
+	void Rebuild(const ChunkFrame& frame, const ChunkBlocks& blocks, BlockMap& blockMap);
 
 	/// @brief Renders blocks inside the chunk.
 	///	@param blocksTexture - The texture that the blocks are using.
 	///	@param camera - Reference to the camera, so the blocks could be seen.
-	void Draw(const Texture& blocksTexture, const Camera& camera) const;
+	void Draw(const Texture& blocksTexture, const Camera& camera);
 };
 

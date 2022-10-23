@@ -20,21 +20,20 @@ class ChunkPlacer
 	static std::vector<std::future<void>> _globalFutures;
 
 	static std::shared_ptr<WorldGenerator> _generator;
-	static std::vector<std::tuple<ChunkFrame, ChunkBlocks, std::vector<Vertex>>> _chunksToBuildQueue;
+	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToBuildQueue;
 	static std::vector<Position> _chunksToRemoveQueue;
 
 	static std::unique_ptr<Order> _order;
 
 	Position _previousNormalizedPosition = {};
+	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
 	
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void BuildChunkAt(Position origin, const size_t size,
-	                       const std::shared_ptr<WorldGenerator>& generator);
+	static void BuildChunkAt(Position origin, size_t size, const std::shared_ptr<WorldGenerator>& generator);
 	void BuildChunksInQueue() const;
-	void RemoveChunksInQueue() const;
 
 	static void RemoveStaleChunksAround(Position normalizedOrigin);
 	static void AddNewChunksAround(Position normalizedOrigin);
@@ -52,17 +51,22 @@ public:
 	ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position& initPosition);
 
 	/// @brief Updates the chunk placer to adapt to the current frame.
+	void Update() const;
+
+	/// @brief Adapts chunk placer to the camera position.
 	///	@param position - Position around which chunks are going to be placed.
-	void Update(const Position& position);
+	void ReactToCameraMovement(const Position& position);
 
 	/// @brief Binds world generator to the chunk placer.
 	///	@details The world generator is used to define how the world is generated, when
 	///	this class handles only displaying it in an optimal way.
 	///	@param generator - reference to the world generator.
-	void Bind(std::shared_ptr<WorldGenerator> generator) const;
+	void Bind(std::shared_ptr<WorldGenerator> generator, size_t chunkSize) const;
 
 	/// @brief Returns the map of placed chunks.
 	static std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
+
+	static std::mutex& GetMutex();
 
 	/// @brief Terminates the chunk placer.
 	static void Terminate();

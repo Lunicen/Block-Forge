@@ -20,10 +20,10 @@ std::vector<TriangleIndexes> DynamicMesh::GenerateIndicesFromPattern(const std::
 }
 
 DynamicMesh::DynamicMesh(
-	std::vector<Vertex> vertices,
+	const std::vector<Vertex>& vertices,
 	const std::vector<TriangleIndexes>& indicesPattern,
 	Shader& shader, 
-	const size_t& maxInstancesAmount) : _shader(shader), _vertices(std::move(vertices))
+	const size_t& maxInstancesAmount) : _shader(shader), _verticesSize(static_cast<GLsizei>(vertices.size()))
 {
 	constexpr auto indexesInOneTriangle = 3;
 	_indicesInPatternAmount = static_cast<GLsizei>(indicesPattern.size()) * indexesInOneTriangle;
@@ -56,28 +56,28 @@ DynamicMesh::DynamicMesh(
 	ebo.Unbind();
 
 	_vbo->Bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(_vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), _vertices.data());
+	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), vertices.data());
 	_vbo->Unbind();
 }
 
 void DynamicMesh::Update(const std::vector<Vertex>& vertices)
 {
-	_vertices = vertices;
+	_verticesSize = static_cast<GLsizei>(vertices.size());
 
 	_vbo->Bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(_vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), _vertices.data());
+	glBufferSubData(GL_ARRAY_BUFFER, 0, static_cast<GLsizeiptr>(vertices.size()) * static_cast<GLsizeiptr>(sizeof(Vertex)), vertices.data());
 	_vbo->Unbind();
 }
 
 void DynamicMesh::Draw(const Texture& texture, const Camera& camera)
 {
-	if (_vertices.empty()) return;
+	if (_verticesSize == 0) return;
 
 	camera.Bind(_shader);
 
 	GetVao().Bind();
 	texture.Bind(_shader);
-	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(_vertices.size()) / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, _verticesSize / _indicesInOneInstance * _indicesInPatternAmount, GL_UNSIGNED_INT, nullptr);
 	texture.Unbind();
 	GetVao().Unbind();
 }
