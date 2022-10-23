@@ -1,5 +1,14 @@
 #include "ChunkPlacer.h"
 
+#include "DebugTools/Timer.h"
+
+std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> ChunkPlacer::_futures = {};
+std::vector<std::future<void>> ChunkPlacer::_futuresPool = {};
+std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
+std::vector<std::pair<ChunkFrame, ChunkBlocks>> ChunkPlacer::_chunksToBeBuildQueue = {};
+std::unique_ptr<Order> ChunkPlacer::_order = {};
+std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+
 std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet)
 {
 	std::vector<Position> result;
@@ -52,17 +61,17 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 	for (const auto& origin : staleChunksOrigins)
 	{
-		_log.Trace("Removed chunk: " + PositionToString(origin));
+		//_log.Trace("Removed chunk: " + PositionToString(origin));
 		_loadedChunks.erase(origin);
 	}
 
-	_log.Debug("Finished removing stale chunks!");
+	//_log.Debug("Finished removing stale chunks!");
 }
 
 std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
 	const Position origin,
 	const size_t size,
-	const std::shared_ptr<WorldGenerator> generator)
+	const std::shared_ptr<WorldGenerator>& generator)
 {
 	const auto chunkFrame = ChunkFrame{origin, size};
 
@@ -95,8 +104,9 @@ void ChunkPlacer::UpdateLoadedChunksVector(std::vector<std::future<std::pair<Chu
 	}
 }
 
-void ChunkPlacer::BuildChunksInQueue()
+void ChunkPlacer::BuildChunksInQueue() const
 {
+	Timer timer{"Chunks build queue"};
 	const auto chunkData = _chunksToBeBuildQueue.back();
 	_chunksToBeBuildQueue.pop_back();
 
@@ -113,13 +123,13 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		{
 			std::lock_guard<std::mutex> lock(BuildQueueMutex);
 			_futures.push_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
-			_log.Trace("Added chunk: " + PositionToString(origin));
+			//_log.Trace("Added chunk: " + PositionToString(origin));
 		}
 	}
 
 	_futuresPool.push_back(std::async(std::launch::async, UpdateLoadedChunksVector, &_futures, &_chunksToBeBuildQueue));
 
-	_log.Debug("Finished adding new chunks!");
+	//_log.Debug("Finished adding new chunks!");
 }
 
 
@@ -127,8 +137,20 @@ void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
 	const auto currentChunksAroundOrigins = _order->GetChunksAround(normalizedOrigin);
 
-	RemoveStaleChunks(currentChunksAroundOrigins);
-	AddNewChunks(currentChunksAroundOrigins);
+	for (auto future = _globalFuturesPool.begin() ; future != _globalFuturesPool.end();) 
+	{
+		if (future->_Is_ready())
+		{
+			future = _globalFuturesPool.erase(future);
+		}
+		else
+		{
+			++future;
+		}
+	}
+
+	_globalFuturesPool.push_back(std::async(std::launch::async, RemoveStaleChunks, currentChunksAroundOrigins));
+	_globalFuturesPool.push_back(std::async(std::launch::async, AddNewChunks, currentChunksAroundOrigins));
 }
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
@@ -170,7 +192,7 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 	UpdateChunksAround(_previousNormalizedPosition);
 }
 
-std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
+std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 {
 	if (!_chunksToBeBuildQueue.empty())
 	{
