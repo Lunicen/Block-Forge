@@ -14,21 +14,27 @@ class ChunkPlacer
 	Log& _log = Log::Get();
 
 	std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> _futures;
+	std::vector<std::future<void>> _futuresPool;
+
 	std::shared_ptr<WorldGenerator> _generator;
+	std::vector<std::pair<ChunkFrame, ChunkBlocks>> _chunksToBeBuildQueue;
+
 	std::unique_ptr<Order> _order;
 
 	Position _previousNormalizedPosition = {};
-	std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks = {};
+	std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
 	static std::vector<Position> Subtract(const std::vector<Position>& aSet, const std::vector<Position>& bSet);
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
+
+	static void UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue, std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue);
 	static std::pair<ChunkFrame, ChunkBlocks> GetChunkAt(Position origin, const size_t size, const std::shared_ptr<WorldGenerator> generator);
+	void BuildChunksInQueue();
 
 	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 	void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
-
-	void UpdateLoadedChunksVector();
+	
 	void UpdateChunksAround(const Position& normalizedOrigin);
 
 public:
@@ -50,7 +56,6 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(std::shared_ptr<WorldGenerator> generator);
 
-	
 	/// @brief Returns the map of placed chunks.
 	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 };

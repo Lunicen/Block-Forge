@@ -35,6 +35,8 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
+std::mutex BuildQueueMutex;
+
 void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
 {
 	std::vector<Position> staleChunksOrigins;
@@ -57,8 +59,6 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 	_log.Debug("Finished removing stale chunks!");
 }
 
-std::mutex Mutex;
-
 std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
 	const Position origin,
 	const size_t size,
@@ -74,6 +74,35 @@ std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
 	return std::pair<ChunkFrame, ChunkBlocks>(ChunkFrame{origin, size}, chunkBlocks);
 }
 
+void ChunkPlacer::UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue, std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue)
+{
+	while(!futuresQueue->empty())
+	{
+		std::lock_guard<std::mutex> lock(BuildQueueMutex);
+
+		for(auto currentFuture = futuresQueue->begin(); currentFuture != futuresQueue->end(); ++currentFuture)
+		{
+			if(currentFuture->_Is_ready())
+			{
+				const auto& chunkData = currentFuture->get();
+				chunksToBuildQueue->push_back(chunkData);
+
+				currentFuture = futuresQueue->erase(currentFuture);
+
+				break;
+			}
+		}
+	}
+}
+
+void ChunkPlacer::BuildChunksInQueue()
+{
+	const auto chunkData = _chunksToBeBuildQueue.back();
+	_chunksToBeBuildQueue.pop_back();
+
+	_loadedChunks[chunkData.first.origin] = std::make_unique<Chunk>(chunkData.first, chunkData.second, _generator->GetBlockMap());
+}
+
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
 {
 	const auto chunkSize = _order->GetChunkSize();
@@ -82,38 +111,17 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 	{
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
 		{
+			std::lock_guard<std::mutex> lock(BuildQueueMutex);
 			_futures.push_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
 			_log.Trace("Added chunk: " + PositionToString(origin));
 		}
 	}
 
-	/*for (const auto& data : chunksData)
-	{
-		std::lock_guard<std::mutex> lock(Mutex);
-		_loadedChunks[data.first.origin] = std::make_unique<Chunk>(data.first, data.second, _generator->GetBlockMap());
-	}*/
+	_futuresPool.push_back(std::async(std::launch::async, UpdateLoadedChunksVector, &_futures, &_chunksToBeBuildQueue));
 
 	_log.Debug("Finished adding new chunks!");
 }
 
-void ChunkPlacer::UpdateLoadedChunksVector()
-{
-	for(auto currentFuture = _futures.begin(); currentFuture != _futures.end();)
-	{
-		if(currentFuture->_Is_ready())
-		{
-			std::lock_guard<std::mutex> lock(Mutex);
-
-			const auto& chunkData = currentFuture->get();
-			_loadedChunks[chunkData.first.origin] = std::make_unique<Chunk>(chunkData.first, chunkData.second, _generator->GetBlockMap());
-
-			currentFuture = _futures.erase(currentFuture);
-			continue;
-		}
-
-		++currentFuture;
-	}
-}
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
@@ -164,10 +172,10 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator)
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 {
-	if (!_futures.empty())
+	if (!_chunksToBeBuildQueue.empty())
 	{
-		UpdateLoadedChunksVector();
+		BuildChunksInQueue();
 	}
-	
+
 	return _loadedChunks;
 }
