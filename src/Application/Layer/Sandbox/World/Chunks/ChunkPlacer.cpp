@@ -1,7 +1,5 @@
 #include "ChunkPlacer.h"
 
-#include "DebugTools/Timer.h"
-
 std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> ChunkPlacer::_futures = {};
 std::vector<std::future<void>> ChunkPlacer::_futuresPool = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
@@ -57,8 +55,6 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 			_chunksToRemoveQueue.emplace_back(origin);
 		}
 	}
-
-	//_log.Debug("Finished removing stale chunks!");
 }
 
 std::pair<ChunkFrame, ChunkBlocks> ChunkPlacer::GetChunkAt(
@@ -99,20 +95,20 @@ void ChunkPlacer::UpdateLoadedChunksVector(std::vector<std::future<std::pair<Chu
 
 void ChunkPlacer::BuildChunksInQueue() const
 {
-	Timer timer{"Chunks build queue"};
 	const auto chunkData = _chunksToBuildQueue.back();
 	_chunksToBuildQueue.pop_back();
 
 	_loadedChunks[chunkData.first.origin] = std::make_unique<Chunk>(chunkData.first, chunkData.second, _generator->GetBlockMap());
+	_log.Trace("Added chunk: " + PositionToString(chunkData.first.origin));
 }
 
-void ChunkPlacer::RemoveChunksInQueue()
+void ChunkPlacer::RemoveChunksInQueue() const
 {
-	Timer timer{"Chunks remove queue"};
 	const auto position = _chunksToRemoveQueue.back();
 	_chunksToRemoveQueue.pop_back();
 
 	_loadedChunks.erase(position);
+	_log.Trace("Removed chunk: " + PositionToString(position));
 }
 
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
@@ -125,13 +121,10 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins
 		{
 			std::lock_guard<std::mutex> lock(BuildQueueMutex);
 			_futures.push_back(std::async(std::launch::async, GetChunkAt, origin, chunkSize, _generator));
-			//_log.Trace("Added chunk: " + PositionToString(origin));
 		}
 	}
 
 	_futuresPool.push_back(std::async(std::launch::async, UpdateLoadedChunksVector, &_futures, &_chunksToBuildQueue));
-
-	//_log.Debug("Finished adding new chunks!");
 }
 
 
@@ -155,7 +148,7 @@ void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 	_globalFuturesPool.push_back(std::async(std::launch::async, AddNewChunks, currentChunksAroundOrigins));
 }
 
-ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition, std::mutex& externalMutex) : _chunksProcessingMutex(externalMutex)
+ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
 {
 	switch (orderType)
 	{

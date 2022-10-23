@@ -12,8 +12,6 @@
 ///	@brief Represents sandbox that is played as an simulation.
 class SandboxLayer final : public Layer
 {
-	std::mutex _chunksRenderingMutex;
-
 	std::unique_ptr<Camera> _camera{};
 	std::unique_ptr<ChunkPlacer> _chunkPlacer{};
 	std::unique_ptr<FPSCounter> _fpsCounter{};
@@ -40,7 +38,7 @@ public:
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition(), _chunksRenderingMutex);
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator);
 		
 		_fpsCounter = std::make_unique<FPSCounter>();
@@ -50,12 +48,13 @@ public:
 	{
 		_camera->Update();
 
-		if (_chunksRenderingMutex.try_lock())
+		std::mutex chunksRenderingMutex;
+		if (chunksRenderingMutex.try_lock())
 		{
 			const ChunkRenderer chunkRenderer;
 
 			chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
-			_chunksRenderingMutex.unlock();
+			chunksRenderingMutex.unlock();
 		}
 
 		_fpsCounter->Update();

@@ -13,8 +13,6 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
-	std::mutex& _chunksProcessingMutex;
-
 	static std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>> _futures;
 	static std::vector<std::future<void>> _futuresPool;
 	std::vector<std::future<void>> _globalFuturesPool;
@@ -32,11 +30,12 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue, std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue);
-	static std::pair<ChunkFrame, ChunkBlocks> GetChunkAt(Position origin, const size_t size, const std::shared_ptr<WorldGenerator>
-	                                                     & generator);
+	static void UpdateLoadedChunksVector(std::vector<std::future<std::pair<ChunkFrame, ChunkBlocks>>>* futuresQueue,
+	                                     std::vector<std::pair<ChunkFrame, ChunkBlocks>>* chunksToBuildQueue);
+	static std::pair<ChunkFrame, ChunkBlocks> GetChunkAt(Position origin, size_t size, 
+														 const std::shared_ptr<WorldGenerator>& generator);
 	void BuildChunksInQueue() const;
-	static void RemoveChunksInQueue();
+	void RemoveChunksInQueue() const;
 
 	static void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 	static void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
@@ -50,7 +49,7 @@ public:
 	///	@param chunkSize - the size of the generated chunks.
 	///	@param renderDistance - specifies the maximum distance from the camera to render.
 	///	@param initPosition - position in space from where initialize the chunk placer.
-	ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position& initPosition, std::mutex& externalMutex);
+	ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position& initPosition);
 
 	/// @brief Updates the chunk placer to adapt to the current frame.
 	///	@param position - Position around which chunks are going to be placed.
