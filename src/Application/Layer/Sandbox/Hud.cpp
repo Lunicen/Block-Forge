@@ -1,10 +1,9 @@
 #include "Hud.h"
 #include "Model/Surface/Texture.h"
 
-HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, const Point position, const float scale = 1.0f) : _shader(shader), _texture(texture), _position(position), _scale(scale)
+HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, const Point position, const float scale = 1.0f)
+: _shader(shader), _texture(texture), _position(position), _scale(scale), _state(false)
 {
-	_state = false;
-
 	for (auto& vertex : _vertices)
 	{
 		vertex.position = vertex.position * _scale;
@@ -62,15 +61,21 @@ void Hud::DeactivateEntireHudItemSlotBar() const
 Hud::Hud()
 {
 	float scale = 0.20f;
+	constexpr int numberOfColumns = 2;
+	// ReSharper disable once CppTooWideScope
+	constexpr int numberOfRows = 10;
 
-	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
-	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>());
+	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>{});
+	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>{});
 
-	for (int j = 0; j < 2; j++)
+
+
+	for (int column = 0; column < numberOfColumns; column++)
 	{
-		for (int i = 0; i < 10; i++)
+
+		for (int row = 0; row < numberOfRows; row++)
 		{
-			_hudItemSlotBar[j].emplace_back(std::make_unique<HudItemSlot>(_texture, _shader, Point(-1.0f + static_cast<float>(i) * scale, -1.0f + static_cast<float>(j) * scale), scale));
+			_hudItemSlotBar[column].emplace_back(std::make_unique<HudItemSlot>(_texture, _shader, Point(-1.0f + static_cast<float>(row) * scale, -1.0f + static_cast<float>(column) * scale), scale));
 		}
 	}
 }
@@ -88,30 +93,25 @@ void Hud::Draw() const
 
 void Hud::ChangeSelectedItemSlot(HumanInterfaceDevice &hid)
 {
-	if (hid.IsPressedOnce(KeyboardKey::key1))
-		_selectedSlot = 0;
-	else if (hid.IsPressedOnce(KeyboardKey::key2))
-		_selectedSlot = 1;
-	else if (hid.IsPressedOnce(KeyboardKey::key3))
-		_selectedSlot = 2;
-	else if (hid.IsPressedOnce(KeyboardKey::key4))
-		_selectedSlot = 3;
-	else if (hid.IsPressedOnce(KeyboardKey::key5))
-		_selectedSlot = 4;
-	else if (hid.IsPressedOnce(KeyboardKey::key6))
-		_selectedSlot = 5;
-	else if (hid.IsPressedOnce(KeyboardKey::key7))
-		_selectedSlot = 6;
-	else if (hid.IsPressedOnce(KeyboardKey::key8))
-		_selectedSlot = 7;
-	else if (hid.IsPressedOnce(KeyboardKey::key9))
-		_selectedSlot = 8;
-	else if (hid.IsPressedOnce(KeyboardKey::key0))
-		_selectedSlot = 9;
-	else if (hid.IsPressedOnce(KeyboardKey::minus))
-		_selectedRow = 0;
-	else if (hid.IsPressedOnce(KeyboardKey::plus))
-		_selectedRow = 1;
+	if (hid.IsPressedOnce(KeyboardKey::key1))	_selectedSlot = 0;
+	else if (hid.IsPressedOnce(KeyboardKey::key2))	_selectedSlot = 1;
+	else if (hid.IsPressedOnce(KeyboardKey::key3))	_selectedSlot = 2;
+	else if (hid.IsPressedOnce(KeyboardKey::key4))	_selectedSlot = 3;
+	else if (hid.IsPressedOnce(KeyboardKey::key5))	_selectedSlot = 4;
+	else if (hid.IsPressedOnce(KeyboardKey::key6))	_selectedSlot = 5;
+	else if (hid.IsPressedOnce(KeyboardKey::key7))	_selectedSlot = 6;
+	else if (hid.IsPressedOnce(KeyboardKey::key8))	_selectedSlot = 7;
+	else if (hid.IsPressedOnce(KeyboardKey::key9))	_selectedSlot = 8;
+	else if (hid.IsPressedOnce(KeyboardKey::key0))	_selectedSlot = 9;
+
+	else if (hid.IsPressedOnce(KeyboardKey::minus))	_selectedRow = 0;
+	else if (hid.IsPressedOnce(KeyboardKey::plus))	_selectedRow = 1;
+
+	else
+	{
+		//do nothing
+	}
+
 	this->DeactivateEntireHudItemSlotBar();
 	_hudItemSlotBar[_selectedRow][_selectedSlot]->Activate();
 
