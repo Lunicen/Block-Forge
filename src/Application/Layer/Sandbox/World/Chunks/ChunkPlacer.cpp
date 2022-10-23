@@ -12,13 +12,16 @@ std::vector<Position> ChunkPlacer::Subtract(const std::vector<Position>& aSet, c
 {
 	std::vector<Position> result;
 
-	for (const auto& value : aSet)
+	concurrency::critical_section mutex;
+	Concurrency::parallel_for_each(aSet.begin(), aSet.end(), [&](const auto& value)
 	{
 		if (std::find(bSet.begin(), bSet.end(), value) == bSet.end())
 		{
+			mutex.lock();
 			result.emplace_back(value);
+			mutex.unlock();
 		}
-	}
+	});
 
 	return result;
 }
