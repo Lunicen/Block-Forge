@@ -2,7 +2,7 @@
 
 size_t TiltedCubeOrder::GetChunksAmount()
 {
-	const auto& r = GetChunkSize();
+	const auto& r = GetRenderDistance() * 2 + 1;
 	return (r + 1) * ((r + 1) * (r + 1) + r * r);
 }
 
