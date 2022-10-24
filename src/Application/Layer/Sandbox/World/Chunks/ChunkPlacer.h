@@ -13,15 +13,15 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 	
-	static std::mutex _buildQueueMutex;
+	static std::mutex _chunksQueueMutex;
 	static std::mutex _cleanupFuturesMutex;
 
 	static std::vector<std::future<void>> _futures;
 	static std::vector<std::future<void>> _globalFutures;
 
 	static std::shared_ptr<WorldGenerator> _generator;
-	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToBuildQueue;
-	static std::vector<Position> _chunksToRemoveQueue;
+	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _newChunksQueue;
+	static std::vector<Position> _staleChunksQueue;
 
 	static std::unique_ptr<Order> _order;
 
@@ -33,10 +33,11 @@ class ChunkPlacer
 	std::string PositionToString(const Position& position) const;
 
 	static void BuildChunkAt(Position origin, size_t size, const std::shared_ptr<WorldGenerator>& generator);
-	void BuildChunksInQueue() const;
+	void BuildNewChunks() const;
 
 	static void RemoveStaleChunksAround(Position normalizedOrigin);
 	static void AddNewChunksAround(Position normalizedOrigin);
+	void RemoveStaleChunks() const;
 
 	static void UpdateChunksAround(const Position& normalizedOrigin);
 	static void CleanupStaleFutures();

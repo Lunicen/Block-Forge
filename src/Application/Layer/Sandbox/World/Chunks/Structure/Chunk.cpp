@@ -3,7 +3,7 @@
 
 Chunk::Chunk(const size_t chunkSize, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), chunkSize)
 {
-	_blocks.reserve(chunkSize * chunkSize * chunkSize);
+	_blocks.resize(chunkSize * chunkSize * chunkSize);
 }
 
 void Chunk::LoadBlocks(const ChunkBlocks& blocks)

@@ -7,12 +7,12 @@
 std::vector<std::future<void>> ChunkPlacer::_futures = {};
 std::vector<std::future<void>> ChunkPlacer::_globalFutures = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
-std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToBuildQueue = {};
-std::vector<Position> ChunkPlacer::_chunksToRemoveQueue = {};
+std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_newChunksQueue = {};
+std::vector<Position> ChunkPlacer::_staleChunksQueue = {};
 std::unique_ptr<Order> ChunkPlacer::_order = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
-std::mutex ChunkPlacer::_buildQueueMutex;
+std::mutex ChunkPlacer::_chunksQueueMutex;
 std::mutex ChunkPlacer::_cleanupFuturesMutex;
 
 Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const
@@ -47,31 +47,43 @@ void ChunkPlacer::BuildChunkAt(
 	
 	generator->PaintChunk(chunkFrame, chunkBlocks);
 
-	std::lock_guard<std::mutex> lock(_buildQueueMutex);
-	_chunksToBuildQueue.emplace_back(std::tuple<Position, ChunkBlocks, std::vector<Vertex>>(origin, chunkBlocks, ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap())));
+	std::lock_guard<std::mutex> lock(_chunksQueueMutex);
+	_newChunksQueue.emplace_back(origin, chunkBlocks, ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap()));
 }
 
-void ChunkPlacer::BuildChunksInQueue() const
+void ChunkPlacer::BuildNewChunks() const
 {
-	if (_buildQueueMutex.try_lock())
+	if (_chunksQueueMutex.try_lock())
 	{
-		const auto chunkData = _chunksToBuildQueue.back();
-		_chunksToBuildQueue.pop_back();
+		const auto chunkData = _newChunksQueue.back();
 
-		auto chunk = std::move(_freeChunks.back());
-		_freeChunks.pop_back();
+		const auto origin = std::get<0>(chunkData);
+		const auto blocks = std::get<1>(chunkData);
+		const auto mesh = std::get<2>(chunkData);
 
-		const auto& origin = std::get<0>(chunkData);
-		const auto& blocks = std::get<1>(chunkData);
-		const auto& mesh = std::get<2>(chunkData);
+		//_loadedChunks.emplace(std::make_pair<Position, std::unique_ptr<Chunk>>(origin, std::move(chunk)));
+		if (_loadedChunks.find(origin) == _loadedChunks.end())
+		{
+			if (_freeChunks.empty()) 
+			{
+				_chunksQueueMutex.unlock();
+				return;
+			}
 
-		_loadedChunks[origin] = std::move(chunk);
+			auto chunk = std::move(_freeChunks.back());
+			_freeChunks.pop_back();
+
+			_loadedChunks[origin] = std::move(chunk);
+		}
+
+		_newChunksQueue.pop_back();
+
 		_loadedChunks[origin]->LoadBlocks(blocks);
 		_loadedChunks[origin]->LoadMesh(mesh);
 
 		_log.Trace("Added chunk: " + PositionToString(origin));
 
-		_buildQueueMutex.unlock();
+		_chunksQueueMutex.unlock();
 	}
 }
 
@@ -91,40 +103,36 @@ void ChunkPlacer::AddNewChunksAround(const Position normalizedOrigin)
 	}
 }
 
+void ChunkPlacer::RemoveStaleChunks() const
+{
+	if (_chunksQueueMutex.try_lock())
+	{
+		const auto origin = _staleChunksQueue.back();
+		_staleChunksQueue.pop_back();
+
+		auto chunk = std::move(_loadedChunks[origin]);
+		_loadedChunks.erase(origin);
+
+		_freeChunks.emplace_back(std::move(chunk));
+
+		_log.Trace("Added chunk: " + PositionToString(origin));
+		_chunksQueueMutex.unlock();
+	}
+}
+
 void ChunkPlacer::RemoveStaleChunksAround(const Position normalizedOrigin)
 {
 	const auto currentChunksOrigins = _order->GetChunksAround(normalizedOrigin);
 
-	std::lock_guard<std::mutex> lock(_buildQueueMutex);
+	std::lock_guard<std::mutex> lock(_chunksQueueMutex);
 
-	auto loadedChunk = _loadedChunks.begin();
-
-	while (loadedChunk != _loadedChunks.end())
+	for (const auto& chunk : _loadedChunks)
 	{
-		const auto origin = loadedChunk->first;
+		const auto origin = chunk.first;
 		if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
 		{
-		    auto chunk = std::move(_loadedChunks[origin]);
-			loadedChunk = _loadedChunks.erase(loadedChunk);
-
-			_freeChunks.emplace_back(std::move(chunk));
+			_staleChunksQueue.emplace_back(origin);
 		}
-		else
-		{
-			++loadedChunk;
-		}
-    }
-}
-
-void ChunkPlacer::CleanupStaleFutures()
-{
-	if (_cleanupFuturesMutex.try_lock())
-	{
-		if (!_futures.empty() && _futures.back()._Is_ready())
-		{
-			_futures.pop_back();
-		}
-		_cleanupFuturesMutex.unlock();
 	}
 }
 
@@ -166,11 +174,28 @@ ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, cons
 	_previousNormalizedPosition = GetNormalizedPosition(initPosition, chunkSize);
 }
 
+void ChunkPlacer::CleanupStaleFutures()
+{
+	if (_cleanupFuturesMutex.try_lock())
+	{
+		if (!_futures.empty() && _futures.back()._Is_ready())
+		{
+			_futures.pop_back();
+		}
+		_cleanupFuturesMutex.unlock();
+	}
+}
+
 void ChunkPlacer::Update() const
 {
-	if (!_chunksToBuildQueue.empty())
+	if (!_newChunksQueue.empty())
 	{
-		BuildChunksInQueue();
+		BuildNewChunks();
+	}
+
+	if (!_staleChunksQueue.empty())
+	{
+		RemoveStaleChunks();
 	}
 
 	CleanupStaleFutures();
@@ -193,7 +218,11 @@ void ChunkPlacer::Bind(std::shared_ptr<WorldGenerator> generator, const size_t c
 {
 	_generator = std::move(generator);
 
-	const auto& chunksToGenerate =  _order->GetChunksAmount() * 2;
+	const auto& chunksToGenerate =  _order->GetChunksAmount();
+
+	_freeChunks.reserve(chunksToGenerate);
+	_newChunksQueue.reserve(chunkSize);
+
 	for (size_t i = 0; i < chunksToGenerate; ++i)
 	{
 		_freeChunks.emplace_back(std::make_unique<Chunk>(chunkSize, _generator->GetBlockMap()));
@@ -209,7 +238,7 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 
 std::mutex& ChunkPlacer::GetMutex()
 {
-	return _buildQueueMutex;
+	return _chunksQueueMutex;
 }
 
 void ChunkPlacer::Terminate()
