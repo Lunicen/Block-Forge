@@ -33,7 +33,7 @@ public:
 
 		constexpr auto worldSeed = 1337;
 		constexpr auto chunkSize = 16;
-		constexpr auto renderDistance = 3;
+		constexpr auto renderDistance = 4;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
@@ -47,14 +47,13 @@ public:
 	void OnUpdate() override
 	{
 		_camera->Update();
-		_chunkPlacer->Update();
 
 		const ChunkRenderer chunkRenderer;
-		auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
+		//auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
 
-		chunksRenderingMutex.lock();
+		//chunksRenderingMutex.lock();
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
-		chunksRenderingMutex.unlock();
+		//chunksRenderingMutex.unlock();
 		
 		_fpsCounter->Update();
 	}

@@ -17,9 +17,8 @@ public:
 
 	explicit Chunk(size_t chunkSize, BlockMap& blockMap);
 
-	void LoadBlocks(const ChunkBlocks& blocks);
-	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
-	void LoadMesh(ChunkFrame frame, BlockMap& blockMap);
+	void Load(const ChunkBlocks& blocks, const std::vector<Vertex>& precalculatedMesh);
+	void Load(const ChunkBlocks& blocks, ChunkFrame frame, BlockMap& blockMap);
 
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)

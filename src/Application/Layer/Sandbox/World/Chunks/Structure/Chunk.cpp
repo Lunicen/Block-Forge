@@ -6,18 +6,15 @@ Chunk::Chunk(const size_t chunkSize, BlockMap& blockMap) : _mesh(blockMap.GetBlo
 	_blocks.resize(chunkSize * chunkSize * chunkSize);
 }
 
-void Chunk::LoadBlocks(const ChunkBlocks& blocks)
+void Chunk::Load(const ChunkBlocks& blocks, const std::vector<Vertex>& precalculatedMesh)
 {
 	_blocks = blocks;
-}
-
-void Chunk::LoadMesh(const std::vector<Vertex>& precalculatedMesh)
-{
 	_mesh.Rebuild(precalculatedMesh);
 }
 
-void Chunk::LoadMesh(const ChunkFrame frame, BlockMap& blockMap)
+void Chunk::Load(const ChunkBlocks& blocks, const ChunkFrame frame, BlockMap& blockMap)
 {
+	_blocks = blocks;
 	_mesh.Rebuild(frame, _blocks, blockMap);
 }
 
