@@ -48,45 +48,6 @@ void ChunkPlacer::BuildChunkAt(
 	_log.Trace("Added chunk: " + PositionToString(origin));
 }
 
-void ChunkPlacer::RemoveChunkAt(const Position origin)
-{
-	
-}
-
-/*void ChunkPlacer::BuildNewChunks() const
-{
-	if (_chunksQueueMutex.try_lock())
-	{
-		auto chunk =  std::move(_newChunksQueue.back());
-
-		const auto origin = chunk.first;
-		auto blocks = std::move(chunk.second);
-
-		//_loadedChunks.emplace(std::make_pair<Position, std::unique_ptr<Chunk>>(origin, std::move(chunk)));
-		if (_loadedChunks.find(origin) == _loadedChunks.end())
-		{
-			if (_freeChunks.empty()) 
-			{
-				_chunksQueueMutex.unlock();
-				return;
-			}
-
-			
-
-			_loadedChunks[origin] = std::move(chunk);
-		}
-
-		_newChunksQueue.pop_back();
-
-		_loadedChunks[origin]->LoadBlocks(blocks);
-		_loadedChunks[origin]->LoadMesh(mesh);
-
-		
-
-		_chunksQueueMutex.unlock();
-	}
-}*/
-
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
 {
 	const auto chunkSize = _order->GetChunkSize();
@@ -117,6 +78,14 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 		{
 			++chunksIterator;
 		}
+	}
+}
+
+void ChunkPlacer::LazyLoader()
+{
+	while (_running)
+	{
+		
 	}
 }
 
@@ -163,9 +132,22 @@ void ChunkPlacer::ReactToCameraMovement(const Position& position)
 
 void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const size_t chunkSize)
 {
+	if (_generator != nullptr)
+	{
+		while (!_loadedChunks.empty())
+		{
+			_loadedChunks.erase(_loadedChunks.begin());
+		}
+
+		while (!_freeChunks.empty())
+		{
+			_freeChunks.erase(_freeChunks.begin());
+		}
+	}
+
 	_generator = generator;
 
-	const auto& chunksToGenerate =  _order->GetChunksAmount();
+	const auto& chunksToGenerate = _order->GetChunksAmount();
 
 	_freeChunks.reserve(chunksToGenerate);
 	_loadedChunks.reserve(chunksToGenerate);
@@ -175,7 +157,7 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 		_freeChunks.emplace_back(std::make_unique<Chunk>(chunkSize, _generator->GetBlockMap()));
 	}
 
-	UpdateChunksAround(_previousNormalizedPosition);
+	_lazyLoader = std::make_unique<std::thread>(LazyLoader);
 }
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()

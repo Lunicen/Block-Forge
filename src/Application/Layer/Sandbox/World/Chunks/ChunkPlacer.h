@@ -13,24 +13,26 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
-	std::vector<std::unique_ptr<Chunk>> _freeChunks;
-	std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
+	std::unique_ptr<std::thread> _lazyLoader;
+
+	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
+	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
+	static Position _previousNormalizedPosition = {};
+	static bool _running;
 
 	std::shared_ptr<WorldGenerator> _generator;
 	std::unique_ptr<Order> _order;
-
-	Position _previousNormalizedPosition = {};
 	
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
 	void BuildChunkAt(Position origin, size_t size, const std::shared_ptr<WorldGenerator>& generator);
-	void RemoveChunkAt(Position origin);
 
 	void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
 	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 
 	void UpdateChunksAround(const Position& normalizedOrigin);
+	void LazyLoader();
 
 public:
 
