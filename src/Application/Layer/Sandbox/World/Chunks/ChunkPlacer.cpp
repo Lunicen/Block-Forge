@@ -14,7 +14,7 @@ std::condition_variable ChunkPlacer::_lazyLoaderLock;
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
 Position ChunkPlacer::_previousNormalizedPosition = {};
-bool ChunkPlacer::_running = false;
+std::atomic<bool> ChunkPlacer::_running;
 
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
 std::unique_ptr<Order> ChunkPlacer::_order = nullptr;
@@ -98,6 +98,7 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 void ChunkPlacer::LazyLoader()
 {
+	_running = true;
 	auto lastRememberedPosition = _previousNormalizedPosition - 1;
 
 	while (_running)
@@ -107,6 +108,11 @@ void ChunkPlacer::LazyLoader()
 			std::unique_lock<std::mutex> loaderLock(_chunksMutex);
 			_lazyLoaderLock.wait(loaderLock, [&]
 			{
+				if (!_running)
+				{
+					return true;
+				}
+
 				if (lastRememberedPosition != _previousNormalizedPosition)
 				{
 					lastRememberedPosition = _previousNormalizedPosition;
@@ -130,7 +136,7 @@ void ChunkPlacer::LazyLoader()
 	
 		for(auto origin : currentChunksOrigins)
 		{
-			if (_hasPositionChanged)
+			if (_hasPositionChanged || !_running)
 			{
 				break;
 			}
@@ -156,7 +162,7 @@ void ChunkPlacer::LazyLoader()
 		// Remove stale chunks
 		for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
 		{
-			if (_hasPositionChanged)
+			if (_hasPositionChanged || !_running)
 			{
 				break;
 			}
@@ -177,9 +183,6 @@ void ChunkPlacer::LazyLoader()
 				++chunksIterator;
 			}
 		}
-
-		// Here should be implemented wait functionality
-		// That would wait for the conditional variable
 	}
 }
 
@@ -252,7 +255,6 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 		_freeChunks.emplace_back(std::make_unique<Chunk>(chunkSize, _generator->GetBlockMap()));
 	}
 
-	_running = true;
 	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
 }
 
@@ -295,5 +297,9 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 
 void ChunkPlacer::Terminate()
 {
+	_running = false;
+	_lazyLoaderLock.notify_one();
+	_lazyLoader->join();
+
 	_generator = nullptr;
 }

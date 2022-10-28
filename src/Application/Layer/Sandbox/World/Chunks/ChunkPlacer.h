@@ -17,6 +17,7 @@ class ChunkPlacer
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
 	static std::condition_variable _lazyLoaderLock;
+	static std::atomic<bool> _running;
 
 	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
 	static std::vector<Position> _chunksToRemove;
@@ -24,7 +25,7 @@ class ChunkPlacer
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
 	static Position _previousNormalizedPosition;
-	static bool _running;
+	;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
