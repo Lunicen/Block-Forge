@@ -15,6 +15,8 @@ class ChunkPlacer
 
 	std::unique_ptr<std::thread> _lazyLoader;
 	static std::mutex _chunksMutex;
+	static std::atomic<bool> _hasPositionChanged;
+	static std::condition_variable _lazyLoaderLock;
 
 	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
 	static std::vector<Position> _chunksToRemove;
