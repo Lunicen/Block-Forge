@@ -6,8 +6,11 @@
 
 std::mutex ChunkPlacer::_chunksMutex;
 
+std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad = {};
+std::vector<Position> ChunkPlacer::_chunksToRemove = {};
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+
 Position ChunkPlacer::_previousNormalizedPosition = {};
 bool ChunkPlacer::_running = false;
 
@@ -52,7 +55,7 @@ void ChunkPlacer::BuildChunkAt(
 	auto chunk = std::move(_freeChunks.back());
 	_freeChunks.pop_back();
 
-	chunk->Load(chunkBlocks, mesh);
+	//chunk->Load(chunkBlocks, mesh);
 
 	_loadedChunks[origin] = std::move(chunk);
 	_log.Trace("Added chunk: " + PositionToString(origin));
@@ -123,7 +126,7 @@ void ChunkPlacer::LazyLoader()
 		// Add new chunks
 		const auto size = _order->GetChunkSize();
 	
-		for(const auto& origin : currentChunksOrigins)
+		for(auto origin : currentChunksOrigins)
 		{
 			if (_loadedChunks.find(origin) == _loadedChunks.end())
 			{
@@ -135,17 +138,15 @@ void ChunkPlacer::LazyLoader()
 				
 				_generator->PaintChunk(chunkFrame, chunkBlocks);
 
-				const auto mesh = ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap());
+				auto mesh = ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap());
 
+
+				
+
+				
 
 				const std::lock_guard<std::mutex> lock(_chunksMutex);
-
-				auto chunk = std::move(_freeChunks.back());
-				_freeChunks.pop_back();
-
-				chunk->Load(chunkBlocks, mesh);
-
-				_loadedChunks[origin] = std::move(chunk);
+				_chunksToLoad.emplace_back(origin, chunkBlocks, mesh);
 			}
 		}
 
@@ -232,6 +233,33 @@ std::mutex& ChunkPlacer::GetMutex()
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()
 {
+	if (!_chunksToRemove.empty())
+	{
+		const auto origin = _chunksToRemove.back();
+		_chunksToRemove.pop_back();
+
+		_freeChunks.emplace_back(std::move(_loadedChunks[origin]));
+		_loadedChunks.erase(origin);
+	}
+
+	if (!_chunksToLoad.empty() && !_freeChunks.empty())
+	{
+		auto chunk = std::move(_freeChunks.back());
+		_freeChunks.pop_back();
+
+		const auto data = std::move(_chunksToLoad.back());
+		_chunksToLoad.pop_back();
+
+		const auto& origin = std::get<0>(data);
+		const auto& blocks = std::get<1>(data);
+		const auto& mesh = std::get<2>(data);
+
+		chunk->LoadBlocks(blocks);
+		chunk->LoadMesh(mesh);
+
+		_loadedChunks[origin] = std::move(chunk);
+	}
+
 	return _loadedChunks;
 }
 

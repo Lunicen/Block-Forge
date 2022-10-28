@@ -16,8 +16,11 @@ class ChunkPlacer
 	std::unique_ptr<std::thread> _lazyLoader;
 	static std::mutex _chunksMutex;
 
+	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
+	static std::vector<Position> _chunksToRemove;
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
+
 	static Position _previousNormalizedPosition;
 	static bool _running;
 
