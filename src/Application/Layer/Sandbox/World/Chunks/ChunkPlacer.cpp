@@ -4,6 +4,16 @@
 
 #include "Structure/ChunkMeshUtils.h"
 
+std::mutex ChunkPlacer::_chunksMutex;
+
+std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
+std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+Position ChunkPlacer::_previousNormalizedPosition = {};
+bool ChunkPlacer::_running = false;
+
+std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
+std::unique_ptr<Order> ChunkPlacer::_order = nullptr;
+
 Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const
 {
 	auto normalizedPosition = position;
@@ -83,18 +93,72 @@ void ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOr
 
 void ChunkPlacer::LazyLoader()
 {
-	while (_running)
+	auto lastRememberedPosition = _previousNormalizedPosition;
+
+	//while (_running)
 	{
-		
+		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
+
+		// Remove stale chunks
+		for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
+		{
+			const auto origin = chunksIterator->first;
+
+			if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
+			{
+				const std::lock_guard<std::mutex> lock(_chunksMutex);
+
+				auto handledChunk = std::move(_loadedChunks[origin]);
+				chunksIterator = _loadedChunks.erase(chunksIterator);
+
+				_freeChunks.emplace_back(std::move(handledChunk));
+			}
+			else
+			{
+				++chunksIterator;
+			}
+		}
+
+
+		// Add new chunks
+		const auto size = _order->GetChunkSize();
+	
+		for(const auto& origin : currentChunksOrigins)
+		{
+			if (_loadedChunks.find(origin) == _loadedChunks.end())
+			{
+				//BuildChunkAt(origin, chunkSize, _generator);
+				const auto chunkFrame = ChunkFrame{origin, size};
+
+				ChunkBlocks chunkBlocks;
+				chunkBlocks.resize(size * size * size);
+				
+				_generator->PaintChunk(chunkFrame, chunkBlocks);
+
+				const auto mesh = ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap());
+
+
+				const std::lock_guard<std::mutex> lock(_chunksMutex);
+
+				auto chunk = std::move(_freeChunks.back());
+				_freeChunks.pop_back();
+
+				chunk->Load(chunkBlocks, mesh);
+
+				_loadedChunks[origin] = std::move(chunk);
+			}
+		}
+
+		// Here should be implemented wait functionality
+		// That would wait for the conditional variable
 	}
 }
 
 void ChunkPlacer::UpdateChunksAround(const Position& normalizedOrigin)
 {
-	const auto currentChunksOrigins = _order->GetChunksAround(normalizedOrigin);
+	
 
-	RemoveStaleChunks(currentChunksOrigins);
-	AddNewChunks(currentChunksOrigins);
+	
 }
 
 ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, const size_t renderDistance, const Position& initPosition)
@@ -124,7 +188,7 @@ void ChunkPlacer::ReactToCameraMovement(const Position& position)
 	if (currentNormalizedPosition != _previousNormalizedPosition)
 	{
 		_previousNormalizedPosition = currentNormalizedPosition;
-		UpdateChunksAround(currentNormalizedPosition);
+		//UpdateChunksAround(currentNormalizedPosition);
 
 		_log.Trace("Normalized position: " + PositionToString(currentNormalizedPosition));
 	}
@@ -157,7 +221,13 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 		_freeChunks.emplace_back(std::make_unique<Chunk>(chunkSize, _generator->GetBlockMap()));
 	}
 
-	_lazyLoader = std::make_unique<std::thread>(LazyLoader);
+	_running = true;
+	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
+}
+
+std::mutex& ChunkPlacer::GetMutex()
+{
+	return _chunksMutex;
 }
 
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks()

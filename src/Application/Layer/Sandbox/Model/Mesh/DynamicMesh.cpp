@@ -62,6 +62,8 @@ DynamicMesh::DynamicMesh(
 
 void DynamicMesh::Update(const std::vector<Vertex>& vertices)
 {
+	if (vertices.empty() && _verticesSize == 0) return;
+
 	_verticesSize = static_cast<GLsizei>(vertices.size());
 
 	_vbo->Bind();

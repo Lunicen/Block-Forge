@@ -49,11 +49,11 @@ public:
 		_camera->Update();
 
 		const ChunkRenderer chunkRenderer;
-		//auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
+		auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
 
-		//chunksRenderingMutex.lock();
+		chunksRenderingMutex.lock();
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
-		//chunksRenderingMutex.unlock();
+		chunksRenderingMutex.unlock();
 		
 		_fpsCounter->Update();
 	}

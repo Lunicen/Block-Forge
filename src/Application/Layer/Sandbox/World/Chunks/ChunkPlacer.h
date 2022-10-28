@@ -14,14 +14,15 @@ class ChunkPlacer
 	Log& _log = Log::Get();
 
 	std::unique_ptr<std::thread> _lazyLoader;
+	static std::mutex _chunksMutex;
 
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
-	static Position _previousNormalizedPosition = {};
+	static Position _previousNormalizedPosition;
 	static bool _running;
 
-	std::shared_ptr<WorldGenerator> _generator;
-	std::unique_ptr<Order> _order;
+	static std::shared_ptr<WorldGenerator> _generator;
+	static std::unique_ptr<Order> _order;
 	
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
@@ -32,7 +33,7 @@ class ChunkPlacer
 	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 
 	void UpdateChunksAround(const Position& normalizedOrigin);
-	void LazyLoader();
+	static void LazyLoader();
 
 public:
 
@@ -53,10 +54,13 @@ public:
 	///	@param generator - reference to the world generator.
 	void Bind(const std::shared_ptr<WorldGenerator>& generator, size_t chunkSize);
 
+	static std::mutex& GetMutex();
+
 	/// @brief Returns the map of placed chunks.
 	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
 
 	/// @brief Terminates the chunk placer.
 	void Terminate();
+	
 };
 
