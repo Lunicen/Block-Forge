@@ -6,19 +6,12 @@
             "frequency": 0.002
         },
 
-        "fluids": [
-            {
-                "name": "Water",
-                "spawnLevel": 0
-            }
-        ],
-
         "biomes": [
             {
                 "name": "Meadow",
                 "noise": {
                     "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
-                    "frequency": 0.005
+                    "frequency": 0.0048
                 },
                 "blocks": [
                     {
@@ -28,19 +21,40 @@
                     {
                         "name": "dirt",
                         "depthLevel": 1
+                    },
+                    {
+                        "name": "cobblestone",
+                        "depthLevel": 2
                     }
                 ]
             },
             {
-                "name": "Desert",
+                "name": "Ice Desert",
                 "noise": {
-                    "id": "GQAHAAEEAAAAAAAAACBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "frequency": 0.01
+                  "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                  "frequency": 0.005
                 },
                 "blocks": [
                     {
-                        "name": "dirt",
-                        "depthLevel": 0
+                      "name": "ice",
+                      "depthLevel": 0
+                    },
+                    {
+                      "name": "broken ice",
+                      "depthLevel": 1
+                    }
+                ]
+            },
+            {
+                "name": "Dirt Desert",
+                "noise": {
+                    "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                    "frequency": 0.005
+                },
+                "blocks": [
+                    {
+                     "name": "dirt",
+                      "depthLevel": 0
                     }
                 ]
             }

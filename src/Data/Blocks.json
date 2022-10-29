@@ -1,6 +1,6 @@
 {
   "default": {
-    "atlas": "src/Data/Textures/NewIceAtlas.png",
+    "atlas": "src/Data/Textures/FullGameAtlas.png",
     "slotSize": 16,
     "blocks": [
       {
@@ -40,7 +40,44 @@
             }
           }
         ]
+      },
+      {
+        "block": "cobblestone",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 0
+            }
+          }
+        ]
+      },
+      {
+        "block": "broken ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 2
+            }
+          }
+        ]
       }
+
     ]
   }
 }
