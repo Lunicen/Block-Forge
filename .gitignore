@@ -19,5 +19,5 @@ test/*.dll
 test/*.exp
 test/*.lib
 test/out
-bin/x64/Release/Block Forge.ilk
-bin/x64/Release/Block Forge.pdb
+*.ilk
+*.pdb
