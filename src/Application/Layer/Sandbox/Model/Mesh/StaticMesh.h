@@ -10,7 +10,6 @@ class StaticMesh final : protected Mesh
 	GLsizei _indicesAmount{};
 
 public:
-
 	/// @brief The constructor.
 	///	@param vertices - The vertices of the mesh.
 	/// @param indices - The indices sequence of the vertices position.
@@ -22,5 +21,10 @@ public:
 	/// @param texture - The texture to cover the mesh.
 	/// @param camera - It is used to bind a shader to see the drawn mesh.
 	void Draw(const Position& origin, const Texture& texture, const Camera& camera);
+
+
+	/// @brief Draws the mesh
+	/// @param texture - The texture to cover the mesh.
+	void Draw(const Texture& texture);
 };
 

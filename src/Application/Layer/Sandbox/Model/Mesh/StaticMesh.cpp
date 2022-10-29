@@ -40,3 +40,18 @@ void StaticMesh::Draw(const Position& origin, const Texture& texture, const Came
 	texture.Unbind();
 	GetVao().Unbind();
 }
+
+void StaticMesh::Draw(const Texture& texture)
+{
+	_shader.Load();
+
+	GetVao().Bind();
+	texture.Bind(_shader);
+
+	glDrawElements(GL_TRIANGLES, _indicesAmount, GL_UNSIGNED_INT, nullptr);
+
+	texture.Unbind();
+	GetVao().Unbind();
+}
+
+
