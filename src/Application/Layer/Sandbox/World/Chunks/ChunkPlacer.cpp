@@ -131,6 +131,31 @@ void ChunkPlacer::LazyLoader()
 
 		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
 
+		// Remove stale chunks
+		for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
+		{
+			if (_hasPositionChanged || !_running)
+			{
+				break;
+			}
+
+			const auto origin = chunksIterator->first;
+
+			if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
+			{
+				const std::lock_guard<std::mutex> lock(_chunksMutex);
+
+				auto handledChunk = std::move(_loadedChunks[origin]);
+				chunksIterator = _loadedChunks.erase(chunksIterator);
+
+				_freeChunks.emplace_back(std::move(handledChunk));
+			}
+			else
+			{
+				++chunksIterator;
+			}
+		}
+
 		// Add new chunks
 		const auto size = _order->GetChunkSize();
 	
@@ -159,30 +184,7 @@ void ChunkPlacer::LazyLoader()
 		}
 
 
-		// Remove stale chunks
-		for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
-		{
-			if (_hasPositionChanged || !_running)
-			{
-				break;
-			}
-
-			const auto origin = chunksIterator->first;
-
-			if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
-			{
-				const std::lock_guard<std::mutex> lock(_chunksMutex);
-
-				auto handledChunk = std::move(_loadedChunks[origin]);
-				chunksIterator = _loadedChunks.erase(chunksIterator);
-
-				_freeChunks.emplace_back(std::move(handledChunk));
-			}
-			else
-			{
-				++chunksIterator;
-			}
-		}
+		
 	}
 }
 
