@@ -2,8 +2,8 @@
 
 size_t TiltedCubeOrder::GetChunksAmount()
 {
-	const auto& r = GetRenderDistance() * 2 + 1;
-	return (r + 1) * ((r + 1) * (r + 1) + r * r);
+	const auto& dimension = GetRenderDistance() * 2 + 1;
+	return dimension * dimension * dimension;
 }
 
 std::vector<glm::ivec3> TiltedCubeOrder::GetChunksAround(const glm::ivec3 normalizedOrigin)
