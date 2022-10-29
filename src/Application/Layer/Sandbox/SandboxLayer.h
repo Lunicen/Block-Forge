@@ -42,17 +42,22 @@ public:
 		_hud = std::make_unique<Hud>();
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
-		_chunkPlacer->Bind(_worldGenerator);
-
+		_chunkPlacer->Bind(_worldGenerator, chunkSize);
+		
 		_fpsCounter = std::make_unique<FPSCounter>();
 	}
 
 	void OnUpdate() override
 	{
-		const ChunkRenderer chunkRenderer;
-
 		_camera->Update();
+
+		const ChunkRenderer chunkRenderer;
+		auto& chunksRenderingMutex = ChunkPlacer::GetMutex();
+
+		chunksRenderingMutex.lock();
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
+		chunksRenderingMutex.unlock();
+		
 		_fpsCounter->Update();
 		_hud->Draw();
 	}
@@ -60,12 +65,13 @@ public:
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
 		_camera->HandleInput(hid);
-		_chunkPlacer->Update(_camera->GetPosition());
+		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
 		_hud->ChangeSelectedItemSlot(hid);
 	}
 
 	~SandboxLayer() override
 	{
+		_chunkPlacer->Terminate();
 		gltTerminate();
 	}
 };

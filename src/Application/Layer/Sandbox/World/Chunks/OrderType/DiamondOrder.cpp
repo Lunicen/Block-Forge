@@ -10,7 +10,16 @@ size_t DiamondOrder::CountChunksRecursive(const size_t level)
 
 size_t DiamondOrder::GetChunksAmount()
 {
-	return CountChunksRecursive(GetRenderDistance());
+	auto distance = GetRenderDistance();
+
+	auto chunksAmount = CountChunksRecursive(GetRenderDistance());
+	while (distance--)
+	{
+		constexpr auto diamondSides = 2;
+		chunksAmount += CountChunksRecursive(distance) * diamondSides;
+	}
+
+	return chunksAmount;
 }
 
 std::vector<glm::ivec3> DiamondOrder::GetChunksAround(const glm::ivec3 normalizedOrigin)
