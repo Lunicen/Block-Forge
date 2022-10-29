@@ -1,46 +1,46 @@
 {
-    "default": {
-        "atlas": "src/Data/Textures/DirtAtlas.png",
-        "slotSize": 16,
-        "blocks": [
-            {
-                "block": "grass",
-                "textures": [
-                    {
-                        "faces": [ "top" ],
-                        "location": {
-                            "column": 0,
-                            "row": 0
-                        }
-                    },
-                    {
-                        "faces": [ "left", "right", "front", "back" ],
-                        "location": {
-                            "column": 1,
-                            "row": 0
-                        }
-                    },
-                    {
-                        "faces": [ "bottom" ],
-                        "location": {
-                            "column": 0,
-                            "row": 1
-                        }
-                    }
-                ]
-            },
-            {
-                "block": "dirt",
-                "textures": [
-                    {
-                        "faces": [ "left", "right", "front", "back", "top", "bottom" ],
-                        "location": {
-                            "column": 0,
-                            "row": 1
-                        }
-                    }
-                ]
+  "default": {
+    "atlas": "src/Data/Textures/NewIceAtlas.png",
+    "slotSize": 16,
+    "blocks": [
+      {
+        "block": "grass",
+        "textures": [
+          {
+            "faces": [ "top" ],
+            "location": {
+              "column": 0,
+              "row": 0
             }
+          },
+          {
+            "faces": [ "left", "right", "front", "back" ],
+            "location": {
+              "column": 1,
+              "row": 0
+            }
+          },
+          {
+            "faces": [ "bottom" ],
+            "location": {
+              "column": 0,
+              "row": 1
+            }
+          }
         ]
-    }
+      },
+      {
+        "block": "dirt",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 0,
+              "row": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

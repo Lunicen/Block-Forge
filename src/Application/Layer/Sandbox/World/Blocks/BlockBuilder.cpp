@@ -7,7 +7,7 @@ void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int
 	if (face == "back")		textureAtlas.SetSprite(_facesTextureCoordinates->back, x, y, true);
 	if (face == "left")		textureAtlas.SetSprite(_facesTextureCoordinates->left, x, y, true);
 	if (face == "right")	textureAtlas.SetSprite(_facesTextureCoordinates->right, x, y, false);
-	if (face == "top")		textureAtlas.SetSprite(_facesTextureCoordinates->top, x, y, false);
+	if (face == "top")		textureAtlas.SetSprite(_facesTextureCoordinates->top, x, y, true);
 	if (face == "bottom")	textureAtlas.SetSprite(_facesTextureCoordinates->bottom, x, y, true);
 }
 

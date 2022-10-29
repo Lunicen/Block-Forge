@@ -12,7 +12,7 @@ class World
 public:
 
 	///	@brief The constructor that takes the pointer to the metadata file.
-	///	@remark The metadata doesn't need to be initialized.
+	///	@remark The metadata does not need to be initialized.
 	explicit World(const std::string& filename) : _worldData(filename)
 	{
 	}
