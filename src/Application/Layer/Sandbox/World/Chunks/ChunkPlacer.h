@@ -25,7 +25,6 @@ class ChunkPlacer
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
 	static Position _previousNormalizedPosition;
-	;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
@@ -33,12 +32,6 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	void BuildChunkAt(Position origin, size_t size, const std::shared_ptr<WorldGenerator>& generator);
-
-	void AddNewChunks(const std::vector<Position>& currentChunksOrigins);
-	void RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
-
-	void UpdateChunksAround(const Position& normalizedOrigin);
 	static void LazyLoader();
 
 public:
@@ -52,21 +45,22 @@ public:
 
 	/// @brief Adapts chunk placer to the camera position.
 	///	@param position - Position around which chunks are going to be placed.
-	void ReactToCameraMovement(const Position& position);
+	void ReactToCameraMovement(const Position& position) const;
 
 	/// @brief Binds world generator to the chunk placer.
 	///	@details The world generator is used to define how the world is generated, when
 	///	this class handles only displaying it in an optimal way.
 	///	@param generator - reference to the world generator.
+	///	@param chunkSize - size of a chunk.
 	void Bind(const std::shared_ptr<WorldGenerator>& generator, size_t chunkSize);
 
 	static std::mutex& GetMutex();
 
 	/// @brief Returns the map of placed chunks.
-	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks();
+	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks() const;
 
 	/// @brief Terminates the chunk placer.
-	void Terminate();
+	void Terminate() const;
 	
 };
 
