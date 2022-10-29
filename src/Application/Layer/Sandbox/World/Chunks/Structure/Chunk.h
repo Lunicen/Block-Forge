@@ -15,10 +15,10 @@ class Chunk
 
 public:
 
+	/// @brief The constructor.
+	///	@param chunkSize - the size of the chunk.
+	///	@param blockMap - Reference to the blocks map.
 	explicit Chunk(size_t chunkSize, BlockMap& blockMap);
-
-	void LoadBlocks(const ChunkBlocks& blocks);
-	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
 
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
@@ -28,6 +28,22 @@ public:
 	///	@param blockMap - Reference to the blocks map.
 	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap);
 
+	/// @brief Loads blocks data that are inside the chunk
+	///	@note This data is required for chunk modifying.
+	///	@param blocks - chunk blocks.
+	void LoadBlocks(const ChunkBlocks& blocks);
+
+	/// @brief Loads precalculated mesh.
+	///	@param precalculatedMesh - precalculated mesh.
+	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
+
+	/// @brief The constructor.
+	/// @details The chunk on initialization knows it's position, the structure to render (blocks)
+	/// and the player position for proper displaying blocks while the player is moving.
+	///	@param frame - Frame of the chunk.
+	///	@param blocks - The blocks inside the chunk.
+	///	@param blockMap - Reference to the blocks map.
+	/// @param precalculatedMesh - vertices of precalculated chunk mesh.
 	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap, const std::vector<Vertex>&
 	               precalculatedMesh);
 

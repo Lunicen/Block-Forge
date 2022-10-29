@@ -23,8 +23,14 @@ public:
 	///	@param sizeOfChunk - Size of the chunk edge.
 	explicit ChunkMesh(Shader& blockShader, const size_t& sizeOfChunk);
 
+	/// @brief The constructor.
+	/// @param vertices - vertices of precalculated chunk mesh.
+	///	@param blockShader - Shader of the blocks inside the chunk.
+	///	@param sizeOfChunk - Size of the chunk edge.
 	explicit ChunkMesh(const std::vector<Vertex>& vertices, Shader& blockShader, const size_t& sizeOfChunk);
 
+	/// @brief Rebuilds the mesh basing on the precalculated mesh.
+	/// @param vertices - vertices of precalculated chunk mesh.
 	void Rebuild(const std::vector<Vertex>& vertices);
 
 	/// @brief Rebuilds the mesh basing on the passed blocks.
