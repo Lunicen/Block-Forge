@@ -14,6 +14,7 @@ class ChunkPlacer
 	Log& _log = Log::Get();
 
 	std::unique_ptr<std::thread> _lazyLoader;
+
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
 	static std::condition_variable _lazyLoaderLock;
@@ -31,6 +32,9 @@ class ChunkPlacer
 	
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
+
+	static bool AddNewChunks(const std::vector<Position>& currentChunksOrigins);
+	static bool RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
 
 	static void LazyLoader();
 

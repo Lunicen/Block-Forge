@@ -39,6 +39,65 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
+bool ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunksOrigins)
+{
+	const auto size = _order->GetChunkSize();
+	
+	for(auto origin : currentChunksOrigins)
+	{
+		if (_hasPositionChanged || !_running)
+		{
+			return true;
+		}
+
+		if (_loadedChunks.find(origin) == _loadedChunks.end())
+		{
+			const auto chunkFrame = ChunkFrame{origin, size};
+
+			ChunkBlocks chunkBlocks;
+			chunkBlocks.resize(size * size * size);
+			
+			_generator->PaintChunk(chunkFrame, chunkBlocks);
+
+			auto mesh = ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap());
+			
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
+			_chunksToLoad.emplace_back(origin, chunkBlocks, mesh);
+		}
+	}
+
+	return false;
+}
+
+bool ChunkPlacer::RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins)
+{
+	for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
+	{
+		if (_hasPositionChanged || !_running)
+		{
+			return true;
+		}
+
+		const auto origin = chunksIterator->first;
+
+		if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
+		{
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
+
+			auto handledChunk = std::move(_loadedChunks[origin]);
+			chunksIterator = _loadedChunks.erase(chunksIterator);
+
+			_freeChunks.emplace_back(std::move(handledChunk));
+		}
+		else
+		{
+			++chunksIterator;
+		}
+	}
+
+	return false;
+}
+
 void ChunkPlacer::LazyLoader()
 {
 	_running = true;
@@ -74,56 +133,10 @@ void ChunkPlacer::LazyLoader()
 
 		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
 
-		// Remove stale chunks
-		for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
-		{
-			if (_hasPositionChanged || !_running)
-			{
-				break;
-			}
+		const bool wasInterrupted = RemoveStaleChunks(currentChunksOrigins);
+		if (wasInterrupted) continue;
 
-			const auto origin = chunksIterator->first;
-
-			if (std::find(currentChunksOrigins.begin(), currentChunksOrigins.end(), origin) == currentChunksOrigins.end())
-			{
-				const std::lock_guard<std::mutex> lock(_chunksMutex);
-
-				auto handledChunk = std::move(_loadedChunks[origin]);
-				chunksIterator = _loadedChunks.erase(chunksIterator);
-
-				_freeChunks.emplace_back(std::move(handledChunk));
-			}
-			else
-			{
-				++chunksIterator;
-			}
-		}
-
-		// Add new chunks
-		const auto size = _order->GetChunkSize();
-	
-		for(auto origin : currentChunksOrigins)
-		{
-			if (_hasPositionChanged || !_running)
-			{
-				break;
-			}
-
-			if (_loadedChunks.find(origin) == _loadedChunks.end())
-			{
-				const auto chunkFrame = ChunkFrame{origin, size};
-
-				ChunkBlocks chunkBlocks;
-				chunkBlocks.resize(size * size * size);
-				
-				_generator->PaintChunk(chunkFrame, chunkBlocks);
-
-				auto mesh = ChunkMeshUtils::GetMeshVertices(chunkFrame, chunkBlocks, _generator->GetBlockMap());
-				
-				const std::lock_guard<std::mutex> lock(_chunksMutex);
-				_chunksToLoad.emplace_back(origin, chunkBlocks, mesh);
-			}
-		}
+		AddNewChunks(currentChunksOrigins);
 	}
 }
 
