@@ -98,6 +98,9 @@ public:
 		return _blockNames[blockName];
 	}
 
+	/// @brief Returns the face vertices data of the basic block.
+	///	@note It's just a template of a typical block face.
+	///	Used for technical reasons.
 	FaceVertices GetFaceVertices() const
 	{
 		return _faceVertices;

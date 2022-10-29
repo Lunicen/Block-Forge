@@ -15,7 +15,8 @@ size_t DiamondOrder::GetChunksAmount()
 	auto chunksAmount = CountChunksRecursive(GetRenderDistance());
 	while (distance--)
 	{
-		chunksAmount += CountChunksRecursive(distance) * 2;
+		constexpr auto diamondSides = 2;
+		chunksAmount += CountChunksRecursive(distance) * diamondSides;
 	}
 
 	return chunksAmount;

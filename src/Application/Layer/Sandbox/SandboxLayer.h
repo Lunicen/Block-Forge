@@ -52,7 +52,7 @@ public:
 		_camera->Update();
 
 		const ChunkRenderer chunkRenderer;
-		auto& chunksRenderingMutex = _chunkPlacer->GetMutex();
+		auto& chunksRenderingMutex = ChunkPlacer::GetMutex();
 
 		chunksRenderingMutex.lock();
 		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);

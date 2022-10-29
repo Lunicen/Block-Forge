@@ -1,7 +1,5 @@
 #include "ChunkPlacer.h"
 
-#include <ppl.h>
-
 #include "Structure/ChunkMeshUtils.h"
 
 std::mutex ChunkPlacer::_chunksMutex;
@@ -108,7 +106,7 @@ void ChunkPlacer::LazyLoader()
 		if (!_hasPositionChanged)
 		{
 			std::unique_lock<std::mutex> loaderLock(_chunksMutex);
-			_lazyLoaderLock.wait(loaderLock, [&]
+			_lazyLoaderLock.wait(loaderLock, [&lastRememberedPosition]
 			{
 				if (!_running)
 				{
