@@ -65,14 +65,9 @@ Hud::Hud()
 	// ReSharper disable once CppTooWideScope
 	constexpr int numberOfRows = 10;
 
-	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>{});
-	_hudItemSlotBar.emplace_back(std::vector<std::unique_ptr<HudItemSlot>>{});
-
-
-
 	for (int column = 0; column < numberOfColumns; column++)
 	{
-
+		_hudItemSlotBar.emplace_back();
 		for (int row = 0; row < numberOfRows; row++)
 		{
 			_hudItemSlotBar[column].emplace_back(std::make_unique<HudItemSlot>(_texture, _shader, Point(-1.0f + static_cast<float>(row) * scale, -1.0f + static_cast<float>(column) * scale), scale));
