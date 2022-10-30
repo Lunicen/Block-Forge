@@ -19,7 +19,6 @@ class ChunkPlacer
 	static std::atomic<bool> _running;
 
 	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
-	static std::vector<Position> _chunksToRemove;
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
@@ -27,12 +26,14 @@ class ChunkPlacer
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
-	
+
+	std::unordered_set<Position> _chunksPositionsAroundCamera;
+
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static bool AddNewChunks(const std::vector<Position>& currentChunksOrigins);
-	static bool RemoveStaleChunks(const std::vector<Position>& currentChunksOrigins);
+	static bool AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins);
+	static bool RemoveStaleChunks(const std::unordered_set<Position>& currentChunkOrigins);
 
 	static void LazyLoader();
 
@@ -47,7 +48,7 @@ public:
 
 	/// @brief Adapts chunk placer to the camera position.
 	///	@param position - Position around which chunks are going to be placed.
-	void ReactToCameraMovement(const Position& position) const;
+	void ReactToCameraMovement(const Position& position);
 
 	/// @brief Binds world generator to the chunk placer.
 	///	@details The world generator is used to define how the world is generated, when
