@@ -3,15 +3,15 @@
 #include "Structure/ChunkMeshUtils.h"
 
 std::mutex ChunkPlacer::_chunksMutex;
-
-std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad = {};
 std::atomic<bool> ChunkPlacer::_hasPositionChanged;
 std::condition_variable ChunkPlacer::_lazyLoaderLock;
+std::atomic<bool> ChunkPlacer::_running;
 
+std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad = {};
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
 std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+
 Position ChunkPlacer::_previousNormalizedPosition = {};
-std::atomic<bool> ChunkPlacer::_running;
 
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
 std::unique_ptr<Order> ChunkPlacer::_order = nullptr;
@@ -36,7 +36,7 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-bool ChunkPlacer::AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins)
+void ChunkPlacer::AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins)
 {
 	const auto size = _order->GetChunkSize();
 
@@ -44,7 +44,7 @@ bool ChunkPlacer::AddNewChunks(const std::unordered_set<Position>& currentChunkO
 	{
 		if (_hasPositionChanged || !_running)
 		{
-			return true;
+			break;
 		}
 
 		if (_loadedChunks.find(origin) == _loadedChunks.end())
@@ -62,32 +62,6 @@ bool ChunkPlacer::AddNewChunks(const std::unordered_set<Position>& currentChunkO
 			_chunksToLoad.emplace_back(origin, chunkBlocks, mesh);
 		}
 	}
-
-	return false;
-}
-
-bool ChunkPlacer::RemoveStaleChunks(const std::unordered_set<Position>& currentChunkOrigins)
-{
-	for (auto chunksIterator = _loadedChunks.begin(); chunksIterator != _loadedChunks.end();)
-	{
-		const auto origin = chunksIterator->first;
-
-		if (currentChunkOrigins.find(origin) == currentChunkOrigins.end())
-		{
-			const std::lock_guard<std::mutex> lock(_chunksMutex);
-
-			auto handledChunk = std::move(_loadedChunks[origin]);
-			chunksIterator = _loadedChunks.erase(chunksIterator);
-
-			_freeChunks.emplace_back(std::move(handledChunk));
-		}
-		else
-		{
-			++chunksIterator;
-		}
-	}
-
-	return false;
 }
 
 void ChunkPlacer::LazyLoader()
@@ -126,9 +100,7 @@ void ChunkPlacer::LazyLoader()
 		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
 		auto currentChunksOriginsSet = std::unordered_set<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
 		
-		if (AddNewChunks(currentChunksOriginsSet)) continue;
-		
-		_hasPositionChanged = false;
+		AddNewChunks(currentChunksOriginsSet);
 	}
 }
 
@@ -219,6 +191,7 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() c
 		{
 			_chunksToLoad.pop_back();
 		}
+
 		else if (!_freeChunks.empty() && _chunksPositionsAroundCamera.find(std::get<0>(data)) != _chunksPositionsAroundCamera.end())
 		{
 			_chunksToLoad.pop_back();
@@ -235,6 +208,7 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() c
 
 			_loadedChunks[origin] = std::move(chunk);
 		}
+
 		else
 		{
 			auto chunksIterator = _loadedChunks.begin();

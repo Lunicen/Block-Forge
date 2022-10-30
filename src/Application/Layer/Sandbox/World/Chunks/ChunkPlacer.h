@@ -32,9 +32,7 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static bool AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins);
-	static bool RemoveStaleChunks(const std::unordered_set<Position>& currentChunkOrigins);
-
+	static void AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
 public:
