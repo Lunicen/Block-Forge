@@ -35,6 +35,8 @@ class ChunkPlacer
 	static void AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
+	void RemoveStaleChunk() const;
+
 public:
 
 	/// @brief The constructor.

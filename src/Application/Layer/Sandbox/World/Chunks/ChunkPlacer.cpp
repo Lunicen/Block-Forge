@@ -180,6 +180,26 @@ std::mutex& ChunkPlacer::GetMutex()
 	return _chunksMutex;
 }
 
+void ChunkPlacer::RemoveStaleChunk() const
+{
+	auto chunksIterator = _loadedChunks.begin();
+	do
+	{
+		const auto origin = chunksIterator->first;
+
+		if (_chunksPositionsAroundCamera.find(origin) == _chunksPositionsAroundCamera.end())
+		{
+			auto handledChunk = std::move(_loadedChunks[origin]);
+			_loadedChunks.erase(chunksIterator);
+
+			_freeChunks.emplace_back(std::move(handledChunk));
+
+			break;
+		}
+		
+	} while (++chunksIterator != _loadedChunks.end());
+}
+
 std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 {
 	if (!_chunksToLoad.empty())
@@ -211,22 +231,7 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() c
 
 		else
 		{
-			auto chunksIterator = _loadedChunks.begin();
-			do
-			{
-				const auto origin = chunksIterator->first;
-
-				if (_chunksPositionsAroundCamera.find(origin) == _chunksPositionsAroundCamera.end())
-				{
-					auto handledChunk = std::move(_loadedChunks[origin]);
-					_loadedChunks.erase(chunksIterator);
-
-					_freeChunks.emplace_back(std::move(handledChunk));
-
-					break;
-				}
-				
-			} while (++chunksIterator != _loadedChunks.end());
+			RemoveStaleChunk();
 		}
 	}
 
