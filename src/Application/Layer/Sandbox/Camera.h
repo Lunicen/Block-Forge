@@ -64,6 +64,8 @@ public:
 	///	@return Returns 3D vector representation.
 	glm::vec3 GetPosition() const;
 
+	glm::vec3 GetOrientation() const;
+
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.
 	float GetDefaultSpeed() const;

@@ -1,9 +1,8 @@
 #pragma once
-#include "Application/Layer/Sandbox/Camera.h"
 #include "ChunkBlocks.h"
 #include "ChunkMesh.h"
-#include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
-#include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
+//#include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
+//#include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world
@@ -33,9 +32,13 @@ public:
 	///	@param blocks - chunk blocks.
 	void LoadBlocks(const ChunkBlocks& blocks);
 
+	ChunkBlocks GetBlocks();
+
 	/// @brief Loads precalculated mesh.
 	///	@param precalculatedMesh - precalculated mesh.
 	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
+
+	void LoadBlocksAndBuildMesh(const ChunkBlocks& blocks, const ChunkFrame& frame, BlockMap& blockMap);
 
 	/// @brief The constructor.
 	/// @details The chunk on initialization knows it's position, the structure to render (blocks)

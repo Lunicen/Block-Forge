@@ -8,6 +8,7 @@
 #include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h"
+#include "Application/Layer/Sandbox/Dynamics/PlaceBlock.h"
 
 /// @class SandboxLayer
 ///	@brief Represents sandbox that is played as an simulation.
@@ -60,6 +61,7 @@ public:
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
+		PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
 		_camera->HandleInput(hid);
 		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
 		_hud->ChangeSelectedItemSlot(hid);

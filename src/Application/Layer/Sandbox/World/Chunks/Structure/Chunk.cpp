@@ -11,12 +11,24 @@ void Chunk::LoadBlocks(const ChunkBlocks& blocks)
 	_blocks = blocks;
 }
 
+ChunkBlocks Chunk::GetBlocks()
+{
+	return _blocks;
+}
+
 void Chunk::LoadMesh(const std::vector<Vertex>& precalculatedMesh)
 {
 	_mesh.Rebuild(precalculatedMesh);
 }
 
-Chunk::Chunk(const ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
+void Chunk::LoadBlocksAndBuildMesh(const ChunkBlocks& blocks, const ChunkFrame& frame, BlockMap& blockMap)
+{
+	_blocks = blocks;
+	_mesh.Rebuild(frame, _blocks, blockMap);
+
+}
+
+Chunk::Chunk(const ChunkFrame frame, ChunkBlocks blocks,BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
 {
 }
 

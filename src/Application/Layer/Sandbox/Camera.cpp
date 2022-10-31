@@ -103,6 +103,11 @@ glm::vec3 Camera::GetPosition() const
 	return _position;	
 }
 
+glm::vec3 Camera::GetOrientation() const
+{
+	return _orientation;
+}
+
 inline float Camera::GetDefaultSpeed() const
 {
 	return _defaultSpeed;
