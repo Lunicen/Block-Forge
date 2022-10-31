@@ -57,14 +57,10 @@ public:
 	///	@param chunkSize - size of a chunk.
 	void Bind(const std::shared_ptr<WorldGenerator>& generator, size_t chunkSize);
 
-	/// @brief Returns a reference to the chunk placer mutex intended for thread safety.
-	static std::mutex& GetMutex();
-
 	/// @brief Returns the map of placed chunks.
 	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks() const;
 
 	/// @brief Terminates the chunk placer.
 	void Terminate() const;
-	
 };
 

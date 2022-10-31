@@ -175,11 +175,6 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
 }
 
-std::mutex& ChunkPlacer::GetMutex()
-{
-	return _chunksMutex;
-}
-
 void ChunkPlacer::RemoveStaleChunk() const
 {
 	auto chunksIterator = _loadedChunks.begin();
@@ -209,13 +204,12 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() c
 		if (_chunksPositionsAroundCamera.find(std::get<0>(data)) == _chunksPositionsAroundCamera.end() ||
 			_loadedChunks.find(std::get<0>(data)) != _loadedChunks.end())
 		{
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
 			_chunksToLoad.pop_back();
 		}
 
 		else if (!_freeChunks.empty() && _chunksPositionsAroundCamera.find(std::get<0>(data)) != _chunksPositionsAroundCamera.end())
 		{
-			_chunksToLoad.pop_back();
-
 			auto chunk = std::move(_freeChunks.back());
 			_freeChunks.pop_back();
 
@@ -227,6 +221,9 @@ std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() c
 			chunk->LoadMesh(mesh);
 
 			_loadedChunks[origin] = std::move(chunk);
+
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
+			_chunksToLoad.pop_back();
 		}
 
 		else
