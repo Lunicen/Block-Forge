@@ -73,7 +73,7 @@ class BlockMap
 
 	std::shared_ptr<TextureAtlas> _blockTextures{};
 	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount> _blockTypes;
-	std::unordered_map<std::string, Byte> _blockNames;
+	HashMap<std::string, Byte> _blockNames;
 	
 	Shader _blockShader{"src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag"};
 

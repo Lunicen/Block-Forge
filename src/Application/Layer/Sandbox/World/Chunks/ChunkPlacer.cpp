@@ -9,7 +9,7 @@ std::atomic<bool> ChunkPlacer::_running;
 
 std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad = {};
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
-std::unordered_map<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
+HashMap<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
 
 Position ChunkPlacer::_previousNormalizedPosition = {};
 
@@ -36,7 +36,7 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-void ChunkPlacer::AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins)
+void ChunkPlacer::AddNewChunks(const HashSet<Position>& currentChunkOrigins)
 {
 	const auto size = _order->GetChunkSize();
 
@@ -98,7 +98,7 @@ void ChunkPlacer::LazyLoader()
 		}
 
 		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
-		auto currentChunksOriginsSet = std::unordered_set<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
+		auto currentChunksOriginsSet = HashSet<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
 		
 		AddNewChunks(currentChunksOriginsSet);
 	}
@@ -133,7 +133,7 @@ void ChunkPlacer::ReactToCameraMovement(const Position& position)
 		_previousNormalizedPosition = currentNormalizedPosition;
 
 		auto chunksPositionsAroundCameraVector = _order->GetChunksAround(_previousNormalizedPosition);
-		_chunksPositionsAroundCamera = std::unordered_set<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
+		_chunksPositionsAroundCamera = HashSet<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
 
 		_hasPositionChanged = true;
 		_lazyLoaderLock.notify_one();
@@ -170,7 +170,7 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 	}
 
 	auto chunksPositionsAroundCameraVector = _order->GetChunksAround(_previousNormalizedPosition);
-	_chunksPositionsAroundCamera = std::unordered_set<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
+	_chunksPositionsAroundCamera = HashSet<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
 
 	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
 }
@@ -195,7 +195,7 @@ void ChunkPlacer::RemoveStaleChunk() const
 	} while (++chunksIterator != _loadedChunks.end());
 }
 
-std::unordered_map<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
+HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 {
 	if (!_chunksToLoad.empty())
 	{
