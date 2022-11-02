@@ -11,11 +11,12 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
-	std::unique_ptr<std::thread> _lazyLoader;
+	std::unique_ptr<std::thread> _lazyLoader{};
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
 	static std::condition_variable _lazyLoaderLock;
+	static std::atomic<bool> _isLazyLoaderWaiting;
 	static std::atomic<bool> _running;
 
 	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
@@ -27,7 +28,7 @@ class ChunkPlacer
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
 
-	HashSet<Position> _chunksPositionsAroundCamera;
+	HashSet<Position> _chunksPositionsAroundCamera{};
 
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;

@@ -6,6 +6,7 @@ std::mutex ChunkPlacer::_chunksMutex;
 std::atomic<bool> ChunkPlacer::_hasPositionChanged;
 std::condition_variable ChunkPlacer::_lazyLoaderLock;
 std::atomic<bool> ChunkPlacer::_running;
+std::atomic<bool> ChunkPlacer::_isLazyLoaderWaiting;
 
 std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad = {};
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
@@ -73,6 +74,8 @@ void ChunkPlacer::LazyLoader()
 	{
 		if (!_hasPositionChanged)
 		{
+			_isLazyLoaderWaiting = true;
+
 			std::unique_lock<std::mutex> loaderLock(_chunksMutex);
 			_lazyLoaderLock.wait(loaderLock, [&lastRememberedPosition]
 			{
@@ -88,8 +91,15 @@ void ChunkPlacer::LazyLoader()
 					return true;
 				}
 
+				if (!_freeChunks.empty())
+				{
+					return true;
+				}
+
 				return false;
 			});
+
+			_isLazyLoaderWaiting = false;
 		}
 		else
 		{
@@ -229,6 +239,13 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 		else
 		{
 			RemoveStaleChunk();
+		}
+	}
+	else
+	{
+		if (_isLazyLoaderWaiting && !_freeChunks.empty())
+		{
+			_lazyLoaderLock.notify_one();
 		}
 	}
 
