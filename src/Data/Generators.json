@@ -3,7 +3,7 @@
 
         "pattern": {
             "id": "BwA=",
-            "frequency": 0.002
+            "frequency": 0.005
         },
 
         "biomes": [
@@ -11,7 +11,7 @@
                 "name": "Meadow",
                 "noise": {
                     "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
-                    "frequency": 0.0048
+                    "frequency": 0.0008
                 },
                 "blocks": [
                     {
@@ -32,7 +32,7 @@
                 "name": "Ice Desert",
                 "noise": {
                   "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
-                  "frequency": 0.005
+                  "frequency": 0.00085
                 },
                 "blocks": [
                     {
@@ -49,15 +49,29 @@
                 "name": "Dirt Desert",
                 "noise": {
                     "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
-                    "frequency": 0.005
+                    "frequency": 0.00075
+                },
+                "blocks": [
+                  {
+                    "name": "dirt",
+                    "depthLevel": 0
+                  }
+                ]
+              },
+            {
+                "name": "Sand Desert",
+                "noise": {
+                   "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                    "frequency": 0.00075
                 },
                 "blocks": [
                     {
-                     "name": "dirt",
-                      "depthLevel": 0
+                    "name": "sand",
+                    "depthLevel": 0
                     }
                 ]
             }
+
         ]
     }
 }

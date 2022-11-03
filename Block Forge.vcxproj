@@ -181,7 +181,7 @@
     <ClCompile Include="lib\imgui\imgui_tables.cpp" />
     <ClCompile Include="lib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\Geometry\Shader.cpp" />
-    <ClCompile Include="src\Application\MainMenu.cpp" />
+    <ClCompile Include="src\Application\MainMenuLayer.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Core\Metadata.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -252,7 +252,7 @@
     <ClInclude Include="lib\imgui\imstb_textedit.h" />
     <ClInclude Include="lib\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\Geometry\Shader.h" />
-    <ClInclude Include="src\Application\MainMenu.h" />
+    <ClInclude Include="src\Application\MainMenuLayer.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Core\Metadata.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World.h" />

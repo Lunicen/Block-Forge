@@ -76,6 +76,18 @@
             }
           }
         ]
+      },
+      {
+        "block": "sand",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 2,
+              "row": 1
+            }
+          }
+        ]
       }
 
     ]
