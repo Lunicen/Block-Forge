@@ -1,9 +1,8 @@
 #pragma once
-#include <unordered_set>
-
 #include "Core/Log.h"
 #include "KeyCodes.h"
 #include "Application/Window.h"
+#include "Application/Layer/Sandbox/Model/Mesh/Geometry/Structures.h"
 
 
 /// @class HumanInterfaceDevice
@@ -14,8 +13,8 @@ class HumanInterfaceDevice
 	Log& _log = Log::Get();
 	Window& _window;
 
-	std::unordered_set<KeyboardKey> _onceHandledKeyboardKeys;
-	std::unordered_set<MouseButton> _onceHandledMouseButtons;
+	HashSet<KeyboardKey> _onceHandledKeyboardKeys;
+	HashSet<MouseButton> _onceHandledMouseButtons;
 
 	int GetState(const KeyboardKey& key) const;
 	int GetState(const MouseButton& button) const;

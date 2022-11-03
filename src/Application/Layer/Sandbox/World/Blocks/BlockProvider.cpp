@@ -7,12 +7,12 @@ BlockProvider::BlockProvider(const std::string& filenameWithBlocksData)
 	_blocksMetadata.Load(filenameWithBlocksData);
 }
 
-std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetBlocks(
+HashMap<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetBlocks(
 	TextureAtlas& blocksTextureAtlas,
 	const std::string& blocksSetName)
 {
 	const auto blocksSet = _blocksMetadata.GetJsonObject(blocksSetName);
-	auto blocks = std::unordered_map<std::string, std::shared_ptr<BlockModel>>();
+	auto blocks = HashMap<std::string, std::shared_ptr<BlockModel>>();
 
 	for (const auto& blockData : blocksSet["blocks"])
 	{
@@ -27,7 +27,7 @@ std::unordered_map<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetB
 
 void BlockProvider::SetBlocks(
 	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount>& blockArray,
-	std::unordered_map<std::string, unsigned char>& blockNames, 
+	HashMap<std::string, unsigned char>& blockNames, 
 	TextureAtlas& blocksTextureAtlas,
 	const std::string& blocksSetName)
 {
