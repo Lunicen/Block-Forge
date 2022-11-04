@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -112,16 +112,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8aa7740fac314c5553e35aaaa9be7e58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#a8aa7740fac314c5553e35aaaa9be7e58">Biome</a> (std::string name, const <a class="el" href="class_noise3_d.html">Noise3D</a> &amp;noise, std::vector&lt; std::pair&lt; size_t, std::string &gt; &gt; depthLevels, <a class="el" href="class_block_map.html">BlockMap</a> &amp;blocksMap)</td></tr>
 <tr class="memdesc:a8aa7740fac314c5553e35aaaa9be7e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_biome.html#a8aa7740fac314c5553e35aaaa9be7e58">More...</a><br /></td></tr>
 <tr class="separator:a8aa7740fac314c5553e35aaaa9be7e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae10b1dee3ade5ae8f65f955311780aac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">PaintColumn</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, ChunkBlocks &amp;blocks, int xOffset, int yOffset, int zOffset) const</td></tr>
-<tr class="memdesc:ae10b1dee3ade5ae8f65f955311780aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapts chunk column according to the biome noise.  <a href="class_biome.html#ae10b1dee3ade5ae8f65f955311780aac">More...</a><br /></td></tr>
-<tr class="separator:ae10b1dee3ade5ae8f65f955311780aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d0d45e94c805b896cef3e3e65e4faf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biome.html#a41d0d45e94c805b896cef3e3e65e4faf">PaintBlockAt</a> (const Position &amp;origin, const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, ChunkBlocks &amp;blocks, const Byte &amp;visibilityFlags) const</td></tr>
+<tr class="memdesc:a41d0d45e94c805b896cef3e3e65e4faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapts chunk column according to the biome noise.  <a href="class_biome.html#a41d0d45e94c805b896cef3e3e65e4faf">More...</a><br /></td></tr>
+<tr class="separator:a41d0d45e94c805b896cef3e3e65e4faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_noise3_d"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_noise3_d')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_noise3_d.html">Noise3D</a></td></tr>
 <tr class="memitem:ae7533f2ccc2317e4e1963d5ffae94278 inherit pub_methods_class_noise3_d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noise3_d.html#ae7533f2ccc2317e4e1963d5ffae94278">Noise3D</a> (const std::string &amp;encodedTree, const int seed, const float frequency)</td></tr>
 <tr class="memdesc:ae7533f2ccc2317e4e1963d5ffae94278 inherit pub_methods_class_noise3_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_noise3_d.html#ae7533f2ccc2317e4e1963d5ffae94278">More...</a><br /></td></tr>
 <tr class="separator:ae7533f2ccc2317e4e1963d5ffae94278 inherit pub_methods_class_noise3_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a9457b538f0c12c17388933cf06cdb3 inherit pub_methods_class_noise3_d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noise3_d.html#a3a9457b538f0c12c17388933cf06cdb3">GetColumnNoiseWithAdditionalHeight</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, int xOffset, int yOffset, int zOffset, size_t additionalHeight) const</td></tr>
-<tr class="memdesc:a3a9457b538f0c12c17388933cf06cdb3 inherit pub_methods_class_noise3_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get noise of the chunk column with additional blocks on the top.  <a href="class_noise3_d.html#a3a9457b538f0c12c17388933cf06cdb3">More...</a><br /></td></tr>
-<tr class="separator:a3a9457b538f0c12c17388933cf06cdb3 inherit pub_methods_class_noise3_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b4859115778ff3782d1205046356c2 inherit pub_methods_class_noise3_d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noise3_d.html#af9b4859115778ff3782d1205046356c2">GetNoiseAt</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, int xOffset, int yOffset, int zOffset) const</td></tr>
+<tr class="memdesc:af9b4859115778ff3782d1205046356c2 inherit pub_methods_class_noise3_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get noise that is at certain point of the chunk.  <a href="class_noise3_d.html#af9b4859115778ff3782d1205046356c2">More...</a><br /></td></tr>
+<tr class="separator:af9b4859115778ff3782d1205046356c2 inherit pub_methods_class_noise3_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92704debd41025305719a86df7f13f4a inherit pub_methods_class_noise3_d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noise3_d.html#a92704debd41025305719a86df7f13f4a">GetNoiseAtWithTopColumn</a> (const Position &amp;origin, const size_t &amp;topColumnHeight) const</td></tr>
+<tr class="memdesc:a92704debd41025305719a86df7f13f4a inherit pub_methods_class_noise3_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get noise that is at certain point on the map, with additional blocks on the top.  <a href="class_noise3_d.html#a92704debd41025305719a86df7f13f4a">More...</a><br /></td></tr>
+<tr class="separator:a92704debd41025305719a86df7f13f4a inherit pub_methods_class_noise3_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af302b8a34294be3c5d56682878730988 inherit pub_methods_class_noise3_d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noise3_d.html#af302b8a34294be3c5d56682878730988">GetColumnNoise</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, int xOffset, int yOffset, int zOffset, int expansionFactor=0) const</td></tr>
 <tr class="memdesc:af302b8a34294be3c5d56682878730988 inherit pub_methods_class_noise3_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get noise of the chunk column.  <a href="class_noise3_d.html#af302b8a34294be3c5d56682878730988">More...</a><br /></td></tr>
 <tr class="separator:af302b8a34294be3c5d56682878730988 inherit pub_methods_class_noise3_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,15 +219,21 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae10b1dee3ade5ae8f65f955311780aac" name="ae10b1dee3ade5ae8f65f955311780aac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae10b1dee3ade5ae8f65f955311780aac">&#9670;&nbsp;</a></span>PaintColumn()</h2>
+<a id="a41d0d45e94c805b896cef3e3e65e4faf" name="a41d0d45e94c805b896cef3e3e65e4faf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d0d45e94c805b896cef3e3e65e4faf">&#9670;&nbsp;</a></span>PaintBlockAt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Biome::PaintColumn </td>
+          <td class="memname">void Biome::PaintBlockAt </td>
           <td>(</td>
+          <td class="paramtype">const Position &amp;&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;&#160;</td>
           <td class="paramname"><em>frame</em>, </td>
         </tr>
@@ -237,20 +246,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>xOffset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>yOffset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>zOffset</em>&#160;</td>
+          <td class="paramtype">const Byte &amp;&#160;</td>
+          <td class="paramname"><em>visibilityFlags</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -263,11 +260,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFrequency</b> () 
 <p>Adapts chunk column according to the biome noise. </p>
 <p >The purpose of this method is to "paint" the chunk according to the biome noise with respect of the origin of that chunk. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">origin</td><td>- position of the block to paint (relative to the chunk, not world direct coordinates). </td></tr>
     <tr><td class="paramname">frame</td><td>- frame of the chunk. </td></tr>
     <tr><td class="paramname">blocks</td><td>- the metadata of the chunk (basically blockAt). </td></tr>
-    <tr><td class="paramname">xOffset</td><td>- X offset from the chunk origin. </td></tr>
-    <tr><td class="paramname">yOffset</td><td>- Y offset from the chunk origin. </td></tr>
-    <tr><td class="paramname">zOffset</td><td>- Z offset from the chunk origin. </td></tr>
+    <tr><td class="paramname">visibilityFlags</td><td>- calculated visibility flags of the block. </td></tr>
   </table>
   </dd>
 </dl>

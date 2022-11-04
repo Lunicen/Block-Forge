@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: ChunkBuilder Class Reference</title>
+<title>Block Forge: Hud Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('class_chunk_builder.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_hud.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -87,63 +87,54 @@ $(document).ready(function(){initNavTree('class_chunk_builder.html',''); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_chunk_builder-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ChunkBuilder Class Reference</div></div>
+<a href="class_hud-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Hud Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Builds chunks.  
- <a href="class_chunk_builder.html#details">More...</a></p>
+<p><a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a> that contains other hud subelements (example: <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a> Item slot), allows them to be drawn.  
+ <a href="class_hud.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_chunk_builder_8h_source.html">ChunkBuilder.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_hud_8h_source.html">Hud.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a90ac5dd8a838ca84872827ec705bf833"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_builder.html#a90ac5dd8a838ca84872827ec705bf833">Build</a> (Position origin, const size_t &amp;size, <a class="el" href="class_world_generator.html">WorldGenerator</a> &amp;generator) const</td></tr>
-<tr class="memdesc:a90ac5dd8a838ca84872827ec705bf833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the chunk.  <a href="class_chunk_builder.html#a90ac5dd8a838ca84872827ec705bf833">More...</a><br /></td></tr>
-<tr class="separator:a90ac5dd8a838ca84872827ec705bf833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad367d9f8d5947cd6b150658f4a7011c4"><td class="memItemLeft" align="right" valign="top"><a id="ad367d9f8d5947cd6b150658f4a7011c4" name="ad367d9f8d5947cd6b150658f4a7011c4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Hud</b> ()</td></tr>
+<tr class="memdesc:ad367d9f8d5947cd6b150658f4a7011c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a>. <br /></td></tr>
+<tr class="separator:ad367d9f8d5947cd6b150658f4a7011c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b6db73561628d4ba214f4a37388a28"><td class="memItemLeft" align="right" valign="top"><a id="a06b6db73561628d4ba214f4a37388a28" name="a06b6db73561628d4ba214f4a37388a28"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td></tr>
+<tr class="memdesc:a06b6db73561628d4ba214f4a37388a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that Draws <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a> on screen. <br /></td></tr>
+<tr class="separator:a06b6db73561628d4ba214f4a37388a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c8d45ca55d4b29a076b82100c17bbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hud.html#ab8c8d45ca55d4b29a076b82100c17bbf">ChangeSelectedItemSlot</a> (<a class="el" href="class_human_interface_device.html">HumanInterfaceDevice</a> &amp;hid)</td></tr>
+<tr class="memdesc:ab8c8d45ca55d4b29a076b82100c17bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that changes selected item slot based on button pressed by user.  <a href="class_hud.html#ab8c8d45ca55d4b29a076b82100c17bbf">More...</a><br /></td></tr>
+<tr class="separator:ab8c8d45ca55d4b29a076b82100c17bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Builds chunks. </p>
+<div class="textblock"><p ><a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a> that contains other hud subelements (example: <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a> Item slot), allows them to be drawn. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a90ac5dd8a838ca84872827ec705bf833" name="a90ac5dd8a838ca84872827ec705bf833"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90ac5dd8a838ca84872827ec705bf833">&#9670;&nbsp;</a></span>Build()</h2>
+<a id="ab8c8d45ca55d4b29a076b82100c17bbf" name="ab8c8d45ca55d4b29a076b82100c17bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c8d45ca55d4b29a076b82100c17bbf">&#9670;&nbsp;</a></span>ChangeSelectedItemSlot()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt; ChunkBuilder::Build </td>
+          <td class="memname">void Hud::ChangeSelectedItemSlot </td>
           <td>(</td>
-          <td class="paramtype">Position&#160;</td>
-          <td class="paramname"><em>origin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="class_human_interface_device.html">HumanInterfaceDevice</a> &amp;&#160;</td>
+          <td class="paramname"><em>hid</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const size_t &amp;&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_world_generator.html">WorldGenerator</a> &amp;&#160;</td>
-          <td class="paramname"><em>generator</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Builds the chunk. </p>
+<p>Function that changes selected item slot based on button pressed by user. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">origin</td><td>- origin of the chunk. </td></tr>
-    <tr><td class="paramname">size</td><td>- size of the chunks edge. </td></tr>
-    <tr><td class="paramname">generator</td><td>- the world generator that chunk uses to generate it's content. </td></tr>
+    <tr><td class="paramname">hid</td><td>- Reference to the Human Interface Device. <br  />
+ </td></tr>
   </table>
   </dd>
 </dl>
@@ -151,15 +142,15 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/Application/Layer/Sandbox/World/Chunks/<a class="el" href="_chunk_builder_8h_source.html">ChunkBuilder.h</a></li>
-<li>src/Application/Layer/Sandbox/World/Chunks/ChunkBuilder.cpp</li>
+<li>src/Application/Layer/Sandbox/<a class="el" href="_hud_8h_source.html">Hud.h</a></li>
+<li>src/Application/Layer/Sandbox/Hud.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="class_chunk_builder.html">ChunkBuilder</a></li>
+    <li class="navelem"><a class="el" href="class_hud.html">Hud</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -102,9 +102,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d26863d56b6d06adf4d2fd476e8b4a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_provider.html#a3d26863d56b6d06adf4d2fd476e8b4a1">BlockProvider</a> (const std::string &amp;filenameWithBlocksData)</td></tr>
 <tr class="memdesc:a3d26863d56b6d06adf4d2fd476e8b4a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_block_provider.html#a3d26863d56b6d06adf4d2fd476e8b4a1">More...</a><br /></td></tr>
 <tr class="separator:a3d26863d56b6d06adf4d2fd476e8b4a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5cfd67a5e163b8b9ab1d613f5004c5d"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_provider.html#ab5cfd67a5e163b8b9ab1d613f5004c5d">GetBlocks</a> (<a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;blocksTextureAtlas, const std::string &amp;blocksSetName=&quot;default&quot;)</td></tr>
-<tr class="memdesc:ab5cfd67a5e163b8b9ab1d613f5004c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the map of the built blocks.  <a href="class_block_provider.html#ab5cfd67a5e163b8b9ab1d613f5004c5d">More...</a><br /></td></tr>
-<tr class="separator:ab5cfd67a5e163b8b9ab1d613f5004c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6efe8db5e1ca48051218608f4269c254"><td class="memItemLeft" align="right" valign="top">HashMap&lt; std::string, std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_provider.html#a6efe8db5e1ca48051218608f4269c254">GetBlocks</a> (<a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;blocksTextureAtlas, const std::string &amp;blocksSetName=&quot;default&quot;)</td></tr>
+<tr class="memdesc:a6efe8db5e1ca48051218608f4269c254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the map of the built blocks.  <a href="class_block_provider.html#a6efe8db5e1ca48051218608f4269c254">More...</a><br /></td></tr>
+<tr class="separator:a6efe8db5e1ca48051218608f4269c254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78237f372fafd59dfa8c0257f88e43d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_provider.html#a78237f372fafd59dfa8c0257f88e43d9">SetBlocks</a> (std::array&lt; std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt;, MaxBlocksAmount &gt; &amp;blockArray, HashMap&lt; std::string, unsigned char &gt; &amp;blockNames, <a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;blocksTextureAtlas, const std::string &amp;blocksSetName=&quot;default&quot;)</td></tr>
+<tr class="memdesc:a78237f372fafd59dfa8c0257f88e43d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the blocks ID array and their "names" array, based on the given set.  <a href="class_block_provider.html#a78237f372fafd59dfa8c0257f88e43d9">More...</a><br /></td></tr>
+<tr class="separator:a78237f372fafd59dfa8c0257f88e43d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc7a7391ee796c356aeb88af2b98826"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_provider.html#a4dc7a7391ee796c356aeb88af2b98826">GetTextureAtlasFilename</a> (const std::string &amp;blocksSetName=&quot;default&quot;)</td></tr>
 <tr class="memdesc:a4dc7a7391ee796c356aeb88af2b98826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns texture atlas filename of the blocks set.  <a href="class_block_provider.html#a4dc7a7391ee796c356aeb88af2b98826">More...</a><br /></td></tr>
 <tr class="separator:a4dc7a7391ee796c356aeb88af2b98826"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,14 +153,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab5cfd67a5e163b8b9ab1d613f5004c5d" name="ab5cfd67a5e163b8b9ab1d613f5004c5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5cfd67a5e163b8b9ab1d613f5004c5d">&#9670;&nbsp;</a></span>GetBlocks()</h2>
+<a id="a6efe8db5e1ca48051218608f4269c254" name="a6efe8db5e1ca48051218608f4269c254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6efe8db5e1ca48051218608f4269c254">&#9670;&nbsp;</a></span>GetBlocks()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &gt; BlockProvider::GetBlocks </td>
+          <td class="memname">HashMap&lt; std::string, std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &gt; BlockProvider::GetBlocks </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;&#160;</td>
           <td class="paramname"><em>blocksTextureAtlas</em>, </td>
@@ -181,6 +184,57 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">blocksTextureAtlas</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> atlas of the blocks to be built. </td></tr>
     <tr><td class="paramname">blocksSetName</td><td>- Name of the blocks set that is used for this particular block map. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a78237f372fafd59dfa8c0257f88e43d9" name="a78237f372fafd59dfa8c0257f88e43d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78237f372fafd59dfa8c0257f88e43d9">&#9670;&nbsp;</a></span>SetBlocks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BlockProvider::SetBlocks </td>
+          <td>(</td>
+          <td class="paramtype">std::array&lt; std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt;, MaxBlocksAmount &gt; &amp;&#160;</td>
+          <td class="paramname"><em>blockArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HashMap&lt; std::string, unsigned char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>blockNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;&#160;</td>
+          <td class="paramname"><em>blocksTextureAtlas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>blocksSetName</em> = <code>&quot;default&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the blocks ID array and their "names" array, based on the given set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blockArray</td><td>- reference to the block IDs array. </td></tr>
+    <tr><td class="paramname">blockNames</td><td>- reference to the block names array. </td></tr>
+    <tr><td class="paramname">blocksTextureAtlas</td><td>- the texture atlas that is shared among the blocks. </td></tr>
+    <tr><td class="paramname">blocksSetName</td><td>- name of the set to provide the blocks from. </td></tr>
   </table>
   </dd>
 </dl>

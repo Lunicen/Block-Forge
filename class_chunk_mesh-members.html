@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -92,8 +92,10 @@ $(document).ready(function(){initNavTree('class_chunk_mesh.html',''); initResiza
 <p>This is the complete list of members for <a class="el" href="class_chunk_mesh.html">ChunkMesh</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_chunk_mesh.html#a5f867a843bff848147111142424fb1f0">ChunkMesh</a>(Shader &amp;blockShader, const size_t &amp;sizeOfChunk)</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_chunk_mesh.html#a2c9d56a8a9835f5806c0ee6ecee56b5f">Draw</a>(const Texture &amp;blocksTexture, const Camera &amp;camera) const</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_chunk_mesh.html#a0a5190455f0d9ad23b9919d53e1b78c1">Rebuild</a>(const ChunkBlocks &amp;blocks) const</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_chunk_mesh.html#ac83b876de4d425dfebfe2126425da677">ChunkMesh</a>(const std::vector&lt; Vertex &gt; &amp;vertices, Shader &amp;blockShader, const size_t &amp;sizeOfChunk)</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_chunk_mesh.html#a32bacefb84885623ad95e58b6c258cc5">Draw</a>(const Texture &amp;blocksTexture, const Camera &amp;camera)</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_chunk_mesh.html#a997996b4151f8e83fc2349e57a2b5bd8">Rebuild</a>(const std::vector&lt; Vertex &gt; &amp;vertices)</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_chunk_mesh.html#a837f3ce6a71367ce64b5824674bd49fb">Rebuild</a>(const ChunkFrame &amp;frame, const ChunkBlocks &amp;blocks, BlockMap &amp;blockMap)</td><td class="entry"><a class="el" href="class_chunk_mesh.html">ChunkMesh</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

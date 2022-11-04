@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_block_map.html',''); initResizab
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_block_map-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">BlockMap Class Reference</div></div>
@@ -115,12 +116,22 @@ Public Member Functions</h2></td></tr>
 <a class="el" href="class_block_map.html">BlockMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_block_map.html">BlockMap</a> &amp;&amp;) noexcept=delete</td></tr>
 <tr class="memdesc:ae6d45ed7974901bd0884c1c79e491381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment constructor. <br /></td></tr>
 <tr class="separator:ae6d45ed7974901bd0884c1c79e491381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38809fac45492192a1b06acb8829a747"><td class="memItemLeft" align="right" valign="top">Byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_map.html#a38809fac45492192a1b06acb8829a747">GetId</a> (const std::string &amp;blockName)</td></tr>
+<tr class="memdesc:a38809fac45492192a1b06acb8829a747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns ID of the block based on its name.  <a href="class_block_map.html#a38809fac45492192a1b06acb8829a747">More...</a><br /></td></tr>
+<tr class="separator:a38809fac45492192a1b06acb8829a747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c18044404e4bbb588d1f74cfac52a01"><td class="memItemLeft" align="right" valign="top">FaceVertices&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_map.html#a7c18044404e4bbb588d1f74cfac52a01">GetFaceVertices</a> () const</td></tr>
+<tr class="memdesc:a7c18044404e4bbb588d1f74cfac52a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the face vertices data of the basic block.  <a href="class_block_map.html#a7c18044404e4bbb588d1f74cfac52a01">More...</a><br /></td></tr>
+<tr class="separator:a7c18044404e4bbb588d1f74cfac52a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0241b8ede74e48a99a6905a79946322"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_map.html#aa0241b8ede74e48a99a6905a79946322">BlockMap</a> (const std::string &amp;filenameWithBlocksData)</td></tr>
 <tr class="memdesc:aa0241b8ede74e48a99a6905a79946322"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_block_map.html#aa0241b8ede74e48a99a6905a79946322">More...</a><br /></td></tr>
 <tr class="separator:aa0241b8ede74e48a99a6905a79946322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_map.html#ac4d6c9f5c2205d4b3d01706b00d9d605">Get</a> (const std::string &amp;blockName)</td></tr>
 <tr class="memdesc:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the block model based on it's name.  <a href="class_block_map.html#ac4d6c9f5c2205d4b3d01706b00d9d605">More...</a><br /></td></tr>
 <tr class="separator:ac4d6c9f5c2205d4b3d01706b00d9d605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01da3d7f53ccb6653ca15423ca02b7b1"><td class="memItemLeft" align="right" valign="top"><a id="a01da3d7f53ccb6653ca15423ca02b7b1" name="a01da3d7f53ccb6653ca15423ca02b7b1"></a>
+std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const Byte &amp;blockId)</td></tr>
+<tr class="memdesc:a01da3d7f53ccb6653ca15423ca02b7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">An operator that allows to get the block by its key in a convenient way. <br /></td></tr>
+<tr class="separator:a01da3d7f53ccb6653ca15423ca02b7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a396f604fce472caed3a0c36ab7103d51"><td class="memItemLeft" align="right" valign="top"><a id="a396f604fce472caed3a0c36ab7103d51" name="a396f604fce472caed3a0c36ab7103d51"></a>
 std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const std::string &amp;blockName)</td></tr>
 <tr class="memdesc:a396f604fce472caed3a0c36ab7103d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">An operator that allows to get the block by its key in a convenient way. <br /></td></tr>
@@ -172,6 +183,68 @@ std::shared_ptr&lt; <a class="el" href="class_texture_atlas.html">TextureAtlas</
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a38809fac45492192a1b06acb8829a747" name="a38809fac45492192a1b06acb8829a747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38809fac45492192a1b06acb8829a747">&#9670;&nbsp;</a></span>GetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Byte BlockMap::GetId </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>blockName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns ID of the block based on its name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blockName</td><td>- name of the block. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7c18044404e4bbb588d1f74cfac52a01" name="a7c18044404e4bbb588d1f74cfac52a01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c18044404e4bbb588d1f74cfac52a01">&#9670;&nbsp;</a></span>GetFaceVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FaceVertices BlockMap::GetFaceVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the face vertices data of the basic block. </p>
+<dl class="section note"><dt>Note</dt><dd>It's just a template of a typical block face. Used for technical reasons. </dd></dl>
+
+</div>
+</div>
 <a id="ac4d6c9f5c2205d4b3d01706b00d9d605" name="ac4d6c9f5c2205d4b3d01706b00d9d605"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4d6c9f5c2205d4b3d01706b00d9d605">&#9670;&nbsp;</a></span>Get()</h2>
 

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -89,31 +89,40 @@ $(document).ready(function(){initNavTree('_structures_8h_source.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;glm/glm.hpp&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;glm/vec2.hpp&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;glm/vec3.hpp&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using </span>Matrix = glm::mat4;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using </span>TriangleIndexes = glm::ivec3;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using </span>Position = glm::ivec3;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;robin_hood.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;glm/glm.hpp&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;glm/vec2.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;glm/vec3.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using </span>HashMap = robin_hood::unordered_map&lt;T1, T2&gt;;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using </span>HashSet = robin_hood::unordered_set&lt;T&gt;;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using </span>Byte = <span class="keywordtype">unsigned</span> char;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using </span>Point3D = glm::vec3;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using </span>Matrix = glm::mat4;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using </span>Point = glm::vec2;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using </span>TriangleIndexes = glm::ivec3;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> VerticesInQuad = 4;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">using </span>Position = glm::ivec3;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_vertex.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_vertex.html">Vertex</a></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">   28</a></span>    Point3D <a class="code hl_variable" href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">position</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using </span>Point3D = glm::vec3;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using </span>Point = glm::vec2;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">   31</a></span>    Point <a class="code hl_variable" href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">uvCoordinate</a>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
-<div class="ttc" id="astruct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdoc">Represent a single vertex that is used by the shader.</div><div class="ttdef"><b>Definition:</b> Structures.h:26</div></div>
-<div class="ttc" id="astruct_vertex_html_a4a0a27b98b1e04ac0f1ce9015c93b9c6"><div class="ttname"><a href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">Vertex::uvCoordinate</a></div><div class="ttdeci">Point uvCoordinate</div><div class="ttdoc">The texture UV coordinate.</div><div class="ttdef"><b>Definition:</b> Structures.h:31</div></div>
-<div class="ttc" id="astruct_vertex_html_a79ae9fc9bb708a6c763a75de6843f325"><div class="ttname"><a href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">Vertex::position</a></div><div class="ttdeci">Point3D position</div><div class="ttdoc">The position of the vertex in the mesh.</div><div class="ttdef"><b>Definition:</b> Structures.h:28</div></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> VerticesInQuad = 4;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_vertex.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_vertex.html">Vertex</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">   37</a></span>    Point3D <a class="code hl_variable" href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">position</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">   40</a></span>    Point <a class="code hl_variable" href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">uvCoordinate</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+<div class="ttc" id="astruct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdoc">Represent a single vertex that is used by the shader.</div><div class="ttdef"><b>Definition:</b> Structures.h:35</div></div>
+<div class="ttc" id="astruct_vertex_html_a4a0a27b98b1e04ac0f1ce9015c93b9c6"><div class="ttname"><a href="struct_vertex.html#a4a0a27b98b1e04ac0f1ce9015c93b9c6">Vertex::uvCoordinate</a></div><div class="ttdeci">Point uvCoordinate</div><div class="ttdoc">The texture UV coordinate.</div><div class="ttdef"><b>Definition:</b> Structures.h:40</div></div>
+<div class="ttc" id="astruct_vertex_html_a79ae9fc9bb708a6c763a75de6843f325"><div class="ttname"><a href="struct_vertex.html#a79ae9fc9bb708a6c763a75de6843f325">Vertex::position</a></div><div class="ttdeci">Point3D position</div><div class="ttdoc">The position of the vertex in the mesh.</div><div class="ttdef"><b>Definition:</b> Structures.h:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['left_0',['left',['../struct_block_faces.html#ae5052e04d9b807d1de64da78981420d2',1,'BlockFaces::left()'],['../struct_faces_visibility.html#aa9ba5d3f9371c0720018568a31018df7',1,'FacesVisibility::left()']]]
+  ['front_0',['front',['../struct_block_faces.html#a44387d51bb70563c37964b3347688c08',1,'BlockFaces']]],
+  ['frontface_1',['frontFace',['../struct_block_flags.html#a1653d05d06316bfb89646678df8e043b',1,'BlockFlags']]]
 ];

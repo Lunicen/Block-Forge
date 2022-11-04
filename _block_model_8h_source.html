@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -106,41 +106,25 @@ $(document).ready(function(){initNavTree('_block_model_8h_source.html',''); init
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_block_faces.html#a4ce36e2026cf52dd2207425f57bb87a9">   23</a></span>    <a class="code hl_class" href="class_block_face_model.html">BlockFaceModel</a> <a class="code hl_variable" href="struct_block_faces.html#a4ce36e2026cf52dd2207425f57bb87a9">bottom</a>;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html">   28</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_faces_visibility.html">FacesVisibility</a></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#aa0d35dd67797aac21fbe414a84c1679c">   31</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#aa0d35dd67797aac21fbe414a84c1679c">front</a>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#a4325f2c8e56cb0bb5f720ae8fc6be448">   34</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#a4325f2c8e56cb0bb5f720ae8fc6be448">back</a>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#aa9ba5d3f9371c0720018568a31018df7">   37</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#aa9ba5d3f9371c0720018568a31018df7">left</a>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#a022064c59b4a13122ff36a0010a992ef">   40</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#a022064c59b4a13122ff36a0010a992ef">right</a>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#a49bfd1e2b99ccafca057577010027876">   43</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#a49bfd1e2b99ccafca057577010027876">top</a>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_faces_visibility.html#a4f0c0647582f5f79bfbbc6f00d239287">   46</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_faces_visibility.html#a4f0c0647582f5f79bfbbc6f00d239287">bottom</a>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_block_model.html">   54</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_model.html">BlockModel</a></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a> _blockFaces;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">   62</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">BlockModel</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a>&amp; faces)</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        : _blockFaces(faces)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {}</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">   67</a></span>    <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a>&amp; <a class="code hl_function" href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">GetFaces</a>()</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">return</span> _blockFaces;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_block_model.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_model.html">BlockModel</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a> _blockFaces;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">   39</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">BlockModel</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a>&amp; faces)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        : _blockFaces(faces)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">   44</a></span>    <a class="code hl_struct" href="struct_block_faces.html">BlockFaces</a>&amp; <a class="code hl_function" href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">GetFaces</a>()</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> _blockFaces;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
 <div class="ttc" id="aclass_block_face_model_html"><div class="ttname"><a href="class_block_face_model.html">BlockFaceModel</a></div><div class="ttdoc">Represents face of a.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.h:7</div></div>
-<div class="ttc" id="aclass_block_model_html"><div class="ttname"><a href="class_block_model.html">BlockModel</a></div><div class="ttdoc">Represents a graphical model of a block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:55</div></div>
-<div class="ttc" id="aclass_block_model_html_a7fcc87360f061cc3acf0b908af369593"><div class="ttname"><a href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">BlockModel::GetFaces</a></div><div class="ttdeci">BlockFaces &amp; GetFaces()</div><div class="ttdoc">Returns the faces data of the block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:67</div></div>
-<div class="ttc" id="aclass_block_model_html_a9651911113b564065a1fe4f8921f50d1"><div class="ttname"><a href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">BlockModel::BlockModel</a></div><div class="ttdeci">BlockModel(const BlockFaces &amp;faces)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:62</div></div>
+<div class="ttc" id="aclass_block_model_html"><div class="ttname"><a href="class_block_model.html">BlockModel</a></div><div class="ttdoc">Represents a graphical model of a block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:32</div></div>
+<div class="ttc" id="aclass_block_model_html_a7fcc87360f061cc3acf0b908af369593"><div class="ttname"><a href="class_block_model.html#a7fcc87360f061cc3acf0b908af369593">BlockModel::GetFaces</a></div><div class="ttdeci">BlockFaces &amp; GetFaces()</div><div class="ttdoc">Returns the faces data of the block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:44</div></div>
+<div class="ttc" id="aclass_block_model_html_a9651911113b564065a1fe4f8921f50d1"><div class="ttname"><a href="class_block_model.html#a9651911113b564065a1fe4f8921f50d1">BlockModel::BlockModel</a></div><div class="ttdeci">BlockModel(const BlockFaces &amp;faces)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:39</div></div>
 <div class="ttc" id="astruct_block_faces_html"><div class="ttname"><a href="struct_block_faces.html">BlockFaces</a></div><div class="ttdoc">Container for the face models of a block.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:6</div></div>
 <div class="ttc" id="astruct_block_faces_html_a3df91d77b445f498781fdb65d1aa61fd"><div class="ttname"><a href="struct_block_faces.html#a3df91d77b445f498781fdb65d1aa61fd">BlockFaces::back</a></div><div class="ttdeci">BlockFaceModel back</div><div class="ttdoc">Model of the block back face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:11</div></div>
 <div class="ttc" id="astruct_block_faces_html_a44387d51bb70563c37964b3347688c08"><div class="ttname"><a href="struct_block_faces.html#a44387d51bb70563c37964b3347688c08">BlockFaces::front</a></div><div class="ttdeci">BlockFaceModel front</div><div class="ttdoc">Model of the block front face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:8</div></div>
@@ -148,13 +132,6 @@ $(document).ready(function(){initNavTree('_block_model_8h_source.html',''); init
 <div class="ttc" id="astruct_block_faces_html_a57fe6216d3f0f2fb24c82b1fc1630a85"><div class="ttname"><a href="struct_block_faces.html#a57fe6216d3f0f2fb24c82b1fc1630a85">BlockFaces::top</a></div><div class="ttdeci">BlockFaceModel top</div><div class="ttdoc">Model of the block top face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:20</div></div>
 <div class="ttc" id="astruct_block_faces_html_ae5052e04d9b807d1de64da78981420d2"><div class="ttname"><a href="struct_block_faces.html#ae5052e04d9b807d1de64da78981420d2">BlockFaces::left</a></div><div class="ttdeci">BlockFaceModel left</div><div class="ttdoc">Model of the block left face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:14</div></div>
 <div class="ttc" id="astruct_block_faces_html_af48785e0bda693497f920c55ac5af339"><div class="ttname"><a href="struct_block_faces.html#af48785e0bda693497f920c55ac5af339">BlockFaces::right</a></div><div class="ttdeci">BlockFaceModel right</div><div class="ttdoc">Model of the block right face.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:17</div></div>
-<div class="ttc" id="astruct_faces_visibility_html"><div class="ttname"><a href="struct_faces_visibility.html">FacesVisibility</a></div><div class="ttdoc">Represents visibility of the faces.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:29</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_a022064c59b4a13122ff36a0010a992ef"><div class="ttname"><a href="struct_faces_visibility.html#a022064c59b4a13122ff36a0010a992ef">FacesVisibility::right</a></div><div class="ttdeci">bool right</div><div class="ttdoc">Answers the question &quot;Is the right face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:40</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_a4325f2c8e56cb0bb5f720ae8fc6be448"><div class="ttname"><a href="struct_faces_visibility.html#a4325f2c8e56cb0bb5f720ae8fc6be448">FacesVisibility::back</a></div><div class="ttdeci">bool back</div><div class="ttdoc">Answers the question &quot;Is the back face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:34</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_a49bfd1e2b99ccafca057577010027876"><div class="ttname"><a href="struct_faces_visibility.html#a49bfd1e2b99ccafca057577010027876">FacesVisibility::top</a></div><div class="ttdeci">bool top</div><div class="ttdoc">Answers the question &quot;Is the top face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:43</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_a4f0c0647582f5f79bfbbc6f00d239287"><div class="ttname"><a href="struct_faces_visibility.html#a4f0c0647582f5f79bfbbc6f00d239287">FacesVisibility::bottom</a></div><div class="ttdeci">bool bottom</div><div class="ttdoc">Answers the question &quot;Is the bottom face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:46</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_aa0d35dd67797aac21fbe414a84c1679c"><div class="ttname"><a href="struct_faces_visibility.html#aa0d35dd67797aac21fbe414a84c1679c">FacesVisibility::front</a></div><div class="ttdeci">bool front</div><div class="ttdoc">Answers the question &quot;Is the front face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:31</div></div>
-<div class="ttc" id="astruct_faces_visibility_html_aa9ba5d3f9371c0720018568a31018df7"><div class="ttname"><a href="struct_faces_visibility.html#aa9ba5d3f9371c0720018568a31018df7">FacesVisibility::left</a></div><div class="ttdeci">bool left</div><div class="ttdoc">Answers the question &quot;Is the left face of this block visible?&quot;.</div><div class="ttdef"><b>Definition:</b> BlockModel.h:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

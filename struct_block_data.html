@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: BlockVisibility Struct Reference</title>
+<title>Block Forge: BlockData Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('struct_block_visibility.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('struct_block_data.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -87,43 +87,51 @@ $(document).ready(function(){initNavTree('struct_block_visibility.html',''); ini
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="struct_block_visibility-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">BlockVisibility Struct Reference</div></div>
+<a href="struct_block_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">BlockData Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Contains the information about a certain block and the visibility of its faces.  
- <a href="struct_block_visibility.html#details">More...</a></p>
+ <a href="struct_block_data.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_chunk_blocks_8h_source.html">ChunkBlocks.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa51082c92960f985c18e01333de124e8"><td class="memItemLeft" align="right" valign="top"><a id="aa51082c92960f985c18e01333de124e8" name="aa51082c92960f985c18e01333de124e8"></a>
-std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>model</b> = nullptr</td></tr>
-<tr class="memdesc:aa51082c92960f985c18e01333de124e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the model of a block. <br /></td></tr>
-<tr class="separator:aa51082c92960f985c18e01333de124e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af542b1c1ee2d08729c301c9dce404a87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_faces_visibility.html">FacesVisibility</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_block_visibility.html#af542b1c1ee2d08729c301c9dce404a87">visibility</a> {true, true, true, true, true, true}</td></tr>
-<tr class="memdesc:af542b1c1ee2d08729c301c9dce404a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the visibility of block faces.  <a href="struct_block_visibility.html#af542b1c1ee2d08729c301c9dce404a87">More...</a><br /></td></tr>
-<tr class="separator:af542b1c1ee2d08729c301c9dce404a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd327576c4a4c1fbe455c8764188d40"><td class="memItemLeft" align="right" valign="top"><a id="a8cd327576c4a4c1fbe455c8764188d40" name="a8cd327576c4a4c1fbe455c8764188d40"></a>
+Byte&#160;</td><td class="memItemRight" valign="bottom"><b>blockModel</b> = 0b00000000</td></tr>
+<tr class="memdesc:a8cd327576c4a4c1fbe455c8764188d40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block ID from the blocks map. <br /></td></tr>
+<tr class="separator:a8cd327576c4a4c1fbe455c8764188d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15d237ad4aad300a53fbfd40da6381ca"><td class="memItemLeft" align="right" valign="top">Byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_block_data.html#a15d237ad4aad300a53fbfd40da6381ca">blockFlags</a> = 0b00000000</td></tr>
+<tr class="memdesc:a15d237ad4aad300a53fbfd40da6381ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the flags of of the block.  <a href="struct_block_data.html#a15d237ad4aad300a53fbfd40da6381ca">More...</a><br /></td></tr>
+<tr class="separator:a15d237ad4aad300a53fbfd40da6381ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Contains the information about a certain block and the visibility of its faces. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="af542b1c1ee2d08729c301c9dce404a87" name="af542b1c1ee2d08729c301c9dce404a87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af542b1c1ee2d08729c301c9dce404a87">&#9670;&nbsp;</a></span>visibility</h2>
+<a id="a15d237ad4aad300a53fbfd40da6381ca" name="a15d237ad4aad300a53fbfd40da6381ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d237ad4aad300a53fbfd40da6381ca">&#9670;&nbsp;</a></span>blockFlags</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_faces_visibility.html">FacesVisibility</a> BlockVisibility::visibility {true, true, true, true, true, true}</td>
+          <td class="memname">Byte BlockData::blockFlags = 0b00000000</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Represents the visibility of block faces. </p>
-<p >This structure represents the visibility of block faces. The value "true" means that the block face in a certain position should be visible. For instance, if the camera can see this block face, the value should remain true. Otherwise, if the block is hidden behind others and cannot be seen, the visibility of this face should be disabled. </p>
+<p>Represents the flags of of the block. </p>
+<p >What each bit means: <br  />
+ 0: Is the FRONT face of this block visible?, <br  />
+ 1: Is the BACK face of this block visible?, <br  />
+ 2: Is the LEFT face of this block visible?, <br  />
+ 3: Is the RIGHT face of this block visible?, <br  />
+ 4: Is the TOP face of this block visible?, <br  />
+ 5: Is the BOTTOM face of this block visible?, <br  />
+ 6: Is the block active? Or it's treated as an air. <br  />
+ 7: unused. </p>
 
 </div>
 </div>
@@ -135,7 +143,7 @@ std::shared_ptr&lt; <a class="el" href="class_block_model.html">BlockModel</a> &
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="struct_block_visibility.html">BlockVisibility</a></li>
+    <li class="navelem"><a class="el" href="struct_block_data.html">BlockData</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -93,28 +93,39 @@ $(document).ready(function(){initNavTree('_chunk_8h_source.html',''); initResiza
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;ChunkBlocks.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;ChunkMesh.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_chunk.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk.html">Chunk</a></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_chunk_mesh.html">ChunkMesh</a> _mesh;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    std::shared_ptr&lt;Texture&gt; _blockTexture;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Blocks/BlockMap.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_chunk.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk.html">Chunk</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_chunk_mesh.html">ChunkMesh</a> _mesh;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    ChunkBlocks _blocks;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; size, std::shared_ptr&lt;Texture&gt; blocksTexture, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a>(ChunkBlocks blocks, std::shared_ptr&lt;Texture&gt; blocksTexture, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; size, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Draw</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a1942da34a087387a3c71b16ab8bfd3e2">Chunk</a>(<span class="keywordtype">size_t</span> chunkSize, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blockMap);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a1942da34a087387a3c71b16ab8bfd3e2">Chunk</a>(<a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a> frame, ChunkBlocks blocks, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blockMap);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#ad8e60c062522f6e83ce46e60fef20554">LoadBlocks</a>(<span class="keyword">const</span> ChunkBlocks&amp; blocks);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#a41fbf2b8aec483ad59d58841ac03ef6a">LoadMesh</a>(<span class="keyword">const</span> std::vector&lt;Vertex&gt;&amp; precalculatedMesh);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_chunk.html#a1942da34a087387a3c71b16ab8bfd3e2">Chunk</a>(<a class="code hl_class" href="class_chunk_frame.html">ChunkFrame</a> frame, ChunkBlocks blocks, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blockMap, <span class="keyword">const</span> std::vector&lt;Vertex&gt;&amp;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                   precalculatedMesh);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk.html#aafa43da2f791ed04557033f78c0701eb">Draw</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_texture_atlas.html">TextureAtlas</a>&amp; blockTexture, <span class="keyword">const</span> <a class="code hl_class" href="class_camera.html">Camera</a>&amp; camera);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:9</div></div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
-<div class="ttc" id="aclass_chunk_html"><div class="ttname"><a href="class_chunk.html">Chunk</a></div><div class="ttdoc">Represents a single chunk placed in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.h:11</div></div>
-<div class="ttc" id="aclass_chunk_html_a06956544975958b89ff190699b856ebd"><div class="ttname"><a href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk::Chunk</a></div><div class="ttdeci">Chunk(const size_t &amp;size, std::shared_ptr&lt; Texture &gt; blocksTexture, Shader &amp;shader)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:4</div></div>
-<div class="ttc" id="aclass_chunk_html_a904bf1fb0e5c0b893003a3265be35443"><div class="ttname"><a href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Chunk::Draw</a></div><div class="ttdeci">void Draw(const Camera &amp;camera) const</div><div class="ttdoc">Draws the chunk in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:15</div></div>
-<div class="ttc" id="aclass_chunk_mesh_html"><div class="ttname"><a href="class_chunk_mesh.html">ChunkMesh</a></div><div class="ttdoc">Represents the chunk mesh and manages it in a runtime.</div><div class="ttdef"><b>Definition:</b> ChunkMesh.h:8</div></div>
-<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
+<div class="ttc" id="aclass_chunk_frame_html"><div class="ttname"><a href="class_chunk_frame.html">ChunkFrame</a></div><div class="ttdoc">A structure that represents the frame of chunk. It's location and size.</div><div class="ttdef"><b>Definition:</b> ChunkFrame.h:7</div></div>
+<div class="ttc" id="aclass_chunk_html"><div class="ttname"><a href="class_chunk.html">Chunk</a></div><div class="ttdoc">Represents a single chunk placed in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.h:12</div></div>
+<div class="ttc" id="aclass_chunk_html_a1942da34a087387a3c71b16ab8bfd3e2"><div class="ttname"><a href="class_chunk.html#a1942da34a087387a3c71b16ab8bfd3e2">Chunk::Chunk</a></div><div class="ttdeci">Chunk(size_t chunkSize, BlockMap &amp;blockMap)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:4</div></div>
+<div class="ttc" id="aclass_chunk_html_a41fbf2b8aec483ad59d58841ac03ef6a"><div class="ttname"><a href="class_chunk.html#a41fbf2b8aec483ad59d58841ac03ef6a">Chunk::LoadMesh</a></div><div class="ttdeci">void LoadMesh(const std::vector&lt; Vertex &gt; &amp;precalculatedMesh)</div><div class="ttdoc">Loads precalculated mesh.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:14</div></div>
+<div class="ttc" id="aclass_chunk_html_aafa43da2f791ed04557033f78c0701eb"><div class="ttname"><a href="class_chunk.html#aafa43da2f791ed04557033f78c0701eb">Chunk::Draw</a></div><div class="ttdeci">void Draw(const TextureAtlas &amp;blockTexture, const Camera &amp;camera)</div><div class="ttdoc">Draws the chunk in the world.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:32</div></div>
+<div class="ttc" id="aclass_chunk_html_ad8e60c062522f6e83ce46e60fef20554"><div class="ttname"><a href="class_chunk.html#ad8e60c062522f6e83ce46e60fef20554">Chunk::LoadBlocks</a></div><div class="ttdeci">void LoadBlocks(const ChunkBlocks &amp;blocks)</div><div class="ttdoc">Loads blocks data that are inside the chunk.</div><div class="ttdef"><b>Definition:</b> Chunk.cpp:9</div></div>
+<div class="ttc" id="aclass_chunk_mesh_html"><div class="ttname"><a href="class_chunk_mesh.html">ChunkMesh</a></div><div class="ttdoc">Represents the chunk mesh and manages it in a runtime.</div><div class="ttdef"><b>Definition:</b> ChunkMesh.h:10</div></div>
+<div class="ttc" id="aclass_texture_atlas_html"><div class="ttname"><a href="class_texture_atlas.html">TextureAtlas</a></div><div class="ttdoc">Represents an image extracted from the Texture Atlas and used as a Texture.</div><div class="ttdef"><b>Definition:</b> TextureAtlas.h:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

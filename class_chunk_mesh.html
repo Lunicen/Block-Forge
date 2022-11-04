@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -86,7 +86,6 @@ $(document).ready(function(){initNavTree('class_chunk_mesh.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_chunk_mesh-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ChunkMesh Class Reference</div></div>
@@ -103,18 +102,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f867a843bff848147111142424fb1f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a5f867a843bff848147111142424fb1f0">ChunkMesh</a> (<a class="el" href="class_shader.html">Shader</a> &amp;blockShader, const size_t &amp;sizeOfChunk)</td></tr>
 <tr class="memdesc:a5f867a843bff848147111142424fb1f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk_mesh.html#a5f867a843bff848147111142424fb1f0">More...</a><br /></td></tr>
 <tr class="separator:a5f867a843bff848147111142424fb1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a5190455f0d9ad23b9919d53e1b78c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a0a5190455f0d9ad23b9919d53e1b78c1">Rebuild</a> (const ChunkBlocks &amp;blocks) const</td></tr>
-<tr class="memdesc:a0a5190455f0d9ad23b9919d53e1b78c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the mesh basing on the passed blocks.  <a href="class_chunk_mesh.html#a0a5190455f0d9ad23b9919d53e1b78c1">More...</a><br /></td></tr>
-<tr class="separator:a0a5190455f0d9ad23b9919d53e1b78c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c9d56a8a9835f5806c0ee6ecee56b5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a2c9d56a8a9835f5806c0ee6ecee56b5f">Draw</a> (const <a class="el" href="class_texture.html">Texture</a> &amp;blocksTexture, const <a class="el" href="class_camera.html">Camera</a> &amp;camera) const</td></tr>
-<tr class="memdesc:a2c9d56a8a9835f5806c0ee6ecee56b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders blocks inside the chunk.  <a href="class_chunk_mesh.html#a2c9d56a8a9835f5806c0ee6ecee56b5f">More...</a><br /></td></tr>
-<tr class="separator:a2c9d56a8a9835f5806c0ee6ecee56b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83b876de4d425dfebfe2126425da677"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#ac83b876de4d425dfebfe2126425da677">ChunkMesh</a> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices, <a class="el" href="class_shader.html">Shader</a> &amp;blockShader, const size_t &amp;sizeOfChunk)</td></tr>
+<tr class="memdesc:ac83b876de4d425dfebfe2126425da677"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk_mesh.html#ac83b876de4d425dfebfe2126425da677">More...</a><br /></td></tr>
+<tr class="separator:ac83b876de4d425dfebfe2126425da677"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a997996b4151f8e83fc2349e57a2b5bd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a997996b4151f8e83fc2349e57a2b5bd8">Rebuild</a> (const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices)</td></tr>
+<tr class="memdesc:a997996b4151f8e83fc2349e57a2b5bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the mesh basing on the precalculated mesh.  <a href="class_chunk_mesh.html#a997996b4151f8e83fc2349e57a2b5bd8">More...</a><br /></td></tr>
+<tr class="separator:a997996b4151f8e83fc2349e57a2b5bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837f3ce6a71367ce64b5824674bd49fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a837f3ce6a71367ce64b5824674bd49fb">Rebuild</a> (const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;frame, const ChunkBlocks &amp;blocks, <a class="el" href="class_block_map.html">BlockMap</a> &amp;blockMap)</td></tr>
+<tr class="memdesc:a837f3ce6a71367ce64b5824674bd49fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds the mesh basing on the passed blocks.  <a href="class_chunk_mesh.html#a837f3ce6a71367ce64b5824674bd49fb">More...</a><br /></td></tr>
+<tr class="separator:a837f3ce6a71367ce64b5824674bd49fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32bacefb84885623ad95e58b6c258cc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_mesh.html#a32bacefb84885623ad95e58b6c258cc5">Draw</a> (const <a class="el" href="class_texture.html">Texture</a> &amp;blocksTexture, const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="memdesc:a32bacefb84885623ad95e58b6c258cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders blocks inside the chunk.  <a href="class_chunk_mesh.html#a32bacefb84885623ad95e58b6c258cc5">More...</a><br /></td></tr>
+<tr class="separator:a32bacefb84885623ad95e58b6c258cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Represents the chunk mesh and manages it in a runtime. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5f867a843bff848147111142424fb1f0" name="a5f867a843bff848147111142424fb1f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f867a843bff848147111142424fb1f0">&#9670;&nbsp;</a></span>ChunkMesh()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f867a843bff848147111142424fb1f0">&#9670;&nbsp;</a></span>ChunkMesh() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,9 +163,61 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ac83b876de4d425dfebfe2126425da677" name="ac83b876de4d425dfebfe2126425da677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83b876de4d425dfebfe2126425da677">&#9670;&nbsp;</a></span>ChunkMesh() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChunkMesh::ChunkMesh </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html">Shader</a> &amp;&#160;</td>
+          <td class="paramname"><em>blockShader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>sizeOfChunk</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices</td><td>- vertices of precalculated chunk mesh. </td></tr>
+    <tr><td class="paramname">blockShader</td><td>- <a class="el" href="class_shader.html" title="Handles shader programs.">Shader</a> of the blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">sizeOfChunk</td><td>- Size of the chunk edge. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0a5190455f0d9ad23b9919d53e1b78c1" name="a0a5190455f0d9ad23b9919d53e1b78c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a5190455f0d9ad23b9919d53e1b78c1">&#9670;&nbsp;</a></span>Rebuild()</h2>
+<a id="a997996b4151f8e83fc2349e57a2b5bd8" name="a997996b4151f8e83fc2349e57a2b5bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a997996b4151f8e83fc2349e57a2b5bd8">&#9670;&nbsp;</a></span>Rebuild() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,9 +225,51 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void ChunkMesh::Rebuild </td>
           <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rebuilds the mesh basing on the precalculated mesh. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices</td><td>- vertices of precalculated chunk mesh. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a837f3ce6a71367ce64b5824674bd49fb" name="a837f3ce6a71367ce64b5824674bd49fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837f3ce6a71367ce64b5824674bd49fb">&#9670;&nbsp;</a></span>Rebuild() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChunkMesh::Rebuild </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_chunk_frame.html">ChunkFrame</a> &amp;&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const ChunkBlocks &amp;&#160;</td>
-          <td class="paramname"><em>blocks</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramname"><em>blocks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_block_map.html">BlockMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>blockMap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -178,15 +277,17 @@ Public Member Functions</h2></td></tr>
 <p>Rebuilds the mesh basing on the passed blocks. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">frame</td><td>- Frame of the chunk. </td></tr>
     <tr><td class="paramname">blocks</td><td>- Blocks inside the chunk. </td></tr>
+    <tr><td class="paramname">blockMap</td><td>- Reference to the block map. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a2c9d56a8a9835f5806c0ee6ecee56b5f" name="a2c9d56a8a9835f5806c0ee6ecee56b5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c9d56a8a9835f5806c0ee6ecee56b5f">&#9670;&nbsp;</a></span>Draw()</h2>
+<a id="a32bacefb84885623ad95e58b6c258cc5" name="a32bacefb84885623ad95e58b6c258cc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32bacefb84885623ad95e58b6c258cc5">&#9670;&nbsp;</a></span>Draw()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +307,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> const</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -214,7 +315,7 @@ Public Member Functions</h2></td></tr>
 <p>Renders blocks inside the chunk. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">blocksTexture</td><td>- The texture that blocks uses. </td></tr>
+    <tr><td class="paramname">blocksTexture</td><td>- The texture that the blocks are using. </td></tr>
     <tr><td class="paramname">camera</td><td>- Reference to the camera, so the blocks could be seen. </td></tr>
   </table>
   </dd>

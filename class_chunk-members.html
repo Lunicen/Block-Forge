@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -91,9 +91,12 @@ $(document).ready(function(){initNavTree('class_chunk.html',''); initResizable()
 
 <p>This is the complete list of members for <a class="el" href="class_chunk.html">Chunk</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_chunk.html#a06956544975958b89ff190699b856ebd">Chunk</a>(const size_t &amp;size, std::shared_ptr&lt; Texture &gt; blocksTexture, Shader &amp;shader)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_chunk.html#a692686f463beeccb594e33e7894000c1">Chunk</a>(ChunkBlocks blocks, std::shared_ptr&lt; Texture &gt; blocksTexture, const size_t &amp;size, Shader &amp;shader)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_chunk.html#a904bf1fb0e5c0b893003a3265be35443">Draw</a>(const Camera &amp;camera) const</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_chunk.html#a1942da34a087387a3c71b16ab8bfd3e2">Chunk</a>(size_t chunkSize, BlockMap &amp;blockMap)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_chunk.html#a23bf80145c73343e1c92caaa417ec027">Chunk</a>(ChunkFrame frame, ChunkBlocks blocks, BlockMap &amp;blockMap)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_chunk.html#af63f65857e4d1deb7a82ea84c24eb2d1">Chunk</a>(ChunkFrame frame, ChunkBlocks blocks, BlockMap &amp;blockMap, const std::vector&lt; Vertex &gt; &amp;precalculatedMesh)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_chunk.html#aafa43da2f791ed04557033f78c0701eb">Draw</a>(const TextureAtlas &amp;blockTexture, const Camera &amp;camera)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_chunk.html#ad8e60c062522f6e83ce46e60fef20554">LoadBlocks</a>(const ChunkBlocks &amp;blocks)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_chunk.html#a41fbf2b8aec483ad59d58841ac03ef6a">LoadMesh</a>(const std::vector&lt; Vertex &gt; &amp;precalculatedMesh)</td><td class="entry"><a class="el" href="class_chunk.html">Chunk</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

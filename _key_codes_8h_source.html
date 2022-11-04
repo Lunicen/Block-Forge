@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -98,20 +98,34 @@ $(document).ready(function(){initNavTree('_key_codes_8h_source.html',''); initRe
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    s = GLFW_KEY_S,</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    d = GLFW_KEY_D,</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    escape  = GLFW_KEY_ESCAPE,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    space   = GLFW_KEY_SPACE,</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    leftShift   = GLFW_KEY_LEFT_SHIFT,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    rightShift  = GLFW_KEY_RIGHT_SHIFT,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    leftCtrl    = GLFW_KEY_LEFT_CONTROL,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    rightCtrl   = GLFW_KEY_RIGHT_CONTROL</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">enum class</span> MouseButton</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    left = GLFW_MOUSE_BUTTON_LEFT,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    right = GLFW_MOUSE_BUTTON_RIGHT</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    key1 = GLFW_KEY_1,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    key2 = GLFW_KEY_2,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    key3 = GLFW_KEY_3,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    key4 = GLFW_KEY_4,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    key5 = GLFW_KEY_5,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    key6 = GLFW_KEY_6,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    key7 = GLFW_KEY_7,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    key8 = GLFW_KEY_8,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    key9 = GLFW_KEY_9,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    key0 = GLFW_KEY_0,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    plus = GLFW_KEY_EQUAL,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    minus = GLFW_KEY_MINUS,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    escape  = GLFW_KEY_ESCAPE,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    space   = GLFW_KEY_SPACE,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    leftShift   = GLFW_KEY_LEFT_SHIFT,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    rightShift  = GLFW_KEY_RIGHT_SHIFT,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    leftCtrl    = GLFW_KEY_LEFT_CONTROL,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    rightCtrl   = GLFW_KEY_RIGHT_CONTROL</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">enum class</span> MouseButton</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    left = GLFW_MOUSE_BUTTON_LEFT,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    right = GLFW_MOUSE_BUTTON_RIGHT,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

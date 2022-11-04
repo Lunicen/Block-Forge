@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('_dynamic_mesh_8h_source.html',''); ini
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    std::unique_ptr&lt;VertexBuffer&gt; _vbo;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_shader.html">Shader</a>&amp; _shader;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    std::vector&lt;Vertex&gt; _vertices;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    GLsizei _verticesSize;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    GLsizei _indicesInPatternAmount{};</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GLsizei _indicesInOneInstance{};</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
@@ -104,7 +104,7 @@ $(document).ready(function(){initNavTree('_dynamic_mesh_8h_source.html',''); ini
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_function" href="class_dynamic_mesh.html#af6a13c991b0ee7ed3972ecaca7cfb21f">DynamicMesh</a>(std::vector&lt;Vertex&gt; vertices, <span class="keyword">const</span> std::vector&lt;TriangleIndexes&gt;&amp; indicesPattern, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; maxInstancesAmount);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_function" href="class_dynamic_mesh.html#aea1a47222d10b13fc95bc37bf9b0cb54">DynamicMesh</a>(<span class="keyword">const</span> std::vector&lt;Vertex&gt;&amp; vertices, <span class="keyword">const</span> std::vector&lt;TriangleIndexes&gt;&amp; indicesPattern, <a class="code hl_class" href="class_shader.html">Shader</a>&amp; shader, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; maxInstancesAmount);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_dynamic_mesh.html#a70c287f201077ea22b2fe734b0adbba2">Update</a>(<span class="keyword">const</span> std::vector&lt;Vertex&gt;&amp; vertices);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
@@ -113,12 +113,12 @@ $(document).ready(function(){initNavTree('_dynamic_mesh_8h_source.html',''); ini
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Handles input to allow spectating the world.</div><div class="ttdef"><b>Definition:</b> Camera.h:15</div></div>
 <div class="ttc" id="aclass_dynamic_mesh_html"><div class="ttname"><a href="class_dynamic_mesh.html">DynamicMesh</a></div><div class="ttdoc">Represents a dynamic mesh of a Model.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.h:9</div></div>
-<div class="ttc" id="aclass_dynamic_mesh_html_a58276c380e311b7c8fdf9889b90a314d"><div class="ttname"><a href="class_dynamic_mesh.html#a58276c380e311b7c8fdf9889b90a314d">DynamicMesh::Draw</a></div><div class="ttdeci">void Draw(const Texture &amp;texture, const Camera &amp;camera)</div><div class="ttdoc">Draws the mesh.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:68</div></div>
-<div class="ttc" id="aclass_dynamic_mesh_html_a70c287f201077ea22b2fe734b0adbba2"><div class="ttname"><a href="class_dynamic_mesh.html#a70c287f201077ea22b2fe734b0adbba2">DynamicMesh::Update</a></div><div class="ttdeci">void Update(const std::vector&lt; Vertex &gt; &amp;vertices)</div><div class="ttdoc">Rebuilds the mesh.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:59</div></div>
-<div class="ttc" id="aclass_dynamic_mesh_html_af6a13c991b0ee7ed3972ecaca7cfb21f"><div class="ttname"><a href="class_dynamic_mesh.html#af6a13c991b0ee7ed3972ecaca7cfb21f">DynamicMesh::DynamicMesh</a></div><div class="ttdeci">DynamicMesh(std::vector&lt; Vertex &gt; vertices, const std::vector&lt; TriangleIndexes &gt; &amp;indicesPattern, Shader &amp;shader, const size_t &amp;maxInstancesAmount)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:22</div></div>
+<div class="ttc" id="aclass_dynamic_mesh_html_a58276c380e311b7c8fdf9889b90a314d"><div class="ttname"><a href="class_dynamic_mesh.html#a58276c380e311b7c8fdf9889b90a314d">DynamicMesh::Draw</a></div><div class="ttdeci">void Draw(const Texture &amp;texture, const Camera &amp;camera)</div><div class="ttdoc">Draws the mesh.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:74</div></div>
+<div class="ttc" id="aclass_dynamic_mesh_html_a70c287f201077ea22b2fe734b0adbba2"><div class="ttname"><a href="class_dynamic_mesh.html#a70c287f201077ea22b2fe734b0adbba2">DynamicMesh::Update</a></div><div class="ttdeci">void Update(const std::vector&lt; Vertex &gt; &amp;vertices)</div><div class="ttdoc">Rebuilds the mesh.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:63</div></div>
+<div class="ttc" id="aclass_dynamic_mesh_html_aea1a47222d10b13fc95bc37bf9b0cb54"><div class="ttname"><a href="class_dynamic_mesh.html#aea1a47222d10b13fc95bc37bf9b0cb54">DynamicMesh::DynamicMesh</a></div><div class="ttdeci">DynamicMesh(const std::vector&lt; Vertex &gt; &amp;vertices, const std::vector&lt; TriangleIndexes &gt; &amp;indicesPattern, Shader &amp;shader, const size_t &amp;maxInstancesAmount)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> DynamicMesh.cpp:22</div></div>
 <div class="ttc" id="aclass_mesh_html"><div class="ttname"><a href="class_mesh.html">Mesh</a></div><div class="ttdoc">The interface for the classes which purpose is to create mesh for the models.</div><div class="ttdef"><b>Definition:</b> Mesh.h:13</div></div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">Handles shader programs.</div><div class="ttdef"><b>Definition:</b> Shader.h:14</div></div>
-<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">Texture represents an image that is displayed on the.</div><div class="ttdef"><b>Definition:</b> Texture.h:8</div></div>
+<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">Texture represents an image that is displayed on the.</div><div class="ttdef"><b>Definition:</b> Texture.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

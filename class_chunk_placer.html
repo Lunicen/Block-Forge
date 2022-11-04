@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6</span>
+   <div id="projectname">Block Forge<span id="projectnumber">&#160;v0.6.1</span>
    </div>
    <div id="projectbrief">Simple voxel engine written in C++</div>
   </td>
@@ -102,16 +102,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ac8edcfb9c8b7fd1aea75b781c50ef0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer</a> (OrderType orderType, size_t chunkSize, size_t renderDistance, const Position &amp;initPosition)</td></tr>
 <tr class="memdesc:a1ac8edcfb9c8b7fd1aea75b781c50ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">More...</a><br /></td></tr>
 <tr class="separator:a1ac8edcfb9c8b7fd1aea75b781c50ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ca70b61992b620ab11bbd405897e888"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_placer.html#a8ca70b61992b620ab11bbd405897e888">Update</a> (const Position &amp;position)</td></tr>
-<tr class="memdesc:a8ca70b61992b620ab11bbd405897e888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the chunk placer to adapt to the current frame.  <a href="class_chunk_placer.html#a8ca70b61992b620ab11bbd405897e888">More...</a><br /></td></tr>
-<tr class="separator:a8ca70b61992b620ab11bbd405897e888"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9399d9845790ff2cabfba302dac17f3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_placer.html#a9399d9845790ff2cabfba302dac17f3f">Bind</a> (std::shared_ptr&lt; <a class="el" href="class_world_generator.html">WorldGenerator</a> &gt; generator)</td></tr>
-<tr class="memdesc:a9399d9845790ff2cabfba302dac17f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds world generator to the chunk placer.  <a href="class_chunk_placer.html#a9399d9845790ff2cabfba302dac17f3f">More...</a><br /></td></tr>
-<tr class="separator:a9399d9845790ff2cabfba302dac17f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb34968ebba20d0667101cb15c20d9cd"><td class="memItemLeft" align="right" valign="top"><a id="aeb34968ebba20d0667101cb15c20d9cd" name="aeb34968ebba20d0667101cb15c20d9cd"></a>
-std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunks</b> ()</td></tr>
-<tr class="memdesc:aeb34968ebba20d0667101cb15c20d9cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the map of placed chunks. <br /></td></tr>
-<tr class="separator:aeb34968ebba20d0667101cb15c20d9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ed076bcad5c5c6548020c2e9f9b29a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_placer.html#a2ed076bcad5c5c6548020c2e9f9b29a0">ReactToCameraMovement</a> (const Position &amp;position)</td></tr>
+<tr class="memdesc:a2ed076bcad5c5c6548020c2e9f9b29a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapts chunk placer to the camera position.  <a href="class_chunk_placer.html#a2ed076bcad5c5c6548020c2e9f9b29a0">More...</a><br /></td></tr>
+<tr class="separator:a2ed076bcad5c5c6548020c2e9f9b29a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33942087f0b0b7eddc9979970cf6afdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">Bind</a> (const std::shared_ptr&lt; <a class="el" href="class_world_generator.html">WorldGenerator</a> &gt; &amp;generator, size_t chunkSize)</td></tr>
+<tr class="memdesc:a33942087f0b0b7eddc9979970cf6afdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds world generator to the chunk placer.  <a href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">More...</a><br /></td></tr>
+<tr class="separator:a33942087f0b0b7eddc9979970cf6afdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974283b79eede77b6ea25f80a1c22a4a"><td class="memItemLeft" align="right" valign="top"><a id="a974283b79eede77b6ea25f80a1c22a4a" name="a974283b79eede77b6ea25f80a1c22a4a"></a>
+HashMap&lt; Position, std::unique_ptr&lt; <a class="el" href="class_chunk.html">Chunk</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunks</b> () const</td></tr>
+<tr class="memdesc:a974283b79eede77b6ea25f80a1c22a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the map of placed chunks. <br /></td></tr>
+<tr class="separator:a974283b79eede77b6ea25f80a1c22a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8245bf5297cda6b674b70267e0c8d17"><td class="memItemLeft" align="right" valign="top"><a id="ad8245bf5297cda6b674b70267e0c8d17" name="ad8245bf5297cda6b674b70267e0c8d17"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Terminate</b> () const</td></tr>
+<tr class="memdesc:ad8245bf5297cda6b674b70267e0c8d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates the chunk placer. <br /></td></tr>
+<tr class="separator:ad8245bf5297cda6b674b70267e0c8d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Handles placing the chunks around the camera. </p>
@@ -169,14 +173,14 @@ std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_c
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8ca70b61992b620ab11bbd405897e888" name="a8ca70b61992b620ab11bbd405897e888"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ca70b61992b620ab11bbd405897e888">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="a2ed076bcad5c5c6548020c2e9f9b29a0" name="a2ed076bcad5c5c6548020c2e9f9b29a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ed076bcad5c5c6548020c2e9f9b29a0">&#9670;&nbsp;</a></span>ReactToCameraMovement()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ChunkPlacer::Update </td>
+          <td class="memname">void ChunkPlacer::ReactToCameraMovement </td>
           <td>(</td>
           <td class="paramtype">const Position &amp;&#160;</td>
           <td class="paramname"><em>position</em></td><td>)</td>
@@ -185,7 +189,7 @@ std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_c
       </table>
 </div><div class="memdoc">
 
-<p>Updates the chunk placer to adapt to the current frame. </p>
+<p>Adapts chunk placer to the camera position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td>- Position around which chunks are going to be placed. </td></tr>
@@ -195,8 +199,8 @@ std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_c
 
 </div>
 </div>
-<a id="a9399d9845790ff2cabfba302dac17f3f" name="a9399d9845790ff2cabfba302dac17f3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9399d9845790ff2cabfba302dac17f3f">&#9670;&nbsp;</a></span>Bind()</h2>
+<a id="a33942087f0b0b7eddc9979970cf6afdf" name="a33942087f0b0b7eddc9979970cf6afdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33942087f0b0b7eddc9979970cf6afdf">&#9670;&nbsp;</a></span>Bind()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,9 +208,19 @@ std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_c
         <tr>
           <td class="memname">void ChunkPlacer::Bind </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_world_generator.html">WorldGenerator</a> &gt;&#160;</td>
-          <td class="paramname"><em>generator</em></td><td>)</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_world_generator.html">WorldGenerator</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>generator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>chunkSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -215,6 +229,7 @@ std::unordered_map&lt; Position, std::unique_ptr&lt; <a class="el" href="class_c
 <p >The world generator is used to define how the world is generated, when this class handles only displaying it in an optimal way. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">generator</td><td>- reference to the world generator. </td></tr>
+    <tr><td class="paramname">chunkSize</td><td>- size of a chunk. </td></tr>
   </table>
   </dd>
 </dl>
