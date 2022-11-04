@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -127,7 +127,7 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -141,7 +141,7 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.cpp" />
-    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
-    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Hud.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Blocks\BlockProvider.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\BlockFaceModel.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\StaticMesh.cpp" />
@@ -171,6 +171,7 @@
     <ClCompile Include="src\Application\HID\HumanInterfaceDevice.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Camera.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Mesh\Geometry\ElementBuffer.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.cpp" />
     <ClCompile Include="src\Core\FileUtils.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_opengl3.cpp" />
@@ -189,19 +190,20 @@
     <ClCompile Include="src\Application\Layer\Sandbox\World\WorldGenerator.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Blocks\BlockBuilder.cpp" />
-    <ClCompile Include="src\Application\Layer\Sandbox\World\WorldGeneratorUtils.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.h" />
     <ClInclude Include="src\Application\HID\KeyCodes.h" />
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
     <ClInclude Include="src\Application\Layer\Layer.h" />
     <ClInclude Include="src\Application\Layer\PauseMenu\PauseMenuLayer.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\Hud.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\SandboxLayer.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\DynamicMesh.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Mesh\Mesh.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMesh.h" />
-    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\ChunkBuilder.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Application\Window.h" />
     <ClInclude Include="src\Core\OpenGLHeaders.h" />
@@ -228,9 +230,9 @@
     <ClCompile Include="src\Application\Layer\Sandbox\Utils\FPSCounter.cpp" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\TiltedCubeOrder.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Blocks\BlockBuilder.h" />
-    <ClInclude Include="src\Application\Layer\Sandbox\World\WorldGeneratorUtils.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.h" />
     <ClInclude Include="src\Application\LayerStack\LayerStack.h" />
+    <ClInclude Include="src\DebugTools\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Layer\Sandbox\Utils\FPSCounter.h" />
@@ -261,11 +263,13 @@
     <ClInclude Include="src\Application\Layer\Sandbox\World\WorldGenerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Data\Biomes.json" />
+    <None Include="src\Data\Generators.json" />
     <None Include="src\Data\Blocks.json" />
     <None Include="src\Data\Shaders\Block.frag" />
     <None Include="src\Data\Shaders\Block.vert" />
     <None Include="Settings.json" />
+    <None Include="src\Data\Shaders\Hud.frag" />
+    <None Include="src\Data\Shaders\Hud.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

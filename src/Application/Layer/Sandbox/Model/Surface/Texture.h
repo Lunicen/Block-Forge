@@ -4,6 +4,7 @@
 
 /// @class Texture
 /// @brief Texture represents an image that is displayed on the @see Mesh.
+/// @warning Do not make this Static
 class Texture
 {
 	static int _usedTextureSlots;

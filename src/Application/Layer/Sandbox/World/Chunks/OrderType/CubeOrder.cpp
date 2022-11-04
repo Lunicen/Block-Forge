@@ -2,8 +2,8 @@
 
 size_t CubeOrder::GetChunksAmount()
 {
-	const auto& chunkSize = GetChunkSize();
-	return chunkSize * chunkSize * chunkSize;
+	const auto& dimension = GetRenderDistance() * 2 + 1;
+	return dimension * dimension * dimension;
 }
 
 std::vector<glm::ivec3> CubeOrder::GetChunksAround(const glm::ivec3 normalizedOrigin)

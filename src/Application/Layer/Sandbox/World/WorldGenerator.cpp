@@ -1,10 +1,8 @@
 #include "WorldGenerator.h"
 
-#include "WorldGeneratorUtils.h"
-
 WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 {
-	auto biomeProvider = BiomeProvider("src/Data/Biomes.json", _blockMap);
+	auto biomeProvider = BiomeProvider("src/Data/Generators.json", _blockMap);
 	_biomes = biomeProvider.GetBiomes(_seed);
 
 	const auto placerNoise = biomeProvider.GetPlacerNoise(_seed);
@@ -14,7 +12,6 @@ WorldGenerator::WorldGenerator(const int seed) : _seed(seed)
 void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const
 {
 	_placer->PaintChunk(frame, blocks);
-	WorldGeneratorUtils::OptimizeChunk(frame, blocks, *_placer);
 }
 
 BlockMap& WorldGenerator::GetBlockMap()

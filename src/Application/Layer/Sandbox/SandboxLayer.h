@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/vec3.hpp>
 
+#include "Hud.h"
 #include "Application/Layer/Layer.h"
 #include "Application/Layer/Sandbox/Camera.h"
 #include "Application/Layer/Sandbox/Utils/FPSCounter.h"
@@ -15,6 +16,7 @@ class SandboxLayer final : public Layer
 	std::unique_ptr<Camera> _camera{};
 	std::unique_ptr<ChunkPlacer> _chunkPlacer{};
 	std::unique_ptr<FPSCounter> _fpsCounter{};
+	std::unique_ptr<Hud> _hud{};
 
 	std::shared_ptr<WorldGenerator> _worldGenerator;
 
@@ -31,36 +33,41 @@ public:
 	{
 		glEnable(GL_DEPTH_TEST);
 
-		constexpr auto worldSeed = 69;
-		constexpr auto chunkSize = 32;
-		constexpr auto renderDistance = 2;
+		constexpr auto worldSeed = 1337;
+		constexpr auto chunkSize = 16;
+		constexpr auto renderDistance = 3;
 
-		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 0.0f, 0.0f));
+		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
+		_hud = std::make_unique<Hud>();
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::tiltedCube, chunkSize, renderDistance, _camera->GetPosition());
-		_chunkPlacer->Bind(_worldGenerator);
-
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
+		_chunkPlacer->Bind(_worldGenerator, chunkSize);
+		
 		_fpsCounter = std::make_unique<FPSCounter>();
 	}
 
 	void OnUpdate() override
 	{
-		const ChunkRenderer chunkRenderer;
-
 		_camera->Update();
-		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_camera);
+
+		const ChunkRenderer chunkRenderer;
+		chunkRenderer.Render(_chunkPlacer->GetChunks(), *_worldGenerator->GetBlockMap().GetBlocksTexture(), *_camera);
+		
 		_fpsCounter->Update();
+		_hud->Draw();
 	}
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
 		_camera->HandleInput(hid);
-		_chunkPlacer->Update(_camera->GetPosition());
+		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
+		_hud->ChangeSelectedItemSlot(hid);
 	}
 
 	~SandboxLayer() override
 	{
+		_chunkPlacer->Terminate();
 		gltTerminate();
 	}
 };

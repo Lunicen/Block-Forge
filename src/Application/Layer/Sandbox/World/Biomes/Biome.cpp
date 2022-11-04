@@ -1,15 +1,14 @@
 #include "Biome.h"
 
+#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
-void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origin, const std::vector<float>& noise, const size_t yLevel) const
+void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const std::vector<float>& noise, const Byte& visibilityFlags) const
 {
-	if (noise[yLevel] > 0) return;
-
 	auto blockIndex = _depthLevel.size() - 1;
 	while (blockIndex > 0)
 	{
-		const auto& noiseOverThisBlock = yLevel + _depthLevel[blockIndex].first;
-		if (noise[noiseOverThisBlock] <= 0)
+		const auto& yLevelOverThisBlock = _depthLevel[blockIndex].first;
+		if (noise[yLevelOverThisBlock] < 0.0f)
 		{
 			break;
 		}
@@ -17,12 +16,16 @@ void Biome::SetBlockAccordingToNoise(ChunkBlocks& blocks, const glm::ivec3 origi
 		--blockIndex;
 	}
 
-	const BlockVisibility blockData = 
+	Byte blockFlags = visibilityFlags;
+	blockFlags |= BlockFlag.activate; // Enables block, so it's not treated as an air.
+
+	const BlockData blockData = 
 	{
-		_blocksMap.Get(_depthLevel[blockIndex].second)
+		_blocksMap.GetId(_depthLevel[blockIndex].second),
+		blockFlags
 	};
 
-	blocks[origin] = blockData;
+	blocks[ChunkUtils::GetBlockIndex(origin, frame.size)] = BlockData(blockData);
 }
 
 Biome::Biome(std::string name, const Noise3D& noise, std::vector<std::pair<size_t, std::string>> depthLevels, BlockMap& blocksMap)
@@ -30,25 +33,18 @@ Biome::Biome(std::string name, const Noise3D& noise, std::vector<std::pair<size_
 {
 }
 
-void Biome::PaintColumn(const ChunkFrame& frame, ChunkBlocks& blocks, const int xOffset, const int yOffset, const int zOffset) const
+void Biome::PaintBlockAt(const Position& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const Byte& visibilityFlags) const
 {
-	const auto& x = xOffset;
-	const auto& z = zOffset;
-
-	const auto noise = GetColumnNoiseWithAdditionalHeight(
-		frame,
-		xOffset, yOffset, zOffset, 
+	const auto noise = GetNoiseAtWithTopColumn(
+		origin + frame.origin * static_cast<int>(frame.size),
 		_depthLevel.back().first
 	);
 
-	const auto origin = frame.origin * static_cast<int>(frame.size);
-
-	for (size_t y = 0; y < frame.size; ++y)
-	{
-		SetBlockAccordingToNoise(
-			blocks,
-			origin + glm::ivec3(x, y, z),
-			noise, y
-		);
-	}
+	SetBlockAccordingToNoise(
+		origin,
+		frame,
+		blocks,
+		noise,
+		visibilityFlags
+	);
 }

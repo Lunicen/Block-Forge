@@ -19,3 +19,5 @@ test/*.dll
 test/*.exp
 test/*.lib
 test/out
+*.ilk
+*.pdb

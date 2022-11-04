@@ -1,18 +1,35 @@
 #include "Chunk.h"
 
 
-Chunk::Chunk(const size_t& size, std::shared_ptr<Texture> blocksTexture, Shader& shader) :
-	_mesh(ChunkMesh(shader, size)), _blockTexture(std::move(blocksTexture))
+Chunk::Chunk(const size_t chunkSize, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), chunkSize)
+{
+	_blocks.resize(chunkSize * chunkSize * chunkSize);
+}
+
+void Chunk::LoadBlocks(const ChunkBlocks& blocks)
+{
+	_blocks = blocks;
+}
+
+void Chunk::LoadMesh(const std::vector<Vertex>& precalculatedMesh)
+{
+	_mesh.Rebuild(precalculatedMesh);
+}
+
+Chunk::Chunk(const ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
 {
 }
 
-Chunk::Chunk(ChunkBlocks blocks, std::shared_ptr<Texture> blocksTexture, const size_t& size, Shader& shader) : _mesh(ChunkMesh(shader, size)), _blockTexture(
-	std::move(blocksTexture)), _blocks(std::move(blocks))
+Chunk::Chunk(
+	const ChunkFrame frame, 
+	ChunkBlocks blocks,
+	BlockMap& blockMap, 
+	const std::vector<Vertex>& precalculatedMesh)
+: _mesh(precalculatedMesh, blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
 {
-	_mesh.Rebuild(_blocks);
 }
 
-void Chunk::Draw(const Camera& camera) const
+void Chunk::Draw(const TextureAtlas& blockTexture, const Camera& camera)
 {
-	_mesh.Draw(*_blockTexture, camera);
+	_mesh.Draw(blockTexture, camera);
 }

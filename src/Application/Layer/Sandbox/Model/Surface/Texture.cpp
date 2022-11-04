@@ -20,6 +20,7 @@ Texture::Texture(const std::string& filenameWithImage) : _textureSlot(_usedTextu
 	const auto imageData = stbi_load(filenameWithImage.c_str(), &_width, &_height, &channelsInFile, 0);
 
 	glGenTextures(1, &_texture);
+
 	glActiveTexture(GL_TEXTURE0 + _textureSlot);
 	glBindTexture(_textureType, _texture);
 
@@ -42,7 +43,7 @@ void Texture::Bind(const Shader& shader) const
 	const auto textureUniform = glGetUniformLocation(shader.GetProgram(), "textureSample");
 
 	shader.Load();
-	glUniform1i(textureUniform, 0);
+	glUniform1i(textureUniform, _textureSlot);
 
 	glActiveTexture(GL_TEXTURE0 + _textureSlot);
 	glBindTexture(_textureType, _texture);

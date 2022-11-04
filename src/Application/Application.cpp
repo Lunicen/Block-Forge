@@ -98,6 +98,8 @@ void Application::Run()
 
 	while(!glfwWindowShouldClose(_window.GetHandle()))
 	{
+		glfwPollEvents();
+
 		if (_window.GetWidth() <= 0 || _window.GetHeight() <= 0) continue;
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
@@ -107,7 +109,6 @@ void Application::Run()
 		sandbox.ProcessEvents(_hid);
 
 		glfwSwapBuffers(_window.GetHandle());
-		glfwPollEvents();
 	}
 
 	_log.Info("Quitting...");
