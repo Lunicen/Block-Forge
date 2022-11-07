@@ -26,7 +26,7 @@ class Camera
 	float _sensitivity = 100.0f;
 	float _fieldOfView = 45.0f;
 	float _nearPane = 0.1f;
-	float _farPane = 100.0f;
+	float _farPane = 200.0f;
 
 	const KeyboardKey _left = KeyboardKey::a;
 	const KeyboardKey _right = KeyboardKey::d;
