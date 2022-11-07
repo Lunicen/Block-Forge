@@ -1,8 +1,9 @@
 #include "Hud.h"
 #include "Model/Surface/Texture.h"
 
-HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, const Point position, const float scale = 1.0f)
-: _shader(shader), _texture(texture), _position(position), _scale(scale), _state(false)
+HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas& itemTexture, Shader& shader, const Point position, const float scale = 1.0f)
+	: _shader(shader), _texture(texture), _itemTexture(itemTexture), _position(position), _scale(scale),
+      _state(false), _isContainingItem(false), _blockMap(blockMap), _item("empty")
 {
 	for (auto& vertex : _vertices)
 	{
@@ -19,19 +20,24 @@ HudItemSlot::HudItemSlot(TextureAtlas &texture, Shader &shader, const Point posi
 
 	for (auto& vertex : _vertices2)
 	{
-		vertex.position = vertex.position * _scale;
+		vertex.position = vertex.position * _scale * 0.75f;
 	}
 
 	for (auto& vertex : _vertices2)
 	{
-		vertex.position = vertex.position + Point3D(_position.x, _position.y, 0);
+		vertex.position = vertex.position + Point3D(_position.x + _scale/8, _position.y + _scale/8, 0);
 	}
 
-
+	_itemTexture.SetSprite(_vertices2, 1, 0, false);
+	_mesh2 = std::make_unique<StaticMesh>(_vertices2, _indices2, _shader);
 }
 
 void HudItemSlot::Draw() const
 {
+	//this needs to be checked the opposite order should be correct but for some reason this gives desired results
+	if (_isContainingItem)
+		_mesh2->Draw(_itemTexture);
+
 	_mesh->Draw(_texture);
 }
 
@@ -47,6 +53,26 @@ void HudItemSlot::Deactivate() {
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
+void HudItemSlot::AddItem(std::string block){ //(string block)
+	_isContainingItem = true;
+	_item = block;
+
+	auto blockTextureUvCoordinates = _blockMap.Get(block)->GetFaces().right.GetUvCoordinates(); //great
+	//_itemTexture.SetSprite(_vertices2, 0, 0, false); //x,y
+	_itemTexture.SetSprite(_vertices2, blockTextureUvCoordinates);
+	_mesh2 = std::make_unique<StaticMesh>(_vertices2, _indices2, _shader);
+}
+
+void HudItemSlot::RemoveItem(){
+	_isContainingItem = false;
+}
+
+std::string HudItemSlot::GetItem()
+{
+	return _item;
+}
+
+
 void Hud::DeactivateEntireHudItemSlotBar() const
 {
 	for (auto& hudItemSlotRow : _hudItemSlotBar)
@@ -58,7 +84,7 @@ void Hud::DeactivateEntireHudItemSlotBar() const
 	}
 }
 
-Hud::Hud()
+Hud::Hud(BlockMap& blockMap)
 {
 	float scale = 0.20f;
 	constexpr int numberOfColumns = 2;
@@ -70,9 +96,15 @@ Hud::Hud()
 		_hudItemSlotBar.emplace_back();
 		for (int row = 0; row < numberOfRows; row++)
 		{
-			_hudItemSlotBar[column].emplace_back(std::make_unique<HudItemSlot>(_texture, _shader, Point(-1.0f + static_cast<float>(row) * scale, -1.0f + static_cast<float>(column) * scale), scale));
+			_hudItemSlotBar[column].emplace_back(std::make_unique<HudItemSlot>(blockMap,_texture, _fullGameAtlas, _shader, Point(-1.0f + static_cast<float>(row) * scale, -1.0f + static_cast<float>(column) * scale), scale));
 		}
 	}
+
+	_hudItemSlotBar[1][0]->AddItem("grass");
+	_hudItemSlotBar[1][1]->AddItem("sand");
+
+	_hudItemSlotBar[0][0]->AddItem("dirt");
+	_hudItemSlotBar[0][1]->AddItem("cobblestone");
 }
 
 void Hud::Draw() const
@@ -109,5 +141,9 @@ void Hud::ChangeSelectedItemSlot(HumanInterfaceDevice &hid)
 
 	this->DeactivateEntireHudItemSlotBar();
 	_hudItemSlotBar[_selectedRow][_selectedSlot]->Activate();
+}
 
+std::string Hud::GetHeldItem()
+{
+	return _hudItemSlotBar[_selectedRow][_selectedSlot]->GetItem();
 }
