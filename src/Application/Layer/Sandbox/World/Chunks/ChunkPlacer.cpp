@@ -2,6 +2,8 @@
 
 #include "Structure/ChunkMeshUtils.h"
 
+Log& ChunkPlacer::_log = Log::Get();
+
 std::mutex ChunkPlacer::_chunksMutex;
 std::atomic<bool> ChunkPlacer::_hasPositionChanged;
 std::condition_variable ChunkPlacer::_lazyLoaderLock;
@@ -91,11 +93,6 @@ void ChunkPlacer::LazyLoader()
 					return true;
 				}
 
-				if (!_freeChunks.empty())
-				{
-					return true;
-				}
-
 				return false;
 			});
 
@@ -107,10 +104,17 @@ void ChunkPlacer::LazyLoader()
 			lastRememberedPosition = _previousNormalizedPosition;
 		}
 
-		const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
-		auto currentChunksOriginsSet = HashSet<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
-		
-		AddNewChunks(currentChunksOriginsSet);
+		try
+		{
+			const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
+			auto currentChunksOriginsSet = HashSet<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
+			
+			AddNewChunks(currentChunksOriginsSet);
+		}
+		catch(const std::bad_alloc& exception)
+		{
+			_log.Error("Failed to allocate memory: " + std::string(exception.what()));
+		}
 	}
 }
 
@@ -169,7 +173,8 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 
 	_generator = generator;
 
-	const auto& chunksToGenerate = _order->GetChunksAmount();
+	const auto& chunksToGenerate = _order->GetChunksAmount() * 100;
+	//const auto& freeChunksToGenerate = chunksToGenerate * 100;
 
 	_freeChunks.reserve(chunksToGenerate);
 	_loadedChunks.reserve(chunksToGenerate);
@@ -188,7 +193,8 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 void ChunkPlacer::RemoveStaleChunk() const
 {
 	auto chunksIterator = _loadedChunks.begin();
-	do
+
+	while (chunksIterator != _loadedChunks.end())
 	{
 		const auto origin = chunksIterator->first;
 
@@ -201,25 +207,34 @@ void ChunkPlacer::RemoveStaleChunk() const
 
 			break;
 		}
-		
-	} while (++chunksIterator != _loadedChunks.end());
+
+		chunksIterator++;
+	}
 }
 
 HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 {
 	if (!_chunksToLoad.empty())
 	{
-		const auto data = _chunksToLoad.back();
+		const auto position = std::get<0>(_chunksToLoad.back());
 
-		if (_chunksPositionsAroundCamera.find(std::get<0>(data)) == _chunksPositionsAroundCamera.end() ||
-			_loadedChunks.find(std::get<0>(data)) != _loadedChunks.end())
+		if (_chunksPositionsAroundCamera.find(position) == _chunksPositionsAroundCamera.end() ||
+			_loadedChunks.find(position) != _loadedChunks.end())
 		{
 			const std::lock_guard<std::mutex> lock(_chunksMutex);
-			_chunksToLoad.pop_back();
+			while (!_chunksToLoad.empty() && 
+					(_chunksPositionsAroundCamera.find(std::get<0>(_chunksToLoad.back())) != _chunksPositionsAroundCamera.end() || 
+					_loadedChunks.find(position) != _loadedChunks.end())
+				)
+			{
+				_chunksToLoad.pop_back();
+			}
 		}
 
-		else if (!_freeChunks.empty() && _chunksPositionsAroundCamera.find(std::get<0>(data)) != _chunksPositionsAroundCamera.end())
+		else if (!_freeChunks.empty() && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
 		{
+			const auto data = _chunksToLoad.back();
+
 			auto chunk = std::move(_freeChunks.back());
 			_freeChunks.pop_back();
 
@@ -238,12 +253,19 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 
 		else
 		{
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
 			RemoveStaleChunk();
 		}
 	}
 	else
 	{
-		if (_isLazyLoaderWaiting && !_freeChunks.empty())
+		if (_chunksMutex.try_lock())
+		{
+			RemoveStaleChunk();
+			_chunksMutex.unlock();
+		}
+		
+		if (_isLazyLoaderWaiting && _loadedChunks.size() < _chunksPositionsAroundCamera.size())
 		{
 			_lazyLoaderLock.notify_one();
 		}

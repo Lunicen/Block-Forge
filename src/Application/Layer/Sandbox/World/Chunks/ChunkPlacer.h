@@ -9,7 +9,7 @@
 ///	@details This class handles @see Chunk objects and manages them for optimal experience.
 class ChunkPlacer
 {
-	Log& _log = Log::Get();
+	static Log& _log;
 
 	std::unique_ptr<std::thread> _lazyLoader{};
 
