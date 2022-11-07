@@ -28,7 +28,7 @@ class ChunkPlacer
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
 
-	HashSet<Position> _chunksPositionsAroundCamera{};
+	static HashSet<Position> _chunksPositionsAroundCamera;
 
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;

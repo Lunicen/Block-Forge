@@ -19,6 +19,8 @@ Position ChunkPlacer::_previousNormalizedPosition = {};
 std::shared_ptr<WorldGenerator> ChunkPlacer::_generator = nullptr;
 std::unique_ptr<Order> ChunkPlacer::_order = nullptr;
 
+HashSet<Position> ChunkPlacer::_chunksPositionsAroundCamera = {};
+
 Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const
 {
 	auto normalizedPosition = position;
@@ -90,6 +92,11 @@ void ChunkPlacer::LazyLoader()
 				{
 					lastRememberedPosition = _previousNormalizedPosition;
 					_hasPositionChanged = false;
+					return true;
+				}
+
+				if (_loadedChunks.size() < _chunksPositionsAroundCamera.size())
+				{
 					return true;
 				}
 
@@ -259,7 +266,8 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 	}
 	else
 	{
-		if (_chunksMutex.try_lock())
+		if (static_cast<double>(_freeChunks.size()) / static_cast<double>((_chunksPositionsAroundCamera.size() + 1)) < 0.25 && 
+			_chunksMutex.try_lock())
 		{
 			RemoveStaleChunk();
 			_chunksMutex.unlock();
