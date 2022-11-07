@@ -38,6 +38,9 @@ class Camera
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
 
+	const MouseButton _lpm = MouseButton::left;
+	const MouseButton _ppm = MouseButton::right;
+
 	void HandleHorizontalMovement(const HumanInterfaceDevice& hid);
 	void HandleVerticalMovement(const HumanInterfaceDevice& hid);
 	void HandleSpeed(float boostSpeed, const HumanInterfaceDevice& hid);
@@ -59,6 +62,8 @@ public:
 	/// @brief Captures input and moves the camera accordingly.
 	///	@param hid - Reference to the Human Interface Device controller.
 	void HandleInput(const HumanInterfaceDevice& hid);
+
+	int HandleMouseAction(const HumanInterfaceDevice& hid);
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.

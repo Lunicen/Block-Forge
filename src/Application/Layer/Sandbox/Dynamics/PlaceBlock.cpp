@@ -14,7 +14,7 @@ void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unorder
 
 	if (chunks.find(Position(0, 0, 0)) != chunks.end())
 	{
-		auto blocksInChunk = chunks.at(Position(2, 20, 0))->GetBlocks();
+		auto blocksInChunk = chunks.at(Position(0, 0, 0))->GetBlocks();
 		size_t chunkSize = 16; //get from SandboxLayer.h
 
 		auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(0, 0, 0), chunkSize));
@@ -22,7 +22,7 @@ void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unorder
 
 		newBlock.blockFlags |= 0b00000010;
 
-		blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(2, 20, 0), chunkSize)) = newBlock;
+		blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(0, 0, 0), chunkSize)) = newBlock;
 		chunks.at(Position(0, 0, 0))->LoadBlocksAndBuildMesh(blocksInChunk, ChunkFrame{ Position{0,0,0}, chunkSize }, blockMap);
 	}
 

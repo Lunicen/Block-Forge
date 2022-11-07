@@ -1,5 +1,7 @@
 #include "Camera.h"
 
+#include "Dynamics/PlaceBlock.h"
+
 void Camera::Update()
 {
 	// ReSharper disable once CppInitializedValueIsAlwaysRewritten
@@ -50,6 +52,18 @@ void Camera::HandleVerticalMovement(const HumanInterfaceDevice& hid)
 void Camera::HandleSpeed(const float boostSpeed, const HumanInterfaceDevice& hid)
 {
 	_speed = hid.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
+}
+
+int Camera::HandleMouseAction(const HumanInterfaceDevice& hid) {
+	int placeOrDestroy = 0;
+
+	if (hid.IsPressed(_lpm))
+	{
+		return 1;
+	}
+	else if (hid.IsPressed(_ppm))
+		return 2;
+	else return 0;
 }
 
 void Camera::UpdateCursorMovement(const HumanInterfaceDevice& hid)
