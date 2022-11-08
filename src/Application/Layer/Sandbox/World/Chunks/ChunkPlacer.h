@@ -1,9 +1,8 @@
 #pragma once
-#include <queue>
-
 #include "Application/Layer/Sandbox/Camera.h"
 #include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "OrderType/OrderTypes.h"
+#include "rigtorp/SPSCQueue.h"
 #include "Structure/Chunk.h"
 
 /// @class ChunkPlacer
@@ -17,12 +16,11 @@ class ChunkPlacer
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
-	static std::atomic<bool> _allChunkAroundAreLoaded;
 	static std::condition_variable _lazyLoaderLock;
 	static std::atomic<bool> _isLazyLoaderWaiting;
 	static std::atomic<bool> _running;
 
-	static std::queue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
+	static rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static HashMap<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
@@ -40,7 +38,6 @@ class ChunkPlacer
 	static void LazyLoader();
 
 	void RemoveStaleChunk() const;
-	void ValidateIfChunksAroundAreLoaded() const;
 
 public:
 
