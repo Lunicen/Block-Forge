@@ -39,7 +39,7 @@ public:
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
 		_hud = std::make_unique<Hud>();
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::shortOval, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator, chunkSize);
 		
 		_fpsCounter = std::make_unique<FPSCounter>();
