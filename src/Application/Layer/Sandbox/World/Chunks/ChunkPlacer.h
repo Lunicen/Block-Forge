@@ -15,6 +15,7 @@ class ChunkPlacer
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
+	static std::atomic<bool> _allChunkAroundAreLoaded;
 	static std::condition_variable _lazyLoaderLock;
 	static std::atomic<bool> _isLazyLoaderWaiting;
 	static std::atomic<bool> _running;
@@ -49,7 +50,7 @@ public:
 
 	/// @brief Adapts chunk placer to the camera position.
 	///	@param position - Position around which chunks are going to be placed.
-	void ReactToCameraMovement(const Position& position);
+	void ReactToCameraMovement(const Position& position) const;
 
 	/// @brief Binds world generator to the chunk placer.
 	///	@details The world generator is used to define how the world is generated, when

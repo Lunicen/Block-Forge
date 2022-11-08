@@ -6,6 +6,7 @@ Log& ChunkPlacer::_log = Log::Get();
 
 std::mutex ChunkPlacer::_chunksMutex;
 std::atomic<bool> ChunkPlacer::_hasPositionChanged;
+std::atomic<bool> ChunkPlacer::_allChunkAroundAreLoaded;
 std::condition_variable ChunkPlacer::_lazyLoaderLock;
 std::atomic<bool> ChunkPlacer::_running;
 std::atomic<bool> ChunkPlacer::_isLazyLoaderWaiting;
@@ -95,7 +96,7 @@ void ChunkPlacer::LazyLoader()
 					return true;
 				}
 
-				if (_loadedChunks.size() < _chunksPositionsAroundCamera.size())
+				if (!_allChunkAroundAreLoaded)
 				{
 					return true;
 				}
@@ -107,7 +108,6 @@ void ChunkPlacer::LazyLoader()
 		}
 		else
 		{
-			_hasPositionChanged = false;
 			lastRememberedPosition = _previousNormalizedPosition;
 		}
 
@@ -117,6 +117,7 @@ void ChunkPlacer::LazyLoader()
 			auto currentChunksOriginsSet = HashSet<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
 			
 			AddNewChunks(currentChunksOriginsSet);
+			_hasPositionChanged = false;
 		}
 		catch(const std::bad_alloc& exception)
 		{
@@ -145,7 +146,7 @@ ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, cons
 	_previousNormalizedPosition = GetNormalizedPosition(initPosition, chunkSize);
 }
 
-void ChunkPlacer::ReactToCameraMovement(const Position& position)
+void ChunkPlacer::ReactToCameraMovement(const Position& position) const
 {
 	const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize());
 
@@ -157,6 +158,8 @@ void ChunkPlacer::ReactToCameraMovement(const Position& position)
 		_chunksPositionsAroundCamera = HashSet<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
 
 		_hasPositionChanged = true;
+		_allChunkAroundAreLoaded = false;
+
 		_lazyLoaderLock.notify_one();
 
 		_log.Trace("Normalized position: " + PositionToString(currentNormalizedPosition));
@@ -180,11 +183,11 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 
 	_generator = generator;
 
-	const auto& chunksToGenerate = _order->GetChunksAmount() * 100;
-	//const auto& freeChunksToGenerate = chunksToGenerate * 100;
+	const auto& chunksToGenerate = _order->GetChunksAmount() * 2;
 
 	_freeChunks.reserve(chunksToGenerate);
 	_loadedChunks.reserve(chunksToGenerate);
+	_chunksToLoad.reserve(chunksToGenerate);
 
 	for (size_t i = 0; i < chunksToGenerate; ++i)
 	{
@@ -266,16 +269,27 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 	}
 	else
 	{
-		if (static_cast<double>(_freeChunks.size()) / static_cast<double>((_chunksPositionsAroundCamera.size() + 1)) < 0.25 && 
-			_chunksMutex.try_lock())
+		if (_loadedChunks.size() > _chunksPositionsAroundCamera.size())
 		{
+			const std::lock_guard<std::mutex> lock(_chunksMutex);
 			RemoveStaleChunk();
-			_chunksMutex.unlock();
 		}
 		
-		if (_isLazyLoaderWaiting && _loadedChunks.size() < _chunksPositionsAroundCamera.size())
+		if (_isLazyLoaderWaiting && !_allChunkAroundAreLoaded)
 		{
-			_lazyLoaderLock.notify_one();
+			_allChunkAroundAreLoaded = true;
+
+			for (auto& chunk : _chunksPositionsAroundCamera)
+			{
+				const std::lock_guard<std::mutex> lock(_chunksMutex);
+				if (_loadedChunks.find(chunk) == _loadedChunks.end())
+				{
+					_allChunkAroundAreLoaded = false;
+
+					_lazyLoaderLock.notify_one();
+					break;
+				}
+			}
 		}
 	}
 
