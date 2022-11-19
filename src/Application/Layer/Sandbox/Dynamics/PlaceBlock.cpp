@@ -1,5 +1,5 @@
 #include "PlaceBlock.h"
-
+#include "cmath"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
 void PlaceBlock::FindBlock()
@@ -11,22 +11,43 @@ void PlaceBlock::FindBlock()
 
 void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
+	size_t chunkSize = 16; //get from SandboxLayer.h
+	int maxRadiusCoefficient = 4;
 
-	if (chunks.find(Position(0, 0, 0)) != chunks.end())
+	for(int radiusCoefficient=0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	{
-		auto blocksInChunk = chunks.at(Position(0, 0, 0))->GetBlocks();
-		size_t chunkSize = 16; //get from SandboxLayer.h
+		glm::vec3 pos = _position + _orientation * float(radiusCoefficient);
+		pos.x = ceil(pos.x);
+		pos.y = ceil(pos.y);
+		pos.z = ceil(pos.z);
 
-		auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(0, 0, 0), chunkSize));
-		newBlock.blockModel = blockMap.GetId("dirt2");
+		auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+		if (chunks.find(chunkPosition) != chunks.end())
+		{
 
-		newBlock.blockFlags |= 0b00000010;
 
-		blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(0, 0, 0), chunkSize)) = newBlock;
-		chunks.at(Position(0, 0, 0))->LoadBlocksAndBuildMesh(blocksInChunk, ChunkFrame{ Position{0,0,0}, chunkSize }, blockMap);
+			auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
+			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & 0b00000010) == 0)
+			{
+				continue;
+			}
+
+			pos += glm::vec3(0, 1, 0);
+			chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+
+			auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
+			newBlock.blockModel = blockMap.GetId("dirt2");
+
+			newBlock.blockFlags |= 0b11111110;
+
+			blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(pos), chunkSize)) = newBlock;
+			chunks.at(chunkPosition)->LoadBlocksAndBuildMesh(blocksInChunk, ChunkFrame{ chunkPosition, chunkSize }, blockMap);
+			break;
+		}
 	}
 
-		
+
+
 }
 
 

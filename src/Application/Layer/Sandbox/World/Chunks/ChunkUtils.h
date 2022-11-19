@@ -33,4 +33,17 @@ public:
 
 		return {x, y, z};
 	}
+
+	static Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize)
+	{
+		auto normalizedPosition = position;
+
+		normalizedPosition /= chunkSize;
+
+		normalizedPosition.x = floor(normalizedPosition.x);
+		normalizedPosition.y = floor(normalizedPosition.y);
+		normalizedPosition.z = floor(normalizedPosition.z);
+
+		return { normalizedPosition };
+	}
 };

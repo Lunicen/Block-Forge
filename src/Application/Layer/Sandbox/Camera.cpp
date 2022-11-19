@@ -55,7 +55,6 @@ void Camera::HandleSpeed(const float boostSpeed, const HumanInterfaceDevice& hid
 }
 
 int Camera::HandleMouseAction(const HumanInterfaceDevice& hid) {
-	int placeOrDestroy = 0;
 
 	if (hid.IsPressed(_lpm))
 	{
