@@ -17,6 +17,11 @@ void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unorder
 		pos.z = float(int(pos.z));
 
 		auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+
+		pos.x = float(int(pos.x) % chunkSize);
+		pos.y = float(int(pos.y) % chunkSize);
+		pos.z = float(int(pos.z) % chunkSize);
+
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
 			auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
@@ -26,7 +31,7 @@ void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unorder
 			}
 
 			pos += glm::vec3(0, 1, 0);
-			chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+		//	chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
 
 			auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
 			newBlock.blockModel = blockMap.GetId("dirt2");
