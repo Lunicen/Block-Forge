@@ -28,3 +28,6 @@
 [submodule "lib/glText"]
 	path = lib/glText
 	url = https://github.com/vallentin/glText
+[submodule "lib/robin-hood-hashing"]
+	path = lib/robin-hood-hashing
+	url = https://github.com/martinus/robin-hood-hashing

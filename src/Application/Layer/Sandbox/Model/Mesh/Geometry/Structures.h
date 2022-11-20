@@ -1,7 +1,14 @@
 #pragma once
+#include <robin_hood.h>
 #include <glm/glm.hpp>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+
+template<class T1, class T2>
+using HashMap = robin_hood::unordered_map<T1, T2>;
+
+template<class T>
+using HashSet = robin_hood::unordered_set<T>;
 
 using Byte = unsigned char;
 
