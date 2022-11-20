@@ -1,31 +1,24 @@
 #include "PlaceBlock.h"
-#include "cmath"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
-void PlaceBlock::FindBlock()
-{
 
 
-
-}
 
 void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
 	size_t chunkSize = 16; //get from SandboxLayer.h
 	int maxRadiusCoefficient = 4;
 
-	for(int radiusCoefficient=0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
+	for(int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	{
 		glm::vec3 pos = _position + _orientation * float(radiusCoefficient);
-		pos.x = ceil(pos.x);
-		pos.y = ceil(pos.y);
-		pos.z = ceil(pos.z);
+		pos.x = float(int(pos.x));
+		pos.y = float(int(pos.y));
+		pos.z = float(int(pos.z));
 
 		auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
-
-
 			auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
 			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & 0b00000010) == 0)
 			{
@@ -45,9 +38,5 @@ void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unorder
 			break;
 		}
 	}
-
-
-
 }
-
 

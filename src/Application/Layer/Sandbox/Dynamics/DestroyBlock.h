@@ -12,15 +12,6 @@ class DestroyBlock {
 
 
 	public:
-	    static void FindBlock();
 		static void Destroy(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
-
-
-
-
-
-
-
-
 
 };
