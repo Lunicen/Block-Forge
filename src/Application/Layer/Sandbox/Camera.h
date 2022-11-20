@@ -63,12 +63,16 @@ public:
 	///	@param hid - Reference to the Human Interface Device controller.
 	void HandleInput(const HumanInterfaceDevice& hid);
 
+	/// @brief Captures mouse press and destroy or place block.
+    ///	@param hid - Reference to the Human Interface Device controller.
 	int HandleMouseAction(HumanInterfaceDevice& hid) const;
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.
 	glm::vec3 GetPosition() const;
 
+	/// @brief Get camera orientation.
+	///	@return Returns 3D vector representation.
 	glm::vec3 GetOrientation() const;
 
 	/// @brief Get default speed.

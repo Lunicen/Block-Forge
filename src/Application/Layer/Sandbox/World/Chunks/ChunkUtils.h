@@ -34,6 +34,9 @@ public:
 		return {x, y, z};
 	}
 
+	/// @brief Returns the block normalized position based on its index from the flattened 3d array.
+	///	@param position - the position of the camera.
+	///	@param chunkSize - size of the chunk (in one dimension).
 	static Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize)
 	{
 		auto normalizedPosition = position;
