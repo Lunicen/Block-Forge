@@ -10,12 +10,13 @@
 
 	 for (int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	 {
-		 glm::vec3 pos = _position + _orientation * float(radiusCoefficient);
-		 pos.x = float(int(pos.x));
-		 pos.y = float(int(pos.y));
-		 pos.z = float(int(pos.z));
+		 glm::vec3 pos = _position + _orientation * static_cast<float>(radiusCoefficient);
+		 pos.x = static_cast<float>(static_cast<int>(pos.x));
+		 pos.y = static_cast<float>(static_cast<int>(pos.y));
+		 pos.z = static_cast<float>(static_cast<int>(pos.z));
 
 		 auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+
 		 if (chunks.find(chunkPosition) != chunks.end())
 		 {
 			 auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
