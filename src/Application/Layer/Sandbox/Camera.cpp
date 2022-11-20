@@ -54,13 +54,13 @@ void Camera::HandleSpeed(const float boostSpeed, const HumanInterfaceDevice& hid
 	_speed = hid.IsPressed(_boost) ? boostSpeed : _defaultSpeed;
 }
 
-int Camera::HandleMouseAction(const HumanInterfaceDevice& hid) {
+int Camera::HandleMouseAction(HumanInterfaceDevice& hid) {
 
-	if (hid.IsPressed(_lpm))
+	if (hid.IsPressedOnce(_lpm))
 	{
 		return 1;
 	}
-	else if (hid.IsPressed(_ppm))
+	else if (hid.IsPressedOnce(_ppm))
 		return 2;
 	else return 0;
 }
