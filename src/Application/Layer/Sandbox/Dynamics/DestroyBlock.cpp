@@ -2,7 +2,7 @@
 #include "Application/Layer/Sandbox/World/Chunks/Structure/Chunk.h"
 #include "Application/Layer/Sandbox/World/Chunks/Structure/ChunkFrame.h"
 
- void DestroyBlock::Destroy(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
+ void DestroyBlock::Destroy(glm::vec3 _orientation, glm::vec3 _position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
 	constexpr int maxRadiusCoefficient = 4;
 

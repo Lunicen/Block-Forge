@@ -2,9 +2,7 @@
 #include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
 
-
-
-void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
+void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
 	constexpr int maxRadiusCoefficient = 4;
 

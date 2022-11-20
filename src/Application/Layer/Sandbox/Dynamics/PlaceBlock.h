@@ -6,10 +6,10 @@
 class PlaceBlock {
 
 public:
-		/// @brief Destroy block in front of the camera
-		///	@param _orientation - orientation of the camera
-		///	@param _position - position of the camera
-		/// @param chunks - the map with chunks with their positions
-		///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
-	static void Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
+	/// @brief Destroy block in front of the camera
+	///	@param _orientation - orientation of the camera
+	///	@param _position - position of the camera
+	/// @param chunks - the map with chunks with their positions
+	///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
+	static void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
 };
