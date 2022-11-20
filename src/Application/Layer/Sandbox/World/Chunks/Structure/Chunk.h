@@ -32,12 +32,17 @@ public:
 	///	@param blocks - chunk blocks.
 	void LoadBlocks(const ChunkBlocks& blocks);
 
+	/// @brief Get blocks.
 	ChunkBlocks GetBlocks();
 
 	/// @brief Loads precalculated mesh.
 	///	@param precalculatedMesh - precalculated mesh.
 	void LoadMesh(const std::vector<Vertex>& precalculatedMesh);
 
+	/// @details Load given chunk
+	///	@param frame - Frame of the chunk.
+	///	@param blocks - The blocks inside the chunk.
+	///	@param blockMap - Reference to the blocks map.
 	void LoadBlocksAndBuildMesh(const ChunkBlocks& blocks, const ChunkFrame& frame, BlockMap& blockMap);
 
 	/// @brief The constructor.
