@@ -62,11 +62,18 @@ public:
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
-		if(_camera->HandleMouseAction(hid) == 1)
-			PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
-		if (_camera->HandleMouseAction(hid) == 2)
-			DestroyBlock::Destroy(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
 
+		switch (_camera->HandleMouseAction(hid)) {
+		case 1:
+			PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
+			break;
+		case 2:
+			DestroyBlock::Destroy(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
+			break;
+
+		default:
+			break;
+		}
 		_camera->HandleInput(hid);
 		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
 		_hud->ChangeSelectedItemSlot(hid);

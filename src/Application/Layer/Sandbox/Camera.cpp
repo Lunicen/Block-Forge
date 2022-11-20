@@ -62,9 +62,9 @@ int Camera::HandleMouseAction(HumanInterfaceDevice& hid) const {
 	if (hid.IsPressedOnce(_lpm))
 		return place;
 	
-	if (hid.IsPressed(_ppm)) 
+	if (hid.IsPressedOnce(_ppm)) 
 		return destroy;
-	
+
 	return 0;
 }
 
