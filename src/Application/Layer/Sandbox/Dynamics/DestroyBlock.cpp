@@ -4,18 +4,21 @@
 
  void DestroyBlock::Destroy(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
-
-	 size_t chunkSize = 16; //get from SandboxLayer.h
-	 int maxRadiusCoefficient = 4;
+	constexpr int maxRadiusCoefficient = 4;
 
 	 for (int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	 {
+		 size_t chunkSize = 16;
 		 glm::vec3 pos = _position + _orientation * static_cast<float>(radiusCoefficient);
 		 pos.x = static_cast<float>(static_cast<int>(pos.x));
 		 pos.y = static_cast<float>(static_cast<int>(pos.y));
 		 pos.z = static_cast<float>(static_cast<int>(pos.z));
 
 		 auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
+
+		 pos.x = static_cast<float>(static_cast<int>(pos.x) % chunkSize);
+		 pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
+		 pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 
 		 if (chunks.find(chunkPosition) != chunks.end())
 		 {

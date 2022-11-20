@@ -63,7 +63,7 @@ public:
 	///	@param hid - Reference to the Human Interface Device controller.
 	void HandleInput(const HumanInterfaceDevice& hid);
 
-	int HandleMouseAction(HumanInterfaceDevice& hid);
+	int HandleMouseAction(HumanInterfaceDevice& hid) const;
 
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.
