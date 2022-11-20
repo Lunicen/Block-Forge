@@ -11,5 +11,5 @@ public:
 		///	@param _position - position of the camera
 		/// @param chunks - the map with chunks with their positions
 		///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
-	static void Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockmap);
+	static void Place(glm::vec3 _orientation, glm::vec3 _position, std::unordered_map<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
 };
