@@ -14,6 +14,11 @@
 		 pos.y = static_cast<float>(static_cast<int>(pos.y));
 		 pos.z = static_cast<float>(static_cast<int>(pos.z));
 
+		 glm::vec3 position = _position;
+		 position.x = static_cast<float>(static_cast<int>(pos.x));
+		 position.y = static_cast<float>(static_cast<int>(pos.y));
+		 position.z = static_cast<float>(static_cast<int>(pos.z));
+
 		 auto chunkPosition = ChunkUtils::GetNormalizedPosition(pos, chunkSize);
 
 		 pos.x = static_cast<float>(static_cast<int>(pos.x) % chunkSize);
@@ -35,7 +40,7 @@
 			 {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(1, 0, 0), chunkSize)).blockFlags |= 0b11111100;
 
-				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position - glm::vec3(1,0,0), chunkSize);
+				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position - glm::vec3(1,0,0), chunkSize);
 				 auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
 		 	 	 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(chunkSize-1, 0, 0), chunkSize)).blockFlags |= 0b11111100;
 				 chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
@@ -44,9 +49,11 @@
 			 {
 			 	blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(1, 0, 0), chunkSize)).blockFlags |= 0b11111100;
 
-				auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position + glm::vec3(1, 0, 0), chunkSize);
+				auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position + glm::vec3(1, 0, 0), chunkSize);
 				auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
-				blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(chunkSize-2, 0, 0), chunkSize)).blockFlags |= 0b11111100;
+				blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(chunkSize-1, 0, 0), chunkSize)).blockFlags |= 0b11111100;
+				chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
+
 			 }
 			 else{ 
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(1, 0, 0), chunkSize)).blockFlags |= 0b11111100;
@@ -57,17 +64,21 @@
 			 {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(0, 1, 0), chunkSize)).blockFlags |= 0b11111100;
 
-				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position - glm::vec3(0, 1, 0), chunkSize);
+				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position - glm::vec3(0, 1, 0), chunkSize);
 				 auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
 				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(0, chunkSize-1, 0), chunkSize)).blockFlags |= 0b11111100;
+				 chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
+
 			 }
 			 else if (static_cast<int>(pos.y) % chunkSize == chunkSize - 1)
 			 {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, 1, 0), chunkSize)).blockFlags |= 0b11111100;
 
-				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position + glm::vec3(0, 1, 0), chunkSize);
+				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position + glm::vec3(0, 1, 0), chunkSize);
 				 auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
-				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, chunkSize-2, 0), chunkSize)).blockFlags |= 0b11111100;
+				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, chunkSize-1, 0), chunkSize)).blockFlags |= 0b11111100;
+				 chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
+
 			 }
 			 else {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, 1, 0), chunkSize)).blockFlags |= 0b11111100;
@@ -77,18 +88,21 @@
 			 if (static_cast<int>(pos.z) % chunkSize == 0)
 			 {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(0, 0, 1), chunkSize)).blockFlags |= 0b11111100;
-				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position - glm::vec3(0, 0, 1), chunkSize);
+				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position - glm::vec3(0, 0, 1), chunkSize);
 				 auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
 				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos + glm::vec3(0, 0, chunkSize-1), chunkSize)).blockFlags |= 0b11111100;
+				 chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
 
 			 }
 			 else if (static_cast<int>(pos.z) % chunkSize == chunkSize - 1)
 			 {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, 0, 1), chunkSize)).blockFlags |= 0b11111100;
 
-				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(_position + glm::vec3(0, 0, 1), chunkSize);
+				 auto chunkPosition2 = ChunkUtils::GetNormalizedPosition(position + glm::vec3(0, 0, 1), chunkSize);
 				 auto blocksInChunk2 = chunks.at(chunkPosition2)->GetBlocks();
-				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos- glm::vec3(0, 0, chunkSize-2), chunkSize)).blockFlags |= 0b11111100;
+				 blocksInChunk2.at(ChunkUtils::GetBlockIndex(pos- glm::vec3(0, 0, chunkSize-1), chunkSize)).blockFlags |= 0b11111100;
+				 chunks.at(chunkPosition2)->LoadBlocksAndBuildMesh(blocksInChunk2, ChunkFrame{ chunkPosition2, chunkSize }, blockMap);
+
 			 }
 			 else {
 				 blocksInChunk.at(ChunkUtils::GetBlockIndex(pos - glm::vec3(0, 0, 1), chunkSize)).blockFlags |= 0b11111100;
