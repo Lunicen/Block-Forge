@@ -11,28 +11,29 @@ class ChunkPlacer
 {
 	Log& _log = Log::Get();
 
-	std::unique_ptr<std::thread> _lazyLoader;
+	std::unique_ptr<std::thread> _lazyLoader{};
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;
 	static std::condition_variable _lazyLoaderLock;
+	static std::atomic<bool> _isLazyLoaderWaiting;
 	static std::atomic<bool> _running;
 
 	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
-	static std::unordered_map<Position, std::unique_ptr<Chunk>> _loadedChunks;
+	static HashMap<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
 	static Position _previousNormalizedPosition;
 
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
 
-	std::unordered_set<Position> _chunksPositionsAroundCamera;
+	HashSet<Position> _chunksPositionsAroundCamera{};
 
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void AddNewChunks(const std::unordered_set<Position>& currentChunkOrigins);
+	static void AddNewChunks(const HashSet<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
 	void RemoveStaleChunk() const;
@@ -58,7 +59,7 @@ public:
 	void Bind(const std::shared_ptr<WorldGenerator>& generator, size_t chunkSize);
 
 	/// @brief Returns the map of placed chunks.
-	std::unordered_map<Position, std::unique_ptr<Chunk>>& GetChunks() const;
+	HashMap<Position, std::unique_ptr<Chunk>>& GetChunks() const;
 
 	/// @brief Terminates the chunk placer.
 	void Terminate() const;
