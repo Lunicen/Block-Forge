@@ -253,10 +253,10 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 		auto position = std::get<0>(*_chunksToLoad.front());
 		RemoveStaleChunksFromChunksToLoadQueue(position);
 
-		position = std::get<0>(*_chunksToLoad.front());
-
 		if (!_chunksToLoad.empty() && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
 		{
+			position = std::get<0>(*_chunksToLoad.front());
+
 			const auto data = *_chunksToLoad.front();
 
 			if (_freeChunks.empty())
