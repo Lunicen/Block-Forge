@@ -1,6 +1,4 @@
 #pragma once
-#include <glm/vec3.hpp>
-
 #include "Hud.h"
 #include "Application/Layer/Layer.h"
 #include "Application/Layer/Sandbox/Camera.h"
@@ -37,13 +35,13 @@ public:
 
 		constexpr auto worldSeed = 1337;
 		constexpr auto chunkSize = 16;
-		constexpr auto renderDistance = 1;
+		constexpr auto renderDistance = 8;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
 		_hud = std::make_unique<Hud>();
 
-		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::cube, chunkSize, renderDistance, _camera->GetPosition());
+		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::shortOval, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator, chunkSize);
 		
 		_fpsCounter = std::make_unique<FPSCounter>();

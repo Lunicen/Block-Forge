@@ -2,6 +2,7 @@
 #include "Application/Layer/Sandbox/Camera.h"
 #include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "OrderType/OrderTypes.h"
+#include "rigtorp/SPSCQueue.h"
 #include "Structure/Chunk.h"
 
 /// @class ChunkPlacer
@@ -9,7 +10,7 @@
 ///	@details This class handles @see Chunk objects and manages them for optimal experience.
 class ChunkPlacer
 {
-	Log& _log = Log::Get();
+	static Log& _log;
 
 	std::unique_ptr<std::thread> _lazyLoader{};
 
@@ -19,7 +20,7 @@ class ChunkPlacer
 	static std::atomic<bool> _isLazyLoaderWaiting;
 	static std::atomic<bool> _running;
 
-	static std::vector<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
+	static rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> _chunksToLoad;
 	static std::vector<std::unique_ptr<Chunk>> _freeChunks;
 	static HashMap<Position, std::unique_ptr<Chunk>> _loadedChunks;
 
@@ -28,14 +29,15 @@ class ChunkPlacer
 	static std::shared_ptr<WorldGenerator> _generator;
 	static std::unique_ptr<Order> _order;
 
-	HashSet<Position> _chunksPositionsAroundCamera{};
+	static HashSet<Position> _chunksPositionsAroundCamera;
 
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void AddNewChunks(const HashSet<Position>& currentChunkOrigins);
+	static void AddNewChunks(const std::vector<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
+	void RemoveStaleChunksFromChunksToLoadQueue(Position position) const;
 	void RemoveStaleChunk() const;
 
 public:
@@ -49,7 +51,7 @@ public:
 
 	/// @brief Adapts chunk placer to the camera position.
 	///	@param position - Position around which chunks are going to be placed.
-	void ReactToCameraMovement(const Position& position);
+	void ReactToCameraMovement(const Position& position) const;
 
 	/// @brief Binds world generator to the chunk placer.
 	///	@details The world generator is used to define how the world is generated, when
