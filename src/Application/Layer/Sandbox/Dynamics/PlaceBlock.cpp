@@ -21,11 +21,12 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 		pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
 		pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 
-		auto placeBlock = 0b00000010;
+		auto isThereBlock = 0b00000010;
+		auto placeBlock = 0b11111110;
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
 			auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
-			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & placeBlock) == 0)
+			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & isThereBlock) == 0)
 			{
 				continue;
 			}
@@ -34,7 +35,7 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 			auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
 			newBlock.blockModel = blockMap.GetId("dirt2");
 
-			newBlock.blockFlags |= 0b11111110;
+			newBlock.blockFlags |= placeBlock;
 
 			blocksInChunk.at(ChunkUtils::GetBlockIndex(Position(pos), chunkSize)) = newBlock;
 			chunks.at(chunkPositionForNewBlock)->LoadBlocksAndBuildMesh(blocksInChunk, ChunkFrame{ chunkPositionForNewBlock, chunkSize }, blockMap);

@@ -62,12 +62,14 @@ public:
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
+		constexpr int place = 1;
+		constexpr int destroy = 2;
 
 		switch (_camera->HandleMouseAction(hid)) {
-		case 1:
+		case place:
 			PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
 			break;
-		case 2:
+		case destroy:
 			DestroyBlock::Destroy(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
 			break;
 
