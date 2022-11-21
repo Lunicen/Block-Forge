@@ -34,7 +34,7 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
-	static void AddNewChunks(const HashSet<Position>& currentChunkOrigins);
+	static void AddNewChunks(const std::vector<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
 	void RemoveStaleChunk() const;

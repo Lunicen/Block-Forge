@@ -232,21 +232,26 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 
 	if (!_chunksToLoad.empty())
 	{
-		bool firstConditionSucceed = false;
-		const auto position = std::get<0>(*_chunksToLoad.front());
+		auto position = std::get<0>(*_chunksToLoad.front());
 
 		{
 			const std::lock_guard<std::mutex> lock(_chunksMutex);
 
-			if (_chunksPositionsAroundCamera.find(position) == _chunksPositionsAroundCamera.end() ||
-			_loadedChunks.find(position) != _loadedChunks.end())
+			while (
+				!_chunksToLoad.empty() && (
+				_chunksPositionsAroundCamera.find(position) == _chunksPositionsAroundCamera.end() ||
+				_loadedChunks.find(position) != _loadedChunks.end()))
 			{
 				_chunksToLoad.pop();
-				firstConditionSucceed = true;
+
+				if (!_chunksToLoad.empty())
+				{
+					position = std::get<0>(*_chunksToLoad.front());
+				}
 			}
 		}
 
-		if (!firstConditionSucceed && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
+		if (!_chunksToLoad.empty() && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
 		{
 			const auto data = *_chunksToLoad.front();
 
