@@ -225,7 +225,7 @@ void ChunkPlacer::RemoveStaleChunk() const
 
 HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 {
-	if (static_cast<double>(_freeChunks.size()) / static_cast<double>(_freeChunks.capacity()) < 0.25)
+	if (_freeChunks.size() - _chunksPositionsAroundCamera.size() > 0)
 	{
 		RemoveStaleChunk();
 	}
@@ -268,13 +268,6 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 			_loadedChunks[origin] = std::move(chunk);
 			
 			_chunksToLoad.pop();
-		}
-	}
-	else
-	{
-		if (_freeChunks.size() < _freeChunks.capacity() - _chunksPositionsAroundCamera.size())
-		{
-			RemoveStaleChunk();
 		}
 	}
 
