@@ -113,7 +113,7 @@ void ChunkPlacer::LazyLoader()
 
 		auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
 		std::sort(currentChunksOrigins.begin(), currentChunksOrigins.end(), 
-			[=](const Position& a, const Position& b) -> bool
+			[=](const Position& a, const Position& b)
 			{
 				const auto origin = Point3D(lastRememberedPosition);
 				return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
@@ -121,6 +121,24 @@ void ChunkPlacer::LazyLoader()
 
 		_hasPositionChanged = false;
 		AddNewChunks(currentChunksOrigins);
+	}
+}
+
+void ChunkPlacer::RemoveStaleChunksFromChunksToLoadQueue(Position position) const
+{
+	const std::lock_guard<std::mutex> lock(_chunksMutex);
+
+	while (
+		!_chunksToLoad.empty() && (
+		_chunksPositionsAroundCamera.find(position) == _chunksPositionsAroundCamera.end() ||
+		_loadedChunks.find(position) != _loadedChunks.end()))
+	{
+		_chunksToLoad.pop();
+
+		if (!_chunksToLoad.empty())
+		{
+			position = std::get<0>(*_chunksToLoad.front());
+		}
 	}
 }
 
@@ -233,23 +251,9 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 	if (!_chunksToLoad.empty())
 	{
 		auto position = std::get<0>(*_chunksToLoad.front());
+		RemoveStaleChunksFromChunksToLoadQueue(position);
 
-		{
-			const std::lock_guard<std::mutex> lock(_chunksMutex);
-
-			while (
-				!_chunksToLoad.empty() && (
-				_chunksPositionsAroundCamera.find(position) == _chunksPositionsAroundCamera.end() ||
-				_loadedChunks.find(position) != _loadedChunks.end()))
-			{
-				_chunksToLoad.pop();
-
-				if (!_chunksToLoad.empty())
-				{
-					position = std::get<0>(*_chunksToLoad.front());
-				}
-			}
-		}
+		position = std::get<0>(*_chunksToLoad.front());
 
 		if (!_chunksToLoad.empty() && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
 		{

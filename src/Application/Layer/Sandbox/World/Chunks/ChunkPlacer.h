@@ -37,6 +37,7 @@ class ChunkPlacer
 	static void AddNewChunks(const std::vector<Position>& currentChunkOrigins);
 	static void LazyLoader();
 
+	void RemoveStaleChunksFromChunksToLoadQueue(Position position) const;
 	void RemoveStaleChunk() const;
 
 public:
