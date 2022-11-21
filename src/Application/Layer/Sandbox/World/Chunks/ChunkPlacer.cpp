@@ -185,11 +185,12 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 	_generator = generator;
 
 	const auto& chunksToGenerate = _order->GetChunksAmount() * 2;
+	constexpr auto additionalFreeChunksFactor = 2;
 
-	_freeChunks.reserve(chunksToGenerate);
+	_freeChunks.reserve(chunksToGenerate * additionalFreeChunksFactor);
 	_loadedChunks.reserve(chunksToGenerate);
 
-	for (size_t i = 0; i < chunksToGenerate; ++i)
+	for (size_t i = 0; i < chunksToGenerate * additionalFreeChunksFactor; ++i)
 	{
 		_freeChunks.emplace_back(std::make_unique<Chunk>(chunkSize, _generator->GetBlockMap()));
 	}
