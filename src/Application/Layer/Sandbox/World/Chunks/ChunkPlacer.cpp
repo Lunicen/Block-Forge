@@ -41,7 +41,7 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 		   std::to_string(position.z);
 }
 
-void ChunkPlacer::AddNewChunks(const HashSet<Position>& currentChunkOrigins)
+void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunkOrigins)
 {
 	const auto size = _order->GetChunkSize();
 
@@ -55,7 +55,8 @@ void ChunkPlacer::AddNewChunks(const HashSet<Position>& currentChunkOrigins)
 		{
 			const std::lock_guard<std::mutex> lock(_chunksMutex);
 
-			if (_loadedChunks.find(origin) != _loadedChunks.end())
+			if (_chunksPositionsAroundCamera.find(origin) == _chunksPositionsAroundCamera.end() || 
+				_loadedChunks.find(origin) != _loadedChunks.end())
 			{
 				continue;
 			}
@@ -110,18 +111,16 @@ void ChunkPlacer::LazyLoader()
 			lastRememberedPosition = _previousNormalizedPosition;
 		}
 
-		try
-		{
-			const auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
-			auto currentChunksOriginsSet = HashSet<Position>(currentChunksOrigins.begin(), currentChunksOrigins.end());
-			
-			AddNewChunks(currentChunksOriginsSet);
-			_hasPositionChanged = false;
-		}
-		catch(const std::bad_alloc& exception)
-		{
-			_log.Error("Failed to allocate memory: " + std::string(exception.what()));
-		}
+		auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
+		std::sort(currentChunksOrigins.begin(), currentChunksOrigins.end(), 
+			[=](const Position& a, const Position& b) -> bool
+			{
+				const auto origin = Point3D(lastRememberedPosition);
+				return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
+			});
+
+		_hasPositionChanged = false;
+		AddNewChunks(currentChunksOrigins);
 	}
 }
 
