@@ -26,7 +26,7 @@ class Camera
 	float _sensitivity = 100.0f;
 	float _fieldOfView = 45.0f;
 	float _nearPane = 0.1f;
-	float _farPane = 100.0f;
+	float _farPane = 200.0f;
 
 	const KeyboardKey _left = KeyboardKey::a;
 	const KeyboardKey _right = KeyboardKey::d;
@@ -37,6 +37,9 @@ class Camera
 	const KeyboardKey _down = KeyboardKey::leftCtrl;
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
+
+	const MouseButton _lpm = MouseButton::left;
+	const MouseButton _ppm = MouseButton::right;
 
 	void HandleHorizontalMovement(const HumanInterfaceDevice& hid);
 	void HandleVerticalMovement(const HumanInterfaceDevice& hid);
@@ -60,9 +63,17 @@ public:
 	///	@param hid - Reference to the Human Interface Device controller.
 	void HandleInput(const HumanInterfaceDevice& hid);
 
+	/// @brief Captures mouse press and destroy or place block.
+    ///	@param hid - Reference to the Human Interface Device controller.
+	int HandleMouseAction(HumanInterfaceDevice& hid) const;
+
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.
 	glm::vec3 GetPosition() const;
+
+	/// @brief Get camera orientation.
+	///	@return Returns 3D vector representation.
+	glm::vec3 GetOrientation() const;
 
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.

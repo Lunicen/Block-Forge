@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\SPSCQueue\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\SPSCQueue\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\Win32\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -127,7 +127,7 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\SPSCQueue\include;$(SolutionDir)\lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -141,7 +141,7 @@
       <WarningLevel>Level3</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glm;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\json\include;$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\glText;$(SolutionDir)lib\robin-hood-hashing\src\include;$(SolutionDir)lib\SPSCQueue\include;$(SolutionDir)lib\spdlog\include;$(SolutionDir)lib\glad\build\x64\include;%(AdditionalIncludeDirectories);$(SolutionDir)lib\FastNoise2\include</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -150,7 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Layer\Sandbox\Dynamics\DestroyBlock.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Dynamics\PlaceBlock.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Hud.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\ShortOvalOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Model\BlockModel.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
@@ -193,6 +196,9 @@
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Layer\Sandbox\Dynamics\DestroyBlock.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\Dynamics\PlaceBlock.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\ShortOvalOrder.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.h" />
     <ClInclude Include="src\Application\HID\KeyCodes.h" />
     <ClInclude Include="src\Application\LayerStack\Stack\SandboxStack.h" />
