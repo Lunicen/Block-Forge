@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Layer\Sandbox\Dynamics\DestroyBlock.cpp" />
+    <ClCompile Include="src\Application\Layer\Sandbox\Dynamics\PlaceBlock.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\Hud.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\ShortOvalOrder.cpp" />
     <ClCompile Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.cpp" />
@@ -194,6 +196,8 @@
     <ClCompile Include="src\Application\Layer\Sandbox\Model\Surface\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Layer\Sandbox\Dynamics\DestroyBlock.h" />
+    <ClInclude Include="src\Application\Layer\Sandbox\Dynamics\PlaceBlock.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\OrderType\ShortOvalOrder.h" />
     <ClInclude Include="src\Application\Layer\Sandbox\World\Chunks\Structure\ChunkMeshUtils.h" />
     <ClInclude Include="src\Application\HID\KeyCodes.h" />
