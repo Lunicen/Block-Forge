@@ -2,14 +2,14 @@
 #include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
 
-void PlaceBlock::Place(glm::vec3 _orientation, glm::vec3 _position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
+void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {
 	constexpr int maxRadiusCoefficient = 4;
 
 	for(int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	{
 		size_t chunkSize = 16;
-		glm::vec3 pos = _position + _orientation * static_cast<float>(radiusCoefficient);
+		glm::vec3 pos = position + orientation * static_cast<float>(radiusCoefficient);
 		pos.x = static_cast<float>(static_cast<int>(pos.x));
 		pos.y = static_cast<float>(static_cast<int>(pos.y));
 		pos.z = static_cast<float>(static_cast<int>(pos.z));

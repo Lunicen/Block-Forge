@@ -9,9 +9,9 @@ class DestroyBlock {
 
 	public:
 		/// @brief Destroy block in front of the camera
-		///	@param _orientation - orientation of the camera
-		///	@param _position - position of the camera
+		///	@param orientation - orientation of the camera
+		///	@param position - position of the camera
 		/// @param chunks - the map with chunks with their positions
 		///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
-		static void Destroy(glm::vec3 _orientation, glm::vec3 _position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
+		static void Destroy(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap);
 };

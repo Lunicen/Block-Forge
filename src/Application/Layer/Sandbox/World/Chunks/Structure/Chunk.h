@@ -33,7 +33,7 @@ public:
 	void LoadBlocks(const ChunkBlocks& blocks);
 
 	/// @brief Get blocks.
-	ChunkBlocks GetBlocks();
+	ChunkBlocks GetBlocks() const;
 
 	/// @brief Loads precalculated mesh.
 	///	@param precalculatedMesh - precalculated mesh.

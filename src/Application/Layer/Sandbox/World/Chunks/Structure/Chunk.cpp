@@ -11,7 +11,7 @@ void Chunk::LoadBlocks(const ChunkBlocks& blocks)
 	_blocks = blocks;
 }
 
-ChunkBlocks Chunk::GetBlocks()
+ChunkBlocks Chunk::GetBlocks() const
 {
 	return _blocks;
 }
