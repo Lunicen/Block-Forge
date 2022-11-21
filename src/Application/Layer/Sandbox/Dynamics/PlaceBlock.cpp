@@ -21,10 +21,11 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 		pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
 		pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 
+		auto placeBlock = 0b00000010;
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
 			auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
-			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & 0b00000010) == 0)
+			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & placeBlock) == 0)
 			{
 				continue;
 			}
