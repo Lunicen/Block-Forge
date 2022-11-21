@@ -1,6 +1,6 @@
 {
   "default": {
-    "atlas": "src/Data/Textures/NewIceAtlas.png",
+    "atlas": "src/Data/Textures/NewDirtAtlas.png",
     "slotSize": 16,
     "blocks": [
       {
@@ -36,6 +36,18 @@
             "faces": [ "left", "right", "front", "back", "top", "bottom" ],
             "location": {
               "column": 0,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "dirt2",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 1,
               "row": 1
             }
           }

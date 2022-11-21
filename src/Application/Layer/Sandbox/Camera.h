@@ -38,6 +38,9 @@ class Camera
 
 	const KeyboardKey _boost = KeyboardKey::leftShift;
 
+	const MouseButton _lpm = MouseButton::left;
+	const MouseButton _ppm = MouseButton::right;
+
 	void HandleHorizontalMovement(const HumanInterfaceDevice& hid);
 	void HandleVerticalMovement(const HumanInterfaceDevice& hid);
 	void HandleSpeed(float boostSpeed, const HumanInterfaceDevice& hid);
@@ -60,9 +63,17 @@ public:
 	///	@param hid - Reference to the Human Interface Device controller.
 	void HandleInput(const HumanInterfaceDevice& hid);
 
+	/// @brief Captures mouse press and destroy or place block.
+    ///	@param hid - Reference to the Human Interface Device controller.
+	int HandleMouseAction(HumanInterfaceDevice& hid) const;
+
 	/// @brief Get camera position.
 	///	@return Returns 3D vector representation.
 	glm::vec3 GetPosition() const;
+
+	/// @brief Get camera orientation.
+	///	@return Returns 3D vector representation.
+	glm::vec3 GetOrientation() const;
 
 	/// @brief Get default speed.
 	///	@details The default speed is the normal speed of the camera.

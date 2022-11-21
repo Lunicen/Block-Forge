@@ -8,6 +8,8 @@
 #include "Application/Layer/Sandbox/World/WorldGenerator.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h"
+#include "Application/Layer/Sandbox/Dynamics/PlaceBlock.h"
+#include "Dynamics/DestroyBlock.h"
 
 /// @class SandboxLayer
 ///	@brief Represents sandbox that is played as an simulation.
@@ -35,7 +37,7 @@ public:
 
 		constexpr auto worldSeed = 1337;
 		constexpr auto chunkSize = 16;
-		constexpr auto renderDistance = 3;
+		constexpr auto renderDistance = 1;
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
@@ -60,6 +62,20 @@ public:
 	
 	void OnEvent(HumanInterfaceDevice& hid) override
 	{
+		constexpr int place = 1;
+		constexpr int destroy = 2;
+
+		switch (_camera->HandleMouseAction(hid)) {
+		case place:
+			PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
+			break;
+		case destroy:
+			DestroyBlock::Destroy(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
+			break;
+
+		default:
+			break;
+		}
 		_camera->HandleInput(hid);
 		_chunkPlacer->ReactToCameraMovement(_camera->GetPosition());
 		_hud->ChangeSelectedItemSlot(hid);
