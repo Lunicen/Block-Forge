@@ -69,58 +69,21 @@ bool MainMenuLayer::HasWindowFailedToCreate(GLFWwindow* &window)
 
 void MainMenuLayer::Draw() const
 {
-	//InitializeGlfw();
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+	ImGui::Begin("Main Menu");
 
-	//In the future window should open in fullscreen OR/AND in window
-	//monitor: glfwGetPrimaryMonitor()
-	//GLFWwindow* window = glfwCreateWindow(1600, 800, "Main menu", nullptr, nullptr); 
+	SetImguiBackgroundStyle(BackgroundStyle::dark);
+	DrawCenteredText("Welcome to the Block Forge!");
 
-	/*
-	if (HasWindowFailedToCreate(window))
+	if(DrawWindowSizedButton("EXIT"))
 	{
-		_log.Critical("Main Menu failed to generate GLFW window!");
-		glfwTerminate();
+		
 	}
-	*/
 
-	/*
-	glfwMakeContextCurrent(window);
-	InitializeImgui(window);
-	gladLoadGL();
-	*/
-
-	//bool quit = false;
-	//while (!glfwWindowShouldClose(window) && !quit)
-	//{
-		//glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		//glClear(GL_COLOR_BUFFER_BIT);
-
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		ImGui::Begin("Main Menu");
-
-		SetImguiBackgroundStyle(BackgroundStyle::dark);
-		DrawCenteredText("Welcome to the Block Forge!");
-
-		if(DrawWindowSizedButton("EXIT"))
-		{
-			//quit = true;
-		}
-
-		ImGui::End();
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		//glfwSwapBuffers(window);  	// This swaps buffers without them them new frame will not be loaded
-		//glfwPollEvents();			// Process windows events: resize and so on... without this nothing will work
-	//}
-
-	//ImGui_ImplOpenGL3_Shutdown();
-	//ImGui_ImplGlfw_Shutdown();
-	//ImGui::DestroyContext();
-
-	//glfwDestroyWindow(window);
-	//glfwTerminate();
+	ImGui::End();
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 

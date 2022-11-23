@@ -73,7 +73,7 @@ public:
 	void RemoveItem();
 
 	/// @brief Function that returns item to currently held slot.
-	std::string GetItem();
+	std::string GetItem() const;
 
 	/// @brief Function draws item slot on screen.
 	void Draw() const;

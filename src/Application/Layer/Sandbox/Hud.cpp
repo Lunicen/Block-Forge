@@ -25,7 +25,8 @@ HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas
 
 	for (auto& vertex : _vertices2)
 	{
-		vertex.position = vertex.position + Point3D(_position.x + _scale/8, _position.y + _scale/8, 0);
+		constexpr int amount = 8;
+		vertex.position = vertex.position + Point3D(_position.x + _scale / amount, _position.y + _scale / amount, 0);
 	}
 
 	_itemTexture.SetSprite(_vertices2, 1, 0, false);
@@ -53,12 +54,11 @@ void HudItemSlot::Deactivate() {
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
-void HudItemSlot::AddItem(std::string block){ //(string block)
+void HudItemSlot::AddItem(const std::string block){ 
 	_isContainingItem = true;
 	_item = block;
 
 	auto blockTextureUvCoordinates = _blockMap.Get(block)->GetFaces().right.GetUvCoordinates(); //great
-	//_itemTexture.SetSprite(_vertices2, 0, 0, false); //x,y
 	_itemTexture.SetSprite(_vertices2, blockTextureUvCoordinates);
 	_mesh2 = std::make_unique<StaticMesh>(_vertices2, _indices2, _shader);
 }
@@ -67,7 +67,7 @@ void HudItemSlot::RemoveItem(){
 	_isContainingItem = false;
 }
 
-std::string HudItemSlot::GetItem()
+std::string HudItemSlot::GetItem() const
 {
 	return _item;
 }
