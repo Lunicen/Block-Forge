@@ -51,8 +51,8 @@ class HudItemSlot
 
 
 public:
-
 	/// @brief Constructor that creates item slot in Hud.
+	///	@param blockMap - texture Atlas for blocks.
 	///	@param texture - Texture Atlas with 2 textures (selected and passive) for the item slot.
 	///	@param itemTexture - Texture Atlas with item held in the item slot.
 	///	@param shader - shader used for item slot.
@@ -66,11 +66,13 @@ public:
 	/// @brief Function deselects slot and changes it's texture.
 	void Deactivate();
 
-	//void AddItem(int x, int y);
+	/// @brief Function that adds item to currently held slot.
 	void AddItem(std::string block);
 
+	/// @brief Function that adds item to currently held slot.
 	void RemoveItem();
 
+	/// @brief Function that returns item to currently held slot.
 	std::string GetItem();
 
 	/// @brief Function draws item slot on screen.
@@ -102,6 +104,8 @@ public:
 	///	@param hid - Reference to the Human Interface Device. 
 	void ChangeSelectedItemSlot(HumanInterfaceDevice &hid);
 
+
+	/// @brief Function that returns item currently held in players hand.
 	std::string GetHeldItem();
 };
 
