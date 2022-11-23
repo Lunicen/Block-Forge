@@ -4,13 +4,15 @@
 #include "Core/Log.h"
 
 #include "imgui.h"
+#include "Application/HID/HumanInterfaceDevice.h"
+#include "Application/Layer/Layer.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 #include "Core/OpenGLHeaders.h"
 
-/// @class MainMenu
+/// @class MainMenuLayer
 /// @brief Displays the GUI that is a Main Menu.
-class MainMenu
+class MainMenuLayer : public Layer
 {
 	enum class BackgroundStyle
 	{
@@ -31,5 +33,21 @@ public:
 
 	/// @brief Creates the window and draws the interactive Main Menu.
 	void Draw() const;
+
+
+	void OnUpdate() override
+	{
+
+	}
+
+	void OnEvent(HumanInterfaceDevice& hid) override
+	{
+
+	}
+
+	MainMenuLayer()
+	{
+		LockLayer();
+	}
 };
 

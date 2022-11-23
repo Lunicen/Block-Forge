@@ -1,5 +1,23 @@
 #pragma once
-#include "BlockFaceModel.h"
+#include <array>
+#include "Mesh/Geometry/Structures.h"
+
+/// @class BlockFaceModel
+///	@brief Represents face of a @see BlockModel.
+class BlockFaceModel
+{
+	std::array<Point, VerticesInQuad> _textureCoordinates{};
+
+public:
+
+	/// @brief The constructor.
+	/// @param uvTextureCoordinates - UV texture coordinates.
+	explicit BlockFaceModel(const std::array<Point, VerticesInQuad>& uvTextureCoordinates);
+
+	/// @brief Returns the uv coordinates associated with the face model.
+	std::array<Point, VerticesInQuad>& GetUvCoordinates();
+};
+
 
 /// @brief Container for the face models of a block.
 struct BlockFaces
@@ -36,13 +54,10 @@ public:
 
 	/// @brief The constructor.
 	///	@param faces - The faces of the block.
-	explicit BlockModel(const BlockFaces& faces)
-		: _blockFaces(faces)
-	{}
+	explicit BlockModel(const BlockFaces& faces) : _blockFaces(faces) {}
 
 	/// @brief Returns the faces data of the block.
-	BlockFaces& GetFaces()
-	{
+	BlockFaces& GetFaces() {
 		return _blockFaces;
 	}
 };

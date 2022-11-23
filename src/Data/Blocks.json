@@ -1,6 +1,6 @@
 {
   "default": {
-    "atlas": "src/Data/Textures/NewDirtAtlas.png",
+    "atlas": "src/Data/Textures/FullGameAtlas.png",
     "slotSize": 16,
     "blocks": [
       {
@@ -42,17 +42,54 @@
         ]
       },
       {
-        "block": "dirt2",
+        "block": "cobblestone",
         "textures": [
           {
             "faces": [ "left", "right", "front", "back", "top", "bottom" ],
             "location": {
-              "column": 1,
+              "column": 3,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 0
+            }
+          }
+        ]
+      },
+      {
+        "block": "broken ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 2
+            }
+          }
+        ]
+      },
+      {
+        "block": "sand",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 2,
               "row": 1
             }
           }
         ]
       }
+
     ]
   }
 }

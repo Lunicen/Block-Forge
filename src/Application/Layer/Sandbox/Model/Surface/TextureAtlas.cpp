@@ -51,6 +51,16 @@ void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const unsigned x, co
 	}
 }
 
+// ReSharper disable once CppMemberFunctionMayBeStatic
+void TextureAtlas::SetSprite(std::vector<Vertex>& vertices, const std::array<Point, VerticesInQuad>& textureUvCoordinates) const
+{
+	for (size_t i = 0; i < VerticesInQuad; ++i)
+	{
+		vertices.at(i).uvCoordinate = textureUvCoordinates[i];
+	}
+}
+
+
 void TextureAtlas::SetSprite(std::array<Point, VerticesInQuad>& textureUvCoordinates, const unsigned x, const unsigned y, const bool flip)
 {
 	const auto& textureCoords = GetTextureCoordinatesAt(x, y); 

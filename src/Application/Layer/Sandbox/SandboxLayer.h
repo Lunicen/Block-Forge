@@ -39,7 +39,7 @@ public:
 
 		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
-		_hud = std::make_unique<Hud>();
+		_hud = std::make_unique<Hud>(_worldGenerator->GetBlockMap()); //this should not need block map, it should be global ?
 
 		_chunkPlacer = std::make_unique<ChunkPlacer>(OrderType::shortOval, chunkSize, renderDistance, _camera->GetPosition());
 		_chunkPlacer->Bind(_worldGenerator, chunkSize);

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Metadata.h"
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
+#include "Application/Layer/Sandbox/Model/Mesh/Mesh.h"
 #include "Application/Layer/Sandbox/Model/Surface/TextureAtlas.h"
 
 /// @class BlockBuilder
