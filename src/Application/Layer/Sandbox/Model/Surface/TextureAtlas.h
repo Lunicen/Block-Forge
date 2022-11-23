@@ -25,7 +25,7 @@ public:
 	/// @brief Sets the vertices according to the sprite from the texture atlas.
 	/// @param vertices - The vertices of the mesh.
 	/// @param textureUvCoordinates - textures on the 
-	void SetSprite(std::vector<Vertex>& vertices, const std::array<Point, VerticesInQuad>& textureUvCoordinates);
+	void SetSprite(std::vector<Vertex>& vertices, const std::array<Point, VerticesInQuad>& textureUvCoordinates) const;
 
 	/// @brief Sets the vertices according to the sprite from the texture atlas.
 	///	@param textureUvCoordinates - UV coordinates of a texture.

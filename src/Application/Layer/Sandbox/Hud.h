@@ -67,7 +67,7 @@ public:
 	void Deactivate();
 
 	/// @brief Function that adds item to currently held slot.
-	void AddItem(std::string block);
+	void AddItem(const std::string& block);
 
 	/// @brief Function that adds item to currently held slot.
 	void RemoveItem();
@@ -95,7 +95,7 @@ class Hud
 public:
 
 	/// @brief Constructor that creates Hud.
-	Hud(BlockMap& blockMap);
+	explicit Hud(BlockMap& blockMap);
 
 	/// @brief Function that Draws Hud on screen.
 	void Draw() const;

@@ -54,11 +54,11 @@ void HudItemSlot::Deactivate() {
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 }
 
-void HudItemSlot::AddItem(const std::string block){ 
+void HudItemSlot::AddItem(const std::string& block){ 
 	_isContainingItem = true;
 	_item = block;
 
-	auto blockTextureUvCoordinates = _blockMap.Get(block)->GetFaces().right.GetUvCoordinates(); //great
+	const auto& blockTextureUvCoordinates = _blockMap.Get(block)->GetFaces().right.GetUvCoordinates(); //great
 	_itemTexture.SetSprite(_vertices2, blockTextureUvCoordinates);
 	_mesh2 = std::make_unique<StaticMesh>(_vertices2, _indices2, _shader);
 }
