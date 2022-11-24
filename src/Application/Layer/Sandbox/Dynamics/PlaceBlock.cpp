@@ -1,8 +1,7 @@
 #include "PlaceBlock.h"
 #include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
 
-
-void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
+void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, std::string heldItem)
 {
 	constexpr int maxRadiusCoefficient = 4;
 
@@ -42,9 +41,14 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 				if (static_cast<int>(pos.z) == static_cast<int>(chunkSize))
 					pos.z = 0;
 			}
+			if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & isThereBlock) != 0)
+			{
+				continue;
+			}
 			auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
 
-			newBlock.blockModel = blockMap.GetId("dirt2");
+
+			newBlock.blockModel = blockMap.GetId(heldItem);
 
 			newBlock.blockFlags |= placeBlock;
 
