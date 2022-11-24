@@ -9,7 +9,7 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 	for(int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
 	{
 		size_t chunkSize = 16;
-		glm::vec3 pos = position + orientation * static_cast<float>(radiusCoefficient);
+		glm::vec3 pos = position + orientation* static_cast<float>(radiusCoefficient);
 		pos.x = static_cast<float>(static_cast<int>(pos.x));
 		pos.y = static_cast<float>(static_cast<int>(pos.y));
 		pos.z = static_cast<float>(static_cast<int>(pos.z));
@@ -32,7 +32,18 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 			}
 
 			pos += glm::vec3(0, 1, 0);
+
+			if (chunkPositionForNewBlock != chunkPosition) {
+				blocksInChunk = chunks.at(chunkPositionForNewBlock)->GetBlocks();
+				if (static_cast<int>(pos.x) == static_cast<int>(chunkSize))
+					pos.x = 0;
+				if (static_cast<int>(pos.y) == static_cast<int>(chunkSize))
+					pos.y = 0;
+				if (static_cast<int>(pos.z) == static_cast<int>(chunkSize))
+					pos.z = 0;
+			}
 			auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
+
 			newBlock.blockModel = blockMap.GetId("dirt2");
 
 			newBlock.blockFlags |= placeBlock;
