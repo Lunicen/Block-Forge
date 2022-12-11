@@ -31,3 +31,6 @@
 [submodule "lib/robin-hood-hashing"]
 	path = lib/robin-hood-hashing
 	url = https://github.com/martinus/robin-hood-hashing
+[submodule "lib/SPSCQueue"]
+	path = lib/SPSCQueue
+	url = https://github.com/rigtorp/SPSCQueue

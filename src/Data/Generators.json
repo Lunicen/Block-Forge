@@ -3,22 +3,15 @@
 
         "pattern": {
             "id": "BwA=",
-            "frequency": 0.002
+            "frequency": 0.005
         },
-
-        "fluids": [
-            {
-                "name": "Water",
-                "spawnLevel": 0
-            }
-        ],
 
         "biomes": [
             {
                 "name": "Meadow",
                 "noise": {
                     "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
-                    "frequency": 0.005
+                    "frequency": 0.0008
                 },
                 "blocks": [
                     {
@@ -28,22 +21,57 @@
                     {
                         "name": "dirt",
                         "depthLevel": 1
+                    },
+                    {
+                        "name": "cobblestone",
+                        "depthLevel": 2
                     }
                 ]
             },
             {
-                "name": "Desert",
+                "name": "Ice Desert",
                 "noise": {
-                    "id": "GQAHAAEEAAAAAAAAACBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "frequency": 0.01
+                  "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                  "frequency": 0.00085
                 },
                 "blocks": [
                     {
-                        "name": "dirt",
-                        "depthLevel": 0
+                      "name": "ice",
+                      "depthLevel": 0
+                    },
+                    {
+                      "name": "broken ice",
+                      "depthLevel": 1
+                    }
+                ]
+            },
+            {
+                "name": "Dirt Desert",
+                "noise": {
+                    "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                    "frequency": 0.00075
+                },
+                "blocks": [
+                  {
+                    "name": "dirt",
+                    "depthLevel": 0
+                  }
+                ]
+              },
+            {
+                "name": "Sand Desert",
+                "noise": {
+                   "id": "EQACAAAAAAAgQBAAAAAAQBkAEwDD9Sg/DQAEAAAAAAAgQAkAAGZmJj8AAAAAPwEEAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3MTD4AMzMzPwAAAAA/",
+                    "frequency": 0.00075
+                },
+                "blocks": [
+                    {
+                    "name": "sand",
+                    "depthLevel": 0
                     }
                 ]
             }
+
         ]
     }
 }

@@ -1,5 +1,7 @@
 #pragma once
 // ReSharper disable once CppUnusedIncludeDirective
+#include <vector>
+
 #include "Application/Layer/Sandbox/Model/BlockModel.h"
 
 /// @brief This struct represents the block data flags
