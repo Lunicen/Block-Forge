@@ -23,6 +23,6 @@ public:
 	/// @param chunks - the map with chunks with their positions
 	///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
 	///	@param heldItem - type of block, which is used to place
-	static bool PlaceBlock:: placeBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem);
+	static bool PlaceBlock:: PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem);
 
 };

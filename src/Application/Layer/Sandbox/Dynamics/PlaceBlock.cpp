@@ -24,13 +24,13 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
 
-			if (placeBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
+			if (PlaceBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
 				break;
 			continue;
 		}
 	}
 }
-bool PlaceBlock::placeBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem)
+bool PlaceBlock::PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem)
 {
 	auto isThereBlock = 0b00000010;
 	auto placeBlock = 0b11111110;
