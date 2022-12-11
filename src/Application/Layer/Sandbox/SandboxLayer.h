@@ -66,6 +66,7 @@ public:
 		switch (_camera->HandleMouseAction(hid)) {
 		case place:
 			PlaceBlock::Place(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap(), _hud->GetHeldItem());
+
 			break;
 		case destroy:
 			DestroyBlock::Destroy(_camera->GetOrientation(), _camera->GetPosition(), _chunkPlacer->GetChunks(), _worldGenerator->GetBlockMap());
