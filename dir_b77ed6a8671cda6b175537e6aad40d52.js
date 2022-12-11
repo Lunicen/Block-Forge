@@ -1,5 +1,6 @@
 var dir_b77ed6a8671cda6b175537e6aad40d52 =
 [
+    [ "Dynamics", "dir_135af7c02a92487e1421ed33b7f6f926.html", "dir_135af7c02a92487e1421ed33b7f6f926" ],
     [ "Model", "dir_07628cb095a0d6ed7f30fd07a55acd9e.html", "dir_07628cb095a0d6ed7f30fd07a55acd9e" ],
     [ "Noise", "dir_801d40e3127fa76220a989d444ca9a5b.html", "dir_801d40e3127fa76220a989d444ca9a5b" ],
     [ "Utils", "dir_4adb1f5231afe3cda317c34ac9bc2bed.html", "dir_4adb1f5231afe3cda317c34ac9bc2bed" ],

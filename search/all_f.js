@@ -23,10 +23,11 @@ var searchData=
   ['setrenderdistance_20',['SetRenderDistance',['../class_order.html#af7685c1c68163c7eae634354d2e7d466',1,'Order']]],
   ['setsensitivity_21',['SetSensitivity',['../class_camera.html#a1b5df4b2e2c2b9d6de70fdf398fcb883',1,'Camera']]],
   ['setspeed_22',['SetSpeed',['../class_camera.html#af3b8786d5ca47657f67f79c9a9b24419',1,'Camera']]],
-  ['setsprite_23',['SetSprite',['../class_texture_atlas.html#a3ab0fae7ebace864877d7c0203af5bc7',1,'TextureAtlas::SetSprite(std::vector&lt; Vertex &gt; &amp;vertices, unsigned x, unsigned y, bool flip=false)'],['../class_texture_atlas.html#a00b3edb984604873930fa47a48bc815a',1,'TextureAtlas::SetSprite(std::array&lt; Point, VerticesInQuad &gt; &amp;textureUvCoordinates, unsigned x, unsigned y, bool flip=false)']]],
+  ['setsprite_23',['SetSprite',['../class_texture_atlas.html#a3ab0fae7ebace864877d7c0203af5bc7',1,'TextureAtlas::SetSprite(std::vector&lt; Vertex &gt; &amp;vertices, unsigned x, unsigned y, bool flip=false)'],['../class_texture_atlas.html#a0381905da226176a9a5d72a696ed19b3',1,'TextureAtlas::SetSprite(std::vector&lt; Vertex &gt; &amp;vertices, const std::array&lt; Point, VerticesInQuad &gt; &amp;textureUvCoordinates) const'],['../class_texture_atlas.html#a00b3edb984604873930fa47a48bc815a',1,'TextureAtlas::SetSprite(std::array&lt; Point, VerticesInQuad &gt; &amp;textureUvCoordinates, unsigned x, unsigned y, bool flip=false)']]],
   ['setstring_24',['SetString',['../class_metadata.html#a988d7a62d4642bf6e7cdbfd56e832703',1,'Metadata']]],
   ['setwidth_25',['SetWidth',['../class_window.html#acf2700cf08127a8f0693413f99c668d8',1,'Window']]],
-  ['shader_26',['Shader',['../class_shader.html',1,'Shader'],['../class_shader.html#aa60afe8be2c497a1bd154bba57eedf9c',1,'Shader::Shader(const std::string &amp;vertexFile, const std::string &amp;fragmentFile)'],['../class_shader.html#a82902dcffbfeab356a5a024c50095724',1,'Shader::Shader(Shader &amp;&amp;)=default'],['../class_shader.html#a11126523f264f46c8b5b2959a0f82136',1,'Shader::Shader(const Shader &amp;)=default']]],
-  ['size_27',['size',['../class_chunk_frame.html#abb95f5a13657f9d9dc8cfd20f1d417bd',1,'ChunkFrame']]],
-  ['staticmesh_28',['StaticMesh',['../class_static_mesh.html',1,'StaticMesh'],['../class_static_mesh.html#a6427648a7e907ef41fb952231d2fe8ca',1,'StaticMesh::StaticMesh()']]]
+  ['shader_26',['Shader',['../class_shader.html#a82902dcffbfeab356a5a024c50095724',1,'Shader::Shader(Shader &amp;&amp;)=default'],['../class_shader.html#a11126523f264f46c8b5b2959a0f82136',1,'Shader::Shader(const Shader &amp;)=default'],['../class_shader.html',1,'Shader'],['../class_shader.html#aa60afe8be2c497a1bd154bba57eedf9c',1,'Shader::Shader()']]],
+  ['shortovalorder_27',['ShortOvalOrder',['../class_short_oval_order.html',1,'']]],
+  ['size_28',['size',['../class_chunk_frame.html#abb95f5a13657f9d9dc8cfd20f1d417bd',1,'ChunkFrame']]],
+  ['staticmesh_29',['StaticMesh',['../class_static_mesh.html',1,'StaticMesh'],['../class_static_mesh.html#a6427648a7e907ef41fb952231d2fe8ca',1,'StaticMesh::StaticMesh()']]]
 ];

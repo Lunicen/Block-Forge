@@ -114,9 +114,23 @@ $(document).ready(function(){initNavTree('_chunk_utils_8h_source.html',''); init
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> {x, y, z};</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_chunk_utils.html#a8c6da583705114d36e94c74e7d5a7e68">   40</a></span>    <span class="keyword">static</span> Position <a class="code hl_function" href="class_chunk_utils.html#a8c6da583705114d36e94c74e7d5a7e68">GetNormalizedPosition</a>(<span class="keyword">const</span> Point3D&amp; position, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; chunkSize)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">auto</span> normalizedPosition = position;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        normalizedPosition /= chunkSize;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        normalizedPosition.x = floor(normalizedPosition.x);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        normalizedPosition.y = floor(normalizedPosition.y);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        normalizedPosition.z = floor(normalizedPosition.z);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> { normalizedPosition };</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 <div class="ttc" id="aclass_chunk_utils_html"><div class="ttname"><a href="class_chunk_utils.html">ChunkUtils</a></div><div class="ttdoc">The utility class that provides an easy ways for performing calculations related to the chunks.</div><div class="ttdef"><b>Definition:</b> ChunkUtils.h:8</div></div>
 <div class="ttc" id="aclass_chunk_utils_html_a4b2f60689f30560a528e80f57705b34d"><div class="ttname"><a href="class_chunk_utils.html#a4b2f60689f30560a528e80f57705b34d">ChunkUtils::GetBlockPosition</a></div><div class="ttdeci">static Position GetBlockPosition(size_t blockIndex, const size_t &amp;chunkSize)</div><div class="ttdoc">Returns the block position based on its index from the flattened 3d array.</div><div class="ttdef"><b>Definition:</b> ChunkUtils.h:26</div></div>
+<div class="ttc" id="aclass_chunk_utils_html_a8c6da583705114d36e94c74e7d5a7e68"><div class="ttname"><a href="class_chunk_utils.html#a8c6da583705114d36e94c74e7d5a7e68">ChunkUtils::GetNormalizedPosition</a></div><div class="ttdeci">static Position GetNormalizedPosition(const Point3D &amp;position, const size_t &amp;chunkSize)</div><div class="ttdoc">Returns the block normalized position based on its index from the flattened 3d array.</div><div class="ttdef"><b>Definition:</b> ChunkUtils.h:40</div></div>
 <div class="ttc" id="aclass_chunk_utils_html_a9665ba26e07c88bad4999e3372bc8f99"><div class="ttname"><a href="class_chunk_utils.html#a9665ba26e07c88bad4999e3372bc8f99">ChunkUtils::GetBlockIndex</a></div><div class="ttdeci">static size_t GetBlockIndex(const Position &amp;origin, const size_t &amp;chunkSize)</div><div class="ttdoc">Returns the block index from the flattened 3d chunk array.</div><div class="ttdef"><b>Definition:</b> ChunkUtils.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

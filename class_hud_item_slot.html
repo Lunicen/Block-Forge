@@ -99,9 +99,9 @@ $(document).ready(function(){initNavTree('class_hud_item_slot.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af39de714fda63deb3ce8d0a0095adc15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hud_item_slot.html#af39de714fda63deb3ce8d0a0095adc15">HudItemSlot</a> (<a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;texture, <a class="el" href="class_shader.html">Shader</a> &amp;shader, Point position, float scale)</td></tr>
-<tr class="memdesc:af39de714fda63deb3ce8d0a0095adc15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates item slot in <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a>.  <a href="class_hud_item_slot.html#af39de714fda63deb3ce8d0a0095adc15">More...</a><br /></td></tr>
-<tr class="separator:af39de714fda63deb3ce8d0a0095adc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d94fa5c52a2e2b96fa550b46b491481"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hud_item_slot.html#a1d94fa5c52a2e2b96fa550b46b491481">HudItemSlot</a> (<a class="el" href="class_block_map.html">BlockMap</a> &amp;blockMap, <a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;texture, <a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;itemTexture, <a class="el" href="class_shader.html">Shader</a> &amp;shader, Point position, float scale)</td></tr>
+<tr class="memdesc:a1d94fa5c52a2e2b96fa550b46b491481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates item slot in <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a>.  <a href="class_hud_item_slot.html#a1d94fa5c52a2e2b96fa550b46b491481">More...</a><br /></td></tr>
+<tr class="separator:a1d94fa5c52a2e2b96fa550b46b491481"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8aafae0c99c1aca2aa32edbdb0c255da"><td class="memItemLeft" align="right" valign="top"><a id="a8aafae0c99c1aca2aa32edbdb0c255da" name="a8aafae0c99c1aca2aa32edbdb0c255da"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Activate</b> ()</td></tr>
 <tr class="memdesc:a8aafae0c99c1aca2aa32edbdb0c255da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function Selects slot and changes it's texture. <br /></td></tr>
@@ -110,6 +110,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Activate</b> ()</td><
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Deactivate</b> ()</td></tr>
 <tr class="memdesc:a07ffbe6fa427fc0823982a4d1af23a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function deselects slot and changes it's texture. <br /></td></tr>
 <tr class="separator:a07ffbe6fa427fc0823982a4d1af23a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532a613606673db2a2390e6dea653690"><td class="memItemLeft" align="right" valign="top"><a id="a532a613606673db2a2390e6dea653690" name="a532a613606673db2a2390e6dea653690"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddItem</b> (const std::string &amp;block)</td></tr>
+<tr class="memdesc:a532a613606673db2a2390e6dea653690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that adds item to currently held slot. <br /></td></tr>
+<tr class="separator:a532a613606673db2a2390e6dea653690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab458ed746e72e8c70ab627c22686dc80"><td class="memItemLeft" align="right" valign="top"><a id="ab458ed746e72e8c70ab627c22686dc80" name="ab458ed746e72e8c70ab627c22686dc80"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveItem</b> ()</td></tr>
+<tr class="memdesc:ab458ed746e72e8c70ab627c22686dc80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that adds item to currently held slot. <br /></td></tr>
+<tr class="separator:ab458ed746e72e8c70ab627c22686dc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f92c09feaa0f2cebc11487e88a39d1b"><td class="memItemLeft" align="right" valign="top"><a id="a7f92c09feaa0f2cebc11487e88a39d1b" name="a7f92c09feaa0f2cebc11487e88a39d1b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>GetItem</b> () const</td></tr>
+<tr class="memdesc:a7f92c09feaa0f2cebc11487e88a39d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that returns item to currently held slot. <br /></td></tr>
+<tr class="separator:a7f92c09feaa0f2cebc11487e88a39d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27c696f2eccd570483086930842f8435"><td class="memItemLeft" align="right" valign="top"><a id="a27c696f2eccd570483086930842f8435" name="a27c696f2eccd570483086930842f8435"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td></tr>
 <tr class="memdesc:a27c696f2eccd570483086930842f8435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function draws item slot on screen. <br /></td></tr>
@@ -118,8 +130,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >An item slot to hold a block or item in hud or players inventory on screen. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af39de714fda63deb3ce8d0a0095adc15" name="af39de714fda63deb3ce8d0a0095adc15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af39de714fda63deb3ce8d0a0095adc15">&#9670;&nbsp;</a></span>HudItemSlot()</h2>
+<a id="a1d94fa5c52a2e2b96fa550b46b491481" name="a1d94fa5c52a2e2b96fa550b46b491481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d94fa5c52a2e2b96fa550b46b491481">&#9670;&nbsp;</a></span>HudItemSlot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,8 +139,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td
         <tr>
           <td class="memname">HudItemSlot::HudItemSlot </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="class_block_map.html">BlockMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>blockMap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;&#160;</td>
           <td class="paramname"><em>texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_texture_atlas.html">TextureAtlas</a> &amp;&#160;</td>
+          <td class="paramname"><em>itemTexture</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -159,7 +183,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const</td
 <p>Constructor that creates item slot in <a class="el" href="class_hud.html" title="Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.">Hud</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">blockMap</td><td>- texture Atlas for blocks. </td></tr>
     <tr><td class="paramname">texture</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> Atlas with 2 textures (selected and passive) for the item slot. </td></tr>
+    <tr><td class="paramname">itemTexture</td><td>- <a class="el" href="class_texture.html" title="Texture represents an image that is displayed on the.">Texture</a> Atlas with item held in the item slot. </td></tr>
     <tr><td class="paramname">shader</td><td>- shader used for item slot. </td></tr>
     <tr><td class="paramname">position</td><td>- position of the item slot. </td></tr>
     <tr><td class="paramname">scale</td><td>- scale of the item slot. </td></tr>

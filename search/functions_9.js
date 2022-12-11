@@ -5,6 +5,7 @@ var searchData=
   ['link_2',['Link',['../class_vertex_array.html#a98fca34c8b52f55c73419c28d28c28f5',1,'VertexArray']]],
   ['load_3',['Load',['../class_shader.html#a26bf8bc1f57108b3c4662ad704df72c6',1,'Shader::Load()'],['../class_metadata.html#acb03a8ff4693be4aba6557b91079e0ba',1,'Metadata::Load()'],['../class_metadata.html#a79f3dde76dc233bb27642ffd9ef60ef1',1,'Metadata::Load(const std::string &amp;filename)']]],
   ['loadblocks_4',['LoadBlocks',['../class_chunk.html#ad8e60c062522f6e83ce46e60fef20554',1,'Chunk']]],
-  ['loadmesh_5',['LoadMesh',['../class_chunk.html#a41fbf2b8aec483ad59d58841ac03ef6a',1,'Chunk']]],
-  ['locklayer_6',['LockLayer',['../class_layer.html#ae0dc12503c612e03aca44611f424777f',1,'Layer']]]
+  ['loadblocksandbuildmesh_5',['LoadBlocksAndBuildMesh',['../class_chunk.html#abd57ef5a00787777cd0f4cf539247573',1,'Chunk']]],
+  ['loadmesh_6',['LoadMesh',['../class_chunk.html#a41fbf2b8aec483ad59d58841ac03ef6a',1,'Chunk']]],
+  ['locklayer_7',['LockLayer',['../class_layer.html#ae0dc12503c612e03aca44611f424777f',1,'Layer']]]
 ];

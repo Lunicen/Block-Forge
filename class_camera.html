@@ -112,9 +112,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></t
 <tr class="memitem:a8ecc59a4ef874ebb84bbc2df64589cbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8ecc59a4ef874ebb84bbc2df64589cbe">HandleInput</a> (const <a class="el" href="class_human_interface_device.html">HumanInterfaceDevice</a> &amp;hid)</td></tr>
 <tr class="memdesc:a8ecc59a4ef874ebb84bbc2df64589cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Captures input and moves the camera accordingly.  <a href="class_camera.html#a8ecc59a4ef874ebb84bbc2df64589cbe">More...</a><br /></td></tr>
 <tr class="separator:a8ecc59a4ef874ebb84bbc2df64589cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70596c84a268c69e60163438857aeea7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a70596c84a268c69e60163438857aeea7">HandleMouseAction</a> (<a class="el" href="class_human_interface_device.html">HumanInterfaceDevice</a> &amp;hid) const</td></tr>
+<tr class="memdesc:a70596c84a268c69e60163438857aeea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Captures mouse press and destroy or place block.  <a href="class_camera.html#a70596c84a268c69e60163438857aeea7">More...</a><br /></td></tr>
+<tr class="separator:a70596c84a268c69e60163438857aeea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01f8cd3c75ea3b9e578cfe0a95c9955"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955">GetPosition</a> () const</td></tr>
 <tr class="memdesc:af01f8cd3c75ea3b9e578cfe0a95c9955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get camera position.  <a href="class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955">More...</a><br /></td></tr>
 <tr class="separator:af01f8cd3c75ea3b9e578cfe0a95c9955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4469e18dc8849ca744aa4873617e71c4"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4469e18dc8849ca744aa4873617e71c4">GetOrientation</a> () const</td></tr>
+<tr class="memdesc:a4469e18dc8849ca744aa4873617e71c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get camera orientation.  <a href="class_camera.html#a4469e18dc8849ca744aa4873617e71c4">More...</a><br /></td></tr>
+<tr class="separator:a4469e18dc8849ca744aa4873617e71c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf3d5b287a358ac37ded8cacefa08428"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abf3d5b287a358ac37ded8cacefa08428">GetDefaultSpeed</a> () const</td></tr>
 <tr class="memdesc:abf3d5b287a358ac37ded8cacefa08428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get default speed.  <a href="class_camera.html#abf3d5b287a358ac37ded8cacefa08428">More...</a><br /></td></tr>
 <tr class="separator:abf3d5b287a358ac37ded8cacefa08428"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,6 +257,32 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFarPane</b> () co
 
 </div>
 </div>
+<a id="a70596c84a268c69e60163438857aeea7" name="a70596c84a268c69e60163438857aeea7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70596c84a268c69e60163438857aeea7">&#9670;&nbsp;</a></span>HandleMouseAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Camera::HandleMouseAction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_human_interface_device.html">HumanInterfaceDevice</a> &amp;&#160;</td>
+          <td class="paramname"><em>hid</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Captures mouse press and destroy or place block. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hid</td><td>- Reference to the Human Interface Device controller. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af01f8cd3c75ea3b9e578cfe0a95c9955" name="af01f8cd3c75ea3b9e578cfe0a95c9955"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af01f8cd3c75ea3b9e578cfe0a95c9955">&#9670;&nbsp;</a></span>GetPosition()</h2>
 
@@ -267,6 +299,26 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetFarPane</b> () co
 </div><div class="memdoc">
 
 <p>Get camera position. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns 3D vector representation. </dd></dl>
+
+</div>
+</div>
+<a id="a4469e18dc8849ca744aa4873617e71c4" name="a4469e18dc8849ca744aa4873617e71c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4469e18dc8849ca744aa4873617e71c4">&#9670;&nbsp;</a></span>GetOrientation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Camera::GetOrientation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get camera orientation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns 3D vector representation. </dd></dl>
 
 </div>

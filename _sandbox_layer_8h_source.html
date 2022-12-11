@@ -89,15 +89,15 @@ $(document).ready(function(){initNavTree('_sandbox_layer_8h_source.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;glm/vec3.hpp&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Hud.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Application/Layer/Layer.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Camera.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Utils/FPSCounter.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/WorldGenerator.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Hud.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Layer/Layer.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Camera.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Utils/FPSCounter.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/WorldGenerator.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Dynamics/PlaceBlock.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Dynamics/DestroyBlock.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_sandbox_layer.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_sandbox_layer.html">SandboxLayer</a> final : <span class="keyword">public</span> <a class="code hl_class" href="class_layer.html">Layer</a></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
@@ -121,13 +121,13 @@ $(document).ready(function(){initNavTree('_sandbox_layer_8h_source.html',''); in
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">constexpr</span> <span class="keyword">auto</span> worldSeed = 1337;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">constexpr</span> <span class="keyword">auto</span> chunkSize = 16;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">constexpr</span> <span class="keyword">auto</span> renderDistance = 3;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">constexpr</span> <span class="keyword">auto</span> renderDistance = 8;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        _camera = std::make_unique&lt;Camera&gt;(window, glm::vec3(0.0f, 20.0f, 0.0f));</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        _camera = std::make_unique&lt;Camera&gt;(window, glm::vec3(0.0f, 120.0f, 0.0f));</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        _worldGenerator = std::make_shared&lt;WorldGenerator&gt;(worldSeed);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        _hud = std::make_unique&lt;Hud&gt;();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        _hud = std::make_unique&lt;Hud&gt;(_worldGenerator-&gt;GetBlockMap()); <span class="comment">//this should not need block map, it should be global ?</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        _chunkPlacer = std::make_unique&lt;ChunkPlacer&gt;(OrderType::cube, chunkSize, renderDistance, _camera-&gt;GetPosition());</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        _chunkPlacer = std::make_unique&lt;ChunkPlacer&gt;(OrderType::shortOval, chunkSize, renderDistance, _camera-&gt;GetPosition());</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        _chunkPlacer-&gt;Bind(_worldGenerator, chunkSize);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        _fpsCounter = std::make_unique&lt;FPSCounter&gt;();</div>
@@ -146,21 +146,38 @@ $(document).ready(function(){initNavTree('_sandbox_layer_8h_source.html',''); in
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_sandbox_layer.html#ad71174976edf301cb48d8f54be5bf4c4">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sandbox_layer.html#ad71174976edf301cb48d8f54be5bf4c4">OnEvent</a>(<a class="code hl_class" href="class_human_interface_device.html">HumanInterfaceDevice</a>&amp; hid)<span class="keyword"> override</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        _camera-&gt;HandleInput(hid);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        _chunkPlacer-&gt;ReactToCameraMovement(_camera-&gt;GetPosition());</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        _hud-&gt;ChangeSelectedItemSlot(hid);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_class" href="class_sandbox_layer.html">~SandboxLayer</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        _chunkPlacer-&gt;Terminate();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        gltTerminate();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keyword">constexpr</span> <span class="keywordtype">int</span> place = 1;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">constexpr</span> <span class="keywordtype">int</span> destroy = 2;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">switch</span> (_camera-&gt;HandleMouseAction(hid)) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">case</span> place:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <a class="code hl_function" href="class_place_block.html#ac8da0c15ea3937f82a672a3255ba88bb">PlaceBlock::Place</a>(_camera-&gt;GetOrientation(), _camera-&gt;GetPosition(), _chunkPlacer-&gt;GetChunks(), _worldGenerator-&gt;GetBlockMap(), _hud-&gt;GetHeldItem());</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">case</span> destroy:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <a class="code hl_function" href="class_destroy_block.html#a3edfa893c4254828198f645ac5aa3021">DestroyBlock::Destroy</a>(_camera-&gt;GetOrientation(), _camera-&gt;GetPosition(), _chunkPlacer-&gt;GetChunks(), _worldGenerator-&gt;GetBlockMap());</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        _camera-&gt;HandleInput(hid);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        _chunkPlacer-&gt;ReactToCameraMovement(_camera-&gt;GetPosition());</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        _hud-&gt;ChangeSelectedItemSlot(hid);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_class" href="class_sandbox_layer.html">~SandboxLayer</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        _chunkPlacer-&gt;Terminate();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        gltTerminate();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
 <div class="ttc" id="aclass_chunk_renderer_html"><div class="ttname"><a href="class_chunk_renderer.html">ChunkRenderer</a></div><div class="ttdoc">Supports rendering chunks.</div><div class="ttdef"><b>Definition:</b> ChunkRenderer.h:11</div></div>
 <div class="ttc" id="aclass_chunk_renderer_html_a37ef7eb5d7779bd9f8e9333c74f2f85c"><div class="ttname"><a href="class_chunk_renderer.html#a37ef7eb5d7779bd9f8e9333c74f2f85c">ChunkRenderer::Render</a></div><div class="ttdeci">void Render(const HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp;chunks, const TextureAtlas &amp;blocksTexture, const Camera &amp;camera) const</div><div class="ttdoc">Renders loaded chunks.</div><div class="ttdef"><b>Definition:</b> ChunkRenderer.cpp:10</div></div>
+<div class="ttc" id="aclass_destroy_block_html_a3edfa893c4254828198f645ac5aa3021"><div class="ttname"><a href="class_destroy_block.html#a3edfa893c4254828198f645ac5aa3021">DestroyBlock::Destroy</a></div><div class="ttdeci">static void Destroy(glm::vec3 orientation, glm::vec3 position, HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp;chunks, BlockMap &amp;blockMap)</div><div class="ttdoc">Destroy block in front of the camera.</div><div class="ttdef"><b>Definition:</b> DestroyBlock.cpp:5</div></div>
 <div class="ttc" id="aclass_human_interface_device_html"><div class="ttname"><a href="class_human_interface_device.html">HumanInterfaceDevice</a></div><div class="ttdoc">Handles and defines input devices.</div><div class="ttdef"><b>Definition:</b> HumanInterfaceDevice.h:12</div></div>
 <div class="ttc" id="aclass_layer_html"><div class="ttname"><a href="class_layer.html">Layer</a></div><div class="ttdoc">Represents a layer that is used by the layer stack.</div><div class="ttdef"><b>Definition:</b> Layer.h:7</div></div>
+<div class="ttc" id="aclass_place_block_html_ac8da0c15ea3937f82a672a3255ba88bb"><div class="ttname"><a href="class_place_block.html#ac8da0c15ea3937f82a672a3255ba88bb">PlaceBlock::Place</a></div><div class="ttdeci">static void Place(glm::vec3 orientation, glm::vec3 position, HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp;chunks, BlockMap &amp;blockMap, const std::string &amp;heldItem)</div><div class="ttdoc">Place block in front of the camera.</div><div class="ttdef"><b>Definition:</b> PlaceBlock.cpp:4</div></div>
 <div class="ttc" id="aclass_sandbox_layer_html"><div class="ttname"><a href="class_sandbox_layer.html">SandboxLayer</a></div><div class="ttdoc">Represents sandbox that is played as an simulation.</div><div class="ttdef"><b>Definition:</b> SandboxLayer.h:15</div></div>
 <div class="ttc" id="aclass_sandbox_layer_html_a172637ab7ad2864fb613bc0b79f097f1"><div class="ttname"><a href="class_sandbox_layer.html#a172637ab7ad2864fb613bc0b79f097f1">SandboxLayer::SandboxLayer</a></div><div class="ttdeci">SandboxLayer(Window &amp;window)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> SandboxLayer.h:32</div></div>
 <div class="ttc" id="aclass_sandbox_layer_html_ac4113ec99f01b3c038e4ac364926174e"><div class="ttname"><a href="class_sandbox_layer.html#ac4113ec99f01b3c038e4ac364926174e">SandboxLayer::OnUpdate</a></div><div class="ttdeci">void OnUpdate() override</div><div class="ttdoc">This method is responsible for drawing data on the screen.</div><div class="ttdef"><b>Definition:</b> SandboxLayer.h:50</div></div>

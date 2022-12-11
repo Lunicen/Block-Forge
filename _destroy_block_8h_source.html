@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Block Forge: src/Application/Layer/Sandbox/Model/BlockFaceModel.h Source File</title>
+<title>Block Forge: src/Application/Layer/Sandbox/Dynamics/DestroyBlock.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('_block_face_model_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('_destroy_block_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -85,31 +85,28 @@ $(document).ready(function(){initNavTree('_block_face_model_8h_source.html','');
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">BlockFaceModel.h</div></div>
+  <div class="headertitle"><div class="title">DestroyBlock.h</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Mesh/Mesh.h&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_block_face_model.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_block_face_model.html">BlockFaceModel</a></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    std::array&lt;Point, VerticesInQuad&gt; _textureCoordinates{};</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;../World/Chunks/ChunkUtils.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/Chunks/Structure/Chunk.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_destroy_block.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_destroy_block.html">DestroyBlock</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">BlockFaceModel</a>(<span class="keyword">const</span> std::array&lt;Point, VerticesInQuad&gt;&amp; uvTextureCoordinates);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::array&lt;Point, VerticesInQuad&gt;&amp; <a class="code hl_function" href="class_block_face_model.html#a9f65c758cc67c23b091fc3f49a14f61a">GetUvCoordinates</a>();</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
-<div class="ttc" id="aclass_block_face_model_html"><div class="ttname"><a href="class_block_face_model.html">BlockFaceModel</a></div><div class="ttdoc">Represents face of a.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.h:7</div></div>
-<div class="ttc" id="aclass_block_face_model_html_a8ae3f80093b63331a4c264f67e53bce1"><div class="ttname"><a href="class_block_face_model.html#a8ae3f80093b63331a4c264f67e53bce1">BlockFaceModel::BlockFaceModel</a></div><div class="ttdeci">BlockFaceModel(const std::array&lt; Point, VerticesInQuad &gt; &amp;uvTextureCoordinates)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:3</div></div>
-<div class="ttc" id="aclass_block_face_model_html_a9f65c758cc67c23b091fc3f49a14f61a"><div class="ttname"><a href="class_block_face_model.html#a9f65c758cc67c23b091fc3f49a14f61a">BlockFaceModel::GetUvCoordinates</a></div><div class="ttdeci">std::array&lt; Point, VerticesInQuad &gt; &amp; GetUvCoordinates()</div><div class="ttdoc">Returns the uv coordinates associated with the face model.</div><div class="ttdef"><b>Definition:</b> BlockFaceModel.cpp:7</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_destroy_block.html#a3edfa893c4254828198f645ac5aa3021">Destroy</a>(glm::vec3 orientation, glm::vec3 position, HashMap&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt;&amp; chunks, <a class="code hl_class" href="class_block_map.html">BlockMap</a>&amp; blockMap);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>};</div>
+<div class="ttc" id="aclass_block_map_html"><div class="ttname"><a href="class_block_map.html">BlockMap</a></div><div class="ttdoc">Represents a map of the blocks that could be used to place in the chunks.</div><div class="ttdef"><b>Definition:</b> BlockMap.h:9</div></div>
+<div class="ttc" id="aclass_destroy_block_html"><div class="ttname"><a href="class_destroy_block.html">DestroyBlock</a></div><div class="ttdoc">The class that destroy blocks.</div><div class="ttdef"><b>Definition:</b> DestroyBlock.h:8</div></div>
+<div class="ttc" id="aclass_destroy_block_html_a3edfa893c4254828198f645ac5aa3021"><div class="ttname"><a href="class_destroy_block.html#a3edfa893c4254828198f645ac5aa3021">DestroyBlock::Destroy</a></div><div class="ttdeci">static void Destroy(glm::vec3 orientation, glm::vec3 position, HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp;chunks, BlockMap &amp;blockMap)</div><div class="ttdoc">Destroy block in front of the camera.</div><div class="ttdef"><b>Definition:</b> DestroyBlock.cpp:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_07628cb095a0d6ed7f30fd07a55acd9e.html">Model</a></li><li class="navelem"><b>BlockFaceModel.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_378992324979dd2b2ee7a83cc14dc244.html">Application</a></li><li class="navelem"><a class="el" href="dir_0e3672d1009a2e7302ae628dee8327b9.html">Layer</a></li><li class="navelem"><a class="el" href="dir_b77ed6a8671cda6b175537e6aad40d52.html">Sandbox</a></li><li class="navelem"><a class="el" href="dir_135af7c02a92487e1421ed33b7f6f926.html">Dynamics</a></li><li class="navelem"><b>DestroyBlock.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

@@ -105,6 +105,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b2f60689f30560a528e80f57705b34d"><td class="memItemLeft" align="right" valign="top">static Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_utils.html#a4b2f60689f30560a528e80f57705b34d">GetBlockPosition</a> (size_t blockIndex, const size_t &amp;chunkSize)</td></tr>
 <tr class="memdesc:a4b2f60689f30560a528e80f57705b34d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the block position based on its index from the flattened 3d array.  <a href="class_chunk_utils.html#a4b2f60689f30560a528e80f57705b34d">More...</a><br /></td></tr>
 <tr class="separator:a4b2f60689f30560a528e80f57705b34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c6da583705114d36e94c74e7d5a7e68"><td class="memItemLeft" align="right" valign="top">static Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chunk_utils.html#a8c6da583705114d36e94c74e7d5a7e68">GetNormalizedPosition</a> (const Point3D &amp;position, const size_t &amp;chunkSize)</td></tr>
+<tr class="memdesc:a8c6da583705114d36e94c74e7d5a7e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the block normalized position based on its index from the flattened 3d array.  <a href="class_chunk_utils.html#a8c6da583705114d36e94c74e7d5a7e68">More...</a><br /></td></tr>
+<tr class="separator:a8c6da583705114d36e94c74e7d5a7e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >The utility class that provides an easy ways for performing calculations related to the chunks. </p>
@@ -192,6 +195,51 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">blockIndex</td><td>- the array index. </td></tr>
+    <tr><td class="paramname">chunkSize</td><td>- size of the chunk (in one dimension). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c6da583705114d36e94c74e7d5a7e68" name="a8c6da583705114d36e94c74e7d5a7e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c6da583705114d36e94c74e7d5a7e68">&#9670;&nbsp;</a></span>GetNormalizedPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Position ChunkUtils::GetNormalizedPosition </td>
+          <td>(</td>
+          <td class="paramtype">const Point3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>chunkSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the block normalized position based on its index from the flattened 3d array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>- the position of the camera. </td></tr>
     <tr><td class="paramname">chunkSize</td><td>- size of the chunk (in one dimension). </td></tr>
   </table>
   </dd>

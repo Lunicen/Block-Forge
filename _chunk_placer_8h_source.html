@@ -92,60 +92,61 @@ $(document).ready(function(){initNavTree('_chunk_placer_8h_source.html',''); ini
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/Camera.h&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Application/Layer/Sandbox/World/WorldGenerator.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;OrderType/OrderTypes.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Structure/Chunk.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_chunk_placer.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk_placer.html">ChunkPlacer</a></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_log.html">Log</a>&amp; _log = <a class="code hl_function" href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a>();</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::unique_ptr&lt;std::thread&gt; _lazyLoader{};</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">static</span> std::mutex _chunksMutex;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _hasPositionChanged;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static</span> std::condition_variable _lazyLoaderLock;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _isLazyLoaderWaiting;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _running;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">static</span> std::vector&lt;std::tuple&lt;Position, ChunkBlocks, std::vector&lt;Vertex&gt;&gt;&gt; _chunksToLoad;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">static</span> std::vector&lt;std::unique_ptr&lt;Chunk&gt;&gt; _freeChunks;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">static</span> HashMap&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt; _loadedChunks;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> Position _previousNormalizedPosition;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">static</span> std::shared_ptr&lt;WorldGenerator&gt; _generator;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> std::unique_ptr&lt;Order&gt; _order;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    HashSet&lt;Position&gt; _chunksPositionsAroundCamera{};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    Position GetNormalizedPosition(<span class="keyword">const</span> Point3D&amp; position, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; chunkSize) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::string PositionToString(<span class="keyword">const</span> Position&amp; position) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> AddNewChunks(<span class="keyword">const</span> HashSet&lt;Position&gt;&amp; currentChunkOrigins);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> LazyLoader();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> RemoveStaleChunk() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;rigtorp/SPSCQueue.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Structure/Chunk.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_chunk_placer.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="class_chunk_placer.html">ChunkPlacer</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_log.html">Log</a>&amp; _log;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::unique_ptr&lt;std::thread&gt; _lazyLoader{};</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> std::mutex _chunksMutex;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _hasPositionChanged;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">static</span> std::condition_variable _lazyLoaderLock;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _isLazyLoaderWaiting;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; _running;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">static</span> rigtorp::SPSCQueue&lt;std::tuple&lt;Position, ChunkBlocks, std::vector&lt;Vertex&gt;&gt;&gt; _chunksToLoad;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">static</span> std::vector&lt;std::unique_ptr&lt;Chunk&gt;&gt; _freeChunks;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static</span> HashMap&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt; _loadedChunks;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static</span> Position _previousNormalizedPosition;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> std::shared_ptr&lt;WorldGenerator&gt; _generator;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> std::unique_ptr&lt;Order&gt; _order;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> HashSet&lt;Position&gt; _chunksPositionsAroundCamera;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    Position GetNormalizedPosition(<span class="keyword">const</span> Point3D&amp; position, <span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; chunkSize) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::string PositionToString(<span class="keyword">const</span> Position&amp; position) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> AddNewChunks(<span class="keyword">const</span> std::vector&lt;Position&gt;&amp; currentChunkOrigins);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> LazyLoader();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> RemoveStaleChunksFromChunksToLoadQueue(Position position) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> RemoveStaleChunk() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer</a>(OrderType orderType, <span class="keywordtype">size_t</span> chunkSize, <span class="keywordtype">size_t</span> renderDistance, <span class="keyword">const</span> Position&amp; initPosition);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a2ed076bcad5c5c6548020c2e9f9b29a0">ReactToCameraMovement</a>(<span class="keyword">const</span> Position&amp; position);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">Bind</a>(<span class="keyword">const</span> std::shared_ptr&lt;WorldGenerator&gt;&amp; generator, <span class="keywordtype">size_t</span> chunkSize);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    HashMap&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt;&amp; <a class="code hl_function" href="class_chunk_placer.html#a974283b79eede77b6ea25f80a1c22a4a">GetChunks</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#ad8245bf5297cda6b674b70267e0c8d17">Terminate</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="ttc" id="aclass_chunk_placer_html"><div class="ttname"><a href="class_chunk_placer.html">ChunkPlacer</a></div><div class="ttdoc">Handles placing the chunks around the camera.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.h:11</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_a1ac8edcfb9c8b7fd1aea75b781c50ef0"><div class="ttname"><a href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer::ChunkPlacer</a></div><div class="ttdeci">ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position &amp;initPosition)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:117</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_a2ed076bcad5c5c6548020c2e9f9b29a0"><div class="ttname"><a href="class_chunk_placer.html#a2ed076bcad5c5c6548020c2e9f9b29a0">ChunkPlacer::ReactToCameraMovement</a></div><div class="ttdeci">void ReactToCameraMovement(const Position &amp;position)</div><div class="ttdoc">Adapts chunk placer to the camera position.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:137</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_a33942087f0b0b7eddc9979970cf6afdf"><div class="ttname"><a href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">ChunkPlacer::Bind</a></div><div class="ttdeci">void Bind(const std::shared_ptr&lt; WorldGenerator &gt; &amp;generator, size_t chunkSize)</div><div class="ttdoc">Binds world generator to the chunk placer.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:155</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_a974283b79eede77b6ea25f80a1c22a4a"><div class="ttname"><a href="class_chunk_placer.html#a974283b79eede77b6ea25f80a1c22a4a">ChunkPlacer::GetChunks</a></div><div class="ttdeci">HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp; GetChunks() const</div><div class="ttdoc">Returns the map of placed chunks.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:208</div></div>
-<div class="ttc" id="aclass_chunk_placer_html_ad8245bf5297cda6b674b70267e0c8d17"><div class="ttname"><a href="class_chunk_placer.html#ad8245bf5297cda6b674b70267e0c8d17">ChunkPlacer::Terminate</a></div><div class="ttdeci">void Terminate() const</div><div class="ttdoc">Terminates the chunk placer.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:255</div></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer</a>(OrderType orderType, <span class="keywordtype">size_t</span> chunkSize, <span class="keywordtype">size_t</span> renderDistance, <span class="keyword">const</span> Position&amp; initPosition);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a4eb268e1fcc6cce68aa95640644b8f6c">ReactToCameraMovement</a>(<span class="keyword">const</span> Position&amp; position) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">Bind</a>(<span class="keyword">const</span> std::shared_ptr&lt;WorldGenerator&gt;&amp; generator, <span class="keywordtype">size_t</span> chunkSize);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    HashMap&lt;Position, std::unique_ptr&lt;Chunk&gt;&gt;&amp; <a class="code hl_function" href="class_chunk_placer.html#a974283b79eede77b6ea25f80a1c22a4a">GetChunks</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_chunk_placer.html#ad8245bf5297cda6b674b70267e0c8d17">Terminate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="ttc" id="aclass_chunk_placer_html"><div class="ttname"><a href="class_chunk_placer.html">ChunkPlacer</a></div><div class="ttdoc">Handles placing the chunks around the camera.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.h:12</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a1ac8edcfb9c8b7fd1aea75b781c50ef0"><div class="ttname"><a href="class_chunk_placer.html#a1ac8edcfb9c8b7fd1aea75b781c50ef0">ChunkPlacer::ChunkPlacer</a></div><div class="ttdeci">ChunkPlacer(OrderType orderType, size_t chunkSize, size_t renderDistance, const Position &amp;initPosition)</div><div class="ttdoc">The constructor.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:145</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a33942087f0b0b7eddc9979970cf6afdf"><div class="ttname"><a href="class_chunk_placer.html#a33942087f0b0b7eddc9979970cf6afdf">ChunkPlacer::Bind</a></div><div class="ttdeci">void Bind(const std::shared_ptr&lt; WorldGenerator &gt; &amp;generator, size_t chunkSize)</div><div class="ttdoc">Binds world generator to the chunk placer.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:188</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a4eb268e1fcc6cce68aa95640644b8f6c"><div class="ttname"><a href="class_chunk_placer.html#a4eb268e1fcc6cce68aa95640644b8f6c">ChunkPlacer::ReactToCameraMovement</a></div><div class="ttdeci">void ReactToCameraMovement(const Position &amp;position) const</div><div class="ttdoc">Adapts chunk placer to the camera position.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:169</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_a974283b79eede77b6ea25f80a1c22a4a"><div class="ttname"><a href="class_chunk_placer.html#a974283b79eede77b6ea25f80a1c22a4a">ChunkPlacer::GetChunks</a></div><div class="ttdeci">HashMap&lt; Position, std::unique_ptr&lt; Chunk &gt; &gt; &amp; GetChunks() const</div><div class="ttdoc">Returns the map of placed chunks.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:244</div></div>
+<div class="ttc" id="aclass_chunk_placer_html_ad8245bf5297cda6b674b70267e0c8d17"><div class="ttname"><a href="class_chunk_placer.html#ad8245bf5297cda6b674b70267e0c8d17">ChunkPlacer::Terminate</a></div><div class="ttdeci">void Terminate() const</div><div class="ttdoc">Terminates the chunk placer.</div><div class="ttdef"><b>Definition:</b> ChunkPlacer.cpp:286</div></div>
 <div class="ttc" id="aclass_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Logs the occurred events with additional information and status.</div><div class="ttdef"><b>Definition:</b> Log.h:13</div></div>
-<div class="ttc" id="aclass_log_html_ae83c4fbe516247d0006cb35636469e71"><div class="ttname"><a href="class_log.html#ae83c4fbe516247d0006cb35636469e71">Log::Get</a></div><div class="ttdeci">static Log &amp; Get()</div><div class="ttdoc">Returns Logger instance.</div><div class="ttdef"><b>Definition:</b> Log.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

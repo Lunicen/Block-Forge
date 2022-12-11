@@ -114,6 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ab0fae7ebace864877d7c0203af5bc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_atlas.html#a3ab0fae7ebace864877d7c0203af5bc7">SetSprite</a> (std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices, unsigned x, unsigned y, bool flip=false)</td></tr>
 <tr class="memdesc:a3ab0fae7ebace864877d7c0203af5bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the vertices according to the sprite from the texture atlas.  <a href="class_texture_atlas.html#a3ab0fae7ebace864877d7c0203af5bc7">More...</a><br /></td></tr>
 <tr class="separator:a3ab0fae7ebace864877d7c0203af5bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0381905da226176a9a5d72a696ed19b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_atlas.html#a0381905da226176a9a5d72a696ed19b3">SetSprite</a> (std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;vertices, const std::array&lt; Point, VerticesInQuad &gt; &amp;textureUvCoordinates) const</td></tr>
+<tr class="memdesc:a0381905da226176a9a5d72a696ed19b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the vertices according to the sprite from the texture atlas.  <a href="class_texture_atlas.html#a0381905da226176a9a5d72a696ed19b3">More...</a><br /></td></tr>
+<tr class="separator:a0381905da226176a9a5d72a696ed19b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00b3edb984604873930fa47a48bc815a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_atlas.html#a00b3edb984604873930fa47a48bc815a">SetSprite</a> (std::array&lt; Point, VerticesInQuad &gt; &amp;textureUvCoordinates, unsigned x, unsigned y, bool flip=false)</td></tr>
 <tr class="memdesc:a00b3edb984604873930fa47a48bc815a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the vertices according to the sprite from the texture atlas.  <a href="class_texture_atlas.html#a00b3edb984604873930fa47a48bc815a">More...</a><br /></td></tr>
 <tr class="separator:a00b3edb984604873930fa47a48bc815a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,7 +202,7 @@ int &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidth</b> ()<
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3ab0fae7ebace864877d7c0203af5bc7" name="a3ab0fae7ebace864877d7c0203af5bc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ab0fae7ebace864877d7c0203af5bc7">&#9670;&nbsp;</a></span>SetSprite() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab0fae7ebace864877d7c0203af5bc7">&#9670;&nbsp;</a></span>SetSprite() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,8 +252,46 @@ int &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidth</b> ()<
 
 </div>
 </div>
+<a id="a0381905da226176a9a5d72a696ed19b3" name="a0381905da226176a9a5d72a696ed19b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0381905da226176a9a5d72a696ed19b3">&#9670;&nbsp;</a></span>SetSprite() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TextureAtlas::SetSprite </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_vertex.html">Vertex</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::array&lt; Point, VerticesInQuad &gt; &amp;&#160;</td>
+          <td class="paramname"><em>textureUvCoordinates</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the vertices according to the sprite from the texture atlas. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices</td><td>- The vertices of the mesh. </td></tr>
+    <tr><td class="paramname">textureUvCoordinates</td><td>- textures on the <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a00b3edb984604873930fa47a48bc815a" name="a00b3edb984604873930fa47a48bc815a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00b3edb984604873930fa47a48bc815a">&#9670;&nbsp;</a></span>SetSprite() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b3edb984604873930fa47a48bc815a">&#9670;&nbsp;</a></span>SetSprite() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
