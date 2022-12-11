@@ -20,20 +20,20 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 		pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
 		pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 
-		auto isThereBlock = 0b00000010;
-		auto placeBlock = 0b11111110;
+		
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
 
-			if (placeBlockOnChunk(chunks, chunkPosition, pos, chunkSize, isThereBlock, chunkPositionForNewBlock, blockMap, heldItem, placeBlock))
+			if (placeBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
 				break;
 			continue;
 		}
 	}
 }
-bool PlaceBlock::placeBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize,
-	int isThereBlock, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem , int placeBlock)
+bool PlaceBlock::placeBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem)
 {
+	auto isThereBlock = 0b00000010;
+	auto placeBlock = 0b11111110;
 	auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
 	if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & isThereBlock) == 0)
 	{
