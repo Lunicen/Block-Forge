@@ -32,7 +32,7 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 	}
 }
 bool PlaceBlock::placeBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize,
-	int isThereBlock, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string heldItem, int placeBlock)
+	int isThereBlock, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem , int placeBlock)
 {
 	auto blocksInChunk = chunks.at(chunkPosition)->GetBlocks();
 	if ((blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize)).blockFlags & isThereBlock) == 0)
