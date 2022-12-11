@@ -37,7 +37,7 @@ public:
 		constexpr auto chunkSize = 16;
 		constexpr auto renderDistance = 8;
 
-		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 20.0f, 0.0f));
+		_camera = std::make_unique<Camera>(window, glm::vec3(0.0f, 120.0f, 0.0f));
 		_worldGenerator = std::make_shared<WorldGenerator>(worldSeed);
 		_hud = std::make_unique<Hud>(_worldGenerator->GetBlockMap()); //this should not need block map, it should be global ?
 
