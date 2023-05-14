@@ -1,23 +1,17 @@
 ﻿.vs
-bin/intermediates
-test/bin/intermediates
-test/bin/Win32/Debug
-bin/Win32/Debug
-bin/x64/Debug
-test/bin/x64/Debug
-Block Forge.sln.DotSettings.user
+bin
 docs
+test/bin
 test/*.pdb
 test/*.ilk
 test/*.testdurations
 test/*.exe
-lib/glfw/build_Win32
-lib/glfw/build_x64
-imgui.ini
-test/bin
 test/*.dll
 test/*.exp
 test/*.lib
 test/out
+lib/glfw/build_Win32
+lib/glfw/build_x64
+Block Forge.sln.DotSettings.user
 *.ilk
 *.pdb
