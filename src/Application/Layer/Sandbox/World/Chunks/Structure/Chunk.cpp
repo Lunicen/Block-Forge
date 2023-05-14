@@ -1,4 +1,4 @@
-#include "Chunk.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk.h"
 
 
 Chunk::Chunk(const size_t chunkSize, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), chunkSize)

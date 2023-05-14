@@ -1,7 +1,7 @@
-#include "Metadata.h"
 #include <fstream>
 
-#include "EngineExceptions.h"
+#include "core/engine_exceptions.h"
+#include "core/metadata.h"
 
 void Metadata::CheckIfFilenameIsNotEmpty() const
 {

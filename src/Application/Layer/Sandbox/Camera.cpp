@@ -1,6 +1,6 @@
-#include "Camera.h"
+#include "application/layer/sandbox/camera.h"
 
-#include "Dynamics/PlaceBlock.h"
+#include "application/layer/sandbox/dynamics/place_block.h"
 
 void Camera::Update()
 {

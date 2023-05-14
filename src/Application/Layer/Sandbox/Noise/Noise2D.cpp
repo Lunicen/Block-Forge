@@ -1,4 +1,4 @@
-#include "Noise2D.h"
+#include "application/layer/sandbox/noise/noise2d.h"
 
 std::vector<std::vector<float>> Noise2D::ConvertNoiseFrom1DTo2D(const std::vector<float>& noise, const size_t& size)
 {

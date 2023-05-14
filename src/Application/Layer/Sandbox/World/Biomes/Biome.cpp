@@ -1,6 +1,5 @@
-#include "Biome.h"
-
-#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
+#include "application/layer/sandbox/world/biomes/biome.h"
+#include "application/layer/sandbox/world/chunks/chunk_utils.h"
 
 void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, const ChunkFrame& frame, ChunkBlocks& blocks, const std::vector<float>& noise, const Byte& visibilityFlags) const
 {

@@ -1,7 +1,7 @@
-#include "Application.h"
+#include "application/application.h"
 
-#include "Core/EngineExceptions.h"
-#include "LayerStack/Stack/SandboxStack.h"
+#include "core/engine_exceptions.h"
+#include "application/layer_stack/stack/sandbox_stack.h"
 
 // As a static member of class this variable
 // must be here initialized
