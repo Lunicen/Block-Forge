@@ -1,7 +1,7 @@
 #pragma once
-#include "Core/Metadata.h"
-#include "Application/Layer/Sandbox/Model/BlockModel.h"
-#include "Application/Layer/Sandbox/Model/Surface/TextureAtlas.h"
+#include "core/metadata.h"
+#include "application/layer/sandbox/model/block_model.h"
+#include "application/layer/sandbox/model/surface/texture_atlas.h"
 
 constexpr size_t MaxBlocksAmount = 256;
 

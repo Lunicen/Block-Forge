@@ -1,8 +1,8 @@
 #pragma once
-#include "ChunkBlocks.h"
-#include "ChunkFrame.h"
-#include "Application/Layer/Sandbox/Model/Mesh/DynamicMesh.h"
-#include "Application/Layer/Sandbox/World/Blocks/BlockMap.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk_blocks.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk_frame.h"
+#include "application/layer/sandbox/model/mesh/dynamic_mesh.h"
+#include "application/layer/sandbox/world/blocks/block_map.h"
 
 /// @class ChunkMesh
 ///	@brief Represents the chunk mesh and manages it in a runtime.

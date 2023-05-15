@@ -1,6 +1,6 @@
 #pragma once
-#include "ChunkBlocks.h"
-#include "ChunkMesh.h"
+#include "chunk_blocks.h"
+#include "chunk_mesh.h"
 
 /// @class Chunk
 /// @brief Represents a single chunk placed in the world

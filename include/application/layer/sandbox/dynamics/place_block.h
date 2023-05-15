@@ -13,7 +13,7 @@ public:
 	/// @param chunks - the map with chunks with their positions
 	///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
 	///	@param heldItem - type of block, which is used to place
-	static void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, const std::string& heldItem);
+	static void Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, const std::string& heldItem);
 
 	/// @brief Place block or continue iterating
 	///	@param chunkPosition - position of the chunk
@@ -23,6 +23,6 @@ public:
 	/// @param chunks - the map with chunks with their positions
 	///	@param blockMap - block map, which is used to place them inside chunks based on the biome noise.
 	///	@param heldItem - type of block, which is used to place
-	static bool PlaceBlock:: PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem);
+	static bool PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem);
 
 };

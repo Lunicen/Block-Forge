@@ -1,9 +1,9 @@
 #pragma once
-#include "Application/Layer/Sandbox/Camera.h"
-#include "Application/Layer/Sandbox/World/WorldGenerator.h"
-#include "OrderType/OrderTypes.h"
+#include "application/layer/sandbox/camera.h"
+#include "application/layer/sandbox/world/world_generator.h"
+#include "application/layer/sandbox/world/chunks/order_type/order_types.h"
 #include "rigtorp/SPSCQueue.h"
-#include "Structure/Chunk.h"
+#include "structure/chunk.h"
 
 /// @class ChunkPlacer
 /// @brief Handles placing the chunks around the camera.

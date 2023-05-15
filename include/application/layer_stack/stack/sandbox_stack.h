@@ -1,7 +1,7 @@
 #pragma once
-#include "Application/Layer/PauseMenu/PauseMenuLayer.h"
-#include "Application/Layer/Sandbox/SandboxLayer.h"
-#include "Application/LayerStack/LayerStack.h"
+#include "application/layer/pause_menu/pause_menu_layer.h"
+#include "application/layer/sandbox/sandbox_layer.h"
+#include "application/layer_stack/layer_stack.h"
 
 /// @class SandboxStack
 ///	@brief Represents the stack responsible for the full simulation of the sandbox.

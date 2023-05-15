@@ -1,5 +1,5 @@
 #pragma once
-#include "Texture.h"
+#include "texture.h"
 
 /// @class TextureAtlas
 /// @brief Represents an image extracted from the <a href="https://en.wikipedia.org/wiki/Texture_atlas">Texture Atlas</a> and used as a Texture.

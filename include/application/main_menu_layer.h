@@ -4,11 +4,11 @@
 #include "Core/Log.h"
 
 #include "imgui.h"
-#include "Application/HID/HumanInterfaceDevice.h"
-#include "Application/Layer/Layer.h"
+#include "application/hid/human_interface_device.h"
+#include "application/layer/layer.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
-#include "Core/OpenGLHeaders.h"
+#include "core/opengl_headers.h"
 
 /// @class MainMenuLayer
 /// @brief Displays the GUI that is a Main Menu.

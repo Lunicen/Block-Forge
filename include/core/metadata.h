@@ -2,8 +2,8 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
-#include "FileUtils.h"
-#include "Log.h"
+#include "file_utils.h"
+#include "log.h"
 
 using JsonData = nlohmann::json;
 

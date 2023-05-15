@@ -2,7 +2,7 @@
 // ReSharper disable once CppUnusedIncludeDirective
 #include <vector>
 
-#include "Application/Layer/Sandbox/Model/BlockModel.h"
+#include "application/layer/sandbox/model/block_model.h"
 
 /// @brief This struct represents the block data flags
 ///	in a human readable format.

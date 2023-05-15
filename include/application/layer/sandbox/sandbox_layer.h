@@ -1,13 +1,13 @@
 #pragma once
-#include "Hud.h"
-#include "Application/Layer/Layer.h"
-#include "Application/Layer/Sandbox/Camera.h"
-#include "Application/Layer/Sandbox/Utils/FPSCounter.h"
-#include "Application/Layer/Sandbox/World/WorldGenerator.h"
-#include "Application/Layer/Sandbox/World/Chunks/ChunkPlacer.h"
-#include "Application/Layer/Sandbox/World/Chunks/ChunkRenderer.h"
-#include "Application/Layer/Sandbox/Dynamics/PlaceBlock.h"
-#include "Dynamics/DestroyBlock.h"
+#include "hud.h"
+#include "application/layer/layer.h"
+#include "application/layer/sandbox/Camera.h"
+#include "application/layer/sandbox/utils/fps_counter.h"
+#include "application/layer/sandbox/world/world_generator.h"
+#include "application/layer/sandbox/world/chunks/chunk_placer.h"
+#include "application/layer/sandbox/world/chunks/chunk_renderer.h"
+#include "application/layer/sandbox/dynamics/place_block.h"
+#include "application/layer/sandbox/dynamics/destroy_block.h"
 
 /// @class SandboxLayer
 ///	@brief Represents sandbox that is played as an simulation.

@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/OpenGLHeaders.h"
+#include "core/openGL_headers.h"
 
 enum class KeyboardKey
 {

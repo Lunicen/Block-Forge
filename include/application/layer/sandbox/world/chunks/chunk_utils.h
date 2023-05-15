@@ -1,5 +1,5 @@
 #pragma once
-#include "Application/Layer/Sandbox/Model/Mesh/Geometry/Structures.h"
+#include "application/layer/sandbox/model/mesh/geometry/structures.h"
 
 /// @class ChunkUtils
 ///	@brief The utility class that provides an easy ways for performing

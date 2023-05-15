@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Log.h"
+#include "core/log.h"
 #include "key_codes.h"
 #include "application/window.h"
 #include "application/layer/sandbox/model/mesh/geometry/structures.h"

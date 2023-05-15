@@ -4,8 +4,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
-#include "Model/Mesh/Geometry/Shader.h"
-#include "Application/HID/HumanInterfaceDevice.h"
+#include "model/mesh/geometry/shader.h"
+#include "application/hid/human_interface_device.h"
 
 
 /// @class Camera

@@ -1,6 +1,6 @@
 #pragma once
-#include "Application/HID/HumanInterfaceDevice.h"
-#include "Application/Layer/Layer.h"
+#include "application/hid/human_interface_device.h"
+#include "application/layer/layer.h"
 
 /// @class PauseMenuLayer
 ///	@brief Represents the pause menu.

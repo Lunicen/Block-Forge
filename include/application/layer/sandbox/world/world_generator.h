@@ -1,6 +1,6 @@
 #pragma once
-#include "Biomes/BiomePlacer.h"
-#include "Biomes/BiomeProvider.h"
+#include "application/layer/sandbox/world/biomes/biome_placer.h"
+#include "application/layer/sandbox/world/biomes/biome_provider.h"
 
 /// @class WorldGenerator
 /// @brief Handles generating the world.

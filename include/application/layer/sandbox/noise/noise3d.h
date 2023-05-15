@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 
-#include "Noise.h"
-#include "Application/Layer/Sandbox/Model/Mesh/Geometry/Structures.h"
-#include "Application/Layer/Sandbox/World/Chunks/Structure/ChunkFrame.h"
+#include "noise.h"
+#include "application/layer/sandbox/model/mesh/geometry/structures.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk_frame.h"
 
 
 /// @class Noise3D

@@ -1,8 +1,8 @@
 #pragma once
-#include "Model/Mesh/StaticMesh.h"
-#include "Model/Mesh/DynamicMesh.h"
-#include "Model/Surface/TextureAtlas.h"
-#include "World/Blocks/BlockMap.h"
+#include "application/layer/sandbox/model/mesh/static_mesh.h"
+#include "application/layer/sandbox/model/mesh/dynamic_mesh.h"
+#include "application/layer/sandbox/model/surface/texture_atlas.h"
+#include "application/layer/sandbox/world/blocks/block_map.h"
 
 /// @class HudItemSlot
 /// @brief An item slot to hold a block or item in hud or players inventory on screen.
