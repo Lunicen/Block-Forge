@@ -75,7 +75,7 @@ class BlockMap
 	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount> _blockTypes;
 	HashMap<std::string, Byte> _blockNames;
 	
-	Shader _blockShader{"src/Data/Shaders/Block.vert", "src/Data/Shaders/Block.frag"};
+	Shader _blockShader{"data/shaders/block.vert", "data/shaders/block.frag"};
 
 public:
 

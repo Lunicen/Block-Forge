@@ -15,7 +15,6 @@ class HudItemSlot
 	float _scale;
 	bool _state;
 	bool _isContainingItem;
-	//zmienna do przechowywania bloku, bedzie potem na podstawie tego mozna zobaczyc co postawic
 	BlockMap& _blockMap;
 	std::string _item;
 
@@ -83,10 +82,10 @@ public:
 /// @brief Hud that contains other hud subelements (example: Hud Item slot), allows them to be drawn.
 class Hud
 {
-	TextureAtlas _texture = TextureAtlas("src/Data/Textures/HudAtlas.png", 16);
-	TextureAtlas _fullGameAtlas = TextureAtlas("src/Data/Textures/FullGameAtlas.png", 16);
+	TextureAtlas _texture = TextureAtlas("data/textures/Hud_atlas.png", 16);
+	TextureAtlas _fullGameAtlas = TextureAtlas("data/textures/full_game_atlas.png", 16);
 
-	Shader _shader = Shader("src/Data/Shaders/Hud.vert", "src/Data/Shaders/Hud.frag");
+	Shader _shader = Shader("data/shaders/hud.vert", "data/shaders/hud.frag");
 	std::vector<std::vector<std::unique_ptr<HudItemSlot>>> _hudItemSlotBar;
 	int _selectedRow = 0;
 	int _selectedSlot = 0;
