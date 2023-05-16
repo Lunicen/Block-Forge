@@ -1,4 +1,4 @@
-#include "BlockModel.h"
+#include "application/layer/sandbox/model/block_model.h"
 
 BlockFaceModel::BlockFaceModel(const std::array<Point, VerticesInQuad>& uvTextureCoordinates) : _textureCoordinates(uvTextureCoordinates){}
 

@@ -1,8 +1,8 @@
-#include "Texture.h"
+#include "application/layer/sandbox/model/surface/texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "Core/EngineExceptions.h"
+#include "Core/engine_exceptions.h"
 
 int Texture::_usedTextureSlots = 0;
 

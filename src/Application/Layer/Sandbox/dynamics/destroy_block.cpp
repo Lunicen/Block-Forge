@@ -1,6 +1,6 @@
-#include "DestroyBlock.h"
-#include "Application/Layer/Sandbox/World/Chunks/Structure/Chunk.h"
-#include "Application/Layer/Sandbox/World/Chunks/Structure/ChunkFrame.h"
+#include "application/layer/sandbox/dynamics/destroy_block.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk_frame.h"
 
  void DestroyBlock::Destroy(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap)
 {

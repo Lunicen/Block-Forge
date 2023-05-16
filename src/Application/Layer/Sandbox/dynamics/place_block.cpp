@@ -1,5 +1,5 @@
-#include "PlaceBlock.h"
-#include "Application/Layer/Sandbox/World/Chunks/ChunkUtils.h"
+#include "application/layer/sandbox/dynamics/place_block.h"
+#include "Application/Layer/Sandbox/World/Chunks/chunk_utils.h"
 
 void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, const std::string& heldItem)
 {

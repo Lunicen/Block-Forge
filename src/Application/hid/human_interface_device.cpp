@@ -1,4 +1,4 @@
-#include "HumanInterfaceDevice.h"
+#include "application/hid/human_interface_device.h"
 
 int HumanInterfaceDevice::GetState(const KeyboardKey& key) const
 {

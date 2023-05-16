@@ -1,4 +1,4 @@
-#include "StaticMesh.h"
+#include "application/layer/sandbox/model/mesh/static_mesh.h"
 
 StaticMesh::StaticMesh(const std::vector<Vertex>& vertices, const std::vector<TriangleIndexes>& indices, Shader& shader)
 	: _shader(shader)

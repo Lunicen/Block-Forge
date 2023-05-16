@@ -1,4 +1,4 @@
-#include "ElementBuffer.h"
+#include "application/layer/sandbox/model/mesh/geometry/element_buffer.h"
 
 ElementBuffer::ElementBuffer(const std::vector<TriangleIndexes>& indices)
 {

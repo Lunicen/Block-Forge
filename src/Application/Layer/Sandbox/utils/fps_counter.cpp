@@ -2,7 +2,7 @@
 
 #include <string>
 #include "core/engine_exceptions.h"
-#include "core/open_gl_headers.h"
+#include "core/opengl_headers.h"
 
 FPSCounter::FPSCounter()
 {

@@ -1,6 +1,5 @@
 #include "application/layer/sandbox/world/blocks/block_provider.h"
-
-#include "BlockBuilder.h"
+#include "application/layer/sandbox/world/blocks/block_builder.h"
 
 BlockProvider::BlockProvider(const std::string& filenameWithBlocksData)
 {

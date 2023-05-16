@@ -1,4 +1,4 @@
-#include "VertexBuffer.h"
+#include "application/layer/sandbox/model/mesh/geometry/vertex_buffer.h"
 
 VertexBuffer::VertexBuffer(const std::vector<Vertex>& vertices)
 {

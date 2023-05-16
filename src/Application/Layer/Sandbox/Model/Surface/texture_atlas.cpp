@@ -1,4 +1,4 @@
-#include "TextureAtlas.h"
+#include "application/layer/sandbox/model/surface/texture_atlas.h"
 
 std::array<Point, VerticesInQuad> TextureAtlas::GetTextureCoordinatesAt(const unsigned x, const unsigned y)
 {
