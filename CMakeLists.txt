@@ -64,6 +64,10 @@ else()
 	"You can relate to the Windows configuration that is in the first if statement. Good luck :)")
 endif()
 
+# Copy the necessary files to binary
+file(COPY "${CMAKE_SOURCE_DIR}/Settings.json" DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY "${CMAKE_SOURCE_DIR}/data" DESTINATION ${CMAKE_BINARY_DIR})
+
 # OpenGL
 find_package(OpenGL REQUIRED)
 target_link_libraries(OpenGL::GL)
