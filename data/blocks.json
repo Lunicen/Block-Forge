@@ -1,6 +1,6 @@
 {
   "default": {
-    "atlas": "src/Data/Textures/FullGameAtlas.png",
+    "atlas": "data/textures/full_game_atlas.png",
     "slotSize": 16,
     "blocks": [
       {

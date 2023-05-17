@@ -64,9 +64,22 @@ else()
 	"You can relate to the Windows configuration that is in the first if statement. Good luck :)")
 endif()
 
-# Copy the necessary files to binary
-file(COPY "${CMAKE_SOURCE_DIR}/Settings.json" DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY "${CMAKE_SOURCE_DIR}/data" DESTINATION ${CMAKE_BINARY_DIR})
+# Files to copy
+set(to_copy
+    "Settings.json"
+    "data"
+)
+
+foreach(file ${to_copy})
+    set(copy_src "${CMAKE_SOURCE_DIR}/${file}")
+    set(copy_dst "${CMAKE_BINARY_DIR}/${file}")
+
+    if(EXISTS ${copy_dst})
+        file(REMOVE_RECURSE ${copy_dst})
+    endif()
+
+    file(COPY ${copy_src} DESTINATION ${CMAKE_BINARY_DIR})
+endforeach()
 
 # OpenGL
 find_package(OpenGL REQUIRED)
