@@ -102,6 +102,7 @@ include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/FastNoise2/include")
 
 if (MSVC)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>DLL:Debug>")
+  add_compile_definitions("/MP")
   if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(_ITERATOR_DEBUG_LEVEL=2)
     add_compile_definitions(_DEBUG=1)
