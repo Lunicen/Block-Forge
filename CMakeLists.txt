@@ -98,14 +98,15 @@ target_link_libraries(OpenGL::GL)
 find_library(glad_path NAMES glad PATHS "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
 target_link_libraries(${PROJECT_NAME} ${glad_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}/include")
+message("Added ${glad_path}")
 
 # GLFW
 find_library(glfw_path NAMES glfw3 PATHS "${CMAKE_SOURCE_DIR}/lib/glfw/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
 target_link_libraries(${PROJECT_NAME} ${glfw_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glfw/include")
+message("Added ${glfw_path}")
 
 # FastNoise2
-
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   find_library(fastnoise2_path NAMES "FastNoiseD" PATHS "${CMAKE_SOURCE_DIR}/lib/FastNoise2/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
 else()
@@ -113,6 +114,7 @@ else()
 endif()
 target_link_libraries(${PROJECT_NAME} ${fastnoise2_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/FastNoise2/include")
+message("Added ${fastnoise2_path}")
 
 if (MSVC)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>DLL:Debug>")
