@@ -81,6 +81,15 @@ foreach(file ${to_copy})
     file(COPY ${copy_src} DESTINATION ${CMAKE_BINARY_DIR})
 endforeach()
 
+option(DEBUG_MODE "Compile code in debug mode?" OFF)
+if(NOT CMAKE_BUILD_TYPE)
+  if(DEBUG_MODE)
+    set(CMAKE_BUILD_TYPE "Debug")
+  else()
+    set(CMAKE_BUILD_TYPE "Release")
+  endif()
+endif()
+
 # OpenGL
 find_package(OpenGL REQUIRED)
 target_link_libraries(OpenGL::GL)
@@ -96,7 +105,12 @@ target_link_libraries(${PROJECT_NAME} ${glfw_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glfw/include")
 
 # FastNoise2
-find_library(fastnoise2_path NAMES "FastNoise*" PATHS "${CMAKE_SOURCE_DIR}/lib/FastNoise2/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  find_library(fastnoise2_path NAMES "FastNoiseD" PATHS "${CMAKE_SOURCE_DIR}/lib/FastNoise2/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
+else()
+  find_library(fastnoise2_path NAMES "FastNoise" PATHS "${CMAKE_SOURCE_DIR}/lib/FastNoise2/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
+endif()
 target_link_libraries(${PROJECT_NAME} ${fastnoise2_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/FastNoise2/include")
 
