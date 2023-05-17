@@ -22,7 +22,7 @@ set /a jobs=%NUMBER_OF_PROCESSORS%+1
 for %%i in (%build_types%) do (
 
 	:: FastNoise2
-	cmake -DFASTNOISE2_TESTS=OFF -DFASTNOISE2_NOISETOOL=OFF -S .\lib\FastNoise2 -B .\lib\FastNoise2\build\%%i
+	cmake -DFASTNOISE2_TESTS=OFF -DFASTNOISE2_NOISETOOL=OFF -S .\lib\FastNoise2 -B .\lib\FastNoise2\build\%%i -A %%i
 
 	:: glad
 	cmake -DGLAD_API="gl=3.3" -S .\lib\glad -B .\lib\glad\build\%%i -A %%i
