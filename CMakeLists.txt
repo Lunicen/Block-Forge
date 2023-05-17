@@ -118,7 +118,7 @@ include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/json/include")
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glm")
 
 # glText
-include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glText/include")
+include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glText")
 
 # Robin Hood Hashing
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/robin-hood-hashing/src/include")

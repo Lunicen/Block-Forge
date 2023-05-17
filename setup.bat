@@ -92,10 +92,3 @@ for %%i in (%build_types%) do (
 	move ".\lib\glad\build\Debug" ".\lib\glad\build\%%i"
 	move ".\lib\glad\build\Release" ".\lib\glad\build\%%i"
 )
-
-:: glText
-if exist ".\lib\glText\include" (
-  rmdir ".\lib\glText\include" /s /q > nul 2>&1
-)
-mkdir ".\lib\glText\include"
-copy ".\lib\glText\gltext.h" ".\lib\glText\include"
