@@ -1,4 +1,4 @@
-﻿cmake_minimum_required (VERSION 3.13)
+﻿cmake_minimum_required (VERSION 3.15)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -86,6 +86,14 @@ include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glfw/include")
 find_library(fastnoise2_path NAMES "FastNoise*" PATHS "${CMAKE_SOURCE_DIR}/lib/FastNoise2/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
 target_link_libraries(${PROJECT_NAME} ${fastnoise2_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/FastNoise2/include")
+
+if (MSVC)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>DLL:Debug>")
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(_ITERATOR_DEBUG_LEVEL=2)
+    add_compile_definitions(_DEBUG=1)
+  endif()
+endif()
 
 # imgui
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/imgui")
