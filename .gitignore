@@ -16,3 +16,4 @@ Block Forge.sln.DotSettings.user
 *.ilk
 *.pdb
 out
+build
