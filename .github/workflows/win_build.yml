@@ -1,0 +1,161 @@
+name: Windows build
+
+on:
+  pull_request:
+    branches: [ develop ]
+  
+jobs:
+  setup:
+    name: Project setup
+    runs-on: windows-latest
+
+    steps:
+    - name: Install msbuild
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Checkout current branch
+      uses: actions/checkout@v3
+    
+    - name: Cache dependencies
+      id: cache-dep
+      uses: actions/cache@v3
+      with:
+        path: lib
+        key: winBuildAdded
+
+    - name: Install cmake
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      uses: jwlawson/actions-setup-cmake@v1.12
+
+    - name: Setup dependencies
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      run: setup.bat
+      shell: cmd
+
+  dbg_x86:
+    needs: setup
+    name: Debug x86
+    runs-on: windows-latest
+    
+    steps:
+    - name: Compile the project
+      run: cmake -D DEBUG_MODE=ON -S . -B build -A Win32
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config debug
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data Win32 & copy Settings.json Win32 
+      
+    - name: Run the program
+      working-directory: Win32
+      run: timeout /T 5 & start /B BlockForge.exe
+  
+    - name: Check if ran successfully
+      run: |
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )
+        
+  dbg_x64:
+    needs: setup
+    name: Debug x64
+    runs-on: windows-latest
+    
+    steps:
+    - name: Compile the project
+      run: cmake -D DEBUG_MODE=ON -S . -B build -A x64
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config debug
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data x64 & copy Settings.json x64 
+      
+    - name: Run the program
+      working-directory: x64
+      run: timeout /T 5 & start /B BlockForge.exe
+  
+    - name: Check if ran successfully
+      run: |
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )
+
+  x86:
+    needs: setup
+    name: Release x86
+    runs-on: windows-latest
+    
+    steps:
+    - name: Compile the project
+      run: cmake -S . -B build -A Win32
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config release
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data Win32 & copy Settings.json Win32 
+      
+    - name: Run the program
+      working-directory: Win32
+      run: timeout /T 5 & start /B BlockForge.exe
+  
+    - name: Check if ran successfully
+      run: |
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )
+        
+  x64:
+    needs: setup
+    name: Release x64
+    runs-on: windows-latest
+    
+    steps:
+    - name: Compile the project
+      run: cmake -S . -B build -A x64
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config release
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data x64 & copy Settings.json x64 
+      
+    - name: Run the program
+      working-directory: x64
+      run: timeout /T 5 & start /B BlockForge.exe
+  
+    - name: Check if ran successfully
+      run: |
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )
