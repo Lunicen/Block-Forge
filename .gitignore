@@ -2,17 +2,5 @@
 bin
 docs
 lib
-test/bin
-test/*.pdb
-test/*.ilk
-test/*.testdurations
-test/*.exe
-test/*.dll
-test/*.exp
-test/*.lib
-test/out
-Block Forge.sln.DotSettings.user
-*.ilk
-*.pdb
 out
 build
