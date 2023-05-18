@@ -21,7 +21,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: lib
-        key: winBuildCache
+        key: winBuildCacheFix
 
     - name: Install cmake
       if: steps.cache-dep.outputs.cache-hit != 'true'
@@ -33,7 +33,6 @@ jobs:
       shell: cmd
       
     - name: Save setup
-      if: steps.cache-dep.outputs.cache-hit != 'true'
       uses: actions/upload-artifact@v3
       with:
         name: win-setup
@@ -55,7 +54,6 @@ jobs:
       uses: actions/checkout@v3
     
     - name: Retrieve setup
-      if: steps.cache-dep.outputs.cache-hit != 'true'
       uses: actions/download-artifact@v3
       with:
         name: win-setup
