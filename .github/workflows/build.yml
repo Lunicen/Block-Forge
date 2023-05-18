@@ -71,6 +71,7 @@ jobs:
       
     - name: Can build run?
       working-directory: build/Release
+      shell: cmd
       run: |
         start cmd.exe /C "timeout /T 5 && BlockForge.exe"
         timeout /T 5
@@ -111,6 +112,7 @@ jobs:
       
     - name: Can build run?
       working-directory: build/Release
+      shell: cmd
       run: |
         start cmd.exe /C "timeout /T 5 && BlockForge.exe"
         timeout /T 5

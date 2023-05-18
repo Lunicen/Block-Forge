@@ -1,6 +1,7 @@
 ﻿.vs
 bin
 docs
+lib
 test/bin
 test/*.pdb
 test/*.ilk
@@ -10,8 +11,6 @@ test/*.dll
 test/*.exp
 test/*.lib
 test/out
-lib/glfw/build_Win32
-lib/glfw/build_x64
 Block Forge.sln.DotSettings.user
 *.ilk
 *.pdb
