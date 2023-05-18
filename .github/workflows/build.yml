@@ -73,7 +73,7 @@ jobs:
       working-directory: build/Release
       shell: cmd
       run: |
-        start cmd.exe /C "timeout /T 5 && BlockForge.exe"
+        start /B BlockForge.exe
         timeout /T 5
         tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
         if "%ERRORLEVEL%"=="0" (
@@ -114,7 +114,7 @@ jobs:
       working-directory: build/Release
       shell: cmd
       run: |
-        start cmd.exe /C "timeout /T 5 && BlockForge.exe"
+        start /B BlockForge.exe
         timeout /T 5
         tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
         if "%ERRORLEVEL%"=="0" (
