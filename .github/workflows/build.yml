@@ -46,7 +46,7 @@ jobs:
 
   win_x86:
     needs: setup
-    name: x86
+    name: Windows x86
     runs-on: windows-latest
     
     steps:
@@ -69,12 +69,11 @@ jobs:
       working-directory: build
       run: copy data Release & copy Settings.json Release 
       
-    - name: Run the program
+    - name: Can build run?
       working-directory: build/Release
-      run: timeout /T 5 & start /B BlockForge.exe
-  
-    - name: Check if ran successfully
       run: |
+        start cmd.exe /C "timeout /T 5 && BlockForge.exe"
+        timeout /T 5
         tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
         if "%ERRORLEVEL%"=="0" (
           echo "Program is still running, success!"
@@ -83,10 +82,11 @@ jobs:
           echo "Program fails to start!"
           exit 1
         )
+
         
   win_x64:
     needs: setup
-    name: Debug x64
+    name: Windows x64
     runs-on: windows-latest
     
     steps:
@@ -109,15 +109,16 @@ jobs:
       working-directory: build
       run: copy data Release & copy Settings.json Release 
       
-    - name: Run the program
+    - name: Can build run?
       working-directory: build/Release
-      run: timeout /T 5 & start /B BlockForge.exe
-  
-    - name: Check if ran successfully
       run: |
+        start cmd.exe /C "timeout /T 5 && BlockForge.exe"
+        timeout /T 5
         tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
         if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
           exit 0
         ) else (
+          echo "Program fails to start!"
           exit 1
         )

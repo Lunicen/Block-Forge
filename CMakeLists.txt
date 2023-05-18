@@ -11,11 +11,6 @@ project (BlockForge)
 # Add source to this project's executable.
 file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/Application/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/Application/HID/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/Application/Layer/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/Application/LayerStack/*.cpp"
-	"${CMAKE_SOURCE_DIR}/src/Core/*.cpp"
 
 	# GLAD
 	"${CMAKE_SOURCE_DIR}/lib/glad/build/glad.c"
