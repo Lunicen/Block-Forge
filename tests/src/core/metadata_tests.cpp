@@ -1,9 +1,9 @@
-#include "../UnitTestsConfig.h"
+#include "../unit_tests_config.h"
 
 // ReSharper disable once CppUnusedIncludeDirective
-#include "Core/FileUtils.cpp"
-#include "Core/Metadata.cpp"
-#include "Core/Log.cpp"
+#include "core/file_utils.cpp"
+#include "core/metadata.cpp"
+#include "core/log.cpp"
 
 namespace MetadataTests
 {
