@@ -34,6 +34,3 @@
 [submodule "lib/SPSCQueue"]
 	path = lib/SPSCQueue
 	url = https://github.com/rigtorp/SPSCQueue
-[submodule "tests/lib/googletest"]
-	path = tests/lib/googletest
-	url = https://github.com/google/googletest
