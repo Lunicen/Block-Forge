@@ -2,7 +2,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "Core/engine_exceptions.h"
+#include "core/engine_exceptions.h"
 
 int Texture::_usedTextureSlots = 0;
 

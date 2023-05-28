@@ -1,4 +1,4 @@
-#include "core/Log.h"
+#include "core/log.h"
 #include "application/application.h"
 
 void ParseArgument(const char *argument)

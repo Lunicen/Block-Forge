@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "core/file_utils.h"
-#include "Core/Log.h"
+#include "core/log.h"
 #include <glad/glad.h>
 
 /// @class Shader

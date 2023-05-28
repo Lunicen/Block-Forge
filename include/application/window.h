@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/opengl_headers.h"
+#include "core/opengl_headers.h"
 
 /// @class Window
 ///	@brief This is a container for holding the data concerning the application window.

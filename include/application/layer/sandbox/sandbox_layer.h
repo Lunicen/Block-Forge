@@ -1,7 +1,7 @@
 #pragma once
 #include "hud.h"
 #include "application/layer/layer.h"
-#include "application/layer/sandbox/Camera.h"
+#include "application/layer/sandbox/camera.h"
 #include "application/layer/sandbox/utils/fps_counter.h"
 #include "application/layer/sandbox/world/world_generator.h"
 #include "application/layer/sandbox/world/chunks/chunk_placer.h"

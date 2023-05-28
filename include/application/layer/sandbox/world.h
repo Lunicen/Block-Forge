@@ -1,6 +1,6 @@
 #pragma once
-#include "Core/Log.h"
-#include "Core/Metadata.h"
+#include "core/log.h"
+#include "core/metadata.h"
 
 /// @class World
 ///	@brief Represents the world which contains the data about the generated world

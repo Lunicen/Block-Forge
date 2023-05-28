@@ -1,5 +1,5 @@
-#include "application/layer/sandbox/Hud.h"
-#include "application/layer/sandbox/Model/Surface/Texture.h"
+#include "application/layer/sandbox/hud.h"
+#include "application/layer/sandbox/model/surface/texture.h"
 
 HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas& itemTexture, Shader& shader, const Point position, const float scale = 1.0f)
 	: _shader(shader), _texture(texture), _itemTexture(itemTexture), _position(position), _scale(scale),

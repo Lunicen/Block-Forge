@@ -1,6 +1,6 @@
 #pragma once
-#include "Core/Log.h"
-#include "Structure/Chunk.h"
+#include "core/log.h"
+#include "structure/chunk.h"
 
 
 /// @class ChunkRenderer

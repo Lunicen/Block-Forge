@@ -1,5 +1,5 @@
 #pragma once
-#include "Order.h"
+#include "order.h"
 
 /// @class CubeOrder
 /// @brief Provides an algorithm for the ChunkPlacer to place the chunks in a cube manner.

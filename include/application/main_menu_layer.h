@@ -1,7 +1,7 @@
 // ReSharper disable CppUnusedIncludeDirective
 #pragma once
 #include <string>
-#include "Core/Log.h"
+#include "core/log.h"
 
 #include "imgui.h"
 #include "application/hid/human_interface_device.h"

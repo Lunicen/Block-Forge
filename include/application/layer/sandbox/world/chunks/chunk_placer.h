@@ -2,7 +2,7 @@
 #include "application/layer/sandbox/camera.h"
 #include "application/layer/sandbox/world/world_generator.h"
 #include "application/layer/sandbox/world/chunks/order_type/order_types.h"
-#include "rigtorp/SPSCQueue.h"
+#include "rigtorp/spscqueue.h"
 #include "structure/chunk.h"
 
 /// @class ChunkPlacer
