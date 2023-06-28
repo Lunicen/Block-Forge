@@ -54,10 +54,10 @@ public:
 	///	@param blockMap - texture Atlas for blocks.
 	///	@param texture - Texture Atlas with 2 textures (selected and passive) for the item slot.
 	///	@param itemTexture - Texture Atlas with item held in the item slot.
-	///	@param shader - shader used for item slot.
-	///	@param position - position of the item slot.
+	///	@param itemShader - shader used for item slot.
+	///	@param itemPosition - position of the item slot.
 	/// @param scale - scale of the item slot.
-	HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas &itemTexture, Shader &shader, Point position, float scale);
+	HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas &itemTexture, Shader &itemShader, Point itemPosition, float scale);
 
 	/// @brief Function Selects slot and changes it's texture.
 	void Activate();

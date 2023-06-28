@@ -1,8 +1,8 @@
 #include "application/layer/sandbox/hud.h"
 #include "application/layer/sandbox/model/surface/texture.h"
 
-HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas& itemTexture, Shader& shader, const Point position, const float scale = 1.0f)
-	: _shader(shader), _texture(texture), _itemTexture(itemTexture), _position(position), _scale(scale),
+HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas& itemTexture, Shader& itemShader, const Point itemPosition, const float scale = 1.0f)
+	: _shader(itemShader), _texture(texture), _itemTexture(itemTexture), _position(itemPosition), _scale(scale),
       _state(false), _isContainingItem(false), _blockMap(blockMap), _item("empty")
 {
 	for (auto& [position, _] : _vertices)
