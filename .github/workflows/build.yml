@@ -1,0 +1,126 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ develop ]
+  
+jobs:
+  setup:
+    name: Windows setup
+    runs-on: windows-latest
+
+    steps:
+    - name: Install msbuild
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Checkout current branch
+      uses: actions/checkout@v3
+    
+    - name: Cache dependencies
+      id: cache-dep
+      uses: actions/cache@v3
+      with:
+        path: lib
+        key: winBuildCacheFix2
+
+    - name: Install cmake
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      uses: jwlawson/actions-setup-cmake@v1.12
+
+    - name: Setup dependencies
+      if: steps.cache-dep.outputs.cache-hit != 'true'
+      run: setup.bat
+      shell: cmd
+      
+    - name: Save setup
+      uses: actions/upload-artifact@v3
+      with:
+        name: win-setup
+        path: |
+          include
+          lib
+          src
+          CMakeLists.txt
+          data
+          Settings.json
+
+  win_x86:
+    needs: setup
+    name: Windows x86
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Retrieve setup
+      uses: actions/download-artifact@v3
+      with:
+        name: win-setup
+    
+    - name: Compile the project
+      run: cmake -S . -B build -A Win32
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config Release --parallel 4
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data Release & copy Settings.json Release 
+      
+    - name: Can build run?
+      working-directory: build/Release
+      shell: cmd
+      run: |
+        start /B BlockForge.exe
+        timeout /T 5
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )
+
+        
+  win_x64:
+    needs: setup
+    name: Windows x64
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Retrieve setup
+      uses: actions/download-artifact@v3
+      with:
+        name: win-setup
+        
+    - name: Compile the project
+      run: cmake -S . -B build -A x64
+      
+    - name: Build the project
+      working-directory: build
+      run: cmake --build . --config Release --parallel 4
+      
+    - name: Copy the data files
+      working-directory: build
+      run: copy data Release & copy Settings.json Release 
+      
+    - name: Can build run?
+      working-directory: build/Release
+      shell: cmd
+      run: |
+        start /B BlockForge.exe
+        timeout /T 5
+        tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+        if "%ERRORLEVEL%"=="0" (
+          echo "Program is still running, success!"
+          exit 0
+        ) else (
+          echo "Program fails to start!"
+          exit 1
+        )

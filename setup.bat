@@ -1,95 +1,94 @@
 @echo off
 
-set GLFW_root_dir=.\lib\glfw
-set GLFW_build_dir=.\lib\glfw\build
-set GLAD_root_dir=.\lib\glad
-set GLAD_build_dir=.\lib\glad\build
-set FastNoiseTwo_root_dir=.\lib\FastNoise2
-set FastNoiseTwo_build_dir=.\lib\FastNoise2\build
+:: Target architectures
+set "build_types=Win32 x64"
+
+:: Libraries
+set "libraries=FastNoise2 glad glfw"
 
 :: Remove previous setup if exists
-echo Removing previous build if exists
-if exist %GLFW_build_dir% del %GLFW_build_dir%\Win32\*.* /s /q > nul 2>&1
-if exist %GLFW_build_dir% rmdir %GLFW_build_dir%\Win32 /s /q > nul 2>&1
-if exist %GLFW_build_dir% del %GLFW_build_dir%\x64\*.* /s /q > nul 2>&1
-if exist %GLFW_build_dir% rmdir %GLFW_build_dir%\x64 /s /q > nul 2>&1
-
-if exist %GLAD_build_dir% del %GLAD_build_dir%\Win32\*.* /s /q > nul 2>&1
-if exist %GLAD_build_dir% rmdir %GLAD_build_dir%\Win32 /s /q > nul 2>&1
-if exist %GLAD_build_dir% del %GLAD_build_dir%\x64\*.* /s /q > nul 2>&1
-if exist %GLAD_build_dir% rmdir %GLAD_build_dir%\x64 /s /q > nul 2>&1
-
-if exist %FastNoiseTwo_build_dir% del %FastNoiseTwo_build_dir%\Win32\*.* /s /q > nul 2>&1
-if exist %FastNoiseTwo_build_dir% rmdir %FastNoiseTwo_build_dir%\Win32 /s /q > nul 2>&1
-if exist %FastNoiseTwo_build_dir% del %FastNoiseTwo_build_dir%\x64\*.* /s /q > nul 2>&1
-if exist %FastNoiseTwo_build_dir% rmdir %FastNoiseTwo_build_dir%\x64 /s /q > nul 2>&1
-
-:: Check if the library is downloaded
-for /F %%i in ('dir /b /a "%GLFW_root_dir%\*"') do (
-    echo GLFW is downloaded!
-	goto :checkGLAD
+for %%i in (%libraries%) do (
+  if exist ".\lib\%%i\build\" (
+    echo Cleaned %%i!
+    rmdir ".\lib\%%i\build\" /s /q > nul 2>&1
+  )
 )
-echo GLFW module is missing!
 
-:checkGLAD
-for /F %%i in ('dir /b /a "%GLAD_root_dir%\*"') do (
-    echo GLAD is downloaded!
-    goto :checkFastNoiseTwo
-)
-echo GLAD module is missing!
-
-:checkFastNoiseTwo
-for /F %%i in ('dir /b /a "%FastNoiseTwo_root_dir%\*"') do (
-    echo FastNoise2 is downloaded!
-    goto :allSubmodulesInstalled
-)
-echo FastNoise2 module is missing!
-
-:installMissingSubmodules
-:: Install missing dependencies
-echo Some modules are missing! Downloading...
+echo Updating submodules...
 git submodule update --init --recursive
 git pull --recurse-submodules
 
+set /a jobs=%NUMBER_OF_PROCESSORS%+1
+for %%i in (%build_types%) do (
 
+	:: FastNoise2
+	cmake -DFASTNOISE2_TESTS=OFF -DFASTNOISE2_NOISETOOL=OFF -S .\lib\FastNoise2 -B .\lib\FastNoise2\build\%%i -A %%i
 
-:allSubmodulesInstalled
-echo Installing GLFW!
+	:: glad
+	cmake -DGLAD_API="gl=3.3" -S .\lib\glad -B .\lib\glad\build\%%i -A %%i
 
-:: x64 build
-cmake -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF %GLFW_root_dir% -A x64 -B %GLFW_build_dir%\x64
-start "GLFW Debug build x64" cmd /c "cmake --build %GLFW_build_dir%\x64 --config Debug --clean-first"
-start "GLFW Release build x64" cmd /c "cmake --build %GLFW_build_dir%\x64 --config Release --clean-first"
+	:: glfw
+	cmake -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -S .\lib\glfw -B .\lib\glfw\build\%%i -A %%i
+)
 
-:: Win32 build
-cmake -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF %GLFW_root_dir% -A Win32 -B %GLFW_build_dir%\Win32
-start "GLFW Debug build Win32" cmd /c "cmake --build %GLFW_build_dir%\Win32 --config Debug --clean-first"
-start "GLFW Release build Win32" cmd /c "cmake --build %GLFW_build_dir%\Win32 --config Release --clean-first"
+Rem Unfortunately this process cannot be ideally automated
+Rem due the fact that there is no standard in building libraries
 
+:: standard libraries (defined)
+echo Building libraries
+set "std_libraries=FastNoise2 glfw"
 
+for %%i in (%std_libraries%) do (
+	for %%j in (%build_types%) do (
 
-echo Installing GLAD!
+		cmake --build .\lib\%%i\build\%%j --config Debug --clean-first --parallel %jobs%
+		mkdir ".\lib\%%i\build\Debug"
+		for /f %%f in ('dir /s /b ".\lib\%%i\build\%%j\*.lib"') do (
+			move %%~ff ".\lib\%%i\build\Debug"
+		)
+		for /f %%f in ('dir /s /b ".\lib\%%i\build\%%j\*.pdb"') do (
+			move %%~ff ".\lib\%%i\build\Debug"
+		)
+		
+		cmake --build .\lib\%%i\build\%%j --config Release --clean-first --parallel %jobs%
+		mkdir ".\lib\%%i\build\Release"
+		for /f %%f in ('dir /s /b ".\lib\%%i\build\%%j\*.lib"') do (
+			move %%~ff ".\lib\%%i\build\Release"
+		)
+		
+		rmdir ".\lib\%%i\build\%%j" /s /q > nul 2>&1
+		mkdir ".\lib\%%i\build\%%j"
+		move ".\lib\%%i\build\Debug" ".\lib\%%i\build\%%j"
+		move ".\lib\%%i\build\Release" ".\lib\%%i\build\%%j"
+	)
+)
 
-:: x64 build
-cmake %GLAD_root_dir% -B %GLAD_build_dir%\x64 -A x64
-start "GLAD Debug build x64" cmd /c "cmake --build %GLAD_build_dir%\x64 --config Debug --clean-first"
-start "GLAD Release build x64" cmd /c "cmake --build %GLAD_build_dir%\x64 --config Release --clean-first"
+:: custom libraries
+echo Building libraries requiring custom config
+for %%i in (%build_types%) do (
 
-:: Win32 build
-cmake %GLAD_root_dir% -B %GLAD_build_dir%\Win32 -A Win32
-start "GLAD Debug build Win32" cmd /c "cmake --build %GLAD_build_dir%\Win32 --config Debug --clean-first"
-start "GLAD Release build Win32" cmd /c "cmake --build %GLAD_build_dir%\Win32 --config Release --clean-first"
+	:: glad =======================================================================================
+	cmake --build .\lib\glad\build\%%i --config Debug --clean-first --parallel %jobs%
+	mkdir ".\lib\glad\build\Debug"
+	for /f %%f in ('dir /s /b ".\lib\glad\build\%%i\*.lib"') do (
+		move %%~ff ".\lib\glad\build\Debug"
+	)
+	for /f %%f in ('dir /s /b ".\lib\glad\build\%%i\*.pdb"') do (
+		move %%~ff ".\lib\glad\build\Debug"
+	)
+	move ".\lib\glad\build\%%i\include" ".\lib\glad\build\Debug"
+	
+	cmake --build .\lib\glad\build\%%i --config Release --clean-first --parallel %jobs%
+	mkdir ".\lib\glad\build\Release"
+	for /f %%f in ('dir /s /b ".\lib\glad\build\%%i\*.lib"') do (
+		move %%~ff ".\lib\glad\build\Release"
+	)
+	move ".\lib\glad\build\%%i\include" ".\lib\glad\build\Release"
 
-
-
-echo Installing FastNoise2!
-
-:: x64 build
-cmake -DFASTNOISE2_TESTS=OFF -DFASTNOISE2_NOISETOOL=OFF %FastNoiseTwo_root_dir% -A x64 -B %FastNoiseTwo_build_dir%\x64
-start "FastNoise2 Debug build x64" cmd /c "cmake --build %FastNoiseTwo_build_dir%\x64 --config Debug --clean-first"
-start "FastNoise2 Release build x64" cmd /c "cmake --build %FastNoiseTwo_build_dir%\x64 --config Release --clean-first"
-
-:: Win32 build
-cmake -DFASTNOISE2_TESTS=OFF -DFASTNOISE2_NOISETOOL=OFF %FastNoiseTwo_root_dir% -A Win32 -B %FastNoiseTwo_build_dir%\Win32
-start "FastNoise2 Debug build Win32" cmd /c "cmake --build %FastNoiseTwo_build_dir%\Win32 --config Debug --clean-first"
-start "FastNoise2 Release build Win32" cmd /c "cmake --build %FastNoiseTwo_build_dir%\Win32 --config Release --clean-first"
+	move ".\lib\glad\build\%%i\src\glad.c" ".\lib\glad\build"
+	
+	rmdir ".\lib\glad\build\%%i" /s /q > nul 2>&1
+	mkdir ".\lib\glad\build\%%i"
+	move ".\lib\glad\build\Debug" ".\lib\glad\build\%%i"
+	move ".\lib\glad\build\Release" ".\lib\glad\build\%%i"
+)

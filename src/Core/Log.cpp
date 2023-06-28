@@ -1,4 +1,4 @@
-#include "Log.h"
+#include "core/log.h"
 
 
 void Log::SetMode(const LogMode mode)

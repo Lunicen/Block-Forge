@@ -1,4 +1,4 @@
-#include "Chunk.h"
+#include "application/layer/sandbox/world/chunks/structure/chunk.h"
 
 
 Chunk::Chunk(const size_t chunkSize, BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), chunkSize)
@@ -28,12 +28,12 @@ void Chunk::LoadBlocksAndBuildMesh(const ChunkBlocks& blocks, const ChunkFrame& 
 
 }
 
-Chunk::Chunk(const ChunkFrame frame, ChunkBlocks blocks,BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
+Chunk::Chunk(const ChunkFrame& frame, ChunkBlocks blocks,BlockMap& blockMap) : _mesh(blockMap.GetBlocksShader(), frame.size), _blocks(std::move(blocks))
 {
 }
 
 Chunk::Chunk(
-	const ChunkFrame frame, 
+	const ChunkFrame& frame, 
 	ChunkBlocks blocks,
 	BlockMap& blockMap, 
 	const std::vector<Vertex>& precalculatedMesh)
