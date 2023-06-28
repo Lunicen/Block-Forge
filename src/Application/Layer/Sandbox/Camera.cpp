@@ -70,9 +70,7 @@ int Camera::HandleMouseAction(HumanInterfaceDevice& hid) const {
 
 void Camera::UpdateCursorMovement(const HumanInterfaceDevice& hid)
 {
-	const auto& mousePosition = hid.GetCursorPosition();
-	const auto& mouseX = mousePosition.first;
-	const auto& mouseY = mousePosition.second;
+	const auto& [mouseX, mouseY] = hid.GetCursorPosition();
 
 	const auto& middleAxisX = mouseX / 2.0;
 	const auto& middleAxisY = mouseY / 2.0;
@@ -81,10 +79,9 @@ void Camera::UpdateCursorMovement(const HumanInterfaceDevice& hid)
 	const float yAxisRotation = _sensitivity * (static_cast<float>(middleAxisX) / static_cast<float>(_window.GetWidth()));
 
 	const auto orientation = rotate(_orientation, glm::radians(-xAxisRotation), normalize(cross(_orientation, _upVector)));
-	const auto angleWithXAxis = abs(angle(orientation, _upVector) - glm::radians(90.0f));
 
 	// This prevents the barrel roll situation when looking up
-	if (angleWithXAxis < glm::radians(85.0f))
+	if (const auto angleWithXAxis = abs(angle(orientation, _upVector) - glm::radians(90.0f)); angleWithXAxis < glm::radians(85.0f))
 	{
 		_orientation = orientation;
 	}

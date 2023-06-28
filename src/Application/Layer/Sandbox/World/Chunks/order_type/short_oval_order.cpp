@@ -24,9 +24,9 @@ std::vector<glm::ivec3> ShortOvalOrder::GetChunksAround(const glm::ivec3 normali
 			for (auto z = -dz; z <= dz; z++)
 			{
 				chunksPositions.emplace_back(
-					glm::ivec3(x + normalizedOrigin.x,
-							   y + normalizedOrigin.y,
-							   z + normalizedOrigin.z)
+					x + normalizedOrigin.x,
+					y + normalizedOrigin.y,
+					z + normalizedOrigin.z
 				);
 			}
 		}

@@ -43,6 +43,19 @@ std::string ChunkPlacer::PositionToString(const Position& position) const
 	);
 }
 
+bool ChunkPlacer::IsChunkInCameraRange(const Position origin)
+{
+	const std::scoped_lock lock(_chunksMutex);
+
+	if (_chunksPositionsAroundCamera.find(origin) == _chunksPositionsAroundCamera.end() || 
+		_loadedChunks.find(origin) != _loadedChunks.end())
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunkOrigins)
 {
 	const auto size = _order->GetChunkSize();
@@ -54,14 +67,9 @@ void ChunkPlacer::AddNewChunks(const std::vector<Position>& currentChunkOrigins)
 			break;
 		}
 
+		if (IsChunkInCameraRange(origin))
 		{
-			const std::scoped_lock lock(_chunksMutex);
-
-			if (_chunksPositionsAroundCamera.find(origin) == _chunksPositionsAroundCamera.end() || 
-				_loadedChunks.find(origin) != _loadedChunks.end())
-			{
-				continue;
-			}
+			continue;
 		}
 
 		const auto chunkFrame = ChunkFrame{origin, size};
@@ -128,7 +136,7 @@ void ChunkPlacer::LazyLoader()
 
 void ChunkPlacer::RemoveStaleChunksFromChunksToLoadQueue(Position position) const
 {
-	const std::lock_guard lock(_chunksMutex);
+	const std::scoped_lock lock(_chunksMutex);
 
 	while (
 		!_chunksToLoad.empty() && (
@@ -172,9 +180,7 @@ ChunkPlacer::ChunkPlacer(const OrderType orderType, const size_t chunkSize, cons
 
 void ChunkPlacer::ReactToCameraMovement(const Position& position) const
 {
-	const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize());
-
-	if (currentNormalizedPosition != _previousNormalizedPosition)
+	if (const auto currentNormalizedPosition = GetNormalizedPosition(position, _order->GetChunkSize()); currentNormalizedPosition != _previousNormalizedPosition)
 	{
 		_previousNormalizedPosition = currentNormalizedPosition;
 
@@ -252,15 +258,11 @@ HashMap<Position, std::unique_ptr<Chunk>>& ChunkPlacer::GetChunks() const
 
 	if (!_chunksToLoad.empty())
 	{
-		auto position = std::get<0>(*_chunksToLoad.front());
+		const auto [position, chunkBlocks, vertices] = *_chunksToLoad.front();
 		RemoveStaleChunksFromChunksToLoadQueue(position);
 
 		if (!_chunksToLoad.empty() && _chunksPositionsAroundCamera.find(position) != _chunksPositionsAroundCamera.end())
 		{
-			position = std::get<0>(*_chunksToLoad.front());
-
-			const auto [position, chunkBlocks, vertices] = *_chunksToLoad.front();
-
 			if (_freeChunks.empty())
 			{
 				RemoveStaleChunk();

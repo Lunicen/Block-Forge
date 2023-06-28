@@ -26,15 +26,15 @@ std::vector<Vertex> ChunkMeshUtils::GetMeshVertices(const ChunkFrame& frame, con
 		}
 
 		auto origin = ChunkUtils::GetBlockPosition(i, frame.size) + frame.origin * static_cast<int>(frame.size);
-		auto faceModels = blockMap[blocks[i].blockModel]->GetFaces();
-		auto faceVertices = blockMap.GetFaceVertices();
+		auto [frontModel, backModel, leftModel, rightModel, topModel, bottomModel] = blockMap[blocks[i].blockModel]->GetFaces();
+		auto [frontFace, backFace, leftFace, rightFace, topFace, bottomFace] = blockMap.GetFaceVertices();
 
-		if (blockFlags & BlockFlag.frontFace)	AddFaceToMesh(origin, faceVertices.front, faceModels.front.GetUvCoordinates(), vertices);
-		if (blockFlags & BlockFlag.backFace)	AddFaceToMesh(origin, faceVertices.back, faceModels.back.GetUvCoordinates(), vertices);
-		if (blockFlags & BlockFlag.leftFace)	AddFaceToMesh(origin, faceVertices.left, faceModels.left.GetUvCoordinates(), vertices);
-		if (blockFlags & BlockFlag.rightFace)	AddFaceToMesh(origin, faceVertices.right, faceModels.right.GetUvCoordinates(), vertices);
-		if (blockFlags & BlockFlag.topFace)		AddFaceToMesh(origin, faceVertices.top, faceModels.top.GetUvCoordinates(), vertices);
-		if (blockFlags & BlockFlag.bottomFace)	AddFaceToMesh(origin, faceVertices.bottom, faceModels.bottom.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.frontFace)	AddFaceToMesh(origin, frontFace,  frontModel.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.backFace)	AddFaceToMesh(origin, backFace,   backModel.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.leftFace)	AddFaceToMesh(origin, leftFace,   leftModel.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.rightFace)	AddFaceToMesh(origin, rightFace,  rightModel.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.topFace)		AddFaceToMesh(origin, topFace,	  topModel.GetUvCoordinates(), vertices);
+		if (blockFlags & BlockFlag.bottomFace)	AddFaceToMesh(origin, bottomFace, bottomModel.GetUvCoordinates(), vertices);
 	}
 
 	return vertices;

@@ -5,28 +5,28 @@ HudItemSlot::HudItemSlot(BlockMap& blockMap, TextureAtlas& texture, TextureAtlas
 	: _shader(shader), _texture(texture), _itemTexture(itemTexture), _position(position), _scale(scale),
       _state(false), _isContainingItem(false), _blockMap(blockMap), _item("empty")
 {
-	for (auto& vertex : _vertices)
+	for (auto& [position, _] : _vertices)
 	{
-		vertex.position = vertex.position * _scale;
+		position = position * _scale;
 	}
 	
-	for (auto& vertex :_vertices)
+	for (auto& [position, _] :_vertices)
 	{
-		vertex.position = vertex.position + Point3D(_position.x, _position.y, 0);
+		position = position + Point3D(_position.x, _position.y, 0);
 	}
 	
 	_texture.SetSprite(_vertices, 0, 0, false);
 	_mesh = std::make_unique<StaticMesh>(_vertices, _indices, _shader);
 
-	for (auto& vertex : _vertices2)
+	for (auto& [position, _] : _vertices2)
 	{
-		vertex.position = vertex.position * _scale * 0.75f;
+		position = position * _scale * 0.75f;
 	}
 
-	for (auto& vertex : _vertices2)
+	for (auto& [position, _] : _vertices2)
 	{
 		constexpr int amount = 8;
-		vertex.position = vertex.position + Point3D(_position.x + _scale / amount, _position.y + _scale / amount, 0);
+		position = position + Point3D(_position.x + _scale / amount, _position.y + _scale / amount, 0);
 	}
 
 	_itemTexture.SetSprite(_vertices2, 1, 0, false);
@@ -143,7 +143,7 @@ void Hud::ChangeSelectedItemSlot(HumanInterfaceDevice &hid)
 	_hudItemSlotBar[_selectedRow][_selectedSlot]->Activate();
 }
 
-std::string Hud::GetHeldItem()
+std::string Hud::GetHeldItem() const
 {
 	return _hudItemSlotBar[_selectedRow][_selectedSlot]->GetItem();
 }

@@ -68,7 +68,7 @@ bool MainMenuLayer::HasWindowFailedToCreate(GLFWwindow* &window)
 }
 
 
-void MainMenuLayer::Draw() const
+void MainMenuLayer::Draw()
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();

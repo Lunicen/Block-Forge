@@ -8,6 +8,7 @@ int Texture::_usedTextureSlots = 0;
 
 Texture::Texture(const std::string& filenameWithImage) : _textureSlot(_usedTextureSlots++)
 {
+	// ReSharper disable once CppTooWideScopeInitStatement
 	constexpr int maxAvailableTextureSlots = 32;
 	if (_usedTextureSlots >= maxAvailableTextureSlots)
 	{

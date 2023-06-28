@@ -1,7 +1,7 @@
 #include "application/layer/sandbox/dynamics/place_block.h"
 #include "application/layer/sandbox/world/chunks/chunk_utils.h"
 
-void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, const std::string& heldItem)
+void PlaceBlock::Place(const glm::vec3 orientation, const glm::vec3 position, HashMap<Position, std::unique_ptr<Chunk>>& chunks, BlockMap& blockMap, const std::string& heldItem)
 {
 	constexpr int maxRadiusCoefficient = 4;
 
@@ -24,14 +24,12 @@ void PlaceBlock::Place(glm::vec3 orientation, glm::vec3 position, HashMap<Positi
 		
 		if (chunks.find(chunkPosition) != chunks.end())
 		{
-
 			if (PlaceBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
 				break;
-			continue;
 		}
 	}
 }
-bool PlaceBlock::PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, Position chunkPosition, glm::vec3& pos, size_t chunkSize, Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem)
+bool PlaceBlock::PlaceBlockOnChunk(HashMap<Position, std::unique_ptr<Chunk>>& chunks, const Position chunkPosition, glm::vec3& pos, const size_t chunkSize, const Position chunkPositionForNewBlock, BlockMap& blockMap, const std::string& heldItem)
 {
 	auto isThereBlock = 0b00000010;
 	auto placeBlock = 0b11111110;

@@ -105,6 +105,6 @@ public:
 
 
 	/// @brief Function that returns item currently held in players hand.
-	std::string GetHeldItem();
+	std::string GetHeldItem() const;
 };
 

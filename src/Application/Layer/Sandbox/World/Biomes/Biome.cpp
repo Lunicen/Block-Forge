@@ -6,8 +6,7 @@ void Biome::SetBlockAccordingToNoise(const glm::ivec3& origin, const ChunkFrame&
 	auto blockIndex = _depthLevel.size() - 1;
 	while (blockIndex > 0)
 	{
-		const auto& yLevelOverThisBlock = _depthLevel[blockIndex].first;
-		if (noise[yLevelOverThisBlock] < 0.0f)
+		if (const auto& yLevelOverThisBlock = _depthLevel[blockIndex].first; noise[yLevelOverThisBlock] < 0.0f)
 		{
 			break;
 		}

@@ -34,6 +34,7 @@ class ChunkPlacer
 	Position GetNormalizedPosition(const Point3D& position, const size_t& chunkSize) const;
 	std::string PositionToString(const Position& position) const;
 
+	static bool IsChunkInCameraRange(Position origin);
 	static void AddNewChunks(const std::vector<Position>& currentChunkOrigins);
 	static void LazyLoader();
 

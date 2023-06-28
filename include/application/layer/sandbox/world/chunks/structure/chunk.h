@@ -23,7 +23,7 @@ public:
 	///	@param frame - Frame of the chunk.
 	///	@param blocks - The blocks inside the chunk.
 	///	@param blockMap - Reference to the blocks map.
-	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap);
+	explicit Chunk(const ChunkFrame& frame, ChunkBlocks blocks, BlockMap& blockMap);
 
 	/// @brief Loads blocks data that are inside the chunk
 	///	@note This data is required for chunk modifying.
@@ -50,7 +50,7 @@ public:
 	///	@param blocks - The blocks inside the chunk.
 	///	@param blockMap - Reference to the blocks map.
 	/// @param precalculatedMesh - vertices of precalculated chunk mesh.
-	explicit Chunk(ChunkFrame frame, ChunkBlocks blocks, BlockMap& blockMap, const std::vector<Vertex>&
+	explicit Chunk(const ChunkFrame& frame, ChunkBlocks blocks, BlockMap& blockMap, const std::vector<Vertex>&
 	               precalculatedMesh);
 
 	/// @brief Draws the chunk in the world.

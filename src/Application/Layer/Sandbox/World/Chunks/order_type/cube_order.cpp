@@ -18,9 +18,9 @@ std::vector<glm::ivec3> CubeOrder::GetChunksAround(const glm::ivec3 normalizedOr
 			for (auto z = -bound; z <= bound; ++z)
 			{
 				chunksPositions.emplace_back(
-					glm::ivec3(x + normalizedOrigin.x,
-							   y + normalizedOrigin.y,
-							   z + normalizedOrigin.z)
+					x + normalizedOrigin.x,
+					y + normalizedOrigin.y,
+					z + normalizedOrigin.z
 				);
 			}
 		}

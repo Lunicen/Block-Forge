@@ -29,9 +29,7 @@ void Metadata::ValidateIfKeyExists(const std::string& name) const
 
 void Metadata::ValidateIfTypeIsMatched(const nlohmann::json& value, const std::string& requestedType)
 {
-	const std::string valueType = value.type_name();
-
-	if (valueType != requestedType)
+	if (const std::string valueType = value.type_name(); valueType != requestedType)
 	{
 		throw MismatchException("The value type is " + valueType + "! Requested " + requestedType);
 	}

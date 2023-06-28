@@ -32,7 +32,7 @@ class MainMenuLayer : public Layer
 public:
 
 	/// @brief Creates the window and draws the interactive Main Menu.
-	void Draw() const;
+	static void Draw();
 
 
 	void OnUpdate() override
