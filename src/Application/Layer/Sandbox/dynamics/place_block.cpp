@@ -11,7 +11,7 @@ void PlaceBlock::Place(const glm::vec3 orientation, const glm::vec3 position, Ha
 
 		glm::vec3 pos = position + orientation * static_cast<float>(radiusCoefficient);
 
-    pos.x = static_cast<float>(static_cast<int>(pos.x));
+		pos.x = static_cast<float>(static_cast<int>(pos.x));
 		pos.y = static_cast<float>(static_cast<int>(pos.y));
 		pos.z = static_cast<float>(static_cast<int>(pos.z));
 
@@ -22,10 +22,9 @@ void PlaceBlock::Place(const glm::vec3 orientation, const glm::vec3 position, Ha
 		pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
 		pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 		
-		if (chunks.find(chunkPosition) != chunks.end())
+		if (chunks.find(chunkPosition) != chunks.end() && PlaceBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
 		{
-			if (PlaceBlockOnChunk(chunks, chunkPosition, pos, chunkSize, chunkPositionForNewBlock, blockMap, heldItem))
-				break;
+			break;
 		}
 	}
 }
