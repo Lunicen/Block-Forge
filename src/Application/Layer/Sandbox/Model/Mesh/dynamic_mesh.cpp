@@ -28,13 +28,11 @@ DynamicMesh::DynamicMesh(
 	constexpr auto indexesInOneTriangle = 3;
 	_indicesInPatternAmount = static_cast<GLsizei>(indicesPattern.size()) * indexesInOneTriangle;
 
-	const auto& triangleWithMaxValue = std::max_element(
-		indicesPattern.begin(), 
-		indicesPattern.end(),
-		[](const TriangleIndexes &a, const TriangleIndexes &b)
-		{
-			return std::max({a.x, a.y, a.z}) < std::max({b.x, b.y, b.z});
-		}
+	const auto& triangleWithMaxValue = std::ranges::max_element(
+		indicesPattern,	[](const TriangleIndexes &a, const TriangleIndexes &b)
+	    {
+	        return std::max({a.x, a.y, a.z}) < std::max({b.x, b.y, b.z});
+	    }
 	);
 	_indicesInOneInstance = std::max({triangleWithMaxValue->x, triangleWithMaxValue->y, triangleWithMaxValue->z}) + 1;
 

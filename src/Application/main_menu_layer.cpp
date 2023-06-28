@@ -12,9 +12,8 @@ void MainMenuLayer::DrawCenteredText(const std::string& text)
 bool MainMenuLayer::DrawWindowSizedButton(const std::string& text)
 {
 	const auto xButtonSize = ImGui::GetWindowSize().x - 15;
-	constexpr auto yButtonSize = 50;
 
-	if (ImGui::Button(text.c_str(), ImVec2(xButtonSize, yButtonSize)))
+	if (constexpr auto yButtonSize = 50; ImGui::Button(text.c_str(), ImVec2(xButtonSize, yButtonSize)))
 	{
 		return true;
 	}
@@ -47,15 +46,17 @@ void MainMenuLayer::SetImguiBackgroundStyle(const BackgroundStyle backgroundStyl
 {
 	switch (backgroundStyle)
 	{
-	case BackgroundStyle::dark:
+	using enum BackgroundStyle;
+
+	case dark:
 		ImGui::StyleColorsDark();
 		break;
 
-	case BackgroundStyle::light:
+	case light:
 		ImGui::StyleColorsLight();
 		break;
 
-	case BackgroundStyle::classic:
+	case classic:
 		ImGui::StyleColorsClassic();
 		break;
 	}
@@ -79,7 +80,7 @@ void MainMenuLayer::Draw() const
 
 	if(DrawWindowSizedButton("EXIT"))
 	{
-		
+		// Missing implementation. Probably would be added in the future...
 	}
 
 	ImGui::End();

@@ -1,7 +1,7 @@
 #include "application/layer/sandbox/world/blocks/block_builder.h"
 
 
-void BlockBuilder::DetermineAndSetFaceTexture(const std::string& face, const int x, const int y, TextureAtlas& textureAtlas) const
+void BlockBuilder::DetermineAndSetFaceTexture(const std::string_view face, const int x, const int y, TextureAtlas& textureAtlas) const
 {
 	if (face == "front")	textureAtlas.SetSprite(_facesTextureCoordinates->front, x, y, false);
 	if (face == "back")		textureAtlas.SetSprite(_facesTextureCoordinates->back, x, y, true);

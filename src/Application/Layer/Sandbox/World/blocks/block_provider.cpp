@@ -26,7 +26,7 @@ HashMap<std::string, std::shared_ptr<BlockModel>> BlockProvider::GetBlocks(
 
 void BlockProvider::SetBlocks(
 	std::array<std::shared_ptr<BlockModel>, MaxBlocksAmount>& blockArray,
-	HashMap<std::string, unsigned char>& blockNames, 
+	HashMap<std::string, Byte>& blockNames, 
 	TextureAtlas& blocksTextureAtlas,
 	const std::string& blocksSetName)
 {

@@ -17,23 +17,12 @@ bool BiomePlacer::HasChunkOnlySingleBiome(const std::vector<std::vector<float>>&
 
 Biome& BiomePlacer::GetBiomeAt(const float noise) const
 {
-	//oscyluje od -1 do 1
-	if (noise > 0 && noise < 0.5)
+	if (noise < 0.5f)
 	{
 		return _biomes.at(0);
 	}
-	else if (noise >= 0.5)
-	{
-		return _biomes.at(1);
-	}
-	else if (noise < 0 && noise >= 0.5)
-	{
-		return _biomes.at(2);
-	}
-	else
-	{
-		return _biomes.at(3);
-	}
+
+	return _biomes.at(1);
 }
 
 Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)

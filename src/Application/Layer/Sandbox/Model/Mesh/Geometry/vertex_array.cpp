@@ -4,7 +4,6 @@
 VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &_arrayRef);
-	glBindVertexArray(_arrayRef);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
