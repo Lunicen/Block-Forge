@@ -52,11 +52,16 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(ARCHITECTURE "x64")
   endif()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(ARCHITECTURE "x86_64")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(ARCHITECTURE "amd64")
+  endif()
 else()
   message(FATAL_ERROR 
 	"This platform is unsupported! "
-	"Please modify the CMakeLists.txt by adding the proper architecture config. "
-	"You can relate to the Windows configuration that is in the first if statement. Good luck :)")
+	"Please modify the CMakeLists.txt by adding the architecture config.")
 endif()
 
 # Files to copy
