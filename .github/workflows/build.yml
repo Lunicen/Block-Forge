@@ -5,9 +5,13 @@ on:
     branches: [develop]
 
 jobs:
-  setup:
-    name: Windows setup
+  build:
+    name: Windows build
     runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [x86, x64]
+
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
@@ -17,7 +21,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: winBuildCacheFix2
+          key: win-setup
 
       - name: Install msbuild
         if: steps.cache-dep.outputs.cache-hit != 'true'
@@ -31,35 +35,6 @@ jobs:
         if: steps.cache-dep.outputs.cache-hit != 'true'
         run: setup.bat
         shell: cmd
-
-      - name: Save setup
-        uses: actions/upload-artifact@v3
-        with:
-          name: win-setup
-          path: |
-            include
-            lib
-            src
-            CMakeLists.txt
-            data
-            Settings.json
-
-  build:
-    name: Build and test
-    needs: setup
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        platform: [x86, x64]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Retrieve setup
-        uses: actions/download-artifact@v3
-        with:
-          name: win-setup
 
       - name: Build and test the project
         run: |
