@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build:
+    name: Linux build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [x86, x64]
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        id: cache-dep
+        uses: actions/cache@v3
+        with:
+          path: lib
+          key: linux-setup-${{ matrix.platform }}
+
+      - name: Install dependencies
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      - name: Setup dependencies
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        run: ./setup.sh
+
+      - name: Build and test the project
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_PROCESSOR=${{ matrix.platform == 'x86' && 'x86_64' || 'amd64' }}
+          cmake --build build --parallel 4
+          cp data/Release build/Release
+          cp Settings.json build/Release
+          pushd build/Release
+          ./BlockForge
