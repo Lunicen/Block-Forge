@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: win-setup
+          key: win-setup-${{ matrix.platform }}
 
       - name: Install msbuild
         if: steps.cache-dep.outputs.cache-hit != 'true'
@@ -38,7 +38,7 @@ jobs:
 
       - name: Build and test the project
         run: |
-          cmake -S . -B build -A ${{ matrix.platform }}
+          cmake -S . -B build -A ${{ matrix.platform == 'x86' && 'Win32' || 'x64' }}
           cmake --build build --config Release --parallel 4
           copy data\Release build\Release
           copy Settings.json build\Release
