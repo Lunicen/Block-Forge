@@ -37,6 +37,7 @@ jobs:
         shell: cmd
 
       - name: Build and test the project
+        shell: cmd
         run: |
           cmake -S . -B build -A ${{ matrix.platform == 'x86' && 'Win32' || 'x64' }}
           cmake --build build --config Release --parallel 4
