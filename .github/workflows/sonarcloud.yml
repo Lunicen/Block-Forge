@@ -35,10 +35,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-dep.outputs.cache-hit != 'true'
-        shell: cmd
-        run: |
-          git submodule update --init --recursive
-          git pull --recurse-submodules
+        run: git submodule update --init --recursive
         
       - name: Set MSVC environment
         uses: ilammy/msvc-dev-cmd@v1.12.1
