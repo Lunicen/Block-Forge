@@ -28,9 +28,10 @@ jobs:
         uses: jwlawson/actions-setup-cmake@v1.12
 
       - name: Build
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: ilammy/msvc-dev-cmd@v1.12.1
         with:
           arch: ${{ matrix.platform }}
+        shell: cmd
         run: build.bat
 
       - name: Acceptance test
