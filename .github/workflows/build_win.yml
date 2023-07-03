@@ -23,3 +23,21 @@ jobs:
           path: lib
           key: win-setup-${{ matrix.platform }}
 
+      - name: Install cmake
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        uses: jwlawson/actions-setup-cmake@v1.12
+
+
+      - name: Acceptance test
+        shell: cmd
+        run: |
+          start /B BlockForge.exe
+          timeout /T 5
+          tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+          if "%ERRORLEVEL%"=="0" (
+            echo "Program is still running, success!"
+            exit 0
+          ) else (
+            echo "Program fails to start!"
+            exit 1
+          )
