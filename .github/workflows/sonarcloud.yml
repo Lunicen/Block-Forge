@@ -42,9 +42,12 @@ jobs:
         with:
           arch: x64
           
-      - name: Build
+      - name: Build libraries
         shell: cmd
-        run: build.bat
+        run: |
+          cd scripts
+          call "win_x86.bat"
+          cd ..
         
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v1
