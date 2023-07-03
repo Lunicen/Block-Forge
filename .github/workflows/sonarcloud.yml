@@ -46,7 +46,7 @@ jobs:
         shell: cmd
         run: |
           cd scripts
-          call "win_x86.bat"
+          call "win_x64.bat"
           cd ..
         
       - name: Install sonar-scanner and build-wrapper
