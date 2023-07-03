@@ -23,27 +23,19 @@ jobs:
           path: lib
           key: win-setup-${{ matrix.platform }}
 
-      - name: Install msbuild
-        if: steps.cache-dep.outputs.cache-hit != 'true'
-        uses: microsoft/setup-msbuild@v1.1
-
       - name: Install cmake
         if: steps.cache-dep.outputs.cache-hit != 'true'
         uses: jwlawson/actions-setup-cmake@v1.12
 
-      - name: Setup dependencies
-        if: steps.cache-dep.outputs.cache-hit != 'true'
-        run: setup.bat
-        shell: cmd
+      - name: Build
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.platform }}
+        run: build.bat
 
-      - name: Build and test the project
+      - name: Acceptance test
         shell: cmd
         run: |
-          cmake -S . -B build -A ${{ matrix.platform == 'x86' && 'Win32' || 'x64' }}
-          cmake --build build --config Release --parallel 4
-          copy data\Release build\Release
-          copy Settings.json build\Release
-          pushd build\Release
           start /B BlockForge.exe
           timeout /T 5
           tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL

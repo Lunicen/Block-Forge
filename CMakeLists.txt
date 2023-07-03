@@ -13,7 +13,7 @@ file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/src/*.cpp"
 
 	# GLAD
-	"${CMAKE_SOURCE_DIR}/lib/glad/build/glad.c"
+    "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}/glad.c"
 
 	# ImGUI
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_glfw.h"
@@ -82,6 +82,7 @@ foreach(file ${to_copy})
 endforeach()
 
 option(DEBUG_MODE "Compile code in debug mode?" OFF)
+
 if(NOT CMAKE_BUILD_TYPE)
   if(DEBUG_MODE)
     set(CMAKE_BUILD_TYPE "Debug")
