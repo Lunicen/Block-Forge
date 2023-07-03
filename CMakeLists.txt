@@ -8,14 +8,37 @@ endif()
 
 project (BlockForge)
 
-# Add source to this project's executable.
-file(GLOB_RECURSE SOURCE_FILES
-    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+# Set proper configuration
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(ARCHITECTURE "Win32")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(ARCHITECTURE "x64")
+  endif()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(ARCHITECTURE "Unix")
+else()
+  message(FATAL_ERROR 
+	"This platform is unsupported! "
+	"Please modify the CMakeLists.txt by adding the architecture config.")
+endif()
 
-	# GLAD
-    "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}/glad.c"
+if(NOT CMAKE_BUILD_TYPE)
+  if(DEBUG_MODE)
+    set(CMAKE_BUILD_TYPE "Debug")
+  else()
+    set(CMAKE_BUILD_TYPE "Release")
+  endif()
+endif()
 
-	# ImGUI
+# Add the common source files
+file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+
+# Add the GLAD source file conditionally based on the system
+list(APPEND SOURCE_FILES "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}/glad.c")
+
+# Add the ImGUI header files
+list(APPEND SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_glfw.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3_loader.h"
@@ -25,7 +48,10 @@ file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_rectpack.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_textedit.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_truetype.h"
+)
 
+# Add the ImGUI source files
+list(APPEND SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_glfw.cpp"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imgui.cpp"
@@ -43,25 +69,6 @@ include_directories(BlockForge
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET BlockForge PROPERTY CXX_STANDARD 20)
-endif()
-
-# Set proper configuration
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(ARCHITECTURE "Win32")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(ARCHITECTURE "x64")
-  endif()
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(ARCHITECTURE "x86_64")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(ARCHITECTURE "amd64")
-  endif()
-else()
-  message(FATAL_ERROR 
-	"This platform is unsupported! "
-	"Please modify the CMakeLists.txt by adding the architecture config.")
 endif()
 
 # Files to copy
@@ -82,14 +89,6 @@ foreach(file ${to_copy})
 endforeach()
 
 option(DEBUG_MODE "Compile code in debug mode?" OFF)
-
-if(NOT CMAKE_BUILD_TYPE)
-  if(DEBUG_MODE)
-    set(CMAKE_BUILD_TYPE "Debug")
-  else()
-    set(CMAKE_BUILD_TYPE "Release")
-  endif()
-endif()
 
 # OpenGL
 find_package(OpenGL REQUIRED)
