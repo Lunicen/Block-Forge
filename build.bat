@@ -50,6 +50,7 @@ if exist ".\build\" (
 )
 
 :: Ninja
+set /a jobs=%NUMBER_OF_PROCESSORS%+1
 if not exist ".\lib\ninja\build" (
   cmake -S .\lib\ninja -B .\lib\ninja\build
   cmake --build .\lib\ninja\build --config Release --clean-first --parallel %jobs%
