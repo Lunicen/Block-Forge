@@ -25,6 +25,11 @@ for /f "usebackq skip=1 tokens=2 delims==" %%i in (`wmic OS get OSArchitecture /
 :architecture_checked
 echo Detected %arch% architecture.
 
+:: Update and init github submodules
+echo Updating submodules...
+git submodule update --init --recursive
+git pull --recurse-submodules
+
 :: Build libraries
 if "%arch%"=="32-bit" (
     call "%vsvars_location%\vcvars32.bat"
