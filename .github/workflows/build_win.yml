@@ -21,12 +21,18 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: win-setup-${{ matrix.platform }}
+          key: win-${{ matrix.platform }}
 
       - name: Install cmake
         if: steps.cache-dep.outputs.cache-hit != 'true'
         uses: jwlawson/actions-setup-cmake@v1.12
 
+      - name: Build
+        uses: ilammy/msvc-dev-cmd@v1.12.1
+        with:
+          arch: ${{ matrix.platform }}
+        shell: cmd
+        run: build.bat
 
       - name: Acceptance test
         shell: cmd
