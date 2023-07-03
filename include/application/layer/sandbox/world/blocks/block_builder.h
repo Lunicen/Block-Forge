@@ -81,7 +81,7 @@ class BlockBuilder
 
 	std::shared_ptr<FacesUvTextureCoordinates> _facesTextureCoordinates = std::make_shared<FacesUvTextureCoordinates>();
 	
-	void DetermineAndSetFaceTexture(std::string_view face, int x, int y, TextureAtlas& textureAtlas) const;
+	void DetermineAndSetFaceTexture(const std::string& face, int x, int y, TextureAtlas& textureAtlas) const;
 
 public:
 

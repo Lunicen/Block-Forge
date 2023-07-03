@@ -1,5 +1,7 @@
 #include "application/layer/sandbox/world/chunks/order_type/short_oval_order.h"
 
+#include <cmath>
+
 size_t ShortOvalOrder::GetChunksAmount()
 {
 	const auto r = static_cast<double>(GetRenderDistance());

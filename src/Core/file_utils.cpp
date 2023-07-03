@@ -1,5 +1,6 @@
 #include "core/file_utils.h"
 
+#include <sys/stat.h>
 #include <fstream>
 
 bool FileUtils::IsFileEmpty(std::ifstream& file)

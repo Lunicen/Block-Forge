@@ -36,11 +36,9 @@ Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_
 
 std::string ChunkPlacer::PositionToString(const Position& position) const
 {
-	return std::format("{}, {}, {}", 
-		std::to_string(position.x), 
-		std::to_string(position.y),
-		std::to_string(position.z)
-	);
+	return std::to_string(position.x) + ", " + 
+		   std::to_string(position.y) + ", " + 
+		   std::to_string(position.z);
 }
 
 bool ChunkPlacer::IsChunkInCameraRange(const Position origin)

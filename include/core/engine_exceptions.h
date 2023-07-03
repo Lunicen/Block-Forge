@@ -1,11 +1,12 @@
 #pragma once
+#include <stdexcept>
 
 /// @class EngineException
 /// @brief Wrapper for exceptions dedicated to the engine functionality.
 /// @note This class should be inherited for all the defined exceptions related to the engine.
-class EngineException : public std::exception
+class EngineException : public std::runtime_error
 {
-    using Base = exception;
+    using Base = runtime_error;
 
 protected:
 
