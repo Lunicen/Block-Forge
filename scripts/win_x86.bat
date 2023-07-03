@@ -3,7 +3,7 @@
 cd ..
 
 :: Target architectures
-set "build_arch=x64"
+set "build_arch=Win32"
 set "build_type=Release"
 
 :: Library builds directory
