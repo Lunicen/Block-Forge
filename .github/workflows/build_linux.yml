@@ -18,13 +18,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: linux-setup
+          key: linux-build
+
+      - name: Install prerequisites
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        shell: cmd
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
 
       - name: Install dependencies
         if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
+          git submodule update --init --recursive
+          git pull --recurse-submodules
 
       - name: Build
         if: steps.cache-dep.outputs.cache-hit != 'true'
