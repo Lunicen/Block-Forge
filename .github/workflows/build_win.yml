@@ -40,8 +40,8 @@ jobs:
         shell: cmd
         run: |
           start /B BlockForge.exe
-          timeout /T 5
-          tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
+          timeout /T 5 /NOBREAK >nul
+          tasklist /FI "IMAGENAME eq BlockForge.exe" | find /I "BlockForge.exe" >nul
           if "%ERRORLEVEL%"=="0" (
             echo "Program is still running, success!"
             exit 0
