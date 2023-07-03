@@ -31,6 +31,16 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.12.1
         with:
           arch: ${{ matrix.platform }}
+          
+      - name: Install Ninja
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        shell: cmd
+        run: |
+          git submodule update --init .\lib\ninja
+          cd lib\ninja
+          git pull
+          cmake -S . -B .\build
+          cmake --build build --config Release --clean-first --parallel 2
       
       - name: Build
         shell: cmd
@@ -40,12 +50,12 @@ jobs:
         shell: cmd
         run: |
           start /B BlockForge.exe
-          timeout /T 5 /NOBREAK >nul
-          tasklist /FI "IMAGENAME eq BlockForge.exe" | find /I "BlockForge.exe" >nul
+          timeout /T 5
+          tasklist /FI "IMAGENAME eq BlockForge.exe" 2>NUL | find /I /N "BlockForge.exe" >NUL
           if "%ERRORLEVEL%"=="0" (
             echo "Program is still running, success!"
-            exit 0
+            exit \b 0
           ) else (
             echo "Program fails to start!"
-            exit 1
+            exit \b 1
           )
