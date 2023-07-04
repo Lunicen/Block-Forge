@@ -6,8 +6,8 @@ on:
 
 jobs:
   build:
-    name: Linux
-    runs-on: ubuntu-latest
+    name: MacOS
+    runs-on: macos-latest
 
     steps:
       - name: Checkout current branch
@@ -18,13 +18,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: linux-build
+          key: macos-build
 
       - name: Install prerequisites
         if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
+          brew update
+          brew install cmake ninja libx11 libxrandr libxinerama libxcursor libxi mesa
 
       - name: Install dependencies
         if: steps.cache-dep.outputs.cache-hit != 'true'
