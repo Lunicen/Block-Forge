@@ -6,7 +6,7 @@ on:
 
 jobs:
   ninja:
-    name: Ninja setup
+    name: Windows prerequisites
     runs-on: windows-latest
 
     steps:
