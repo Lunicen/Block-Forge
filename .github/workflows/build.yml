@@ -13,15 +13,7 @@ jobs:
       - name: Checkout current branch
         uses: actions/checkout@v3
 
-      - name: Cache dependencies
-        id: cache-dep
-        uses: actions/cache@v3
-        with:
-          path: lib
-          key: prerequisites
-
       - name: Install dependencies
-        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: git submodule update --init --recursive
         
 
@@ -121,15 +113,7 @@ jobs:
       - name: Checkout current branch
         uses: actions/checkout@v3
 
-      - name: Cache dependencies
-        id: cache-dep
-        uses: actions/cache@v3
-        with:
-          path: lib
-          key: linux
-
       - name: Install prerequisites
-        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
           sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
 
@@ -145,15 +129,7 @@ jobs:
       - name: Checkout current branch
         uses: actions/checkout@v3
 
-      - name: Cache dependencies
-        id: cache-dep
-        uses: actions/cache@v3
-        with:
-          path: lib
-          key: macos
-
       - name: Install prerequisites
-        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
           brew install cmake ninja libx11 libxrandr libxinerama libxcursor libxi mesa
 
