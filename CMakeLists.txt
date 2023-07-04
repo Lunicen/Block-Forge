@@ -17,10 +17,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   endif()
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   set(ARCHITECTURE "Unix")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(ARCHITECTURE "Unix")
 else()
-  message(FATAL_ERROR 
-	"This platform is unsupported! "
-	"Please modify the CMakeLists.txt by adding the architecture config.")
+  message(WARNING "This platform is unsupported! Assumming it's unix-based...")
+  set(ARCHITECTURE "Unix")
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
