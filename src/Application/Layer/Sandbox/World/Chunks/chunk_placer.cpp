@@ -120,12 +120,12 @@ void ChunkPlacer::LazyLoader()
 		}
 
 		auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
-		std::ranges::sort(
-			currentChunksOrigins, [=](const Position& a, const Position& b)
-				{
-					const auto origin = Point3D(lastRememberedPosition);
-					return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
-				});
+		std::sort(currentChunksOrigins.begin(), currentChunksOrigins.end(),
+	    [=](const Position& a, const Position& b)
+	    {
+	        const auto origin = Point3D(lastRememberedPosition);
+	        return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
+	    });
 
 		_hasPositionChanged = false;
 		AddNewChunks(currentChunksOrigins);
