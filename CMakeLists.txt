@@ -106,7 +106,7 @@ find_library(glfw_path NAMES glfw3 PATHS "${CMAKE_SOURCE_DIR}/lib/glfw/build/${A
 target_link_libraries(${PROJECT_NAME} ${glfw_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glfw/include")
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-  target_link_options(${PROJECT_NAME} PRIVATE "-lglfw -framework Cocoa -framework OpenGL -framework IOKit")
+  add_compile_options("-lglfw -framework Cocoa -framework OpenGL -framework IOKit")
 endif()
 message("Added ${glfw_path}")
 
