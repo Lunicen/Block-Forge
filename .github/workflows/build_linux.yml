@@ -21,10 +21,12 @@ jobs:
           key: linux
 
       - name: Install prerequisites
+        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: |
           sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
 
       - name: Install dependencies
+        if: steps.cache-dep.outputs.cache-hit != 'true'
         run: git submodule update --init --recursive
 
       - name: Build

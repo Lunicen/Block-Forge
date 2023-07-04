@@ -5,7 +5,7 @@ on:
     branches: [develop]
 
 jobs:
-  ninja:
+  setup:
     name: Windows prerequisites
     runs-on: windows-latest
 
@@ -42,7 +42,7 @@ jobs:
 
   build-x86:
     name: Windows (x86)
-    needs: ninja
+    needs: setup
     runs-on: windows-latest
 
     steps:
@@ -82,7 +82,7 @@ jobs:
 
   build-x64:
     name: Windows (x64)
-    needs: ninja
+    needs: setup
     runs-on: windows-latest
 
     steps:

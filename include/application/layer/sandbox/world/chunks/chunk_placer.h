@@ -12,7 +12,7 @@ class ChunkPlacer
 {
 	static Log& _log;
 
-	std::unique_ptr<std::jthread> _lazyLoader{};
+	std::unique_ptr<std::thread> _lazyLoader{};
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;

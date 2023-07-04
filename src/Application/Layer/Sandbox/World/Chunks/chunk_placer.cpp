@@ -224,7 +224,7 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 	auto chunksPositionsAroundCameraVector = _order->GetChunksAround(_previousNormalizedPosition);
 	_chunksPositionsAroundCamera = HashSet<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
 
-	_lazyLoader = std::make_unique<std::jthread>(&LazyLoader);
+	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
 }
 
 void ChunkPlacer::RemoveStaleChunk() const
