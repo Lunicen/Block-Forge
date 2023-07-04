@@ -5,26 +5,15 @@ on:
     branches: [develop]
 
 jobs:
-  setup:
-    name: Prerequisites
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout current branch
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: git submodule update --init --recursive
-        
-
   win-x86:
     name: Windows (x86)
-    needs: setup
     runs-on: windows-latest
 
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
 
       - name: Cache dependencies
         id: cache-dep
@@ -66,12 +55,13 @@ jobs:
 
   win-x64:
     name: Windows (x64)
-    needs: setup
     runs-on: windows-latest
 
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
 
       - name: Cache dependencies
         id: cache-dep
@@ -106,12 +96,13 @@ jobs:
        
   linux:
     name: Linux
-    needs: setup
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
 
       - name: Install prerequisites
         run: |
@@ -122,12 +113,13 @@ jobs:
         
   macos:
     name: MacOS
-    needs: setup
     runs-on: macos-latest
 
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
 
       - name: Install prerequisites
         run: |
