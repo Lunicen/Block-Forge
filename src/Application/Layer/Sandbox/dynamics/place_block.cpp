@@ -5,7 +5,7 @@ void PlaceBlock::Place(const glm::vec3 orientation, const glm::vec3 position, Ha
 {
 	constexpr int maxRadiusCoefficient = 4;
 
-	for(int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
+	for(int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; ++radiusCoefficient)
 	{
 		size_t chunkSize = 16;
 
