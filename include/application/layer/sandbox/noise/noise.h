@@ -1,7 +1,7 @@
 #pragma once
 #define FASTNOISE_STATIC_LIB 1
 
-#include <fastnoise/fastnoise.h>
+#include <FastNoise/FastNoise.h>
 #include <string>
 
 /// @class Noise

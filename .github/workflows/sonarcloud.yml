@@ -27,16 +27,27 @@ jobs:
         uses: actions/cache@v3
         with:
           path: lib
-          key: sonarCache
+          key: sonarcloud
         
       - name: Install cmake
         if: steps.cache-dep.outputs.cache-hit != 'true'
         uses: jwlawson/actions-setup-cmake@v1.12
 
-      - name: Setup dependencies
+      - name: Install dependencies
         if: steps.cache-dep.outputs.cache-hit != 'true'
-        run: setup.bat
+        run: git submodule update --init --recursive
+        
+      - name: Set MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1.12.1
+        with:
+          arch: x64
+          
+      - name: Build libraries
         shell: cmd
+        run: |
+          cd scripts
+          call "win_x64.bat"
+          cd ..
         
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v1

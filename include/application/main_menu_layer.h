@@ -27,7 +27,7 @@ class MainMenuLayer : public Layer
 	static void InitializeGlfw();
 	static void InitializeImgui(GLFWwindow*& window);
 	static void SetImguiBackgroundStyle(BackgroundStyle backgroundStyle);
-	static bool HasWindowFailedToCreate(GLFWwindow*& window);
+	[[nodiscard]] static bool HasWindowFailedToCreate(GLFWwindow*& window);
 
 public:
 

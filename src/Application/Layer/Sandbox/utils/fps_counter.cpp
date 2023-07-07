@@ -1,6 +1,5 @@
 #include "application/layer/sandbox/utils/fps_counter.h"
 
-#include <format>
 #include <string>
 #include "core/engine_exceptions.h"
 #include "core/opengl_headers.h"
@@ -38,7 +37,7 @@ void FPSCounter::Update()
 	gltBeginDraw();
 
 	CountFps();
-	const auto text = std::format("FPS: {}", std::to_string(_actualFps));
+	const auto text = "FPS: " + std::to_string(_actualFps);
 	gltSetText(_fps, text.c_str());
 
 	gltDrawText2DAligned(_fps, 0.0f, 0.0f, 1.0f, GLT_LEFT, GLT_TOP);

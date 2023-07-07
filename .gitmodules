@@ -34,3 +34,6 @@
 [submodule "lib/SPSCQueue"]
 	path = lib/SPSCQueue
 	url = https://github.com/rigtorp/SPSCQueue
+[submodule "lib/ninja"]
+	path = lib/ninja
+	url = https://github.com/ninja-build/ninja

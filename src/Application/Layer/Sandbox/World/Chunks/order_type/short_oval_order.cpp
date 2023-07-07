@@ -1,5 +1,7 @@
 #include "application/layer/sandbox/world/chunks/order_type/short_oval_order.h"
 
+#include <cmath>
+
 size_t ShortOvalOrder::GetChunksAmount()
 {
 	const auto r = static_cast<double>(GetRenderDistance());
@@ -18,10 +20,10 @@ std::vector<glm::ivec3> ShortOvalOrder::GetChunksAround(const glm::ivec3 normali
 	for (auto y = -height; y <= height; ++y)
 	{
 		const auto radius = static_cast<int>(GetRenderDistance());
-		for (int x = -radius; x <= radius; x++)
+		for (int x = -radius; x <= radius; ++x)
 		{
 			const auto dz = static_cast<int>(sqrt(radius * radius - x * x));
-			for (auto z = -dz; z <= dz; z++)
+			for (auto z = -dz; z <= dz; ++z)
 			{
 				chunksPositions.emplace_back(
 					x + normalizedOrigin.x,

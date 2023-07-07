@@ -27,5 +27,5 @@ public:
 	void PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) const;
 
 	/// @brief Returns the map of blocks used by this generator.
-	BlockMap& GetBlockMap();
+	[[nodiscard]] BlockMap& GetBlockMap();
 };

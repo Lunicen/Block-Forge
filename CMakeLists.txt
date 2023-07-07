@@ -8,14 +8,39 @@ endif()
 
 project (BlockForge)
 
-# Add source to this project's executable.
-file(GLOB_RECURSE SOURCE_FILES
-    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+# Set proper configuration
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(ARCHITECTURE "Win32")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(ARCHITECTURE "x64")
+  endif()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(ARCHITECTURE "Unix")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  message("MacOS build is EXPERIMENTAL! Expect bugs.")
+  set(ARCHITECTURE "Unix")
+else()
+  message(WARNING "This platform is unsupported! Assumming it's unix-based...")
+  set(ARCHITECTURE "Unix")
+endif()
 
-	# GLAD
-	"${CMAKE_SOURCE_DIR}/lib/glad/build/glad.c"
+if(NOT CMAKE_BUILD_TYPE)
+  if(DEBUG_MODE)
+    set(CMAKE_BUILD_TYPE "Debug")
+  else()
+    set(CMAKE_BUILD_TYPE "Release")
+  endif()
+endif()
 
-	# ImGUI
+# Add the common source files
+file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+
+# Add the GLAD source file conditionally based on the system
+list(APPEND SOURCE_FILES "${CMAKE_SOURCE_DIR}/lib/glad/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}/glad.c")
+
+# Add the ImGUI header files
+list(APPEND SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_glfw.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3_loader.h"
@@ -25,7 +50,10 @@ file(GLOB_RECURSE SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_rectpack.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_textedit.h"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imstb_truetype.h"
+)
 
+# Add the ImGUI source files
+list(APPEND SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_glfw.cpp"
     "${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp"
     "${CMAKE_SOURCE_DIR}/lib/imgui/imgui.cpp"
@@ -43,20 +71,6 @@ include_directories(BlockForge
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET BlockForge PROPERTY CXX_STANDARD 20)
-endif()
-
-# Set proper configuration
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(ARCHITECTURE "Win32")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(ARCHITECTURE "x64")
-  endif()
-else()
-  message(FATAL_ERROR 
-	"This platform is unsupported! "
-	"Please modify the CMakeLists.txt by adding the proper architecture config. "
-	"You can relate to the Windows configuration that is in the first if statement. Good luck :)")
 endif()
 
 # Files to copy
@@ -77,13 +91,6 @@ foreach(file ${to_copy})
 endforeach()
 
 option(DEBUG_MODE "Compile code in debug mode?" OFF)
-if(NOT CMAKE_BUILD_TYPE)
-  if(DEBUG_MODE)
-    set(CMAKE_BUILD_TYPE "Debug")
-  else()
-    set(CMAKE_BUILD_TYPE "Release")
-  endif()
-endif()
 
 # OpenGL
 find_package(OpenGL REQUIRED)
@@ -99,6 +106,9 @@ message("Added ${glad_path}")
 find_library(glfw_path NAMES glfw3 PATHS "${CMAKE_SOURCE_DIR}/lib/glfw/build/${ARCHITECTURE}/${CMAKE_BUILD_TYPE}")
 target_link_libraries(${PROJECT_NAME} ${glfw_path})
 include_directories(PRIVATE "${CMAKE_SOURCE_DIR}/lib/glfw/include")
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  add_compile_options("-lglfw -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo -framework CoreFoundation")
+endif()
 message("Added ${glfw_path}")
 
 # FastNoise2

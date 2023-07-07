@@ -14,7 +14,7 @@ void WorldGenerator::PaintChunk(const ChunkFrame& frame, ChunkBlocks& blocks) co
 	_placer->PaintChunk(frame, blocks);
 }
 
-BlockMap& WorldGenerator::GetBlockMap()
+[[nodiscard]] BlockMap& WorldGenerator::GetBlockMap()
 {
 	return _blockMap;
 }

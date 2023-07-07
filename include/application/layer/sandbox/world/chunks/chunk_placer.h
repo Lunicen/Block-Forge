@@ -2,7 +2,7 @@
 #include "application/layer/sandbox/camera.h"
 #include "application/layer/sandbox/world/world_generator.h"
 #include "application/layer/sandbox/world/chunks/order_type/order_types.h"
-#include "rigtorp/spscqueue.h"
+#include "rigtorp/SPSCQueue.h"
 #include "structure/chunk.h"
 
 /// @class ChunkPlacer
@@ -12,7 +12,7 @@ class ChunkPlacer
 {
 	static Log& _log;
 
-	std::unique_ptr<std::jthread> _lazyLoader{};
+	std::unique_ptr<std::thread> _lazyLoader{};
 
 	static std::mutex _chunksMutex;
 	static std::atomic<bool> _hasPositionChanged;

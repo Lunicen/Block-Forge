@@ -6,7 +6,7 @@
 {
 	constexpr int maxRadiusCoefficient = 4;
 
-	 for (int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; radiusCoefficient++)
+	 for (int radiusCoefficient = 0; radiusCoefficient < maxRadiusCoefficient; ++radiusCoefficient)
 	 {
 		 size_t chunkSize = 16;
 		 glm::vec3 pos = position + orientation * static_cast<float>(radiusCoefficient);
@@ -25,7 +25,7 @@
 		 pos.y = static_cast<float>(static_cast<int>(pos.y) % chunkSize);
 		 pos.z = static_cast<float>(static_cast<int>(pos.z) % chunkSize);
 
-		 auto isThereBlock = 0b00000010;
+		 auto isThereBlock = 0b0000'0010;
 
 		 if (chunks.find(chunkPosition) != chunks.end())
 		 {
@@ -35,9 +35,9 @@
 				 continue;
 			 }
 		 	 auto newBlock = blocksInChunk.at(ChunkUtils::GetBlockIndex(pos, chunkSize));
-			 newBlock.blockFlags = 0b00000000;
+			 newBlock.blockFlags = 0b0000'0000;
 
-			 auto showBlock = 0b11111100;
+			 auto showBlock = 0b1111'1100;
 			
 		 	 if (static_cast<int>(pos.x) % chunkSize == 0)
 			 {

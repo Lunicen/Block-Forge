@@ -10,7 +10,7 @@ std::condition_variable ChunkPlacer::_lazyLoaderLock;
 std::atomic<bool> ChunkPlacer::_running;
 std::atomic<bool> ChunkPlacer::_isLazyLoaderWaiting;
 
-rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad(10000);
+rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad(10'000);
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
 HashMap<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
 
@@ -36,11 +36,9 @@ Position ChunkPlacer::GetNormalizedPosition(const Point3D& position, const size_
 
 std::string ChunkPlacer::PositionToString(const Position& position) const
 {
-	return std::format("{}, {}, {}", 
-		std::to_string(position.x), 
-		std::to_string(position.y),
-		std::to_string(position.z)
-	);
+	return std::to_string(position.x) + ", " + 
+		   std::to_string(position.y) + ", " + 
+		   std::to_string(position.z);
 }
 
 bool ChunkPlacer::IsChunkInCameraRange(const Position origin)
@@ -122,12 +120,12 @@ void ChunkPlacer::LazyLoader()
 		}
 
 		auto currentChunksOrigins = _order->GetChunksAround(lastRememberedPosition);
-		std::ranges::sort(
-			currentChunksOrigins, [=](const Position& a, const Position& b)
-				{
-					const auto origin = Point3D(lastRememberedPosition);
-					return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
-				});
+		std::sort(currentChunksOrigins.begin(), currentChunksOrigins.end(),
+	    [=](const Position& a, const Position& b)
+	    {
+	        const auto origin = Point3D(lastRememberedPosition);
+	        return distance(origin, Point3D(a)) < distance(origin, Point3D(b));
+	    });
 
 		_hasPositionChanged = false;
 		AddNewChunks(currentChunksOrigins);
@@ -226,7 +224,7 @@ void ChunkPlacer::Bind(const std::shared_ptr<WorldGenerator>& generator, const s
 	auto chunksPositionsAroundCameraVector = _order->GetChunksAround(_previousNormalizedPosition);
 	_chunksPositionsAroundCamera = HashSet<Position>(chunksPositionsAroundCameraVector.begin(), chunksPositionsAroundCameraVector.end());
 
-	_lazyLoader = std::make_unique<std::jthread>(&LazyLoader);
+	_lazyLoader = std::make_unique<std::thread>(&LazyLoader);
 }
 
 void ChunkPlacer::RemoveStaleChunk() const

@@ -62,7 +62,7 @@ void MainMenuLayer::SetImguiBackgroundStyle(const BackgroundStyle backgroundStyl
 	}
 }
 
-bool MainMenuLayer::HasWindowFailedToCreate(GLFWwindow* &window)
+[[nodiscard]] bool MainMenuLayer::HasWindowFailedToCreate(GLFWwindow* &window)
 {
 	return window == nullptr;
 }
