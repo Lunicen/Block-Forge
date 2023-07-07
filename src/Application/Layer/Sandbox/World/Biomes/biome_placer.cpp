@@ -25,7 +25,7 @@ Biome& BiomePlacer::GetBiomeAt(const float noise) const
 	return _biomes.at(1);
 }
 
-Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
+[[nodiscard]] Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
 {
 	const auto& x = origin.x + 1;
 	const auto& y = origin.y + 1;
@@ -43,7 +43,7 @@ Byte BiomePlacer::GetBlockVisibilityFlags(const Position& origin, const std::vec
 	return visibilityFlags;
 }
 
-bool BiomePlacer::IsAir(const Position& origin,
+[[nodiscard]] bool BiomePlacer::IsAir(const Position& origin,
 	const std::vector<std::vector<std::vector<float>>>& chunkNoiseWithBorders)
 {
 	return chunkNoiseWithBorders[origin.x + 1][origin.y + 1][origin.z + 1] > 0 ? true : false;

@@ -14,8 +14,8 @@ StaticMesh::StaticMesh(const std::vector<Vertex>& vertices, const std::vector<Tr
 	constexpr auto vector2dSize = 2;
 	constexpr auto vector3dSize = 3;
 
-	GetVao().Link(vbo, 0, vector3dSize, stride, 0);
-	GetVao().Link(vbo, 1, vector2dSize, stride, vector3dSize);
+	GetVao().Link(vbo, VertexLayout(0, vector3dSize, stride, 0));
+	GetVao().Link(vbo, VertexLayout(1, vector2dSize, stride, vector3dSize));
 
 	GetVao().Unbind();
 	vbo.Unbind();

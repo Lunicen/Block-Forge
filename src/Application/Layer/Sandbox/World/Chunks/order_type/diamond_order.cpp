@@ -1,6 +1,6 @@
 #include "application/layer/sandbox/world/chunks/order_type/diamond_order.h"
 
-size_t DiamondOrder::CountChunksRecursive(const size_t level)
+[[nodiscard]] size_t DiamondOrder::CountChunksRecursive(const size_t level)
 {
 	const auto result = 4 * level;
 

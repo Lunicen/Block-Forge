@@ -10,7 +10,7 @@ std::condition_variable ChunkPlacer::_lazyLoaderLock;
 std::atomic<bool> ChunkPlacer::_running;
 std::atomic<bool> ChunkPlacer::_isLazyLoaderWaiting;
 
-rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad(10000);
+rigtorp::SPSCQueue<std::tuple<Position, ChunkBlocks, std::vector<Vertex>>> ChunkPlacer::_chunksToLoad(10'000);
 std::vector<std::unique_ptr<Chunk>> ChunkPlacer::_freeChunks = {};
 HashMap<Position, std::unique_ptr<Chunk>> ChunkPlacer::_loadedChunks = {};
 

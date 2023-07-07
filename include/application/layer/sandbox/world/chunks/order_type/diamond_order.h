@@ -6,7 +6,7 @@
 ///	@note <a href="https://en.wikipedia.org/wiki/Diamond_graph">Here</a> is the explanation.
 class DiamondOrder final : public Order
 {
-	static size_t CountChunksRecursive(size_t level);
+	[[nodiscard]] static size_t CountChunksRecursive(size_t level);
 
 public:
 	using Order::Order;

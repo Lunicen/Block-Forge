@@ -45,8 +45,8 @@ DynamicMesh::DynamicMesh(
 	constexpr auto vector2dSize = 2;
 	constexpr auto vector3dSize = 3;
 
-	GetVao().Link(*_vbo, 0, vector3dSize, stride, 0);
-	GetVao().Link(*_vbo, 1, vector2dSize, stride, vector3dSize);
+	GetVao().Link(*_vbo, VertexLayout(0, vector3dSize, stride, 0));
+	GetVao().Link(*_vbo, VertexLayout(1, vector2dSize, stride, vector3dSize));
 
 	GetVao().Unbind();
 	_vbo->Unbind();

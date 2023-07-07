@@ -15,7 +15,7 @@ public:
 	explicit BlockFaceModel(const std::array<Point, VerticesInQuad>& uvTextureCoordinates);
 
 	/// @brief Returns the uv coordinates associated with the face model.
-	std::array<Point, VerticesInQuad>& GetUvCoordinates();
+	[[nodiscard]] std::array<Point, VerticesInQuad>& GetUvCoordinates();
 };
 
 
