@@ -111,19 +111,21 @@ jobs:
       - name: Build
         run: ./build.sh
         
-  macos:
-    name: MacOS
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout current branch
-        uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-
-      - name: Install prerequisites
-        run: |
-          brew install cmake ninja libx11 libxrandr libxinerama libxcursor libxi mesa coreutils
-
-      - name: Build
-        run: ./build.sh
+# MacOS is disabled due to too many problems with configuration
+# 
+#  macos:
+#    name: MacOS
+#    runs-on: macos-latest
+#
+#    steps:
+#      - name: Checkout current branch
+#        uses: actions/checkout@v3
+#        with:
+#          submodules: 'recursive'
+#
+#      - name: Install prerequisites
+#        run: |
+#          brew install cmake ninja libx11 libxrandr libxinerama libxcursor libxi mesa coreutils
+#
+#      - name: Build
+#        run: ./build.sh
