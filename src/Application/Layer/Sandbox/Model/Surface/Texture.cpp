@@ -1,13 +1,14 @@
-#include "Texture.h"
+#include "application/layer/sandbox/model/surface/texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "Core/EngineExceptions.h"
+#include "core/engine_exceptions.h"
 
 int Texture::_usedTextureSlots = 0;
 
 Texture::Texture(const std::string& filenameWithImage) : _textureSlot(_usedTextureSlots++)
 {
+	// ReSharper disable once CppTooWideScopeInitStatement
 	constexpr int maxAvailableTextureSlots = 32;
 	if (_usedTextureSlots >= maxAvailableTextureSlots)
 	{

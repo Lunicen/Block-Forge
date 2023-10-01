@@ -1,0 +1,131 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [develop]
+
+jobs:
+  win-x86:
+    name: Windows (x86)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Cache dependencies
+        id: cache-dep
+        uses: actions/cache@v3
+        with:
+          path: lib
+          key: win-build-x86
+
+      - name: Install cmake
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        uses: jwlawson/actions-setup-cmake@v1.12
+
+      - name: Set MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1.12.1
+        with:
+          arch: x86
+          
+      - name: Install Ninja
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        shell: cmd
+        run: |
+          git submodule update --init .\lib\ninja
+          cd lib\ninja
+          git pull
+          set /a jobs=%NUMBER_OF_PROCESSORS%+1
+          cmake -S . -B .\build
+          cmake --build build --config Release --clean-first --parallel %jobs%
+          
+      - name: Build
+        shell: cmd
+        run: |
+          cd scripts
+          call "win_x86.bat"
+          cd ..
+          set "ninja_path=%cd%\lib\ninja\build\Release\ninja.exe"
+          set /a jobs=%NUMBER_OF_PROCESSORS%+1
+          cmake -G Ninja -DCMAKE_MAKE_PROGRAM="%ninja_path%" -DCMAKE_BUILD_TYPE=Release -DMSVC=true -S . -B build
+          cmake --build build --config Release --parallel %jobs%
+
+  win-x64:
+    name: Windows (x64)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Cache dependencies
+        id: cache-dep
+        uses: actions/cache@v3
+        with:
+          path: lib
+          key: win-build-x64
+
+      - name: Install cmake
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        uses: jwlawson/actions-setup-cmake@v1.12
+
+      - name: Set MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1.12.1
+        with:
+          arch: x64
+          
+      - name: Install Ninja
+        if: steps.cache-dep.outputs.cache-hit != 'true'
+        shell: cmd
+        run: |
+          git submodule update --init .\lib\ninja
+          cd lib\ninja
+          git pull
+          set /a jobs=%NUMBER_OF_PROCESSORS%+1
+          cmake -S . -B .\build
+          cmake --build build --config Release --clean-first --parallel %jobs%
+          
+      - name: Build
+        shell: cmd
+        run: build.bat
+       
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Install prerequisites
+        run: |
+          sudo apt-get install -y cmake ninja-build libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev
+
+      - name: Build
+        run: ./build.sh
+        
+# MacOS is disabled due to too many problems with configuration
+# 
+#  macos:
+#    name: MacOS
+#    runs-on: macos-latest
+#
+#    steps:
+#      - name: Checkout current branch
+#        uses: actions/checkout@v3
+#        with:
+#          submodules: 'recursive'
+#
+#      - name: Install prerequisites
+#        run: |
+#          brew install cmake ninja libx11 libxrandr libxinerama libxcursor libxi mesa coreutils
+#
+#      - name: Build
+#        run: ./build.sh

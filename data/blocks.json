@@ -1,0 +1,95 @@
+{
+  "default": {
+    "atlas": "data/textures/full_game_atlas.png",
+    "slotSize": 16,
+    "blocks": [
+      {
+        "block": "grass",
+        "textures": [
+          {
+            "faces": [ "top" ],
+            "location": {
+              "column": 0,
+              "row": 0
+            }
+          },
+          {
+            "faces": [ "left", "right", "front", "back" ],
+            "location": {
+              "column": 1,
+              "row": 0
+            }
+          },
+          {
+            "faces": [ "bottom" ],
+            "location": {
+              "column": 0,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "dirt",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 0,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "cobblestone",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 1
+            }
+          }
+        ]
+      },
+      {
+        "block": "ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 0
+            }
+          }
+        ]
+      },
+      {
+        "block": "broken ice",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 3,
+              "row": 2
+            }
+          }
+        ]
+      },
+      {
+        "block": "sand",
+        "textures": [
+          {
+            "faces": [ "left", "right", "front", "back", "top", "bottom" ],
+            "location": {
+              "column": 2,
+              "row": 1
+            }
+          }
+        ]
+      }
+
+    ]
+  }
+}

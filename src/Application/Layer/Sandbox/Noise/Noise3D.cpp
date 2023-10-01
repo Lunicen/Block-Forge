@@ -1,4 +1,4 @@
-#include "Noise3D.h"
+#include "application/layer/sandbox/noise/noise3d.h"
 
 glm::ivec3 Noise3D::GetOriginShiftedByExpansionFactor(
 	const ChunkFrame& frame, 
